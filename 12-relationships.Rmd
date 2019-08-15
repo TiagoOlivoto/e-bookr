@@ -1,0 +1,517 @@
+# Relações lineares entre variáveis {#relations}
+
+Conhecer o grau de associação linear entre caracteres é de fundamental importância em um programa de melhoramento genético vegetal. Esta importância aumenta, principalmente se algum caractere desejável é de difícil mensuração, ou apresenta baixa herdabilidade. O coeficiente de correlação \indt{correlação} produto-momento de @Pearson1920, *r*, vem sendo amplamente utilizado para este fim. Embora o mérito desta análise seja atribuído à Karl Pearson, o método foi originalmente concebido por Francis Galton, que definiu o termo correlação como como o seguinte: *duas variáveis são ditas correlacionadas quando a variação de uma é acompanhada na média, mais ou menos a variação da outra, e no mesmo sentido* [@Galton1888].
+
+## Dados
+
+Nesta sessão, e na sessão de [análise multivariada](#multivariate) iremos utilizar o conjunto de dados `datage_2` do pacote **metan**. Para maiores informações veja `?data_ge2`
+
+```{r warning = FALSE, message = FALSE}
+maize  = data_ge2
+numeric_var = maize %>% select_if(is.numeric)
+datacor = maize %>% dplyr::select(CD, CL, CW, PH, EH, EP, EL, ED)
+```
+
+
+
+## Correlação linear
+
+A estimativa do *r* leva em consideração a covariância entre duas variáveis, representadas aqui por XY dividia pelo produto dos respectivos desvios padrões de X e de Y, conforme o seguinte modelo:
+
+$$
+{\rm{r  =  }}\frac{{\sum\limits_{{\rm{i = 1}}}^{\rm{n}} {{\rm{[ (}}{{\rm{X}}_{\rm{i}}}{\rm{ - \bar X)(}}{{\rm{Y}}_{\rm{i}}}{\rm{ - \bar Y)] }}} }}{{\sqrt {\sum\limits_{{\rm{i = 1}}}^{\rm{n}} {{{{\rm{(}}{{\rm{X}}_{\rm{i}}}{\rm{ - \bar X)}}}^{\rm{2}}}} } \sqrt {\sum\limits_{{\rm{i = 1}}}^{\rm{n}} {{{{\rm{(}}{{\rm{Y}}_{\rm{i}}}{\rm{ - \bar Y)}}}^{\rm{2}}}} } }}
+$$
+
+onde ${\rm{\bar X = }}\frac{{\rm{1}}}{{\rm{n}}}\sum\limits_{{\rm{i = 1}}}^{\rm{n}} {{{\rm{X}}_{\rm{i}}}}$ e ${\rm{\bar Y = }}\frac{{\rm{1}}}{{\rm{n}}}\sum\limits_{{\rm{i = 1}}}^{\rm{n}} {{{\rm{Y}}_{\rm{i}}}}$.
+
+Esta sessão é focada em apresentar funções básicas e avançadas para visualização gráfica de associações e estimativas do coeficiente de correlação. Para este fim, utilizaremos o conjunto de dados `datacor`, criado anteriormente. 
+
+### Visualização gráfica
+
+A seguinte função proporciona uma visualização gráfica de todos os pares de correlação possíveis (*scatter-plot*)
+\indf{pairs}
+```{r fig.align="center", fig.height=5, fig.width=5, message=FALSE, warning=FALSE, comment=""}
+pairs(datacor)
+
+```
+
+
+### Estimativa dos coeficientes de correlação
+\indf{correlation}
+```{r,  message=FALSE}
+corr = correlation(datacor)
+print(corr$correlation, digits = 3)
+print(corr$pvalue, digits = 3)
+
+    ```
+
+### Combinando visualização gráfica e numérica (I)
+
+\indf{pairs.panels}
+```{r fig.height = 5, fig.width = 5, fig.align = "center", message=FALSE}
+
+pairs.panels(datacor)
+
+    ```
+
+Na figura acima, os pontos observados são plotados na diagonal inferior. Na diagonal, é apresentada a estimativa da densidade Kernel (linha preta) e um histgrama de cada variável. A diagonal superior contém os coeficientes de correlação.
+
+### Combinando visualização gráfica e numérica (II)
+
+
+\indf{corr\_plot}
+A função `corr_plot()`do pacote **metan** retorna um gráfico semelhante ao anterior, no entanto possui diversas opções, tais como mudança no tamanho da letra dependendo da magnitude da correlação e indicação de cores para correlações significativas.
+```{r message = F, fig.height = 5, fig.width = 5, fig.align = "center", fig.cap = "Scatter plot de uma matriz de correlação de Pearson"}
+corr_plot(datacor)
+```
+
+A função `corr_plot()` pode ser utilizada com o operador `%>%`. Em adição, é possível escolher as variáveis a serem plotadas. Para isto, basta digitar o nome das variáveis.
+
+```{r message = F, fig.height = 5, fig.width = 5,  fig.align = "center", fig.cap = "Scatter plot de uma matriz de correlação de Pearson"}
+maize %>%
+  corr_plot(CD, EL, PERK, NKR, CW,
+            shape.point = 19,
+            size.point = 2,
+            alpha.point = 0.5,
+            alpha.diag = 0,
+            pan.spacing = 0,
+            col.sign = "gray",
+            alpha.sign = 0.3,
+            axis.labels = TRUE,
+            progress = FALSE)
+```
+
+```{r message = F, fig.height = 5, fig.width = 5,  fig.align = "center", fig.cap = "Scatter plot de uma matriz de correlação de Pearson"}
+
+maize %>%
+  corr_plot(CD, EL, PERK, NKR, CW,
+            shape.point = 21,
+            col.point = "black",
+            fill.point = "orange",
+            size.point = 2,
+            alpha.point = 0.6,
+            maxsize = 4,
+            minsize = 2,
+            smooth = TRUE,
+            col.smooth = "black",
+            col.sign = "cyan",
+            upper = "scatter",
+            lower = "corr",
+            diag.type = "density",
+            col.diag = "cyan",
+            pan.spacing = 0,
+            lab.position = "bl")
+
+```
+
+
+### Combinando visualização gráfica e numérica (III)
+\indt{corrplot.mixed()}
+A função `corrplot.mixed()` \indf{corrplot.mixed} do pacote [corrplot](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html)^[https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html] também é uma boa opção para visualização gráfica, principalmente quando um grande número de combinações está disponível.
+
+* Criando a matrix de correlação utilizando o conjunto de dados `datacor`.
+* 8 variáveis | 28 combinações
+```{r message = F, warning = F, fig.height = 4, fig.width = 4, fig.align = "center"}
+
+cor1 = cor(datacor)
+corrplot.mixed(cor1,
+               upper = "ellipse",
+               lower = "number",
+               number.digits = 2)
+    ```
+
+### Combinando visualização gráfica e numérica (IV)
+
+* Criando a matrix de correlação utilizando o conjunto de dados dataset.
+* 14 variáveis | 91 combinações
+
+```{r message = F, warning = F }
+cor2 = cor(numeric_var)
+pval = cor.mtest(cor2)$p
+
+```
+
+A função `corrplot()` \indf{corrplot} do pacote `corrplot` permite uma poderosa personalização. Esta função tem a vantagem de apresentar um elevado número de combinações em um gráfico claro e intuitivo.
+
+```{r message = F, warning = F, fig.height = 4, fig.width = 4, fig.align = "center", fig.cap = "Gráfico de pizza de uma matriz de correlação de Pearson"}
+corrplot(cor2,
+         method = "pie",
+         p.mat = pval,
+         sig.level = 0.05,
+         insig = "blank",
+         type = "lower",
+         diag = F,
+         tl.col = "black",
+         tl.srt = 45)
+
+
+    ```
+
+
+```{r message = F, warning = F, fig.height = 4, fig.width = 4, fig.align = "center" }
+corrplot(cor2,
+         method = "ellipse",
+         p.mat = pval,
+         sig.level = 0.05,
+         insig = "blank",
+         type = "upper",
+         diag = F,
+         tl.col = "black",
+         tl.srt = 45)
+
+
+    ```
+
+
+## Correlações genéticas
+A função `covcor_design()` pode ser usada para calcular matrizes de correlação/(co) variância genéticas, fenotípicas e residuais através do método de Análise de Variância (ANOVA) usando delineamento de blocos completos casualizados (DBC) ou delineamento inteiramente casualizado (DIC).
+
+As correlações fenotípicas $r^p_{xy}$, genotípicas $r^g_{xy}$ e residuais $r^r_{xy}$ entre duas variáveis *x* e *y* são calculadas conforme segue.
+
+$$
+r^p_{xy} = \frac{cov^p_{xy}}{\sqrt{var^p_{x}var^p_{y}}} \
+r^g_{xy} = \frac{cov^g_{xy}}{\sqrt{var^g_{x}var^g_{y}}} \
+r^r_{xy} = \frac{cov^r_{xy}}{\sqrt{var^r_{x}var^r_{y}}}
+$$
+
+Utilizando os quadrados médios (QM) obtidos da ANOVA, as variâncias (var) e covariâncias (cov) são calculadas da seguinte forma:
+
+
+$$
+cov^p_{xy} = [(QMT_{x+y} -QMT_x -QMT_y)/2]/r \\
+var^p_x =QMT_x / r \\
+var^p_y =QMT_y / r
+$$
+
+
+
+$$
+cov^r_{xy} = (QME_{x+y} - QME_x - QME_y)/2 \\
+var^r_x = QME_x \\
+var^r_y = QME_y
+$$
+
+
+
+
+$$
+cov^g_{xy} = [(cov^p_{xy} \times r) - cov^r_{xy}]/r \\
+var^g_x = (MST_x - MSE_x)/r \\
+var^g_y = (MST_x - MSE_y)/r
+$$
+
+
+
+onde *QMT* é o quadrado médio para tratamento, *QME* é o quadrado médio do erro e *r* é o número de repetições/blocos. A função `covcor_design()` \indf{covcor\_design} retorna uma lista com as matrizes de (co)variâncias e correlações. Matrizes específicas podem ser retornadas usando o tipo de argumento `type`. No exemplo abaixo, o coeficiente de correlação genotípico entre as variáveis PH, EH, NKE e TKW será computado para o ambiente A1, considerando um DBC.
+
+
+
+```{r}
+maize %>%
+  filter(ENV == "A1") %>%
+  covcor_design(gen = GEN,
+                rep = REP,
+                resp = c(PH, EH, NKE, TKW),
+                type = "gcor")
+
+```
+
+\indt{Exercícios}
+```{block2, type="tarefa"}
+**Exercício 13**
+Compute a matriz de (co)variâncias residuais para cada ambiente combinando as funções `split_factors()` e `covcor_design()`
+```
+[Resposta](#exerc13)
+
+
+## Intervalo de confiança
+### Paramétrico
+O intervalo de confiança para o coeficiente de correlação pode ser obtido utilizando a função `cor.mtest()` do pacote **corrplot**, conforme o seguinte exemplo.
+
+```{r message=FALSE}
+ci_corr = cor.mtest(datacor)
+
+```
+
+### Não paramétrico
+
+Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por @Olivoto2018. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função `corr_ci()` do pacote **metan**. \indf{corr\_ci} É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém **E** no nome. Note o benefício do operador `%>%` neste caso.
+
+```{r, fig.align="center", }
+maize %>% 
+  select(contains("E")) %>%
+  corr_ci(verbose = FALSE) %>%
+  plot_ci()
+```
+
+
+## Tamanho da amostra
+Baseado no modelo proposto por @Olivoto2018, o tamanho da amostra suficiente para a estimativa do coeficiente de correlação considerando um intervalo de confiança desejado é obtido pela função `corr_ss()`. Neste exemplo, vamos calcular o tamanho da amostra necessário para que uma correlação de 0.6 apresente uma semi-amplitude do intervalo de confiança igual a 0.1  \indf{corr\_ss}
+
+```{r}
+corr_ss(r = 0.6, CI = 0.1)
+```
+
+
+## Correlação parcial
+Em certos casos, o coeficiente de correlação linear simples pode nos levar a equívocos na interpretação da associação entre duas variáveis, pois este não considera a influência das demais variáveis contidas no conjunto de dados. O coeficiente de correlação parcial \indt{correlação parcial} é uma técnica baseada em operações matriciais que nos permite identificar a associação entre duas variáveis retirando-se os efeitos das demais variáveis presentes [@Anderson2003] Uma maneira generalizada para a estimativa do coeficiente de correlação parcial entre duas variáveis (*i* e *j*) é por meio da matriz de correlação simples que envolve estas duas variáveis e *m* outras variáveis das quais queremos retirar o efeito. A estimativa do coeficiente de correlação parcial entre *i* e *j* excluído o efeito de *m* outras variáveis é dado por:
+
+$$
+{r_{ij.m} = \frac{{- {a_{ij}}}}{{\sqrt {{a_{ii}}{a_{jj}}}}}}
+$$
+
+onde $r_{ij.m}$ é o coeficiente de correlação parcial \indt{correlação parcial} entre as variável *i* e *j*, sem o efeito das outras *m* outras variáveis; $a_{ij}$ é o elemento da ordem *ij* da inversa da matriz de correlação simples; $a_{ii}$ e $a_{jj}$  são os elementos de ordens *ii* e *jj*, respectivamente, da inversa da matriz de correlação simples.
+
+As matrizes de coeficientes de correlação linear e parcial podem ser facilmente obtida utilizando a função `lpcor()` \indf{lpcor} do pacote **metan**. A entrada dos dados pode ser realizada de duas maneiras. (i) utilizando os dados com as observações de cada variável; ou (ii) utilizando uma matriz de correlação linear simples pré estimada. Em nosso exemplo, vamos utilziar os mesmos dados utilizados nas funções anteriores (*datacor*).
+
+```{r,  message = F, warning = F}
+
+partial = datacor %>% 
+  select(PH, EH, CW, EL) %>% 
+  lpcor()
+
+
+```
+
+A função retorna 3 objetos: `linear.mat` que contém a  matriz de correlação linear simples; `partial.mat` que contém a matriz de correlações parciais, `results` que contém tibble contendo todas as combinações de correlação com seus respectivos testes de hipótese.
+
+
+
+## Análise de trilha
+
+Nesta sessão, primeiramente uma breve introdução à análise de trilha é apresentada. Algumas dificuldades, como , por exemplo, a presença de multicolinearidade \indt{multicolinearidade} e possíveis soluções para contorná-la serão discutidas. Posteriormente exemplos numéricos serão realizados utilizando funções do pacote **metan**.
+
+### Introdução
+
+A análise de trilha vem se destacando na área do melhoramento genético, pois a seleção para melhoria de um caractere desejável que possui difícil mensuração e baixa herdabilidade, pode ser realizada indiretamente por outro caractere, diretamente associado a este, mas que apresente alta herdabilidade e seja de fácil mensuração. Esta técnica é baseada em ideias originalmente desenvolvidas por Sewall Wright [@Wright1921], no entanto desde sua concepção até a consolidação do método, algumas divergências quanto a fidedignidade do método matemático que explica as relações de causa e efeito foram observadas. Em 1922, Henry E. Niles, em um [artigo](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1200533/pdf/258.pdf)^[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1200533/pdf/258.pdf] publicado na revista *Genetics* intitulado *Correlation, Causation and Wright's theory of path coefficients*, fez uma crítica ao método proposto por Wright, afirmando que a base filosófica do método dos coeficientes de trilha era falha. Niles, testando o método de Wright, evidenciou em alguns de seus resultados coeficientes superiores a |1|, afirmando *[...]estes resultados são ridículos[...]* e que Wright teria de fornecer provas bem mais convincentes do que ele estava apresentando @Niles1922.
+
+No ano seguinte, 1923, Sewall Wright em seu [artigo](https://www.genetics.org/content/genetics/8/3/239.full.pdf)^[https://www.genetics.org/content/genetics/8/3/239.full.pdf] entitulado *The theory of path coefficients: a reply to Niles's criticism*, publicado na mesma revista *Genetics*, consolida seu método ao concluir que Niles pareceu se basear em conceitos matemáticos incorretos, resultado de uma falha em reconhecer que um coeficiente de trilha não é uma função simétrica de duas variáveis, mas que ele necessariamente tem direção. Este autor conclui seu trabalho afirmando que a análise de trilha não fornece uma fórmula geral para deduzir relações causais a partir do conhecimento das correlações. Ela é, no entanto, dentro de certas limitações, um método de avaliar as consequências lógicas de uma hipótese de relação causal em um sistema de variáveis correlacionadas. Acrescenta ainda que as críticas oferecidas por Niles em nada invalidam a teoria do método ou sua aplicação [@Wright1923]. Atualmente, o método estatístico é consolidado, e utilizado mundialmente em diversas áreas da ciência.
+
+### Estimação
+
+A decomposição das correlações lineares em efeitos diretos e indiretos de um conjunto de *p*-variáveis explicativas é realizada o sistema de equações normais \indt{sistema de equações normais} 
+
+$$
+X'X\hat \beta = X'Y
+$$
+
+que tem como resolução
+
+$$
+\hat \beta = X'X^{-1} X'Y
+$$
+
+onde $\hat \beta$ é o vetor dos coeficiente de regressão parcial ($\hat \beta_1$, $\hat \beta_2$, $\hat \beta_3$,...,$\hat \beta_p$) para *p* + 1; $X'X^{-1}$ é a inversa da matriz de correlação linear entre as variáveis explicativas e $X'Y$ é a matriz de correlação de cada variável explicativa, com a variável dependente.
+
+Após a estimativa dos coeficientes de regressão ($\hat \beta_p$), os efeitos diretos e indiretos do conjunto de p-variáveis explicativas podem ser estimados. Considere o seguinte exemplo, onde um conjunto de variáveis explicativas (*a*, *b*, *c*) são utilizadas para explicar as relações de causa e efeito \indt{causa e efeito} na resposta de uma variável dependente (*y*). Após as estimativas dos coeficientes de regressão parcial ($\hat \beta_1$, $\hat \beta_2$ e $\hat \beta_3$), os efeitos diretos e indiretos de *a* sobre *y* são dados por:
+
+$$
+r_{a:y} = \hat \beta_1 + \hat \beta_{2_{ra:b}} + \hat \beta_{3_{ra:c}}
+$$
+
+onde $r_{a:y}$ é a correlação linear entre *a* e *y*, $\hat \beta_1$ é o efeito direto de *a* em *y*; $\hat \beta_{2_{ra:b}}$ é o efeito indireto de *a* em *y* via *b* e $\hat \beta_{3_{ra:c}}$ é o efeito indireto de *a* em *y* via *c*. Regressões semelhantes são utilizadas para estimativa dos efeitos de *b* e *c*, conforme segue:
+
+\begin{gather*}
+r_{b:y} = \hat \beta_{1_{rb:a}} + \hat \beta_2 + \hat \beta_{3_{rb:c}}\\
+r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
+\end{gather*}
+
+Como exemplo numérico, vamos utilizar as variáveis PERK, EH, CDED como variáveis explicativas e a variável KW como dependente, do conjunto de dados `maize`. Para seleção destas variáveis, a função `select()`\indf{select} é utilizada.
+
+```{r,  message = F, warning = F}
+x = maize %>% select(PERK, EH, CDED)
+y = maize %>% select(KW)
+
+xx = cor(x) # Correlação entre as variáveis explicativas
+xy = cor(x, y) # Correlação das explicativas com a dependente
+b = solve(xx) %*% xy # Estimativa dos coeficientes
+
+PERK_KW_DIR = b[1] # Direto de PERK em KW
+PERK_KW_EH = b[2] * xx[1,2] # Indireto de PERK em KW via EH
+PERK_KW_CDED = b[3] * xx[1,3] # Indireto de PERK em KW via CDED
+
+EH_KW_PERK = b[1] * xx[2,1] # Indireto de EH em KW via PERK
+EH_KW_DIR = b[2] # Direto de EH em KW
+EH_KW_CDED = b[3] * xx[2,3] # Indireto de EH em KW via CDED
+
+CDED_KW_PERK = b[1] * xx[3,1] # Indireto de CDED em KW via PERK
+CDED_KW_EH = b[2] * xx[3,2] # Indireto de CDED em KW via EH
+CDED_KW_DIR = b[3] # Direto de CDED em KW
+
+# Coeficientes de trilha (direto na diagonal, indireto fora da diagonal)
+coeff = matrix(c(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,
+                 EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,
+                 CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),
+               ncol = 3)
+rownames(coeff) <- colnames(coeff) <- c("PERK", "EH", "CDED")
+coeff
+
+
+```
+
+Utilizando os conhecimentos acumulados até agora, estes mesmos coeficientes podem ser estimados de maneira mais "elegantemente", utilizando o código abaixo.
+
+
+
+```{r,  message = F, warning = F}
+n = ncol(xx)
+Coeff <- data.frame(xx)
+for (i in 1:n) {
+  for (j in 1:n) {
+    Coeff[j, i] <- b[j] * xx[j, i]
+  }
+}
+rownames(coeff) <- colnames(coeff) <- c("PERK", "EH", "CDED")
+Coeff
+```
+
+
+### Multicolinearidade
+
+Embora esta análise revele associações de causa e efeito, sua estimativa é baseada em princípios de regressão múltipla. Assim, as estimativas dos parâmetros \indt{parâmetros}podem ser enviesadas devido a natureza complexa dos dados, em que a resposta da variável dependente está ligada a um grande número de variáveis explicativas, que são muitas vezes correlacionadas ou multicolineares entre si [@Graham2003]. Assim, sempre que duas supostas variáveis explicativas se apresentam altamente associadas, é difícil estimar as relações de cada variável explicativa individualmente, uma vez que vários parâmetros resolvem o sistema de equações normais. A esta particularidade é atribuída o nome de multicolinearidade \indt{multicolinearidade} [@Blalock1963].
+
+Os principais meios utilizados para identificar o grau de multicolinearidade em uma matriz de variáveis explicativas são os seguintes: 
+
+ * Número de condição (CN):  \indt{número de condição} O número de condição é calculado pela razão entre o maior e menor autovalor ($\lambda$) da matriz de correlação $X'X$, de acordo com a expressão
+ 
+$$
+ {\rm{NC = }}\frac{{\lambda_{\rm{Max}}}}{{\lambda_{\rm{Min}}}}
+$$
+
+O grau de multicolinearidade é considerado fraco se NC $\leq$ 100, moderado se 100 $\leq$ NC $\leq$ 1000 e severo quando NC > 1000.
+
+* Determinante da matriz $X'X$ (D): \indt{determinante da matriz} O determinante da cada matriz de correlação é estimado pelo produto de seus respectivos autovalores, para $\lambda_j > 0$, de acordo com a expressão
+ 
+$$
+\mathop D\nolimits_{{\boldsymbol{X'X}}} {\rm{  = }}\prod\limits_{j = 1}^p {\lambda j}
+$$
+
+Um determinantes muito próximo a zero indica dependência linear entre as características explicativas, indicando problemas graves de multicolinearidade.
+
+ * Fator de inflação de variância (VIF): \indt{fator de inflação de variância} Os (VIFs) são utilizados para medir o quanto a variância dos coeficientes de regressão estimados ($\hat \beta_k$) foi inflada em comparação a quando os caracteres explicativos não são linearmente associados. A estimativa do VIF do *k*-ésimo elemento de $\hat \beta$ é dada  pela soma dos quocientes do quadrado de cada componente do autovetor pelo seu respectivo autovalor associado, de acordo com a expressão
+ 
+ $$
+\mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }  = \left( {\frac{{\mathop {{\rm{(AV}}}\nolimits_{KC1} {)^2}}}{{\lambda 1}} + \frac{{{{(\mathop {{\rm{AV}}}\nolimits_{KC2} )}^2}}}{{\lambda 2}} + ... + \frac{{{{(\mathop {{\rm{AV}}}\nolimits_{KCp} )}^2}}}{{\lambda p}}} \right)
+ $$
+ 
+onde $\mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }$ é o fator de inflação de variância o k-ésimo elemento de $\beta$ para *k* = 1, 2, ..., *p*; $\mathop {{\rm{EV}}}\nolimits_{KC{\rm{1}}}$ é o componente do *k*-ésimo autovetor para *k* = 1, 2, ..., *p* e *C* = 1, 2, ..., *p*; e $\lambda$ é o autovalor associado ao respectivo autovetor para $\lambda$ = 1, 2, ..., *p*. Os VIFs também podem ser considerados como os elementos da diagonal da inversa da matriz $X'X$. Considera-se que a presença de VIFs maiores que 10 é um indicativo de multicolinearidade \indt{multicolinearidade}.
+
+A função `colindiag()` \indf{colindiag} do pacote **metan** é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Vamos utilizá-la para realizar o diagnóstico da multicolinearidade da matriz de correlação entre as variáveis presentes no dataframe "datacor". Para maiores detalhes veja `?colindiag`
+
+```{r,  message = F, warning = F}
+multicol = colindiag(datacor)
+```
+
+```{block2, type="dica"}
+Em análise de trilha, o diagnóstico da multicolinearidade deve ser realizado na matriz de correlação das variáveis explicativas. No exemplo acima, supondo que a análise de trilha fosse realizada considerando a variável **PH** como dependente, o seguinte comando deveria ter sido utilizado para o diagnóstico da multicolinearidade.
+
+`multicol = datacor %>% select(-PH) %>% colindiag()`
+
+```
+
+
+### Métodos para ajustar a multicolinearidade
+
+Embora os problemas relacionados a multicolinearidade \indt{multicolinearidade} se apresente como uma dificuldade na estimativa de coeficientes de trilha, algumas medidas podem ser tomadas visando mitigar seus efeitos indesejáveis, quando esta for detectada pelos métodos acima citados. Sabe-se atualmente, que a exclusão das variáveis responsáveis por inflar a variância de um coeficiente de regressão é um dos métodos mais indicados para reduzir a multicolinearidade em matrizes de variáveis explicativas [@Olivoto2017f]. A identificação destas variáveis, no entanto, pode ser uma tarefa difícil.  Recentemente, @Olivoto2017 propuseram a utilização de procedimentos stepwise \indt{stepwise} juntamente com análise de trilha sequencial visando identificar um conjunto de variáveis com alto poder explicativo, mas que não se apresentem altamente correlacionadas. Quando a exclusão das variáveis responsáveis não é um procedimento considerado pelo pesquisador, por exemplo, devido a um número reduzido de variáveis explicativa, ou pela importância em conhecer seus efeitos, uma terceira opção é realizar a análise de trilha com todas as variáveis explicativas, porém com a inclusão de um pequeno valor nos elementos da diagonal $X'X$, conhecida como regressão em crista^[A regressão em crista é conhecida como *ridge regression* e prossegue adicionando um pequeno valor, *k*, aos elementos diagonais da matriz de correlação. É aqui que a regressão em crista recebe seu nome, pois a diagonal de uma na matriz de correlação pode ser vista como uma crista, ou cumieira [@Hoerl1976]]. Este procedimento, no entanto superestima os efeitos diretos, principalmente daquelas variáveis com alto VIF. [@Olivoto2017f]. 
+
+
+### Análise tradicional
+
+Esta sessão está focada principalmente em três objetivos: (i) diagnóstico da multicolinearidade\indt{multicolinearidade}; (ii) seleção de variáveis \indt{seleção de variáveis} preditoras; e (iii) estimação dos coeficientes de trilha. Embora esta seja a sequência correta a ser seguida para a estimativa dos coeficientes de trilha, utilizaremos somente a função `path_coeff()`, \indf{path\_coeff} que possibilita todas estas abordagens. Para isto, o conjunto de dados `maize` será utilizado.
+
+```{r,  message = T, warning = F}
+pathtodas = maize %>% path_coeff(KW, verbose = FALSE)
+
+```
+
+Com a função acima, os coeficientes de trilha foram estimados considerando a variável KW (massa de grãos por espiga) como dependente, e todas as outras variáveis numéricas do conjunto de dados como explicativas. A função `summary()` pode ser utilizada para resumir os resultados da análise. Note que os coeficientes foram estimados considerando todos os níveis dos fatores **ENV**, **GEN**, e **REP**.
+
+```{block2, type="dica"}
+A mensagem de aviso gerada pela função acima pode ser suprimidada utilizando o argumento `verbose = FALSE`
+
+```
+
+
+De acordo com o NC, VIF e determinante da matriz, a multicolinearidade \indt{multicolinearidade} na matriz das variáveis explicativa é severa. Por exemplo, foram observados oito VIFs > 10 e o determinante da matriz foi de $8.619 \times 10^{-12}$. A análise dos autovalores-autovetores (`pathtodas$weightvar`) indicou que, em ordem de importância, as variáveis que mais contribuem para a multicolinearidadeque são: CL > ED > CDED > EH > CW > PH > NKE > EP > TKW > PERK > NR > EL > NKR > CD. Conforme discutido, temos basicamente duas opções para contornar os problemas da elevada multicolineridade em nossos dados. Excluir as variáveis responsáveis pela multicolinearidade, ou manter todas as variáveis e incluir um fator de correção na diagonal da matrix \textbf{X'X}. Vamos começar pela última opção.
+
+### Incluindo um fator de correção (k)
+
+A variância dos coeficientes de regressão é reduzida quando quando um valor *k* para $0 < k \leq 1$ é incluído na diagonal da matriz de correlação $X'X$. Com esta técnica, a estimativa dos coeficientes de regressão é dado por: 
+
+$$
+\hat \beta = (X'X+Ik)^{-1} X'Y
+$$
+
+A escolha da magnitude de *k*, no entanto, deve ser cautelosa. Sugere-se que o valor a ser incluído seja aquele menor possível que estabilize os coeficientes de regressão ($\beta_p$). Felizmente, grande parte deste trabalho já foi realizado quando utilizamos a função `path_coeff()` \indf{path\_coeff} na [sessão anterior](#analise-tradicional). Um conjunto de estimativas de $\beta_p$ foi estimado com 101 valores de *k*, ($k = 0, 0.01, ..., 1$) e representado graficamente. 
+
+```{r, message = F, warning = F, fig.height = 4, fig.width = 4, fig.align = "center", fig.cap = "Valores de beta obtidos com 101 valores de k"}
+pathtodas$plot
+
+```
+
+
+O gráfico acima nos proporciona uma interpretação sobre qual é o valor de *k* mais indicado a ser utilizado. Para fins didátidos, escolheremos, por enquanto, o valor de *k* igual a 0.04, valor no qual os coeficientes de regressão da maioria das variávies se estabiliza. Para incluir este valor de correção, utilizaremos novamente a função `path_coeff()`, no entanto, agora, incluiremos o argumento `correction = 0.04`.
+
+```{r, message = T, warning = F}
+pathtodas_k = maize %>% path_coeff(KW, correction = 0.04, verbose = FALSE)
+```
+
+
+Com a inclusão do fator de correção (*k* = 0.04) na diagonal de $X'X$, a multicolinearidade foi classificada como moderada (NC = 141). Inevitavelmente, temos duas opções para obtermos menores níveis de multicollinearidade. A primeira é aumentar o valor de *k*, digamos, para 0.1. Isto iria reduzir ainda mais o nível de multicolinearidade \indt{multicolinearidade} em nossa matriz, no entanto, o viés na estimativa dos coeficientes aumentaria. A segunda (e mais razoável) opção, é a exclusão das variáveis que mais causam problemas de multicolinearidade. Por exemplo, podemos considerar as variáveis com maior peso nos últimos autovalores, ou aquelas com maior VIF. As variáveis CL e EL apresentam alta correlação (veja a seção [estimativas dos coeficientes de correlação](#estimativa-dos-coeficientes-de-correlacao)), assim poderíamos manter apenas uma destas variáveis. A mesma interpretação pode ser considerada para CDED. Esta é uma co-variável (razão do diâmetro do sabugo e diâmetro da espiga, CDED = CD/ED). Vamos considerar então a exclusão destas variáveis. 
+
+### Excluindo variáveis
+
+O ajuste do novo modelo excluindo estas variáveis é facilmente realizado. Para isto, iremos utilizar dois argumentos da função `path_coeff()` \indf{path\_coeff}  não vistos até agora: `pred` e `exclude`. As variáveis informadas em `pred` podem ser as variáveis preditoras (*default*) ou as variáveis a serem excluídas, se `exclude = TRUE`. Vamos ao exemplo.
+
+```{r,  message = F, warning = F}
+path_exclude = maize %>% 
+  path_coeff(resp = KW,
+             pred = c(PERK, EH, CDED),
+             exclude = TRUE,
+             verbose = FALSE)
+
+```
+
+
+Abaixo, um resumo das três abordagens realizadas até agora, utilizando o resumo apresentado na tabela abaixo.
+
+
+| Estatística        | Convencional         | Incluindo *k*        | Excluindo variáveis  |    
+|:-------------------|:---------------------|:---------------------|:---------------------|
+|Número de Condição  | 7866                 |141                   |125.7                 |
+|Determinante        | 0                    |2.7e-07               |1.452e-05             |
+|Maior VIF           | 665.12               |14.76                 |13.2                  |
+|R2                  | 0.988                |0.966                 |0.982                 |
+|Residual            | 0.011                |0.033                 |0.017                 |
+
+Conforme também observado por @Hoerl1970 e @Olivoto2017f, a exclusão de variáveis responsáveis pela multicolinearidade \indt{multicolinearidade} foi mais eficiente que a inclusão do *k*, proporcionando menores níveis de multicolinearidade e maior precisão do modelo (maior $R^2$ e menor residual). Os níveis de multicolinearidade ao excluir as variáveis ainda preocupam. Vimos que tanto a identificação das variáveis responsáveis pela multicolinearidae quanto o ajuste do modelo declarando preditores específicos é um procedimento relativamente simples utilização a função `path_coeff()`\indf{path\_coeff}. Mas, e se algum procedimento estatistico-computacional facilitasse ainda mais essa tarefa? Vamos, a partir de agora, considerar isso. 
+
+@Olivoto2017 sugeriram a utilização de regressões stepwise para seleção de um conjunto de preditores com minima multicolinearidade em análise de trilha. Esta opção está disponível na função `path_coeff()`. Baseado em um algoritmo heurístico iterativo executado pelo argumento `brutstep = TRUE`, um conjunto de preditores com mínima multicolienaridade é selecionado com base nos valores de VIF\indt{fator de inflação de variância}. Posteriormente, uma série de regressões stepwise são ajustadas. A primeira regressão stepwise é ajustada considerando $p-1$ variáveis preditoras selecionadas, sendo *p* o número de variáveis selecionadas no processo iterativo. O segundo modelo ajusta uma regressão considerando $p-2$ variávies selecionadas, e assim por diante até o último modelo, que considera apenas duas variáveis selecionadas. Vamos ao exemplo.
+
+### Seleção de variáveis em análise de trilha
+
+\indt{seleção de variáveis} \indt{stepwise}
+
+
+```{r,  message = F, warning = F}
+path_step = maize %>% 
+  path_coeff(resp = KW,
+             brutstep = TRUE)
+    ```
+
+Três objetos são criados por esta função: `Summary`, `Models` e `Selectedpred`. O objeto `Summary` contém um resumo do procedimento, listando o número do modelo, o valor do AIC, o diagnóstico da multicolinearidade \indt{multicolinearidade} e os valores de R2 e residual. O objeto `Models`, contém todos os modelos ajustados, e o objeto `Selectedpred`, contém o nome das variávies preditoras selecionadas no processo iterativo. Podemos notar que o algorítmo selecionou um conjunto com 10 preditores (PERK, EP, CDED, NKR, PH, NR, TKW, EL, CD, ED) que apresenta multicolinearidade em niveis aceitáveis. Assim, qualquer um destes modelos poderia ser utilizado sem maiores problemas em relação à isto. O procedimento stepwise realizado com diferentes números de variáveis selecionados também permite a seleção de um modelo mais parcimonio, tarefa que ficará a critério do pesquisador. 
+
+
+### Análise de trilha para cada nível de um fator
+
+Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando a função `split_factors()` \indf{split\_factors} isto é facilmente realizado. Esta função divide o conjunto original de dados em uma lista onde cada objeto contém um nível do fator utilizado. O operador `%>%` passa o resultado para a função `path_coeff()`, qual estima os coeficientes de triha para cada um dos níveis do fator. Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados `maize`.
+
+\indt{seleção de variáveis} \indt{stepwise}
+```{r, message = F, warning = F}
+path_levels = maize %>%
+  split_factors(ENV) %>%
+  path_coeff(resp = KW,
+             pred = c(TKW, NKE, PERK))
+    ```
+
+

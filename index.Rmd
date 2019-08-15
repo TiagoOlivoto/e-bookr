@@ -1,0 +1,128 @@
+--- 
+title: "Software R para avaliação de dados experimentais"
+subtitle: "Um foco em experimentos agronômicos"
+author: "Tiago Olivoto, Bruno Giacomini Sari"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: TiagoOlivoto/e-bookr
+description: "Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas."
+cover-image: "figures/cover.png"
+---
+
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE, comment = "", fig.align="center")
+
+
+```
+
+
+# Prefácio {-}
+
+
+
+Atualmente na área das Ciências Agrárias identificam-se o uso de diversos sofwares para a análise estatística de dados originados em coletas de experimentos. Esta miscelânea de sofwares pode confundir o pesquisador no momento de escolher qual é o software que será adotado para suas análises estatísticas, já que existem aqueles que devem ser adquiridas licenças para uso e nem todos disponibilizam opções de todos os métodos de análise estatística de dados.
+
+Dentre esses o [Software R](https://www.r-project.org/) destaca-se por ser uma linguagem de programação de código aberto *open source* basicamente destinado para computação estatística e gráficos. Com a proposta de organização de um curso e capacitação de acadêmicos e professores envolvidos em Pós-Graduação na Área de Ciências Agrárias, os Drs. Bruno Giacomini Sari e Tiago Olivoto propuseram-se a elaborar um documento onde oferecem uma excelente apresentação e introdução ao ambiente R, bem como diversas aplicações de abordagens estatísticas em experimentos agrícolas.
+
+Em sua segunda edição ampliada e atualizada apresentam-se variações nos tipos de tratamentos (qualitativos e quantitativos), variações nos desdobramentos das interações e variações nas formas da casualização de experimentos bifatoriais. Uma breve abordagem ao uso de modelos lineares generalizados é apresentada. Técnicas biométricas voltadas ao melhoramento genético vegetal como análise conjunta de experimentos, análise de estabilidade e associações entre variáveis ou grupo de variáveis são também abordadas. Todos os exemplos são reproduzíveis. A expectativa é de que este documento seja útil para aqueles pesquisadores que desejam utilizar este ambiente de programação para a realização de suas análises estatísticas
+
+Parabenizamos os autores pela iniciativa e qualidade do material oferecido.
+
+Alessandro Dal’Col Lúcio
+
+Professor Titular, Setor de Experimentação Vegetal
+
+Departamento de Fitotecnia
+
+Centro de Ciências Rurais
+
+Universidade Federal de Santa Maria
+
+
+
+## Por que deveria ler esta apostila {-}
+
+Com uma disponibilidade cada vez maior de bons softwares estatísticos, a escolha por um único programa se torna uma tarefa difícil, até mesmo para alguém com vasta experiência na área de análise de dados de experimentos agronômicos. O ambiente de programação R é, também, um poderoso software estatístico. Assim, inúmeras são as fontes com informações relacionadas a análise de dados, criação de gráficos, etc.
+
+A grande maioria dos blogs^[http://www.sthda.com/english/wiki/easy-r-programming-basics] ^[http://www.sthda.com/english/wiki/data-visualization] ^[http://www.sthda.com/english/wiki/r-basic-statistics] ^[https://ggplot2.tidyverse.org/] ^[https://stats.stackexchange.com/] ^[https://www.r-graph-gallery.com/] ^[https://www.r-graph-gallery.com/] ^[https://www.r-bloggers.com] relacionados ao software R estão na língua Inglesa e mesmo que nos tempos atuais esta não seja uma questão limitante, materiais de qualidade em língua Portuguesa são muito bem-vindos. Por exemplo, a [R-br](http://r-br.2285057.n4.nabble.com/) ^[http://r-br.2285057.n4.nabble.com/] é a lista Brasileira oficial de discussão do programa R e tem o propósito de permitir a troca de informações entre os usuários de R (em português) e contém inúmeras dicas/discussões sobre as mais diversas áreas de estudo. 
+
+Esta apostila, voltada para a análise de dados de experimentos agronômicos, apresenta a teoria e a aplicação no software R dos procedimentos mais utilizados na análise de experimentos agronômicos. Assim, ela pode servir de referência para aqueles que querem realizar suas análises no R, principalmente para os que ainda possuem pouca ou nenhuma experiência com este ambiente de programação.
+
+
+## Estrutura da apostila {-}
+
+Esta apostila contém 14 capítulos divididos em 3 grandes partes. Na parte I (Capítulos 1 a 5 ) o ambiente R é apresentado. O [Capítulo 1](#intro), apresenta uma breve introdução sobre os softwares R e RStudio, mostrando como instalar e carregar os pacotes necessários, além de mostrar ao leitor como criar seu primeiro script. O [Capítulo 2](#objects) apresenta os tipos de objetos. No  [Capítulo 3](#math), as principais operações matemáticas são mostradas. No [Capítulo 4](#loops) é mostrado como *loops* podem ser úteis para repetir um determinado código diversas vezes. No [Capítulo 5](#dataframe) é mostrado os dados podem ser armazenados em objetos com diferentes classes.
+
+A parte II (Capítulos 6 a 9) é voltada para a organização, manipulação e apresentação gráfica de dados. No [Capítulo 6](#entrada) é mostrado diversos formatos de dados podem ser carregados no ambiente R. O [Capítulo 7](#manipula) trata da manimulação dos dados, tais como adição, seleção, resumo e combinação de variáveis. O [Capítulo 8](#graph) trata da apresentação dos dados utilizando diversos tipos de gráficos, tais como barra, histogramas e gráficos de dispersão. O [Capítulo 9](#exporta) é voltado para a exportação dos dados, tanto numérico quanto gráficos.
+
+A parte III (Capítulos 10 a 14) é voltada para a análise dos dados. O [Capítulo 10](#analdata) trata da análise de dados experimentais, incluindo a estatística básica, análise de experimentos uni- e bi-fatoriais considerando os principais delineamentos, transformações de dados, análise de covariância bem como uma breve abordagem ao uso de modelos lineares generalizados. O [Capítulo 11](#reg) é voltado exclusivamente para análise de regressão linear e não linear. O [Capítulo 12](#relations) trata da associação entre variáveis tais como correlação linear, correlação parcial e análise de trilha. No [Capítulo 13](#multivariate) a análise multivariada de dados é apresentada. Por fim --mas não menos importante-- no [Capítulo 14](#interaction) são apresentados diversos modelos para análise de ensaios multi-ambientes, com ênfase na aplicação dos métodos AMMI^[Additive Main Effect and Multiplicative Interaction], BLUP^[Best Linear Unbiased Prediction] e GGE^[Genotype plus Genotype-vs-Environment Interaction].
+
+
+
+## Conjunto de dados {-}
+
+Exemplos reproduzíveis são muito importante para uma curva de aprendizado satisfatória no ambiente de programação R. Os leitores podem interagir com os exemplos deste material ao lê-lo. Por exemplo, é possível, utilizando `Ctrl+C`, copiar uma programação, colar em seu ambiente de trabalho utilizando `Ctrl+V` e saber imediatamente o que acontece se certos parâmetros/argumentos de um modelo/análise forem alterados.
+
+Todos os dados utilizados estão disponíveis em um arquivo `.xlsx` que pode ser baixado neste [link](https://drive.google.com/file/d/1w461F7Ic7bAjjB9DDAG1HF14dzor2vum/view). É sugerido que este arquivo tenha o nome **data_R** e esteja localizado no diretório de trabalho para que a importação dos dados --utilizando os exemplos desta apostila-- não retorne nenhum erro.
+
+
+
+
+# Sobre os autores {-}
+## Tiago Olivoto {-}
+
+<img style="float: right;" src="figures/Tiago.jpg" width="160" height="200" >
+
+
+Tiago Olivoto é Técnico Agrícola pela Escola Estadual de Educação Básica Viadutos (2008), Engenheiro agrônomo pela Universidade do Oeste de Santa Catarina (2014), Mestre em Agronomia: Agricultura e Ambiente pela Universidade Federal de Santa Maria (2017) e Doutorando do Programa de Pós-Graduação em Agronomia pela Universidade Federal de Santa Maria (2017-). Tem experiência profissional como Técnico Agrícola (2008-2011), consultor técnico de vendas (2012-2013), na administração pública e gestão de pessoas (2014-2015), atuando como Secretário Municipal da Agricultura e Meio Ambiente no município de Cacique Doble-RS. Foi professor (bolsista) do Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul, edital nº 271, de 17 de julho de 2014, atuando na ação Bolsa-Formação do Programa Nacional de Acesso ao Ensino Técnico e Emprego (PRONATEC), na Unidade Remota de Cacique Doble. Atualmente é Professor do Ensino Superior no Instituto de Desenvolvimento Educacional do Alto Uruguai (IDEAU) ministrando as seguintes disciplinas: (i) Estatística Aplicada, (ii) Fitopatologia Agrícola, (iii) Manejo e Fertilidade do Solo, (iv) Morfologia, Gênese e Classificação do Solo, (v) Produção e Manejo de Pastagens, (vi) Manejo e Conservação do Solo e da Água e (vii) Sociologia, Extensão e Comunicação Rural (curso de Agronomia); (viii) Bioestatística (curso de Farmácia); e (ix) Gestão Ambiental (curso de Administração).
+
+Tiago exerce atividades de pesquisa e extensão relacionadas ao planejamento, condução e avaliação de experimentos com culturas anuais, com ênfase no desenvolvimento e aperfeiçoamento de métodos estatístico-experimentais para avaliação de ensaios multi-ambientes. É membro atuante da International Biometric Society (IBS), American Society of Agronomy (ASA), Crop Science Society of America (CSSA) e da Soil Science Society of America (SSSA). Atua também como revisor ad hoc em revistas científicas nacionais e internacionais, sendo membro do Conselho Editorial da revista Genetics and Molecular Research. Em seu [currículo](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4416862T6), os termos mais frequentes na contextualização da produção científica são: análise de ensaios multi-ambientes, índices multivariados, intervalo de confiança para correlação, planejamento de experimentos, seleção indireta, interação genótipo-vs-ambiente, modelos mistos e parâmetros genéticos.
+
+Sua mais recente pesquisa publicada em uma série de dois artigos diz respeito ao desenvolvimento de um [novo índice de estabilidade](https://www.researchgate.net/publication/334635697_Mean_performance_and_stability_in_multi-environment_trials_I_Combining_features_of_AMMI_and_BLUP_techniques) para análise de ensaios multi-ambientes, bem comoo desenvolvimento de um [índice multivariado](https://www.researchgate.net/publication/334636021_Mean_performance_and_stability_in_multi-environment_trials_II_Selection_based_on_multiple_traits), para seleção de genótipos baseado na estabilidade ou performance e estabilidade quando diversas variáveis são analizadas.
+
+Como um usuário ativo de R, Tiago desenvolveu o pacote [metan](https://tiagoolivoto.github.io/metan/), acrônimo para **m**ulti-**e**nvironment **t**rial **an**alysis. O código fonte pode ser encontrado em sua página do [GitHub](https://github.com/TiagoOlivoto/metan).
+
+
+
+
+## Bruno Giacomini Sari {-}
+
+<img style="float: right;" src="figures/Bruno.jpg" width="160" height="200" >
+
+Possui graduação (2012), mestrado (2015) e doutorado (2018) em Agronomia pela Universidade Federal de Santa Maria - UFSM. Atualmente realiza estágio pós doutoral junto ao Programa de Pós Graduação em Agronomia da UFSM. Tem experiência na área de estatística, com enfase em experimentação agrícola, atuando nos seguintes temas: probabilidade, amostragem, planejamento experimental, análise de regressão linear e não linear.
+
+
+# Detalhes importantes {-}
+
+**Ambiente de criação**
+
+Este e-book foi escrito em [RMarkdown](https://rmarkdown.rstudio.com/), usando o pacote [bookdown](https://bookdown.org/yihui/bookdown/) e publicado na web em [bookdown.org](https://bookdown.org/).
+
+**Código fonte**
+
+O código fonte deste e-book pode ser encontrado neste [repositório](https://github.com/TiagoOlivoto/e-bookr) GitHub. Para informar qualquer problema, por favor, crie um [pull request](https://github.com/TiagoOlivoto/e-bookr/pulls).
+
+**Licença**
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Este trabalho está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons - Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>. O resumo legível da licença afirma que você tem o direito de:
+
+* **Compartilhar** — copiar e redistribuir o material em qualquer suporte ou formato
+
+* **Adaptar** — remixar, transformar, e criar a partir do material
+
+* **Atribuição** — Você deve dar o crédito apropriado, prover um link para a licença e indicar se mudanças foram feitas. Você deve fazê-lo em qualquer circunstância razoável, mas de nenhuma maneira que sugira que o licenciante apoia você ou o seu uso.
+
+* **De acordo com os termos seguintes**
+
+   * **Não Comercial** — Você não pode usar o material para fins comerciais.
+
+   * **CompartilhaIgual** — Se você remixar, transformar, ou criar a partir do material, tem de distribuir as suas contribuições sob a mesma licença que o original.
+
+   * **Sem restrições adicionais** — Você não pode aplicar termos jurídicos ou medidas de caráter tecnológico que restrinjam legalmente outros de fazerem algo que a licença permita.
+

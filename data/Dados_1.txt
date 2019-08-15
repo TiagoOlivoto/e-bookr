@@ -1,0 +1,7 @@
+Trat	Rep	Sta	num	peso
+bcco alb imp	1	1132.788625	0	0
+bcco alb imp	2	1199.038625	0.0625	0.61875
+bcco alb imp	3	1265.188625	0.0625	0.61875
+bcco alb imp	4	1337.788625	0.16525	1.48125
+
+

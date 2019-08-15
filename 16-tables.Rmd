@@ -1,0 +1,84 @@
+
+
+# Tabela de distribuições {-}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+t6 = read_excel("data/distributions.xlsx", sheet = "um")
+
+kable(t6, digits = 3, booktabs = TRUE, escape = F, format = "html", linesep = "",
+      caption = "Limite unilateral da cauda direita da distribuição F de Fisher-Snedecor, 0,01 de probabilidade de erro.") %>%
+    add_header_above(c(" ", "GL2" = 18)) %>%
+  scroll_box(width = "100%", height = "400px") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+t2 = read_excel("data/distributions.xlsx", sheet = "cinco")
+
+kable(t2, digits = 3, align =  "l", booktabs = T, escape = F, format = "html", linesep = "",
+      caption = "Limite unilateral da cauda direita da distribuição F de Fisher-Snedecor, 0,05 de probabilidade de erro.") %>%
+    add_header_above(c(" ", "GL2" = 18))  %>%
+  scroll_box(width = "100%", height = "400px")%>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+tukey = read_excel("data/distributions.xlsx", sheet = "tukey")
+
+kable(tukey, digits = 3, align =  "l", booktabs = T, format = "html", linesep = "",
+      caption = "Valores da estatística q para teste de Tukey") %>%
+  kable_styling(bootstrap_options = c("striped",  "condensed", "responsive")) %>%
+  collapse_rows(columns = 1, valign = "top")  %>%
+  scroll_box(width = "100%", height = "400px")%>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+tbi = read_excel("data/distributions.xlsx", sheet = "tstudentbi")
+
+kable(tbi, digits = 3, align =  "l", booktabs = T,  format = "html", linesep = "",
+      caption = "Valores críticos da distribuição t de Student bicaudal em diferentes probabilidades.") %>%
+    add_header_above(c(" ", "Área contida nas duas caudas laterais" = 14))  %>%
+  scroll_box(width = "100%", height = "400px") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+npad = read_excel("data/distributions.xlsx", sheet = "padrão")
+names(npad) = c("Z", "0.00",	"0.01",	"0.02",	"0.03",	"0.04",	"0.05",	"0.06",	"0.07",	"0.08","0.09")
+kable(npad, digits = 3, align =  "l", booktabs = T, format = "html", linesep = "",
+      caption = "Tabela da distribuição normal padrão. Primeira decimal de Z nas linhas e segunda decimal de Z nas colunas.") %>%
+  scroll_box(width = "100%", height = "400px")%>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+chiesq = read_excel("data/distributions.xlsx", sheet = "CHIESQ")
+names(chiesq) =  c("GL","0.005",	"0.01",	"0.025",	"0.05",	"0.1",	"0.9",	"0.95",	"0.975",	"0.99",	"0.995")
+kable(chiesq, digits = 3, align =  "l", booktabs = T, format = "html", linesep = "",
+      caption = "Valores críticos (função inversa) em relação a cauda esquerda da distribuição Chi-quadrado.")  %>%
+  scroll_box(width = "100%", height = "400px")%>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+chidir = read_excel("data/distributions.xlsx", sheet = "CHIESDIR")
+names(chidir) = c("GL", "0.005",	"0.01",	"0.025",	"0.05",	"0.1",	"0.9",	"0.95",	"0.975",	"0.99",	"0.995")
+kable(chidir, digits = 3, align =  "l", booktabs = T, format = "html", linesep = "",
+      caption = "Valores críticos (função inversa) em relação a cauda direita da distribuição Chi-quadrado.")  %>%
+  scroll_box(width = "100%", height = "400px")%>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+

@@ -1,0 +1,11 @@
+\indexentry{p\_load@\texttt  {p\_load()}|ST}{16}
+\indexentry{c@\texttt  {c()}|ST}{19}
+\indexentry{rep@\texttt  {rep()}|ST}{19}
+\indexentry{seq@\texttt  {seq()}|ST}{19}
+\indexentry{data.frame@\texttt  {data.frame()}|ST}{20}
+\indexentry{cbind@\texttt  {cbind()}|ST}{21}
+\indexentry{rbind@\texttt  {rbind()}|ST}{21}
+\indexentry{matrix@\texttt  {matrix()}|ST}{21}
+\indexentry{data.frame@\texttt  {data.frame()}|ST}{22}
+\indexentry{tibble@\texttt  {tibble()}|ST}{23}
+\indexentry{data.frame@\texttt  {data.frame()}|ST}{23}

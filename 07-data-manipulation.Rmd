@@ -1,0 +1,372 @@
+# Manipulação de dados {#manipula}
+Após seus dados estarem carregados no ambiente R, eles provavelmente necessitarão de alguma manimulação antes de serem utilizados em uma determinada análise. Esta manipulação pode envolver operações como exclusão de colunas, ordenamento de linhas com base em valores, criação de covariáveis (que serão resultado de operações com uma ou mais variáveis existentes), dentre muitas outras possibilidades. Felizmente, o pacote **dplyr** \indt{dplyr} permite que esta manimulação seja relativamente fácil, lógica (do ponto de vista de digitação de códigos) e rápida, pois ele integra a linguagem `C++` em suas funções.
+
+O pacote **dplyr** é uma *gramática* de manipulação de dados. Nos rerferimos à *gramática* aqui porque ele fornece funções nomeadas como *verbos* simples, relacionados às tarefas mais comuns de manipulação de dados, para ajudá-lo a traduzir seus pensamentos em código. Este será o pacote utilizado para manipulação dos dados no decorrer deste material. De fato, a maioria dos dados em R podem ser manipulados utilizando os seguintes "verbos".
+
+* `filter()` para selecionar linhas com base em seus valores.
+* `arrange()` para reordenar as linhas.
+* `select()` e `rename()` para selecionar variáveis com base em seus nomes.
+* `mutate()` e `transmute()` para adicionar novas variáveis que são funções de variáveis existentes.
+* `summarise()` para resumir vários valores para um único valor.
+* `sample_n()` e `sample_frac()` para obter amostras aleatórias.
+
+Anteriomente mencionamos que a manipulação dos dados com o pacote **dplyr** é lógica do ponto de vista da implementação do código. Isto só é possivel devido a utilização do operador `%>%` (*forward-pipe operator*), importado do pacote `magrittr`. Basicamente, este operador capta o argumento resultante de uma função à sua esquerda e passa como *input* à função à sua direita. Não é nossso objetivo aqui discutir os benefícios da utilização deste operador, mas uma pequena demonstração (com spoilers das funções do pacote dplyr) será apresentada. Considere as seguintes (e simples) operações. Crie um data frame com 100 linhas com as variáveis *x* e *y* contendo valores aleatórios. Adicione uma terceira variáveis (*z*) que será uma função da multiplicação de *x* e *y*, selecione apenas os valores de *z* menores que 10 e extraia a raiz quadrada destes valores. Finalmente, compute a média e armazene no object `mean_sqrt`.
+
+
+* Utilizando as funções bases do R (código massivo)
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+set.seed(1)
+data = tibble(x =  runif(100, 0, 10),
+              y = runif(100, 0, 10))
+data$z = data$x * data$y
+data = subset(data, z < 10)
+data = data[, 3]
+sqr_dat = sqrt(data$z)
+mean_sqrt = mean(sqr_dat)
+mean_sqrt
+```
+
+* Utilizando as funções bases do R (código mais limpo)
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+set.seed(1)
+data = tibble(x =  runif(100, 0, 10),
+              y = runif(100, 0, 10))
+data$z = data$x * data$y
+mean_sqrt = mean(sqrt(subset(data, z < 10)$z))
+mean_sqrt
+```
+
+* Utilizando o operdor `%>%` 
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+set.seed(1)
+mean_sqrt = tibble(x =  runif(100, 0, 10),
+                   y = runif(100, 0, 10)) %>%
+            mutate(z = x * y) %>%
+            filter(z < 10) %>%
+            pull(z) %>%
+            sqrt() %>%
+            mean()
+mean_sqrt  
+```
+
+A utilização do operador `%>%` parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o `%>%` se mostrará muito mais útil.
+
+O conjunto de dados **maize** será utilizado como exemplo para as operações de manipulação de dados. O primeiro passo é carregálo no ambiente de trabalho.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize <- read_excel("data/data_R.xlsx", sheet = "maize")
+str(maize)
+```
+
+
+## Adicionar novas variáveis
+
+A função `mutate()` \indf{mutate} é utilizada quando se deseja adicionar novas variáveis no conjunto de dados. Estas variáveis são funções de variáveis existentes. Como exemplo, vamos criar uma nova variável chamada PRE_2 no conjunto de dados `maize`, qual será a razão entre AIES e APLA. Note que a função adiciona a nova variável e mantém todas as demais
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  mutate(PRE_2 = AIES/APLA) %>%
+  select(PRE_2)
+
+```
+
+A função `transmute()` \indf{transmute} \indf{pull} cria a nova variável e exclui todas as demais. Em adição, se o resultado da função precisa ser extraído para um vetor numérico, basta adicionar a função `pull()`, conforme segue
+
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+vect = maize %>% 
+       transmute(PRE_2 = AIES/APLA) %>%
+       pull()
+
+```
+
+
+## Selecionar linhas com base em seus valores
+
+Utilizando a função `filter()` \indf{filter} é possivel filtrar as linhas de um conjunto de dados com base no valor de suas variáveis. No primeiro exemplo, selecionaremos as linhas onde o valor da variável MGRA é maior que 280.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  filter(MGRA > 280)
+```
+
+
+No segundo exemplo, selecionaremos apenas as linhas onde a MGRA é maior que 220 **OU** a APLA é menor que 1.3 **OU** o NGRA é maior que 820.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  filter(MGRA > 280 | APLA < 1.3 | NGRA > 820)
+```
+
+No último exemplo, selecionaremos apenas as linhas onde MGRA é maior que é maior que 220 **E** a APLA é menor que 2.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  filter(MGRA > 220 & APLA < 2)
+```
+
+Isto é aproximadamente equivalente ao seguinte código R base.
+
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+maize[maize$MGRA > 220 & maize$APLA < 2, ]
+```
+
+
+
+## Resumir um conjunto de dados
+
+Utilizando a função `summarise()`\indf{summarise} é possível criar uma ou mais variáveis escalares resumindo as variáveis de um tibble existente. Como resultado, uma linha é retornada. O seguinte código calcula a média global da MGRA e retorna o *n* utilizado na estimativa.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  summarise(MGRA_mean = mean(MGRA),
+            n = n())
+```
+
+
+Muitas vezes é necessário computar uma determinada função (como a média) para cada nível de uma variável categórica. Felizmente, o pacote **dplyr** possibilita que isto seja realizado facilmente. Continuamos no mesmo exemplo anterior. Neste caso, no entanto, o objetivo é calcular a média da MGRA para cada híbrido. Utilizando a função `group_by()` \indf{group\_by} antes da função `summarise()` \indf{summarise} uma linha de resultado para cada nível do fator híbrido é retornado.
+
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  group_by(HIB) %>%
+  summarise(MGRA_mean = mean(MGRA),
+            n = n())
+```
+
+Até aqui vimos como a média (global ou para cada híbrido) da MGRA pode ser calculada. Quase sempre, no entanto, quando calculamos a média (ou qualquer outra medida) em um conjunto de dados, queremos fazê-la para todas as variáveis numéricas. Implementar isto com **dplyr** é relativamente fácil. Existem basicamente três opções para isto, utilizando as variantes `summarise_all()`, `summarise_if()`, ou `summarise_at()`. Todos os *verbos* principais do pacote **dplyr** apresentam estas variantes, o que torna fácil aplicar a mesma função para múltiplas variáveis. Estas três variantes proporcionam: \indf{summarise\_at}
+
+* `_all()` aplicar a função a todas as variáveis;
+* `_at()` aplicar a função a variáveis selecionadas com vetores de caracteres ou utilizando `vars()`
+* `_if()` aplicar a função a variáveis selecionadas com uma função, por exemplo `is.numeric()`.
+
+Veremos como estas variantes funcionam, calculando a média para as variáveis do conjunto de dados.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  summarise_all(mean)
+```
+
+Note que utilizando a função `summarise_all()`\indf{summarise\_all} a média para todas as variáveis numéricas foi calculada e um valor `NA` foi retornado para as variáveis categóricas. Se o objetivo é computar a média somente para as variáveis numéricas (o que é o mais lógico), a função `summarise_if()` \indf{summarise\_if}é a melhor escolha.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  summarise_if(is.numeric, mean)
+```
+
+Funções próprias podem ser aplicadas dentro da função summarise para computar uma estatística personalizada. Como exemplo, vamos criar uma função chamada `mse` que retornará o valor da média e o erro padrão da média e aplicá-la para cada nível do fator AMB.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+mse = function(x){
+  me = round(mean(x), 3)
+  se = round(sd(x)/sqrt(n()), 3)
+  return(paste(me, "+-", se))
+}
+maize %>% 
+  group_by(AMB) %>%
+  summarise(MGRA_mean_se = mse(MGRA))
+```
+
+
+Se desejamos computar mais de uma função para variáveis específicas, então o próximo código nos ajudará. Note que para aplicar mais de uma função é necessário declarar o argumento `.funs` e criar um vetor com o nome das funções. Neste caso, os sufixos `_m` e `_sd` representam a média e o desvio padrão, respectivamente.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  group_by(AMB) %>%
+  summarise_at(vars(starts_with("M"),
+                    ends_with("S"),
+                    contains("GR")),
+               .funs = c(m = mean, sd = sd))
+```
+
+Nos deparamos aqui com três termos não vistos até então: `starts_with()`, `ends_with()` e `contains()`. Estes *select helpers* facilitam muito a seleção de variáveis. Estas funções nos ajudam a selecionar variávies baseado em seus nomes, da seguinte forma:
+
+* `starts_with()`  \indf{starts\_with}seleciona variáveis que iniciam com um determinado prefixo. No exemplo anterior, a variável MGRA foi selecionada por esta função.
+* `ends_with()` \indf{ends\_with}seleciona variáveis que terminam com um determinado sufixo. No exemplo anterior as variáveis AIES e DIES foram selecionadas por esta função.
+* `contains()` \indf{contains}seleciona variáveis que contém determinados caracteres. No exemplo anterior, NGRA foi selecionada pois contém **GR**, mas não inicia com M e nem termina com S.
+
+## Selecionar variáveis com base em seus nomes
+A função `select()` \indf{select} é utilizada para selecionar variáveis de um conjunto de dados. O seguinte código seleciona as variáveis MGRA e AIES do conjunto de dados
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+
+maize %>%
+  select(MGRA, AIES)
+```
+
+Note que a seleção pode ser mais eficiente utilizando as variantes `select_all()`, `select_if()`, ou `select_at()`.
+\indf{select\_all}
+\indf{select\_at}
+\indf{select\_if}
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  select_at(vars(contains("A")))
+```
+
+Se o objetivo é excluir as variáveis selecionadas, basta incluir o operador `-` antes dos nomes das variáveis. No próximo exemplo, serão selecionadas todas as variáveis, exceto aquelas que contém **A** no nome. Em adição, o nome da variável MMG será modificado para `Massa de mil grãos`.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  select_at(vars(-contains("A"))) %>%
+  rename(`Massa de mil grãos` =  MMG)
+```
+
+
+\indt{Exercícios}
+```{block2, type = "tarefa"}
+**Exercício 2**
+  
+- Crie uma variável chamada MGRA_kg qual será o resultado em quilogramas da massa de grãos.
+
+- Selecione somente as colunas HIB, AMB, REP e MGRA_Kg.
+
+- Selecione somente as cinco linhas com maior valor de MGRA_Kg.
+
+
+```
+[Resposta](#exerc2)
+
+
+## Ordenar linhas
+
+A função `arrange()` \indf{arrange} é utilizada para ordenar as linhas de um tibble (ou data.frames) com base em uma expressão envolvendo suas variáveis. Considerando as funções que vimos até aqui, vamos computar a média para a MGRA, criar uma nova variável chamada **Rank**, qual corresponde ao ranqueamento dos híbridos para a variável em questão e ordenar a variável Rank em ordem crescente, onde o híbrido com  a maior média ficará na primeira linha.
+
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  group_by(HIB) %>%
+  summarise(MGRA_mean = mean(MGRA)) %>%
+  mutate(Rank = rank(MGRA_mean)) %>%
+  arrange(Rank)
+  
+```
+
+\indt{Exercícios}
+
+```{block2, type = "tarefa"}
+**Exercício 3**
+  
+- Considerando o exemplo anterior, ordene a variável **Rank** em ordem decrescente.
+
+```
+[Resposta](#exerc3)
+
+
+## Combinando os verbos para manipulação
+
+Esta sessão tem o objetivo de demonstrar como os *verbos* **dplyr** em conjunto com as funções `spread()` do pacote [tidyr](https://tidyr.tidyverse.org/) ^[https://tidyr.tidyverse.org/] e `column_to_rownames()` \indf{column\_to\_rownames} do pacote [tibble](https://www.tidyverse.org/packages/)^[https://www.tidyverse.org/packages/] podem ser combinados para construir uma matriz dupla entrada onde as linhas correspondem aos genótipos e as colunas correspondem aos ambientes. Esta matriz será preenchida com o valor médio da MGRA considerando apenas as duas primeiras repetições de cada híbrido em cada ambiente.
+\indf{filter}
+\indf{group\_by}
+\indf{summarise}
+\indf{spread}
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  filter(REP %in% c("I", "II")) %>%
+  group_by(AMB, HIB) %>%
+  summarise(MGRA_me = mean(MGRA)) %>%
+  spread(AMB, MGRA_me) %>%
+  column_to_rownames("HIB")
+
+```
+
+
+## Trabalhando com duas tabelas ao mesmo tempo
+## Junções com mutação de dados
+
+É raro que uma análise de dados envolva apenas uma única tabela de dados. Na prática, diversas tabela podem existir e ferramentas flexíveis para combiná-las são necessárias. No **dplyr**, existem três famílias de **verbos** que permitem trabalhar com duas tabelas ao mesmo tempo, permitindo: (i) juntar tabelas, (ii) Filtrar registros e (iii) realizar operações.
+
+Os seguintes códigos criam três novos conjuntos de dados. **maize2** contém dados de duas repetições para os híbridos H1:H5 nos ambientes H1 e H2. **mean_h** e **mean_a** contém as médias para os híbridos e ambientes, respectivamente. \indf{ungroup}
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize2  = 
+  maize %>%
+  filter(HIB %in% c("H1", "H2", "H3","H4","H5")) %>%
+  filter(AMB %in% c("A1", "A2")) %>%
+  group_by(AMB, HIB) %>%
+  summarise_if(is.numeric, mean)%>%
+  ungroup()
+
+mean_h = maize2 %>%
+  group_by(HIB) %>%
+  summarise_if(is.numeric, .funs = c(m =mean))%>%
+  select(HIB, contains("A"))%>%
+  ungroup()
+
+mean_a = maize2 %>%
+  group_by(AMB) %>%
+  summarise_if(is.numeric, .funs = c(m =mean))%>%
+  select(AMB, contains("ES"))%>%
+  ungroup()
+
+
+```
+
+* Juntando a coluna **MGRA_m** da tabela **mean_h** na tabela **maize2** considerando as variáveis com mesmo nome nas duas tabelas (neste caso, HIB)
+
+\indf{left\_join}
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+left_join(maize2, mean_h %>%
+            select(HIB, MGRA_m))
+```
+
+* Juntando as colunas da tabela **mean_g** na tabela **maize2**
+
+\indf{full\_join}
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+full_join(maize2, mean_a)
+```
+
+## Junções com filtragem de dados
+
+* Filtrando as linhas da tabela **maize** com base nas variáveis que combinam na tabela **mean_h** (neste caso, a coluna HIB) \indf{semi\_join}
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+semi_join(maize, mean_h)
+```
+
+
+* Filtrando as linhas da tabela **maize** com base nas variáveis que **NÃO** combinam na tabela **mean_h** (neste caso, a coluna HIB) \indf{anti\_join}
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+anti_join(maize, mean_h)
+```
+
+## Operações com conjuntos
+
+Nesta seção será demonstrado como é possivel utilizar operações de cojuntos como interseção e união. É esperado que as entradas x e y tenham as mesmas variáveis. Para isto, vamos criar dois novos conjuntos de dados chamados **data_1_to_5** e **data_3_to_10**, quais contém, respectivamente as cinco primeiras linhas 
+e as linhas 3 a 10 de **maize**. Note que a função `slice()` \indf{slice} é utilizada para selecionar as linhas com base em sua posição.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+data_1_to_5 = maize %>%
+  slice(1:5)
+data_3_to_10 = maize %>%
+  slice(3:10)
+```
+
+* Interseção de conjuntos
+
+A função `intersect()`\indf{intersect} (interseção de conjunto) retorna somente as linhas presentes nos dois conjuntos, neste caso, as linhas  3, 4 and 5 do conjunto **maize**
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+intersect(data_1_to_5, data_3_to_10)
+```
+
+* União de conjuntos
+
+A função `union()`\indf{union} (união de conjunto) junta os dois conjuntos sem que haja duplicação de registros.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+union(data_1_to_5, data_3_to_10)
+```
+
+
+* Diferença de conjuntos
+
+A função `setdiff()` \indf{setdiff} (diferença de conjunto, ou complementar) cria uma tabela somente com os registros em **data_1_to_5** que não estão em **data_3_to_10**.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+setdiff(data_1_to_5, data_3_to_10)
+```
+
+

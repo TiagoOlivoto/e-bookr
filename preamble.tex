@@ -1,0 +1,16 @@
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage{bm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage{imakeidx}
+\makeindex[program=makeindex, name=function, title=Ãndice de cÃ³digos R, options=-s pyro,columns=3,intoc=true]
+\makeindex[program=makeindex, title=Ãndice de texto, options=-s pyro,columns=3,intoc=true]
+\newcommand{\ST}[1]{\textbf{\hyperpage{#1}}\normalsize}
+\newcommand{\indf}[1]{\index[function]{#1@\texttt{#1()}|ST}}
+\newcommand{\indt}[1]{\index{#1|ST}}
+

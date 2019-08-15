@@ -1,0 +1,166 @@
+# (APPENDIX) Apêndices {-}
+
+# Resposta dos exercícios
+
+## Exercício 1 {#exerc1}
+
+
+```{r }
+F2(2, 3)
+F2(y = 3, x =2)
+```
+
+O resultado foi o mesmo, pois embora se tenha invertido o valor dos números, no segundo exemplo se declarou a qual argumento o numero pertencial.
+
+```{r error=TRUE }
+F3(20)
+```
+
+Pois o argumento (if x > 10) faz com que ocorra um erro e a função não seja executada.
+
+```{r error=TRUE}
+elevar(12, eleva = "cubico")
+```
+
+
+O argumento 'eleva' não está correto. Ele deve ser ou 'quadrado' ou 'cubo'.
+
+
+
+## Exercício 2 {#exerc2}
+
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+maize %>%
+  mutate(MGRA_kg = MGRA / 1000) %>%
+  select(AMB, HIB, REP, MGRA_kg) %>%
+  top_n(5, MGRA_kg)
+```
+
+
+
+## Exercício 3 {#exerc3}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+maize %>%
+  group_by(HIB) %>%
+  summarise(MGRA_mean = mean(MGRA)) %>%
+  mutate(Rank = rank(MGRA_mean)) %>%
+  arrange(Rank)
+  
+```
+
+
+## Exercício 4 {#exerc4}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+ggplot(dados_gg, aes(x = RG, y = PH, colour = AMB, size = APLA)) +
+geom_point()
+  
+```
+
+
+
+## Exercício 5 {#exerc5}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+ggplot(dados_gg, aes(x = RG, y = PH, colour = GEN)) +
+     geom_point() +
+     facet_wrap(~AMB)+
+     my_theme()
+  
+```
+
+
+
+## Exercício 6 {#exerc6}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+ggplot(dados_gg, aes(x = RG, y = PH)) +
+     geom_point(aes(colour = AMB))+
+     geom_smooth(method = "lm", se = F)+
+     my_theme()+
+     labs(x = "Rendimento de grãos", y = "Peso hectolitro")
+  
+```
+
+
+## Exercício 7 {#exerc7}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+means = qualitativo %>% 
+  group_by(HIBRIDO) %>% 
+  summarise(RG = mean(RG)) %>%
+  mutate(letras = "a")
+ggplot(means, aes(x = HIBRIDO, y = RG)) +
+  geom_bar(stat = "identity", col = "black", fill = "orange", width = 0.5)+
+  scale_y_continuous(expand = expand_scale(c(0, .1)))+
+  geom_text(aes(label = letras), hjust = -1, size = 3.5)+
+  geom_hline(yintercept = mean(means$RG), linetype = "dashed")+
+  coord_flip()
+```
+
+
+
+## Exercício 8 {#exerc8}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+plot_lines(quantitativo, x = DOSEN, y = RG, fit = 2, col = F)
+```
+
+
+
+## Exercício 9 {#exerc9}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+with(quantitativo, rbd(DOSEN, BLOCO, RG, quali = FALSE))
+```
+
+
+
+## Exercício 10 {#exerc10}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+res = tibble(Convencional = residuals(convencional),
+             Transformado = residuals(transform),
+             Generalizado = residuals(general, type = "deviance"))
+shapiro.test(res$Convencional)
+shapiro.test(res$Transformado)
+shapiro.test(res$Generalizado)
+```
+
+
+## Exercício 11 {#exerc11}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+NUPEC_2 = FAT1_CI %>%
+  filter(HIBRIDO == "NUPEC_2")
+ggplot(NUPEC_2, aes(x = DOSEN, y = RG)) +
+geom_point()+
+stat_smooth(method = "lm", formula = as.formula("y ~ poly(x, 2)")) +
+geom_vline(xintercept = 45, linetype = "dashed", col = "gray") +
+eom_vline(xintercept = 46.41, col = "gray")
+```
+
+
+
+## Exercício 12 {#exerc12}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+plot_factbars(FAT2_CI,
+              HIBRIDO,
+              FONTEN,
+              resp = RG,
+              errorbar = FALSE,
+              verbose = FALSE,
+              size.text.bar = 3,
+              lab.bar.vjust = -0.5,
+              lab.bar = c("bB", "cBC", "aA", "cD",
+                          "cD", "dC", "aA", "bB",
+                          "bA", "cA", "aA", "cC",
+                          "cC", "dAB", "aA", "bA"),
+              palette = "Greens")
+```
+
+
+## Exercício 13 {#exerc13}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+covar_mat = maize %>%
+  split_factors(ENV, keep_factors = TRUE) %>%
+  covcor_design(gen = GEN,
+                rep = REP,
+                resp = c(PH, EH, NKE, TKW),
+                type = "rcov")
+```
+
+
+

@@ -1,0 +1,12 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+    after_body: index.md
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

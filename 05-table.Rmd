@@ -1,0 +1,27 @@
+# Construindo uma tabela {#dataframe}
+
+Com o que foi visto até agora, é possível construir uma tabela para armazenar dados ou resultados gerados em uma análise. São inumeras as formas de fazer isso, porém vamos mostrar apenas uma (devido ao pouco tempo). Utilizaremos as funções `matrix()` \indf{matrix} e `data.frame()` \indf{data.frame} para a tabela, e a função `names()` para dar nomeas as colunas. A construção de tabelas é muito util para armazenar resultados na área de trabalho.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+Ex.gen = as.data.frame(matrix(0, ncol = 3, nrow = 20))
+names(Ex.gen) = c("G1","G2","G3")
+Yeld1 = rnorm(20,10,1) 
+# gera 20 valores de uma distribuição normal com média 10 e desvio padrão 1
+Yeld2 = rnorm(20,40,3)
+# gera 20 valores de uma distribuição normal com média 40 e desvio padrão 3
+Yeld3 = rnorm(20,25,2.5)
+# gera 20 valores de uma distribuição normal com média 25 e desvio padrão 2,5
+Ex.gen$G1 = Yeld1
+Ex.gen$G2 = Yeld2
+Ex.gen$G3 = Yeld3
+```
+
+Vimos anteriormente, no entanto, que a utilização de **tibbles** \indt{tibble} é recomendada. O mesmo conjunto de dados pode ser criado mais "elegantemente" com a função abaixo
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+Ex.gen2 = tibble(G1 = rnorm(20,10,1),
+                 G2 = rnorm(20,40,3),
+                 G3 = rnorm(20,25,2.5))
+```
+
+

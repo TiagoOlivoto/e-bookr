@@ -1,0 +1,241 @@
+
+# Tipos de objetos {#objects}
+
+Os tipos de objeto mais utilizados na linguagem *R* são: (i) vetores, (ii) matrizes, (iii) data frames, (iv) listas e (v) funções. Um enfoque maior será dado aos vetores, matrizes e data frames, pois estes são amplamente utilizados, inclusive nas análises mais simples.
+
+## Vetores
+
+A função `c()` \indt{vetores} \indf{c} combina valores que formam vetores^[Vetores são uma estrutura de dados básica do R que permite armazenar um conjunto de valores numéricos ou de caracteres em um objeto nomeado]. Abaixo, é demonstrado como vetores podem ser criados utilizando `c()`. 
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x1 = c(1) # Escalar 
+x2 = c(1,2) # Vetor
+x3 = c(1,2,3) # Vetor
+x3
+x3.1 = c("um","dois","três") # Vetor com caracteres
+
+```
+
+Os vetores foram armazenados em *x1*, *x2* e *x3* e ficaram armazenados como valores na área de trabalho como valores (*values*). Para que os valores sejam mostrados basta digitar no *console* onde os vetores foram armazenados. 
+
+Vetores também podem ser criados utilizando as funções `rep()` e `seq()`, conforme mostrado abaixo. \indf{rep} \indf{seq}
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+rep(5, 10)
+seq(1, 5)
+seq(1, 5, by = 0.5)
+seq(2, 20, by = 2)
+```
+
+A função `c()` também pode ser combinada com as funções `rep()` e `seq()` para criar vetores mais complexos, como mostrado abaixo.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x4 = c(rep(1:4, each = 4))
+x5 = seq(1:5)
+x6 = c(rep(seq(1:5), each = 2))
+x6
+```
+
+Utilizando colchtes [ ] é possível selecionar um (ou um conjunto) de elementos de um vetor. Por exemplo:
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x7 = x6[1] # Seleciona o primeiro elemento do vetor 
+x8 = x6[4] #  Seleciona o quarto elemento do vetor 
+x9 = x6[c(1, 4, 8)] # Seleciona o primeiro, o quarto e o oitavo elemento
+x9
+x10 = x6[1:4] # armazena uma sequência de elementos (primeiro ao quarto)
+```
+
+## Matrizes
+
+As matrizes \indt{matrizes} são um conjunto de valores (ou variáveis) dispostos em linhas e colunas, e que formam um corpo delimitado por [ ]. As matrizes são geralmente representadas genericamente por ${{\boldsymbol{A}}_{{\boldsymbol{MxN}}}}$, onde **M** e **N** represetam os números de linhas e colunas da matriz, respectivamente. As matrizes podem ser facilmente construídas utilizando a função `matrix()`. Alternativamente, as funções `cbind()` e `rbind()` também podem ser utilizadas. A primeira função adiciona colunas as matrizes, enquanto que a segunda adiciona linhas. Veremos mais tarde que estas funções podem ser combinadas com outras funções para construção de data frames \indf{data.frame}. 
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+## Usando cbind()
+x10 = cbind(1,2,3,4,5) # ou x10 = cbind(1:5), 5 colunas com 1 elemento cada
+x11 = cbind(c(1,2,3,4,5)) # ou x11 = cbind(c(1:5)), 1 coluna com 5 elementos cada 
+x12 = cbind(c(1,2,3,4,5),c(6,7,8,9,10)) # 2 colunas de 5 elementos
+x12.1 = cbind(x11,c(6:10))
+x13 = cbind(c(1,2,3,4,5),c(6,7,8,9,10),c(11,12,13,14,15)) # 3 colunas de 5 elementos
+x13.1 = cbind(x12.1,c(11,12,13,14,15))
+```
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+## Usando rbind()
+x14 = rbind(1,2,3,4,5) # x14 = x11, 5 linhas com 1 elemento cada 
+x15 = rbind(c(1,2,3,4,5)) # x15 = x10, 1 linha com 5 elementos cada
+x16 = rbind(c(1,2,3,4,5),c(6,7,8,9,10)) # 2 linhas com 5 elementos cada
+x16.1 = rbind(x15,c(6,7,8,9,10))
+x17 = rbind(c(1,6),c(2,7),c(3,8),c(4,9),c(5,10)) # x16 = x12
+```
+
+As funções `cbind()` e `rbind()` \indf{cbind} \indf{rbind} podem ser utilizadas conjuntamente. Não queremos confundir a sua cabeça, mas se a lição anterior foi entendida, a próxima se torna fácil.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+## Usando rbind() e cbind()
+x18 = x18 = cbind(c(1,2,3,4,5),c(6,7,8,9,10), rbind(11, 12, 13, 14, 15))  
+x18
+```
+
+Com a função `matrix()` \indf{matrix} podemos ter o mesmo resultado que o obtido com o uso das funções `cbind()` e `rbind()`. Porém, para utilizar a função `matrix()`, alguns *argumentos* devem ser declarados. Na função `matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,dimnames = NULL)`, os argumentos que devemos inicialmente conhecer são o `nrow`, `ncol` e `byrow`. O primeiro indica o número de linhas da matriz, o segundo a número de colunas e o terceiro indica como a matriz é preenchida. Por *default*, `byrow` é `FALSE`, indicando que as matrizes são preenchidas por colunas. Se `TRUE`, o preenchimento ocorre por linhas.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+## Usando matrix
+x19 = matrix(1:15, nrow = 5, ncol = 3)
+x19
+x20 = matrix(1:15, nrow = 5, ncol = 3, byrow = TRUE)
+x20
+```
+
+Para selecionar elementos, linhas e colunas da matriz com [ ] utiliza-se um sistema de coordenadas:
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x19[2, 3] # seleciona o elemento que está na linha 2 e coluna 3
+x19[, 2] # "," indica que todas as linhas serão selecionadas na coluna 2
+x19[1, ] # "," indica que todas as colunas serão selecionadas na linha 1
+```
+
+## Data Frame
+
+A função `data.frame()` \indf{data.frame} cria estruturas cujas colunas podem ser valores numéricos ou caracteres. É uma estrutura muito utilizada em funções do *software R*.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x22 = data.frame(
+      expand.grid(Ambiente = c("A1", "A2"),
+                  Genotipo = c("G1", "G2", "G3"),
+                  Rep = c("I", "II", "III")),
+                  Y = rnorm(18, 50, 15))
+str(x22)
+```
+
+Em *x22* simulamos como muitos experimentos são organizados no momento de tabulação dos dados (fatores nas colunas e variáveis nas linhas). 
+
+## Tibbles
+
+Um `tibble`\indt{tibble}, ou `tbl_df`, é uma versão moderna do `data.frame`. Tibbles são datas frames que não alteram nomes ou tipos de variáveis, possuindo um método `print()` aprimorado, que facilita o uso com grandes conjuntos de dados contendo objetos complexos. Você pode forçar um objeto de classe `data.frame` a um de classe `tibble` utilizando `as_tibble()` \indt{tibble} ou criar um a partir de vetores individuais com `tibble()` \indf{tibble}. A função `tibble()`, diferente de `data.frame()`\indf{data.frame} permite que você se refira às variáveis que você acabou de criar. É possível, também, que um tibble tenha nomes de colunas que não sejam nomes de variáveis R válidos. Por exemplo, elas podem não começar com uma letra ou podem conter caracteres incomuns como um espaço. Para se referir a essas variáveis, você precisa cercá-las com `. Neste documento, a estrutura de dados padrão a ser utilizada será tibble.
+
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+# Convertendo um dataframe a um tibble
+tbl_x22 = as_tibble(x22)
+```
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+# Tentando criar um dataframe
+data.frame(x = 1:5,
+           y = 1,
+           z = x ^ 2 + y)
+
+```
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+# Criando um tibble
+tibble(x = 1:5,
+       y = x ^ 2,
+       `soma x + y` = x + y)
+
+
+```
+
+
+## Lista
+
+No exemplo abaixo, será armazenado em uma lista \indt{lista} dois data-frames e uma matriz. Posteriomente, \indt{lista}será selecionado a matriz que está armazenada na lista:
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x23 = list(x19, x22)
+x24 = x23[[1]]
+```
+
+
+## Funções
+
+As funções \indt{funções} são a base da linguagem *R*. Através de *argumentos* que são indicados em `funtion()`, uma expressão (ou série de expressões) é resolvida e um valor (ou um conjunto de valores) é retornado. \indt{function()}
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+F1 = function(x){ # x é o argumento da função
+  a = 2 * x + 1
+  return(a) # retorna a
+}
+
+F2 = function(x, y){ # dois argumentos na função
+  a = 2 * x + 1
+  b = y
+  c = a + b
+  return(c) # retorna c
+}
+
+F3 = function(x){
+  if(x > 10){
+    stop("O argumento x = ", x, " é inválido. 'x' precisa ser maior que 10")
+  }
+  a = ifelse(x<= 5, 2 * x + 1, 3 * x + 1)
+  return(a)
+}
+
+elevar = function(x, eleva = "quadrado"){
+  if(!eleva %in% c("quadrado", "cubo")){
+    stop("O argumento eleva = ",eleva, " deve ser ou 'quadrado' ou 'cubo'")
+  }
+  if(eleva == "quadrado"){
+  valor = ifelse(x^2 >= 1000,
+                 paste("O resultado (",x^2,") tem mais que 3 dígitos)"),
+                 paste("O resultado (",x^2,") tem menos que 3 dígitos)"))
+  }
+  if(eleva == "cubo"){
+  valor = ifelse(x^3 >= 1000,
+                 paste("O resultado (",x^3,") tem mais que 3 dígitos)"),
+                 paste("O resultado (",x^3,") tem menos que 3 dígitos)"))
+  }
+                 
+  return(valor)
+}
+
+```
+
+Quando uma função é armazenada no ambiente de trabalho, basta digitar o nome como o qual aquela função foi gravada. Os argumentos podem ser inseridos na ordem em que aparecem na função, sem especificar a qual argumento aquele valor pertence. No caso em que a inserção dos argumentos é diferente da ordem em que aparecem na função, é preciso identificar a qual argumento aquele valor pertente. Note que é possível combinar valores numéricos e texto como argumentos e/ou resultados de funções.
+
+```{block2, type = "tarefa"}
+**Exercício 1**
+  
+- O resultado da função `F2(2, 3)` foi o mesmo da `F2(y = 3, x =2)`? Por quê?
+- Por quê ocorreu um erro quando a função `F3(20)` foi rodada?
+- O que tem de errado na execução da função `elevar(12, eleva = "cubico")`?
+
+```
+
+[Resposta](#exerc1)
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+F1(2)
+F2(2, 3)
+F2(y = 3, x =2)
+F3(1)
+F3(6)
+F3(20)
+elevar(12)
+elevar(12, eleva = "cubico")
+```
+
+## Identificando as classes de objetos
+  
+  Conforme visto anteriormente, é possível construir várias classes de objetos em linguagem *R*. Veremos mais adiante que muitas funções exigem classes específicas como *argumento*, e por isso conhecê-los é muito importante. Funções genéricas como `class()` \indf{class} ou *is.objeto* são importantes para identificar a qual tipo de classe tal objeto pertence.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+class(x19)
+class(x22)
+class(x24)
+is.matrix(x19)
+```
+
+Algumas funções permitem forçar objetos a uma classe específica, como por exemplo, transformar um objeto de classe `data.frame` em um objeto de classe `matrix`.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x22 = as.matrix(x22)
+x19 = as.data.frame(x19)
+```
+
+
+\indf{as.factor} \indf{as.numeric}
+
+

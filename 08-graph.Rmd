@@ -1,0 +1,315 @@
+# Gráficos com o pacote ggplot2 {#graph}
+
+>"O gráfico simples trouxe mais informações à mente do analista de dados
+>do que qualquer outro dispositivo." --- John Tukey
+
+
+## O pacote **ggplot2**
+
+O  **ggplot2** \indt{ggplot2} é um pacote R para produção de gráficos que diferentemente da maioria dos outros pacotes, apresenta uma profunda gramática baseada no livro *The grammar of graphics* [@Wilkinson2005]. Os gráficos originados em **ggplot2** são baseados em camadas, e cada gráfico tem três componentes chave: `data`, os dados de onde o gráfico será criado; `aes()` (*aesthetic mappings*)\indf{aes}, que controla o mapeamento estético e as propriedades visuais do gráfico; e ao menos uma camada que irá descrever como cada observação será renderizada. Camadas são usualmente criadas utilizando uma função `geom_()`.\indt{geom\_} A referência principal ao pacote é o livro *Ggplot2 : elegant graphics for data analysis* [@Wickham2009].
+
+## Meu primeiro gráfico em **ggplot2**
+
+A seguir, vamos discutir os aspcetos básicos para a construção de gráficos utilizando o pacote **ggplot2**. A função `plot_grid()` \indf{plot\_grid}do pacote [cowplot](https://github.com/wilkelab/cowplot)^[https://github.com/wilkelab/cowplot] foi utilizado aqui para organizar os gráficos em forma de painéis. O pacote [qqplotr](https://github.com/aloy/qqplotr)^[https://github.com/aloy/qqplotr] também é utilizado como uma [extensão do pacote ggplot2](http://www.ggplot2-exts.org/gallery/)^[http://www.ggplot2-exts.org/gallery/] para confecção de gráficos do tipo Q-Q plots. Os dados contidos na aba *gg* do arquivo *data_R.xlsx* serão utilizados. Estes dados podem ser carregados pelo seguinte comando.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+dados_gg =  read_excel("data/data_R.xlsx", sheet = "gg")
+str(dados_gg)
+```
+
+
+## As camadas de um gráfico **ggplot2**
+
+No **ggplot2**, os gráficos são construídos camada por camada (ou, *layers*, em inglês). Neste exemplo, vamos confecionar um gráfico onde o eixo x será representado pela variável `RG` e o eixo y pela variável `PH`.
+
+```{r message = FALSE, warning = FALSE, fig.width = 3.5, fig.height = 3.5, fig.align = "center", fig.cap = "Gráfico de dispersão (x e y) padrão. "}
+p1 = ggplot(dados_gg, aes(x = RG, y = PH)) +
+     geom_point()
+
+```
+
+Este comando criou um gráfico e armazenou no objeto `p1`, que será plotado posteriormente. Observe que o primeiro argumento da função é o data frame onde nossos dados foram armazenados. A função `aes()` \indf{aes} descreve como as variáveis são mapeadas (neste caso RG no eixo x e PH no eixo y). A função `geom_point` \indf{geom\_point}definiu que a forma geométrica a ser utilizada é baseada em pontos, gerando, assim, um gráfico de dispersão. Isto é tudo que precisa ser feito para a confecção de um gráfico simples. 
+
+## Aesthetics (estética)
+
+>"O maior valor de uma imagem é quando ela nos obriga a perceber
+>o que nunca esperamos ver." --- John Tukey
+
+Alterar a estética dos gráficos **ggplot2** é uma tarefa relativamente simples. No gráfico anterior, os valores do `PH` e `RG` foram plotados sem nenhum tipo de mapeamento estético. Digamos que marcadores com diferentes cores para cada ambiente poderia nos ajudar a compreender melhor os o padrão presente em nossos dados. Vamos confecionar este gráfico.
+
+
+
+```{r message = FALSE, warning = FALSE, fig.width = 8, fig.height = 3, fig.align = "center", fig.cap = "Gráfico de dispersão padrão (p1) e com pontos mapeados por cores para cada nível do fator 'AMB' (p2)."}
+p2 = ggplot(dados_gg, aes(x = RG, y = PH, colour = AMB)) +
+     geom_point()
+
+plot_grid(p1, p2, labels = c("p1", "p2"), rel_widths = c(1, 1.2))
+```
+
+Ao incluirmos `colour = AMB` dentro da função `aes`, dizemos ao `ggplot` que os pontos devem ser mapeados esteticamente (neste caso utilziando cores) para cada nível do fator `AMB` presente em nossos dados. Digamos que em vez de utilizar diferentes cores, os ambientes deveriam ser representados por diferentes tipos de marcadores (quadrados, triângulo, etc.) Neste caso, o argumento `colour = AMB` deveria ser substituído por `shape = AMB`.
+
+\indt{Exercícios}
+```{block2, type = "tarefa"}
+**Exercício 4**
+
+- Constua um gráfico semelhante ao anterior, onde o tamanho dos pontos deve ser baseado em uma terceira variável do nosso conjunto de dados, neste exemplo, MMG.
+
+```
+[Resposta](#exerc4)
+
+## Facet (facetas)
+
+Mapeando os diferentes níveis de `AMB` para diferentes cores, incluímos em um único gráfico os dados de todos os ambientes. Mas, e se nosso objetivo fosse realizar um gráfico para cada ambiente? O **ggplot2** tem uma poderosa ferramenta para isto: as funções `facet_`. Ao utilziar estas funções, o conjunto de dados é subdividido e um gráfico é construído para cada um destes subconjuntos. Vamos ver como elas podem nos ajudar em nossso problema. \indf{geom\_point}
+
+
+```{r message = FALSE, warning = FALSE, fig.width = 3.5, fig.height = 3.5, fig.align = "center", fig.cap = "Gráfico de dispersão considerando a confecção de um gráfico para cada nível de um fator. "}
+fac1 = ggplot(dados_gg, aes(x = RG, y = PH)) +
+       geom_point()+
+       facet_wrap(~ AMB)
+
+```
+
+Neste exemplo, um gráfico completamente diferente do anterior é gerado com apenas uma simples modificação: excluímos do mapeamento estético o argumento `colour = AMB` e incluímos uma nova função, `facet_wrap(~AMB)`. Neste caso, informamos que um gráfico deveria ser realizado para cada ambiente. Simples, não? \indf{facet\_wrap}
+```{block2, type="dica"}
+No exemplo anterior, utilizamos a função `facet_wrap()` para confeccionar um gráfico foi criado para cada nível do fator **AMB**.
+
+- Substitua a função `facet_wrap(~ AMB)` por `facet_grid(~ AMB)` e compare os dois gráficos.
+
+
+```
+
+
+## Theme (temas)
+
+Cada gráfico criado com a função `ggplot()` tem um tema padrão. *Tema*, aqui, é toda propriedade relacionada ao aspecto visual do gráfico, que não foi definida na função `aes()` \indf{aes}e que pode ser modificada utilizando a função  `theme()`\indf{theme\_bw()}  (veja `?theme`). O **ggplot2** já conta com alguns temas personalizados para facilitar nosso trabalho. Considerando o exemplo anterior, vamos utilziar a função `theme_bw()` (preto e branco) e a função `theme()` para modificar as propriedades visuais do gráfico.
+
+```{r message = FALSE, warning = FALSE, fig.width = 10, fig.height = 4.5, fig.align = "center", fig.cap = "Modificações na propriedades do tema de um gráfico ggplot2 "}
+fac2 = ggplot(dados_gg, aes(x = RG, y = PH)) +
+       geom_point() +
+       facet_wrap(~AMB) +
+       theme_bw() +
+       theme(panel.grid = element_blank(), # remove as linhas do corpo do gráfico
+             # sem bordas entre os painéis
+             panel.spacing = unit(0, "cm"),
+             # modifica o texto dos eixos
+             axis.text = element_text(size = 12, colour = "black"),
+             # cor dos marcadores
+             axis.ticks = element_line(colour = "black"),
+             # tamanho dos marcadores
+             axis.ticks.length = unit(.2, "cm"), 
+             #cor da borda
+             panel.border = element_rect(colour = "black", fill = NA, size = 0.5))+
+       # título dos eixos
+       labs(x = "Rendimento de grãos", y = "Peso hectolitro") 
+
+plot_grid(fac1, fac2, labels = c("f1", "f2"))
+
+```
+
+
+Os argumentos inseridos dentro das função `theme()` modificaram a aparência do nosso gráfico. Inúmeros outros argumentos são disponíveis, fazendo com que os gráficos originados sejam completamente personalizáveis. Digamos que precisamos confecionar diversos gráficos e gostaríamos de manter o mesmo tema do gráfico acima. Seria exaustivo e desinteressante informar cada vez estes argumentos para cada gráfico, não? Felizmente, outra poderosa ferramenta proporcionada pelo **ggplot2** é a possibilidade de confecionarmos nossos próprios temas. Para isto, vamos executar o seguinte comando para criar um tema personalizado (`my_theme()`). Este tema pode então ser aplicado como uma camada adicional a cada gráfico que confecionarmos. Para evitar a necessidade da inclusão deste tema em cada gráfico gerado, iremos definir este tema como padrão utilizando a função `theme_set()` \indf{theme\_set}.
+
+\indf{my\_theme}
+
+```{r message = FALSE, warning = FALSE, fig.width = 5, fig.height = 4.5, fig.align = "center"}
+my_theme = function () {
+  theme_bw() %+replace% # permite que os valores informados possam ser sobescritos
+    theme(axis.ticks.length = unit(.2, "cm"),
+          axis.text = element_text(size = 12, colour = "black"),
+          axis.title = element_text(size = 12, colour = "black"),
+          axis.ticks = element_line(colour = "black"),
+          panel.border = element_rect(colour = "black", fill = NA, size = 0.5),
+          panel.grid =  element_blank())
+}
+
+theme_set(my_theme())
+
+```
+
+
+\indt{Exercícios}
+```{block2, type = "tarefa"}
+**Exercício 5**
+  
+- Constua um gráfico semelhante ao observado acima, onde diferentes cores devem ser atribuídas para cada genótipo. Em adição, aplique o tema personalizado que acabamos de criar ao gráfico.
+
+```
+[Resposta](#exerc5)
+
+## Geoms (geometria)
+
+As funções `geom_` definem qual forma geométrica será utilizada para a visualização dos dados no gráfico. Até agora, utilizamos a função `geom_point()` \indf{geom\_point)} para construir gráficos de dispersão. Basicamente, qualquer outro tipo de gráfico pode ser criado dependendo da função `geom_` utilizada. Dentre as diversas disponíveis no pacote **ggplot2** as funções `geom_` mais utilizadas são:
+
+* `geom_abline()`: para retas definidas por um intercepto e uma inclinação;
+* `geom_hline()`: para retas horizontais definidas por um intercept `y`;
+* `geom_vline()`: para retas verticais definidas por um intercept `x`;
+* `geom_boxplot()`: para boxplots;
+* `geom_histogram()`: para histogramas de frequência;
+* `geom_smooth()`: ajusta uma função para o conjunto de dados e mostra uma banda de confiança;
+* `geom_density()`: para densidades;
+* `geom_area()`: para áreas;
+* `geom_bar()`: para barras;
+* `geom_errorbar()` para barras de erro; 
+
+Deste ponto em diante, vamos confeccionar alguns exemplos utilziando algumas destas funções (ou combinações destas funções) incluindo argumentos de mapeamento de estética e temas vistos até agora. \indf{geom\_smoth}
+
+
+```{r message = FALSE, warning = FALSE, fig.width = 10, fig.height = 4, fig.align = "center", fig.cap = "Gráfico de dispersão, combinando pontos e linhas de regressão."}
+
+s1 = ggplot(dados_gg, aes(x = RG, y = PH)) +
+     geom_point()+
+     geom_smooth(method = "lm", se = F)+ # estima uma regressão linear
+     labs(x = "Rendimento de grãos", y = "Peso hectolitro")
+
+s2 = ggplot(dados_gg, aes(x = RG, y = PH, colour = AMB)) +
+     geom_point()+
+     geom_smooth(method = "lm", se = F)+
+     labs(x = "Rendimento de grãos", y = "Peso hectolitro")
+plot_grid(s1, s2, labels = c("s1", "s2"), rel_widths  = c(1, 1.2))
+
+```
+
+\indt{Exercícios}
+```{block2, type = "tarefa"}
+**Exercício 6**
+No gráfico s1, uma regressão linear foi ajustada quando incluímos a função `geom_smooth(method = "lm", se = F)`.
+
+- Como este gráfico pode nos ajudar a compreender a relação entre as variáveis RG e PH? Ao incluir o argumento `colour = AMB`, uma regressão para cada ambiente foi ajustada (s2).
+
+- Modifique o gráfico s2 para que os ambientes ainda continuem sendo mapeados por cores, mas uma única linha de regressão seja ajustada.
+
+``` 
+[Resposta](#exerc6)
+
+
+* **Gráficos do tipo boxplot**
+
+```{r message = FALSE, warning = FALSE, fig.width = 9, fig.height = 3, fig.align = "center", fig.cap = "Gráfico do tipo boxplot combinando mapeamentos estéticos e inclusão de linhas."}
+
+mean_rg = mean(dados_gg$RG) # calcula a média geral do RG
+box1 = ggplot(dados_gg, aes(x = GEN, y = RG)) +
+       geom_boxplot()
+
+box2 = ggplot(dados_gg, aes(x = GEN, y = RG)) +
+       geom_boxplot(width = 0.5, col = "black", fill = "gray")+ # boxplot
+       stat_summary(geom = "point", fun.y = mean)+ # mostra a média por um ponto
+      # adiciona uma linha na média geral
+       geom_hline(yintercept = mean_rg, linetype = "dashed")+ 
+       labs(x = "Rendimento de grãos", y = "Peso hectolitro")
+
+plot_grid(box1, box2, labels = c("b1", "b2"))
+```
+
+\indf{geom\_boxplot} 
+A linha orizontal tracejada representa a média geral do GY. Seis estatísticas são mostradas neste boxplot. A mediana (linha horizontal), a média (ponto) as caixas inferior e superior correspondem ao primeiro e terceiro quartil (percentis 25 e 75, respectivamente). As linha vertical superior se estende da caixa até o maior valor, não maior que $1,5 \times {IQR}$ (onde IQR é a amplitude interquartílica). A linha vertical inferior se estende da caixa até o menor valor, de no máximo, $1,5 \times {IQR}$. Dados além das linhas horizontais podem ser considerados *outliers*.
+
+$~$ 
+
+* **Gráficos do tipo histograma**
+
+```{r message = FALSE, warning = FALSE, fig.width = 7, fig.height = 2.5, fig.align = "center", fig.cap = "Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal."}
+
+h1 = ggplot(dados_gg, aes(x = RG)) +
+     geom_histogram()
+
+h2 = ggplot(dados_gg, aes(x = RG)) +
+     geom_histogram(binwidth = 200, colour = "black", 
+                    aes(y = ..density.., fill = ..count..)) +
+     geom_density() +
+     stat_function(fun = dnorm,
+                   color = "red",
+                   size = 1,
+                   args = list(mean = mean(dados_gg$RG),
+                               sd = sd(dados_gg$RG))) +
+     labs(x = "rendimento de grãos", y = "Densidade")
+
+plot_grid(h1, h2, rel_widths = c(1, 1.4), labels = c("h1", "h2"))
+```
+
+\indf{geom\_histogram}
+No histograma (h1), a linha preta representa estimativa de densidade Kernel [@Silverman1998]. A linha vermelha representa a estimativa da função de probabilidade normal. Para isto, a escala do eixo y foi mudada de contagem para densidade.
+
+$~$ 
+
+* **Gráficos do tipo barra**
+
+
+```{r message = FALSE, warning = FALSE, fig.width = 10, fig.height = 3, fig.align = "center", fig.cap = "Gráfico do tipo barras, com mapeamento estético e barras de erro."}
+
+bar1 = ggplot(dados_gg, aes(x = GEN, y = RG)) +
+       geom_bar(stat = "summary",
+               fun.y = "mean",
+               position = "dodge")
+
+bar2 = ggplot(dados_gg, aes(x = GEN, y = RG, fill = AMB)) +
+       stat_summary(fun.y = mean,
+                    geom = "bar",
+                    col = "black",
+                    width = 0.8,
+                    position = position_dodge()) + 
+       stat_summary(fun.data = mean_se,
+                    geom = "errorbar",
+                    width = 0.2,
+                    position = position_dodge(0.8))
+ 
+plot_grid(bar1, bar2, rel_widths = c(0.8, 1.2), labels = c("bar1", "bar2"))
+```
+
+\indf{geom\_bar}
+A afirmação de que um gráfico **ggplot2** é feito em camadas fica mais evidente aqui. No gráfico p1, as barras representam as médias geral dos híbridos em nosso conjunto de dados. No segundo gráfico, um novo argumento visto (`fill = AMB`). Isto informa que as barras devem ser coloridas para cada nível do fator `AMB`. A função `stat_summary()`, \indf{stat\_summary} também vista pela primeira vez aqui, foi utilizada no segundo gráfico para substituir a função `geom_bar()`. Com isto, foi possível incluir as médias (`fun.y = mean` e  `geom = "bar`), bem como as barras de erro (`fun.data = mean_se` e `geom = "errorbar"`).  \indf{geom\_bar} 
+
+* **Gráficos de dispersão com linhas de valores preditos**
+
+```{r message = FALSE, warning = FALSE, fig.width = 7, fig.height = 3, fig.align = "center", fig.cap = "Gráfico de dispersão combinado com inclusão de curvas ajustadas."}
+#### Polinômio de segundo grau
+dado_reg = tibble(dose = c(15,20,25,30,35,40),
+                  prod = c(65,70,73,75,69,62))
+l1 = ggplot(dado_reg, aes(dose, prod))+
+     geom_point()+
+     stat_smooth(method = "lm",
+                 formula = as.formula("y ~ poly(x, 1)"),
+                 se = FALSE)
+
+l2 = ggplot(dado_reg, aes(dose, prod))+
+     geom_point()+
+     stat_smooth(method = "lm",
+                  formula = as.formula("y ~ poly(x, 2)"),
+                  linetype = "dashed",
+                  col = "black",
+                  level = 0.95)
+
+plot_grid(l1, l2, labels = c("l1", "l2"))
+```
+
+* **Gráficos do tipo  quantil-quantil (Q-Q plots)**
+
+Esta função é muito util para verificar a normalidade dos resíduos da ANOVA e regressões lineares ou não lineares. A programação abaixo foi utilizada no artigo de @Lucio2017 para demonstrar a intepretação dos gráficos. As funções `stat_qq_band()`, `stat_qq_line()` e `stat_qq_point()` do pacote [qqplotr](https://github.com/aloy/qqplotr)^[https://github.com/aloy/qqplotr] serão utilizadas. Este é uma das inúmeras extensões do pacote **ggplot2** que podem ser encontradas [aqui.](http://www.ggplot2-exts.org/gallery/)^[http://www.ggplot2-exts.org/gallery/]. 
+
+
+```{r message = FALSE, warning = FALSE, fig.width = 10, fig.height = 3, fig.align = "center", fig.cap = "Gráfico quantil-quantil de conjuntos de dados com assimetria à esquerda, direita e com distribuição normal."}
+# simulando dados com diferentes assimetrias
+assimetria = tibble(esquerda = rbeta(5000,1,7),
+                    direita = rbeta(5000,7,1),
+                    normal = rnorm(5000,5,3))
+
+assimetria_graf = gather(assimetria) # organiza os dados para usar facete_wrap
+ggplot(assimetria_graf, aes(sample = value))+
+       facet_wrap(~key, scales = "free")+
+       qqplotr::stat_qq_band(fill = "gray")+
+       qqplotr::stat_qq_line(col = "red")+
+       qqplotr::stat_qq_point()+
+labs(x = "Theoretical quantiles", y = "Sample quantiles")
+  
+```
+
+
+
+\indf{facet\_wrap} \indf{stat\_qq\_band} \indf{stat\_qq\_line} \indf{stat\_qq\_point} 
+Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo **ggplot2**. As potencialidades deste pacote, no entanto vão muito além. Uma galeria com diversos exemplos de gráficos **ggplot2** com códigos disponíveis pode ser vista [aqui.](https://www.r-graph-gallery.com/)^[https://www.r-graph-gallery.com/]
+
+\indt{Dicas}
+```{block2, type = "dica"}
+Note que no gráfico acima, as funções do pacote qqplotr foram carregadas utilizando `qqplotr::`. Neste caso, indicamos que a função desejada é uma função deste pacote. Isto é útil, principalmente quando dois pacotes tem funções com o mesmo nome. Utilizando `::` especificamos de qual pacote a função deve ser carregada.
+
+```
+
