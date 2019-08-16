@@ -24,7 +24,7 @@ knitr::opts_chunk$set(cache = TRUE, comment = "", fig.align="center")
 
 # Prefácio {-}
 
-
+<img style="float: right;" src="figures/cover.png" width="350" height="438" >
 
 Atualmente na área das Ciências Agrárias identificam-se o uso de diversos sofwares para a análise estatística de dados originados em coletas de experimentos. Esta miscelânea de sofwares pode confundir o pesquisador no momento de escolher qual é o software que será adotado para suas análises estatísticas, já que existem aqueles que devem ser adquiridas licenças para uso e nem todos disponibilizam opções de todos os métodos de análise estatística de dados.
 
@@ -69,7 +69,7 @@ A parte III (Capítulos 10 a 14) é voltada para a análise dos dados. O [Capít
 
 Exemplos reproduzíveis são muito importante para uma curva de aprendizado satisfatória no ambiente de programação R. Os leitores podem interagir com os exemplos deste material ao lê-lo. Por exemplo, é possível, utilizando `Ctrl+C`, copiar uma programação, colar em seu ambiente de trabalho utilizando `Ctrl+V` e saber imediatamente o que acontece se certos parâmetros/argumentos de um modelo/análise forem alterados.
 
-Todos os dados utilizados estão disponíveis no [repositório digital](https://github.com/TiagoOlivoto/e-bookr/tree/master/data) deste e-book). Para que a importação dos dados --utilizando os exemplos desta apostila-- não retorne nenhum erro, é sugerido que os arquivos de dados sejam armazenados dentro de uma pasta nomeada como `data`, localizada no diretório de trabalho.
+Todos os dados utilizados estão disponíveis no [repositório digital](https://github.com/TiagoOlivoto/e-bookr/tree/master/data) deste e-book. Para que a importação dos dados --utilizando os exemplos desta apostila-- não retorne nenhum erro, é sugerido que os arquivos de dados sejam armazenados dentro de uma pasta nomeada como `data`, localizada no diretório de trabalho.
 
 
 
