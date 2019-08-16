@@ -69,7 +69,7 @@ A parte III (Capítulos 10 a 14) é voltada para a análise dos dados. O [Capít
 
 Exemplos reproduzíveis são muito importante para uma curva de aprendizado satisfatória no ambiente de programação R. Os leitores podem interagir com os exemplos deste material ao lê-lo. Por exemplo, é possível, utilizando `Ctrl+C`, copiar uma programação, colar em seu ambiente de trabalho utilizando `Ctrl+V` e saber imediatamente o que acontece se certos parâmetros/argumentos de um modelo/análise forem alterados.
 
-Todos os dados utilizados estão disponíveis em um arquivo `.xlsx` que pode ser baixado neste [link](https://drive.google.com/file/d/1w461F7Ic7bAjjB9DDAG1HF14dzor2vum/view). É sugerido que este arquivo tenha o nome **data_R** e esteja localizado no diretório de trabalho para que a importação dos dados --utilizando os exemplos desta apostila-- não retorne nenhum erro.
+Todos os dados utilizados estão disponíveis no [repositório digital](https://github.com/TiagoOlivoto/e-bookr/tree/master/data) deste e-book). Para que a importação dos dados --utilizando os exemplos desta apostila-- não retorne nenhum erro, é sugerido que os arquivos de dados sejam armazenados dentro de uma pasta nomeada como `data`, localizada no diretório de trabalho.
 
 
 
