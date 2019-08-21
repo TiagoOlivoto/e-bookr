@@ -108,7 +108,7 @@ E-mail: brunosari@hotmail.com | [Curriculo Lattes](http://buscatextual.cnpq.br/b
 
 **Ambiente de criação**
 
-Este e-book foi escrito em [RMarkdown](https://rmarkdown.rstudio.com/), usando o pacote [bookdown](https://bookdown.org/yihui/bookdown/) e publicado na web em [bookdown.org](https://bookdown.org/).
+Este e-book foi escrito em [RMarkdown](https://rmarkdown.rstudio.com/), usando o pacote [bookdown](https://bookdown.org/yihui/bookdown/) e hospedado na web em [GitHub](https://tiagoolivoto.github.io/e-bookr/).
 
 **Código fonte**
 
