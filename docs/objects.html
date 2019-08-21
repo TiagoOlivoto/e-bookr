@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Tipos de objetos | Software R para avaliação de dados experimentais</title>
+  <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Tipos de objetos | Software R para avaliação de dados experimentais" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/cover.png" />
+  <meta property="og:description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
+  <meta name="github-repo" content="TiagoOlivoto/e-bookr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Tipos de objetos | Software R para avaliação de dados experimentais" />
+  
+  <meta name="twitter:description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
+  <meta name="twitter:image" content="figures/cover.png" />
+
+<meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
+
+
+<meta name="date" content="2019-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="math.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#por-que-eu-deveria-ler-este-e-book"><i class="fa fa-check"></i>Por que eu deveria ler este e-Book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estrutura"><i class="fa fa-check"></i>Estrutura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conjunto-de-dados"><i class="fa fa-check"></i>Conjunto de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a><ul>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#tiago-olivoto"><i class="fa fa-check"></i>Tiago Olivoto</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#bruno-giacomini-sari"><i class="fa fa-check"></i>Bruno Giacomini Sari</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="detalhes-importantes.html"><a href="detalhes-importantes.html"><i class="fa fa-check"></i>Detalhes importantes</a></li>
+<li class="part"><span><b>I Parte I o ambiente R</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#o-software-r"><i class="fa fa-check"></i><b>1.1</b> O software R</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#o-software-rstudio"><i class="fa fa-check"></i><b>1.2</b> O software RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#meu-primeiro-script"><i class="fa fa-check"></i><b>1.3</b> Meu primeiro script</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a><ul>
+<li class="chapter" data-level="2.1" data-path="objects.html"><a href="objects.html#vetores"><i class="fa fa-check"></i><b>2.1</b> Vetores</a></li>
+<li class="chapter" data-level="2.2" data-path="objects.html"><a href="objects.html#matrizes"><i class="fa fa-check"></i><b>2.2</b> Matrizes</a></li>
+<li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
+<li class="chapter" data-level="2.4" data-path="objects.html"><a href="objects.html#tibbles"><i class="fa fa-check"></i><b>2.4</b> Tibbles</a></li>
+<li class="chapter" data-level="2.5" data-path="objects.html"><a href="objects.html#lista"><i class="fa fa-check"></i><b>2.5</b> Lista</a></li>
+<li class="chapter" data-level="2.6" data-path="objects.html"><a href="objects.html#funcoes"><i class="fa fa-check"></i><b>2.6</b> Funções</a></li>
+<li class="chapter" data-level="2.7" data-path="objects.html"><a href="objects.html#identificando-as-classes-de-objetos"><i class="fa fa-check"></i><b>2.7</b> Identificando as classes de objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>3</b> Operações matemáticas</a></li>
+<li class="chapter" data-level="4" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>4</b> Loops</a></li>
+<li class="chapter" data-level="5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>5</b> Construindo uma tabela</a></li>
+<li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
+<li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
+<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#adicionar-novas-variaveis"><i class="fa fa-check"></i><b>7.1</b> Adicionar novas variáveis</a></li>
+<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.2</b> Selecionar linhas com base em seus valores</a></li>
+<li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
+<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
+<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.6</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.7</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.8</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.9</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.10</b> Operações com conjuntos</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
+<li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-grafico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-grafico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.4" data-path="graph.html"><a href="graph.html#aesthetics-estetica"><i class="fa fa-check"></i><b>8.4</b> Aesthetics (estética)</a></li>
+<li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
+<li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
+<li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensoes"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
+<li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-graficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
+</ul></li>
+<li class="part"><span><b>III Parte III análise de dados</b></span></li>
+<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
+<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendencia-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
+<li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
+<li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderencia"><i class="fa fa-check"></i><b>10.1.3</b> Testes de aderência</a></li>
+<li class="chapter" data-level="10.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confianca"><i class="fa fa-check"></i><b>10.1.4</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="10.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipoteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.5</b> Teste de hipóteses para amostras independentes</a></li>
+<li class="chapter" data-level="10.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipoteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#principios-basicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
+<li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
+<li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimacao"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
+<li class="chapter" data-level="10.2.4" data-path="analdata.html"><a href="analdata.html#reparametrizacao-condicoes-marginais-ou-combinacoes-lineares"><i class="fa fa-check"></i><b>10.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
+<li class="chapter" data-level="10.2.5" data-path="analdata.html"><a href="analdata.html#delineamento-inteiramente-casualizado-dic"><i class="fa fa-check"></i><b>10.2.5</b> Delineamento inteiramente casualizado (DIC)</a></li>
+<li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformacao-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
+<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introducao"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
+<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatistico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
+<li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independencia-entre-a-covariavel-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
+<li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressao"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
+<li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numerico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-analise-de-variacao-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
+<li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estrategias-para-analise-de-dados-nao-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
+<li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introducao-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
+<li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporcao"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
+<li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>10.6.1</b> Download dos dados</a></li>
+<li class="chapter" data-level="10.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.2</b> Qualitativo vs quantitativo</a></li>
+<li class="chapter" data-level="10.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>10.6.3</b> Qualitativo vs qualitativo</a></li>
+<li class="chapter" data-level="10.6.4" data-path="analdata.html"><a href="analdata.html#quantitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.4</b> Quantitativo vs quantitativo</a></li>
+<li class="chapter" data-level="10.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>10.6.5</b> Experimentos em parcelas subdivididas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressao-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimacao-1"><i class="fa fa-check"></i><b>11.1.1</b> Estimação</a></li>
+<li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressoes-com-a-funcao-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
+<li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#selecao-de-variaveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="11.1.4" data-path="reg.html"><a href="reg.html#falta-de-ajuste"><i class="fa fa-check"></i><b>11.1.4</b> Falta de ajuste</a></li>
+<li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#analise-dos-residuos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressao-nao-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimacao-2"><i class="fa fa-check"></i><b>11.2.1</b> Estimação</a></li>
+<li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-funcao-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
+<li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#analise-dos-residuos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="11.2.4" data-path="reg.html"><a href="reg.html#medidas-de-nao-linearidade"><i class="fa fa-check"></i><b>11.2.4</b> Medidas de não linearidade</a></li>
+<li class="chapter" data-level="11.2.5" data-path="reg.html"><a href="reg.html#comparacao-de-parametros"><i class="fa fa-check"></i><b>11.2.5</b> Comparação de parâmetros</a></li>
+<li class="chapter" data-level="11.2.6" data-path="reg.html"><a href="reg.html#representacao-grafica-dos-modelos"><i class="fa fa-check"></i><b>11.2.6</b> Representação gráfica dos modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressao-bisegmentada-com-plato"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
+<li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlacao-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualizacao-grafica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
+<li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlacao"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
+<li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
+<li class="chapter" data-level="12.2.4" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-ii"><i class="fa fa-check"></i><b>12.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
+<li class="chapter" data-level="12.2.5" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-iii"><i class="fa fa-check"></i><b>12.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
+<li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlacoes-geneticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confianca"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#parametrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
+<li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#nao-parametrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
+<li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlacao-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#analise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introducao-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimacao-3"><i class="fa fa-check"></i><b>12.7.2</b> Estimação</a></li>
+<li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
+<li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#metodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
+<li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#analise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
+<li class="chapter" data-level="12.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correcao-k"><i class="fa fa-check"></i><b>12.7.6</b> Incluindo um fator de correção (k)</a></li>
+<li class="chapter" data-level="12.7.7" data-path="relations.html"><a href="relations.html#excluindo-variaveis"><i class="fa fa-check"></i><b>12.7.7</b> Excluindo variáveis</a></li>
+<li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#selecao-de-variaveis-em-analise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
+<li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#analise-de-trilha-para-cada-nivel-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
+<li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlacoes-canonicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#analise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variaveis-numericas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
+<li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-media-de-cada-genotipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
+<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#selecao-de-variaveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-numero-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
+<li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
+<li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
+<li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
+<li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
+<li class="chapter" data-level="13.3.4" data-path="multivariate.html"><a href="multivariate.html#codigo-r"><i class="fa fa-check"></i><b>13.3.4</b> Código R</a></li>
+<li class="chapter" data-level="13.3.5" data-path="multivariate.html"><a href="multivariate.html#autovalores"><i class="fa fa-check"></i><b>13.3.5</b> Autovalores</a></li>
+<li class="chapter" data-level="13.3.6" data-path="multivariate.html"><a href="multivariate.html#grafico-das-variaveis"><i class="fa fa-check"></i><b>13.3.6</b> Gráfico das variáveis</a></li>
+<li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#grafico-de-individuos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
+<li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#grafico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
+<li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
+<li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-codigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
+<li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#analise-grafica-da-interacao"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
+<li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#analise-de-variancia-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
+<li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressao"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
+<li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#indice-de-confianca-genotipico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
+<li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#indice-de-superioridade-genotipico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
+<li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificacao-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
+<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
+<li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
+<li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-numero-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
+<li class="chapter" data-level="14.7.4" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.7.4</b> Valores estimados pelo modelo AMMI</a></li>
+<li class="chapter" data-level="14.7.5" data-path="interaction.html"><a href="interaction.html#indices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
+<li class="chapter" data-level="14.7.6" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.7.6</b> Biplots</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.8</b> O modelo GGE</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>14.8.1</b> Data centering</a></li>
+<li class="chapter" data-level="14.8.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>14.8.2</b> Data scaling</a></li>
+<li class="chapter" data-level="14.8.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>14.8.3</b> Singular value partition</a></li>
+<li class="chapter" data-level="14.8.4" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo-gge"><i class="fa fa-check"></i><b>14.8.4</b> Ajustando o modelo GGE</a></li>
+<li class="chapter" data-level="14.8.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.8.5</b> Valores estimados pelo modelo GGE</a></li>
+<li class="chapter" data-level="14.8.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.8.6</b> Visualizando o Biplot</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliacao-de-met"><i class="fa fa-check"></i><b>14.9</b> Modelos mistos na avaliação de MET</a><ul>
+<li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.9.1</b> Ajustando o modelo</a></li>
+<li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#analise-dos-residuos-2"><i class="fa fa-check"></i><b>14.9.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#componentes-de-variancia-e-parametros-geneticos"><i class="fa fa-check"></i><b>14.9.3</b> Componentes de variância e parâmetros genéticos</a></li>
+<li class="chapter" data-level="14.9.4" data-path="interaction.html"><a href="interaction.html#medias-preditas"><i class="fa fa-check"></i><b>14.9.4</b> Médias preditas</a></li>
+<li class="chapter" data-level="14.9.5" data-path="interaction.html"><a href="interaction.html#indices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisao-em-cada-caso"><i class="fa fa-check"></i><b>14.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apêndices</b></span></li>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
+<li class="chapter" data-level="A.1" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
+<li class="chapter" data-level="A.2" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
+<li class="chapter" data-level="A.3" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
+<li class="chapter" data-level="A.4" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc4"><i class="fa fa-check"></i><b>A.4</b> Exercício 4</a></li>
+<li class="chapter" data-level="A.5" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc5"><i class="fa fa-check"></i><b>A.5</b> Exercício 5</a></li>
+<li class="chapter" data-level="A.6" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc6"><i class="fa fa-check"></i><b>A.6</b> Exercício 6</a></li>
+<li class="chapter" data-level="A.7" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc7"><i class="fa fa-check"></i><b>A.7</b> Exercício 7</a></li>
+<li class="chapter" data-level="A.8" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc8"><i class="fa fa-check"></i><b>A.8</b> Exercício 8</a></li>
+<li class="chapter" data-level="A.9" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc9"><i class="fa fa-check"></i><b>A.9</b> Exercício 9</a></li>
+<li class="chapter" data-level="A.10" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc10"><i class="fa fa-check"></i><b>A.10</b> Exercício 10</a></li>
+<li class="chapter" data-level="A.11" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc11"><i class="fa fa-check"></i><b>A.11</b> Exercício 11</a></li>
+<li class="chapter" data-level="A.12" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc12"><i class="fa fa-check"></i><b>A.12</b> Exercício 12</a></li>
+<li class="chapter" data-level="A.13" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc13"><i class="fa fa-check"></i><b>A.13</b> Exercício 13</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tabela-de-distribuicoes.html"><a href="tabela-de-distribuicoes.html"><i class="fa fa-check"></i>Tabela de distribuições</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Software R para avaliação de dados experimentais</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="objects" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Tipos de objetos</h1>
+<p>Os tipos de objeto mais utilizados na linguagem <em>R</em> são: (i) vetores, (ii) matrizes, (iii) data frames, (iv) listas e (v) funções. Um enfoque maior será dado aos vetores, matrizes e data frames, pois estes são amplamente utilizados, inclusive nas análises mais simples.</p>
+<div id="vetores" class="section level2">
+<h2><span class="header-section-number">2.1</span> Vetores</h2>
+<p>A função <code>c()</code>   combina valores que formam vetores<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>. Abaixo, é demonstrado como vetores podem ser criados utilizando <code>c()</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">x1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>) <span class="co"># Escalar </span></a>
+<a class="sourceLine" id="cb9-2" title="2">x2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="co"># Vetor</span></a>
+<a class="sourceLine" id="cb9-3" title="3">x3 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Vetor</span></a>
+<a class="sourceLine" id="cb9-4" title="4">x3</a></code></pre></div>
+<pre><code>[1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">x3<span class="fl">.1</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;um&quot;</span>,<span class="st">&quot;dois&quot;</span>,<span class="st">&quot;três&quot;) # Vetor com caracteres</span></a></code></pre></div>
+<p>Os vetores foram armazenados em <em>x1</em>, <em>x2</em> e <em>x3</em> e ficaram armazenados como valores na área de trabalho como valores (<em>values</em>). Para que os valores sejam mostrados basta digitar no <em>console</em> onde os vetores foram armazenados.</p>
+<p>Vetores também podem ser criados utilizando as funções <code>rep()</code> e <code>seq()</code>, conforme mostrado abaixo.  </p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code> [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>[1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>[1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>)</a></code></pre></div>
+<pre><code> [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+<p>A função <code>c()</code> também pode ser combinada com as funções <code>rep()</code> e <code>seq()</code> para criar vetores mais complexos, como mostrado abaixo.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">x4 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">each =</span> <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb20-2" title="2">x5 =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb20-3" title="3">x6 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dt">each =</span> <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb20-4" title="4">x6</a></code></pre></div>
+<pre><code> [1] 1 1 2 2 3 3 4 4 5 5</code></pre>
+<p>Utilizando colchtes [ ] é possível selecionar um (ou um conjunto) de elementos de um vetor. Por exemplo:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">x7 =<span class="st"> </span>x6[<span class="dv">1</span>] <span class="co"># Seleciona o primeiro elemento do vetor </span></a>
+<a class="sourceLine" id="cb22-2" title="2">x8 =<span class="st"> </span>x6[<span class="dv">4</span>] <span class="co">#  Seleciona o quarto elemento do vetor </span></a>
+<a class="sourceLine" id="cb22-3" title="3">x9 =<span class="st"> </span>x6[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)] <span class="co"># Seleciona o primeiro, o quarto e o oitavo elemento</span></a>
+<a class="sourceLine" id="cb22-4" title="4">x9</a></code></pre></div>
+<pre><code>[1] 1 2 4</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">x10 =<span class="st"> </span>x6[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>] <span class="co"># armazena uma sequência de elementos (primeiro ao quarto)</span></a></code></pre></div>
+</div>
+<div id="matrizes" class="section level2">
+<h2><span class="header-section-number">2.2</span> Matrizes</h2>
+<p>As matrizes  são um conjunto de valores (ou variáveis) dispostos em linhas e colunas, e que formam um corpo delimitado por [ ]. As matrizes são geralmente representadas genericamente por <span class="math inline">\({{\boldsymbol{A}}_{{\boldsymbol{MxN}}}}\)</span>, onde <strong>M</strong> e <strong>N</strong> represetam os números de linhas e colunas da matriz, respectivamente. As matrizes podem ser facilmente construídas utilizando a função <code>matrix()</code>. Alternativamente, as funções <code>cbind()</code> e <code>rbind()</code> também podem ser utilizadas. A primeira função adiciona colunas as matrizes, enquanto que a segunda adiciona linhas. Veremos mais tarde que estas funções podem ser combinadas com outras funções para construção de data frames .</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co">## Usando cbind()</span></a>
+<a class="sourceLine" id="cb25-2" title="2">x10 =<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) <span class="co"># ou x10 = cbind(1:5), 5 colunas com 1 elemento cada</span></a>
+<a class="sourceLine" id="cb25-3" title="3">x11 =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)) <span class="co"># ou x11 = cbind(c(1:5)), 1 coluna com 5 elementos cada </span></a>
+<a class="sourceLine" id="cb25-4" title="4">x12 =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)) <span class="co"># 2 colunas de 5 elementos</span></a>
+<a class="sourceLine" id="cb25-5" title="5">x12<span class="fl">.1</span> =<span class="st"> </span><span class="kw">cbind</span>(x11,<span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb25-6" title="6">x13 =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>),<span class="kw">c</span>(<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>)) <span class="co"># 3 colunas de 5 elementos</span></a>
+<a class="sourceLine" id="cb25-7" title="7">x13<span class="fl">.1</span> =<span class="st"> </span><span class="kw">cbind</span>(x12<span class="fl">.1</span>,<span class="kw">c</span>(<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co">## Usando rbind()</span></a>
+<a class="sourceLine" id="cb26-2" title="2">x14 =<span class="st"> </span><span class="kw">rbind</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) <span class="co"># x14 = x11, 5 linhas com 1 elemento cada </span></a>
+<a class="sourceLine" id="cb26-3" title="3">x15 =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)) <span class="co"># x15 = x10, 1 linha com 5 elementos cada</span></a>
+<a class="sourceLine" id="cb26-4" title="4">x16 =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)) <span class="co"># 2 linhas com 5 elementos cada</span></a>
+<a class="sourceLine" id="cb26-5" title="5">x16<span class="fl">.1</span> =<span class="st"> </span><span class="kw">rbind</span>(x15,<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb26-6" title="6">x17 =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">7</span>),<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">8</span>),<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">9</span>),<span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)) <span class="co"># x16 = x12</span></a></code></pre></div>
+<p>As funções <code>cbind()</code> e <code>rbind()</code>   podem ser utilizadas conjuntamente. Não queremos confundir a sua cabeça, mas se a lição anterior foi entendida, a próxima se torna fácil.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co">## Usando rbind() e cbind()</span></a>
+<a class="sourceLine" id="cb27-2" title="2">x18 =<span class="st"> </span>x18 =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>), <span class="kw">rbind</span>(<span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>))  </a>
+<a class="sourceLine" id="cb27-3" title="3">x18</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    6   11
+[2,]    2    7   12
+[3,]    3    8   13
+[4,]    4    9   14
+[5,]    5   10   15</code></pre>
+<p>Com a função <code>matrix()</code>  podemos ter o mesmo resultado que o obtido com o uso das funções <code>cbind()</code> e <code>rbind()</code>. Porém, para utilizar a função <code>matrix()</code>, alguns <em>argumentos</em> devem ser declarados. Na função <code>matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,dimnames = NULL)</code>, os argumentos que devemos inicialmente conhecer são o <code>nrow</code>, <code>ncol</code> e <code>byrow</code>. O primeiro indica o número de linhas da matriz, o segundo a número de colunas e o terceiro indica como a matriz é preenchida. Por <em>default</em>, <code>byrow</code> é <code>FALSE</code>, indicando que as matrizes são preenchidas por colunas. Se <code>TRUE</code>, o preenchimento ocorre por linhas.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co">## Usando matrix</span></a>
+<a class="sourceLine" id="cb29-2" title="2">x19 =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb29-3" title="3">x19</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    6   11
+[2,]    2    7   12
+[3,]    3    8   13
+[4,]    4    9   14
+[5,]    5   10   15</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">x20 =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb31-2" title="2">x20</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]    7    8    9
+[4,]   10   11   12
+[5,]   13   14   15</code></pre>
+<p>Para selecionar elementos, linhas e colunas da matriz com [ ] utiliza-se um sistema de coordenadas:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">x19[<span class="dv">2</span>, <span class="dv">3</span>] <span class="co"># seleciona o elemento que está na linha 2 e coluna 3</span></a></code></pre></div>
+<pre><code>[1] 12</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">x19[, <span class="dv">2</span>] <span class="co"># &quot;,&quot; indica que todas as linhas serão selecionadas na coluna 2</span></a></code></pre></div>
+<pre><code>[1]  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">x19[<span class="dv">1</span>, ] <span class="co"># &quot;,&quot; indica que todas as colunas serão selecionadas na linha 1</span></a></code></pre></div>
+<pre><code>[1]  1  6 11</code></pre>
+</div>
+<div id="data-frame" class="section level2">
+<h2><span class="header-section-number">2.3</span> Data Frame</h2>
+<p>A função <code>data.frame()</code>  cria estruturas cujas colunas podem ser valores numéricos ou caracteres. É uma estrutura muito utilizada em funções do <em>software R</em>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">x22 =<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb39-2" title="2">      <span class="kw">expand.grid</span>(<span class="dt">Ambiente =</span> <span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>),</a>
+<a class="sourceLine" id="cb39-3" title="3">                  <span class="dt">Genotipo =</span> <span class="kw">c</span>(<span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G3&quot;</span>),</a>
+<a class="sourceLine" id="cb39-4" title="4">                  <span class="dt">Rep =</span> <span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>, <span class="st">&quot;III&quot;</span>)),</a>
+<a class="sourceLine" id="cb39-5" title="5">                  <span class="dt">Y =</span> <span class="kw">rnorm</span>(<span class="dv">18</span>, <span class="dv">50</span>, <span class="dv">15</span>))</a>
+<a class="sourceLine" id="cb39-6" title="6"><span class="kw">str</span>(x22)</a></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   18 obs. of  4 variables:
+ $ Ambiente: Factor w/ 2 levels &quot;A1&quot;,&quot;A2&quot;: 1 2 1 2 1 2 1 2 1 2 ...
+ $ Genotipo: Factor w/ 3 levels &quot;G1&quot;,&quot;G2&quot;,&quot;G3&quot;: 1 1 2 2 3 3 1 1 2 2 ...
+ $ Rep     : Factor w/ 3 levels &quot;I&quot;,&quot;II&quot;,&quot;III&quot;: 1 1 1 1 1 1 2 2 2 2 ...
+ $ Y       : num  76.8 46.9 46.1 34 77.6 ...</code></pre>
+<p>Em <em>x22</em> simulamos como muitos experimentos são organizados no momento de tabulação dos dados (fatores nas colunas e variáveis nas linhas).</p>
+</div>
+<div id="tibbles" class="section level2">
+<h2><span class="header-section-number">2.4</span> Tibbles</h2>
+<p>Um <code>tibble</code>, ou <code>tbl_df</code>, é uma versão moderna do <code>data.frame</code>. Tibbles são datas frames que não alteram nomes ou tipos de variáveis, possuindo um método <code>print()</code> aprimorado, que facilita o uso com grandes conjuntos de dados contendo objetos complexos. Você pode forçar um objeto de classe <code>data.frame</code> a um de classe <code>tibble</code> utilizando <code>as_tibble()</code>  ou criar um a partir de vetores individuais com <code>tibble()</code> . A função <code>tibble()</code>, diferente de <code>data.frame()</code> permite que você se refira às variáveis que você acabou de criar. É possível, também, que um tibble tenha nomes de colunas que não sejam nomes de variáveis R válidos. Por exemplo, elas podem não começar com uma letra ou podem conter caracteres incomuns como um espaço. Para se referir a essas variáveis, você precisa cercá-las com `. Neste documento, a estrutura de dados padrão a ser utilizada será tibble.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Convertendo um dataframe a um tibble</span></a>
+<a class="sourceLine" id="cb41-2" title="2">tbl_x22 =<span class="st"> </span><span class="kw">as_tibble</span>(x22)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Tentando criar um dataframe</span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb42-3" title="3">           <span class="dt">y =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb42-4" title="4">           <span class="dt">z =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Criando um tibble</span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb43-3" title="3">       <span class="dt">y =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb43-4" title="4">       <span class="st">`</span><span class="dt">soma x + y</span><span class="st">`</span> =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y)</a></code></pre></div>
+<pre><code># A tibble: 5 x 3
+      x     y `soma x + y`
+  &lt;int&gt; &lt;dbl&gt;        &lt;dbl&gt;
+1     1     1            2
+2     2     4            6
+3     3     9           12
+4     4    16           20
+5     5    25           30</code></pre>
+</div>
+<div id="lista" class="section level2">
+<h2><span class="header-section-number">2.5</span> Lista</h2>
+<p>No exemplo abaixo, será armazenado em uma lista  dois data-frames e uma matriz. Posteriomente, será selecionado a matriz que está armazenada na lista:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">x23 =<span class="st"> </span><span class="kw">list</span>(x19, x22)</a>
+<a class="sourceLine" id="cb45-2" title="2">x24 =<span class="st"> </span>x23[[<span class="dv">1</span>]]</a></code></pre></div>
+</div>
+<div id="funcoes" class="section level2">
+<h2><span class="header-section-number">2.6</span> Funções</h2>
+<p>As funções  são a base da linguagem <em>R</em>. Através de <em>argumentos</em> que são indicados em <code>funtion()</code>, uma expressão (ou série de expressões) é resolvida e um valor (ou um conjunto de valores) é retornado. </p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">F1 =<span class="st"> </span><span class="cf">function</span>(x){ <span class="co"># x é o argumento da função</span></a>
+<a class="sourceLine" id="cb46-2" title="2">  a =<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb46-3" title="3">  <span class="kw">return</span>(a) <span class="co"># retorna a</span></a>
+<a class="sourceLine" id="cb46-4" title="4">}</a>
+<a class="sourceLine" id="cb46-5" title="5"></a>
+<a class="sourceLine" id="cb46-6" title="6">F2 =<span class="st"> </span><span class="cf">function</span>(x, y){ <span class="co"># dois argumentos na função</span></a>
+<a class="sourceLine" id="cb46-7" title="7">  a =<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb46-8" title="8">  b =<span class="st"> </span>y</a>
+<a class="sourceLine" id="cb46-9" title="9">  c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb46-10" title="10">  <span class="kw">return</span>(c) <span class="co"># retorna c</span></a>
+<a class="sourceLine" id="cb46-11" title="11">}</a>
+<a class="sourceLine" id="cb46-12" title="12"></a>
+<a class="sourceLine" id="cb46-13" title="13">F3 =<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb46-14" title="14">  <span class="cf">if</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>){</a>
+<a class="sourceLine" id="cb46-15" title="15">    <span class="kw">stop</span>(<span class="st">&quot;O argumento x = &quot;</span>, x, <span class="st">&quot; é inválido. &#39;x&#39; precisa ser maior que 10&quot;</span>)</a>
+<a class="sourceLine" id="cb46-16" title="16">  }</a>
+<a class="sourceLine" id="cb46-17" title="17">  a =<span class="st"> </span><span class="kw">ifelse</span>(x<span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb46-18" title="18">  <span class="kw">return</span>(a)</a>
+<a class="sourceLine" id="cb46-19" title="19">}</a>
+<a class="sourceLine" id="cb46-20" title="20"></a>
+<a class="sourceLine" id="cb46-21" title="21">elevar =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">eleva =</span> <span class="st">&quot;quadrado&quot;</span>){</a>
+<a class="sourceLine" id="cb46-22" title="22">  <span class="cf">if</span>(<span class="op">!</span>eleva <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;quadrado&quot;</span>, <span class="st">&quot;cubo&quot;</span>)){</a>
+<a class="sourceLine" id="cb46-23" title="23">    <span class="kw">stop</span>(<span class="st">&quot;O argumento eleva = &quot;</span>,eleva, <span class="st">&quot; deve ser ou &#39;quadrado&#39; ou &#39;cubo&#39;&quot;</span>)</a>
+<a class="sourceLine" id="cb46-24" title="24">  }</a>
+<a class="sourceLine" id="cb46-25" title="25">  <span class="cf">if</span>(eleva <span class="op">==</span><span class="st"> &quot;quadrado&quot;</span>){</a>
+<a class="sourceLine" id="cb46-26" title="26">  valor =<span class="st"> </span><span class="kw">ifelse</span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1000</span>,</a>
+<a class="sourceLine" id="cb46-27" title="27">                 <span class="kw">paste</span>(<span class="st">&quot;O resultado (&quot;</span>,x<span class="op">^</span><span class="dv">2</span>,<span class="st">&quot;) tem mais que 3 dígitos&quot;</span>),</a>
+<a class="sourceLine" id="cb46-28" title="28">                 <span class="kw">paste</span>(<span class="st">&quot;O resultado (&quot;</span>,x<span class="op">^</span><span class="dv">2</span>,<span class="st">&quot;) tem menos que 3 dígitos&quot;</span>))</a>
+<a class="sourceLine" id="cb46-29" title="29">  }</a>
+<a class="sourceLine" id="cb46-30" title="30">  <span class="cf">if</span>(eleva <span class="op">==</span><span class="st"> &quot;cubo&quot;</span>){</a>
+<a class="sourceLine" id="cb46-31" title="31">  valor =<span class="st"> </span><span class="kw">ifelse</span>(x<span class="op">^</span><span class="dv">3</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1000</span>,</a>
+<a class="sourceLine" id="cb46-32" title="32">                 <span class="kw">paste</span>(<span class="st">&quot;O resultado (&quot;</span>,x<span class="op">^</span><span class="dv">3</span>,<span class="st">&quot;) tem mais que 3 dígitos&quot;</span>),</a>
+<a class="sourceLine" id="cb46-33" title="33">                 <span class="kw">paste</span>(<span class="st">&quot;O resultado (&quot;</span>,x<span class="op">^</span><span class="dv">3</span>,<span class="st">&quot;) tem menos que 3 dígitos&quot;</span>))</a>
+<a class="sourceLine" id="cb46-34" title="34">  }</a>
+<a class="sourceLine" id="cb46-35" title="35">                 </a>
+<a class="sourceLine" id="cb46-36" title="36">  <span class="kw">return</span>(valor)</a>
+<a class="sourceLine" id="cb46-37" title="37">}</a></code></pre></div>
+<p>Quando uma função é armazenada no ambiente de trabalho, basta digitar o nome como o qual aquela função foi gravada. Os argumentos podem ser inseridos na ordem em que aparecem na função, sem especificar a qual argumento aquele valor pertence. No caso em que a inserção dos argumentos é diferente da ordem em que aparecem na função, é preciso identificar a qual argumento aquele valor pertente. Note que é possível combinar valores numéricos e texto como argumentos e/ou resultados de funções.</p>
+
+<div class="tarefa">
+<p><strong>Exercício 1</strong></p>
+<ul>
+<li>O resultado da função <code>F2(2, 3)</code> foi o mesmo da <code>F2(y = 3, x =2)</code>? Por quê?</li>
+<li>Por quê ocorreu um erro quando a função <code>F3(20)</code> foi rodada?</li>
+<li>O que tem de errado na execução da função <code>elevar(12, eleva = "cubico")</code>?</li>
+<li>Crie uma função chamada <code>mega</code> que retorna os números a serem apostados em jogo simples da Mega Sena, tendo como um único argumento <code>jogos</code>, que define quantos jogos de 6 números devem ser criados. Para cada jogo ordene os números em ordem crescente.</li>
+</ul>
+</div>
+
+<p><a href="resposta-dos-exercicios.html#exerc1">Resposta</a></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">F1</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="kw">F2</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb47-4" title="4"><span class="kw">F3</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb47-5" title="5"><span class="kw">F3</span>(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb47-6" title="6"><span class="kw">F3</span>(<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb47-7" title="7"><span class="kw">elevar</span>(<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb47-8" title="8"><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</a></code></pre></div>
+</div>
+<div id="identificando-as-classes-de-objetos" class="section level2">
+<h2><span class="header-section-number">2.7</span> Identificando as classes de objetos</h2>
+<p>Conforme visto anteriormente, é possível construir várias classes de objetos em linguagem <em>R</em>. Veremos mais adiante que muitas funções exigem classes específicas como <em>argumento</em>, e por isso conhecê-los é muito importante. Funções genéricas como <code>class()</code>  ou <em>is.objeto</em> são importantes para identificar a qual tipo de classe tal objeto pertence.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">class</span>(x19)</a></code></pre></div>
+<pre><code>[1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">class</span>(x22)</a></code></pre></div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">class</span>(x24)</a></code></pre></div>
+<pre><code>[1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">is.matrix</span>(x19)</a></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<p>Algumas funções permitem forçar objetos a uma classe específica, como por exemplo, transformar um objeto de classe <code>data.frame</code> em um objeto de classe <code>matrix</code>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">x22 =<span class="st"> </span><span class="kw">as.matrix</span>(x22)</a>
+<a class="sourceLine" id="cb56-2" title="2">x19 =<span class="st"> </span><span class="kw">as.data.frame</span>(x19)</a></code></pre></div>
+<p> </p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="22">
+<li id="fn22"><p>Vetores são uma estrutura de dados básica do R que permite armazenar um conjunto de valores numéricos ou de caracteres em um objeto nomeado<a href="objects.html#fnref22" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["html_r.pdf", "html_r.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

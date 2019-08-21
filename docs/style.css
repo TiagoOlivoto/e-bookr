@@ -1,0 +1,61 @@
+caption {
+  color: #777;
+  margin-top: 20px;
+}
+
+body{
+    text-align: justify;
+}
+
+
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+.references{
+    text-indent: -1em;
+    margin-left: 1em;
+    text-align: left;
+}
+
+.tarefa, .dica, .vcsabia, .importante, .note{
+  background: #f5f5f5 5px center/3em no-repeat;
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 20px 10px 2px 5px;
+}
+.vcsabia {
+  background-image: url("figures/curiosity.png");
+  border-color: #db8121;
+}
+
+.dica {
+  background-image: url("figures/tip.png");
+  border-color: #2963cf;
+}
+
+.tarefa {
+  background-image: url("figures/head.png");
+  border-color: #A93226;
+}
+
+.note {
+  background-image: url("figures/note.png");
+  border-color: #3fd62b;
+}
+
+.importante {
+  background-image: url("figures/important.png");
+  border-color: #3fd62b;
+}
+
+

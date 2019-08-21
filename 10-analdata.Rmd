@@ -460,7 +460,7 @@ ggplot(quantitativo_todos, aes(DOSEN, RG, col = TIPO)) +
 Como exemplo didático, vamos analisar os dados que parecem ter comportamento quadrático para ver se, estatisticamente, isto é confirmado. Para isto, utilizamos a função `subset()` \indf{subset} para criar um novo conjunto de dados que contenha somente o nível "QUADRÁTICA" dos nosso dados originais. Para evitar uma longa saída, os resultados desta seção em específico não foram mostrados.
 
 ```{r echo = TRUE, results="hide", eval = TRUE, message = FALSE, warning = FALSE, fig.height = 3, fig.width = 5, fig.cap = "Exemplo de regressão com comportamento linear, quadrático e cúbico", fig.align = "center"}
-quantitativo = subset(quantitativo_todos, TIPO  ==  "QUADRÁTICA")
+quantitativo = filter(quantitativo_todos, TIPO  ==  "QUADRÁTICA")
 crd_Reg = with(quantitativo, crd(DOSEN, RG, quali = FALSE, hvar = "levene"))
 ```
 

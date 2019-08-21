@@ -22,9 +22,29 @@ Pois o argumento (if x > 10) faz com que ocorra um erro e a função não seja e
 elevar(12, eleva = "cubico")
 ```
 
-
 O argumento 'eleva' não está correto. Ele deve ser ou 'quadrado' ou 'cubo'.
 
+
+
+```{r eval=TRUE}
+mega = function(jogos){
+  result = list()
+for(i in 1:jogos){
+result[[i]] = sort(
+  sample(1:60, size = 6, replace = FALSE)
+  )
+}
+  return(
+  do.call(rbind,
+          lapply(result, function(x){
+            x
+          }))
+  )
+}
+
+# 4 jogos
+mega(4)
+```
 
 
 ## Exercício 2 {#exerc2}

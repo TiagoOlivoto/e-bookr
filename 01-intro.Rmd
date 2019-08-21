@@ -71,14 +71,29 @@ O **tidyverse** é uma coleção de pacotes R projetados para a ciência de dado
 Praticamente todas as rotinas realizadas no R são baseadas em bibliotecas de códigos. Com a manipulaçao de pacotes não seria diferente. O pacote [pacman](https://github.com/trinker/pacman)^[https://github.com/trinker/pacman] é uma ferramenta de gerenciamento de pacotes R que combina a funcionalidade das funções relacionadas à biblioteca base em funções intuitivamente nomeadas, reduzindo o código para executar simultaneamente várias ações. Uma das funções mais úteis do pacote pacman é a `p_load()`\indf{p\_load} (*package load*). Esta função checa se um pacote está instalado e em caso afirmativo, carrega-o como se a função `library()` tivesse sido usada. Caso o pacote não esteja instalado, ela primeiro o instala-rá antes de carregá-lo. Vamos, agora, instalar (para quem está utilizando o R pela primeira vez) ou carregar (para quem já tem instalado) os pacotes utilizados neste material.
 
 ```{r, message=FALSE, warning=FALSE}
-if (!require("pacman")) install.packages("pacman")
+if (!require("pacman")){
+install.packages("pacman")
+}
 library(pacman)
-p_load(hnp, asbio, car, dplyr, emmeans, effects, multcomp, lme4, readxl,
-       ExpDes, manipulate, cowplot, tidyverse, agricolae, psych, corrplot,
-       pvclust, factoextra, kableExtra, ggfortify)
+p_load(hnp, asbio, car, dplyr, devtools, emmeans, effects, multcomp,
+       lme4, readxl, ExpDes, manipulate, MASS, tidyverse, agricolae,
+       psych, corrplot, pvclust, factoextra, kableExtra, ggfortify, ggstatsplot)
 
-p_load_gh("TiagoOlivoto/metan")
 ```
+
+O pacote [metan](https://tiagoolivoto.github.io/metan/)^[https://tiagoolivoto.github.io/metan/] é utilizado neste material e sua instalação é realizada do repositório [GitHub](https://github.com/TiagoOlivoto/metan)^[https://github.com/TiagoOlivoto/metan] utilizando a função `install_github()` do pacote [devtools](https://github.com/r-lib/devtools)^[https://github.com/r-lib/devtools].
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+install_github("TiagoOlivoto/metan")
+library(metan)
+```
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+
+library(metan)
+```
+
 
 
 Os pacotes disponibilizados no software *R* estão em constante atualização. Utilizando a função `packageStatus()` e `summary(packageStatus())` é possível verificar se os pacotes estão atualizados. Outra forma é ir em *Packages > Update* que se encontra no canto inferior direito conforme demonstrado na Figura 5. Por fim, para citar os pacotes \indt{pacotes}, recomenda-se verificar a referência através da função `citation()`. \indt{citação de pacotes} \indt{atualização}
@@ -87,7 +102,7 @@ Os pacotes disponibilizados no software *R* estão em constante atualização. U
 
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-citation("dplyr")
+citation("metan")
 ```
 
 

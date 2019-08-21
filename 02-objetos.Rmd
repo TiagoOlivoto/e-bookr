@@ -179,13 +179,13 @@ elevar = function(x, eleva = "quadrado"){
   }
   if(eleva == "quadrado"){
   valor = ifelse(x^2 >= 1000,
-                 paste("O resultado (",x^2,") tem mais que 3 dígitos)"),
-                 paste("O resultado (",x^2,") tem menos que 3 dígitos)"))
+                 paste("O resultado (",x^2,") tem mais que 3 dígitos"),
+                 paste("O resultado (",x^2,") tem menos que 3 dígitos"))
   }
   if(eleva == "cubo"){
   valor = ifelse(x^3 >= 1000,
-                 paste("O resultado (",x^3,") tem mais que 3 dígitos)"),
-                 paste("O resultado (",x^3,") tem menos que 3 dígitos)"))
+                 paste("O resultado (",x^3,") tem mais que 3 dígitos"),
+                 paste("O resultado (",x^3,") tem menos que 3 dígitos"))
   }
                  
   return(valor)
@@ -201,6 +201,7 @@ Quando uma função é armazenada no ambiente de trabalho, basta digitar o nome 
 - O resultado da função `F2(2, 3)` foi o mesmo da `F2(y = 3, x =2)`? Por quê?
 - Por quê ocorreu um erro quando a função `F3(20)` foi rodada?
 - O que tem de errado na execução da função `elevar(12, eleva = "cubico")`?
+- Crie uma função chamada `mega` que retorna os números a serem apostados em jogo simples da Mega Sena, tendo como um único argumento `jogos`, que define quantos jogos de 6 números devem ser criados. Para cada jogo ordene os números em ordem crescente.
 
 ```
 
