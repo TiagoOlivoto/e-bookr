@@ -14,22 +14,26 @@ exp(100) # exponencial
 
 ```
 
-Para multiplicação de matrizes utiliza-se `%*%` ao envéz de `*`. Note a diferença no exemplo abaixo. O resultado da multiplicação da matriz `x` e `y` é dado por:
-
-$$
-\left( {\begin{array}{*{20}{c}}{1 \cdot 5 + 3 \cdot 6}&{1 \cdot 7 + 3 \cdot 8}\\{2 \cdot 5 + 4 \cdot 6}&{2 \cdot 7 + 4 \cdot 8}\end{array}} \right) = \left( {\begin{array}{*{20}{c}}{23}&{31}\\{34}&{46}\end{array}} \right)
-$$
+Para multiplicação de matrizes utiliza-se `%*%` ao envéz de `*`. Note a diferença no exemplo abaixo. 
 	
 
 
 ```{r, message = FALSE, warning = FALSE}
-x <- matrix(1:4, ncol = 2)
-y <- matrix(5:8, ncol = 2)
-x * y
-x %*% y
+(x <- matrix(1:4, ncol = 2))
+(y <- matrix(5:8, ncol = 2))
 ```
 
 
+O resultado da multiplicação da matriz `x` e `y` é dado por:
+
+$$
+\left( {\begin{array}{*{20}{c}}{1 \cdot 5 + 3 \cdot 6}&{1 \cdot 7 + 3 \cdot 8}\\{2 \cdot 5 + 4 \cdot 6}&{2 \cdot 7 + 4 \cdot 8}\end{array}} \right) = \left( {\begin{array}{*{20}{c}}{23}&{31}\\{34}&{46}\end{array}} \right)
+$$
+
+```{r, message = FALSE, warning = FALSE}
+x * y # Errado
+x %*% y # Certo
+```
 
 A função `t()` \indf{t} é utilizada para transposição de matrizes e `solve()` \indf{solve} para inversão de matrizes. Vamos resolver o seguinte sistema de equações retirado do livro de @Rencher2008 utilizando estes operadores.
 
