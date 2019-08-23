@@ -70,6 +70,23 @@ maize %>%
 
 ```
 
+
+Utilizando a função `case_when()` \indf{case\_when} é possível criar uma variável baseado em um argumento `if()`\indf{if} vetorizado. `case_when()` é particularmente útil dentro da função `mutate()`\indf{mutate} quando você quer criar uma nova variável que depende de uma combinação complexa de variáveis existentes. No exemplo abaixo, uma nova variável será criada, dependendo dos valores de APLA, AIES ou CESP
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  mutate(
+    CASE = case_when(
+      MGRA > 280 | APLA < 1.3 | NGRA > 820 ~  "Selecionar",
+      APLA > 2.3 ~ "Alto",
+      MGRA < 130 ~ "Pouco produtivo",
+      TRUE ~ "Outro"
+      )
+    )
+
+```
+
+
 A função `transmute()` \indf{transmute} \indf{pull} cria a nova variável e exclui todas as demais. Em adição, se o resultado da função precisa ser extraído para um vetor numérico, basta adicionar a função `pull()`, conforme segue
 
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
@@ -112,7 +129,25 @@ maize[maize$MGRA > 220 & maize$APLA < 2, ]
 
 
 
+
 ## Resumir um conjunto de dados
+
+A função `count()`\indf{count} pode ser utilizada para contar valores que se repetem em uma determinada variável.  Por exemplo, é possível identificar qual é o valor de `APLA` que mais se repete utilizando 
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+
+count(maize, APLA, sort = TRUE)
+
+```
+
+Para identificar quais os valores distintos de `APLA` foram observados a função `distinct()`\indf{distinct}.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+distinct(maize, APLA)
+
+```
+
+
 
 Utilizando a função `summarise()`\indf{summarise} é possível criar uma ou mais variáveis escalares resumindo as variáveis de um tibble existente. Como resultado, uma linha é retornada. O seguinte código calcula a média global da MGRA e retorna o *n* utilizado na estimativa.
 
@@ -237,7 +272,7 @@ maize %>%
   group_by(HIB) %>%
   summarise(MGRA_mean = mean(MGRA)) %>%
   mutate(Rank = rank(MGRA_mean)) %>%
-  arrange(Rank)
+  arrange(-Rank)
   
 ```
 
@@ -250,6 +285,57 @@ maize %>%
 
 ```
 [Resposta](#exerc3)
+
+
+Ao combinar a função `group_by()`\indf{group\_by} com `arrange()`\indf{arrange} é possível realizar o ordenamento para cada nível de um determinado fator. No exemplo abaixo, a variável `APLA` é ordenada de maneira crescente para cada híbrido.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+
+maize %>%
+  group_by(HIB) %>%
+  arrange(APLA, .by_group = TRUE)
+  
+```
+
+
+## Selecionar linhas por sua posição
+
+A função `slice()`\indf{slice} é usada para selecionar linhas por sua posição ordinal no tibble. Os tibbles agrupados usam a posição ordinal dentro do grupo.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+# seleciona as três primeiras linhas
+slice(maize, 1:3)
+# Seleciona as 3 últimas linhas
+slice(maize, 778:n())
+# seleciona as duas primeiras linhas de cada ambiente
+maize %>%
+  group_by(AMB) %>%
+  slice(1:2)
+  
+```
+
+
+
+
+## Selecionar top n linhas baseado em valor
+
+A função `top_n()`\indf{top\_n} é usada para selecionar linhas superiores ou inferiores em cada grupo.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+# seleciona as duas linhas com o maior valor de MGRA
+top_n(maize, 2, MGRA)
+
+# seleciona as duas linhas com o menor valor de MGRA
+top_n(maize, 2, -MGRA)
+
+
+# Maior produtividade em cada ambiente
+maize %>%
+  group_by(AMB) %>%
+  top_n(1, MGRA)
+  
+```
+
 
 
 ## Combinando os verbos para manipulação

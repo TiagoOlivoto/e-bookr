@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2019-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.6</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.7</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.8</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.9</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.10</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
@@ -384,16 +386,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="analise-grafica-da-interacao" class="section level2">
 <h2><span class="header-section-number">14.1</span> Análise gráfica da interação</h2>
 <p>A função <code>ge_plot()</code>  pode ser usada para visualizar o desempenho dos genótipos nos ambientes. O losângulo preto indica a média de cada ambiente.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1">p1 =<span class="st"> </span><span class="kw">ge_plot</span>(data_ge, ENV, GEN, GY)</a>
-<a class="sourceLine" id="cb445-2" title="2">p2 =<span class="st"> </span><span class="kw">ge_plot</span>(data_ge, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb445-3" title="3"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-269-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" title="1">p1 =<span class="st"> </span><span class="kw">ge_plot</span>(data_ge, ENV, GEN, GY)</a>
+<a class="sourceLine" id="cb471-2" title="2">p2 =<span class="st"> </span><span class="kw">ge_plot</span>(data_ge, ENV, GEN, GY) <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb471-3" title="3"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-276-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="analise-de-variancia-individual" class="section level2">
 <h2><span class="header-section-number">14.2</span> Análise de variância individual</h2>
 <p>A função <code>anova_ind()</code>  pode ser utilziada para realizar uma análise de variância para cada ambiente, conforme o seguinte código.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1">ind =<span class="st"> </span><span class="kw">anova_ind</span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb446-2" title="2"><span class="kw">print</span>(ind<span class="op">$</span>GY<span class="op">$</span>individual)</a></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" title="1">ind =<span class="st"> </span><span class="kw">anova_ind</span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb472-2" title="2"><span class="kw">print</span>(ind<span class="op">$</span>GY<span class="op">$</span>individual)</a></code></pre></div>
 <pre><code># A tibble: 14 x 12
    ENV    MEAN    MSB   MSG    MSR    FCB    PRFB   FCG    PRFG    CV    h2
    &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -421,8 +423,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \]</span></p>
 <p>onde <span class="math inline">\({\beta _{0i}}\)</span> é a média geral do genótipo <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> é a respota linear do genótipo <em>i</em> ao índice ambiental; <em>Ij</em> é o índice ambiental (<em>j</em> = 1, 2, …, <em>e</em>), onde <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> é o desvio da regressão, e <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> é o erro experimental.
 O modelo é ajustado com a função <code>ge_reg()</code> . Os métodos S3 <code>plot()</code> e <code>summary()</code> podem ser utilizados para explorar os resultados.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1">reg_model =<span class="st"> </span><span class="kw">ge_reg</span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb448-2" title="2">reg_model<span class="op">$</span>GY<span class="op">$</span>anova</a></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1">reg_model =<span class="st"> </span><span class="kw">ge_reg</span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb474-2" title="2">reg_model<span class="op">$</span>GY<span class="op">$</span>anova</a></code></pre></div>
 <pre><code># A tibble: 17 x 6
    SV                       Df `Sum Sq` `Mean Sq` `F value`  `Pr(&gt;F)`
    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -443,7 +445,7 @@ O modelo é ajustado com a função <code>ge_reg()</code> . Os métodos S3 <code
 15 G8                       12    2.54     0.211      2.43   5.15e- 3
 16 G9                       12    4.54     0.378      4.34   2.42e- 6
 17 Pooled error            280   24.4      0.0870    NA     NA       </code></pre>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1">reg_model<span class="op">$</span>GY<span class="op">$</span>regression</a></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" title="1">reg_model<span class="op">$</span>GY<span class="op">$</span>regression</a></code></pre></div>
 <pre><code># A tibble: 10 x 6
    GEN    Mean bij[,1] sdij[,1]  RMSE    R2
    &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -457,8 +459,8 @@ O modelo é ajustado com a função <code>ge_reg()</code> . Os métodos S3 <code
  8 G7     2.74   0.819  0.0579  0.278 0.852
  9 G8     3.00   1.03   0.0382  0.246 0.922
 10 G9     2.51   1.19   0.0938  0.329 0.897</code></pre>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1"><span class="kw">plot</span>(reg_model<span class="op">$</span>GY)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-271-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" title="1"><span class="kw">plot</span>(reg_model<span class="op">$</span>GY)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-278-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="indice-de-confianca-genotipico" class="section level2">
 <h2><span class="header-section-number">14.4</span> Índice de confiança genotípico</h2>
@@ -471,8 +473,8 @@ O modelo é ajustado com a função <code>ge_reg()</code> . Os métodos S3 <code
 W_i = Z_{i.} / E - \alpha \times sd (Z_{i.})
 \]</span></p>
 <p>Onde <span class="math inline">\(\alpha\)</span> é o quantil da distribuição normal padrão a uma dada probabilidade de erro (<span class="math inline">\(\alpha \approx 1.64\)</span> a 0.05). O método é implementado usando a função <code>Annicchiarico()</code> . O índice de confiança é estimado considerando todos os ambientes, os ambientes favoráveis (índice positivo) e os ambientes desfavoráveis (índice negativo), como segue:</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1">ann =<span class="st"> </span><span class="kw">Annicchiarico</span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb453-2" title="2">ann<span class="op">$</span>GY<span class="op">$</span>general</a></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1">ann =<span class="st"> </span><span class="kw">Annicchiarico</span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb479-2" title="2">ann<span class="op">$</span>GY<span class="op">$</span>general</a></code></pre></div>
 <pre><code># A tibble: 10 x 6
    Genotype  Mean Mean_rp Sd_rp    Wi  rank
    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -494,8 +496,8 @@ W_i = Z_{i.} / E - \alpha \times sd (Z_{i.})
 P_i = \sum \limits_{j = 1} ^ n {(y_ {ij} - y _ {. J}) ^ 2 / (2n)}
 \]</span>
 onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confiança genotípico, o índice de superioridade é calculado por todos os ambientes, para os favoráveis e para os desfavoráveis.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1">super =<span class="st"> </span><span class="kw">superiority</span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb455-2" title="2">super<span class="op">$</span>GY<span class="op">$</span>index</a></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1">super =<span class="st"> </span><span class="kw">superiority</span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb481-2" title="2">super<span class="op">$</span>GY<span class="op">$</span>index</a></code></pre></div>
 <pre><code># A tibble: 10 x 7
    Genotypes Pi_all  Or_a Pi_favorable  Or_f Pi_unfavorable  Or_u
    &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;
@@ -513,10 +515,10 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <div id="estratificacao-ambiental" class="section level2">
 <h2><span class="header-section-number">14.6</span> Estratificação ambiental</h2>
 <p>Um método que combina análise de estabilidade e estratificação ambiental usando análise fatorial foi proposto por <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004">2004</a>)</span>. Este método é implementado com a função <code>ge_factanal()</code>, como segue:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1">fato =<span class="st"> </span><span class="kw">ge_factanal</span>(data_ge, ENV, GEN, REP, GY)</a>
-<a class="sourceLine" id="cb457-2" title="2"><span class="kw">plot</span>(fato<span class="op">$</span>GY)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-274-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1"><span class="kw">print</span>(fato<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" title="1">fato =<span class="st"> </span><span class="kw">ge_factanal</span>(data_ge, ENV, GEN, REP, GY)</a>
+<a class="sourceLine" id="cb483-2" title="2"><span class="kw">plot</span>(fato<span class="op">$</span>GY)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-281-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" title="1"><span class="kw">print</span>(fato<span class="op">$</span>GY<span class="op">$</span>PCA)</a></code></pre></div>
 <pre><code># A tibble: 14 x 4
    PCA   Eigenvalues  Variance Cumul_var
    &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -534,7 +536,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 12 PC12    -1.74e-16 -1.25e-15     100  
 13 PC13    -2.67e-16 -1.91e-15     100  
 14 PC14    -3.01e-16 -2.15e-15     100  </code></pre>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1"><span class="kw">print</span>(fato<span class="op">$</span>GY<span class="op">$</span>FA)</a></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" title="1"><span class="kw">print</span>(fato<span class="op">$</span>GY<span class="op">$</span>FA)</a></code></pre></div>
 <pre><code># A tibble: 14 x 8
    Env        FA1     FA2      FA3     FA4     FA5 Communality Uniquenesses
    &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -552,7 +554,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 12 E7    -0.244    0.342  -0.520    0.297   0.619        0.918      0.0820 
 13 E8     0.00161 -0.0589 -0.914   -0.226  -0.143        0.911      0.0891 
 14 E9    -0.0794  -0.291  -0.0183  -0.0539  0.927        0.954      0.0463 </code></pre>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" title="1"><span class="kw">print</span>(fato<span class="op">$</span>GY<span class="op">$</span>env_strat)</a></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" title="1"><span class="kw">print</span>(fato<span class="op">$</span>GY<span class="op">$</span>env_strat)</a></code></pre></div>
 <pre><code># A tibble: 14 x 6
    Env   Factor  Mean   Min   Max    CV
    &lt;fct&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -571,9 +573,9 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 13 E7    FA5     1.99 1.39   2.55 16.8 
 14 E9    FA5     3.06 1.94   3.72 15.6 </code></pre>
 <p>A maneira mais fácil de calcular os índices de estabilidade acima mencionados é usando a função <code>ge_stats()</code>. </p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" title="1">stat_ge =<span class="st"> </span><span class="kw">ge_stats</span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" title="1">stat_ge =<span class="st"> </span><span class="kw">ge_stats</span>(data_ge, ENV, GEN, REP, GY)</a></code></pre></div>
 <p>Se você deseja exportar um resumo dos resultados, a maneira mais simples é usando função <code>summary()</code>.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1"><span class="kw">summary</span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1"><span class="kw">summary</span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Este comando criará um arquivo de texto chamado <em>ge_stats summary.txt </em> no diretório de trabalho atual.</p>
 </div>
 <div id="o-modelo-ammi" class="section level2">
@@ -593,7 +595,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <div id="ajuste-do-modelo" class="section level3">
 <h3><span class="header-section-number">14.7.1</span> Ajuste do modelo</h3>
 <p>O modelo AMMI é ajustado com a função <code>waas()</code>. O primeiro argumento é os dados, no nosso exemplo <code>data_ge</code>. Os próximos argumentos (ENV, GEN e REP) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. O argumengo GY e a variável resposta. A função permite analizar uma única variável (neste caso, GY) ou um vetor de variáveis de resposta. O último argumento (<code>verbose</code>) controla se o código será executado silenciosamente. Neste caso, nenhuma informação é retornada no console.</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" title="1">AMMI_model =<span class="st"> </span><span class="kw">waas</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1">AMMI_model =<span class="st"> </span><span class="kw">waas</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 
 
 <div class="dica">
@@ -604,8 +606,8 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <div id="analise-residual" class="section level3">
 <h3><span class="header-section-number">14.7.2</span> Analise residual</h3>
 <p>O pacote <strong>metan</strong> conta com uma opção para análise residual do modelo AMMI ajustado. Gráficos podem ser obtidos utilizando o seguinte comando.</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1"><span class="kw">autoplot</span>(AMMI_model<span class="op">$</span>GY)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-279-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1"><span class="kw">autoplot</span>(AMMI_model<span class="op">$</span>GY)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-286-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>A figura acima, obtida com a função <code>autoplot()</code>, mostra 4 gráficos. Os dois primeiros são os mais importantes. O primeiro (<em>Residual vs fitted</em>) pode ser utilizado para identificar a homogeneidade das variâncias. Uma distribuição aleatória dos pontos no gráfico deve ser observada. Quando um padrão de distibuição é observado –como, por exemplo, a distribuição dos pontos em forma de funil– uma investigação deve ser realizada, pois este padrão indica a possiblidade de heterogeneidade das variâncias. O segundo gráfico (<em>Normal Q-Q</em>) nos informa quanto a normalidade dos resíduos, ou seja, é desejado que os pontos sejam distribuídos ao redor da linha diagonal.</p>
 </div>
 <div id="escolha-do-numero-de-termos-multiplicativos" class="section level3">
@@ -660,21 +662,21 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <p>O conjunto de dados “modelagem” possui todas as combinações (genótipo <em>vs</em> ambiente) com o número de repetições informado no argumento <code>nrepval</code>. O conjunto de dados “validação” tem uma repetição. O diagrama abaixo representa o procedimento realizado.</p>
 <p>A divisão do conjunto de dados em dados de modelagem e validação depende do design informado. Considerando um delineamento de blocos completos casualizados (DBC), blocos completos são aleatoriamente selecionados dentro de ambientes, como mostrado por <span class="citation">T. Olivoto, Lúcio, Da silva, Marchioro, et al. (<a href="#ref-Olivoto2019">2019</a>)</span>. O bloco restante serve dados de validação. Se <code>design = "CRD"</code> for informado, assim declarando que um delineamento intericamente casualizado (DIC)  foi usado, observações são aleatoriamente selecionadas para cada tratamento (combinação genótipo-<em>vs</em>-ambiente). Este é o mesmo procedimento sugerido por <span class="citation">Gauch (<a href="#ref-Gauch1988">1988</a>)</span>. Os valores estimados para o membro da família AMMI em estudo são então comparados com os dados de “validação” e um erro de predição <span class="math inline">\(\hat{z}_{ij}\)</span> é estimado para cada tratamento. A raiz quadrada do quadrado médio da diferença de predição (RMSPD) é calculado. Este procedimento é repetido <em>n</em> vezes, utilizando o argumento <code>nboot = n</code>. Ao final do procedimento, o algorítimo armazena as <em>n</em> estimativas do RMSPD para o modelo em questão, e um novo modelo é então testado seguindo os mesmos passos.</p>
 
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" title="1">AMMIF =<span class="st"> </span><span class="kw">cv_ammif</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">20</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" title="1">AMMIF =<span class="st"> </span><span class="kw">cv_ammif</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">20</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>Os valores das estimativas de RMSPD  obtidos no processo de validação cruzada podem ser plotados usando a função <code>plot()</code>. </p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1">p1 =<span class="st"> </span><span class="kw">plot</span>(AMMIF)</a>
-<a class="sourceLine" id="cb469-2" title="2">p2 =<span class="st"> </span><span class="kw">plot</span>(AMMIF,</a>
-<a class="sourceLine" id="cb469-3" title="3">          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</a>
-<a class="sourceLine" id="cb469-4" title="4">          <span class="dt">col.boxplot =</span> <span class="st">&quot;cyan&quot;</span>)</a>
-<a class="sourceLine" id="cb469-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-281-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1">p1 =<span class="st"> </span><span class="kw">plot</span>(AMMIF)</a>
+<a class="sourceLine" id="cb495-2" title="2">p2 =<span class="st"> </span><span class="kw">plot</span>(AMMIF,</a>
+<a class="sourceLine" id="cb495-3" title="3">          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</a>
+<a class="sourceLine" id="cb495-4" title="4">          <span class="dt">col.boxplot =</span> <span class="st">&quot;cyan&quot;</span>)</a>
+<a class="sourceLine" id="cb495-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-288-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>Cinco estatísticas são mostradas neste boxplot. A mediana, o primeiro e terceiro quartis (comprimento da caixa) e os valores que não ultrapassam 1.5 <span class="math inline">\(\times\)</span> a amplitude interquartílica (linhas que se extendem além da caixa). Dados além do fim dos bigodes são considerados outliers. Se a condição <code>violin = TRUE</code>, um gráfico de violino é adicionado ao boxplot. Um gráfico de violino é uma exibição compacta de uma distribuição contínua.</p>
 </div>
 <div id="valores-estimados-pelo-modelo-ammi" class="section level3">
 <h3><span class="header-section-number">14.7.4</span> Valores estimados pelo modelo AMMI</h3>
 <p>Em nosso exemplo, o modelo AMMI2 foi o que apresentou o menor RMSPD, sendo então o mais indicado para estimar a variável GY. A estimativa considerando dois termos multiplicativos pode realizada utilizando a função <code>predict()</code>, tendo como argumentos o modelo AMMI ajustado (<code>AMMI_model</code>) e o número de termos multiplicativos considerados na estimação (<code>naxis</code>). </p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" title="1">predicted =<span class="st"> </span><span class="kw">predict</span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb470-2" title="2">predicted<span class="op">$</span>GY</a></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" title="1">predicted =<span class="st"> </span><span class="kw">predict</span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb496-2" title="2">predicted<span class="op">$</span>GY</a></code></pre></div>
 <pre><code># A tibble: 140 x 8
    ENV   GEN       Y  resOLS Ypred ResAMMI[,1] YpredAMMI[,1] AMMI0
    &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;
@@ -721,10 +723,10 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 \]</span></p>
 <p>Onde <span class="math inline">\({\theta _k}\)</span> é o percentual da soma de quadrados explicada pelo <em>k</em> -ésimo IPCA. índices de selecção simultâneas (SSI) são calculados pela soma dos ranques dos índices Za ASV, SIPC e EV e o ranque da variável dependente <span class="citation">(Farshadfar <a href="#ref-Farshadfar2008">2008</a>)</span> que resulta em ssiASV, ssiSIPC, ssiEV, e ssiZa, respectivamente.</p>
 <p>A função <code>AMMI_index ()</code> tem dois argumentos. O primeiro (x) é o modelo, que deve ser um objeto da classe <code>waas</code>. O segundo, (order.y) é a ordem para a variável resposta. Por padrão, ele é definido como nulo, o que significa que a variável resposta é ordenada em ordem decrescente. Se <code>x</code> é uma lista com mais de uma variável, então <code>order.y</code> deve ser um vetor com o mesmo comprimento de x. Cada elemento do vetor deve ser um dos “h” ou “l”. Se “h” for usado, a variável resposta será ordenada em ordem decrescente. Se “l” for usado, a variável resposta será ordenada em ordem crescente da média dos genótipos. Usando o operador <em>%&gt;% </em> é possível estruturar uma sequência lógica de operações. Vamos construir esse modelo.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" title="1">stab_indexes =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb472-2" title="2"><span class="st">               </span><span class="kw">waas</span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb472-3" title="3"><span class="st">               </span><span class="kw">AMMI_indexes</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb472-4" title="4"><span class="st">               </span><span class="kw">print</span>(<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" title="1">stab_indexes =<span class="st"> </span>data_ge <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb498-2" title="2"><span class="st">               </span><span class="kw">waas</span>(ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb498-3" title="3"><span class="st">               </span><span class="kw">AMMI_indexes</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb498-4" title="4"><span class="st">               </span><span class="kw">print</span>(<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>$GY
    Code        Y rY       ASV rASV ssiASV      SIPC rSIPC ssiSIPC
 1    G1 2.603676  6 0.3457960    4     10 0.4627527     1       7
@@ -755,16 +757,16 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 <div id="biplot-tipo-1-ipca1-x-ipca2" class="section level4">
 <h4><span class="header-section-number">14.7.6.1</span> biplot tipo 1: IPCA1 x IPCA2</h4>
 <p>O biplot conhecido como <strong>AMMI2</strong> é confeccionado utilizando o argumento <code>type = 1</code> (padrão) na função <code>plot_scores()</code>. O biplot <strong>AMMI2</strong> representa os dois primeiros IPCAs oriundos da decomposição por valor singular da matriz dos efeitos da interação e é utilizado para realizar inferências quanto aos padrões da interação genótipo <em>vs</em> ambiente. Neste caso, os dois primeiros IPCAs explicam 66.2% da da soma de quadrados da interação.</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1">p1 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb474-2" title="2">p2 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb474-3" title="3">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb474-4" title="4">                 <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb474-5" title="5">                 <span class="dt">col.env =</span> <span class="st">&quot;gray70&quot;</span>,</a>
-<a class="sourceLine" id="cb474-6" title="6">                 <span class="dt">col.segm.env =</span> <span class="st">&quot;gray70&quot;</span>,</a>
-<a class="sourceLine" id="cb474-7" title="7">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb474-8" title="8"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>,<span class="st">&quot;p2&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-284"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-284-1.png" alt="Biplot AMMI2, gerado pelo pacote metan" width="960" />
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1">p1 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb500-2" title="2">p2 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb500-3" title="3">                 <span class="dt">polygon =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb500-4" title="4">                 <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb500-5" title="5">                 <span class="dt">col.env =</span> <span class="st">&quot;gray70&quot;</span>,</a>
+<a class="sourceLine" id="cb500-6" title="6">                 <span class="dt">col.segm.env =</span> <span class="st">&quot;gray70&quot;</span>,</a>
+<a class="sourceLine" id="cb500-7" title="7">                 <span class="dt">axis.expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb500-8" title="8"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>,<span class="st">&quot;p2&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-291"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-291-1.png" alt="Biplot AMMI2, gerado pelo pacote metan" width="960" />
 <p class="caption">
 Figure 14.1: Biplot AMMI2, gerado pelo pacote metan
 </p>
@@ -773,16 +775,16 @@ Figure 14.1: Biplot AMMI2, gerado pelo pacote metan
 <div id="biplot-tipo-2-gy-x-pc1" class="section level4">
 <h4><span class="header-section-number">14.7.6.2</span> Biplot tipo 2: GY x PC1</h4>
 <p>O biplot conhecido como <strong>AMMI1</strong> é confeccionado utilizando o argumento <code>type = 2</code> na função <code>plot_scores()</code>. O biplot <strong>AMMI1</strong> é utilizado para identificar tanto a estabilidade quando a produtividade dos genótipos. Neste tipo de biplot, os genótipos com escores do PC1 próximos de zero e à direita da linha vertical, são considerados os mais estáveis e com rendimento superior a média geral.</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1">p3 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb475-2" title="2">p4 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb475-3" title="3">                 <span class="dt">col.segm.env =</span> <span class="st">&quot;transparent&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb475-4" title="4"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb475-5" title="5"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
-<a class="sourceLine" id="cb475-6" title="6">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb475-7" title="7"></a>
-<a class="sourceLine" id="cb475-8" title="8"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p3&quot;</span>,<span class="st">&quot;p4&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-285"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-285-1.png" alt="Biplot AMMI1 gerado pelo pacote metan" width="960" />
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1">p3 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb501-2" title="2">p4 =<span class="st"> </span><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb501-3" title="3">                 <span class="dt">col.segm.env =</span> <span class="st">&quot;transparent&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb501-4" title="4"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb501-5" title="5"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
+<a class="sourceLine" id="cb501-6" title="6">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb501-7" title="7"></a>
+<a class="sourceLine" id="cb501-8" title="8"><span class="kw">plot_grid</span>(p3, p4, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p3&quot;</span>,<span class="st">&quot;p4&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-292"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-292-1.png" alt="Biplot AMMI1 gerado pelo pacote metan" width="960" />
 <p class="caption">
 Figure 14.2: Biplot AMMI1 gerado pelo pacote metan
 </p>
@@ -791,13 +793,13 @@ Figure 14.2: Biplot AMMI1 gerado pelo pacote metan
 <div id="rendimento-nominal-x-ipca1" class="section level4">
 <h4><span class="header-section-number">14.7.6.3</span> Rendimento nominal x IPCA1</h4>
 <p>Com o objetivo de identificar possíveis mega-ambientes, bem como visualizar o padrão <em>which-won-where</em> do conjunto de dados, um gráfico com o rendimento nominal (<span class="math inline">\(\mathop {\hat y} \nolimits_ {ij}^*\)</span> ) em função dos escores PCA1 dos ambientes é também confecionado pela função <code>plot_scores()</code> utilizando o argumento <code>type = 4</code>. Neste gráfico, cada genótipo é representado por uma linha reta com a equação <span class="math inline">\(\hat y_{ij}^* = \mu_i + PCA1_i \times PCA1_j\)</span> , onde <span class="math inline">\(\hat y_{ij}^*\)</span> é o rendimento nominal para o genótipo <em>i</em> no ambiente <em>J</em>; <span class="math inline">\(\mu\)</span> é a média geral do genótipo <em>i</em>; <span class="math inline">\(PC{1_i}\)</span> é o escore PCA1 do genótipo <em>i</em> e <span class="math inline">\(PC{1_j}\)</span> é o escore PCA1 do ambiente <em>j</em>. O genótipo vencedor em um determinado ambiente possui o maior rendimento nominal nesse ambiente.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" title="1"><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb476-2" title="2">            <span class="dt">type =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb476-3" title="3">            <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb476-4" title="4">            <span class="dt">x.lab =</span> <span class="st">&quot;Rendimento nominal (Mg/ha)&quot;</span>,</a>
-<a class="sourceLine" id="cb476-5" title="5">            <span class="dt">y.lab =</span> <span class="st">&quot;Escore dos ambientes no PCA1&quot;</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-286"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-286-1.png" alt="Gráfico do tipo 'which-won-where' baseado no modelo AMMI" width="384" />
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" title="1"><span class="kw">plot_scores</span>(AMMI_model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb502-2" title="2">            <span class="dt">type =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb502-3" title="3">            <span class="dt">size.tex.pa =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb502-4" title="4">            <span class="dt">x.lab =</span> <span class="st">&quot;Rendimento nominal (Mg/ha)&quot;</span>,</a>
+<a class="sourceLine" id="cb502-5" title="5">            <span class="dt">y.lab =</span> <span class="st">&quot;Escore dos ambientes no PCA1&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-293"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-293-1.png" alt="Gráfico do tipo 'which-won-where' baseado no modelo AMMI" width="384" />
 <p class="caption">
 Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </p>
@@ -847,8 +849,8 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <div id="ajustando-o-modelo-gge" class="section level3">
 <h3><span class="header-section-number">14.8.4</span> Ajustando o modelo GGE</h3>
 <p>Para ajustar o modelo GGE, usaremos os dados em <code>data_ge</code>, que contém dados do rendimento de grãos avaliados em 10 genótipos conduzidos em 14 ambientes. Primeiro de tudo, vamos criar uma tabela bidirecional para esses dados usando a função <code>make_mat()</code>. </p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" title="1">ge_table =<span class="st"> </span><span class="kw">make_mat</span>(data_ge, GEN, ENV, GY)</a>
-<a class="sourceLine" id="cb477-2" title="2"><span class="kw">print.data.frame</span>(ge_table, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" title="1">ge_table =<span class="st"> </span><span class="kw">make_mat</span>(data_ge, GEN, ENV, GY)</a>
+<a class="sourceLine" id="cb503-2" title="2"><span class="kw">print.data.frame</span>(ge_table, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>      E1  E10   E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
 G1  2.37 2.31 1.356 1.34 3.00 1.53 3.04 4.08 3.49 4.17 2.81 1.90 2.27 2.78
 G10 1.97 1.54 0.899 1.02 1.83 1.86 3.15 4.11 4.27 3.37 2.48 2.24 2.70 3.15
@@ -862,20 +864,20 @@ G8  2.90 2.57 1.683 2.00 3.52 1.99 3.44 4.11 4.14 4.81 2.91 2.26 2.88 2.83
 G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</code></pre>
 <p>A função <code>gge()</code> ajusta um modelo GGE baseado em uma tabela bidirecional (<code>ge_table</code> em nosso caso) com genótipos nas linhas e ambientes em colunas, ou em um data.frame contendo pelo menos as colunas para genótipos, ambientes e variável(is) resposta.
 </p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1"><span class="co"># Usando um data frame</span></a>
-<a class="sourceLine" id="cb479-2" title="2">gge_model =<span class="st"> </span><span class="kw">gge</span>(data_ge,</a>
-<a class="sourceLine" id="cb479-3" title="3">                <span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb479-4" title="4">                <span class="dt">env =</span> ENV,</a>
-<a class="sourceLine" id="cb479-5" title="5">                <span class="dt">resp =</span> GY)</a>
-<a class="sourceLine" id="cb479-6" title="6"></a>
-<a class="sourceLine" id="cb479-7" title="7"><span class="co"># Usando uma tabela bidirecional</span></a>
-<a class="sourceLine" id="cb479-8" title="8">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" title="1"><span class="co"># Usando um data frame</span></a>
+<a class="sourceLine" id="cb505-2" title="2">gge_model =<span class="st"> </span><span class="kw">gge</span>(data_ge,</a>
+<a class="sourceLine" id="cb505-3" title="3">                <span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb505-4" title="4">                <span class="dt">env =</span> ENV,</a>
+<a class="sourceLine" id="cb505-5" title="5">                <span class="dt">resp =</span> GY)</a>
+<a class="sourceLine" id="cb505-6" title="6"></a>
+<a class="sourceLine" id="cb505-7" title="7"><span class="co"># Usando uma tabela bidirecional</span></a>
+<a class="sourceLine" id="cb505-8" title="8">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>O modelo acima foi ajustado considerando (i) <em>column metric preserving</em> (onde o valor singular é inteiramente particionado nos autovetores do ambiente); (ii) <em>environment centered</em> (o biplot conterá uma informação mista de G + GEI); e nenhum método de escalonamento. Para alterar estas configurações padrão, use os argumentos <code>svp</code>, <code>centering</code> e <code>scaling</code>, respectivamente. Por favor, note que no segundo exemplo o argumento <code>table</code> foi definido como <code>TRUE</code> para indicar que os dados de entrada são uma tabela bidirecional.</p>
 </div>
 <div id="valores-estimados-pelo-modelo-gge" class="section level3">
 <h3><span class="header-section-number">14.8.5</span> Valores estimados pelo modelo GGE</h3>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" title="1"><span class="kw">predict</span>(gge_model, <span class="dt">naxis =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb480-2" title="2"><span class="st">  </span><span class="kw">print</span>(<span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1"><span class="kw">predict</span>(gge_model, <span class="dt">naxis =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb506-2" title="2"><span class="st">  </span><span class="kw">print</span>(<span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>      E1  E10   E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9
 G1  2.51 2.14 1.353 1.59 2.95 1.76 3.20 4.14 3.78 3.97 2.70 1.95 2.56 2.90
 G10 1.93 1.62 0.988 1.07 2.07 1.66 3.08 3.99 3.78 3.28 2.43 1.69 2.48 2.88
@@ -908,146 +910,146 @@ G9  2.27 1.78 1.153 1.30 2.82 1.64 3.28 4.43 4.28 4.03 2.79 1.65 2.62 2.15</code
 <h4><span class="header-section-number">14.8.6.1</span> Biplot tipo 1: Um biplot básico</h4>
 <p>Esta é a configuração padrão no gráfico da função, portanto, este biplot é produzido apenas chamando <code>plot(model)</code>, como mostrado abaixo.
 </p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" title="1">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model)</a>
-<a class="sourceLine" id="cb482-2" title="2">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb482-3" title="3">          <span class="dt">col.gen =</span> <span class="st">&quot;blue&quot;</span>,</a>
-<a class="sourceLine" id="cb482-4" title="4">          <span class="dt">size.text.env =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb482-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-290-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model)</a>
+<a class="sourceLine" id="cb508-2" title="2">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb508-3" title="3">          <span class="dt">col.gen =</span> <span class="st">&quot;blue&quot;</span>,</a>
+<a class="sourceLine" id="cb508-4" title="4">          <span class="dt">size.text.env =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb508-5" title="5"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-297-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-2-desempenho-medio-vs.-estabilidade" class="section level4">
 <h4><span class="header-section-number">14.8.6.2</span> Biplot tipo 2: Desempenho médio vs. estabilidade</h4>
 <p>Neste biplot, a visualização da média e da estabilidade dos genótipos é obtida desenhando uma coordenada média de ambiente (AEC) no biplot obtido com <em>row metric preserving</em>. Primeiro, um ambiente médio, representado pelo pequeno círculo, é definido pelas médias dos escores PC1 e PC2 dos ambientes. A linha que passa pela origem do biplot e pelo AEC pode ser chamada de média. As projeções de marcadores genotípicos nesse eixo deve, portanto, aproximar o rendimento médio dos genótipos. Assim, o G8 foi claramente o genótipo de maior rendimento, em média.</p>
 <p>A ordenada de AEC é a linha que passa pela origem do biplot e é perpendicular à abscissa do AEC. Portanto, se a abscissa AEC representa o G, a ordenada AEC deve aproximar o GEI associado a cada genótipo, que é uma medida de variabilidade ou instabilidade dos genótipos <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>. Uma projeção maior na ordenada AEC, independentemente da direção, significa maior instabilidade. Em nosso exemplo, o G3 foi o mais estável e o segundo genótipo mais produtivo, enquanto o G9 apresentou alta instabilidade.
 </p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;genotype&quot;</span>)</a>
-<a class="sourceLine" id="cb483-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb483-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb483-4" title="4">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb483-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb483-6" title="6">          <span class="dt">col.env =</span> <span class="st">&quot;gray&quot;</span>,</a>
-<a class="sourceLine" id="cb483-7" title="7">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb483-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-291-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;genotype&quot;</span>)</a>
+<a class="sourceLine" id="cb509-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb509-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb509-4" title="4">          <span class="dt">type =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb509-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb509-6" title="6">          <span class="dt">col.env =</span> <span class="st">&quot;gray&quot;</span>,</a>
+<a class="sourceLine" id="cb509-7" title="7">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb509-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-298-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-3-quem-ganhou-onde" class="section level4">
 <h4><span class="header-section-number">14.8.6.3</span> Biplot tipo 3: quem ganhou onde</h4>
 <p>Neste biplot (obtido com particionamento de valores singulares simétrico) um polígono é desenhado juntando os genótipos (G7, G8, G9, G10 e G4) que estão localizadas mais distante da origem do biplot fazendo com que todos os outros genótipos fiquem contidos no polígono. Os <em>genótipos vértex</em> têm os vetores mais longos, em suas respectivas direções, que é uma medida da capacidade de resposta aos ambientes. Estes genótipos estão, portanto, entre os genótipos mais responsivos. Todos os outros genótipos são menos responsivos em suas respectivas direções.</p>
 <p>As linhas perpendiculares aos lados do polígono dividem o biplot em setores. Cada setor tem um genótipo vértice. Por exemplo, o setor com o genótipo-vértice G4 pode ser referido como o setor G4. Um ambiente (E9), foi enquadrado neste setor. Como regra geral, o genótipo vértex é o genótipo de mais alto rendimento em todos os ambientes que compartilham o setor com ele <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>. Neste caso, G4 teve o maior rendimento em E9, como mostrado na tabela acima.
 </p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;symmetrical&quot;</span>)</a>
-<a class="sourceLine" id="cb484-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb484-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb484-4" title="4">          <span class="dt">type =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb484-5" title="5">          <span class="dt">size.shape.win =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb484-6" title="6">          <span class="dt">large_label =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb484-7" title="7">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb484-8" title="8">          <span class="dt">col.env =</span> <span class="st">&quot;gray&quot;</span>,</a>
-<a class="sourceLine" id="cb484-9" title="9">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb484-10" title="10">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb484-11" title="11"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-292-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;symmetrical&quot;</span>)</a>
+<a class="sourceLine" id="cb510-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb510-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb510-4" title="4">          <span class="dt">type =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb510-5" title="5">          <span class="dt">size.shape.win =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb510-6" title="6">          <span class="dt">large_label =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb510-7" title="7">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb510-8" title="8">          <span class="dt">col.env =</span> <span class="st">&quot;gray&quot;</span>,</a>
+<a class="sourceLine" id="cb510-9" title="9">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb510-10" title="10">          <span class="dt">title =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb510-11" title="11"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-299-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-4-discriminacao-vs.-representatividade" class="section level4">
 <h4><span class="header-section-number">14.8.6.4</span> Biplot tipo 4: Discriminação vs. representatividade</h4>
 
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" title="1">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb485-2" title="2">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb485-3" title="3">          <span class="dt">type =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb485-4" title="4">          <span class="dt">plot_theme =</span> <span class="kw">theme_gray</span>())<span class="op">+</span></a>
-<a class="sourceLine" id="cb485-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a>
-<a class="sourceLine" id="cb485-6" title="6"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-293-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb511-2" title="2">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb511-3" title="3">          <span class="dt">type =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb511-4" title="4">          <span class="dt">plot_theme =</span> <span class="kw">theme_gray</span>())<span class="op">+</span></a>
+<a class="sourceLine" id="cb511-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a>
+<a class="sourceLine" id="cb511-6" title="6"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-300-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-5-examinar-um-ambiente" class="section level4">
 <h4><span class="header-section-number">14.8.6.5</span> Biplot tipo 5: Examinar um ambiente</h4>
 <p>A identificação de genótipos mais adaptados a um ambiente pode ser facilmente alcançada utilizando o biplot GGE. Por exemplo, para visualizar o desempenho de diferentes genótipos em um dado ambiente, por exemplo, E10, simplesmente desenhe uma linha que passa pela origem biplot e o marcador do E10. Os genótipos podem ser classificados de acordo com suas projeções no eixo E10 com base em seu desempenho neste ambiente, na direção apontada pela seta. Em nosso exemplo, no E10, o genótipo de maior rendimento foi o genótipo G8 e o genótipo de menor rendimento foi G10. A ordem dos genótipos foi G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.
 </p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;symmetrical&quot;</span>)</a>
-<a class="sourceLine" id="cb486-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">&quot;E10&quot;</span>)</a>
-<a class="sourceLine" id="cb486-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb486-4" title="4">          <span class="dt">type =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb486-5" title="5">          <span class="dt">sel_env =</span> <span class="st">&quot;E10&quot;</span>,</a>
-<a class="sourceLine" id="cb486-6" title="6">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb486-7" title="7">          <span class="dt">col.env =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb486-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb486-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb486-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-294-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;symmetrical&quot;</span>)</a>
+<a class="sourceLine" id="cb512-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">5</span>, <span class="dt">sel_env =</span> <span class="st">&quot;E10&quot;</span>)</a>
+<a class="sourceLine" id="cb512-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb512-4" title="4">          <span class="dt">type =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb512-5" title="5">          <span class="dt">sel_env =</span> <span class="st">&quot;E10&quot;</span>,</a>
+<a class="sourceLine" id="cb512-6" title="6">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb512-7" title="7">          <span class="dt">col.env =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb512-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb512-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb512-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-301-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-6-ranquear-os-ambientes" class="section level4">
 <h4><span class="header-section-number">14.8.6.6</span> Biplot tipo 6: ranquear os ambientes</h4>
 <p>Neste biplot o ambiente “ideal” é usado como o centro de um conjunto de linhas concêntricas que servem para medir a distância entre um ambiente e o ambiente “ideal”. Como o foco principal neste biplot são os ambientes, a partição de valor singular usada é “ambiente” (padrão). Pode ser visto que E13 é o mais próximo do ambiente ideal e, portanto, é o mais desejável de todos os 14 ambientes. E4 e E9 foram os ambientes de teste menos desejados.
 </p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb487-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb487-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb487-4" title="4">          <span class="dt">type =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb487-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb487-6" title="6">          <span class="dt">col.env =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb487-7" title="7">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb487-8" title="8">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb487-9" title="9"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-295-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb513-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb513-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb513-4" title="4">          <span class="dt">type =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb513-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb513-6" title="6">          <span class="dt">col.env =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb513-7" title="7">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb513-8" title="8">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb513-9" title="9"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-302-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-7-examinar-um-genotipo" class="section level4">
 <h4><span class="header-section-number">14.8.6.7</span> Biplot tipo 7: examinar um genótipo</h4>
 <p>Semelhante à visualização dos desempenhos genotípicos em um determinado ambiente (biplot 5), a visualização da média e da estabilidade dos genótipos é obtida desenhando-se uma AEC no biplot com foco no genótipo, ou <em>row metric preserving</em> <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>.
 </p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;genotype&quot;</span>)</a>
-<a class="sourceLine" id="cb488-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">7</span>, <span class="dt">sel_gen =</span> <span class="st">&quot;G8&quot;</span>)</a>
-<a class="sourceLine" id="cb488-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb488-4" title="4">          <span class="dt">type =</span> <span class="dv">7</span>,</a>
-<a class="sourceLine" id="cb488-5" title="5">          <span class="dt">sel_gen =</span> <span class="st">&quot;G8&quot;</span>,</a>
-<a class="sourceLine" id="cb488-6" title="6">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb488-7" title="7">          <span class="dt">col.env =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb488-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb488-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb488-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-296-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;genotype&quot;</span>)</a>
+<a class="sourceLine" id="cb514-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">7</span>, <span class="dt">sel_gen =</span> <span class="st">&quot;G8&quot;</span>)</a>
+<a class="sourceLine" id="cb514-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb514-4" title="4">          <span class="dt">type =</span> <span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb514-5" title="5">          <span class="dt">sel_gen =</span> <span class="st">&quot;G8&quot;</span>,</a>
+<a class="sourceLine" id="cb514-6" title="6">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb514-7" title="7">          <span class="dt">col.env =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb514-8" title="8">          <span class="dt">size.text.env =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb514-9" title="9">          <span class="dt">axis_expand =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb514-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-303-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-8-ranquear-os-genotipos" class="section level4">
 <h4><span class="header-section-number">14.8.6.8</span> Biplot tipo 8: ranquear os genótipos</h4>
 <p>Este biplot compara todos os genótipos com o genótipo “ideal”. O genótipo ideal, representado pelo pequeno círculo com uma seta apontando para ele, é definido como tendo o maior rendimento em todos os ambientes. Ou seja, tem o maior rendimento médio e é absolutamente estável. Os genótipos são classificados com base em sua distância do genótipo ideal <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>. Em nosso exemplo, o G3 e o G8 superaram os outros genótipos.
 </p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;genotype&quot;</span>)</a>
-<a class="sourceLine" id="cb489-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb489-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb489-4" title="4">          <span class="dt">type =</span> <span class="dv">8</span>,</a>
-<a class="sourceLine" id="cb489-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb489-6" title="6">          <span class="dt">col.env =</span> <span class="st">&quot;gray&quot;</span>,</a>
-<a class="sourceLine" id="cb489-7" title="7">          <span class="dt">size.text.gen =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb489-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-297-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;genotype&quot;</span>)</a>
+<a class="sourceLine" id="cb515-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb515-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb515-4" title="4">          <span class="dt">type =</span> <span class="dv">8</span>,</a>
+<a class="sourceLine" id="cb515-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb515-6" title="6">          <span class="dt">col.env =</span> <span class="st">&quot;gray&quot;</span>,</a>
+<a class="sourceLine" id="cb515-7" title="7">          <span class="dt">size.text.gen =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb515-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-304-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-9-comparar-dois-genotipos" class="section level4">
 <h4><span class="header-section-number">14.8.6.9</span> Biplot tipo 9: comparar dois genótipos</h4>
 <p>Para comparar dois genótipos, por exemplo, G10 e G8, desenhe uma linha de conexão para conectá-los e trace uma linha perpendicular que passa pela origem do biplot e é perpendicular à linha de conexão. Vemos que um ambiente, E9, está do mesmo lado da linha perpendicular do G10, e os outros 13 ambientes estão do outro lado da linha perpendicular, junto com o G8. Isso indica que G10 produziu mais do que o G8 no E9, mas G8 produziu mais que o G10 nos outros 13 ambientes <span class="citation">(Yan et al. <a href="#ref-Yan2007">2007</a>)</span>.
 </p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;symmetrical&quot;</span>)</a>
-<a class="sourceLine" id="cb490-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">9</span>, <span class="dt">sel_gen1 =</span> <span class="st">&quot;G8&quot;</span>, <span class="dt">sel_gen2 =</span> <span class="st">&quot;G10&quot;</span>)</a>
-<a class="sourceLine" id="cb490-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb490-4" title="4">          <span class="dt">type =</span> <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb490-5" title="5">          <span class="dt">sel_gen1 =</span> <span class="st">&quot;G8&quot;</span>,</a>
-<a class="sourceLine" id="cb490-6" title="6">          <span class="dt">sel_gen2 =</span> <span class="st">&quot;G10&quot;</span>,</a>
-<a class="sourceLine" id="cb490-7" title="7">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb490-8" title="8">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb490-9" title="9">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb490-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-298-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>, <span class="dt">svp =</span> <span class="st">&quot;symmetrical&quot;</span>)</a>
+<a class="sourceLine" id="cb516-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">9</span>, <span class="dt">sel_gen1 =</span> <span class="st">&quot;G8&quot;</span>, <span class="dt">sel_gen2 =</span> <span class="st">&quot;G10&quot;</span>)</a>
+<a class="sourceLine" id="cb516-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb516-4" title="4">          <span class="dt">type =</span> <span class="dv">9</span>,</a>
+<a class="sourceLine" id="cb516-5" title="5">          <span class="dt">sel_gen1 =</span> <span class="st">&quot;G8&quot;</span>,</a>
+<a class="sourceLine" id="cb516-6" title="6">          <span class="dt">sel_gen2 =</span> <span class="st">&quot;G10&quot;</span>,</a>
+<a class="sourceLine" id="cb516-7" title="7">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb516-8" title="8">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb516-9" title="9">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb516-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-305-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="biplot-tipo-10-relacao-entre-os-ambientes" class="section level4">
 <h4><span class="header-section-number">14.8.6.10</span> Biplot tipo 10: relação entre os ambientes</h4>
 
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb491-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb491-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
-<a class="sourceLine" id="cb491-4" title="4">          <span class="dt">type =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb491-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb491-6" title="6">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb491-7" title="7">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb491-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-299-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1">gge_model =<span class="st"> </span><span class="kw">gge</span>(ge_table, <span class="dt">table =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb517-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb517-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(gge_model,</a>
+<a class="sourceLine" id="cb517-4" title="4">          <span class="dt">type =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb517-5" title="5">          <span class="dt">col.gen =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb517-6" title="6">          <span class="dt">title =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb517-7" title="7">          <span class="dt">annotation =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb517-8" title="8"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-306-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -1077,11 +1079,11 @@ Eq. </p>
 <div id="ajustando-o-modelo" class="section level3">
 <h3><span class="header-section-number">14.9.1</span> Ajustando o modelo</h3>
 <p>A função <code>waasb()</code>  do pacote <strong>metan</strong> será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-<em>vs</em>-ambiente.</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1">BLUP_model =<span class="st"> </span><span class="kw">waasb</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" title="1">BLUP_model =<span class="st"> </span><span class="kw">waasb</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <ul>
 <li>Teste de razão de máxima verossimilhanças (LRT)</li>
 </ul>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>LRT)</a></code></pre></div>
 <pre><code># A tibble: 3 x 6
    npar logLik   AIC   LRT    Df `Pr(&gt;Chisq)`
   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
@@ -1093,12 +1095,12 @@ Eq. </p>
 <div id="analise-dos-residuos-2" class="section level3">
 <h3><span class="header-section-number">14.9.2</span> Análise dos resíduos</h3>
 <p>A função <code>autoplot()</code> também pode ser utilizada para a investigação dos pressupostos do modelo neste exemplo. Dois gráficos que são gerados mas não mostrados por padrão são vistos neste exemplo.</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1"><span class="kw">autoplot</span>(BLUP_model<span class="op">$</span>GY)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-302-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">autoplot</span>(BLUP_model<span class="op">$</span>GY)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-309-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <div id="componentes-de-variancia-e-parametros-geneticos" class="section level3">
 <h3><span class="header-section-number">14.9.3</span> Componentes de variância e parâmetros genéticos</h3>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>ESTIMATES)</a></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>ESTIMATES)</a></code></pre></div>
 <pre><code># A tibble: 12 x 2
    Parameters            Values                                   
    &lt;chr&gt;                 &lt;fct&gt;                                    
@@ -1122,7 +1124,7 @@ Eq. </p>
 <li>Imprimindo os BLUPs preditos para genótipos</li>
 </ul>
 
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>blupGEN)</a></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>blupGEN)</a></code></pre></div>
 <pre><code># A tibble: 10 x 6
     Rank GEN     BLUPg Predicted    LL    UL
    &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1140,15 +1142,15 @@ Eq. </p>
 <ul>
 <li>plotando os BLUPs preditos para genótipos</li>
 </ul>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1">p1 =<span class="st"> </span><span class="kw">plot_blup</span>(BLUP_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb500-2" title="2">p2 =<span class="st"> </span><span class="kw">plot_blup</span>(BLUP_model<span class="op">$</span>GY, </a>
-<a class="sourceLine" id="cb500-3" title="3">               <span class="dt">col.shape  =</span>  <span class="kw">c</span>(<span class="st">&quot;gray20&quot;</span>, <span class="st">&quot;gray80&quot;</span>),</a>
-<a class="sourceLine" id="cb500-4" title="4">               <span class="dt">y.lab =</span> <span class="st">&quot;Genótipos&quot;,</span></a>
-<a class="sourceLine" id="cb500-5" title="5"><span class="st">               x.lab = &quot;</span>Rendimento de grãos predito<span class="st">&quot;) + coord_flip()</span></a>
-<a class="sourceLine" id="cb500-6" title="6"></a>
-<a class="sourceLine" id="cb500-7" title="7"><span class="st">plot_grid(p1, p2, labels = c(&quot;</span>p1<span class="st">&quot;, &quot;</span>p2<span class="st">&quot;))</span></a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-305"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-305-1.png" alt="Médias preditas para genótipos considerando um modelo misto" width="960" />
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb526-1" title="1">p1 =<span class="st"> </span><span class="kw">plot_blup</span>(BLUP_model<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb526-2" title="2">p2 =<span class="st"> </span><span class="kw">plot_blup</span>(BLUP_model<span class="op">$</span>GY, </a>
+<a class="sourceLine" id="cb526-3" title="3">               <span class="dt">col.shape  =</span>  <span class="kw">c</span>(<span class="st">&quot;gray20&quot;</span>, <span class="st">&quot;gray80&quot;</span>),</a>
+<a class="sourceLine" id="cb526-4" title="4">               <span class="dt">y.lab =</span> <span class="st">&quot;Genótipos&quot;,</span></a>
+<a class="sourceLine" id="cb526-5" title="5"><span class="st">               x.lab = &quot;</span>Rendimento de grãos predito<span class="st">&quot;) + coord_flip()</span></a>
+<a class="sourceLine" id="cb526-6" title="6"></a>
+<a class="sourceLine" id="cb526-7" title="7"><span class="st">plot_grid(p1, p2, labels = c(&quot;</span>p1<span class="st">&quot;, &quot;</span>p2<span class="st">&quot;))</span></a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-312"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-312-1.png" alt="Médias preditas para genótipos considerando um modelo misto" width="960" />
 <p class="caption">
 Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 </p>
@@ -1156,7 +1158,7 @@ Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 <ul>
 <li>Imprimindo os BLUPs estimados para as combinações genótipo x ambiente (primeiras 10 entradas)</li>
 </ul>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>BLUPgge)</a></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1"><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>BLUPgge)</a></code></pre></div>
 <pre><code># A tibble: 140 x 8
    ENV   GEN    BLUPge   BLUPg `BLUPg+ge` Predicted    LL    UL
    &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1184,15 +1186,15 @@ Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 \]</span></p>
 <p>onde <span class="math inline">\(WAASB_i\)</span> é a média ponderada dos escores absolutos do genótipo <em>i</em>; <span class="math inline">\(IPCA_{ik}\)</span> é o escore do genótipo <em>i</em> no <em>k</em>-esimo IPCA; e <span class="math inline">\(EP_k\)</span> é a variância explicada pelo <em>k</em> IPCA para <span class="math inline">\(k = 1,2, .., p\)</span>, sendo <span class="math inline">\(p = min (g-1; e-1)\)</span>. O genótipo mais estável é aquele com o menor valor de WAASB <span class="citation">(T. Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019">2019</a>)</span>.</p>
 <p>Devido a aplicação da ténica de decomposição por valores singulares, é possível a confecção de biplots semelhantes ao método AMMI, considerando agora, um modelo de efeito misto. Para isto, a função <code>plot_scores</code>  é utilizada utilizando como argumento de o modelo ajustado <code>BLUP_model</code>. <span class="citation">T. Olivoto, Lúcio, Da silva, Marchioro, et al. (<a href="#ref-Olivoto2019">2019</a>)</span> e <span class="citation">T. Olivoto, Lúcio, Da silva, Sari, et al. (<a href="#ref-Olivoto2019a">2019</a>)</span> propuseram a utilização do índice WAASB na ordenada do biplot AMMI1, substituindo os valores do IPCA1 pelos valores do WAASB. Este biplot é criado utilizando <code>type = 3</code> na função.</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" title="1">p5 =<span class="st"> </span><span class="kw">plot_scores</span>(BLUP_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb503-2" title="2">p6 =<span class="st"> </span><span class="kw">plot_scores</span>(BLUP_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb503-3" title="3"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb503-4" title="4"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
-<a class="sourceLine" id="cb503-5" title="5">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb503-6" title="6"></a>
-<a class="sourceLine" id="cb503-7" title="7"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p5&quot;</span>,<span class="st">&quot;p6&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-307"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-307-1.png" alt="Biplot AMMI2 gerado pelo pacote metan" width="960" />
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1">p5 =<span class="st"> </span><span class="kw">plot_scores</span>(BLUP_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb529-2" title="2">p6 =<span class="st"> </span><span class="kw">plot_scores</span>(BLUP_model<span class="op">$</span>GY, <span class="dt">type =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb529-3" title="3"><span class="st">                 </span><span class="kw">theme_gray</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb529-4" title="4"><span class="st">                 </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>),</a>
+<a class="sourceLine" id="cb529-5" title="5">                       <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb529-6" title="6"></a>
+<a class="sourceLine" id="cb529-7" title="7"><span class="kw">plot_grid</span>(p5, p6, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p5&quot;</span>,<span class="st">&quot;p6&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-314"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-314-1.png" alt="Biplot AMMI2 gerado pelo pacote metan" width="960" />
 <p class="caption">
 Figure 14.5: Biplot AMMI2 gerado pelo pacote metan
 </p>
@@ -1207,10 +1209,10 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 \]</span></p>
 <p>onde <span class="math inline">\(WAASBY_i\)</span> é o índice de superioridade para o genótipo <em>i</em> que pondera entre desempenho e estabilidade; <span class="math inline">\(rG_i\)</span> e <span class="math inline">\(rW_i\)</span> são os valores escalonados (0-100) para GY e WAASB, respectivamente; <span class="math inline">\(\theta_Y\)</span> e <span class="math inline">\(\theta_S\)</span> são os pesos para GY e WAASB, respectivamente.</p>
 <p>Este índice permite atribuir pesos para estabilidade e produtividade na classificação dos genótipos. Para isto, o argumento <code>wresp</code> da função <code>waasb()</code>  é usado. Por exemplo, se o objetivo é selecionar genótipos com alto rendimento (independentemente de sua estabilidade), então o <code>wresp = 100</code> deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação da variável de resposta. Por outro lado, visando selecionar genótipos altamente estáveis (independentemente da produtividade), então o <code>wresp = 0</code> deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação do índice WAASB. Qualquer valor entre 0 e 100 pode ser usado no argumento <code>wresp</code> para ponderar entre o desempenho médio e a estabilidade. Em nosso exemplo, o índice WAASBY foi calculado considerando <code>wresp = 50</code> (padrão da função), o que significa pesos iguais para desempenho e estabilidade médios. Para plotar os valores de WAASBY, o código a seguir é usado.</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" title="1">p1 =<span class="st"> </span><span class="kw">plot_waasby</span>(BLUP_model<span class="op">$</span>GY)</a>
-<a class="sourceLine" id="cb504-2" title="2">p2 =<span class="st"> </span><span class="kw">plot_waasby</span>(BLUP_model<span class="op">$</span>GY,</a>
-<a class="sourceLine" id="cb504-3" title="3">                 <span class="dt">col.shape =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb504-4" title="4"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" title="1">p1 =<span class="st"> </span><span class="kw">plot_waasby</span>(BLUP_model<span class="op">$</span>GY)</a>
+<a class="sourceLine" id="cb530-2" title="2">p2 =<span class="st"> </span><span class="kw">plot_waasby</span>(BLUP_model<span class="op">$</span>GY,</a>
+<a class="sourceLine" id="cb530-3" title="3">                 <span class="dt">col.shape =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb530-4" title="4"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 
 
 <div class="dica">
@@ -1221,7 +1223,7 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <div id="diferentes-cenarios-para-a-estimativa-do-waasby" class="section level4">
 <h4><span class="header-section-number">14.9.5.3</span> Diferentes cenários para a estimativa do WAASBY</h4>
 <p>No exemplo a seguir, aplicaremos a função <code>wsmp()</code>  (<strong>w</strong>eighting the <strong>s</strong>tability and the <strong>m</strong>ean <strong>p</strong>erformance) ao modelo previamente ajustado <code>BLUP_model</code> visando planejar diferentes cenários de estimação do WAASBY alterando os pesos atribuídos à estabilidade e ao desempenho médio. O número de cenários é definido pelo argumento <code>increment</code>. Por padrão, vinte e um cenários diferentes são simulados. Neste caso, o índice de superioridade WAASBY é calculado considerando os seguintes pesos: estabilidade = 100; desempenho médio = 0. Em outras palavras, apenas a estabilidade é considerada para a classificação dos genótipos. Na próxima iteração, os pesos se tornam 95/5 (uma vez que <code>increment = 5</code>). No terceiro cenário, os pesos se tornam 90/10, e assim por diante até esses pesos se tornarem 0/100. Na última iteração, a classificação do genótipo para o WAASBY corresponde perfeitamente às classificações da variável resposta.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" title="1">scenarios =<span class="st"> </span><span class="kw">wsmp</span>(BLUP_model)</a></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1">scenarios =<span class="st"> </span><span class="kw">wsmp</span>(BLUP_model)</a></code></pre></div>
 <p>A função genérica <code>plot()</code>  é então usada para plotar o objeto. Dois <em>heatmaps</em> são criados. O primeiro tipo mostra a classificação do genótipo dependendo do número de eixos de componentes principais usados para estimar o índice WAASB. Um dendrograma baseado na distância euclidiana é usado para agrupar a classificação dos genótipos. O segundo tipo mostra a classificação do genótipo dependendo da relação WAASB/GY. As classificações obtidas no cenário 100/0 consideram exclusivamente a estabilidade para o ranking de genótipos. Por outro lado, o cenário 0/100 considera exclusivamente a produtividade para o ranking de genótipos.</p>
 </div>
 <div id="performance-e-media-harmonica-dos-valores-genotipicos" class="section level4">
@@ -1237,21 +1239,22 @@ PRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {G{v_{ij}}/{\mu_j}}
 MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 \]</span></p>
 <p>onde <em>e</em> é o número de ambientes incluídos na análise, <span class="math inline">\(Gv_{ij}\)</span> é o valor genotípico (BLUP) para o genótipo <em>i</em> no ambiente <em>j</em>.</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1">Indexes =<span class="st"> </span><span class="kw">Resende_indexes</span>(BLUP_model)</a>
-<a class="sourceLine" id="cb506-2" title="2"><span class="kw">print</span>(Indexes<span class="op">$</span>GY)</a></code></pre></div>
-<pre><code># A tibble: 10 x 8
-    HMGV HMGV_order  RPGV GY_RPGV RPGV_order HMRPGV GY_HMRPGV HMRPGV_order
-   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
- 1  2.32          6 0.969    2.59          6  0.967      2.59            6
- 2  2.11         10 0.913    2.44         10  0.896      2.40           10
- 3  2.47          4 1.03     2.74          4  1.02       2.73            4
- 4  2.68          2 1.11     2.96          2  1.10       2.95            2
- 5  2.39          5 0.990    2.65          5  0.988      2.64            5
- 6  2.30          8 0.954    2.55          7  0.952      2.55            8
- 7  2.30          7 0.954    2.55          8  0.952      2.55            7
- 8  2.52          3 1.04     2.77          3  1.03       2.76            3
- 9  2.74          1 1.13     3.01          1  1.12       3.00            1
-10  2.18          9 0.926    2.48          9  0.917      2.45            9</code></pre>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1">Indexes =<span class="st"> </span><span class="kw">Resende_indexes</span>(BLUP_model)</a>
+<a class="sourceLine" id="cb532-2" title="2"><span class="kw">print</span>(Indexes<span class="op">$</span>GY)</a></code></pre></div>
+<pre><code># A tibble: 10 x 9
+   GEN    HMGV HMGV_order  RPGV GY_RPGV RPGV_order HMRPGV GY_HMRPGV
+   &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+ 1 G1     2.32          6 0.969    2.59          6  0.967      2.59
+ 2 G10    2.11         10 0.913    2.44         10  0.896      2.40
+ 3 G2     2.47          4 1.03     2.74          4  1.02       2.73
+ 4 G3     2.68          2 1.11     2.96          2  1.10       2.95
+ 5 G4     2.39          5 0.990    2.65          5  0.988      2.64
+ 6 G5     2.30          8 0.954    2.55          7  0.952      2.55
+ 7 G6     2.30          7 0.954    2.55          8  0.952      2.55
+ 8 G7     2.52          3 1.04     2.77          3  1.03       2.76
+ 9 G8     2.74          1 1.13     3.01          1  1.12       3.00
+10 G9     2.18          9 0.926    2.48          9  0.917      2.45
+# ... with 1 more variable: HMRPGV_order &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1259,10 +1262,10 @@ MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 <h2><span class="header-section-number">14.10</span> AMMI ou BLUP? Decisão em cada caso!</h2>
 <p>Vimos anteriormente que um membro da família de modelos AMMI (AMMI2) é o mais preciso na predição da variável resposta em nosso exemplo. Após analizar-mos os mesmos dados utilizando modelos mistos, nos surge a seguinte questão. Qual é o método mais preciso para predizer a variável resposta em nosso exemplo? A resposta a esta pergunda será dada agora. O pacote <strong>metan</strong> também conta com uma função para <em>cross-validation</em> considerando o modelo misto acima. A idéia é simples. Relizaremos uma validação cruzada semelhante àquela realizada no modelo AMMI e compararemos o RMSPD dos valores preditos utilizando BLUP com aqueles obtidos pelo modelo AMMI.</p>
 <p>A função <code>cv_blup()</code> realiza uma validação cruzada para experimentos com repetição usando modelos mistos. Por padrão, blocos completos são selecionados aleatoriamente em cada ambiente. O procedimento para calcular o RMSPD é idêntico ao apresentado na análise AMMI.</p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1">valida_blup =<span class="st"> </span><span class="kw">cv_blup</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">20</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1">valida_blup =<span class="st"> </span><span class="kw">cv_blup</span>(data_ge, ENV, GEN, REP, GY, <span class="dt">nboot =</span> <span class="dv">20</span>, <span class="dt">nrepval =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>Para unir os resultados obtidos pelas funções <code>cv_ammif()</code> e <code>cv_blup()</code> a função <code>bind_cv()</code>. Usando o argumento <code>bind = "means"</code> é possível concatenar os valores médios obtidos por cada modelo.   </p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1">val_means =<span class="st"> </span><span class="kw">bind_cv</span>(AMMIF, valida_blup, <span class="dt">bind =</span> <span class="st">&quot;means&quot;</span>)</a>
-<a class="sourceLine" id="cb509-2" title="2">val_means<span class="op">$</span>RMSPD</a></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1">val_means =<span class="st"> </span><span class="kw">bind_cv</span>(AMMIF, valida_blup, <span class="dt">bind =</span> <span class="st">&quot;means&quot;</span>)</a>
+<a class="sourceLine" id="cb535-2" title="2">val_means<span class="op">$</span>RMSPD</a></code></pre></div>
 <pre><code># A tibble: 11 x 6
    MODEL   mean     sd      se  Q2.5 Q97.5
    &lt;fct&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1278,13 +1281,13 @@ MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 10 AMMI1  0.438 0.0266 0.00595 0.398 0.482
 11 AMMI0  0.442 0.0294 0.00657 0.400 0.490</code></pre>
 <p>Um gráfico boxplot também pode ser obtido utilizando o argumento <code>bind = "boot"</code> (padrão).</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1">val_plot =<span class="st"> </span><span class="kw">bind_cv</span>(AMMIF, valida_blup)</a>
-<a class="sourceLine" id="cb511-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(val_plot)</a>
-<a class="sourceLine" id="cb511-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(val_plot,</a>
-<a class="sourceLine" id="cb511-4" title="4">          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</a>
-<a class="sourceLine" id="cb511-5" title="5">          <span class="dt">col.boxplot =</span> <span class="st">&quot;cyan&quot;</span>)</a>
-<a class="sourceLine" id="cb511-6" title="6"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-314-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" title="1">val_plot =<span class="st"> </span><span class="kw">bind_cv</span>(AMMIF, valida_blup)</a>
+<a class="sourceLine" id="cb537-2" title="2">p1 =<span class="st"> </span><span class="kw">plot</span>(val_plot)</a>
+<a class="sourceLine" id="cb537-3" title="3">p2 =<span class="st"> </span><span class="kw">plot</span>(val_plot,</a>
+<a class="sourceLine" id="cb537-4" title="4">          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</a>
+<a class="sourceLine" id="cb537-5" title="5">          <span class="dt">col.boxplot =</span> <span class="st">&quot;cyan&quot;</span>)</a>
+<a class="sourceLine" id="cb537-6" title="6"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-321-1.png" width="960" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

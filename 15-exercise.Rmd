@@ -27,23 +27,21 @@ O argumento 'eleva' não está correto. Ele deve ser ou 'quadrado' ou 'cubo'.
 
 
 ```{r eval=TRUE}
-mega = function(jogos){
+mega = function(jogos, numeros = 6){
+  if(!numeros %in% c(6:15)){
+    stop("O numero deve ser entre 6 e 15")
+  }
   result = list()
 for(i in 1:jogos){
 result[[i]] = sort(
-  sample(1:60, size = 6, replace = FALSE)
+  sample(1:60, size = numeros, replace = FALSE)
   )
 }
-  return(
-  do.call(rbind,
-          lapply(result, function(x){
-            x
-          }))
-  )
+  return(do.call(rbind, result))
 }
 
 # 4 jogos
-mega(4)
+mega(5, 10)
 ```
 
 

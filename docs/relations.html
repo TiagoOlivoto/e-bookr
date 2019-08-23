@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2019-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.6</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.7</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.8</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.9</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.10</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
@@ -369,9 +371,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dados" class="section level2">
 <h2><span class="header-section-number">12.1</span> Dados</h2>
 <p>Nesta sessão, e na sessão de <a href="multivariate.html#multivariate">análise multivariada</a> iremos utilizar o conjunto de dados <code>datage_2</code> do pacote <strong>metan</strong>. Para maiores informações veja <code>?data_ge2</code></p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1">maize  =<span class="st"> </span>data_ge2</a>
-<a class="sourceLine" id="cb387-2" title="2">numeric_var =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric)</a>
-<a class="sourceLine" id="cb387-3" title="3">datacor =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(CD, CL, CW, PH, EH, EP, EL, ED)</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1">maize  =<span class="st"> </span>data_ge2</a>
+<a class="sourceLine" id="cb413-2" title="2">numeric_var =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric)</a>
+<a class="sourceLine" id="cb413-3" title="3">datacor =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(CD, CL, CW, PH, EH, EP, EL, ED)</a></code></pre></div>
 </div>
 <div id="correlacao-linear" class="section level2">
 <h2><span class="header-section-number">12.2</span> Correlação linear</h2>
@@ -385,14 +387,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">12.2.1</span> Visualização gráfica</h3>
 <p>A seguinte função proporciona uma visualização gráfica de todos os pares de correlação possíveis (<em>scatter-plot</em>)
 </p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1"><span class="kw">pairs</span>(datacor)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-222-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1"><span class="kw">pairs</span>(datacor)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-229-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="estimativa-dos-coeficientes-de-correlacao" class="section level3">
 <h3><span class="header-section-number">12.2.2</span> Estimativa dos coeficientes de correlação</h3>
 
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1">corr =<span class="st"> </span><span class="kw">correlation</span>(datacor)</a>
-<a class="sourceLine" id="cb389-2" title="2"><span class="kw">print</span>(corr<span class="op">$</span>correlation, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1">corr =<span class="st"> </span><span class="kw">correlation</span>(datacor)</a>
+<a class="sourceLine" id="cb415-2" title="2"><span class="kw">print</span>(corr<span class="op">$</span>correlation, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>     CD   CL   CW   PH   EH   EP   EL   ED
 CD 1.00 0.30 0.48 0.32 0.28 0.18 0.91 0.39
 CL 0.30 1.00 0.74 0.33 0.40 0.39 0.26 0.70
@@ -402,7 +404,7 @@ EH 0.28 0.40 0.52 0.93 1.00 0.87 0.36 0.63
 EP 0.18 0.39 0.42 0.64 0.87 1.00 0.26 0.46
 EL 0.91 0.26 0.46 0.38 0.36 0.26 1.00 0.39
 ED 0.39 0.70 0.74 0.66 0.63 0.46 0.39 1.00</code></pre>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="kw">print</span>(corr<span class="op">$</span>pvalue, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">print</span>(corr<span class="op">$</span>pvalue, <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>         CD       CL       CW       PH       EH       EP       EL       ED
 CD 1.00e+00 1.39e-04 1.54e-10 6.06e-05 3.90e-04 2.88e-02 0.00e+00 4.94e-07
 CL 1.39e-04 1.00e+00 0.00e+00 3.45e-05 2.84e-07 4.55e-07 1.29e-03 0.00e+00
@@ -416,59 +418,59 @@ ED 4.94e-07 0.00e+00 0.00e+00 0.00e+00 0.00e+00 1.83e-09 6.88e-07 1.00e+00</code
 <div id="combinando-visualizacao-grafica-e-numerica-i" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> Combinando visualização gráfica e numérica (I)</h3>
 
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1"><span class="kw">pairs.panels</span>(datacor)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-224-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="kw">pairs.panels</span>(datacor)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-231-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Na figura acima, os pontos observados são plotados na diagonal inferior. Na diagonal, é apresentada a estimativa da densidade Kernel (linha preta) e um histgrama de cada variável. A diagonal superior contém os coeficientes de correlação.</p>
 </div>
 <div id="combinando-visualizacao-grafica-e-numerica-ii" class="section level3">
 <h3><span class="header-section-number">12.2.4</span> Combinando visualização gráfica e numérica (II)</h3>
 
 <p>A função <code>corr_plot()</code>do pacote <strong>metan</strong> retorna um gráfico semelhante ao anterior, no entanto possui diversas opções, tais como mudança no tamanho da letra dependendo da magnitude da correlação e indicação de cores para correlações significativas.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1"><span class="kw">corr_plot</span>(datacor)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-225"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-225-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="kw">corr_plot</span>(datacor)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-232"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-232-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
 <p class="caption">
 Figure 12.1: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
 <p>A função <code>corr_plot()</code> pode ser utilizada com o operador <code>%&gt;%</code>. Em adição, é possível escolher as variáveis a serem plotadas. Para isto, basta digitar o nome das variáveis.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb395-2" title="2"><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</a>
-<a class="sourceLine" id="cb395-3" title="3">            <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
-<a class="sourceLine" id="cb395-4" title="4">            <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb395-5" title="5">            <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb395-6" title="6">            <span class="dt">alpha.diag =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb395-7" title="7">            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb395-8" title="8">            <span class="dt">col.sign =</span> <span class="st">&quot;gray&quot;</span>,</a>
-<a class="sourceLine" id="cb395-9" title="9">            <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
-<a class="sourceLine" id="cb395-10" title="10">            <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb395-11" title="11">            <span class="dt">progress =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-226"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-226-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb421-2" title="2"><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</a>
+<a class="sourceLine" id="cb421-3" title="3">            <span class="dt">shape.point =</span> <span class="dv">19</span>,</a>
+<a class="sourceLine" id="cb421-4" title="4">            <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb421-5" title="5">            <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb421-6" title="6">            <span class="dt">alpha.diag =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb421-7" title="7">            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb421-8" title="8">            <span class="dt">col.sign =</span> <span class="st">&quot;gray&quot;</span>,</a>
+<a class="sourceLine" id="cb421-9" title="9">            <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</a>
+<a class="sourceLine" id="cb421-10" title="10">            <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb421-11" title="11">            <span class="dt">progress =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-233"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-233-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
 <p class="caption">
 Figure 12.2: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb396-2" title="2"><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</a>
-<a class="sourceLine" id="cb396-3" title="3">            <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
-<a class="sourceLine" id="cb396-4" title="4">            <span class="dt">col.point =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb396-5" title="5">            <span class="dt">fill.point =</span> <span class="st">&quot;orange&quot;</span>,</a>
-<a class="sourceLine" id="cb396-6" title="6">            <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb396-7" title="7">            <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
-<a class="sourceLine" id="cb396-8" title="8">            <span class="dt">maxsize =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb396-9" title="9">            <span class="dt">minsize =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb396-10" title="10">            <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb396-11" title="11">            <span class="dt">col.smooth =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb396-12" title="12">            <span class="dt">col.sign =</span> <span class="st">&quot;cyan&quot;</span>,</a>
-<a class="sourceLine" id="cb396-13" title="13">            <span class="dt">upper =</span> <span class="st">&quot;scatter&quot;</span>,</a>
-<a class="sourceLine" id="cb396-14" title="14">            <span class="dt">lower =</span> <span class="st">&quot;corr&quot;</span>,</a>
-<a class="sourceLine" id="cb396-15" title="15">            <span class="dt">diag.type =</span> <span class="st">&quot;density&quot;</span>,</a>
-<a class="sourceLine" id="cb396-16" title="16">            <span class="dt">col.diag =</span> <span class="st">&quot;cyan&quot;</span>,</a>
-<a class="sourceLine" id="cb396-17" title="17">            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb396-18" title="18">            <span class="dt">lab.position =</span> <span class="st">&quot;bl&quot;</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-227"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-227-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb422-2" title="2"><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</a>
+<a class="sourceLine" id="cb422-3" title="3">            <span class="dt">shape.point =</span> <span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb422-4" title="4">            <span class="dt">col.point =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb422-5" title="5">            <span class="dt">fill.point =</span> <span class="st">&quot;orange&quot;</span>,</a>
+<a class="sourceLine" id="cb422-6" title="6">            <span class="dt">size.point =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb422-7" title="7">            <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</a>
+<a class="sourceLine" id="cb422-8" title="8">            <span class="dt">maxsize =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb422-9" title="9">            <span class="dt">minsize =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb422-10" title="10">            <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb422-11" title="11">            <span class="dt">col.smooth =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb422-12" title="12">            <span class="dt">col.sign =</span> <span class="st">&quot;cyan&quot;</span>,</a>
+<a class="sourceLine" id="cb422-13" title="13">            <span class="dt">upper =</span> <span class="st">&quot;scatter&quot;</span>,</a>
+<a class="sourceLine" id="cb422-14" title="14">            <span class="dt">lower =</span> <span class="st">&quot;corr&quot;</span>,</a>
+<a class="sourceLine" id="cb422-15" title="15">            <span class="dt">diag.type =</span> <span class="st">&quot;density&quot;</span>,</a>
+<a class="sourceLine" id="cb422-16" title="16">            <span class="dt">col.diag =</span> <span class="st">&quot;cyan&quot;</span>,</a>
+<a class="sourceLine" id="cb422-17" title="17">            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb422-18" title="18">            <span class="dt">lab.position =</span> <span class="st">&quot;bl&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-234"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-234-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
 <p class="caption">
 Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 </p>
@@ -482,12 +484,12 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 <li>Criando a matrix de correlação utilizando o conjunto de dados <code>datacor</code>.</li>
 <li>8 variáveis | 28 combinações</li>
 </ul>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1">cor1 =<span class="st"> </span><span class="kw">cor</span>(datacor)</a>
-<a class="sourceLine" id="cb397-2" title="2"><span class="kw">corrplot.mixed</span>(cor1,</a>
-<a class="sourceLine" id="cb397-3" title="3">               <span class="dt">upper =</span> <span class="st">&quot;ellipse&quot;</span>,</a>
-<a class="sourceLine" id="cb397-4" title="4">               <span class="dt">lower =</span> <span class="st">&quot;number&quot;</span>,</a>
-<a class="sourceLine" id="cb397-5" title="5">               <span class="dt">number.digits =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-228-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1">cor1 =<span class="st"> </span><span class="kw">cor</span>(datacor)</a>
+<a class="sourceLine" id="cb423-2" title="2"><span class="kw">corrplot.mixed</span>(cor1,</a>
+<a class="sourceLine" id="cb423-3" title="3">               <span class="dt">upper =</span> <span class="st">&quot;ellipse&quot;</span>,</a>
+<a class="sourceLine" id="cb423-4" title="4">               <span class="dt">lower =</span> <span class="st">&quot;number&quot;</span>,</a>
+<a class="sourceLine" id="cb423-5" title="5">               <span class="dt">number.digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-235-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combinando-visualizacao-grafica-e-numerica-iv" class="section level3">
 <h3><span class="header-section-number">12.2.6</span> Combinando visualização gráfica e numérica (IV)</h3>
@@ -495,34 +497,34 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 <li>Criando a matrix de correlação utilizando o conjunto de dados dataset.</li>
 <li>14 variáveis | 91 combinações</li>
 </ul>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1">cor2 =<span class="st"> </span><span class="kw">cor</span>(numeric_var)</a>
-<a class="sourceLine" id="cb398-2" title="2">pval =<span class="st"> </span><span class="kw">cor.mtest</span>(cor2)<span class="op">$</span>p</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1">cor2 =<span class="st"> </span><span class="kw">cor</span>(numeric_var)</a>
+<a class="sourceLine" id="cb424-2" title="2">pval =<span class="st"> </span><span class="kw">cor.mtest</span>(cor2)<span class="op">$</span>p</a></code></pre></div>
 <p>A função <code>corrplot()</code>  do pacote <code>corrplot</code> permite uma poderosa personalização. Esta função tem a vantagem de apresentar um elevado número de combinações em um gráfico claro e intuitivo.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">corrplot</span>(cor2,</a>
-<a class="sourceLine" id="cb399-2" title="2">         <span class="dt">method =</span> <span class="st">&quot;pie&quot;</span>,</a>
-<a class="sourceLine" id="cb399-3" title="3">         <span class="dt">p.mat =</span> pval,</a>
-<a class="sourceLine" id="cb399-4" title="4">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</a>
-<a class="sourceLine" id="cb399-5" title="5">         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</a>
-<a class="sourceLine" id="cb399-6" title="6">         <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>,</a>
-<a class="sourceLine" id="cb399-7" title="7">         <span class="dt">diag =</span> F,</a>
-<a class="sourceLine" id="cb399-8" title="8">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb399-9" title="9">         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-230"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-230-1.png" alt="Gráfico de pizza de uma matriz de correlação de Pearson" width="384" />
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">corrplot</span>(cor2,</a>
+<a class="sourceLine" id="cb425-2" title="2">         <span class="dt">method =</span> <span class="st">&quot;pie&quot;</span>,</a>
+<a class="sourceLine" id="cb425-3" title="3">         <span class="dt">p.mat =</span> pval,</a>
+<a class="sourceLine" id="cb425-4" title="4">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</a>
+<a class="sourceLine" id="cb425-5" title="5">         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</a>
+<a class="sourceLine" id="cb425-6" title="6">         <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>,</a>
+<a class="sourceLine" id="cb425-7" title="7">         <span class="dt">diag =</span> F,</a>
+<a class="sourceLine" id="cb425-8" title="8">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb425-9" title="9">         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-237"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-237-1.png" alt="Gráfico de pizza de uma matriz de correlação de Pearson" width="384" />
 <p class="caption">
 Figure 12.4: Gráfico de pizza de uma matriz de correlação de Pearson
 </p>
 </div>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1"><span class="kw">corrplot</span>(cor2,</a>
-<a class="sourceLine" id="cb400-2" title="2">         <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,</a>
-<a class="sourceLine" id="cb400-3" title="3">         <span class="dt">p.mat =</span> pval,</a>
-<a class="sourceLine" id="cb400-4" title="4">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</a>
-<a class="sourceLine" id="cb400-5" title="5">         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</a>
-<a class="sourceLine" id="cb400-6" title="6">         <span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>,</a>
-<a class="sourceLine" id="cb400-7" title="7">         <span class="dt">diag =</span> F,</a>
-<a class="sourceLine" id="cb400-8" title="8">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb400-9" title="9">         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-231-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">corrplot</span>(cor2,</a>
+<a class="sourceLine" id="cb426-2" title="2">         <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,</a>
+<a class="sourceLine" id="cb426-3" title="3">         <span class="dt">p.mat =</span> pval,</a>
+<a class="sourceLine" id="cb426-4" title="4">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</a>
+<a class="sourceLine" id="cb426-5" title="5">         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</a>
+<a class="sourceLine" id="cb426-6" title="6">         <span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>,</a>
+<a class="sourceLine" id="cb426-7" title="7">         <span class="dt">diag =</span> F,</a>
+<a class="sourceLine" id="cb426-8" title="8">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb426-9" title="9">         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-238-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="correlacoes-geneticas" class="section level2">
@@ -551,12 +553,12 @@ var^g_x = (MST_x - MSE_x)/r \\
 var^g_y = (MST_x - MSE_y)/r
 \]</span></p>
 <p>onde <em>QMT</em> é o quadrado médio para tratamento, <em>QME</em> é o quadrado médio do erro e <em>r</em> é o número de repetições/blocos. A função <code>covcor_design()</code>  retorna uma lista com as matrizes de (co)variâncias e correlações. Matrizes específicas podem ser retornadas usando o tipo de argumento <code>type</code>. No exemplo abaixo, o coeficiente de correlação genotípico entre as variáveis PH, EH, NKE e TKW será computado para o ambiente A1, considerando um DBC.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb401-2" title="2"><span class="st">  </span><span class="kw">filter</span>(ENV <span class="op">==</span><span class="st"> &quot;A1&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb401-3" title="3"><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb401-4" title="4">                <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb401-5" title="5">                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb401-6" title="6">                <span class="dt">type =</span> <span class="st">&quot;gcor&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb427-2" title="2"><span class="st">  </span><span class="kw">filter</span>(ENV <span class="op">==</span><span class="st"> &quot;A1&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb427-3" title="3"><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb427-4" title="4">                <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb427-5" title="5">                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb427-6" title="6">                <span class="dt">type =</span> <span class="st">&quot;gcor&quot;</span>)</a></code></pre></div>
 <pre><code>              PH           EH        NKE        TKW
 PH   1.000000000 -0.006544623  0.2801806  0.2459377
 EH  -0.006544623  1.000000000 -0.7752497  0.7247684
@@ -576,22 +578,22 @@ Compute a matriz de (co)variâncias residuais para cada ambiente combinando as f
 <div id="parametrico" class="section level3">
 <h3><span class="header-section-number">12.4.1</span> Paramétrico</h3>
 <p>O intervalo de confiança para o coeficiente de correlação pode ser obtido utilizando a função <code>cor.mtest()</code> do pacote <strong>corrplot</strong>, conforme o seguinte exemplo.</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">ci_corr =<span class="st"> </span><span class="kw">cor.mtest</span>(datacor)</a></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1">ci_corr =<span class="st"> </span><span class="kw">cor.mtest</span>(datacor)</a></code></pre></div>
 </div>
 <div id="nao-parametrico" class="section level3">
 <h3><span class="header-section-number">12.4.2</span> Não paramétrico</h3>
 <p>Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função <code>corr_ci()</code> do pacote <strong>metan</strong>.  É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém <strong>E</strong> no nome. Note o benefício do operador <code>%&gt;%</code> neste caso.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb404-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;E&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb404-3" title="3"><span class="st">  </span><span class="kw">corr_ci</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb404-4" title="4"><span class="st">  </span><span class="kw">plot_ci</span>()</a></code></pre></div>
-<p><img src="html_r_files/figure-html/unnamed-chunk-235-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb430-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;E&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-3" title="3"><span class="st">  </span><span class="kw">corr_ci</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-4" title="4"><span class="st">  </span><span class="kw">plot_ci</span>()</a></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-242-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="tamanho-da-amostra" class="section level2">
 <h2><span class="header-section-number">12.5</span> Tamanho da amostra</h2>
 <p>Baseado no modelo proposto por <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018">2018</a>)</span>, o tamanho da amostra suficiente para a estimativa do coeficiente de correlação considerando um intervalo de confiança desejado é obtido pela função <code>corr_ss()</code>. Neste exemplo, vamos calcular o tamanho da amostra necessário para que uma correlação de 0.6 apresente uma semi-amplitude do intervalo de confiança igual a 0.1 </p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">corr_ss</span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1"><span class="kw">corr_ss</span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</a></code></pre></div>
 <pre><code>------------------------------------------------- 
 Sample size planning for correlation coefficient 
 ------------------------------------------------- 
@@ -609,9 +611,9 @@ Required sample size: 194
 \]</span></p>
 <p>onde <span class="math inline">\(r_{ij.m}\)</span> é o coeficiente de correlação parcial  entre as variável <em>i</em> e <em>j</em>, sem o efeito das outras <em>m</em> outras variáveis; <span class="math inline">\(a_{ij}\)</span> é o elemento da ordem <em>ij</em> da inversa da matriz de correlação simples; <span class="math inline">\(a_{ii}\)</span> e <span class="math inline">\(a_{jj}\)</span> são os elementos de ordens <em>ii</em> e <em>jj</em>, respectivamente, da inversa da matriz de correlação simples.</p>
 <p>As matrizes de coeficientes de correlação linear e parcial podem ser facilmente obtida utilizando a função <code>lpcor()</code>  do pacote <strong>metan</strong>. A entrada dos dados pode ser realizada de duas maneiras. (i) utilizando os dados com as observações de cada variável; ou (ii) utilizando uma matriz de correlação linear simples pré estimada. Em nosso exemplo, vamos utilziar os mesmos dados utilizados nas funções anteriores (<em>datacor</em>).</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1">partial =<span class="st"> </span>datacor <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb407-2" title="2"><span class="st">  </span><span class="kw">select</span>(PH, EH, CW, EL) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb407-3" title="3"><span class="st">  </span><span class="kw">lpcor</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" title="1">partial =<span class="st"> </span>datacor <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb433-2" title="2"><span class="st">  </span><span class="kw">select</span>(PH, EH, CW, EL) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb433-3" title="3"><span class="st">  </span><span class="kw">lpcor</span>()</a></code></pre></div>
 <pre><code>           linear     partial          t         prob
 PH x EH 0.9318282  0.90518541 26.2574856 0.000000e+00
 PH x CW 0.5047388  0.02658338  0.3278578 7.434704e-01
@@ -650,46 +652,46 @@ r_{b:y} = \hat \beta_{1_{rb:a}} + \hat \beta_2 + \hat \beta_{3_{rb:c}}\\
 r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 \end{gather*}\]</span></p>
 <p>Como exemplo numérico, vamos utilizar as variáveis PERK, EH, CDED como variáveis explicativas e a variável KW como dependente, do conjunto de dados <code>maize</code>. Para seleção destas variáveis, a função <code>select()</code> é utilizada.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">x =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(PERK, EH, CDED)</a>
-<a class="sourceLine" id="cb409-2" title="2">y =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(KW)</a>
-<a class="sourceLine" id="cb409-3" title="3"></a>
-<a class="sourceLine" id="cb409-4" title="4">xx =<span class="st"> </span><span class="kw">cor</span>(x) <span class="co"># Correlação entre as variáveis explicativas</span></a>
-<a class="sourceLine" id="cb409-5" title="5">xy =<span class="st"> </span><span class="kw">cor</span>(x, y) <span class="co"># Correlação das explicativas com a dependente</span></a>
-<a class="sourceLine" id="cb409-6" title="6">b =<span class="st"> </span><span class="kw">solve</span>(xx) <span class="op">%*%</span><span class="st"> </span>xy <span class="co"># Estimativa dos coeficientes</span></a>
-<a class="sourceLine" id="cb409-7" title="7"></a>
-<a class="sourceLine" id="cb409-8" title="8">PERK_KW_DIR =<span class="st"> </span>b[<span class="dv">1</span>] <span class="co"># Direto de PERK em KW</span></a>
-<a class="sourceLine" id="cb409-9" title="9">PERK_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">2</span>] <span class="co"># Indireto de PERK em KW via EH</span></a>
-<a class="sourceLine" id="cb409-10" title="10">PERK_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">3</span>] <span class="co"># Indireto de PERK em KW via CDED</span></a>
-<a class="sourceLine" id="cb409-11" title="11"></a>
-<a class="sourceLine" id="cb409-12" title="12">EH_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># Indireto de EH em KW via PERK</span></a>
-<a class="sourceLine" id="cb409-13" title="13">EH_KW_DIR =<span class="st"> </span>b[<span class="dv">2</span>] <span class="co"># Direto de EH em KW</span></a>
-<a class="sourceLine" id="cb409-14" title="14">EH_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">3</span>] <span class="co"># Indireto de EH em KW via CDED</span></a>
-<a class="sourceLine" id="cb409-15" title="15"></a>
-<a class="sourceLine" id="cb409-16" title="16">CDED_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">1</span>] <span class="co"># Indireto de CDED em KW via PERK</span></a>
-<a class="sourceLine" id="cb409-17" title="17">CDED_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">2</span>] <span class="co"># Indireto de CDED em KW via EH</span></a>
-<a class="sourceLine" id="cb409-18" title="18">CDED_KW_DIR =<span class="st"> </span>b[<span class="dv">3</span>] <span class="co"># Direto de CDED em KW</span></a>
-<a class="sourceLine" id="cb409-19" title="19"></a>
-<a class="sourceLine" id="cb409-20" title="20"><span class="co"># Coeficientes de trilha (direto na diagonal, indireto fora da diagonal)</span></a>
-<a class="sourceLine" id="cb409-21" title="21">coeff =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,</a>
-<a class="sourceLine" id="cb409-22" title="22">                 EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,</a>
-<a class="sourceLine" id="cb409-23" title="23">                 CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),</a>
-<a class="sourceLine" id="cb409-24" title="24">               <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb409-25" title="25"><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</a>
-<a class="sourceLine" id="cb409-26" title="26">coeff</a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1">x =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(PERK, EH, CDED)</a>
+<a class="sourceLine" id="cb435-2" title="2">y =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(KW)</a>
+<a class="sourceLine" id="cb435-3" title="3"></a>
+<a class="sourceLine" id="cb435-4" title="4">xx =<span class="st"> </span><span class="kw">cor</span>(x) <span class="co"># Correlação entre as variáveis explicativas</span></a>
+<a class="sourceLine" id="cb435-5" title="5">xy =<span class="st"> </span><span class="kw">cor</span>(x, y) <span class="co"># Correlação das explicativas com a dependente</span></a>
+<a class="sourceLine" id="cb435-6" title="6">b =<span class="st"> </span><span class="kw">solve</span>(xx) <span class="op">%*%</span><span class="st"> </span>xy <span class="co"># Estimativa dos coeficientes</span></a>
+<a class="sourceLine" id="cb435-7" title="7"></a>
+<a class="sourceLine" id="cb435-8" title="8">PERK_KW_DIR =<span class="st"> </span>b[<span class="dv">1</span>] <span class="co"># Direto de PERK em KW</span></a>
+<a class="sourceLine" id="cb435-9" title="9">PERK_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">2</span>] <span class="co"># Indireto de PERK em KW via EH</span></a>
+<a class="sourceLine" id="cb435-10" title="10">PERK_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">3</span>] <span class="co"># Indireto de PERK em KW via CDED</span></a>
+<a class="sourceLine" id="cb435-11" title="11"></a>
+<a class="sourceLine" id="cb435-12" title="12">EH_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># Indireto de EH em KW via PERK</span></a>
+<a class="sourceLine" id="cb435-13" title="13">EH_KW_DIR =<span class="st"> </span>b[<span class="dv">2</span>] <span class="co"># Direto de EH em KW</span></a>
+<a class="sourceLine" id="cb435-14" title="14">EH_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">3</span>] <span class="co"># Indireto de EH em KW via CDED</span></a>
+<a class="sourceLine" id="cb435-15" title="15"></a>
+<a class="sourceLine" id="cb435-16" title="16">CDED_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">1</span>] <span class="co"># Indireto de CDED em KW via PERK</span></a>
+<a class="sourceLine" id="cb435-17" title="17">CDED_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">2</span>] <span class="co"># Indireto de CDED em KW via EH</span></a>
+<a class="sourceLine" id="cb435-18" title="18">CDED_KW_DIR =<span class="st"> </span>b[<span class="dv">3</span>] <span class="co"># Direto de CDED em KW</span></a>
+<a class="sourceLine" id="cb435-19" title="19"></a>
+<a class="sourceLine" id="cb435-20" title="20"><span class="co"># Coeficientes de trilha (direto na diagonal, indireto fora da diagonal)</span></a>
+<a class="sourceLine" id="cb435-21" title="21">coeff =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,</a>
+<a class="sourceLine" id="cb435-22" title="22">                 EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,</a>
+<a class="sourceLine" id="cb435-23" title="23">                 CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),</a>
+<a class="sourceLine" id="cb435-24" title="24">               <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb435-25" title="25"><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</a>
+<a class="sourceLine" id="cb435-26" title="26">coeff</a></code></pre></div>
 <pre><code>            PERK          EH        CDED
 PERK -0.10410823 0.002222624  0.05948542
 EH   -0.01473329 0.690110850 -0.04548514
 CDED  0.09200901 0.010613425 -0.16102929</code></pre>
 <p>Utilizando os conhecimentos acumulados até agora, estes mesmos coeficientes podem ser estimados de maneira mais “elegantemente”, utilizando o código abaixo.</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1">n =<span class="st"> </span><span class="kw">ncol</span>(xx)</a>
-<a class="sourceLine" id="cb411-2" title="2">Coeff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(xx)</a>
-<a class="sourceLine" id="cb411-3" title="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb411-4" title="4">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb411-5" title="5">    Coeff[j, i] &lt;-<span class="st"> </span>b[j] <span class="op">*</span><span class="st"> </span>xx[j, i]</a>
-<a class="sourceLine" id="cb411-6" title="6">  }</a>
-<a class="sourceLine" id="cb411-7" title="7">}</a>
-<a class="sourceLine" id="cb411-8" title="8"><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</a>
-<a class="sourceLine" id="cb411-9" title="9">Coeff</a></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1">n =<span class="st"> </span><span class="kw">ncol</span>(xx)</a>
+<a class="sourceLine" id="cb437-2" title="2">Coeff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(xx)</a>
+<a class="sourceLine" id="cb437-3" title="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
+<a class="sourceLine" id="cb437-4" title="4">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
+<a class="sourceLine" id="cb437-5" title="5">    Coeff[j, i] &lt;-<span class="st"> </span>b[j] <span class="op">*</span><span class="st"> </span>xx[j, i]</a>
+<a class="sourceLine" id="cb437-6" title="6">  }</a>
+<a class="sourceLine" id="cb437-7" title="7">}</a>
+<a class="sourceLine" id="cb437-8" title="8"><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</a>
+<a class="sourceLine" id="cb437-9" title="9">Coeff</a></code></pre></div>
 <pre><code>            PERK          EH        CDED
 PERK -0.10410823 0.002222624  0.05948542
 EH   -0.01473329 0.690110850 -0.04548514
@@ -721,7 +723,7 @@ CDED  0.09200901 0.010613425 -0.16102929</code></pre>
  \]</span></p>
 <p>onde <span class="math inline">\(\mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }\)</span> é o fator de inflação de variância o k-ésimo elemento de <span class="math inline">\(\beta\)</span> para <em>k</em> = 1, 2, …, <em>p</em>; <span class="math inline">\(\mathop {{\rm{EV}}}\nolimits_{KC{\rm{1}}}\)</span> é o componente do <em>k</em>-ésimo autovetor para <em>k</em> = 1, 2, …, <em>p</em> e <em>C</em> = 1, 2, …, <em>p</em>; e <span class="math inline">\(\lambda\)</span> é o autovalor associado ao respectivo autovetor para <span class="math inline">\(\lambda\)</span> = 1, 2, …, <em>p</em>. Os VIFs também podem ser considerados como os elementos da diagonal da inversa da matriz <span class="math inline">\(X&#39;X\)</span>. Considera-se que a presença de VIFs maiores que 10 é um indicativo de multicolinearidade .</p>
 <p>A função <code>colindiag()</code>  do pacote <strong>metan</strong> é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Vamos utilizá-la para realizar o diagnóstico da multicolinearidade da matriz de correlação entre as variáveis presentes no dataframe “datacor”. Para maiores detalhes veja <code>?colindiag</code></p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1">multicol =<span class="st"> </span><span class="kw">colindiag</span>(datacor)</a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1">multicol =<span class="st"> </span><span class="kw">colindiag</span>(datacor)</a></code></pre></div>
 <pre><code>Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
 CN = 1830.678
 Matrix determinant: 2.32e-05 
@@ -745,7 +747,7 @@ EH &gt; PH &gt; EP &gt; CL &gt; ED &gt; CW &gt; CD &gt; EL </code></pre>
 <div id="analise-tradicional" class="section level3">
 <h3><span class="header-section-number">12.7.5</span> Análise tradicional</h3>
 <p>Esta sessão está focada principalmente em três objetivos: (i) diagnóstico da multicolinearidade; (ii) seleção de variáveis  preditoras; e (iii) estimação dos coeficientes de trilha. Embora esta seja a sequência correta a ser seguida para a estimativa dos coeficientes de trilha, utilizaremos somente a função <code>path_coeff()</code>,  que possibilita todas estas abordagens. Para isto, o conjunto de dados <code>maize</code> será utilizado.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1">pathtodas =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">path_coeff</span>(KW, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1">pathtodas =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">path_coeff</span>(KW, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Com a função acima, os coeficientes de trilha foram estimados considerando a variável KW (massa de grãos por espiga) como dependente, e todas as outras variáveis numéricas do conjunto de dados como explicativas. A função <code>summary()</code> pode ser utilizada para resumir os resultados da análise. Note que os coeficientes foram estimados considerando todos os níveis dos fatores <strong>ENV</strong>, <strong>GEN</strong>, e <strong>REP</strong>.</p>
 
 <div class="dica">
@@ -761,25 +763,25 @@ EH &gt; PH &gt; EP &gt; CL &gt; ED &gt; CW &gt; CD &gt; EL </code></pre>
 \hat \beta = (X&#39;X+Ik)^{-1} X&#39;Y
 \]</span></p>
 <p>A escolha da magnitude de <em>k</em>, no entanto, deve ser cautelosa. Sugere-se que o valor a ser incluído seja aquele menor possível que estabilize os coeficientes de regressão (<span class="math inline">\(\beta_p\)</span>). Felizmente, grande parte deste trabalho já foi realizado quando utilizamos a função <code>path_coeff()</code>  na <a href="relations.html#analise-tradicional">sessão anterior</a>. Um conjunto de estimativas de <span class="math inline">\(\beta_p\)</span> foi estimado com 101 valores de <em>k</em>, (<span class="math inline">\(k = 0, 0.01, ..., 1\)</span>) e representado graficamente.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1">pathtodas<span class="op">$</span>plot</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-244"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-244-1.png" alt="Valores de beta obtidos com 101 valores de k" width="384" />
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" title="1">pathtodas<span class="op">$</span>plot</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-251"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-251-1.png" alt="Valores de beta obtidos com 101 valores de k" width="384" />
 <p class="caption">
 Figure 12.5: Valores de beta obtidos com 101 valores de k
 </p>
 </div>
 <p>O gráfico acima nos proporciona uma interpretação sobre qual é o valor de <em>k</em> mais indicado a ser utilizado. Para fins didátidos, escolheremos, por enquanto, o valor de <em>k</em> igual a 0.04, valor no qual os coeficientes de regressão da maioria das variávies se estabiliza. Para incluir este valor de correção, utilizaremos novamente a função <code>path_coeff()</code>, no entanto, agora, incluiremos o argumento <code>correction = 0.04</code>.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1">pathtodas_k =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">path_coeff</span>(KW, <span class="dt">correction =</span> <span class="fl">0.04</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1">pathtodas_k =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">path_coeff</span>(KW, <span class="dt">correction =</span> <span class="fl">0.04</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Com a inclusão do fator de correção (<em>k</em> = 0.04) na diagonal de <span class="math inline">\(X&#39;X\)</span>, a multicolinearidade foi classificada como moderada (NC = 141). Inevitavelmente, temos duas opções para obtermos menores níveis de multicollinearidade. A primeira é aumentar o valor de <em>k</em>, digamos, para 0.1. Isto iria reduzir ainda mais o nível de multicolinearidade  em nossa matriz, no entanto, o viés na estimativa dos coeficientes aumentaria. A segunda (e mais razoável) opção, é a exclusão das variáveis que mais causam problemas de multicolinearidade. Por exemplo, podemos considerar as variáveis com maior peso nos últimos autovalores, ou aquelas com maior VIF. As variáveis CL e EL apresentam alta correlação (veja a seção <a href="relations.html#estimativa-dos-coeficientes-de-correlacao">estimativas dos coeficientes de correlação</a>), assim poderíamos manter apenas uma destas variáveis. A mesma interpretação pode ser considerada para CDED. Esta é uma co-variável (razão do diâmetro do sabugo e diâmetro da espiga, CDED = CD/ED). Vamos considerar então a exclusão destas variáveis.</p>
 </div>
 <div id="excluindo-variaveis" class="section level3">
 <h3><span class="header-section-number">12.7.7</span> Excluindo variáveis</h3>
 <p>O ajuste do novo modelo excluindo estas variáveis é facilmente realizado. Para isto, iremos utilizar dois argumentos da função <code>path_coeff()</code>  não vistos até agora: <code>pred</code> e <code>exclude</code>. As variáveis informadas em <code>pred</code> podem ser as variáveis preditoras (<em>default</em>) ou as variáveis a serem excluídas, se <code>exclude = TRUE</code>. Vamos ao exemplo.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1">path_exclude =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb418-2" title="2"><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb418-3" title="3">             <span class="dt">pred =</span> <span class="kw">c</span>(PERK, EH, CDED),</a>
-<a class="sourceLine" id="cb418-4" title="4">             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb418-5" title="5">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1">path_exclude =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb444-2" title="2"><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb444-3" title="3">             <span class="dt">pred =</span> <span class="kw">c</span>(PERK, EH, CDED),</a>
+<a class="sourceLine" id="cb444-4" title="4">             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb444-5" title="5">             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Abaixo, um resumo das três abordagens realizadas até agora, utilizando o resumo apresentado na tabela abaixo.</p>
 <table>
 <thead>
@@ -829,9 +831,9 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 <div id="selecao-de-variaveis-em-analise-de-trilha" class="section level3">
 <h3><span class="header-section-number">12.7.8</span> Seleção de variáveis em análise de trilha</h3>
 <p> </p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1">path_step =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb419-2" title="2"><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb419-3" title="3">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1">path_step =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb445-2" title="2"><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb445-3" title="3">             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>-------------------------------------------------------------------------- 
 The algorithm has selected a set of 10 predictors with largest VIF = 7.16. 
 Selected predictors: PERK EP CDED NKR PH NR TKW EL CD ED 
@@ -865,10 +867,10 @@ Summary of the adjusted models
 <h3><span class="header-section-number">12.7.9</span> Análise de trilha para cada nível de um fator</h3>
 <p>Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando a função <code>split_factors()</code>  isto é facilmente realizado. Esta função divide o conjunto original de dados em uma lista onde cada objeto contém um nível do fator utilizado. O operador <code>%&gt;%</code> passa o resultado para a função <code>path_coeff()</code>, qual estima os coeficientes de triha para cada um dos níveis do fator. Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados <code>maize</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1">path_levels =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb421-2" title="2"><span class="st">  </span><span class="kw">split_factors</span>(ENV) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb421-3" title="3"><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</a>
-<a class="sourceLine" id="cb421-4" title="4">             <span class="dt">pred =</span> <span class="kw">c</span>(TKW, NKE, PERK))</a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1">path_levels =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb447-2" title="2"><span class="st">  </span><span class="kw">split_factors</span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb447-3" title="3"><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</a>
+<a class="sourceLine" id="cb447-4" title="4">             <span class="dt">pred =</span> <span class="kw">c</span>(TKW, NKE, PERK))</a></code></pre></div>
 <pre><code>
 ----------------------------------------------------------------------------
 Level A1 

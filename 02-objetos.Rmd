@@ -4,6 +4,15 @@
 Os tipos de objeto mais utilizados na linguagem *R* são: (i) vetores, (ii) matrizes, (iii) data frames, (iv) listas e (v) funções. Um enfoque maior será dado aos vetores, matrizes e data frames, pois estes são amplamente utilizados, inclusive nas análises mais simples.
 
 ## Vetores
+Existem quatro tipos principais de vetores: lógico, inteiro, duplo e caractere (que contém cadeias de caracteres). Vetores coletivamente inteiros e duplos são conhecidos como vetores numéricos. Cada um dos quatro tipos primários possui uma sintaxe especial para criar um valor individual, um escalar.
+
+* Vetores lógicos podem ser escritos por extenso (`TRUE` ou `FASLSE`) ou abreviados (`T` ou `F`).
+
+* Vetores duplos podem ser especificadas em formato decimal (`0.1234`), científico (`1.23e4`). 
+
+* Vetores inteiros são escritos de forma semelhante aos duplos, mas devem ser seguidos por L (1234L, 1e4L ou 0xcafeL) e não podem conter valores fracionados.
+
+* Caracteres são cercadas por " (`"dia"`) ou ' (`'noite'`).
 
 A função `c()` \indt{vetores} \indf{c} combina valores que formam vetores^[Vetores são uma estrutura de dados básica do R que permite armazenar um conjunto de valores numéricos ou de caracteres em um objeto nomeado]. Abaixo, é demonstrado como vetores podem ser criados utilizando `c()`. 
 
@@ -36,7 +45,7 @@ x6 = c(rep(seq(1:5), each = 2))
 x6
 ```
 
-Utilizando colchtes [ ] é possível selecionar um (ou um conjunto) de elementos de um vetor. Por exemplo:
+Utilizando colchtes `[]` é possível selecionar um (ou um conjunto) de elementos de um vetor. Por exemplo:
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 x7 = x6[1] # Seleciona o primeiro elemento do vetor 
@@ -44,7 +53,18 @@ x8 = x6[4] #  Seleciona o quarto elemento do vetor
 x9 = x6[c(1, 4, 8)] # Seleciona o primeiro, o quarto e o oitavo elemento
 x9
 x10 = x6[1:4] # armazena uma sequência de elementos (primeiro ao quarto)
+x <- 1:10
 ```
+
+Em adição ao uso de `[]`, as funções `first()`, `last()` e `nth()`, \indf{nth}\indf{first}\indf{last} são utilizadas para selecionar o primeiro, o último e o i-ésimo elemento de um vetor. A principal vantagem é que você pode fornecer um vetor secundário opcional que define a ordem e fornecer um valor padrão a ser usado quando a entrada for menor que o esperado.
+
+```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+x <- runif(100, 0, 100)
+first(x)
+last(x)
+nth(x, 23)
+```
+
 
 ## Matrizes
 
@@ -201,7 +221,7 @@ Quando uma função é armazenada no ambiente de trabalho, basta digitar o nome 
 - O resultado da função `F2(2, 3)` foi o mesmo da `F2(y = 3, x =2)`? Por quê?
 - Por quê ocorreu um erro quando a função `F3(20)` foi rodada?
 - O que tem de errado na execução da função `elevar(12, eleva = "cubico")`?
-- Crie uma função chamada `mega` que retorna os números a serem apostados em jogo simples da Mega Sena, tendo como um único argumento `jogos`, que define quantos jogos de 6 números devem ser criados. Para cada jogo ordene os números em ordem crescente.
+- Crie uma função chamada `mega` que retorna os números a serem apostados em jogo da Mega Sena, tendo como argumentos `jogos`, que define quantos jogos e `numeros`, que define quantos numeros serão escolhidos em cada aposta (6-15). Para cada jogo ordene os números em ordem crescente.
 
 ```
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2019-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.6</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.7</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.8</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.9</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.10</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
@@ -379,43 +381,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Utilizando as funções bases do R (código massivo)</li>
 </ul>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb97-2" title="2">data =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb97-3" title="3">              <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb97-4" title="4">data<span class="op">$</span>z =<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</a>
-<a class="sourceLine" id="cb97-5" title="5">data =<span class="st"> </span><span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb97-6" title="6">data =<span class="st"> </span>data[, <span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb97-7" title="7">sqr_dat =<span class="st"> </span><span class="kw">sqrt</span>(data<span class="op">$</span>z)</a>
-<a class="sourceLine" id="cb97-8" title="8">mean_sqrt =<span class="st"> </span><span class="kw">mean</span>(sqr_dat)</a>
-<a class="sourceLine" id="cb97-9" title="9">mean_sqrt</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb103-2" title="2">data =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb103-3" title="3">              <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb103-4" title="4">data<span class="op">$</span>z =<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</a>
+<a class="sourceLine" id="cb103-5" title="5">data =<span class="st"> </span><span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb103-6" title="6">data =<span class="st"> </span>data[, <span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb103-7" title="7">sqr_dat =<span class="st"> </span><span class="kw">sqrt</span>(data<span class="op">$</span>z)</a>
+<a class="sourceLine" id="cb103-8" title="8">mean_sqrt =<span class="st"> </span><span class="kw">mean</span>(sqr_dat)</a>
+<a class="sourceLine" id="cb103-9" title="9">mean_sqrt</a></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <ul>
 <li>Utilizando as funções bases do R (código mais limpo)</li>
 </ul>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb99-2" title="2">data =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb99-3" title="3">              <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb99-4" title="4">data<span class="op">$</span>z =<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</a>
-<a class="sourceLine" id="cb99-5" title="5">mean_sqrt =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">sqrt</span>(<span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)<span class="op">$</span>z))</a>
-<a class="sourceLine" id="cb99-6" title="6">mean_sqrt</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb105-2" title="2">data =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb105-3" title="3">              <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb105-4" title="4">data<span class="op">$</span>z =<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</a>
+<a class="sourceLine" id="cb105-5" title="5">mean_sqrt =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">sqrt</span>(<span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)<span class="op">$</span>z))</a>
+<a class="sourceLine" id="cb105-6" title="6">mean_sqrt</a></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <ul>
 <li>Utilizando o operdor <code>%&gt;%</code></li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb101-2" title="2">mean_sqrt =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb101-3" title="3">                   <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-4" title="4"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">z =</span> x <span class="op">*</span><span class="st"> </span>y) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-5" title="5"><span class="st">            </span><span class="kw">filter</span>(z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-6" title="6"><span class="st">            </span><span class="kw">pull</span>(z) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-7" title="7"><span class="st">            </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-8" title="8"><span class="st">            </span><span class="kw">mean</span>()</a>
-<a class="sourceLine" id="cb101-9" title="9">mean_sqrt  </a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb107-2" title="2">mean_sqrt =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb107-3" title="3">                   <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb107-4" title="4"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">z =</span> x <span class="op">*</span><span class="st"> </span>y) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb107-5" title="5"><span class="st">            </span><span class="kw">filter</span>(z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb107-6" title="6"><span class="st">            </span><span class="kw">pull</span>(z) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb107-7" title="7"><span class="st">            </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb107-8" title="8"><span class="st">            </span><span class="kw">mean</span>()</a>
+<a class="sourceLine" id="cb107-9" title="9">mean_sqrt  </a></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <p>A utilização do operador <code>%&gt;%</code> parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o <code>%&gt;%</code> se mostrará muito mais útil.</p>
 <p>O conjunto de dados <strong>maize</strong> será utilizado como exemplo para as operações de manipulação de dados. O primeiro passo é carregálo no ambiente de trabalho.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1">maize &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;maize&quot;</span>)</a>
-<a class="sourceLine" id="cb103-2" title="2"><span class="kw">str</span>(maize)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">maize &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;maize&quot;</span>)</a>
+<a class="sourceLine" id="cb109-2" title="2"><span class="kw">str</span>(maize)</a></code></pre></div>
 <pre><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   780 obs. of  10 variables:
  $ AMB : chr  &quot;A1&quot; &quot;A1&quot; &quot;A1&quot; &quot;A1&quot; ...
  $ HIB : chr  &quot;H1&quot; &quot;H1&quot; &quot;H1&quot; &quot;H1&quot; ...
@@ -430,9 +432,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adicionar-novas-variaveis" class="section level2">
 <h2><span class="header-section-number">7.1</span> Adicionar novas variáveis</h2>
 <p>A função <code>mutate()</code>  é utilizada quando se deseja adicionar novas variáveis no conjunto de dados. Estas variáveis são funções de variáveis existentes. Como exemplo, vamos criar uma nova variável chamada PRE_2 no conjunto de dados <code>maize</code>, qual será a razão entre AIES e APLA. Note que a função adiciona a nova variável e mantém todas as demais</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb105-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb105-3" title="3"><span class="st">  </span><span class="kw">select</span>(PRE_<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb111-3" title="3"><span class="st">  </span><span class="kw">select</span>(PRE_<span class="dv">2</span>)</a></code></pre></div>
 <pre><code># A tibble: 780 x 1
    PRE_2
    &lt;dbl&gt;
@@ -447,16 +449,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 0.574
 10 0.530
 # ... with 770 more rows</code></pre>
+<p>Utilizando a função <code>case_when()</code>  é possível criar uma variável baseado em um argumento <code>if()</code> vetorizado. <code>case_when()</code> é particularmente útil dentro da função <code>mutate()</code> quando você quer criar uma nova variável que depende de uma combinação complexa de variáveis existentes. No exemplo abaixo, uma nova variável será criada, dependendo dos valores de APLA, AIES ou CESP</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb113-3" title="3">    <span class="dt">CASE =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb113-4" title="4">      MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span> <span class="op">~</span><span class="st">  &quot;Selecionar&quot;</span>,</a>
+<a class="sourceLine" id="cb113-5" title="5">      APLA <span class="op">&gt;</span><span class="st"> </span><span class="fl">2.3</span> <span class="op">~</span><span class="st"> &quot;Alto&quot;</span>,</a>
+<a class="sourceLine" id="cb113-6" title="6">      MGRA <span class="op">&lt;</span><span class="st"> </span><span class="dv">130</span> <span class="op">~</span><span class="st"> &quot;Pouco produtivo&quot;</span>,</a>
+<a class="sourceLine" id="cb113-7" title="7">      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Outro&quot;</span></a>
+<a class="sourceLine" id="cb113-8" title="8">      )</a>
+<a class="sourceLine" id="cb113-9" title="9">    )</a></code></pre></div>
+<pre><code># A tibble: 780 x 11
+   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA CASE 
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 A1    H1    I      2.45  2.39  16.9  52.1 228.   375.   609 Alto 
+ 2 A1    H1    I      2.5   1.43  14.4  50.7 187.   437.   427 Alto 
+ 3 A1    H1    I      2.69  1.52  16.5  54.7 230.   464.   497 Alto 
+ 4 A1    H1    I      2.8   1.64  16.8  52.0 213.   408.   523 Alto 
+ 5 A1    H1    I      2.62  1.55  15.9  51.6 224.   406.   551 Alto 
+ 6 A1    H1    II     2.12  1.8   15    51.4 203.   383.   529 Outro
+ 7 A1    H1    II     3.15  1.78  10.9  41.9  75.2  256.   294 Alto 
+ 8 A1    H1    II     2.97  1.84  15    53.4 204.   387.   528 Alto 
+ 9 A1    H1    II     3.1   1.78  13.6  50.8 187.   348.   538 Alto 
+10 A1    H1    II     3.02  1.6   16.3  53.9 250.   430.   582 Alto 
+# ... with 770 more rows</code></pre>
 <p>A função <code>transmute()</code>   cria a nova variável e exclui todas as demais. Em adição, se o resultado da função precisa ser extraído para um vetor numérico, basta adicionar a função <code>pull()</code>, conforme segue</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">vect =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb107-2" title="2"><span class="st">       </span><span class="kw">transmute</span>(<span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb107-3" title="3"><span class="st">       </span><span class="kw">pull</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">vect =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-2" title="2"><span class="st">       </span><span class="kw">transmute</span>(<span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb115-3" title="3"><span class="st">       </span><span class="kw">pull</span>()</a></code></pre></div>
 </div>
 <div id="selecionar-linhas-com-base-em-seus-valores" class="section level2">
 <h2><span class="header-section-number">7.2</span> Selecionar linhas com base em seus valores</h2>
 <p>Utilizando a função <code>filter()</code>  é possivel filtrar as linhas de um conjunto de dados com base no valor de suas variáveis. No primeiro exemplo, selecionaremos as linhas onde o valor da variável MGRA é maior que 280.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb108-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span>)</a></code></pre></div>
 <pre><code># A tibble: 4 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -465,8 +491,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 A1    H13   II     2.47  1.28  15.3  53.0  291.  417.   698
 4 A4    H10   I      2.65  1.47  14    50.3  287.  275.   493</code></pre>
 <p>No segundo exemplo, selecionaremos apenas as linhas onde a MGRA é maior que 220 <strong>OU</strong> a APLA é menor que 1.3 <strong>OU</strong> o NGRA é maior que 820.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span>)</a></code></pre></div>
 <pre><code># A tibble: 10 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -481,30 +507,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 A4    H8    I      2.95  1.7   18.6  52.9 249.   302.   824
 10 A4    H10   I      2.65  1.47  14    50.3 287.   275.   493</code></pre>
 <p>No último exemplo, selecionaremos apenas as linhas onde MGRA é maior que é maior que 220 <strong>E</strong> a APLA é menor que 2.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb112-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb120-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code># A tibble: 1 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 A1    H6    II     1.97  1.63  17.1  54.7  230.  375.   614</code></pre>
 <p>Isto é aproximadamente equivalente ao seguinte código R base.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">maize[maize<span class="op">$</span>MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>maize<span class="op">$</span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">maize[maize<span class="op">$</span>MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>maize<span class="op">$</span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>, ]</a></code></pre></div>
 </div>
 <div id="resumir-um-conjunto-de-dados" class="section level2">
 <h2><span class="header-section-number">7.3</span> Resumir um conjunto de dados</h2>
+<p>A função <code>count()</code> pode ser utilizada para contar valores que se repetem em uma determinada variável. Por exemplo, é possível identificar qual é o valor de <code>APLA</code> que mais se repete utilizando</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">count</span>(maize, APLA, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code># A tibble: 143 x 2
+    APLA     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1  2.6     20
+ 2  2.8     20
+ 3  2.5     16
+ 4  2       14
+ 5  2.92    14
+ 6  2.1     13
+ 7  2.3     12
+ 8  2.7     12
+ 9  1.92    11
+10  2.04    11
+# ... with 133 more rows</code></pre>
+<p>Para identificar quais os valores distintos de <code>APLA</code> foram observados a função <code>distinct()</code>.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">distinct</span>(maize, APLA)</a></code></pre></div>
+<pre><code># A tibble: 143 x 1
+    APLA
+   &lt;dbl&gt;
+ 1  2.45
+ 2  2.5 
+ 3  2.69
+ 4  2.8 
+ 5  2.62
+ 6  2.12
+ 7  3.15
+ 8  2.97
+ 9  3.1 
+10  3.02
+# ... with 133 more rows</code></pre>
 <p>Utilizando a função <code>summarise()</code> é possível criar uma ou mais variáveis escalares resumindo as variáveis de um tibble existente. Como resultado, uma linha é retornada. O seguinte código calcula a média global da MGRA e retorna o <em>n</em> utilizado na estimativa.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb115-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA),</a>
-<a class="sourceLine" id="cb115-3" title="3">            <span class="dt">n =</span> <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb127-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA),</a>
+<a class="sourceLine" id="cb127-3" title="3">            <span class="dt">n =</span> <span class="kw">n</span>())</a></code></pre></div>
 <pre><code># A tibble: 1 x 2
   MGRA_mean     n
       &lt;dbl&gt; &lt;int&gt;
 1      173.   780</code></pre>
 <p>Muitas vezes é necessário computar uma determinada função (como a média) para cada nível de uma variável categórica. Felizmente, o pacote <strong>dplyr</strong> possibilita que isto seja realizado facilmente. Continuamos no mesmo exemplo anterior. Neste caso, no entanto, o objetivo é calcular a média da MGRA para cada híbrido. Utilizando a função <code>group_by()</code>  antes da função <code>summarise()</code>  uma linha de resultado para cada nível do fator híbrido é retornado.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb117-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb117-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA),</a>
-<a class="sourceLine" id="cb117-4" title="4">            <span class="dt">n =</span> <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA),</a>
+<a class="sourceLine" id="cb129-4" title="4">            <span class="dt">n =</span> <span class="kw">n</span>())</a></code></pre></div>
 <pre><code># A tibble: 13 x 3
    HIB   MGRA_mean     n
    &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt;
@@ -528,28 +586,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>_if()</code> aplicar a função a variáveis selecionadas com uma função, por exemplo <code>is.numeric()</code>.</li>
 </ul>
 <p>Veremos como estas variantes funcionam, calculando a média para as variáveis do conjunto de dados.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb119-2" title="2"><span class="st">  </span><span class="kw">summarise_all</span>(mean)</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-2" title="2"><span class="st">  </span><span class="kw">summarise_all</span>(mean)</a></code></pre></div>
 <pre><code># A tibble: 1 x 10
     AMB   HIB   REP  APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1    NA    NA    NA  2.48  1.34  15.2  49.5  173.  339.  512.</code></pre>
 <p>Note que utilizando a função <code>summarise_all()</code> a média para todas as variáveis numéricas foi calculada e um valor <code>NA</code> foi retornado para as variáveis categóricas. Se o objetivo é computar a média somente para as variáveis numéricas (o que é o mais lógico), a função <code>summarise_if()</code> é a melhor escolha.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb121-2" title="2"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb133-2" title="2"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)</a></code></pre></div>
 <pre><code># A tibble: 1 x 7
    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1  2.48  1.34  15.2  49.5  173.  339.  512.</code></pre>
 <p>Funções próprias podem ser aplicadas dentro da função summarise para computar uma estatística personalizada. Como exemplo, vamos criar uma função chamada <code>mse</code> que retornará o valor da média e o erro padrão da média e aplicá-la para cada nível do fator AMB.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">mse =<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb123-2" title="2">  me =<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb123-3" title="3">  se =<span class="st"> </span><span class="kw">round</span>(<span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()), <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb123-4" title="4">  <span class="kw">return</span>(<span class="kw">paste</span>(me, <span class="st">&quot;+-&quot;</span>, se))</a>
-<a class="sourceLine" id="cb123-5" title="5">}</a>
-<a class="sourceLine" id="cb123-6" title="6">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb123-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb123-8" title="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean_se =</span> <span class="kw">mse</span>(MGRA))</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">mse =<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb135-2" title="2">  me =<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb135-3" title="3">  se =<span class="st"> </span><span class="kw">round</span>(<span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()), <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb135-4" title="4">  <span class="kw">return</span>(<span class="kw">paste</span>(me, <span class="st">&quot;+-&quot;</span>, se))</a>
+<a class="sourceLine" id="cb135-5" title="5">}</a>
+<a class="sourceLine" id="cb135-6" title="6">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb135-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb135-8" title="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean_se =</span> <span class="kw">mse</span>(MGRA))</a></code></pre></div>
 <pre><code># A tibble: 4 x 2
   AMB   MGRA_mean_se    
   &lt;chr&gt; &lt;chr&gt;           
@@ -558,12 +616,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 A3    146.811 +- 2.787
 4 A4    177.072 +- 3.118</code></pre>
 <p>Se desejamos computar mais de uma função para variáveis específicas, então o próximo código nos ajudará. Note que para aplicar mais de uma função é necessário declarar o argumento <code>.funs</code> e criar um vetor com o nome das funções. Neste caso, os sufixos <code>_m</code> e <code>_sd</code> representam a média e o desvio padrão, respectivamente.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-3" title="3"><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;M&quot;</span>),</a>
-<a class="sourceLine" id="cb125-4" title="4">                    <span class="kw">ends_with</span>(<span class="st">&quot;S&quot;</span>),</a>
-<a class="sourceLine" id="cb125-5" title="5">                    <span class="kw">contains</span>(<span class="st">&quot;GR&quot;</span>)),</a>
-<a class="sourceLine" id="cb125-6" title="6">               <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span> mean, <span class="dt">sd =</span> sd))</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-3" title="3"><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;M&quot;</span>),</a>
+<a class="sourceLine" id="cb137-4" title="4">                    <span class="kw">ends_with</span>(<span class="st">&quot;S&quot;</span>),</a>
+<a class="sourceLine" id="cb137-5" title="5">                    <span class="kw">contains</span>(<span class="st">&quot;GR&quot;</span>)),</a>
+<a class="sourceLine" id="cb137-6" title="6">               <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span> mean, <span class="dt">sd =</span> sd))</a></code></pre></div>
 <pre><code># A tibble: 4 x 11
   AMB   MGRA_m MMG_m AIES_m DIES_m NGRA_m MGRA_sd MMG_sd AIES_sd DIES_sd
   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -582,8 +640,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="selecionar-variaveis-com-base-em-seus-nomes" class="section level2">
 <h2><span class="header-section-number">7.4</span> Selecionar variáveis com base em seus nomes</h2>
 <p>A função <code>select()</code>  é utilizada para selecionar variáveis de um conjunto de dados. O seguinte código seleciona as variáveis MGRA e AIES do conjunto de dados</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb127-2" title="2"><span class="st">  </span><span class="kw">select</span>(MGRA, AIES)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-2" title="2"><span class="st">  </span><span class="kw">select</span>(MGRA, AIES)</a></code></pre></div>
 <pre><code># A tibble: 780 x 2
     MGRA  AIES
    &lt;dbl&gt; &lt;dbl&gt;
@@ -602,8 +660,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 </p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb129-2" title="2"><span class="st">  </span><span class="kw">select_at</span>(<span class="kw">vars</span>(<span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-2" title="2"><span class="st">  </span><span class="kw">select_at</span>(<span class="kw">vars</span>(<span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>)))</a></code></pre></div>
 <pre><code># A tibble: 780 x 5
    AMB    APLA  AIES  MGRA  NGRA
    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -619,9 +677,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 A1     3.02  1.6  250.    582
 # ... with 770 more rows</code></pre>
 <p>Se o objetivo é excluir as variáveis selecionadas, basta incluir o operador <code>-</code> antes dos nomes das variáveis. No próximo exemplo, serão selecionadas todas as variáveis, exceto aquelas que contém <strong>A</strong> no nome. Em adição, o nome da variável MMG será modificado para <code>Massa de mil grãos</code>.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-2" title="2"><span class="st">  </span><span class="kw">select_at</span>(<span class="kw">vars</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span><span class="kw">rename</span>(<span class="st">`</span><span class="dt">Massa de mil grãos</span><span class="st">`</span> =<span class="st">  </span>MMG)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="st">  </span><span class="kw">select_at</span>(<span class="kw">vars</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-3" title="3"><span class="st">  </span><span class="kw">rename</span>(<span class="st">`</span><span class="dt">Massa de mil grãos</span><span class="st">`</span> =<span class="st">  </span>MMG)</a></code></pre></div>
 <pre><code># A tibble: 780 x 5
    HIB   REP    CESP  DIES `Massa de mil grãos`
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;                &lt;dbl&gt;
@@ -652,27 +710,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ordenar-linhas" class="section level2">
 <h2><span class="header-section-number">7.5</span> Ordenar linhas</h2>
 <p>A função <code>arrange()</code>  é utilizada para ordenar as linhas de um tibble (ou data.frames) com base em uma expressão envolvendo suas variáveis. Considerando as funções que vimos até aqui, vamos computar a média para a MGRA, criar uma nova variável chamada <strong>Rank</strong>, qual corresponde ao ranqueamento dos híbridos para a variável em questão e ordenar a variável Rank em ordem crescente, onde o híbrido com a maior média ficará na primeira linha.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(Rank)</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>Rank)</a></code></pre></div>
 <pre><code># A tibble: 13 x 3
    HIB   MGRA_mean  Rank
    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
- 1 H9         153.     1
- 2 H12        157.     2
- 3 H8         160.     3
- 4 H10        164.     4
- 5 H11        167.     5
- 6 H3         169.     6
+ 1 H6         188.    13
+ 2 H2         187.    12
+ 3 H4         184.    11
+ 4 H1         184.    10
+ 5 H5         184.     9
+ 6 H13        180.     8
  7 H7         171.     7
- 8 H13        180.     8
- 9 H5         184.     9
-10 H1         184.    10
-11 H4         184.    11
-12 H2         187.    12
-13 H6         188.    13</code></pre>
+ 8 H3         169.     6
+ 9 H11        167.     5
+10 H10        164.     4
+11 H8         160.     3
+12 H12        157.     2
+13 H9         153.     1</code></pre>
 
 
 <div class="tarefa">
@@ -683,20 +741,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 <p><a href="resposta-dos-exercicios.html#exerc3">Resposta</a></p>
+<p>Ao combinar a função <code>group_by()</code> com <code>arrange()</code> é possível realizar o ordenamento para cada nível de um determinado fator. No exemplo abaixo, a variável <code>APLA</code> é ordenada de maneira crescente para cada híbrido.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-3" title="3"><span class="st">  </span><span class="kw">arrange</span>(APLA, <span class="dt">.by_group =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code># A tibble: 780 x 10
+# Groups:   HIB [13]
+   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 A3    H1    II     1.93  0.93  13    50.0 120.   276.   433
+ 2 A3    H1    I      2     1.05  19.9  53.3 253.   444.   570
+ 3 A3    H1    I      2.07  1.05  13.2  47.9 110.   293.   377
+ 4 A3    H1    II     2.08  0.94  12    47.6 103.   334.   309
+ 5 A3    H1    III    2.1   0.97  17.5  50.8 222.   423.   524
+ 6 A1    H1    II     2.12  1.8   15    51.4 203.   383.   529
+ 7 A3    H1    I      2.12  1.03  18.5  52.0 214.   382.   560
+ 8 A3    H1    III    2.12  0.96  15    56.8 174.   339.   512
+ 9 A3    H1    I      2.13  1.05  11.6  47.0  89.5  300.   298
+10 A4    H1    I      2.13  1.1   12.8  47.6 144.   280.   516
+# ... with 770 more rows</code></pre>
+</div>
+<div id="selecionar-linhas-por-sua-posicao" class="section level2">
+<h2><span class="header-section-number">7.6</span> Selecionar linhas por sua posição</h2>
+<p>A função <code>slice()</code> é usada para selecionar linhas por sua posição ordinal no tibble. Os tibbles agrupados usam a posição ordinal dentro do grupo.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="co"># seleciona as três primeiras linhas</span></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="kw">slice</span>(maize, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code># A tibble: 3 x 10
+  AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A1    H1    I      2.45  2.39  16.9  52.1  228.  375.   609
+2 A1    H1    I      2.5   1.43  14.4  50.7  187.  437.   427
+3 A1    H1    I      2.69  1.52  16.5  54.7  230.  464.   497</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="co"># Seleciona as 3 últimas linhas</span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="kw">slice</span>(maize, <span class="dv">778</span><span class="op">:</span><span class="kw">n</span>())</a></code></pre></div>
+<pre><code># A tibble: 3 x 10
+  AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A4    H13   III    2.2   0.9   12.1  40.9  92.8  322.   288
+2 A4    H13   III    2.15  1.07  10.6  46.0  91.4  300.   305
+3 A4    H13   III    2.19  1.12  14.5  51.9 144.   352.   408</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="co"># seleciona as duas primeiras linhas de cada ambiente</span></a>
+<a class="sourceLine" id="cb153-2" title="2">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb153-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb153-4" title="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code># A tibble: 8 x 10
+# Groups:   AMB [4]
+  AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A1    H1    I      2.45  2.39  16.9  52.1  228.  375.   609
+2 A1    H1    I      2.5   1.43  14.4  50.7  187.  437.   427
+3 A2    H1    I      3.06  1.89  18.2  54.4  244.  421.   581
+4 A2    H1    I      3.04  1.89  15.4  53.4  193.  369.   523
+5 A3    H1    I      2.12  1.03  18.5  52.0  214.  382.   560
+6 A3    H1    I      2     1.05  19.9  53.3  253.  444.   570
+7 A4    H1    I      2.13  1.1   12.8  47.6  144.  280.   516
+8 A4    H1    I      2.3   1.25  13.1  50.0  140.  230.   609</code></pre>
+</div>
+<div id="selecionar-top-n-linhas-baseado-em-valor" class="section level2">
+<h2><span class="header-section-number">7.7</span> Selecionar top n linhas baseado em valor</h2>
+<p>A função <code>top_n()</code> é usada para selecionar linhas superiores ou inferiores em cada grupo.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="co"># seleciona as duas linhas com o maior valor de MGRA</span></a>
+<a class="sourceLine" id="cb155-2" title="2"><span class="kw">top_n</span>(maize, <span class="dv">2</span>, MGRA)</a></code></pre></div>
+<pre><code># A tibble: 2 x 10
+  AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A1    H6    I      2.92  1.64  18    56.0  289.  393.   734
+2 A1    H13   II     2.47  1.28  15.3  53.0  291.  417.   698</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1"><span class="co"># seleciona as duas linhas com o menor valor de MGRA</span></a>
+<a class="sourceLine" id="cb157-2" title="2"><span class="kw">top_n</span>(maize, <span class="dv">2</span>, <span class="op">-</span>MGRA)</a></code></pre></div>
+<pre><code># A tibble: 2 x 10
+  AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A1    H9    III    2.72  1.54  11    42.8  58.5  295.   198
+2 A2    H8    I      1.92  0.63  12.1  39.7  59.5  243.   245</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1"><span class="co"># Maior produtividade em cada ambiente</span></a>
+<a class="sourceLine" id="cb159-2" title="2">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb159-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb159-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, MGRA)</a></code></pre></div>
+<pre><code># A tibble: 4 x 10
+# Groups:   AMB [4]
+  AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A1    H13   II     2.47  1.28  15.3  53.0  291.  417.   698
+2 A2    H6    III    3.18  1.62  19.2  53.0  270.  382.   708
+3 A3    H1    I      2     1.05  19.9  53.3  253.  444.   570
+4 A4    H10   I      2.65  1.47  14    50.3  287.  275.   493</code></pre>
 </div>
 <div id="combinando-os-verbos-para-manipulacao" class="section level2">
-<h2><span class="header-section-number">7.6</span> Combinando os verbos para manipulação</h2>
+<h2><span class="header-section-number">7.8</span> Combinando os verbos para manipulação</h2>
 <p>Esta sessão tem o objetivo de demonstrar como os <em>verbos</em> <strong>dplyr</strong> em conjunto com as funções <code>spread()</code> do pacote <a href="https://tidyr.tidyverse.org/">tidyr</a><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> e <code>column_to_rownames()</code>  do pacote <a href="https://www.tidyverse.org/packages/">tibble</a><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> podem ser combinados para construir uma matriz dupla entrada onde as linhas correspondem aos genótipos e as colunas correspondem aos ambientes. Esta matriz será preenchida com o valor médio da MGRA considerando apenas as duas primeiras repetições de cada híbrido em cada ambiente.
 
 
 
 </p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-2" title="2"><span class="st">  </span><span class="kw">filter</span>(REP <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_me =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-5" title="5"><span class="st">  </span><span class="kw">spread</span>(AMB, MGRA_me) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-6" title="6"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;HIB&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb161-2" title="2"><span class="st">  </span><span class="kw">filter</span>(REP <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb161-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb161-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_me =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb161-5" title="5"><span class="st">  </span><span class="kw">spread</span>(AMB, MGRA_me) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb161-6" title="6"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;HIB&quot;</span>)</a></code></pre></div>
 <pre><code>          A1       A2       A3       A4
 H1  200.2324 193.7994 147.2241 195.1622
 H10 185.0601 151.2758 116.9737 179.5325
@@ -713,37 +856,37 @@ H8  198.2184 115.9920 148.6665 181.9194
 H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 </div>
 <div id="trabalhando-com-duas-tabelas-ao-mesmo-tempo" class="section level2">
-<h2><span class="header-section-number">7.7</span> Trabalhando com duas tabelas ao mesmo tempo</h2>
+<h2><span class="header-section-number">7.9</span> Trabalhando com duas tabelas ao mesmo tempo</h2>
 </div>
 <div id="juncoes-com-mutacao-de-dados" class="section level2">
-<h2><span class="header-section-number">7.8</span> Junções com mutação de dados</h2>
+<h2><span class="header-section-number">7.10</span> Junções com mutação de dados</h2>
 <p>É raro que uma análise de dados envolva apenas uma única tabela de dados. Na prática, diversas tabela podem existir e ferramentas flexíveis para combiná-las são necessárias. No <strong>dplyr</strong>, existem três famílias de <strong>verbos</strong> que permitem trabalhar com duas tabelas ao mesmo tempo, permitindo: (i) juntar tabelas, (ii) Filtrar registros e (iii) realizar operações.</p>
 <p>Os seguintes códigos criam três novos conjuntos de dados. <strong>maize2</strong> contém dados de duas repetições para os híbridos H1:H5 nos ambientes H1 e H2. <strong>mean_h</strong> e <strong>mean_a</strong> contém as médias para os híbridos e ambientes, respectivamente. </p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">maize2  =<span class="st"> </span></a>
-<a class="sourceLine" id="cb137-2" title="2"><span class="st">  </span>maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-3" title="3"><span class="st">  </span><span class="kw">filter</span>(HIB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>, <span class="st">&quot;H3&quot;</span>,<span class="st">&quot;H4&quot;</span>,<span class="st">&quot;H5&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-4" title="4"><span class="st">  </span><span class="kw">filter</span>(AMB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-5" title="5"><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-6" title="6"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-7" title="7"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb137-8" title="8"></a>
-<a class="sourceLine" id="cb137-9" title="9">mean_h =<span class="st"> </span>maize2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-10" title="10"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-11" title="11"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-12" title="12"><span class="st">  </span><span class="kw">select</span>(HIB, <span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-13" title="13"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb137-14" title="14"></a>
-<a class="sourceLine" id="cb137-15" title="15">mean_a =<span class="st"> </span>maize2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-16" title="16"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-17" title="17"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-18" title="18"><span class="st">  </span><span class="kw">select</span>(AMB, <span class="kw">contains</span>(<span class="st">&quot;ES&quot;</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-19" title="19"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">maize2  =<span class="st"> </span></a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="st">  </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-3" title="3"><span class="st">  </span><span class="kw">filter</span>(HIB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>, <span class="st">&quot;H3&quot;</span>,<span class="st">&quot;H4&quot;</span>,<span class="st">&quot;H5&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-4" title="4"><span class="st">  </span><span class="kw">filter</span>(AMB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-5" title="5"><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-6" title="6"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-7" title="7"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb163-8" title="8"></a>
+<a class="sourceLine" id="cb163-9" title="9">mean_h =<span class="st"> </span>maize2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-10" title="10"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-11" title="11"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-12" title="12"><span class="st">  </span><span class="kw">select</span>(HIB, <span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-13" title="13"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb163-14" title="14"></a>
+<a class="sourceLine" id="cb163-15" title="15">mean_a =<span class="st"> </span>maize2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-16" title="16"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-17" title="17"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-18" title="18"><span class="st">  </span><span class="kw">select</span>(AMB, <span class="kw">contains</span>(<span class="st">&quot;ES&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-19" title="19"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <ul>
 <li>Juntando a coluna <strong>MGRA_m</strong> da tabela <strong>mean_h</strong> na tabela <strong>maize2</strong> considerando as variáveis com mesmo nome nas duas tabelas (neste caso, HIB)</li>
 </ul>
 
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">left_join</span>(maize2, mean_h <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb138-2" title="2"><span class="st">            </span><span class="kw">select</span>(HIB, MGRA_m))</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">left_join</span>(maize2, mean_h <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-2" title="2"><span class="st">            </span><span class="kw">select</span>(HIB, MGRA_m))</a></code></pre></div>
 <pre><code># A tibble: 10 x 10
    AMB   HIB    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA MGRA_m
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -761,7 +904,7 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <li>Juntando as colunas da tabela <strong>mean_g</strong> na tabela <strong>maize2</strong></li>
 </ul>
 
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">full_join</span>(maize2, mean_a)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">full_join</span>(maize2, mean_a)</a></code></pre></div>
 <pre><code># A tibble: 10 x 12
    AMB   HIB    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA AIES_m CESP_m
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -778,11 +921,11 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 # ... with 1 more variable: DIES_m &lt;dbl&gt;</code></pre>
 </div>
 <div id="juncoes-com-filtragem-de-dados" class="section level2">
-<h2><span class="header-section-number">7.9</span> Junções com filtragem de dados</h2>
+<h2><span class="header-section-number">7.11</span> Junções com filtragem de dados</h2>
 <ul>
 <li>Filtrando as linhas da tabela <strong>maize</strong> com base nas variáveis que combinam na tabela <strong>mean_h</strong> (neste caso, a coluna HIB) </li>
 </ul>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">semi_join</span>(maize, mean_h)</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">semi_join</span>(maize, mean_h)</a></code></pre></div>
 <pre><code># A tibble: 300 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -800,7 +943,7 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <ul>
 <li>Filtrando as linhas da tabela <strong>maize</strong> com base nas variáveis que <strong>NÃO</strong> combinam na tabela <strong>mean_h</strong> (neste caso, a coluna HIB) </li>
 </ul>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">anti_join</span>(maize, mean_h)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">anti_join</span>(maize, mean_h)</a></code></pre></div>
 <pre><code># A tibble: 480 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -817,18 +960,18 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 # ... with 470 more rows</code></pre>
 </div>
 <div id="operacoes-com-conjuntos" class="section level2">
-<h2><span class="header-section-number">7.10</span> Operações com conjuntos</h2>
+<h2><span class="header-section-number">7.12</span> Operações com conjuntos</h2>
 <p>Nesta seção será demonstrado como é possivel utilizar operações de cojuntos como interseção e união. É esperado que as entradas x e y tenham as mesmas variáveis. Para isto, vamos criar dois novos conjuntos de dados chamados <strong>data_1_to_5</strong> e <strong>data_3_to_10</strong>, quais contém, respectivamente as cinco primeiras linhas
 e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()</code>  é utilizada para selecionar as linhas com base em sua posição.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1">data_<span class="dv">1</span>_to_<span class="dv">5</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-2" title="2"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb146-3" title="3">data_<span class="dv">3</span>_to_<span class="dv">10</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-4" title="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">data_<span class="dv">1</span>_to_<span class="dv">5</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb172-2" title="2"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb172-3" title="3">data_<span class="dv">3</span>_to_<span class="dv">10</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb172-4" title="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
 <ul>
 <li>Interseção de conjuntos</li>
 </ul>
 <p>A função <code>intersect()</code> (interseção de conjunto) retorna somente as linhas presentes nos dois conjuntos, neste caso, as linhas 3, 4 and 5 do conjunto <strong>maize</strong></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">intersect</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1"><span class="kw">intersect</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code># A tibble: 3 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -839,7 +982,7 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()<
 <li>União de conjuntos</li>
 </ul>
 <p>A função <code>union()</code> (união de conjunto) junta os dois conjuntos sem que haja duplicação de registros.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="kw">union</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">union</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code># A tibble: 10 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -857,7 +1000,7 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()<
 <li>Diferença de conjuntos</li>
 </ul>
 <p>A função <code>setdiff()</code>  (diferença de conjunto, ou complementar) cria uma tabela somente com os registros em <strong>data_1_to_5</strong> que não estão em <strong>data_3_to_10</strong>.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">setdiff</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="kw">setdiff</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code># A tibble: 2 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;

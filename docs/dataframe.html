@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2019-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.6</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.7</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.8</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.9</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.10</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
@@ -366,21 +368,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dataframe" class="section level1">
 <h1><span class="header-section-number">Capítulo 5</span> Construindo uma tabela</h1>
 <p>Com o que foi visto até agora, é possível construir uma tabela para armazenar dados ou resultados gerados em uma análise. São inumeras as formas de fazer isso, porém vamos mostrar apenas uma (devido ao pouco tempo). Utilizaremos as funções <code>matrix()</code>  e <code>data.frame()</code>  para a tabela, e a função <code>names()</code> para dar nomeas as colunas. A construção de tabelas é muito util para armazenar resultados na área de trabalho.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">Ex.gen =<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb89-2" title="2"><span class="kw">names</span>(Ex.gen) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G1&quot;</span>,<span class="st">&quot;G2&quot;</span>,<span class="st">&quot;G3&quot;</span>)</a>
-<a class="sourceLine" id="cb89-3" title="3">Yeld1 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb89-4" title="4"><span class="co"># gera 20 valores de uma distribuição normal com média 10 e desvio padrão 1</span></a>
-<a class="sourceLine" id="cb89-5" title="5">Yeld2 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb89-6" title="6"><span class="co"># gera 20 valores de uma distribuição normal com média 40 e desvio padrão 3</span></a>
-<a class="sourceLine" id="cb89-7" title="7">Yeld3 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="fl">2.5</span>)</a>
-<a class="sourceLine" id="cb89-8" title="8"><span class="co"># gera 20 valores de uma distribuição normal com média 25 e desvio padrão 2,5</span></a>
-<a class="sourceLine" id="cb89-9" title="9">Ex.gen<span class="op">$</span>G1 =<span class="st"> </span>Yeld1</a>
-<a class="sourceLine" id="cb89-10" title="10">Ex.gen<span class="op">$</span>G2 =<span class="st"> </span>Yeld2</a>
-<a class="sourceLine" id="cb89-11" title="11">Ex.gen<span class="op">$</span>G3 =<span class="st"> </span>Yeld3</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">Ex.gen =<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb95-2" title="2"><span class="kw">names</span>(Ex.gen) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G1&quot;</span>,<span class="st">&quot;G2&quot;</span>,<span class="st">&quot;G3&quot;</span>)</a>
+<a class="sourceLine" id="cb95-3" title="3">Yeld1 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb95-4" title="4"><span class="co"># gera 20 valores de uma distribuição normal com média 10 e desvio padrão 1</span></a>
+<a class="sourceLine" id="cb95-5" title="5">Yeld2 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb95-6" title="6"><span class="co"># gera 20 valores de uma distribuição normal com média 40 e desvio padrão 3</span></a>
+<a class="sourceLine" id="cb95-7" title="7">Yeld3 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="fl">2.5</span>)</a>
+<a class="sourceLine" id="cb95-8" title="8"><span class="co"># gera 20 valores de uma distribuição normal com média 25 e desvio padrão 2,5</span></a>
+<a class="sourceLine" id="cb95-9" title="9">Ex.gen<span class="op">$</span>G1 =<span class="st"> </span>Yeld1</a>
+<a class="sourceLine" id="cb95-10" title="10">Ex.gen<span class="op">$</span>G2 =<span class="st"> </span>Yeld2</a>
+<a class="sourceLine" id="cb95-11" title="11">Ex.gen<span class="op">$</span>G3 =<span class="st"> </span>Yeld3</a></code></pre></div>
 <p>Vimos anteriormente, no entanto, que a utilização de <strong>tibbles</strong>  é recomendada. O mesmo conjunto de dados pode ser criado mais “elegantemente” com a função abaixo</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1">Ex.gen2 =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">G1 =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb90-2" title="2">                 <span class="dt">G2 =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb90-3" title="3">                 <span class="dt">G3 =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="fl">2.5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">Ex.gen2 =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">G1 =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb96-2" title="2">                 <span class="dt">G2 =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb96-3" title="3">                 <span class="dt">G3 =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="fl">2.5</span>))</a></code></pre></div>
 
 </div>
 

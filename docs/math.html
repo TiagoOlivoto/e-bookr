@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2019-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.6</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.7</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.8</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.9</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.10</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
@@ -366,20 +368,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="math" class="section level1">
 <h1><span class="header-section-number">Capítulo 3</span> Operações matemáticas</h1>
 <p>As operações matemáticas utilizam símbolos que são padrão em outros softwares estatísticos.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="co"># Soma</span></a>
-<a class="sourceLine" id="cb57-2" title="2"><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="co"># Subtração</span></a>
-<a class="sourceLine" id="cb57-3" title="3"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Multiplicação</span></a>
-<a class="sourceLine" id="cb57-4" title="4"><span class="kw">sqrt</span>(<span class="dv">4</span>) <span class="co"># Raiz quadrada</span></a>
-<a class="sourceLine" id="cb57-5" title="5"><span class="dv">4</span><span class="op">^</span><span class="dv">2</span> <span class="co"># Potência</span></a>
-<a class="sourceLine" id="cb57-6" title="6"><span class="kw">log</span>(<span class="dv">10</span>) <span class="co"># Por default, o logarítimo é de base e (logarítimo natural)</span></a>
-<a class="sourceLine" id="cb57-7" title="7"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dv">10</span>) <span class="co"># Logarítimo de base 10</span></a>
-<a class="sourceLine" id="cb57-8" title="8"><span class="kw">exp</span>(<span class="dv">100</span>) <span class="co"># exponencial</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="co"># Soma</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="co"># Subtração</span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Multiplicação</span></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="kw">sqrt</span>(<span class="dv">4</span>) <span class="co"># Raiz quadrada</span></a>
+<a class="sourceLine" id="cb63-5" title="5"><span class="dv">4</span><span class="op">^</span><span class="dv">2</span> <span class="co"># Potência</span></a>
+<a class="sourceLine" id="cb63-6" title="6"><span class="kw">log</span>(<span class="dv">10</span>) <span class="co"># Por default, o logarítimo é de base e (logarítimo natural)</span></a>
+<a class="sourceLine" id="cb63-7" title="7"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dv">10</span>) <span class="co"># Logarítimo de base 10</span></a>
+<a class="sourceLine" id="cb63-8" title="8"><span class="kw">exp</span>(<span class="dv">100</span>) <span class="co"># exponencial</span></a></code></pre></div>
 <p>Para multiplicação de matrizes utiliza-se <code>%*%</code> ao envéz de <code>*</code>. Note a diferença no exemplo abaixo.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">(x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">(x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</a></code></pre></div>
 <pre><code>     [,1] [,2]
 [1,]    1    3
 [2,]    2    4</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">(y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">(y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</a></code></pre></div>
 <pre><code>     [,1] [,2]
 [1,]    5    7
 [2,]    6    8</code></pre>
@@ -387,11 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 \left( {\begin{array}{*{20}{c}}{1 \cdot 5 + 3 \cdot 6}&amp;{1 \cdot 7 + 3 \cdot 8}\\{2 \cdot 5 + 4 \cdot 6}&amp;{2 \cdot 7 + 4 \cdot 8}\end{array}} \right) = \left( {\begin{array}{*{20}{c}}{23}&amp;{31}\\{34}&amp;{46}\end{array}} \right)
 \]</span></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">x <span class="op">*</span><span class="st"> </span>y <span class="co"># Errado</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">x <span class="op">*</span><span class="st"> </span>y <span class="co"># Errado</span></a></code></pre></div>
 <pre><code>     [,1] [,2]
 [1,]    5   21
 [2,]   12   32</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">x <span class="op">%*%</span><span class="st"> </span>y <span class="co"># Certo</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">x <span class="op">%*%</span><span class="st"> </span>y <span class="co"># Certo</span></a></code></pre></div>
 <pre><code>     [,1] [,2]
 [1,]   23   31
 [2,]   34   46</code></pre>
@@ -404,11 +406,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \left[ {\begin{array}{*{20}{c}}\begin{array}{l}1\\1\\1\end{array}&amp;\begin{array}{c}2\\ - 1\\1\end{array}\end{array}} \right]\left[ {\begin{array}{*{20}{c}}{{x_1}}\\{{x_2}}\end{array}} \right] = \left[ {\begin{array}{*{20}{c}}4\\1\\3\end{array}} \right] 
 \]</span></p>
 <p>Esse sistema de equações é representado por <span class="math inline">\({\boldsymbol{AX}} = {\boldsymbol{c}}\)</span> e tem como solução <span class="math inline">\({\boldsymbol{X = }}{{\boldsymbol{A}}^{{\boldsymbol{ - 1}}}}{\boldsymbol{c}}\)</span>:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb66-2" title="2">A1 =<span class="st"> </span>MASS<span class="op">::</span><span class="kw">ginv</span>(A) <span class="co"># Obtém a inversa generalizada de A</span></a>
-<a class="sourceLine" id="cb66-3" title="3">c =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>) <span class="co"># Vetor C</span></a>
-<a class="sourceLine" id="cb66-4" title="4">X =<span class="st"> </span>A1 <span class="op">%*%</span><span class="st"> </span>c</a>
-<a class="sourceLine" id="cb66-5" title="5">X</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb72-2" title="2">A1 =<span class="st"> </span>MASS<span class="op">::</span><span class="kw">ginv</span>(A) <span class="co"># Obtém a inversa generalizada de A</span></a>
+<a class="sourceLine" id="cb72-3" title="3">c =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>) <span class="co"># Vetor C</span></a>
+<a class="sourceLine" id="cb72-4" title="4">X =<span class="st"> </span>A1 <span class="op">%*%</span><span class="st"> </span>c</a>
+<a class="sourceLine" id="cb72-5" title="5">X</a></code></pre></div>
 <pre><code>     [,1]
 [1,]    2
 [2,]    1</code></pre>
@@ -420,40 +422,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 \boldsymbol{\hat\beta} = \boldsymbol{X&#39;X}^{- 1}\boldsymbol{X&#39;Y}
 \]</span></p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">X0 =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dt">each =</span> <span class="dv">21</span>)</a>
-<a class="sourceLine" id="cb68-2" title="2">X1 =<span class="st"> </span><span class="kw">c</span>(<span class="fl">68.5</span>, <span class="fl">45.2</span>, <span class="fl">91.3</span>, <span class="fl">47.8</span>, <span class="fl">46.9</span>, <span class="fl">66.1</span>, <span class="fl">49.5</span>, <span class="dv">52</span>, <span class="fl">48.9</span>, <span class="fl">38.4</span>, <span class="fl">87.9</span>,</a>
-<a class="sourceLine" id="cb68-3" title="3">       <span class="fl">72.8</span>, <span class="fl">88.4</span>, <span class="fl">42.9</span>, <span class="fl">52.5</span>, <span class="fl">85.7</span>, <span class="fl">41.3</span>, <span class="fl">51.7</span>, <span class="fl">89.6</span>, <span class="fl">82.7</span>, <span class="fl">52.3</span>)</a>
-<a class="sourceLine" id="cb68-4" title="4">X2 =<span class="st"> </span><span class="kw">c</span>(<span class="fl">16.7</span>, <span class="fl">16.8</span>, <span class="fl">18.2</span>, <span class="fl">16.3</span>, <span class="fl">17.3</span>, <span class="fl">18.2</span>, <span class="fl">15.9</span>, <span class="fl">17.2</span>, <span class="fl">16.6</span>, <span class="dv">16</span>, <span class="fl">18.3</span>,</a>
-<a class="sourceLine" id="cb68-5" title="5">       <span class="fl">17.1</span>, <span class="fl">17.4</span>, <span class="fl">15.8</span>, <span class="fl">17.8</span>, <span class="fl">18.4</span>, <span class="fl">16.5</span>, <span class="fl">16.3</span>, <span class="fl">18.1</span>, <span class="fl">19.1</span>, <span class="dv">16</span>)</a>
-<a class="sourceLine" id="cb68-6" title="6">Y =<span class="st"> </span><span class="kw">c</span>(<span class="fl">174.4</span>,  <span class="fl">164.4</span>, <span class="fl">244.2</span>, <span class="fl">154.6</span>, <span class="fl">181.6</span>, <span class="fl">207.5</span>, <span class="fl">152.8</span>, <span class="fl">163.2</span>, <span class="fl">145.4</span>, <span class="fl">137.2</span>, </a>
-<a class="sourceLine" id="cb68-7" title="7">      <span class="fl">241.9</span>, <span class="fl">191.1</span>, <span class="dv">232</span>, <span class="fl">145.3</span>, <span class="fl">161.1</span>, <span class="fl">209.7</span>, <span class="fl">146.4</span>, <span class="dv">144</span>, <span class="fl">232.6</span>, <span class="fl">224.1</span>, <span class="fl">166.5</span>)</a>
-<a class="sourceLine" id="cb68-8" title="8">X =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(X0, X1, X2) ,<span class="dt">nrow =</span> <span class="dv">21</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb68-9" title="9">B =<span class="st"> </span>(<span class="kw">solve</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X)) <span class="op">%*%</span><span class="st">  </span><span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>Y</a>
-<a class="sourceLine" id="cb68-10" title="10">B</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">X0 =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dt">each =</span> <span class="dv">21</span>)</a>
+<a class="sourceLine" id="cb74-2" title="2">X1 =<span class="st"> </span><span class="kw">c</span>(<span class="fl">68.5</span>, <span class="fl">45.2</span>, <span class="fl">91.3</span>, <span class="fl">47.8</span>, <span class="fl">46.9</span>, <span class="fl">66.1</span>, <span class="fl">49.5</span>, <span class="dv">52</span>, <span class="fl">48.9</span>, <span class="fl">38.4</span>, <span class="fl">87.9</span>,</a>
+<a class="sourceLine" id="cb74-3" title="3">       <span class="fl">72.8</span>, <span class="fl">88.4</span>, <span class="fl">42.9</span>, <span class="fl">52.5</span>, <span class="fl">85.7</span>, <span class="fl">41.3</span>, <span class="fl">51.7</span>, <span class="fl">89.6</span>, <span class="fl">82.7</span>, <span class="fl">52.3</span>)</a>
+<a class="sourceLine" id="cb74-4" title="4">X2 =<span class="st"> </span><span class="kw">c</span>(<span class="fl">16.7</span>, <span class="fl">16.8</span>, <span class="fl">18.2</span>, <span class="fl">16.3</span>, <span class="fl">17.3</span>, <span class="fl">18.2</span>, <span class="fl">15.9</span>, <span class="fl">17.2</span>, <span class="fl">16.6</span>, <span class="dv">16</span>, <span class="fl">18.3</span>,</a>
+<a class="sourceLine" id="cb74-5" title="5">       <span class="fl">17.1</span>, <span class="fl">17.4</span>, <span class="fl">15.8</span>, <span class="fl">17.8</span>, <span class="fl">18.4</span>, <span class="fl">16.5</span>, <span class="fl">16.3</span>, <span class="fl">18.1</span>, <span class="fl">19.1</span>, <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb74-6" title="6">Y =<span class="st"> </span><span class="kw">c</span>(<span class="fl">174.4</span>,  <span class="fl">164.4</span>, <span class="fl">244.2</span>, <span class="fl">154.6</span>, <span class="fl">181.6</span>, <span class="fl">207.5</span>, <span class="fl">152.8</span>, <span class="fl">163.2</span>, <span class="fl">145.4</span>, <span class="fl">137.2</span>, </a>
+<a class="sourceLine" id="cb74-7" title="7">      <span class="fl">241.9</span>, <span class="fl">191.1</span>, <span class="dv">232</span>, <span class="fl">145.3</span>, <span class="fl">161.1</span>, <span class="fl">209.7</span>, <span class="fl">146.4</span>, <span class="dv">144</span>, <span class="fl">232.6</span>, <span class="fl">224.1</span>, <span class="fl">166.5</span>)</a>
+<a class="sourceLine" id="cb74-8" title="8">X =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(X0, X1, X2) ,<span class="dt">nrow =</span> <span class="dv">21</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb74-9" title="9">B =<span class="st"> </span>(<span class="kw">solve</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X)) <span class="op">%*%</span><span class="st">  </span><span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>Y</a>
+<a class="sourceLine" id="cb74-10" title="10">B</a></code></pre></div>
 <pre><code>          [,1]
 [1,] -68.85707
 [2,]   1.45456
 [3,]   9.36550</code></pre>
 <p>O modelo ajustado é dado por <span class="math inline">\(\hat Y = - 68,85707 + 1,45456{X1} + 9,36550{X_2} + \varepsilon\)</span>. Combinando algumas funções vistas até agora, vamos criar um vetor de dados chamado <strong>PRED</strong> com os valores estimados pelo modelo acima. Em adição, um vetor de resíduos (<strong>RESID</strong>) será criado.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">PRED =<span class="st"> </span>B[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>B[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>B[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>X2</a>
-<a class="sourceLine" id="cb70-2" title="2">RESID =<span class="st"> </span>Y <span class="op">-</span><span class="st"> </span>PRED</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">PRED =<span class="st"> </span>B[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>B[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>B[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>X2</a>
+<a class="sourceLine" id="cb76-2" title="2">RESID =<span class="st"> </span>Y <span class="op">-</span><span class="st"> </span>PRED</a></code></pre></div>
 <p>As funções <code>det()</code>  para calcular o determinante de uma matriz. Já a função <code>eigen()</code>  retorna uma lista com os autovalores e autovetores da matriz. A função <code>names()</code>  indica o que contém no objeto <code>av</code>, e usando <code>$</code> é possivel selecionar os autovalores ou os autovetores.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">mat =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb71-2" title="2">detXX =<span class="st"> </span><span class="kw">det</span>(mat)</a>
-<a class="sourceLine" id="cb71-3" title="3">av =<span class="st"> </span><span class="kw">eigen</span>(mat)</a></code></pre></div>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">names</span>(av)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">mat =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb77-2" title="2">detXX =<span class="st"> </span><span class="kw">det</span>(mat)</a>
+<a class="sourceLine" id="cb77-3" title="3">av =<span class="st"> </span><span class="kw">eigen</span>(mat)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">names</span>(av)</a></code></pre></div>
 <pre><code>[1] &quot;values&quot;  &quot;vectors&quot;</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">av<span class="op">$</span>values <span class="co"># Extrai os autovalores</span></a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">av<span class="op">$</span>values <span class="co"># Extrai os autovalores</span></a></code></pre></div>
 <pre><code>[1]  8  2 -1</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">av<span class="op">$</span>vectors <span class="co"># Extrai os autovetores</span></a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">av<span class="op">$</span>vectors <span class="co"># Extrai os autovetores</span></a></code></pre></div>
 <pre><code>          [,1]       [,2]       [,3]
 [1,] 0.4082483 -0.3333333  0.7715167
 [2,] 0.8164966 -0.6666667  0.1543033
 [3,] 0.4082483  0.6666667 -0.6172134</code></pre>
 <p>A função <code>diag()</code>  extrai a diagonal de uma matriz ou cria uma matriz onde a diagonal são os elementos declarados. Os próximos comandos extraem a diagonal de XX e criam uma matriz identidade, com 5 linhas e 5 colunas.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">diag</span>(mat)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="kw">diag</span>(mat)</a></code></pre></div>
 <pre><code>[1] 0 5 4</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="kw">diag</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="kw">diag</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]    1    0    0    0
 [2,]    0    1    0    0
