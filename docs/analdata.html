@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-23" />
+<meta name="date" content="2019-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -449,11 +449,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       skew  -0.02402  -0.06447  -0.25647  -0.272225   0.1205   0.41299
    var.amo   5.32232  39.18513   1.57776   0.003175  12.0070   2.68308
    var.pop   5.28820  38.93394   1.56764   0.003155  11.9301   2.66588</code></pre>
-<p>Utilizando a função <code>split_factors()</code> é possível computar as estatísticas para cada nível de um fator. Neste exemplo, vamos calcular as estatísticas para cada um dos ambientes em que o experimento foi realizado, selecionando somente os valores da média, desvio padrão e coeficiente de variação.</p>
+<p>Utilizando a função <code>split_factors()</code> é possível computar as estatísticas para cada nível de um fator. Neste exemplo, vamos calcular as estatísticas para cada um dos ambientes em que o experimento foi realizado, selecionando somente os valores da média, desvio padrão e coeficiente de variação. O argumento <code>stats</code> é utilizado para selecionar as estatísticas. Ele é um vetor de nomes separados por vírgula com<code>"</code> no início e no final do vetor apenas.</p>
+<ul>
+<li>Isso vai funcionar:
+<ul>
+<li><code>stats = c("mean, SE.mean, CV, max, min")</code></li>
+<li><code>stats = "mean"</code></li>
+</ul></li>
+<li>Isso não vai funcionar:
+<ul>
+<li><code>stats = c("mean, "SE.mean", "CV", "max", "min")</code></li>
+<li><code>stats = c("mean,SE.mean, CV, max,min")</code></li>
+</ul></li>
+</ul>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1">data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb220-2" title="2"><span class="st">  </span><span class="kw">split_factors</span>(ENV) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb220-3" title="3"><span class="st">  </span><span class="kw">desc_stat</span>(EP, EL, CL, CW, NR, NKR,</a>
-<a class="sourceLine" id="cb220-4" title="4">            <span class="dt">stats =</span> <span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;SD.amo&quot;</span>, <span class="st">&quot;CV&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb220-4" title="4">            <span class="dt">stats =</span> <span class="kw">c</span>(<span class="st">&quot;mean, SD.amo, CV&quot;</span>))</a></code></pre></div>
 <pre><code>---------------------------------------------------------------------------
  A1 
 ---------------------------------------------------------------------------

@@ -73,14 +73,24 @@ data_ge2 %>%
   desc_stat(EP, EL, CL, CW, NR, NKR)
 ```
 
-Utilizando a função `split_factors()` é possível computar as estatísticas para cada nível de um fator. Neste exemplo, vamos calcular as estatísticas para cada um dos ambientes em que o experimento foi realizado, selecionando somente os valores da média, desvio padrão e coeficiente de variação.
+Utilizando a função `split_factors()` é possível computar as estatísticas para cada nível de um fator. Neste exemplo, vamos calcular as estatísticas para cada um dos ambientes em que o experimento foi realizado, selecionando somente os valores da média, desvio padrão e coeficiente de variação. O argumento `stats` é utilizado para selecionar as estatísticas. Ele é um vetor de nomes separados por vírgula com` "` no início e no final do vetor apenas.
+
+* Isso vai funcionar:
+   * `stats = c("mean, SE.mean, CV, max, min")`
+   * `stats = "mean"`
+
+* Isso não vai funcionar:
+   * `stats = c("mean, "SE.mean", "CV", "max", "min")`
+   * `stats = c("mean,SE.mean, CV, max,min")`
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 data_ge2 %>% 
   split_factors(ENV) %>%
   desc_stat(EP, EL, CL, CW, NR, NKR,
-            stats = c("mean", "SD.amo", "CV"))
+            stats = c("mean, SD.amo, CV"))
 ```
+
+
 
 ### Testes de aderência
 Testes de aderência a distribuições teóricas também são de grande utilizada para as ciências agrárias. O teste de Shapiro-Wilk, realizado pela função `shapiro.test()` \indt{shapiro.test}, é amplamente utilizada para realizar o teste de normalidade dos dados. Para testar a aderência a outras distribuições teóricas, o teste de Kolmolgorov-Smirnov (função `ks.test()`) \indt{ks.test()} é uma alternativa.  
