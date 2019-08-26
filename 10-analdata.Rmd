@@ -80,14 +80,14 @@ Utilizando a função `split_factors()` é possível computar as estatísticas p
    * `stats = "mean"`
 
 * Isso não vai funcionar:
-   * `stats = c("mean, "SE.mean", "CV", "max", "min")`
+   * `stats = c("mean", "SE.mean", "CV", "max", "min")`
    * `stats = c("mean,SE.mean, CV, max,min")`
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 data_ge2 %>% 
   split_factors(ENV) %>%
   desc_stat(EP, EL, CL, CW, NR, NKR,
-            stats = c("mean, SD.amo, CV"))
+            stats = c("mean, SE.mean, CV"))
 ```
 
 
