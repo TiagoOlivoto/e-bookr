@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Resposta dos exercícios | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Resposta dos exercícios | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-26" />
+<meta name="date" content="2019-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="interaction.html">
-<link rel="next" href="tabela-de-distribuicoes.html">
+<link rel="prev" href="interaction.html"/>
+<link rel="next" href="tabela-de-distribuicoes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,6 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
+<li class="chapter" data-level="8.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>8.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensoes"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
@@ -369,32 +370,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">A</span> Resposta dos exercícios</h1>
 <div id="exerc1" class="section level2">
 <h2><span class="header-section-number">A.1</span> Exercício 1</h2>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1"><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" title="1"><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>[1] 8</code></pre>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1"><span class="kw">F2</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="kw">F2</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>[1] 8</code></pre>
 <p>O resultado foi o mesmo, pois embora se tenha invertido o valor dos números, no segundo exemplo se declarou a qual argumento o numero pertencial.</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1"><span class="kw">F3</span>(<span class="dv">20</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1"><span class="kw">F3</span>(<span class="dv">20</span>)</a></code></pre></div>
 <pre><code>Error in F3(20): O argumento x = 20 é inválido. &#39;x&#39; precisa ser maior que 10</code></pre>
 <p>Pois o argumento (if x &gt; 10) faz com que ocorra um erro e a função não seja executada.</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" title="1"><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb545-1" title="1"><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</a></code></pre></div>
 <pre><code>Error in elevar(12, eleva = &quot;cubico&quot;): O argumento eleva = cubico deve ser ou &#39;quadrado&#39; ou &#39;cubo&#39;</code></pre>
 <p>O argumento ‘eleva’ não está correto. Ele deve ser ou ‘quadrado’ ou ‘cubo’.</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" title="1">mega =<span class="st"> </span><span class="cf">function</span>(jogos, <span class="dt">numeros =</span> <span class="dv">6</span>){</a>
-<a class="sourceLine" id="cb546-2" title="2">  <span class="cf">if</span>(<span class="op">!</span>numeros <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">15</span>)){</a>
-<a class="sourceLine" id="cb546-3" title="3">    <span class="kw">stop</span>(<span class="st">&quot;O numero deve ser entre 6 e 15&quot;</span>)</a>
-<a class="sourceLine" id="cb546-4" title="4">  }</a>
-<a class="sourceLine" id="cb546-5" title="5">  result =<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb546-6" title="6"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>jogos){</a>
-<a class="sourceLine" id="cb546-7" title="7">result[[i]] =<span class="st"> </span><span class="kw">sort</span>(</a>
-<a class="sourceLine" id="cb546-8" title="8">  <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>, <span class="dt">size =</span> numeros, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb546-9" title="9">  )</a>
-<a class="sourceLine" id="cb546-10" title="10">}</a>
-<a class="sourceLine" id="cb546-11" title="11">  <span class="kw">return</span>(<span class="kw">do.call</span>(rbind, result))</a>
-<a class="sourceLine" id="cb546-12" title="12">}</a>
-<a class="sourceLine" id="cb546-13" title="13"></a>
-<a class="sourceLine" id="cb546-14" title="14"><span class="co"># 4 jogos</span></a>
-<a class="sourceLine" id="cb546-15" title="15"><span class="kw">mega</span>(<span class="dv">5</span>, <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb547-1" title="1">mega =<span class="st"> </span><span class="cf">function</span>(jogos, <span class="dt">numeros =</span> <span class="dv">6</span>){</a>
+<a class="sourceLine" id="cb547-2" title="2">  <span class="cf">if</span>(<span class="op">!</span>numeros <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">15</span>)){</a>
+<a class="sourceLine" id="cb547-3" title="3">    <span class="kw">stop</span>(<span class="st">&quot;O numero deve ser entre 6 e 15&quot;</span>)</a>
+<a class="sourceLine" id="cb547-4" title="4">  }</a>
+<a class="sourceLine" id="cb547-5" title="5">  result =<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb547-6" title="6"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>jogos){</a>
+<a class="sourceLine" id="cb547-7" title="7">result[[i]] =<span class="st"> </span><span class="kw">sort</span>(</a>
+<a class="sourceLine" id="cb547-8" title="8">  <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>, <span class="dt">size =</span> numeros, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb547-9" title="9">  )</a>
+<a class="sourceLine" id="cb547-10" title="10">}</a>
+<a class="sourceLine" id="cb547-11" title="11">  <span class="kw">return</span>(<span class="kw">do.call</span>(rbind, result))</a>
+<a class="sourceLine" id="cb547-12" title="12">}</a>
+<a class="sourceLine" id="cb547-13" title="13"></a>
+<a class="sourceLine" id="cb547-14" title="14"><span class="co"># 4 jogos</span></a>
+<a class="sourceLine" id="cb547-15" title="15"><span class="kw">mega</span>(<span class="dv">5</span>, <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 [1,]    7   25   27   33   38   47   48   49   53    54
 [2,]    1    9   25   26   28   30   34   37   38    43
@@ -404,103 +405,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="exerc2" class="section level2">
 <h2><span class="header-section-number">A.2</span> Exercício 2</h2>
-<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb548-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MGRA_kg =</span> MGRA <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb548-3" title="3"><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, MGRA_kg) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb548-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, MGRA_kg)</a></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb549-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MGRA_kg =</span> MGRA <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb549-3" title="3"><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, MGRA_kg) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb549-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, MGRA_kg)</a></code></pre></div>
 </div>
 <div id="exerc3" class="section level2">
 <h2><span class="header-section-number">A.3</span> Exercício 3</h2>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" title="1">maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb549-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb549-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb549-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb549-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(Rank)</a></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb550-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb550-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb550-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb550-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(Rank)</a></code></pre></div>
 </div>
 <div id="exerc4" class="section level2">
 <h2><span class="header-section-number">A.4</span> Exercício 4</h2>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB, <span class="dt">size =</span> APLA)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb550-2" title="2"><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb551-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB, <span class="dt">size =</span> APLA)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb551-2" title="2"><span class="kw">geom_point</span>()</a></code></pre></div>
 </div>
 <div id="exerc5" class="section level2">
 <h2><span class="header-section-number">A.5</span> Exercício 5</h2>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb551-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> GEN)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb551-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb551-3" title="3"><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB)<span class="op">+</span></a>
-<a class="sourceLine" id="cb551-4" title="4"><span class="st">     </span><span class="kw">my_theme</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb552-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> GEN)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb552-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb552-3" title="3"><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB)<span class="op">+</span></a>
+<a class="sourceLine" id="cb552-4" title="4"><span class="st">     </span><span class="kw">my_theme</span>()</a></code></pre></div>
 </div>
 <div id="exerc6" class="section level2">
 <h2><span class="header-section-number">A.6</span> Exercício 6</h2>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb552-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb552-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> AMB))<span class="op">+</span></a>
-<a class="sourceLine" id="cb552-3" title="3"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
-<a class="sourceLine" id="cb552-4" title="4"><span class="st">     </span><span class="kw">my_theme</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb552-5" title="5"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb553-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb553-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> AMB))<span class="op">+</span></a>
+<a class="sourceLine" id="cb553-3" title="3"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
+<a class="sourceLine" id="cb553-4" title="4"><span class="st">     </span><span class="kw">my_theme</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb553-5" title="5"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a></code></pre></div>
 </div>
 <div id="exerc7" class="section level2">
 <h2><span class="header-section-number">A.7</span> Exercício 7</h2>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb553-1" title="1">means =<span class="st"> </span>qualitativo <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb553-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIBRIDO) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb553-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">RG =</span> <span class="kw">mean</span>(RG)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb553-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">letras =</span> <span class="st">&quot;a&quot;</span>)</a>
-<a class="sourceLine" id="cb553-5" title="5"><span class="kw">ggplot</span>(means, <span class="kw">aes</span>(<span class="dt">x =</span> HIBRIDO, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb553-6" title="6"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">width =</span> <span class="fl">0.5</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb553-7" title="7"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)))<span class="op">+</span></a>
-<a class="sourceLine" id="cb553-8" title="8"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> letras), <span class="dt">hjust =</span> <span class="dv">-1</span>, <span class="dt">size =</span> <span class="fl">3.5</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb553-9" title="9"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(means<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb553-10" title="10"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" title="1">means =<span class="st"> </span>qualitativo <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb554-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIBRIDO) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb554-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">RG =</span> <span class="kw">mean</span>(RG)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb554-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">letras =</span> <span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb554-5" title="5"><span class="kw">ggplot</span>(means, <span class="kw">aes</span>(<span class="dt">x =</span> HIBRIDO, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb554-6" title="6"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">width =</span> <span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb554-7" title="7"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)))<span class="op">+</span></a>
+<a class="sourceLine" id="cb554-8" title="8"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> letras), <span class="dt">hjust =</span> <span class="dv">-1</span>, <span class="dt">size =</span> <span class="fl">3.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb554-9" title="9"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(means<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb554-10" title="10"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 </div>
 <div id="exerc8" class="section level2">
 <h2><span class="header-section-number">A.8</span> Exercício 8</h2>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" title="1"><span class="kw">plot_lines</span>(quantitativo, <span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG, <span class="dt">fit =</span> <span class="dv">2</span>, <span class="dt">col =</span> F)</a></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" title="1"><span class="kw">plot_lines</span>(quantitativo, <span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG, <span class="dt">fit =</span> <span class="dv">2</span>, <span class="dt">col =</span> F)</a></code></pre></div>
 </div>
 <div id="exerc9" class="section level2">
 <h2><span class="header-section-number">A.9</span> Exercício 9</h2>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" title="1"><span class="kw">with</span>(quantitativo, <span class="kw">rbd</span>(DOSEN, BLOCO, RG, <span class="dt">quali =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" title="1"><span class="kw">with</span>(quantitativo, <span class="kw">rbd</span>(DOSEN, BLOCO, RG, <span class="dt">quali =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
 </div>
 <div id="exerc10" class="section level2">
 <h2><span class="header-section-number">A.10</span> Exercício 10</h2>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" title="1">res =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Convencional =</span> <span class="kw">residuals</span>(convencional),</a>
-<a class="sourceLine" id="cb556-2" title="2">             <span class="dt">Transformado =</span> <span class="kw">residuals</span>(transform),</a>
-<a class="sourceLine" id="cb556-3" title="3">             <span class="dt">Generalizado =</span> <span class="kw">residuals</span>(general, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>))</a>
-<a class="sourceLine" id="cb556-4" title="4"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Convencional)</a>
-<a class="sourceLine" id="cb556-5" title="5"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Transformado)</a>
-<a class="sourceLine" id="cb556-6" title="6"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Generalizado)</a></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb557-1" title="1">res =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Convencional =</span> <span class="kw">residuals</span>(convencional),</a>
+<a class="sourceLine" id="cb557-2" title="2">             <span class="dt">Transformado =</span> <span class="kw">residuals</span>(transform),</a>
+<a class="sourceLine" id="cb557-3" title="3">             <span class="dt">Generalizado =</span> <span class="kw">residuals</span>(general, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>))</a>
+<a class="sourceLine" id="cb557-4" title="4"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Convencional)</a>
+<a class="sourceLine" id="cb557-5" title="5"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Transformado)</a>
+<a class="sourceLine" id="cb557-6" title="6"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Generalizado)</a></code></pre></div>
 </div>
 <div id="exerc11" class="section level2">
 <h2><span class="header-section-number">A.11</span> Exercício 11</h2>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb557-1" title="1">NUPEC_<span class="dv">2</span> =<span class="st"> </span>FAT1_CI <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb557-2" title="2"><span class="st">  </span><span class="kw">filter</span>(HIBRIDO <span class="op">==</span><span class="st"> &quot;NUPEC_2&quot;</span>)</a>
-<a class="sourceLine" id="cb557-3" title="3"><span class="kw">ggplot</span>(NUPEC_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb557-4" title="4"><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb557-5" title="5"><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb557-6" title="6"><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">45</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb557-7" title="7"><span class="kw">eom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">46.41</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" title="1">NUPEC_<span class="dv">2</span> =<span class="st"> </span>FAT1_CI <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb558-2" title="2"><span class="st">  </span><span class="kw">filter</span>(HIBRIDO <span class="op">==</span><span class="st"> &quot;NUPEC_2&quot;</span>)</a>
+<a class="sourceLine" id="cb558-3" title="3"><span class="kw">ggplot</span>(NUPEC_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb558-4" title="4"><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb558-5" title="5"><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb558-6" title="6"><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">45</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb558-7" title="7"><span class="kw">eom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">46.41</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</a></code></pre></div>
 </div>
 <div id="exerc12" class="section level2">
 <h2><span class="header-section-number">A.12</span> Exercício 12</h2>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" title="1"><span class="kw">plot_factbars</span>(FAT2_CI,</a>
-<a class="sourceLine" id="cb558-2" title="2">              HIBRIDO,</a>
-<a class="sourceLine" id="cb558-3" title="3">              FONTEN,</a>
-<a class="sourceLine" id="cb558-4" title="4">              <span class="dt">resp =</span> RG,</a>
-<a class="sourceLine" id="cb558-5" title="5">              <span class="dt">errorbar =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb558-6" title="6">              <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb558-7" title="7">              <span class="dt">size.text.bar =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb558-8" title="8">              <span class="dt">lab.bar.vjust =</span> <span class="fl">-0.5</span>,</a>
-<a class="sourceLine" id="cb558-9" title="9">              <span class="dt">lab.bar =</span> <span class="kw">c</span>(<span class="st">&quot;bB&quot;</span>, <span class="st">&quot;cBC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cD&quot;</span>,</a>
-<a class="sourceLine" id="cb558-10" title="10">                          <span class="st">&quot;cD&quot;</span>, <span class="st">&quot;dC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bB&quot;</span>,</a>
-<a class="sourceLine" id="cb558-11" title="11">                          <span class="st">&quot;bA&quot;</span>, <span class="st">&quot;cA&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cC&quot;</span>,</a>
-<a class="sourceLine" id="cb558-12" title="12">                          <span class="st">&quot;cC&quot;</span>, <span class="st">&quot;dAB&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bA&quot;</span>),</a>
-<a class="sourceLine" id="cb558-13" title="13">              <span class="dt">palette =</span> <span class="st">&quot;Greens&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" title="1"><span class="kw">plot_factbars</span>(FAT2_CI,</a>
+<a class="sourceLine" id="cb559-2" title="2">              HIBRIDO,</a>
+<a class="sourceLine" id="cb559-3" title="3">              FONTEN,</a>
+<a class="sourceLine" id="cb559-4" title="4">              <span class="dt">resp =</span> RG,</a>
+<a class="sourceLine" id="cb559-5" title="5">              <span class="dt">errorbar =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb559-6" title="6">              <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb559-7" title="7">              <span class="dt">size.text.bar =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb559-8" title="8">              <span class="dt">lab.bar.vjust =</span> <span class="fl">-0.5</span>,</a>
+<a class="sourceLine" id="cb559-9" title="9">              <span class="dt">lab.bar =</span> <span class="kw">c</span>(<span class="st">&quot;bB&quot;</span>, <span class="st">&quot;cBC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cD&quot;</span>,</a>
+<a class="sourceLine" id="cb559-10" title="10">                          <span class="st">&quot;cD&quot;</span>, <span class="st">&quot;dC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bB&quot;</span>,</a>
+<a class="sourceLine" id="cb559-11" title="11">                          <span class="st">&quot;bA&quot;</span>, <span class="st">&quot;cA&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cC&quot;</span>,</a>
+<a class="sourceLine" id="cb559-12" title="12">                          <span class="st">&quot;cC&quot;</span>, <span class="st">&quot;dAB&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bA&quot;</span>),</a>
+<a class="sourceLine" id="cb559-13" title="13">              <span class="dt">palette =</span> <span class="st">&quot;Greens&quot;</span>)</a></code></pre></div>
 </div>
 <div id="exerc13" class="section level2">
 <h2><span class="header-section-number">A.13</span> Exercício 13</h2>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" title="1">covar_mat =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb559-2" title="2"><span class="st">  </span><span class="kw">split_factors</span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb559-3" title="3"><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</a>
-<a class="sourceLine" id="cb559-4" title="4">                <span class="dt">rep =</span> REP,</a>
-<a class="sourceLine" id="cb559-5" title="5">                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</a>
-<a class="sourceLine" id="cb559-6" title="6">                <span class="dt">type =</span> <span class="st">&quot;rcov&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" title="1">covar_mat =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb560-2" title="2"><span class="st">  </span><span class="kw">split_factors</span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb560-3" title="3"><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb560-4" title="4">                <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb560-5" title="5">                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb560-6" title="6">                <span class="dt">type =</span> <span class="st">&quot;rcov&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
@@ -562,8 +563,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

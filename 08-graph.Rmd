@@ -70,6 +70,7 @@ fac1 = ggplot(dados_gg, aes(x = RG, y = PH)) +
 ```
 
 Neste exemplo, um gráfico completamente diferente do anterior é gerado com apenas uma simples modificação: excluímos do mapeamento estético o argumento `colour = AMB` e incluímos uma nova função, `facet_wrap(~AMB)`. Neste caso, informamos que um gráfico deveria ser realizado para cada ambiente. Simples, não? \indf{facet\_wrap}
+
 ```{block2, type="dica"}
 No exemplo anterior, utilizamos a função `facet_wrap()` para confeccionar um gráfico foi criado para cada nível do fator **AMB**.
 
@@ -271,7 +272,6 @@ l1 = ggplot(dado_reg, aes(dose, prod))+
      stat_smooth(method = "lm",
                  formula = as.formula("y ~ poly(x, 1)"),
                  se = FALSE)
-
 l2 = ggplot(dado_reg, aes(dose, prod))+
      geom_point()+
      stat_smooth(method = "lm",
@@ -314,4 +314,22 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo **
 Note que no gráfico acima, as funções do pacote qqplotr foram carregadas utilizando `qqplotr::`. Neste caso, indicamos que a função desejada é uma função deste pacote. Isto é útil, principalmente quando dois pacotes tem funções com o mesmo nome. Utilizando `::` especificamos de qual pacote a função deve ser carregada.
 
 ```
+
+## Interface Shiny para **ggplot2**
+
+O pacote **ggplot2** está se tornando um sinônimo para visualização de dados em R. Seu nível de personalização baseado em *The grammar of graphics* [@Wilkinson2005] o torna uma das melhores alternativas para aqueles que desejam criar um gráfico completamente personalizado. Seu nível de dificuldade e a necessidade da digitação de linhas de códigos, no entanto, pode dificultrar um pouco a tarefa (até mesmo para os mais acostumados!). Neste sentido, algumas aplicações que utilizam o *mouse* foram desenvolvidas e servem como um add-in para o **ggplot2** no Rstudio. Focaremos aqui no pacote [esquisse](https://github.com/dreamRs/esquisse).
+
+O objetivo deste suplemento é permitir que você explore seus dados rapidamente para extrair as informações que eles contêm. Você só pode criar gráficos simples, não poderá usar escalas personalizadas e todo o poder do ggplot2. Este é apenas o começo! Este addin permite que você explore seus dados de forma interativa, visualizando-os com o pacote **ggplot2**. Ele permite que você desenhe gráficos de barras, curvas, gráficos de dispersão, histogramas, objetos boxplot e sf, depois exporte o gráfico ou recupere o código para reproduzir o gráfico. A imagem abaixo foi retirada do site do pacote e mostra como o esquisse é utilizado.
+
+![](figures/esquisse.gif)
+
+
+Para instalação do pacote e execução da aplicação, os seguintes códigos são utilizados.
+
+```{r, eval=FALSE}
+install.packages("esquisse")
+library(esquisse)
+esquisser()
+```
+
 

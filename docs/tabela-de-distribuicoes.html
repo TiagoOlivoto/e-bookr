@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tabela de distribuições | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Tabela de distribuições | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-26" />
+<meta name="date" content="2019-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="resposta-dos-exercicios.html">
-<link rel="next" href="references.html">
+<link rel="prev" href="resposta-dos-exercicios.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,6 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
+<li class="chapter" data-level="8.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>8.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensoes"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
@@ -370,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-338">Table A.1: </span>Limite unilateral da cauda direita da distribuição F de Fisher-Snedecor, 0,01 de probabilidade de erro.
+<span id="tab:unnamed-chunk-339">Table A.1: </span>Limite unilateral da cauda direita da distribuição F de Fisher-Snedecor, 0,01 de probabilidade de erro.
 </caption>
 <thead>
 <tr>
@@ -4343,7 +4344,7 @@ GL1
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-339">Table A.2: </span>Limite unilateral da cauda direita da distribuição F de Fisher-Snedecor, 0,05 de probabilidade de erro.
+<span id="tab:unnamed-chunk-340">Table A.2: </span>Limite unilateral da cauda direita da distribuição F de Fisher-Snedecor, 0,05 de probabilidade de erro.
 </caption>
 <thead>
 <tr>
@@ -8316,7 +8317,7 @@ GL1
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table class="table table-striped table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-340">Table A.3: </span>Valores da estatística q para teste de Tukey
+<span id="tab:unnamed-chunk-341">Table A.3: </span>Valores da estatística q para teste de Tukey
 </caption>
 <thead>
 <tr>
@@ -9836,7 +9837,7 @@ Inf
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-341">Table A.4: </span>Valores críticos da distribuição t de Student bicaudal em diferentes probabilidades.
+<span id="tab:unnamed-chunk-342">Table A.4: </span>Valores críticos da distribuição t de Student bicaudal em diferentes probabilidades.
 </caption>
 <thead>
 <tr>
@@ -12441,7 +12442,7 @@ GL
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-342">Table A.5: </span>Tabela da distribuição normal padrão. Primeira decimal de Z nas linhas e segunda decimal de Z nas colunas.
+<span id="tab:unnamed-chunk-343">Table A.5: </span>Tabela da distribuição normal padrão. Primeira decimal de Z nas linhas e segunda decimal de Z nas colunas.
 </caption>
 <thead>
 <tr>
@@ -13572,7 +13573,7 @@ Z
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-343">Table A.6: </span>Valores críticos (função inversa) em relação a cauda esquerda da distribuição Chi-quadrado.
+<span id="tab:unnamed-chunk-344">Table A.6: </span>Valores críticos (função inversa) em relação a cauda esquerda da distribuição Chi-quadrado.
 </caption>
 <thead>
 <tr>
@@ -14913,7 +14914,7 @@ GL
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%;  margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-344">Table A.7: </span>Valores críticos (função inversa) em relação a cauda direita da distribuição Chi-quadrado.
+<span id="tab:unnamed-chunk-345">Table A.7: </span>Valores críticos (função inversa) em relação a cauda direita da distribuição Chi-quadrado.
 </caption>
 <thead>
 <tr>
@@ -16311,8 +16312,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-26" />
+<meta name="date" content="2019-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="manipula.html">
-<link rel="next" href="exporta.html">
+<link rel="prev" href="manipula.html"/>
+<link rel="next" href="exporta.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,6 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
+<li class="chapter" data-level="8.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>8.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensoes"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
@@ -430,7 +431,7 @@ Figure 8.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores 
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1">fac1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb183-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
 <a class="sourceLine" id="cb183-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>AMB)</a></code></pre></div>
-Neste exemplo, um gráfico completamente diferente do anterior é gerado com apenas uma simples modificação: excluímos do mapeamento estético o argumento <code>colour = AMB</code> e incluímos uma nova função, <code>facet_wrap(~AMB)</code>. Neste caso, informamos que um gráfico deveria ser realizado para cada ambiente. Simples, não? 
+<p>Neste exemplo, um gráfico completamente diferente do anterior é gerado com apenas uma simples modificação: excluímos do mapeamento estético o argumento <code>colour = AMB</code> e incluímos uma nova função, <code>facet_wrap(~AMB)</code>. Neste caso, informamos que um gráfico deveria ser realizado para cada ambiente. Simples, não? </p>
 
 <div class="dica">
 <p>No exemplo anterior, utilizamos a função <code>facet_wrap()</code> para confeccionar um gráfico foi criado para cada nível do fator <strong>AMB</strong>.</p>
@@ -628,16 +629,15 @@ Figure 8.6: Gráfico do tipo barras, com mapeamento estético e barras de erro.
 <a class="sourceLine" id="cb190-6" title="6"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
 <a class="sourceLine" id="cb190-7" title="7">                 <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 1)&quot;</span>),</a>
 <a class="sourceLine" id="cb190-8" title="8">                 <span class="dt">se =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb190-9" title="9"></a>
-<a class="sourceLine" id="cb190-10" title="10">l2 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
-<a class="sourceLine" id="cb190-11" title="11"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb190-12" title="12"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
-<a class="sourceLine" id="cb190-13" title="13">                  <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>),</a>
-<a class="sourceLine" id="cb190-14" title="14">                  <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</a>
-<a class="sourceLine" id="cb190-15" title="15">                  <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb190-16" title="16">                  <span class="dt">level =</span> <span class="fl">0.95</span>)</a>
-<a class="sourceLine" id="cb190-17" title="17"></a>
-<a class="sourceLine" id="cb190-18" title="18"><span class="kw">plot_grid</span>(l1, l2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;l1&quot;</span>, <span class="st">&quot;l2&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb190-9" title="9">l2 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
+<a class="sourceLine" id="cb190-10" title="10"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb190-11" title="11"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
+<a class="sourceLine" id="cb190-12" title="12">                  <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>),</a>
+<a class="sourceLine" id="cb190-13" title="13">                  <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</a>
+<a class="sourceLine" id="cb190-14" title="14">                  <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb190-15" title="15">                  <span class="dt">level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb190-16" title="16"></a>
+<a class="sourceLine" id="cb190-17" title="17"><span class="kw">plot_grid</span>(l1, l2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;l1&quot;</span>, <span class="st">&quot;l2&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-102"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-102-1.png" alt="Gráfico de dispersão combinado com inclusão de curvas ajustadas." width="672" />
 <p class="caption">
@@ -674,6 +674,16 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo <s
 <p>Note que no gráfico acima, as funções do pacote qqplotr foram carregadas utilizando <code>qqplotr::</code>. Neste caso, indicamos que a função desejada é uma função deste pacote. Isto é útil, principalmente quando dois pacotes tem funções com o mesmo nome. Utilizando <code>::</code> especificamos de qual pacote a função deve ser carregada.</p>
 </div>
 
+</div>
+<div id="interface-shiny-para-ggplot2" class="section level2">
+<h2><span class="header-section-number">8.8</span> Interface Shiny para <strong>ggplot2</strong></h2>
+<p>O pacote <strong>ggplot2</strong> está se tornando um sinônimo para visualização de dados em R. Seu nível de personalização baseado em <em>The grammar of graphics</em> <span class="citation">(Wilkinson <a href="#ref-Wilkinson2005">2005</a>)</span> o torna uma das melhores alternativas para aqueles que desejam criar um gráfico completamente personalizado. Seu nível de dificuldade e a necessidade da digitação de linhas de códigos, no entanto, pode dificultrar um pouco a tarefa (até mesmo para os mais acostumados!). Neste sentido, algumas aplicações que utilizam o <em>mouse</em> foram desenvolvidas e servem como um add-in para o <strong>ggplot2</strong> no Rstudio. Focaremos aqui no pacote <a href="https://github.com/dreamRs/esquisse">esquisse</a>.</p>
+<p>O objetivo deste suplemento é permitir que você explore seus dados rapidamente para extrair as informações que eles contêm. Você só pode criar gráficos simples, não poderá usar escalas personalizadas e todo o poder do ggplot2. Este é apenas o começo! Este addin permite que você explore seus dados de forma interativa, visualizando-os com o pacote <strong>ggplot2</strong>. Ele permite que você desenhe gráficos de barras, curvas, gráficos de dispersão, histogramas, objetos boxplot e sf, depois exporte o gráfico ou recupere o código para reproduzir o gráfico. A imagem abaixo foi retirada do site do pacote e mostra como o esquisse é utilizado.</p>
+<p><img src="figures/esquisse.gif" /></p>
+<p>Para instalação do pacote e execução da aplicação, os seguintes códigos são utilizados.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;esquisse&quot;</span>)</a>
+<a class="sourceLine" id="cb192-2" title="2"><span class="kw">library</span>(esquisse)</a>
+<a class="sourceLine" id="cb192-3" title="3"><span class="kw">esquisser</span>()</a></code></pre></div>
 
 </div>
 </div>
@@ -761,8 +771,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
