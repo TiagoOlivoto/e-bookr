@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-08-29" />
+<meta name="date" content="2019-09-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -408,39 +408,41 @@ A função <code>for()</code> repete o código indicado dentro de <code>{}</code
 [1] 8
 [1] 10</code></pre>
 <p>Os Loops são importantes em estudos que utilizam reamostragens para realizar análises estatísticas. Através de reamostragnes é possível construir intervalos de confiança e testar hipóteses não paramétricas. Como exemplo, vamos demonstrar o teorema central do limite<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>. Para isto, criamos uma função (<code>teor_lim()</code>)  que tem 4 argumentos: <code>n</code> o tamanho da amostra a ser considerada, <code>namostra</code>, <code>min</code>, <code>max</code> são os parâmetros da distribuição uniforme (veja <code>?runif</code>). Para confecção dos dendrogramas, os pacotes <strong>ggplot2</strong> e <code>cowplot</code> serão utilizados. Veja a seção 1.6 para maiores informações sobre a confecção de gráficos com estes pacotes. </p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">teor_lim =<span class="st"> </span><span class="cf">function</span>(n, namostra, min, max){</a>
-<a class="sourceLine" id="cb94-2" title="2">  <span class="kw">set.seed</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb94-3" title="3">  media =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">nrow =</span> n))</a>
-<a class="sourceLine" id="cb94-4" title="4">  <span class="kw">names</span>(media) =<span class="st"> &quot;value&quot;</span></a>
-<a class="sourceLine" id="cb94-5" title="5">  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
-<a class="sourceLine" id="cb94-6" title="6">    media[j, <span class="dv">1</span>] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">runif</span>(namostra, min, max))</a>
-<a class="sourceLine" id="cb94-7" title="7">  }</a>
-<a class="sourceLine" id="cb94-8" title="8">  <span class="kw">return</span>(media)</a>
-<a class="sourceLine" id="cb94-9" title="9">}</a>
-<a class="sourceLine" id="cb94-10" title="10"></a>
-<a class="sourceLine" id="cb94-11" title="11">teorema_limite =<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb94-12" title="12">  <span class="dt">n20 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb94-13" title="13">  <span class="dt">n200 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb94-14" title="14">  <span class="dt">n2000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">2000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb94-15" title="15">  <span class="dt">n20000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb94-16" title="16">)</a>
-<a class="sourceLine" id="cb94-17" title="17"></a>
-<a class="sourceLine" id="cb94-18" title="18">p =<span class="st"> </span><span class="kw">lapply</span>(teorema_limite, <span class="cf">function</span>(d){</a>
-<a class="sourceLine" id="cb94-19" title="19">  <span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> value))<span class="op">+</span></a>
-<a class="sourceLine" id="cb94-20" title="20"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb94-21" title="21">                 <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb94-22" title="22">                 <span class="dt">size =</span> <span class="fl">0.3</span>,</a>
-<a class="sourceLine" id="cb94-23" title="23">                 <span class="kw">aes</span>(<span class="dt">fill =</span> ..count..))<span class="op">+</span></a>
-<a class="sourceLine" id="cb94-24" title="24"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb94-25" title="25"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Média&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>)</a>
-<a class="sourceLine" id="cb94-26" title="26"></a>
-<a class="sourceLine" id="cb94-27" title="27">}</a>
-<a class="sourceLine" id="cb94-28" title="28">)</a>
-<a class="sourceLine" id="cb94-29" title="29"></a>
-<a class="sourceLine" id="cb94-30" title="30"><span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> p,</a>
-<a class="sourceLine" id="cb94-31" title="31">          <span class="dt">labels =</span> <span class="kw">names</span>(teorema_limite),</a>
-<a class="sourceLine" id="cb94-32" title="32">          <span class="dt">vjust =</span> <span class="fl">2.5</span>,</a>
-<a class="sourceLine" id="cb94-33" title="33">          <span class="dt">hjust =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.7</span>, <span class="fl">-1.5</span>, <span class="dv">-1</span>, <span class="dv">-1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb94-2" title="2"><span class="kw">library</span>(cowplot)</a>
+<a class="sourceLine" id="cb94-3" title="3">teor_lim =<span class="st"> </span><span class="cf">function</span>(n, namostra, min, max){</a>
+<a class="sourceLine" id="cb94-4" title="4">  <span class="kw">set.seed</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb94-5" title="5">  media =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">nrow =</span> n))</a>
+<a class="sourceLine" id="cb94-6" title="6">  <span class="kw">names</span>(media) =<span class="st"> &quot;value&quot;</span></a>
+<a class="sourceLine" id="cb94-7" title="7">  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb94-8" title="8">    media[j, <span class="dv">1</span>] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">runif</span>(namostra, min, max))</a>
+<a class="sourceLine" id="cb94-9" title="9">  }</a>
+<a class="sourceLine" id="cb94-10" title="10">  <span class="kw">return</span>(media)</a>
+<a class="sourceLine" id="cb94-11" title="11">}</a>
+<a class="sourceLine" id="cb94-12" title="12"></a>
+<a class="sourceLine" id="cb94-13" title="13">teorema_limite =<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb94-14" title="14">  <span class="dt">n20 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb94-15" title="15">  <span class="dt">n200 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb94-16" title="16">  <span class="dt">n2000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">2000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb94-17" title="17">  <span class="dt">n20000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb94-18" title="18">)</a>
+<a class="sourceLine" id="cb94-19" title="19"></a>
+<a class="sourceLine" id="cb94-20" title="20">p =<span class="st"> </span><span class="kw">lapply</span>(teorema_limite, <span class="cf">function</span>(d){</a>
+<a class="sourceLine" id="cb94-21" title="21">  <span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> value))<span class="op">+</span></a>
+<a class="sourceLine" id="cb94-22" title="22"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb94-23" title="23">                 <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb94-24" title="24">                 <span class="dt">size =</span> <span class="fl">0.3</span>,</a>
+<a class="sourceLine" id="cb94-25" title="25">                 <span class="kw">aes</span>(<span class="dt">fill =</span> ..count..))<span class="op">+</span></a>
+<a class="sourceLine" id="cb94-26" title="26"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb94-27" title="27"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Média&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>)</a>
+<a class="sourceLine" id="cb94-28" title="28"></a>
+<a class="sourceLine" id="cb94-29" title="29">}</a>
+<a class="sourceLine" id="cb94-30" title="30">)</a>
+<a class="sourceLine" id="cb94-31" title="31"></a>
+<a class="sourceLine" id="cb94-32" title="32"><span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> p,</a>
+<a class="sourceLine" id="cb94-33" title="33">          <span class="dt">labels =</span> <span class="kw">names</span>(teorema_limite),</a>
+<a class="sourceLine" id="cb94-34" title="34">          <span class="dt">vjust =</span> <span class="fl">2.5</span>,</a>
+<a class="sourceLine" id="cb94-35" title="35">          <span class="dt">hjust =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.7</span>, <span class="fl">-1.5</span>, <span class="dv">-1</span>, <span class="dv">-1</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-43"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-43-1.png" alt="Demonstração do teorema central do limite" width="768" />
 <p class="caption">

@@ -40,6 +40,8 @@ if(i > 5){
 Os Loops são importantes em estudos que utilizam reamostragens para realizar análises estatísticas. Através de reamostragnes é possível construir intervalos de confiança e testar hipóteses não paramétricas. Como exemplo, vamos demonstrar o teorema central do limite^[O teorema central do limite define que as médias de amostras grandes e aleatórias são aproximadamente normais, independentemente da forma da distribuição da população]. Para isto, criamos uma função (`teor_lim()`) \indf{teor\_lim} que tem 4 argumentos: `n` o tamanho da amostra a ser considerada,  `namostra`, `min`, `max` são os parâmetros da distribuição uniforme (veja `?runif`). Para confecção dos dendrogramas, os pacotes **ggplot2** e `cowplot` serão utilizados. Veja a seção 1.6 para maiores informações sobre a confecção de gráficos com estes pacotes. \indt{ggplot2}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE,fig.height = 7, fig.width = 8, fig.cap = "Demonstração do teorema central do limite"}
+library(ggplot2)
+library(cowplot)
 teor_lim = function(n, namostra, min, max){
   set.seed(100)
   media = data.frame(matrix(ncol = 1, nrow = n))
