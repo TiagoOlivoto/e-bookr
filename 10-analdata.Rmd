@@ -70,7 +70,8 @@ A distribuição dos dados pode ser determinada utilizando histograma de frequê
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 data_ge2 %>%
-  desc_stat(EP, EL, CL, CW, NR, NKR)
+  desc_stat(EP, EL, CL, CW, NR, NKR,
+            stats = c("mean, SE.mean, CV, max, min"))
 ```
 
 Utilizando a função `split_factors()` é possível computar as estatísticas para cada nível de um fator. Neste exemplo, vamos calcular as estatísticas para cada um dos ambientes em que o experimento foi realizado, selecionando somente os valores da média, desvio padrão e coeficiente de variação. O argumento `stats` é utilizado para selecionar as estatísticas. Ele é um vetor de nomes separados por vírgula com` "` no início e no final do vetor apenas.
@@ -84,10 +85,13 @@ Utilizando a função `split_factors()` é possível computar as estatísticas p
    * `stats = c("mean,SE.mean, CV, max,min")`
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+library(metan)
 data_ge2 %>% 
   split_factors(ENV) %>%
   desc_stat(EP, EL, CL, CW, NR, NKR,
-            stats = c("mean, SE.mean, CV"))
+            stats = c("mean, SE.mean, CV, max, min"),
+            verbose = FALSE) %>% 
+  print()
 ```
 
 

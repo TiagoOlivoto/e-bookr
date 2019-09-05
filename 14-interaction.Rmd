@@ -155,16 +155,16 @@ onde ${\lambda_k}$ é o valor singular para o *k*-ésimo eixo do componente prin
 
 ### Ajuste do modelo
 
-O modelo AMMI é ajustado com a função `waas()`\indf{waas}. O primeiro argumento é os dados, no nosso exemplo `data_ge`. Os próximos argumentos (ENV, GEN e REP) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. O argumengo GY e a variável resposta. A função permite analizar uma única variável (neste caso, GY) ou um vetor de variáveis de resposta. O último argumento (`verbose`) controla se o código será executado silenciosamente. Neste caso, nenhuma informação é retornada no console.
+O modelo AMMI é ajustado com a função `waas()`\indf{waas}. O primeiro argumento é os dados, no nosso exemplo `data_ge`. Os próximos argumentos (`ENV`, `GEN` e `REP`) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. No argumento `resp` são declaradas as variáveis resposta. Uma única variável pode ser analizada (como em nosso exemplo) ou, um vetor de variáveis, usando, por exemplo `resp = c(GY, HM)`.
 
 ```{r echo = TRUE}
-AMMI_model = waas(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
+AMMI_model = waas(data_ge, ENV, GEN, REP, GY)
 
 ```
 
 \indt{Dicas}
 ```{block2, type = "dica"}
-Note que os argumentos inseridos na função obedecem a ordem dos argumentos requiridos na função [veja `args(waas)`]. Se obedecida esta ordem de avaliação, não é necessário declarar qual argumento está sendo inserido. Por exemplo, se mudássemos a ordem de entrada, teríamos um código semelhante a `waas(data_ge, gen = GEN, env =  ENV, REP, GY)`. 
+Note que os argumentos inseridos na função obedecem a ordem dos argumentos requiridos na função [veja `args(waas)`]. Se obedecida esta ordem de avaliação, não é necessário declarar qual argumento está sendo inserido. Por exemplo, se mudássemos a ordem de entrada, teríamos um código semelhante a `waas(data_ge, gen = GEN, env =  ENV, REP, resp = c(PH, ED, TKW, NKR))`. 
 
 ```
 
@@ -226,7 +226,8 @@ Os valores das estimativas de RMSPD \indt{RMSPD} obtidos no processo de validaç
 p1 = plot(AMMIF)
 p2 = plot(AMMIF,
           width.boxplot = 0.6,
-          col.boxplot = "cyan")
+          col.boxplot = "cyan",
+          order_box = TRUE)
 plot_grid(p1, p2)
 ```
 
@@ -246,8 +247,16 @@ As seguintes variáveis são retornadas: **ENV** é o ambiente; **GEN** é o gen
 
 ### Índices de estabilidade baseados em AMMI
 
+[@Olivoto2019] demonstraram que a média ponderada dos escores absolutos (WAAS, **W**eighted **A**verage of **A**bsolute **S**cores), pode ser utilizada como um índice quantitativo de estabilidade na análise AMMI. Utilizando a função `get_model_data()` é possível obter facilmente este índice para diversas variáveis com poucas linhas de código. Veja o exemplo abaixo, com quatro variáveis. Este índice também é computado em uma estrutura de modelo misto. [Veja o exemplo aqui](#wsb).
 
-Os seguintes índices de estabilidade baseados em AMMI podem ser calculados usando a função `AMMI_indexes()`:
+```{r}
+waas(data_ge2, ENV, GEN, REP,
+     resp = c(PH, ED, TKW, NKR)) %>%
+ get_model_data(what = "WAASB")
+```
+
+
+Além do índice WAAS mostrado acima, os seguintes índices de estabilidade baseados em AMMI podem ser calculados usando a função `AMMI_indexes()`:
 
 * **AMMI stability value, ASV, [@Purchase2000].**
 
@@ -721,7 +730,7 @@ A saída acima os BLUPs \indt{BLUP} estimados para as combinações genótipo x 
 
 
 ### Índices de estabilidade baseados em BLUP
-#### O índice WAASB
+#### O índice WAASB {wsb}
 Recentemente, [@Olivoto2019] propuseram um índice de estabilidade, WAASB (**W**eighted **A**verage of **A**bsolute **S**cores), que combina as características do modelo AMMI e BLUP. O índice é baseado na média ponderada dos escores absolutos obtidos pela decomposição por valores singulares da matriz BLUP dos efeitos da interação em um modelo de efeito misto, conforme a seguite equação.
 
 $$
@@ -776,6 +785,18 @@ p2 = plot_waasby(BLUP_model$GY,
 O reescalonamento da variável resposta e do índice WAASB é necessário para que eles sejam diretamente comparáveis. Por padrão, a variável resposta é reescalonada de forma que o valor máximo (genótipo com a maior média) seja 100 e o valor mínimo (genótipo com a menor média) seja 0. Digamos que para uma determinada variável, menores valores são desejados, então o argumento `mresp = 100` (padrão) deve ser ajustado para `mresp = 0`. 
 
 ```
+
+
+Par obter o índice WAASBY para múltiplas variáveis, basta utilizar a função `get_model_data()`, como mostrado abaixo.
+
+```{r}
+waas(data_ge2, ENV, GEN, REP,
+     resp = c(PH, ED, TKW, NKR),
+     wresp = rep(65, 4)) %>%
+ get_model_data(what = "WAASBY")
+```
+
+
 
 
 #### Diferentes cenários para a estimativa do WAASBY

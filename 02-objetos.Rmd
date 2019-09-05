@@ -1,7 +1,8 @@
 
 # Tipos de objetos {#objects}
 
-Os tipos de objeto mais utilizados na linguagem *R* são: (i) vetores, (ii) matrizes, (iii) data frames, (iv) listas e (v) funções. Um enfoque maior será dado aos vetores, matrizes e data frames, pois estes são amplamente utilizados, inclusive nas análises mais simples.
+Os tipos de objeto mais utilizados na linguagem *R* são: (i) vetores, (ii) matrizes, (iii) data frames, (iv) listas e (v) funções. Um enfoque maior será dado aos vetores, matrizes e data frames, pois estes são amplamen
+te utilizados, inclusive nas análises mais simples.
 
 ## Vetores
 Existem quatro tipos principais de vetores: lógico, inteiro, duplo e caractere (que contém cadeias de caracteres). Vetores coletivamente inteiros e duplos são conhecidos como vetores numéricos. Cada um dos quatro tipos primários possui uma sintaxe especial para criar um valor individual, um escalar.

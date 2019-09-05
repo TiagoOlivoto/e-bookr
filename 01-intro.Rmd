@@ -77,7 +77,7 @@ install.packages("pacman")
 library(pacman)
 p_load(hnp, asbio, car, dplyr, devtools, emmeans, effects, multcomp,
        lme4, readxl, ExpDes, manipulate, MASS, tidyverse, agricolae,
-       psych, corrplot, pvclust, factoextra, kableExtra, ggfortify, ggstatsplot)
+       psych, corrplot, pvclust, factoextra, kableExtra, ggfortify)
 
 ```
 
