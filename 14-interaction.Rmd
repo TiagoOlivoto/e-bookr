@@ -205,7 +205,7 @@ O pacote **metan** fornece uma solução completa para validaçao cruzada do mod
 
 <img style="float: right;" src="figures/validacao.png" width="400" height="600" >
 
-O conjunto de dados "modelagem" possui todas as combinações (genótipo *vs* ambiente) com o número de repetições informado no argumento `nrepval`. O conjunto de dados "validação" tem uma repetição. O diagrama abaixo representa o procedimento realizado.
+O conjunto de dados "modelagem" possui todas as combinações (genótipo *vs* ambiente) com R-1 repetições. O conjunto de dados "validação" tem uma repetição. O diagrama abaixo representa o procedimento realizado.
 
 
 A divisão do conjunto de dados em dados de modelagem e validação depende do design informado. Considerando um delineamento de blocos completos casualizados (DBC)\index{DBC}, blocos completos são aleatoriamente selecionados dentro de ambientes, como mostrado por @Olivoto2019. O bloco restante serve dados de validação. Se `design = "CRD"` for informado, assim declarando que um delineamento intericamente casualizado (DIC) \index{DIC} foi usado, observações são aleatoriamente selecionadas para cada tratamento (combinação genótipo-*vs*-ambiente). Este é o mesmo procedimento sugerido por @Gauch1988. Os valores estimados para o membro da família AMMI \index{AMMI}em estudo são então comparados com os dados de "validação" e um erro de predição $\hat{z}_{ij}$ é estimado para cada tratamento. A raiz quadrada do quadrado médio da diferença de predição (RMSPD) é calculado. Este procedimento é repetido *n* vezes, utilizando o argumento `nboot = n`. Ao final do procedimento, o algorítimo armazena as *n* estimativas do RMSPD para o modelo em questão, e um novo modelo é então testado seguindo os mesmos passos.
@@ -217,7 +217,7 @@ A divisão do conjunto de dados em dados de modelagem e validação depende do d
 
 
 ```{r}
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 20, nrepval = 2)
+AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 20)
 ```
 
 Os valores das estimativas de RMSPD \indt{RMSPD} obtidos no processo de validação cruzada podem ser plotados usando a função `plot()`. \indf{plot}
@@ -659,7 +659,19 @@ A função `waasb()` \indf{waasb} do pacote **metan** será utilizada para a an�
 
 
 ```{r echo = TRUE}
-BLUP_model = waasb(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
+
+BLUP_model = waasb(data_ge, ENV, GEN, REP,
+                   resp(GY, HM),
+                   verbose = FALSE)
+
+```
+
+A função `get_model_data()` pode ser utilizada para extrair importantes informações do modelo ajustado com a função `waasb()`.
+
+* Resumo do experimento
+
+```{r warning = F, message = F}
+get_model_data(BLUP_model, "details")
 
 ```
 
@@ -667,11 +679,20 @@ BLUP_model = waasb(data_ge, ENV, GEN, REP, GY, verbose = FALSE)
 * Teste de razão de máxima verossimilhanças (LRT)
 
 ```{r warning = F, message = F}
-print(BLUP_model$GY$LRT)
+get_model_data(BLUP_model, "lrt") # estatística
+get_model_data(BLUP_model, "pval_lrt") # p-valor
 
 ```
 
 O teste LRT \indt{LRT} indicou diferenças significativas para os efeitos aleatórios de genótipo e interação genótipo-*vs*-ambiente. Assim, a utilização de modelos mistos é indicada para predição do rendimento em nosso exemplo.
+
+* Componentes da variância
+
+```{r warning = F, message = F}
+get_model_data(BLUP_model, "vcomp") 
+
+```
+
 
 ### Análise dos resíduos
 
@@ -681,15 +702,16 @@ autoplot(BLUP_model$GY)
 ```
 
 
-### Componentes de variância e parâmetros genéticos
+### Parâmetros genéticos
 
 ```{r }
-print(BLUP_model$GY$ESTIMATES)
+get_model_data(BLUP_model, "genpar")
+
 
     ```
 
 
-No objeto `ESTIMATES`, além dos componentes de variância \indt{componentes de variância} para os efeitos aleatórios declarados, alguns importantes parâmetros genéticos \indt{parâmetros genéticos} são mostrados. **Heribatility** é a herdabilidade no sentido amplo ($\mathop h\nolimits_g^2$) estimada por $\mathop h\nolimits_g^2  = \mathop \sigma \nolimits_g^2 /\left( {\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2  + \mathop \sigma \nolimits_e^2 } \right)$ onde $(\mathop \sigma \nolimits_g^2 )$ é a variância genotípica; $(\mathop \sigma \nolimits_i^2 )$ é a variância da interação GE; e $(\mathop \sigma \nolimits_e^2 )$ é a variância residual. **GEIr2** é o coeficiente de determinação do efeito da interação GE ($\mathop r\nolimits_i^2$ ) estimado por $\mathop r\nolimits_i^2  = \mathop \sigma \nolimits_i^2 /\left( {\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2  + \mathop \sigma \nolimits_e^2 } \right)$; **Heribatility of means** é a herdabilidade da média assumindo ausência de valores perdidos $(\mathop h\nolimits_{gm}^2 )$, estimada por $\mathop h\nolimits_{gm}^2  = \mathop \sigma \nolimits_g^2 /\left[ {\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2 /a + \mathop \sigma \nolimits_e^2 /\left( {ab} \right)} \right]$, onde *a* e *b* são o número de ambientes e blocos, respectivamente; **Accuracy** é a acurácia de seleção (*Ac*), estimada por $Ac = \sqrt{\mathop h\nolimits_{gm}^2}$ ;   **rge** é a correlação genótipo-ambiente $(\mathop r\nolimits_{ge})$ estimada por $\mathop r\nolimits_{ge} = \mathop \sigma \nolimits_g^2 /\left({\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2} \right)$; **CVg** é o coeficiente de variação genotípico, estimado por ${\left({\mathop \sigma \nolimits_g^2 /\mu } \right)^{0.5}} \times 100$, onde $\mu$ é a média geral;  **CVr** é o coeficiente de variação residual, estimado por ${\left( {\mathop \sigma \nolimits_e^2  /\mu} \right)^{0.5}} \times 100$ ; **CV ratio** é a razão entre o coeficiente de variação genotípico e residual.
+Além dos componentes de variância \indt{componentes de variância} para os efeitos aleatórios declarados, alguns importantes parâmetros genéticos \indt{parâmetros genéticos} são mostrados. **Heribatility** é a herdabilidade no sentido amplo ($\mathop h\nolimits_g^2$) estimada por $\mathop h\nolimits_g^2  = \mathop \sigma \nolimits_g^2 /\left( {\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2  + \mathop \sigma \nolimits_e^2 } \right)$ onde $(\mathop \sigma \nolimits_g^2 )$ é a variância genotípica; $(\mathop \sigma \nolimits_i^2 )$ é a variância da interação GE; e $(\mathop \sigma \nolimits_e^2 )$ é a variância residual. **GEIr2** é o coeficiente de determinação do efeito da interação GE ($\mathop r\nolimits_i^2$ ) estimado por $\mathop r\nolimits_i^2  = \mathop \sigma \nolimits_i^2 /\left( {\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2  + \mathop \sigma \nolimits_e^2 } \right)$; **Heribatility of means** é a herdabilidade da média assumindo ausência de valores perdidos $(\mathop h\nolimits_{gm}^2 )$, estimada por $\mathop h\nolimits_{gm}^2  = \mathop \sigma \nolimits_g^2 /\left[ {\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2 /a + \mathop \sigma \nolimits_e^2 /\left( {ab} \right)} \right]$, onde *a* e *b* são o número de ambientes e blocos, respectivamente; **Accuracy** é a acurácia de seleção (*Ac*), estimada por $Ac = \sqrt{\mathop h\nolimits_{gm}^2}$ ;   **rge** é a correlação genótipo-ambiente $(\mathop r\nolimits_{ge})$ estimada por $\mathop r\nolimits_{ge} = \mathop \sigma \nolimits_g^2 /\left({\mathop \sigma \nolimits_g^2  + \mathop \sigma \nolimits_i^2} \right)$; **CVg** é o coeficiente de variação genotípico, estimado por ${\left({\mathop \sigma \nolimits_g^2 /\mu } \right)^{0.5}} \times 100$, onde $\mu$ é a média geral;  **CVr** é o coeficiente de variação residual, estimado por ${\left( {\mathop \sigma \nolimits_e^2  /\mu} \right)^{0.5}} \times 100$ ; **CV ratio** é a razão entre o coeficiente de variação genotípico e residual.
 
 
 ### Médias preditas
@@ -699,11 +721,13 @@ No objeto `ESTIMATES`, além dos componentes de variância \indt{componentes de 
 \indt{BLUP}
 
 ```{r }
-print(BLUP_model$GY$blupGEN)
+
+print(BLUP_model$GY$blupGEN) 
+
 
     ```
 
-Esta saída mostra a média predita para os genótipos testados. **BLUPg** é o efeito genotípico $(\hat{g}_{i})$ estimado por $\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})$ onde $h_g^2$ é o efeito *shrinkage* para genótipo, estimado por $\mathop h\nolimits_g^2  = (\mathop {\hat \sigma }\nolimits_i^2  + E\mathop {\hat \sigma }\nolimits_g^2 )/(\mathop {\hat \sigma }\nolimits_i^2  + \mathop {\hat \sigma }\nolimits_\varepsilon ^2  + E\mathop {\hat \sigma }\nolimits_g^2 ).$. **Predicted** é a média predita por $\hat{g}_{i}+\mu$ onde $\mu$ é a média geral. **LL** e **UL** são os limites inferiore e superior, respectivamente estimado por $(\hat{g}_{i}+\mu)\pm{CI}$. $CI$ é o intervalo de confiança para predição BLUP, assumindo uma dada probabilidade de erro, onde $CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}$ onde $t$ é o valor *t*-Student para um teste bilateral a uma dada probabilidade de erro; $Ac$ é a acurácia de seleçao; e $\mathop \sigma \nolimits_g^2$ é a variância genotípica.
+`blupGEN` mostra a média predita para os genótipos testados. **BLUPg** é o efeito genotípico $(\hat{g}_{i})$ estimado por $\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})$ onde $h_g^2$ é o efeito *shrinkage* para genótipo, estimado por $\mathop h\nolimits_g^2  = (\mathop {\hat \sigma }\nolimits_i^2  + E\mathop {\hat \sigma }\nolimits_g^2 )/(\mathop {\hat \sigma }\nolimits_i^2  + \mathop {\hat \sigma }\nolimits_\varepsilon ^2  + E\mathop {\hat \sigma }\nolimits_g^2 ).$. **Predicted** é a média predita por $\hat{g}_{i}+\mu$ onde $\mu$ é a média geral. **LL** e **UL** são os limites inferiore e superior, respectivamente estimado por $(\hat{g}_{i}+\mu)\pm{CI}$. $CI$ é o intervalo de confiança para predição BLUP, assumindo uma dada probabilidade de erro, onde $CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}$ onde $t$ é o valor *t*-Student para um teste bilateral a uma dada probabilidade de erro; $Ac$ é a acurácia de seleçao; e $\mathop \sigma \nolimits_g^2$ é a variância genotípica.
 
 * plotando os BLUPs preditos para genótipos
 
@@ -721,16 +745,20 @@ plot_grid(p1, p2, labels = c("p1", "p2"))
 * Imprimindo os BLUPs estimados para as combinações genótipo x ambiente (primeiras 10 entradas)
 
 ```{r}
+
 print(BLUP_model$GY$BLUPgge)
 
 ```
 
 A saída acima os BLUPs \indt{BLUP} estimados para as combinações genótipo x ambiente. **BLUPg** é o efeito genotípico, descrito acima; **BLUPge** é o efeito genotípico do genótipo *i* no ambiente *j* $(\hat{g}_{ij})$ estimado por $\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})$, onde $h_{ge}^2$ é o efeito *shrinkage* para a interação GE, estimado por $\mathop h\nolimits_{ge}^2  = \mathop {\hat \sigma }\nolimits_i^2 /(\mathop {\hat \sigma }\nolimits_i^2  + \mathop {\hat \sigma }\nolimits_\varepsilon ^2)$; **BLUPg+ge** é $BLUP_g+BLUP_{ge}$; **Predicted** é a média predita ($\hat{y}_{ij}$) estimada por $\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}$.
 
+Para obter os valores acima para cada variável do modelo basta utilizar a função `get_model_data()`, por exemplo:
+ * `get_model_data(BLUP_model, "blupg")` para as médias preditas de genótipos;
+ * `get_model_data(BLUP_model, "blupge")` para as médias preditas de genótipos em ambientes;
 
 
 ### Índices de estabilidade baseados em BLUP
-#### O índice WAASB {wsb}
+#### O índice WAASB {#wsb}
 Recentemente, [@Olivoto2019] propuseram um índice de estabilidade, WAASB (**W**eighted **A**verage of **A**bsolute **S**cores), que combina as características do modelo AMMI e BLUP. O índice é baseado na média ponderada dos escores absolutos obtidos pela decomposição por valores singulares da matriz BLUP dos efeitos da interação em um modelo de efeito misto, conforme a seguite equação.
 
 $$
@@ -787,7 +815,7 @@ O reescalonamento da variável resposta e do índice WAASB é necessário para q
 ```
 
 
-Par obter o índice WAASBY para múltiplas variáveis, basta utilizar a função `get_model_data()`, como mostrado abaixo.
+Par obter o índice WAASBY para múltiplas variáveis, por exemplo, basta utilizar a função `get_model_data()`, como mostrado abaixo.
 
 ```{r}
 waas(data_ge2, ENV, GEN, REP,
@@ -843,7 +871,7 @@ Vimos anteriormente que um membro da família de modelos AMMI \indt{AMMI}(AMMI2)
 A função `cv_blup()` realiza uma validação cruzada para experimentos com repetição usando modelos mistos. Por padrão,  blocos completos são selecionados aleatoriamente em cada ambiente. O procedimento para calcular o RMSPD é idêntico ao apresentado na análise AMMI.
 
 ```{r }
-valida_blup = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 20, nrepval = 2)
+valida_blup = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 20)
 
 ```
 Para unir os resultados obtidos pelas funções `cv_ammif()` e `cv_blup()` a função `bind_cv()`. Usando o argumento `bind = "means"` é possível concatenar os valores médios obtidos por cada modelo. \indf{cv\_ammif} \indf{cv\_blup} \indf{bind\_cv}

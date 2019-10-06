@@ -85,15 +85,21 @@ Utilizando a função `split_factors()` é possível computar as estatísticas p
    * `stats = c("mean,SE.mean, CV, max,min")`
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-library(metan)
-data_ge2 %>% 
-  split_factors(ENV) %>%
-  desc_stat(EP, EL, CL, CW, NR, NKR,
-            stats = c("mean, SE.mean, CV, max, min"),
-            verbose = FALSE) %>% 
-  print()
+stats <- 
+  data_ge2 %>%
+  split_factors(GEN) %>%
+  desc_stat(EP, EL, CL, CD, CW, NR,
+            stats = c("mean, SE.mean, CV, max, min, median"),
+            verbose = F)
+print(stats)
 ```
 
+
+O resultado obtido pela função acima pode ser convertido em um format  *longo* utilizando a função `desc_wider()`
+
+```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
+desc_wider(stats, CD)
+```
 
 
 ### Testes de aderência
@@ -584,6 +590,60 @@ Para realizar a análise de regressão considerando um delineamento DBC basta ut
 
 ``` 
 [Resposta](#exerc9)
+
+
+#### Análise de experimentos utilizando modelos mistos
+A função `gamem()` do pacote `metan` pode ser utilizada para analizar dados de experimentos unifatoriais utilizando um modelo misto de acordo com a seguinte equação:
+
+$$
+y_{ij}= \mu  + \alpha_i + \tau_j + \varepsilon_{ij}
+$$
+
+onde $y_ {ij}$ é o valor observado para o *i*-ésimo genótipo na *j*-ésima repetição (*i* = 1, 2, ... *g*; *j* = 1, 2,. ., *r*); sendo *g* e *r* o número de genótipos e repetições, respectivamente; $\alpha_i$ é o efeito aleatório do *i*-ésimo genótipo; $\tau_j$ é o efeito fixo da *j*-ésima repetição; e $\varepsilon_ {ij}$ é o erro aleatório associado a $y_{ij}$. Neste exemplo, usaremos os dados de exemplo `data_g` do pacote metan.
+
+```{r}
+gen_mod <- gamem(data_g, GEN, REP,
+                 resp = c(ED, CL, CD, KW, TKW, NKR))
+
+```
+
+A maneira mais fácil de obter os resultados do modelo acima é usando a função `get_model_data()`. Vamos fazer isso.
+
+
+* Teste de razão de máxima verossimilhança
+```{r}
+get_model_data(gen_mod, "pval_lrt")
+```
+
+* Componentes de variância
+```{r}
+get_model_data(gen_mod, "genpar")
+```
+
+
+* Médias preditas
+```{r}
+get_model_data(gen_mod, "blupg")
+
+```
+
+
+No exemplo acima, o design experimental foi o de blocos completos casualizados. Também é possível analisar um experimento conduzido em alfa-lattice com a função `gamem()`, baseado na seguinte equação:
+
+\begin{gather}
+y_{ijk}= \mu  + \alpha_i + \gamma_j + (\gamma \tau)_{jk} + \varepsilon_{ijk}
+\end{gather}
+
+onde $y_ {ijk}$ é o valor observado do *i*-ésimo genótipo no *k*-ésimo bloco da *j*- ésima repetição (*i* = 1, 2, ... *g*; *j* = 1, 2, .., *r*; *k* = 1, 2, .., *b*); respectivamente; $\alpha_i$ é o efeito aleatório do *i*-ésimo genótipo; $\gamma_j$ é o efeito fixo da *j*-ésima repetição; $(\gamma \tau)_{jk}$ é o efeito aleatório do *k*-ésimo bloco incompleto aninhado na repetição *j*; e $\varepsilon_{ijk}$ é o erro aleatório associado a $y_{ijk}$. Neste exemplo, usaremos os dados de exemplo `data_alpha` do pacote metan.
+
+
+```{r}
+gen_alpha <- gamem(data_alpha, GEN, REP, YIELD, block = BLOCK)
+get_model_data(gen_alpha, "pval_lrt")
+get_model_data(gen_alpha, "details")
+get_model_data(gen_alpha, "genpar")
+```
+
 
 ## Transformação de dados
 \indt{transformação de dados}
