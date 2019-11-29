@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 11 Análise de regressão | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 11 Análise de regressão | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-11-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -148,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
 <li class="chapter" data-level="2.4" data-path="objects.html"><a href="objects.html#tibbles"><i class="fa fa-check"></i><b>2.4</b> Tibbles</a></li>
 <li class="chapter" data-level="2.5" data-path="objects.html"><a href="objects.html#lista"><i class="fa fa-check"></i><b>2.5</b> Lista</a></li>
-<li class="chapter" data-level="2.6" data-path="objects.html"><a href="objects.html#funcoes"><i class="fa fa-check"></i><b>2.6</b> Funções</a></li>
+<li class="chapter" data-level="2.6" data-path="objects.html"><a href="objects.html#funções"><i class="fa fa-check"></i><b>2.6</b> Funções</a></li>
 <li class="chapter" data-level="2.7" data-path="objects.html"><a href="objects.html#identificando-as-classes-de-objetos"><i class="fa fa-check"></i><b>2.7</b> Identificando as classes de objetos</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>3</b> Operações matemáticas</a></li>
@@ -157,64 +160,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
 <li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#adicionar-novas-variaveis"><i class="fa fa-check"></i><b>7.1</b> Adicionar novas variáveis</a></li>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#adicionar-novas-variáveis"><i class="fa fa-check"></i><b>7.1</b> Adicionar novas variáveis</a></li>
 <li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.2</b> Selecionar linhas com base em seus valores</a></li>
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
-<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
+<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variáveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
 <li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
 <li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-grafico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-grafico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.4" data-path="graph.html"><a href="graph.html#aesthetics-estetica"><i class="fa fa-check"></i><b>8.4</b> Aesthetics (estética)</a></li>
+<li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.4" data-path="graph.html"><a href="graph.html#aesthetics-estética"><i class="fa fa-check"></i><b>8.4</b> Aesthetics (estética)</a></li>
 <li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
 <li class="chapter" data-level="8.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>8.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensoes"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
-<li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-graficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
+<li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
+<li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
 <li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
 <li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendencia-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
+<li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
 <li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
-<li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderencia"><i class="fa fa-check"></i><b>10.1.3</b> Testes de aderência</a></li>
-<li class="chapter" data-level="10.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confianca"><i class="fa fa-check"></i><b>10.1.4</b> Intervalos de confiança</a></li>
-<li class="chapter" data-level="10.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipoteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.5</b> Teste de hipóteses para amostras independentes</a></li>
-<li class="chapter" data-level="10.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipoteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
+<li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderência"><i class="fa fa-check"></i><b>10.1.3</b> Testes de aderência</a></li>
+<li class="chapter" data-level="10.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confiança"><i class="fa fa-check"></i><b>10.1.4</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="10.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.5</b> Teste de hipóteses para amostras independentes</a></li>
+<li class="chapter" data-level="10.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#principios-basicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
+<li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
-<li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimacao"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
-<li class="chapter" data-level="10.2.4" data-path="analdata.html"><a href="analdata.html#reparametrizacao-condicoes-marginais-ou-combinacoes-lineares"><i class="fa fa-check"></i><b>10.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
+<li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
+<li class="chapter" data-level="10.2.4" data-path="analdata.html"><a href="analdata.html#reparametrização-condições-marginais-ou-combinações-lineares"><i class="fa fa-check"></i><b>10.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
 <li class="chapter" data-level="10.2.5" data-path="analdata.html"><a href="analdata.html#delineamento-inteiramente-casualizado-dic"><i class="fa fa-check"></i><b>10.2.5</b> Delineamento inteiramente casualizado (DIC)</a></li>
 <li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformacao-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
+<li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
 <li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introducao"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
-<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatistico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
-<li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independencia-entre-a-covariavel-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
-<li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressao"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
-<li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numerico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
+<li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
+<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
+<li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
+<li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
+<li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-analise-de-variacao-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
-<li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estrategias-para-analise-de-dados-nao-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
-<li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introducao-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
-<li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporcao"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
+<li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
+<li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
+<li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
+<li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
 <li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
@@ -226,60 +229,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressao-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimacao-1"><i class="fa fa-check"></i><b>11.1.1</b> Estimação</a></li>
-<li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressoes-com-a-funcao-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
-<li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#selecao-de-variaveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimação-1"><i class="fa fa-check"></i><b>11.1.1</b> Estimação</a></li>
+<li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
+<li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
 <li class="chapter" data-level="11.1.4" data-path="reg.html"><a href="reg.html#falta-de-ajuste"><i class="fa fa-check"></i><b>11.1.4</b> Falta de ajuste</a></li>
-<li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#analise-dos-residuos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressao-nao-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimacao-2"><i class="fa fa-check"></i><b>11.2.1</b> Estimação</a></li>
-<li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-funcao-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
-<li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#analise-dos-residuos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="11.2.4" data-path="reg.html"><a href="reg.html#medidas-de-nao-linearidade"><i class="fa fa-check"></i><b>11.2.4</b> Medidas de não linearidade</a></li>
-<li class="chapter" data-level="11.2.5" data-path="reg.html"><a href="reg.html#comparacao-de-parametros"><i class="fa fa-check"></i><b>11.2.5</b> Comparação de parâmetros</a></li>
-<li class="chapter" data-level="11.2.6" data-path="reg.html"><a href="reg.html#representacao-grafica-dos-modelos"><i class="fa fa-check"></i><b>11.2.6</b> Representação gráfica dos modelos</a></li>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimação-2"><i class="fa fa-check"></i><b>11.2.1</b> Estimação</a></li>
+<li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
+<li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="11.2.4" data-path="reg.html"><a href="reg.html#medidas-de-não-linearidade"><i class="fa fa-check"></i><b>11.2.4</b> Medidas de não linearidade</a></li>
+<li class="chapter" data-level="11.2.5" data-path="reg.html"><a href="reg.html#comparação-de-parâmetros"><i class="fa fa-check"></i><b>11.2.5</b> Comparação de parâmetros</a></li>
+<li class="chapter" data-level="11.2.6" data-path="reg.html"><a href="reg.html#representação-gráfica-dos-modelos"><i class="fa fa-check"></i><b>11.2.6</b> Representação gráfica dos modelos</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressao-bisegmentada-com-plato"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
+<li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
 <li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlacao-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualizacao-grafica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
-<li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlacao"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
-<li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
-<li class="chapter" data-level="12.2.4" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-ii"><i class="fa fa-check"></i><b>12.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
-<li class="chapter" data-level="12.2.5" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-iii"><i class="fa fa-check"></i><b>12.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
-<li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
+<li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
+<li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
+<li class="chapter" data-level="12.2.4" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-ii"><i class="fa fa-check"></i><b>12.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
+<li class="chapter" data-level="12.2.5" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iii"><i class="fa fa-check"></i><b>12.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
+<li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlacoes-geneticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confianca"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#parametrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
-<li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#nao-parametrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
+<li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
+<li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
-<li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlacao-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#analise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introducao-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimacao-3"><i class="fa fa-check"></i><b>12.7.2</b> Estimação</a></li>
+<li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimação-3"><i class="fa fa-check"></i><b>12.7.2</b> Estimação</a></li>
 <li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
-<li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#metodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
-<li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#analise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
-<li class="chapter" data-level="12.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correcao-k"><i class="fa fa-check"></i><b>12.7.6</b> Incluindo um fator de correção (k)</a></li>
-<li class="chapter" data-level="12.7.7" data-path="relations.html"><a href="relations.html#excluindo-variaveis"><i class="fa fa-check"></i><b>12.7.7</b> Excluindo variáveis</a></li>
-<li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#selecao-de-variaveis-em-analise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
-<li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#analise-de-trilha-para-cada-nivel-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
+<li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
+<li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
+<li class="chapter" data-level="12.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correção-k"><i class="fa fa-check"></i><b>12.7.6</b> Incluindo um fator de correção (k)</a></li>
+<li class="chapter" data-level="12.7.7" data-path="relations.html"><a href="relations.html#excluindo-variáveis"><i class="fa fa-check"></i><b>12.7.7</b> Excluindo variáveis</a></li>
+<li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
+<li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
-<li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlacoes-canonicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#analise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variaveis-numericas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
-<li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-media-de-cada-genotipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#selecao-de-variaveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
-<li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-numero-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
+<li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
+<li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
+<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
 <li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
 <li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
@@ -287,31 +290,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
-<li class="chapter" data-level="13.3.4" data-path="multivariate.html"><a href="multivariate.html#codigo-r"><i class="fa fa-check"></i><b>13.3.4</b> Código R</a></li>
+<li class="chapter" data-level="13.3.4" data-path="multivariate.html"><a href="multivariate.html#código-r"><i class="fa fa-check"></i><b>13.3.4</b> Código R</a></li>
 <li class="chapter" data-level="13.3.5" data-path="multivariate.html"><a href="multivariate.html#autovalores"><i class="fa fa-check"></i><b>13.3.5</b> Autovalores</a></li>
-<li class="chapter" data-level="13.3.6" data-path="multivariate.html"><a href="multivariate.html#grafico-das-variaveis"><i class="fa fa-check"></i><b>13.3.6</b> Gráfico das variáveis</a></li>
-<li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#grafico-de-individuos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
-<li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#grafico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
+<li class="chapter" data-level="13.3.6" data-path="multivariate.html"><a href="multivariate.html#gráfico-das-variáveis"><i class="fa fa-check"></i><b>13.3.6</b> Gráfico das variáveis</a></li>
+<li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
+<li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
 <li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
-<li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-codigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
+<li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
-<li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#analise-grafica-da-interacao"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
-<li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#analise-de-variancia-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
-<li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressao"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
-<li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#indice-de-confianca-genotipico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
-<li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#indice-de-superioridade-genotipico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
-<li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificacao-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
+<li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
+<li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
+<li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
+<li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
+<li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
+<li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
 <li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
 <li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
-<li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-numero-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
+<li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
 <li class="chapter" data-level="14.7.4" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.7.4</b> Valores estimados pelo modelo AMMI</a></li>
-<li class="chapter" data-level="14.7.5" data-path="interaction.html"><a href="interaction.html#indices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
+<li class="chapter" data-level="14.7.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
 <li class="chapter" data-level="14.7.6" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.7.6</b> Biplots</a></li>
 </ul></li>
 <li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.8</b> O modelo GGE</a><ul>
@@ -322,32 +325,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.8.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.8.5</b> Valores estimados pelo modelo GGE</a></li>
 <li class="chapter" data-level="14.8.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.8.6</b> Visualizando o Biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliacao-de-met"><i class="fa fa-check"></i><b>14.9</b> Modelos mistos na avaliação de MET</a><ul>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.9</b> Modelos mistos na avaliação de MET</a><ul>
 <li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.9.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#analise-dos-residuos-2"><i class="fa fa-check"></i><b>14.9.2</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#parametros-geneticos"><i class="fa fa-check"></i><b>14.9.3</b> Parâmetros genéticos</a></li>
-<li class="chapter" data-level="14.9.4" data-path="interaction.html"><a href="interaction.html#medias-preditas"><i class="fa fa-check"></i><b>14.9.4</b> Médias preditas</a></li>
-<li class="chapter" data-level="14.9.5" data-path="interaction.html"><a href="interaction.html#indices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
+<li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.9.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.9.3</b> Parâmetros genéticos</a></li>
+<li class="chapter" data-level="14.9.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.9.4</b> Médias preditas</a></li>
+<li class="chapter" data-level="14.9.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisao-em-cada-caso"><i class="fa fa-check"></i><b>14.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
-<li class="chapter" data-level="A" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
-<li class="chapter" data-level="A.1" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
-<li class="chapter" data-level="A.2" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
-<li class="chapter" data-level="A.3" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
-<li class="chapter" data-level="A.4" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc4"><i class="fa fa-check"></i><b>A.4</b> Exercício 4</a></li>
-<li class="chapter" data-level="A.5" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc5"><i class="fa fa-check"></i><b>A.5</b> Exercício 5</a></li>
-<li class="chapter" data-level="A.6" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc6"><i class="fa fa-check"></i><b>A.6</b> Exercício 6</a></li>
-<li class="chapter" data-level="A.7" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc7"><i class="fa fa-check"></i><b>A.7</b> Exercício 7</a></li>
-<li class="chapter" data-level="A.8" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc8"><i class="fa fa-check"></i><b>A.8</b> Exercício 8</a></li>
-<li class="chapter" data-level="A.9" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc9"><i class="fa fa-check"></i><b>A.9</b> Exercício 9</a></li>
-<li class="chapter" data-level="A.10" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc10"><i class="fa fa-check"></i><b>A.10</b> Exercício 10</a></li>
-<li class="chapter" data-level="A.11" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc11"><i class="fa fa-check"></i><b>A.11</b> Exercício 11</a></li>
-<li class="chapter" data-level="A.12" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc12"><i class="fa fa-check"></i><b>A.12</b> Exercício 12</a></li>
-<li class="chapter" data-level="A.13" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc13"><i class="fa fa-check"></i><b>A.13</b> Exercício 13</a></li>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
+<li class="chapter" data-level="A.1" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
+<li class="chapter" data-level="A.2" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
+<li class="chapter" data-level="A.3" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
+<li class="chapter" data-level="A.4" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc4"><i class="fa fa-check"></i><b>A.4</b> Exercício 4</a></li>
+<li class="chapter" data-level="A.5" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc5"><i class="fa fa-check"></i><b>A.5</b> Exercício 5</a></li>
+<li class="chapter" data-level="A.6" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc6"><i class="fa fa-check"></i><b>A.6</b> Exercício 6</a></li>
+<li class="chapter" data-level="A.7" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc7"><i class="fa fa-check"></i><b>A.7</b> Exercício 7</a></li>
+<li class="chapter" data-level="A.8" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc8"><i class="fa fa-check"></i><b>A.8</b> Exercício 8</a></li>
+<li class="chapter" data-level="A.9" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc9"><i class="fa fa-check"></i><b>A.9</b> Exercício 9</a></li>
+<li class="chapter" data-level="A.10" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc10"><i class="fa fa-check"></i><b>A.10</b> Exercício 10</a></li>
+<li class="chapter" data-level="A.11" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc11"><i class="fa fa-check"></i><b>A.11</b> Exercício 11</a></li>
+<li class="chapter" data-level="A.12" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc12"><i class="fa fa-check"></i><b>A.12</b> Exercício 12</a></li>
+<li class="chapter" data-level="A.13" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc13"><i class="fa fa-check"></i><b>A.13</b> Exercício 13</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="tabela-de-distribuicoes.html"><a href="tabela-de-distribuicoes.html"><i class="fa fa-check"></i>Tabela de distribuições</a></li>
+<li class="chapter" data-level="" data-path="tabela-de-distribuições.html"><a href="tabela-de-distribuições.html"><i class="fa fa-check"></i>Tabela de distribuições</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -368,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="reg" class="section level1">
 <h1><span class="header-section-number">Capítulo 11</span> Análise de regressão</h1>
-<div id="regressao-linear" class="section level2">
+<div id="regressão-linear" class="section level2">
 <h2><span class="header-section-number">11.1</span> Regressão Linear</h2>
 <p>A análise de regressão  tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla. Na regressão simples, apenas uma variável dependente é declarada no modelo:</p>
 <p><span class="math display">\[
@@ -378,22 +381,22 @@ Y_i = {\beta _0} + {\beta _1}x + \varepsilon_i
 <p><span class="math display">\[
 Y_i = {\beta _0} + {\beta _1}x_1 + {\beta _2}x_2 + ... + {\beta _k}x_k + \varepsilon_i  
 \]</span></p>
-<p>Onde <span class="math inline">\(Y_i\)</span> é a variável dependente, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>,…,<span class="math inline">\(x_k\)</span> são as variáveis independentes, <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>,…,<span class="math inline">\(\beta_2\)</span> são os parâmetros da regressão e <span class="math inline">\(\varepsilon\)</span> é o erro. Então, uma regressão por ser descrita genericamente por <span class="citation">(Draper and Smith <a href="#ref-Draper1998">1998</a>)</span></p>
+<p>Onde <span class="math inline">\(Y_i\)</span> é a variável dependente, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>,…,<span class="math inline">\(x_k\)</span> são as variáveis independentes, <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>,…,<span class="math inline">\(\beta_2\)</span> são os parâmetros da regressão e <span class="math inline">\(\varepsilon\)</span> é o erro. Então, uma regressão por ser descrita genericamente por <span class="citation">(Draper and Smith <a href="#ref-Draper1998" role="doc-biblioref">1998</a>)</span></p>
 <p><span class="math display">\[
 Y_i = f(x)+\varepsilon_i 
 \]</span></p>
 <p>Onde <span class="math inline">\(Y_i\)</span> é a variável dependente, <span class="math inline">\(f(x)\)</span> é a função resposta do modelo e <span class="math inline">\(\varepsilon\)</span> é o erro.</p>
-<div id="estimacao-1" class="section level3">
+<div id="estimação-1" class="section level3">
 <h3><span class="header-section-number">11.1.1</span> Estimação</h3>
 <p>Uma das formas de estimar os parâmetros em regressão é minimizando os erros. Os erros são a diferença entre o valor estimado pela função resposta [(]<span class="math inline">\(f(x)\)</span>] e o valor observado (<span class="math inline">\(Y_i\)</span>), representados no gráfico abaixo por pontos vermelhos. Então, devemos encontrar valores para <span class="math inline">\({\boldsymbol{\beta}}\)</span> que minimizem estes erros, representados pela distância entre a reta estimada e os valores observados.</p>
 <p> </p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1">data_error =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb364-2" title="2">                        <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">9</span>,<span class="dv">14</span>,<span class="dv">16</span>,<span class="dv">18</span>,<span class="dv">16</span>,<span class="dv">14</span>))</a>
-<a class="sourceLine" id="cb364-3" title="3">mod =<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> data_error)</a>
-<a class="sourceLine" id="cb364-4" title="4"><span class="kw">ggplot</span>(data_error, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb364-5" title="5"><span class="st">       </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> x, <span class="dt">yend =</span> <span class="kw">fitted</span>(mod))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb364-6" title="6"><span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb364-7" title="7"><span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1">data_error =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb363-2" title="2">                        <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">9</span>,<span class="dv">14</span>,<span class="dv">16</span>,<span class="dv">18</span>,<span class="dv">16</span>,<span class="dv">14</span>))</a>
+<a class="sourceLine" id="cb363-3" title="3">mod =<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> data_error)</a>
+<a class="sourceLine" id="cb363-4" title="4"><span class="kw">ggplot</span>(data_error, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb363-5" title="5"><span class="st">       </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> x, <span class="dt">yend =</span> <span class="kw">fitted</span>(mod))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb363-6" title="6"><span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb363-7" title="7"><span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-204"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-204-1.png" alt="Gráfico de dispersão de alguns dados com uma linha representando a tendência geral. As linhas verticais representam as diferenças (ou residuais) entre a linha e os dados observados." width="336" />
 <p class="caption">
@@ -408,53 +411,53 @@ S = {\boldsymbol{\varepsilon &#39;\varepsilon }} = \sum\limits_{i = 1}^n {{{\lef
 <p><span class="math display">\[
 \begin{array}{c}{\boldsymbol{X&#39;X\beta = X&#39;Y}}\\{\boldsymbol{\hat\beta}} = {\left( {{\boldsymbol{X&#39;X}}}\right)^{- 1}}{\boldsymbol{X&#39;Y}}\end{array}
 \]</span></p>
-<p>Percebe-se que as estimativas dos parâmetros não tem nenhuma relação com os pressupostos  de normalidade, homocedasticidade e independência dos resíduios. Porém, cumprir pressupostos é importante para testar hipóteses e construir intervalos de confiança. Outro aspecto importante na estimação é a necessidade da matriz <span class="math inline">\(\boldsymbol{X&#39;X}\)</span> ser não singular, pois assim é possível inverter essa matriz e resolver o sistema de equações normais  obtendo parâmetros únicos. O sistema de equações normais também pode ser resolvido utilizando a inversa generalizada. Neste último caso, os valores dos parâmetros que resolvem o sistema de equações não são únicos. Para maiores detalhes sobre como estimar os parâmetros de regressões lineares, ver <span class="citation">Draper and Smith (<a href="#ref-Draper1998">1998</a>)</span>, <span class="citation">Kutner et al. (<a href="#ref-Kutner2005">2005</a>)</span> e <span class="citation">Rencher and Schaalje (<a href="#ref-Rencher2008">2008</a>)</span>.</p>
+<p>Percebe-se que as estimativas dos parâmetros não tem nenhuma relação com os pressupostos  de normalidade, homocedasticidade e independência dos resíduios. Porém, cumprir pressupostos é importante para testar hipóteses e construir intervalos de confiança. Outro aspecto importante na estimação é a necessidade da matriz <span class="math inline">\(\boldsymbol{X&#39;X}\)</span> ser não singular, pois assim é possível inverter essa matriz e resolver o sistema de equações normais  obtendo parâmetros únicos. O sistema de equações normais também pode ser resolvido utilizando a inversa generalizada. Neste último caso, os valores dos parâmetros que resolvem o sistema de equações não são únicos. Para maiores detalhes sobre como estimar os parâmetros de regressões lineares, ver <span class="citation">Draper and Smith (<a href="#ref-Draper1998" role="doc-biblioref">1998</a>)</span>, <span class="citation">Kutner et al. (<a href="#ref-Kutner2005" role="doc-biblioref">2005</a>)</span> e <span class="citation">Rencher and Schaalje (<a href="#ref-Rencher2008" role="doc-biblioref">2008</a>)</span>.</p>
 <p>Vimos que uma matriz <span class="math inline">\(\boldsymbol{X&#39;X}\)</span> não singular é necessária para obtermos os parâmetros da nossa regressão. A não singularidade da matriz está relacionada com quanto as variáveis independentes estão correlacionadas. Quando as variáveis independentes estão aproximadamente (ou perfeitamente, o que é praticamente impossível) relacionadas dizemos que há elevada <strong>multicolinearidade</strong>. O principal problema da multicolinearidade está relacionado com as estimativas dos parâmetros. Quando ela é elevada, um conjunto de funções resposta minimiza os erros e prediz, com precisão, os valores observados.</p>
-<p>Quando há multicolinearidade é possível resolver o sistema de equações normais  utilizando a inversa generaliazada de Moore-Penrose, utilizando a função <code>ginv()</code>  do pacote <em>MASS</em>. Utilizando a inversa generalizada minimiza-se a soma dos quadrados, porém não garante-se que os parâmetros sejam únicos. Então, qualquer inferências sobre como as variáveis se relacionam passa a ser duvidosa <span class="citation">(Kutner et al. <a href="#ref-Kutner2005">2005</a>)</span>.</p>
-<p>Para demonstrar como a multicolinearidade afeta a estimativa dos parâmetros, utilizamos um exemplo hipotético de <span class="citation">Kutner et al. (<a href="#ref-Kutner2005">2005</a>)</span>. Execute a programação em casa e veja os resultados.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1">X1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb365-2" title="2">X2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb365-3" title="3"><span class="kw">cor</span>(X1,X2) <span class="co"># correlação entre as variávies independentes</span></a>
-<a class="sourceLine" id="cb365-4" title="4"></a>
-<a class="sourceLine" id="cb365-5" title="5"><span class="co">## Minimizando a soma de quadrados</span></a>
-<a class="sourceLine" id="cb365-6" title="6"><span class="kw">require</span> (nls2)</a>
-<a class="sourceLine" id="cb365-7" title="7">resultados =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">4</span>,<span class="dt">nrow =</span> <span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb365-8" title="8"><span class="kw">names</span>(resultados) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;b0&quot;</span>,<span class="st">&quot;b1&quot;</span>,<span class="st">&quot;b2&quot;</span>,<span class="st">&quot;sigma&quot;</span>)</a>
-<a class="sourceLine" id="cb365-9" title="9"></a>
-<a class="sourceLine" id="cb365-10" title="10"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>){</a>
-<a class="sourceLine" id="cb365-11" title="11">Y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">83</span>,<span class="dv">63</span>,<span class="dv">103</span>)</a>
-<a class="sourceLine" id="cb365-12" title="12">X1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb365-13" title="13">X2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb365-14" title="14">grid =<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb365-15" title="15"><span class="dt">b0 =</span> <span class="kw">seq</span>(<span class="op">-</span>i,i, <span class="dt">by =</span> <span class="fl">0.1</span>),</a>
-<a class="sourceLine" id="cb365-16" title="16"><span class="dt">b1 =</span> <span class="kw">seq</span>(<span class="op">-</span>i, i, <span class="dt">by =</span> <span class="fl">0.1</span>),</a>
-<a class="sourceLine" id="cb365-17" title="17"><span class="dt">b2 =</span> <span class="kw">seq</span>(<span class="op">-</span>i, i, <span class="dt">by =</span> <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb365-18" title="18">)) <span class="co"># Armazenando um conjunto de valores que quero dar aos parâmetros</span></a>
-<a class="sourceLine" id="cb365-19" title="19"></a>
-<a class="sourceLine" id="cb365-20" title="20">Resp =<span class="st"> </span><span class="kw">nls2</span>(Y<span class="op">~</span>b0<span class="op">+</span>b1<span class="op">*</span>X1<span class="op">+</span>b2<span class="op">*</span>X2,</a>
-<a class="sourceLine" id="cb365-21" title="21"><span class="dt">start =</span> grid,</a>
-<a class="sourceLine" id="cb365-22" title="22"><span class="dt">algorithm =</span> <span class="st">&quot;brute-force&quot;</span>)</a>
-<a class="sourceLine" id="cb365-23" title="23"></a>
-<a class="sourceLine" id="cb365-24" title="24">b0 =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb365-25" title="25">b1 =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb365-26" title="26">b2 =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb365-27" title="27">sigma =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>sigma</a>
-<a class="sourceLine" id="cb365-28" title="28">;</a>
-<a class="sourceLine" id="cb365-29" title="29">resultados<span class="op">$</span>b0[i] =<span class="st"> </span>b0</a>
-<a class="sourceLine" id="cb365-30" title="30">resultados<span class="op">$</span>b1[i] =<span class="st"> </span>b1</a>
-<a class="sourceLine" id="cb365-31" title="31">resultados<span class="op">$</span>b2[i] =<span class="st"> </span>b2</a>
-<a class="sourceLine" id="cb365-32" title="32">resultados<span class="op">$</span>sigma[i] =<span class="st"> </span>sigma</a>
-<a class="sourceLine" id="cb365-33" title="33">}</a>
-<a class="sourceLine" id="cb365-34" title="34">resultados</a></code></pre></div>
-<p>Quando há multicolinearidade, conjuntos de diferentes parâmetros resolvem o sitema de equações normais e minimizam a soma de quadrados. Por isso, relacionar a resposta da variável dependente em função das variáveis independentes passa a ser impossível. Por isso, por exemplo, que a multicolinearidade é importante na <a href="relations.html#analise-de-trilha">análise de trilha</a>. A relação entre as variáveis na análise de trilha é determinada com base no valor dos coeficientes de trilha, que nada mais são do que parâmetros de uma regressão múltipla.</p>
+<p>Quando há multicolinearidade é possível resolver o sistema de equações normais  utilizando a inversa generaliazada de Moore-Penrose, utilizando a função <code>ginv()</code>  do pacote <em>MASS</em>. Utilizando a inversa generalizada minimiza-se a soma dos quadrados, porém não garante-se que os parâmetros sejam únicos. Então, qualquer inferências sobre como as variáveis se relacionam passa a ser duvidosa <span class="citation">(Kutner et al. <a href="#ref-Kutner2005" role="doc-biblioref">2005</a>)</span>.</p>
+<p>Para demonstrar como a multicolinearidade afeta a estimativa dos parâmetros, utilizamos um exemplo hipotético de <span class="citation">Kutner et al. (<a href="#ref-Kutner2005" role="doc-biblioref">2005</a>)</span>. Execute a programação em casa e veja os resultados.</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1">X1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb364-2" title="2">X2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb364-3" title="3"><span class="kw">cor</span>(X1,X2) <span class="co"># correlação entre as variávies independentes</span></a>
+<a class="sourceLine" id="cb364-4" title="4"></a>
+<a class="sourceLine" id="cb364-5" title="5"><span class="co">## Minimizando a soma de quadrados</span></a>
+<a class="sourceLine" id="cb364-6" title="6"><span class="kw">require</span> (nls2)</a>
+<a class="sourceLine" id="cb364-7" title="7">resultados =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">4</span>,<span class="dt">nrow =</span> <span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb364-8" title="8"><span class="kw">names</span>(resultados) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;b0&quot;</span>,<span class="st">&quot;b1&quot;</span>,<span class="st">&quot;b2&quot;</span>,<span class="st">&quot;sigma&quot;</span>)</a>
+<a class="sourceLine" id="cb364-9" title="9"></a>
+<a class="sourceLine" id="cb364-10" title="10"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>){</a>
+<a class="sourceLine" id="cb364-11" title="11">Y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">83</span>,<span class="dv">63</span>,<span class="dv">103</span>)</a>
+<a class="sourceLine" id="cb364-12" title="12">X1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb364-13" title="13">X2 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb364-14" title="14">grid =<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb364-15" title="15"><span class="dt">b0 =</span> <span class="kw">seq</span>(<span class="op">-</span>i,i, <span class="dt">by =</span> <span class="fl">0.1</span>),</a>
+<a class="sourceLine" id="cb364-16" title="16"><span class="dt">b1 =</span> <span class="kw">seq</span>(<span class="op">-</span>i, i, <span class="dt">by =</span> <span class="fl">0.1</span>),</a>
+<a class="sourceLine" id="cb364-17" title="17"><span class="dt">b2 =</span> <span class="kw">seq</span>(<span class="op">-</span>i, i, <span class="dt">by =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb364-18" title="18">)) <span class="co"># Armazenando um conjunto de valores que quero dar aos parâmetros</span></a>
+<a class="sourceLine" id="cb364-19" title="19"></a>
+<a class="sourceLine" id="cb364-20" title="20">Resp =<span class="st"> </span><span class="kw">nls2</span>(Y<span class="op">~</span>b0<span class="op">+</span>b1<span class="op">*</span>X1<span class="op">+</span>b2<span class="op">*</span>X2,</a>
+<a class="sourceLine" id="cb364-21" title="21"><span class="dt">start =</span> grid,</a>
+<a class="sourceLine" id="cb364-22" title="22"><span class="dt">algorithm =</span> <span class="st">&quot;brute-force&quot;</span>)</a>
+<a class="sourceLine" id="cb364-23" title="23"></a>
+<a class="sourceLine" id="cb364-24" title="24">b0 =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb364-25" title="25">b1 =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb364-26" title="26">b2 =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb364-27" title="27">sigma =<span class="st"> </span><span class="kw">summary</span>(Resp)<span class="op">$</span>sigma</a>
+<a class="sourceLine" id="cb364-28" title="28">;</a>
+<a class="sourceLine" id="cb364-29" title="29">resultados<span class="op">$</span>b0[i] =<span class="st"> </span>b0</a>
+<a class="sourceLine" id="cb364-30" title="30">resultados<span class="op">$</span>b1[i] =<span class="st"> </span>b1</a>
+<a class="sourceLine" id="cb364-31" title="31">resultados<span class="op">$</span>b2[i] =<span class="st"> </span>b2</a>
+<a class="sourceLine" id="cb364-32" title="32">resultados<span class="op">$</span>sigma[i] =<span class="st"> </span>sigma</a>
+<a class="sourceLine" id="cb364-33" title="33">}</a>
+<a class="sourceLine" id="cb364-34" title="34">resultados</a></code></pre></div>
+<p>Quando há multicolinearidade, conjuntos de diferentes parâmetros resolvem o sitema de equações normais e minimizam a soma de quadrados. Por isso, relacionar a resposta da variável dependente em função das variáveis independentes passa a ser impossível. Por isso, por exemplo, que a multicolinearidade é importante na <a href="#analise-de-trilha">análise de trilha</a>. A relação entre as variáveis na análise de trilha é determinada com base no valor dos coeficientes de trilha, que nada mais são do que parâmetros de uma regressão múltipla.</p>
 </div>
-<div id="ajustando-regressoes-com-a-funcao-lm" class="section level3">
+<div id="ajustando-regressões-com-a-função-lm" class="section level3">
 <h3><span class="header-section-number">11.1.2</span> Ajustando regressões com a função <code>lm()</code></h3>
-<p>A função <code>lm()</code>  é utilizada para ajustar regresões lineares simples e múltipla. Os argumentos mais importantes desta função são a <code>formula</code>, onde indicamos a função resposta; e <code>data</code>, onde indicamos o banco de dados. Vamos utiliza um exemplo simples retirado de <span class="citation">Schenider, Schenider, and Souza (<a href="#ref-Schneider2009">2009</a>)</span>:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1">reg =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;REG&quot;</span>)</a>
-<a class="sourceLine" id="cb366-2" title="2">mod7 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb366-3" title="3">mod7<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb366-4" title="4"><span class="kw">anova</span>(mod7<span class="fl">.1</span>, mod7) <span class="co"># Verificar a significância do modelo</span></a></code></pre></div>
+<p>A função <code>lm()</code>  é utilizada para ajustar regresões lineares simples e múltipla. Os argumentos mais importantes desta função são a <code>formula</code>, onde indicamos a função resposta; e <code>data</code>, onde indicamos o banco de dados. Vamos utiliza um exemplo simples retirado de <span class="citation">Schenider, Schenider, and Souza (<a href="#ref-Schneider2009" role="doc-biblioref">2009</a>)</span>:</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1">reg =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;REG&quot;</span>)</a>
+<a class="sourceLine" id="cb365-2" title="2">mod7 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb365-3" title="3">mod7<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb365-4" title="4"><span class="kw">anova</span>(mod7<span class="fl">.1</span>, mod7) <span class="co"># Verificar a significância do modelo</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ 1
@@ -465,7 +468,7 @@ Model 2: Y ~ X1 + X2 + X3
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Através da função <code>anova(mod7.1, mod7)</code>  pode-se verificar se o modelo é ou não significativo. A hipótese <span class="math inline">\(H_0 = 0\)</span> é rejeitada e conclui-se que o modelo explica o comportamento da variável resposta. Através da função <code>summary()</code>  obtém-se o resultado do teste <em>t</em> para os parâmetros do modelo. A hipótese testada neste caso é <span class="math inline">\(H_0:\boldsymbol{\beta} = 0\)</span> <em>vs</em> <span class="math inline">\(H_A:\boldsymbol{\beta}\ne 0\)</span>. Por fim, a função <code>anova()</code> retorna um teste F que possibilita verificar a contribuição de cada parâmetro em explicar a variabilidade da variável resposta.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="kw">summary</span>(mod7)</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="kw">summary</span>(mod7)</a></code></pre></div>
 <pre><code>
 Call:
 lm(formula = Y ~ X1 + X2 + X3, data = reg)
@@ -491,8 +494,8 @@ F-statistic: 53.45 on 3 and 9 DF,  p-value: 4.653e-06</code></pre>
 F_{calc} = \frac{S{Q_{Erro}}(\Omega)- S{Q_{Erro}}(\omega)/G{L_{Erro}}(\Omega)- G{L_{Erro}}(\omega)} {Q{M_{Erro}}(\omega )}\
 \]</span></p>
 <p>Onde, <span class="math inline">\(SQ_{Erro}(\Omega)\)</span> e <span class="math inline">\(SQ_{Erro}(\omega)\)</span> são as somas de quadrados dos resíduos  nos modelos completo e reduzido, respectivamente; <span class="math inline">\(G{L_{Erro}}(\omega)\)</span> e <span class="math inline">\(G{L_{Erro}}(\Omega)\)</span> são os graus de liberdade do resíduo do modelo completo e reduzido, respectivamente; e <span class="math inline">\(Q{M_{Erro}}(\omega )\)</span> é o quadrado médio do resíduo do modelo completo. Podemos realizar o teste F utilizando a função <code>anova()</code>:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1">mod8 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb370-2" title="2"><span class="kw">anova</span>(mod8, mod7)</a></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1">mod8 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb369-2" title="2"><span class="kw">anova</span>(mod8, mod7)</a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1 + X2
@@ -501,23 +504,23 @@ Model 2: Y ~ X1 + X2 + X3
 1     10 101.655                           
 2      9  97.469  1     4.186 0.3865 0.5496</code></pre>
 <p>Como ambos modelos são estatisticamente iguais, opta-se pelo modelo reduzido. O modelo que melhor se ajustou aos dados foi <span class="math inline">\(Y = 6.726 + 2.759X_1 - 1.937X_2\)</span>, <span class="math inline">\(R^2_{Aj} = 0.93\)</span> superior a 90%.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="kw">coefficients</span>(mod8)</a></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1"><span class="kw">coefficients</span>(mod8)</a></code></pre></div>
 <pre><code>(Intercept)          X1          X2 
    6.726606    2.759633   -1.937615 </code></pre>
 </div>
-<div id="selecao-de-variaveis" class="section level3">
+<div id="seleção-de-variáveis" class="section level3">
 <h3><span class="header-section-number">11.1.3</span> Seleção de variáveis</h3>
 <p>Foi mostrado brevemente um exemplo de como ajustar e selecionar variáveis. Porém, no exemplo apresentado, utilizou-se somente três variáveis. No entanto, quando há um elevado número de variáveis, selecioná-las torna-se um trabalho um pouco mais complexo. Nestes casos é necessário utilizar algoritimos de seleção. Os mais comuns são o <em>Forward</em>, <em>Backward</em> e <em>Stepwise</em>.</p>
 <p><strong>Forward</strong> </p>
 <p>No método <em>forward</em> parte-se de um modelo com uma variável independente, que é aquela que possui maior correlação  amostral com a variável dependente. Posteriormente, realiza-se o teste F para verificar se ela é realmente é significativa. A segunda variável independente com maior correlação amostral com a variável dependente é adicionada ao modelo, e um teste F parcial verifica a significância. As variávies são adicionadas enquanto o F parcial for significativo.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">cor</span>(reg[<span class="dv">1</span>], reg[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]) <span class="co"># Correlação</span></a></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1"><span class="kw">cor</span>(reg[<span class="dv">1</span>], reg[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]) <span class="co"># Correlação</span></a></code></pre></div>
 <pre><code>         X1         X2         X3
 Y 0.7754301 -0.4558018 -0.2460537</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" title="1">mod_for1 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb376-2" title="2">mod_for2 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1, <span class="dt">data =</span> reg) <span class="co"># Adiciona X1 </span></a>
-<a class="sourceLine" id="cb376-3" title="3">mod_for3 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)  <span class="co"># Adiciona X2 </span></a>
-<a class="sourceLine" id="cb376-4" title="4">mod_for4 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3, <span class="dt">data =</span> reg)  <span class="co"># Adiciona X3 </span></a>
-<a class="sourceLine" id="cb376-5" title="5"><span class="kw">anova</span>(mod_for1, mod_for2, mod_for3, mod_for4)  <span class="co"># Seleciona o modelo </span></a></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1">mod_for1 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb375-2" title="2">mod_for2 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1, <span class="dt">data =</span> reg) <span class="co"># Adiciona X1 </span></a>
+<a class="sourceLine" id="cb375-3" title="3">mod_for3 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)  <span class="co"># Adiciona X2 </span></a>
+<a class="sourceLine" id="cb375-4" title="4">mod_for4 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3, <span class="dt">data =</span> reg)  <span class="co"># Adiciona X3 </span></a>
+<a class="sourceLine" id="cb375-5" title="5"><span class="kw">anova</span>(mod_for1, mod_for2, mod_for3, mod_for4)  <span class="co"># Seleciona o modelo </span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ 1
@@ -533,10 +536,10 @@ Model 4: Y ~ X1 + X2 + X3
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Backward</strong> </p>
 <p>No método <em>backward</em> parte-se do modelo completo. As variávies candidatas a serem eliminadas são determinadas através do teste F parcial, como se elas fossem (hipoteticamente) as últimas a serem incluidas no modelo.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1"><span class="co"># F parcial para X3</span></a>
-<a class="sourceLine" id="cb378-2" title="2">mod_back.x3 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb378-3" title="3">mod_back.x3<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb378-4" title="4"><span class="kw">anova</span>(mod_back.x3<span class="fl">.1</span>,mod_back.x3) <span class="co"># Menor F parcial</span></a></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1"><span class="co"># F parcial para X3</span></a>
+<a class="sourceLine" id="cb377-2" title="2">mod_back.x3 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb377-3" title="3">mod_back.x3<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb377-4" title="4"><span class="kw">anova</span>(mod_back.x3<span class="fl">.1</span>,mod_back.x3) <span class="co"># Menor F parcial</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1 + X2
@@ -544,10 +547,10 @@ Model 2: Y ~ X1 + X2 + X3
   Res.Df     RSS Df Sum of Sq      F Pr(&gt;F)
 1     10 101.655                           
 2      9  97.469  1     4.186 0.3865 0.5496</code></pre>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1"><span class="co"># F parcial para X2</span></a>
-<a class="sourceLine" id="cb380-2" title="2">mod_back.x2 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb380-3" title="3">mod_back.x2<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb380-4" title="4"><span class="kw">anova</span>(mod_back.x2<span class="fl">.1</span>,mod_back.x2)</a></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" title="1"><span class="co"># F parcial para X2</span></a>
+<a class="sourceLine" id="cb379-2" title="2">mod_back.x2 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb379-3" title="3">mod_back.x2<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb379-4" title="4"><span class="kw">anova</span>(mod_back.x2<span class="fl">.1</span>,mod_back.x2)</a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1 + X3
@@ -557,10 +560,10 @@ Model 2: Y ~ X1 + X2 + X3
 2      9  97.47  1    613.23 56.624 3.598e-05 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="co"># F parcial para X1</span></a>
-<a class="sourceLine" id="cb382-2" title="2">mod_back.x1 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb382-3" title="3">mod_back.x1<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb382-4" title="4"><span class="kw">anova</span>(mod_back.x1<span class="fl">.1</span>,mod_back.x1) <span class="co"># Maior F parcial </span></a></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1"><span class="co"># F parcial para X1</span></a>
+<a class="sourceLine" id="cb381-2" title="2">mod_back.x1 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb381-3" title="3">mod_back.x1<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb381-4" title="4"><span class="kw">anova</span>(mod_back.x1<span class="fl">.1</span>,mod_back.x1) <span class="co"># Maior F parcial </span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X2 + X3
@@ -570,10 +573,10 @@ Model 2: Y ~ X1 + X2 + X3
 2      9   97.47  1    1270.1 117.28 1.836e-06 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1"><span class="co"># Elimina a 3, depois a 2 e depois a 1</span></a>
-<a class="sourceLine" id="cb384-2" title="2">mod_back1 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb384-3" title="3">mod_back2 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb384-4" title="4"><span class="kw">anova</span>(mod_back2,mod_back1) <span class="co"># elimina X3</span></a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1"><span class="co"># Elimina a 3, depois a 2 e depois a 1</span></a>
+<a class="sourceLine" id="cb383-2" title="2">mod_back1 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2<span class="op">+</span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb383-3" title="3">mod_back2 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb383-4" title="4"><span class="kw">anova</span>(mod_back2,mod_back1) <span class="co"># elimina X3</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1 + X2
@@ -581,9 +584,9 @@ Model 2: Y ~ X1 + X2 + X3
   Res.Df     RSS Df Sum of Sq      F Pr(&gt;F)
 1     10 101.655                           
 2      9  97.469  1     4.186 0.3865 0.5496</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1">mod_back2 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb386-2" title="2">mod_back3 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb386-3" title="3"><span class="kw">anova</span>(mod_back3,mod_back2) <span class="co"># não elimina X2 e seleciona</span></a></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">mod_back2 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1<span class="op">+</span>X2,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb385-2" title="2">mod_back3 =<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X1,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb385-3" title="3"><span class="kw">anova</span>(mod_back3,mod_back2) <span class="co"># não elimina X2 e seleciona</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1
@@ -595,10 +598,10 @@ Model 2: Y ~ X1 + X2
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Stepwise</strong> </p>
 <p>O método <em>stepwise</em> utiliza características dos métodos <em>forward</em> e <em>backward</em>. Neste método parte-se de um modelo composto pela variável com maior correlação  amostral. A cada variável adicionada por <em>forward</em>, é relizado um <em>backward</em> para retirar uma das variáveis previamente adicionadas.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1"><span class="co"># Passo 1</span></a>
-<a class="sourceLine" id="cb388-2" title="2">mod_step1<span class="fl">.0</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb388-3" title="3">mod_step1 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb388-4" title="4"><span class="kw">anova</span>(mod_step1<span class="fl">.0</span>, mod_step1) <span class="co"># adiciona X1</span></a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1"><span class="co"># Passo 1</span></a>
+<a class="sourceLine" id="cb387-2" title="2">mod_step1<span class="fl">.0</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb387-3" title="3">mod_step1 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb387-4" title="4"><span class="kw">anova</span>(mod_step1<span class="fl">.0</span>, mod_step1) <span class="co"># adiciona X1</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ 1
@@ -608,10 +611,10 @@ Model 2: Y ~ X1
 2     11  731.23  1    1102.8 16.589 0.001842 **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1"><span class="co"># Passo 2</span></a>
-<a class="sourceLine" id="cb390-2" title="2">mod_step2 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb390-3" title="3">mod_step2<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb390-4" title="4"><span class="kw">anova</span>(mod_step2, mod_step2<span class="fl">.1</span>) <span class="co"># adiciona X2</span></a></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1"><span class="co"># Passo 2</span></a>
+<a class="sourceLine" id="cb389-2" title="2">mod_step2 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb389-3" title="3">mod_step2<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb389-4" title="4"><span class="kw">anova</span>(mod_step2, mod_step2<span class="fl">.1</span>) <span class="co"># adiciona X2</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1
@@ -621,8 +624,8 @@ Model 2: Y ~ X1 + X2
 2     10 101.66  1    629.58 61.933 1.359e-05 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1">mod_step2<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb392-2" title="2"><span class="kw">anova</span>(mod_step2<span class="fl">.2</span>, mod_step2<span class="fl">.1</span>) <span class="co"># mantém X1 no modelo</span></a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">mod_step2<span class="fl">.2</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb391-2" title="2"><span class="kw">anova</span>(mod_step2<span class="fl">.2</span>, mod_step2<span class="fl">.1</span>) <span class="co"># mantém X1 no modelo</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X2
@@ -632,10 +635,10 @@ Model 2: Y ~ X1 + X2
 2     10  101.66  1    1351.3 132.93 4.251e-07 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1"><span class="co"># Passo 3</span></a>
-<a class="sourceLine" id="cb394-2" title="2">mod_step3 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb394-3" title="3">mod_step3<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3,<span class="dt">data =</span> reg)</a>
-<a class="sourceLine" id="cb394-4" title="4"><span class="kw">anova</span>(mod_step3, mod_step3<span class="fl">.1</span>) <span class="co"># não adiciona X3, seleciona o modelo</span></a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1"><span class="co"># Passo 3</span></a>
+<a class="sourceLine" id="cb393-2" title="2">mod_step3 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2, <span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb393-3" title="3">mod_step3<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3,<span class="dt">data =</span> reg)</a>
+<a class="sourceLine" id="cb393-4" title="4"><span class="kw">anova</span>(mod_step3, mod_step3<span class="fl">.1</span>) <span class="co"># não adiciona X3, seleciona o modelo</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: Y ~ X1 + X2
@@ -646,9 +649,9 @@ Model 2: Y ~ X1 + X2 + X3
 <p>As análises acima foram demonstradas apenas para detalhar o funcionamento dos algoritimos de seleção, utilizando F parcial. O F parcial é muito rigoroso, e por isso muitas vezes o pesquisador usa valores de <span class="math inline">\(\alpha\)</span> maiores que 5%. Além disso, várias funções do <em>R</em> estão disponíveis para selecionar variáveis utilizando diferentes diferentes critérios. As funções <code>ols_step_forward_p()</code>, <code>ols_step_backward_p()</code> e <code>ols_step_both_p()</code> do pacote <a href="https://rdrr.io/cran/olsrr/">olsrr</a><a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a> selecionam variávies utilizando utilizado <em>forward</em>, <em>backward</em> ou <em>stepwise</em>, respectivamente, considerando p-valores para critério de decisão de inclusão/remoção de variáveis.</p>
 <p>, 
 </p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_step_forward_p</span>(mod_for4)</a>
-<a class="sourceLine" id="cb396-2" title="2">olsrr<span class="op">::</span><span class="kw">ols_step_backward_p</span>(mod_for4)</a>
-<a class="sourceLine" id="cb396-3" title="3">olsrr<span class="op">::</span><span class="kw">ols_step_both_p</span>(mod_for4)</a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_step_forward_p</span>(mod_for4)</a>
+<a class="sourceLine" id="cb395-2" title="2">olsrr<span class="op">::</span><span class="kw">ols_step_backward_p</span>(mod_for4)</a>
+<a class="sourceLine" id="cb395-3" title="3">olsrr<span class="op">::</span><span class="kw">ols_step_both_p</span>(mod_for4)</a></code></pre></div>
 </div>
 <div id="falta-de-ajuste" class="section level3">
 <h3><span class="header-section-number">11.1.4</span> Falta de ajuste</h3>
@@ -657,9 +660,9 @@ Model 2: Y ~ X1 + X2 + X3
 {Y_{ij}} - {\hat Y_i} = \left( {{Y_{ij}} - {{\bar Y}{i.}}} \right) + \left( {{{\bar Y}{i.}} - {{\hat Y}_i}} \right)
 \]</span></p>
 <p>Onde <span class="math inline">\(\hat{Y_{ij}}-Y_{ij}\)</span> é o erro do modelo, <span class="math inline">\((Y_{ij}-\bar{Y_j})\)</span> é o erro puro e <span class="math inline">\((\hat{Y_{ij}}-\bar{Y_j})\)</span> é a falta de ajuste.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1">mod10 =<span class="st"> </span><span class="kw">lm</span>(RG <span class="op">~</span><span class="st"> </span>DOSEN, <span class="dt">data =</span> quantitativo) <span class="co"># Regressão linear</span></a>
-<a class="sourceLine" id="cb397-2" title="2">mod10<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(RG <span class="op">~</span><span class="st">  </span><span class="kw">factor</span>(DOSEN), <span class="dt">data =</span> quantitativo) <span class="co">#falta de ajuste</span></a>
-<a class="sourceLine" id="cb397-3" title="3"><span class="kw">anova</span>(mod10, mod10<span class="fl">.1</span>) <span class="co"># Erro puro</span></a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">mod10 =<span class="st"> </span><span class="kw">lm</span>(RG <span class="op">~</span><span class="st"> </span>DOSEN, <span class="dt">data =</span> quantitativo) <span class="co"># Regressão linear</span></a>
+<a class="sourceLine" id="cb396-2" title="2">mod10<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(RG <span class="op">~</span><span class="st">  </span><span class="kw">factor</span>(DOSEN), <span class="dt">data =</span> quantitativo) <span class="co">#falta de ajuste</span></a>
+<a class="sourceLine" id="cb396-3" title="3"><span class="kw">anova</span>(mod10, mod10<span class="fl">.1</span>) <span class="co"># Erro puro</span></a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: RG ~ DOSEN
@@ -670,8 +673,8 @@ Model 2: RG ~ factor(DOSEN)
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>A significância do teste F indica que o modelo linear não é adequado para representar a relação entre as variávies dependentes e independentes. Isso indica que o modelo ajustado “não se aproxima” satisfatoriamente da média das variávies independentes, e que a falta de ajuste  é elevada quando comparado ao erro puro. Agora, vamos ajustar um modelo quadrático:</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1">mod11 =<span class="st"> </span><span class="kw">lm</span>(RG <span class="op">~</span><span class="st">  </span>DOSEN <span class="op">+</span><span class="kw">I</span>(DOSEN<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> quantitativo) <span class="co">#Regressão quadrática</span></a>
-<a class="sourceLine" id="cb399-2" title="2"><span class="kw">anova</span>(mod11, mod10<span class="fl">.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1">mod11 =<span class="st"> </span><span class="kw">lm</span>(RG <span class="op">~</span><span class="st">  </span>DOSEN <span class="op">+</span><span class="kw">I</span>(DOSEN<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> quantitativo) <span class="co">#Regressão quadrática</span></a>
+<a class="sourceLine" id="cb398-2" title="2"><span class="kw">anova</span>(mod11, mod10<span class="fl">.1</span>)</a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: RG ~ DOSEN + I(DOSEN^2)
@@ -681,27 +684,27 @@ Model 2: RG ~ factor(DOSEN)
 2     15 0.60463  2   0.10247 1.271 0.3091</code></pre>
 <p>A não significância do teste F indica que o modelo quadrático é adequado para representar a relação entre as variávies dependentes e independentes. Aqui o exemplo é apresentado para um ajuste de polinômios, mas sua aplicação se estende a qualquer regressão (linear simples, múltipla ou regressão não linear).</p>
 </div>
-<div id="analise-dos-residuos" class="section level3">
+<div id="análise-dos-resíduos" class="section level3">
 <h3><span class="header-section-number">11.1.5</span> Análise dos resíduos</h3>
 <p>Na análise de regressão, os resíduos  devem ser normalmente distribuídos, homocedásticos e independentes. O diagnóstico é realizado por testes estatísticos ou através de análise gráfica.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1">residuos =<span class="st"> </span><span class="kw">residuals</span>(mod11)</a>
-<a class="sourceLine" id="cb401-2" title="2"><span class="kw">shapiro.test</span>(residuos) <span class="co"># Normalidade</span></a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1">residuos =<span class="st"> </span><span class="kw">residuals</span>(mod11)</a>
+<a class="sourceLine" id="cb400-2" title="2"><span class="kw">shapiro.test</span>(residuos) <span class="co"># Normalidade</span></a></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  residuos
 W = 0.95282, p-value = 0.412</code></pre>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="kw">bartlett.test</span>(residuos <span class="op">~</span><span class="st"> </span>DOSEN, <span class="dt">data =</span> quantitativo) <span class="co"># Homocedasticidade</span></a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1"><span class="kw">bartlett.test</span>(residuos <span class="op">~</span><span class="st"> </span>DOSEN, <span class="dt">data =</span> quantitativo) <span class="co"># Homocedasticidade</span></a></code></pre></div>
 <pre><code>
     Bartlett test of homogeneity of variances
 
 data:  residuos by DOSEN
 Bartlett&#39;s K-squared = 4.3887, df = 4, p-value = 0.3559</code></pre>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">autoplot</span>(mod11)<span class="co"># análise gráfica dos resíduos</span></a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1"><span class="kw">autoplot</span>(mod11)<span class="co"># análise gráfica dos resíduos</span></a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-216-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>A análise dos resíduos  também pode indicar a necessidade de adicionar variávies explicativas ao modelo. Por exemplo, vamos analisar os resíduos de um modelo linear ajustados a dados que tem (conhecidamente) comportamento quadrático.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1">residuos =<span class="st"> </span><span class="kw">residuals</span>(mod10)</a>
-<a class="sourceLine" id="cb406-2" title="2"><span class="kw">autoplot</span>(mod10) <span class="co"># análise gráfica dos resíduos</span></a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1">residuos =<span class="st"> </span><span class="kw">residuals</span>(mod10)</a>
+<a class="sourceLine" id="cb405-2" title="2"><span class="kw">autoplot</span>(mod10) <span class="co"># análise gráfica dos resíduos</span></a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-217-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Percebe-se, pelo gráfico residuals <em>vs</em> fitted, que os resíduos não são aleatoriamente distribuídos em torno de zero. A distribuição sistemática dos resíduos indica que uma variável que explica consideravelmente a variabilidade dos dados não foi incluída no modelo (no caso o termo quadrático do polinômio).</p>
 </div>
@@ -710,24 +713,24 @@ Bartlett&#39;s K-squared = 4.3887, df = 4, p-value = 0.3559</code></pre>
 
 <p>As observações influentes podem ser mensuradas através da <em>distância de Cook</em>, <em>DFBETA</em> e <em>DFFITS</em>. O <em>DFFITS</em> e a <em>distância de Cook</em> medem a influência das observações sobre a predição das variávies; e o <em>DFBETA</em> mede a influência destas observações sobre as estimativas dos parâmetros.</p>
 <p>Vamos utilizar as funções gráficas do pacote <code>olsrr</code> para fazer o diagnóstico dos pontos infuentes.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_plot_cooksd_bar</span>(mod11) <span class="co"># Distância de Cook</span></a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_plot_cooksd_bar</span>(mod11) <span class="co"># Distância de Cook</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-218"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-218-1.png" alt="Distância de Cook representando a influencia dos pontos na predição das variávies" width="384" />
 <p class="caption">
 Figure 11.2: Distância de Cook representando a influencia dos pontos na predição das variávies
 </p>
 </div>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_plot_dfbetas</span>(mod11) <span class="co"># DFBetas</span></a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_plot_dfbetas</span>(mod11) <span class="co"># DFBetas</span></a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-219-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_plot_dffits</span>(mod11) <span class="co"># DFFits</span></a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1">olsrr<span class="op">::</span><span class="kw">ols_plot_dffits</span>(mod11) <span class="co"># DFFits</span></a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-220-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>As observações 8 e 12 são as que mais influenciam os valores preditos e as estimativas dos parâmetros. Os limites pela <em>distância de Cook</em>, <em>DFBETA</em> e <em>DFFITS</em> para realizar o diagnóstico são <span class="math inline">\(\frac{4}{n} = \frac{4}{20} = 0,20\)</span>, <span class="math inline">\(\frac{2}{\sqrt{n}} = \frac{2}{\sqrt{2}} = 0,45\)</span> e <span class="math inline">\(2 \times \sqrt {\frac{p}{n}} = 2 \times \sqrt {\frac{3}{{20}}} = 0,77\)</span>, respectivamente.</p>
 </div>
 </div>
-<div id="regressao-nao-linear" class="section level2">
+<div id="regressão-não-linear" class="section level2">
 <h2><span class="header-section-number">11.2</span> Regressão não linear</h2>
 <p>Uma regressão é dita não linear quando os parâmetros não encontram-se de forma aditiva no modelo. Devido a isso, o sistema de equações normais <span class="math inline">\({\left( {{\boldsymbol{X&#39;X}}} \right)^{{\boldsymbol{ - 1}}}}{\boldsymbol{\beta = X&#39;Y}}\)</span> não pode ser resolvido analiticamente, e os parâmetros precisam ser estimados utilizando métodos iterativos. </p>
-<div id="estimacao-2" class="section level3">
+<div id="estimação-2" class="section level3">
 <h3><span class="header-section-number">11.2.1</span> Estimação</h3>
 <p>A estimação dos parâmetros é realizado pelo método dos mínimos quadrados . O método iterativo utilizado nos softwares R e SAS, por exemplo, é o de <em>Gauss-Newton</em>. Este método utiliza aproximações lineares de Taylor de primeira ordem da função resposta, dada por</p>
 <p><span class="math display">\[
@@ -739,7 +742,7 @@ f\left( {x,{\boldsymbol{\theta }}} \right) = f\left( {x,{{\boldsymbol{\theta }}^
 \]</span></p>
 <p>Percebe-se que a matriz <span class="math inline">\(\boldsymbol{F}\)</span>, que substitui <span class="math inline">\(\boldsymbol{X}\)</span>, é sempre dependente de um dos parâmetros do modelo, e por isso o sistema de equações não tem resolução analítica. O sistema de equações não linear acima é resolvido por <span class="math inline">\({\boldsymbol{\theta }} - {{\boldsymbol{\theta }}^{\boldsymbol{0}}} = {\left( {{\boldsymbol{F}}&#39;{\boldsymbol{F}}} \right)^{ - 1}}{\boldsymbol{F}}&#39;{\boldsymbol{\varepsilon }}\)</span>, que reorganizada como <span class="math inline">\({\boldsymbol{\theta }} = {{\boldsymbol{\theta }}^{\boldsymbol{0}}} + {\left( {{\boldsymbol{F}}&#39;{\boldsymbol{F}}} \right)^{ - 1}}{\boldsymbol{F}}&#39;{\boldsymbol{\varepsilon }}\)</span>, corresponde ao primeiro passo do método iterativo de <em>Gauss-Newton</em>. Para algoritimo seja iniciado, um valor inicial para os parâmetros deve ser declarado. O processo é repetido até obter convergência, que ocorre quando os valores estimados em cada passo são próximos um dos outros.</p>
 </div>
-<div id="ajustando-o-modelo-com-a-funcao-nls" class="section level3">
+<div id="ajustando-o-modelo-com-a-função-nls" class="section level3">
 <h3><span class="header-section-number">11.2.2</span> Ajustando o modelo com a função <code>nls()</code></h3>
 <p>A função <code>nls()</code>  pode ser utilizada para ajustar modelos não lineares. Os principais argumentos da função são: i) <code>formula</code>, onde o modelo é declarado; ii) <code>data</code>, onde os dados são declarados e iii) <code>start</code> , que é uma lista com os valores iniciais dos parâmetros.</p>
 <p><strong>Valores iniciais dos parâmetros</strong></p>
@@ -747,31 +750,31 @@ f\left( {x,{\boldsymbol{\theta }}} \right) = f\left( {x,{{\boldsymbol{\theta }}^
 <p><span class="math display">\[
 {Y_i} = \frac{{{\beta _1}}}{{1 + {e^{\left( {{\beta _2} - {\beta _3}{t_i}} \right)}}}} + {\varepsilon _i}
 \]</span></p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1">nls_tomato =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;TOMATE&quot;</span>)</a>
-<a class="sourceLine" id="cb410-2" title="2">nls_tomato_cord =<span class="st"> </span><span class="kw">subset</span>(nls_tomato,Genotipo  <span class="op">==</span><span class="st">  &quot;Cordillera&quot;</span>) </a></code></pre></div>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1"><span class="co"># Modelo logístico</span></a>
-<a class="sourceLine" id="cb411-2" title="2">logi &lt;-<span class="st"> </span><span class="cf">function</span>(x, b1, b2, b3){</a>
-<a class="sourceLine" id="cb411-3" title="3">  b1 <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(b2 <span class="op">-</span><span class="st"> </span>b3 <span class="op">*</span><span class="st"> </span>x))</a>
-<a class="sourceLine" id="cb411-4" title="4">}</a>
-<a class="sourceLine" id="cb411-5" title="5">start=<span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb411-6" title="6"><span class="kw">manipulate</span>({</a>
-<a class="sourceLine" id="cb411-7" title="7">  <span class="kw">plot</span>(num<span class="op">~</span>DAT,<span class="dt">data =</span> nls_tomato_cord)</a>
-<a class="sourceLine" id="cb411-8" title="8">  <span class="kw">curve</span>(<span class="kw">logi</span>(x, <span class="dt">b1=</span>b1,<span class="dt">b2=</span>b2,<span class="dt">b3=</span>b3),<span class="dt">add=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb411-9" title="9">  start&lt;&lt;-<span class="kw">list</span>(<span class="dt">b1=</span>b1,<span class="dt">b2=</span>b2,<span class="dt">b3=</span>b3)},</a>
-<a class="sourceLine" id="cb411-10" title="10">  <span class="dt">b1=</span><span class="kw">slider</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dt">initial=</span><span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb411-11" title="11">  <span class="dt">b2=</span><span class="kw">slider</span>(<span class="dv">0</span>, <span class="dv">20</span>,<span class="dt">initial=</span><span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb411-12" title="12">  <span class="dt">b3=</span><span class="kw">slider</span>(<span class="dv">0</span>, <span class="dv">1</span>,<span class="dt">initial=</span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb411-13" title="13">)</a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">nls_tomato =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;TOMATE&quot;</span>)</a>
+<a class="sourceLine" id="cb409-2" title="2">nls_tomato_cord =<span class="st"> </span><span class="kw">subset</span>(nls_tomato,Genotipo  <span class="op">==</span><span class="st">  &quot;Cordillera&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1"><span class="co"># Modelo logístico</span></a>
+<a class="sourceLine" id="cb410-2" title="2">logi &lt;-<span class="st"> </span><span class="cf">function</span>(x, b1, b2, b3){</a>
+<a class="sourceLine" id="cb410-3" title="3">  b1 <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(b2 <span class="op">-</span><span class="st"> </span>b3 <span class="op">*</span><span class="st"> </span>x))</a>
+<a class="sourceLine" id="cb410-4" title="4">}</a>
+<a class="sourceLine" id="cb410-5" title="5">start=<span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb410-6" title="6"><span class="kw">manipulate</span>({</a>
+<a class="sourceLine" id="cb410-7" title="7">  <span class="kw">plot</span>(num<span class="op">~</span>DAT,<span class="dt">data =</span> nls_tomato_cord)</a>
+<a class="sourceLine" id="cb410-8" title="8">  <span class="kw">curve</span>(<span class="kw">logi</span>(x, <span class="dt">b1=</span>b1,<span class="dt">b2=</span>b2,<span class="dt">b3=</span>b3),<span class="dt">add=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb410-9" title="9">  start&lt;&lt;-<span class="kw">list</span>(<span class="dt">b1=</span>b1,<span class="dt">b2=</span>b2,<span class="dt">b3=</span>b3)},</a>
+<a class="sourceLine" id="cb410-10" title="10">  <span class="dt">b1=</span><span class="kw">slider</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dt">initial=</span><span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb410-11" title="11">  <span class="dt">b2=</span><span class="kw">slider</span>(<span class="dv">0</span>, <span class="dv">20</span>,<span class="dt">initial=</span><span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb410-12" title="12">  <span class="dt">b3=</span><span class="kw">slider</span>(<span class="dv">0</span>, <span class="dv">1</span>,<span class="dt">initial=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb410-13" title="13">)</a></code></pre></div>
 <div class="figure">
 <img src="figures/Valor_inicial.png" alt="Manipulando os valores dos parâmetros" />
 <p class="caption">Manipulando os valores dos parâmetros</p>
 </div>
 <p><strong>Ajustando o modelo</strong></p>
 <p>Os valores iniciais serão armazenados na lista <code>start</code>, e esta será declarada no argumento <code>start</code> da função <code>nls()</code>  . A função <code>summary()</code>  retorna o teste de Wald para os parâmetros.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" title="1">nls1 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2<span class="op">-</span>b3<span class="op">*</span>DAT)), </a>
-<a class="sourceLine" id="cb412-2" title="2">         <span class="dt">data =</span> nls_tomato_cord, <span class="co"># indica os dados</span></a>
-<a class="sourceLine" id="cb412-3" title="3">         <span class="dt">start =</span> start) <span class="co"># indica os valores iniciais</span></a>
-<a class="sourceLine" id="cb412-4" title="4"><span class="kw">summary</span>(nls1)</a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1">nls1 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2<span class="op">-</span>b3<span class="op">*</span>DAT)), </a>
+<a class="sourceLine" id="cb411-2" title="2">         <span class="dt">data =</span> nls_tomato_cord, <span class="co"># indica os dados</span></a>
+<a class="sourceLine" id="cb411-3" title="3">         <span class="dt">start =</span> start) <span class="co"># indica os valores iniciais</span></a>
+<a class="sourceLine" id="cb411-4" title="4"><span class="kw">summary</span>(nls1)</a></code></pre></div>
 <pre><code>
 Formula: num ~ b1/(1 + exp(b2 - b3 * DAT))
 
@@ -788,90 +791,90 @@ Residual standard error: 0.9108 on 6 degrees of freedom
 Number of iterations to convergence: 7 
 Achieved convergence tolerance: 8.502e-06</code></pre>
 </div>
-<div id="analise-dos-residuos-1" class="section level3">
+<div id="análise-dos-resíduos-1" class="section level3">
 <h3><span class="header-section-number">11.2.3</span> Análise dos resíduos</h3>
 <p>Os resíduos  dos modelos não lineares também deve ser normalmente distribuídos, homocedásticos e independentes. Os testes estatísticos e a análise dos resíduos seguem os mesmos princípios dos modelos lineares.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1"><span class="kw">require</span>(lmtest) <span class="co"># pacote para carregar teste de Breusch-Pagan (homogeneidade)</span></a>
-<a class="sourceLine" id="cb414-2" title="2"><span class="kw">require</span> (car) <span class="co"># pacote para carregar teste de DW (independência)</span></a>
-<a class="sourceLine" id="cb414-3" title="3"><span class="co">### Normalidade</span></a>
-<a class="sourceLine" id="cb414-4" title="4">res_nls1 =<span class="st"> </span><span class="kw">residuals</span>(nls1)</a>
-<a class="sourceLine" id="cb414-5" title="5"><span class="kw">shapiro.test</span>(res_nls1)</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1"><span class="kw">require</span>(lmtest) <span class="co"># pacote para carregar teste de Breusch-Pagan (homogeneidade)</span></a>
+<a class="sourceLine" id="cb413-2" title="2"><span class="kw">require</span> (car) <span class="co"># pacote para carregar teste de DW (independência)</span></a>
+<a class="sourceLine" id="cb413-3" title="3"><span class="co">### Normalidade</span></a>
+<a class="sourceLine" id="cb413-4" title="4">res_nls1 =<span class="st"> </span><span class="kw">residuals</span>(nls1)</a>
+<a class="sourceLine" id="cb413-5" title="5"><span class="kw">shapiro.test</span>(res_nls1)</a></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  res_nls1
 W = 0.92624, p-value = 0.4464</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1">nls1_grad =<span class="st"> </span><span class="kw">attr</span>(nls1<span class="op">$</span>m<span class="op">$</span><span class="kw">fitted</span>(), <span class="st">&quot;gradient&quot;</span>) <span class="co"># obtem matriz gradiente</span></a>
-<a class="sourceLine" id="cb416-2" title="2">nls1_lm =<span class="st"> </span><span class="kw">lm</span>(num<span class="op">~-</span><span class="dv">1</span><span class="op">+</span>nls1_grad, <span class="dt">data =</span> nls_tomato_cord) </a>
-<a class="sourceLine" id="cb416-3" title="3"><span class="kw">bptest</span>(nls1_lm) <span class="co"># teste de Breusch-Pagan (homogeneidade)</span></a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1">nls1_grad =<span class="st"> </span><span class="kw">attr</span>(nls1<span class="op">$</span>m<span class="op">$</span><span class="kw">fitted</span>(), <span class="st">&quot;gradient&quot;</span>) <span class="co"># obtem matriz gradiente</span></a>
+<a class="sourceLine" id="cb415-2" title="2">nls1_lm =<span class="st"> </span><span class="kw">lm</span>(num<span class="op">~-</span><span class="dv">1</span><span class="op">+</span>nls1_grad, <span class="dt">data =</span> nls_tomato_cord) </a>
+<a class="sourceLine" id="cb415-3" title="3"><span class="kw">bptest</span>(nls1_lm) <span class="co"># teste de Breusch-Pagan (homogeneidade)</span></a></code></pre></div>
 <pre><code>
     studentized Breusch-Pagan test
 
 data:  nls1_lm
 BP = 1.5734, df = 2, p-value = 0.4554</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1"><span class="kw">durbinWatsonTest</span>(nls1_lm) <span class="co"># teste de DW (independência)</span></a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">durbinWatsonTest</span>(nls1_lm) <span class="co"># teste de DW (independência)</span></a></code></pre></div>
 <pre><code> lag Autocorrelation D-W Statistic p-value
    1      0.08163678      1.763777   0.248
  Alternative hypothesis: rho != 0</code></pre>
 <p>O cumprimento dos pressupostos  dos resíduos não afeta a estimativa dos parâmetros, mas é de extrema importância para construir intervalos de confiança e testar hipóteses. Percebe-se, no nosso exemplo, que os pressuposto foram cumpridos (<em>p</em>-valor&gt;0,05). Para realizar a análise gráfica dos resíduos pode-se utilizar a função <code>nlsResiduals()</code>  do pacote <strong>nlstools</strong>.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="kw">require</span>(nlstools)</a>
-<a class="sourceLine" id="cb420-2" title="2">res1_nls1 =<span class="st"> </span><span class="kw">nlsResiduals</span>(nls1)</a>
-<a class="sourceLine" id="cb420-3" title="3"><span class="kw">plot</span>(res1_nls1)</a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="kw">require</span>(nlstools)</a>
+<a class="sourceLine" id="cb419-2" title="2">res1_nls1 =<span class="st"> </span><span class="kw">nlsResiduals</span>(nls1)</a>
+<a class="sourceLine" id="cb419-3" title="3"><span class="kw">plot</span>(res1_nls1)</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-226-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No exemplo acima, apenas uma observação foi realizada para cada variável independente (dias após o transplante, no caso). Por isso optou-se por utilizar o teste de <em>Breusch-Pagan</em> para realizar o diagnóstico de homocedasticidade dos resíduos. Quando mais de uma observação é realizada em cada variável independente, pode-se utilizar os testes de <em>Bartlett</em> ou <em>Levene</em>.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1">nls_eggplant =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;EGGPLANT&quot;</span>)</a>
-<a class="sourceLine" id="cb421-2" title="2">nls_eggplant =<span class="st"> </span><span class="kw">subset</span>(nls_eggplant, ESTUFA  <span class="op">==</span><span class="st">  &quot;E1&quot;</span>) </a>
-<a class="sourceLine" id="cb421-3" title="3">start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="dv">10</span>,<span class="dt">b2 =</span> <span class="fl">6.7</span>,<span class="dt">b3 =</span> <span class="fl">0.073</span>)</a>
-<a class="sourceLine" id="cb421-4" title="4">nls2 =<span class="st"> </span><span class="kw">nls</span>(NUMERO <span class="op">~</span><span class="st"> </span>b1<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2<span class="op">-</span>b3<span class="op">*</span>DAT)), </a>
-<a class="sourceLine" id="cb421-5" title="5">         <span class="dt">data =</span> nls_eggplant,</a>
-<a class="sourceLine" id="cb421-6" title="6">         <span class="dt">start =</span> start)</a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1">nls_eggplant =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;EGGPLANT&quot;</span>)</a>
+<a class="sourceLine" id="cb420-2" title="2">nls_eggplant =<span class="st"> </span><span class="kw">subset</span>(nls_eggplant, ESTUFA  <span class="op">==</span><span class="st">  &quot;E1&quot;</span>) </a>
+<a class="sourceLine" id="cb420-3" title="3">start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="dv">10</span>,<span class="dt">b2 =</span> <span class="fl">6.7</span>,<span class="dt">b3 =</span> <span class="fl">0.073</span>)</a>
+<a class="sourceLine" id="cb420-4" title="4">nls2 =<span class="st"> </span><span class="kw">nls</span>(NUMERO <span class="op">~</span><span class="st"> </span>b1<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2<span class="op">-</span>b3<span class="op">*</span>DAT)), </a>
+<a class="sourceLine" id="cb420-5" title="5">         <span class="dt">data =</span> nls_eggplant,</a>
+<a class="sourceLine" id="cb420-6" title="6">         <span class="dt">start =</span> start)</a></code></pre></div>
 </div>
-<div id="medidas-de-nao-linearidade" class="section level3">
+<div id="medidas-de-não-linearidade" class="section level3">
 <h3><span class="header-section-number">11.2.4</span> Medidas de não linearidade</h3>
-<p>Conforme vimos acima, a estimação dos parâmetros é realizada pelo método dos mínimos quadrados  utilizando aproximações lineares de Taylor da função resposta. É esta aproximação linear que garante que os parâmetros estimados sejam proximos de não viesados (só serão não viesados assintoticamente). Modelos com aproximação linear pobre tendem a ter parâmetros muito viesados, o que impede que eles sejam utilizados para explicar determinado fenomeno biológico (eles tem ineterpretação biológica). As medidas de curvatura de Bates e Watts são amplamente utilizadas para avaliar o grau de não linearidade da função resposta. Para maiores detalhes, ver <span class="citation">Bates and Watts (<a href="#ref-Bates1988">1988</a>)</span>, cap. 7 e <span class="citation">Seber and Wild (<a href="#ref-Seber2003">2003</a>)</span>, cap. 4. Essas medidas são facilmente implementadas através da função <code>rms.curv()</code>  do pacote <em>MASS</em>. Para isto, utilizaremos o modelo ajustado <code>nls1</code></p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1">start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="dv">30</span>, <span class="dt">b2 =</span> <span class="dv">19</span>, <span class="dt">b3 =</span> <span class="fl">0.2</span>)</a>
-<a class="sourceLine" id="cb422-2" title="2"><span class="co">## Medidas de não linearidade</span></a>
-<a class="sourceLine" id="cb422-3" title="3">nls1_hess =<span class="st"> </span><span class="kw">deriv3</span>(<span class="op">~</span>b1<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(b2 <span class="op">-</span><span class="st"> </span>b3 <span class="op">*</span><span class="st"> </span>DAT)), <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>,<span class="st">&quot;b2&quot;</span>,<span class="st">&quot;b3&quot;</span>),</a>
-<a class="sourceLine" id="cb422-4" title="4">                 <span class="cf">function</span>(DAT,b1,b2,b3)<span class="ot">NULL</span>) <span class="co">## hessiana</span></a>
-<a class="sourceLine" id="cb422-5" title="5">nls1_hess<span class="fl">.1</span> =<span class="st"> </span><span class="kw">nls</span>(num <span class="op">~</span><span class="st"> </span><span class="kw">nls1_hess</span>(DAT,b1,b2,b3),</a>
-<a class="sourceLine" id="cb422-6" title="6">                  <span class="dt">data =</span> nls_tomato_cord,</a>
-<a class="sourceLine" id="cb422-7" title="7">                  <span class="dt">start =</span> start)</a>
-<a class="sourceLine" id="cb422-8" title="8"><span class="kw">rms.curv</span>(nls1_hess<span class="fl">.1</span>)</a></code></pre></div>
+<p>Conforme vimos acima, a estimação dos parâmetros é realizada pelo método dos mínimos quadrados  utilizando aproximações lineares de Taylor da função resposta. É esta aproximação linear que garante que os parâmetros estimados sejam proximos de não viesados (só serão não viesados assintoticamente). Modelos com aproximação linear pobre tendem a ter parâmetros muito viesados, o que impede que eles sejam utilizados para explicar determinado fenomeno biológico (eles tem ineterpretação biológica). As medidas de curvatura de Bates e Watts são amplamente utilizadas para avaliar o grau de não linearidade da função resposta. Para maiores detalhes, ver <span class="citation">Bates and Watts (<a href="#ref-Bates1988" role="doc-biblioref">1988</a>)</span>, cap. 7 e <span class="citation">Seber and Wild (<a href="#ref-Seber2003" role="doc-biblioref">2003</a>)</span>, cap. 4. Essas medidas são facilmente implementadas através da função <code>rms.curv()</code>  do pacote <em>MASS</em>. Para isto, utilizaremos o modelo ajustado <code>nls1</code></p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1">start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="dv">30</span>, <span class="dt">b2 =</span> <span class="dv">19</span>, <span class="dt">b3 =</span> <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb421-2" title="2"><span class="co">## Medidas de não linearidade</span></a>
+<a class="sourceLine" id="cb421-3" title="3">nls1_hess =<span class="st"> </span><span class="kw">deriv3</span>(<span class="op">~</span>b1<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(b2 <span class="op">-</span><span class="st"> </span>b3 <span class="op">*</span><span class="st"> </span>DAT)), <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>,<span class="st">&quot;b2&quot;</span>,<span class="st">&quot;b3&quot;</span>),</a>
+<a class="sourceLine" id="cb421-4" title="4">                 <span class="cf">function</span>(DAT,b1,b2,b3)<span class="ot">NULL</span>) <span class="co">## hessiana</span></a>
+<a class="sourceLine" id="cb421-5" title="5">nls1_hess<span class="fl">.1</span> =<span class="st"> </span><span class="kw">nls</span>(num <span class="op">~</span><span class="st"> </span><span class="kw">nls1_hess</span>(DAT,b1,b2,b3),</a>
+<a class="sourceLine" id="cb421-6" title="6">                  <span class="dt">data =</span> nls_tomato_cord,</a>
+<a class="sourceLine" id="cb421-7" title="7">                  <span class="dt">start =</span> start)</a>
+<a class="sourceLine" id="cb421-8" title="8"><span class="kw">rms.curv</span>(nls1_hess<span class="fl">.1</span>)</a></code></pre></div>
 <pre><code>Parameter effects: c^theta x sqrt(F) = 0.806 
         Intrinsic: c^iota  x sqrt(F) = 0.1235 </code></pre>
 <p>Os valores que a função <code>rms.curv()</code> retorna são <span class="math inline">\({c^\theta } \times \sqrt {{F_{\alpha ;p,n - p}}}\)</span> e <span class="math inline">\({c^\iota } \times \sqrt {{F_{\alpha ;p,n - p}}}\)</span>. Valores baixos destas duas medidas indicam que a função tem boa aproximação linear e, consequentemente, os parâmetros são próximos de ser não viesados.</p>
 </div>
-<div id="comparacao-de-parametros" class="section level3">
+<div id="comparação-de-parâmetros" class="section level3">
 <h3><span class="header-section-number">11.2.5</span> Comparação de parâmetros</h3>
 <p>Os parâmetros em um modelo podem ser comparados utilizando variávies <em>dummy</em>. Utilizando esta técnica, a ocorrência de um determinado fator é associado a um nova variável. Como os modelos são aninhados, pode-se utilizar o teste F para verificar a significância do parâmetro (e, consequentemente, do fator) associado a esta variável.</p>
-<p>Vamos ao exemplo. Suponha que queiramos comparar a produção e a taxa de producão de frutos de dois genótipos de tomate. Sabemos que quando acumuladas, a podução de olerícolas tem comportamento sigmoide <span class="citation">(Lúcio, Nunes, and Rego <a href="#ref-Lucio2015">2015</a>; Lucio, Nunes, and Rego <a href="#ref-Lucio2016">2016</a>)</span>, o que permite deteminar essas caracteristicas através dos parâmetros de um modelo logístico:</p>
+<p>Vamos ao exemplo. Suponha que queiramos comparar a produção e a taxa de producão de frutos de dois genótipos de tomate. Sabemos que quando acumuladas, a podução de olerícolas tem comportamento sigmoide <span class="citation">(Lúcio, Nunes, and Rego <a href="#ref-Lucio2015" role="doc-biblioref">2015</a>; Lucio, Nunes, and Rego <a href="#ref-Lucio2016" role="doc-biblioref">2016</a>)</span>, o que permite deteminar essas caracteristicas através dos parâmetros de um modelo logístico:</p>
 <p><span class="math display">\[
 {Y_i} = \frac{{{\beta _1}}}{{1 + {e^{\left( {{\beta _2} - {\beta _3}{t_i}} \right)}}}} + {\varepsilon _i}
 \]</span></p>
-<p>No modelo acima, <span class="math inline">\(\beta_1\)</span> representa a assíntota, e está associada a produção total dos genótipos; <span class="math inline">\(\beta_3\)</span> é a taxa de produção de frutos, e está associada a precocidade produtiva dos genótipos <span class="citation">(Sari et al. <a href="#ref-Sari2018">2018</a>)</span>. Vamos testar as seguintes hipóteses:</p>
+<p>No modelo acima, <span class="math inline">\(\beta_1\)</span> representa a assíntota, e está associada a produção total dos genótipos; <span class="math inline">\(\beta_3\)</span> é a taxa de produção de frutos, e está associada a precocidade produtiva dos genótipos <span class="citation">(Sari et al. <a href="#ref-Sari2018" role="doc-biblioref">2018</a>)</span>. Vamos testar as seguintes hipóteses:</p>
 <p><span class="math display">\[
     \begin{array}{*{20}{c}}{{H_0} = {\beta _{11}} = {\beta _{12}}}&amp;{{H_0} = {\beta _{31}} = {\beta _{32}}}\\{{H_A} = {\beta _{11}} \ne {\beta _{12}}}&amp;{{H_A} = {\beta _{31}} \ne {\beta _{32}}}\end{array}
 \]</span></p>
 <p><strong>Testando a hipótese <span class="math inline">\(H_0:\beta_{11} = \beta_{12}\)</span></strong></p>
 <p>Associamos os fatores a novas variávies através de uma nova coluna no banco de dados. No nosso caso, a coluna “Completo” associa o fator aos parâmetros do modelo logístico. Então, como o modelo logístico possui 3 parâmetros, ao associarmos variávies dummys ao fator genótipo (são dois genótipos), o modelo completo passa a ter 6 parâmetros.</p>
 <p>Para tertar esta hipótese, associamos variáveis dummy s apenas aos parâmetros <span class="math inline">\(\beta_1\)</span> e <span class="math inline">\(\beta_3\)</span>. Neste caso, o modelo passa a ter 5 parâmetros (1 <span class="math inline">\(\beta_1\)</span>, 2 <span class="math inline">\(\beta_2\)</span> e 2 <span class="math inline">\(\beta_3\)</span>). Podemos comparar esse modelo reduzido com o modelo completo de 6 parâmetros. Se o teste F der significativo, concluímos que há influência do fator genótipo.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1">nls_dummy =<span class="st"> </span>nls_tomato <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-2" title="2"><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(Genotipo, Completo, Reduzido), as.factor)</a>
-<a class="sourceLine" id="cb424-3" title="3"><span class="co">## Modelo completo</span></a>
-<a class="sourceLine" id="cb424-4" title="4">tomato_completo =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Completo]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Completo]<span class="op">*</span>DAT)), </a>
-<a class="sourceLine" id="cb424-5" title="5">                    <span class="dt">data =</span> nls_dummy,</a>
-<a class="sourceLine" id="cb424-6" title="6">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb424-7" title="7">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>,<span class="fl">39.68</span>),</a>
-<a class="sourceLine" id="cb424-8" title="8">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
-<a class="sourceLine" id="cb424-9" title="9">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.13</span>)))</a>
-<a class="sourceLine" id="cb424-10" title="10"><span class="co">## Modelo reduzido</span></a>
-<a class="sourceLine" id="cb424-11" title="11">tomato_reduzido.b1 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Reduzido]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Completo]<span class="op">*</span>DAT)), </a>
-<a class="sourceLine" id="cb424-12" title="12">                    <span class="dt">data =</span> nls_dummy,</a>
-<a class="sourceLine" id="cb424-13" title="13">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb424-14" title="14">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>),</a>
-<a class="sourceLine" id="cb424-15" title="15">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
-<a class="sourceLine" id="cb424-16" title="16">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.13</span>)))</a>
-<a class="sourceLine" id="cb424-17" title="17"><span class="kw">anova</span>(tomato_reduzido.b1, tomato_completo)</a></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1">nls_dummy =<span class="st"> </span>nls_tomato <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb423-2" title="2"><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(Genotipo, Completo, Reduzido), as.factor)</a>
+<a class="sourceLine" id="cb423-3" title="3"><span class="co">## Modelo completo</span></a>
+<a class="sourceLine" id="cb423-4" title="4">tomato_completo =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Completo]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Completo]<span class="op">*</span>DAT)), </a>
+<a class="sourceLine" id="cb423-5" title="5">                    <span class="dt">data =</span> nls_dummy,</a>
+<a class="sourceLine" id="cb423-6" title="6">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb423-7" title="7">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>,<span class="fl">39.68</span>),</a>
+<a class="sourceLine" id="cb423-8" title="8">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
+<a class="sourceLine" id="cb423-9" title="9">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.13</span>)))</a>
+<a class="sourceLine" id="cb423-10" title="10"><span class="co">## Modelo reduzido</span></a>
+<a class="sourceLine" id="cb423-11" title="11">tomato_reduzido.b1 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Reduzido]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Completo]<span class="op">*</span>DAT)), </a>
+<a class="sourceLine" id="cb423-12" title="12">                    <span class="dt">data =</span> nls_dummy,</a>
+<a class="sourceLine" id="cb423-13" title="13">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb423-14" title="14">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>),</a>
+<a class="sourceLine" id="cb423-15" title="15">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
+<a class="sourceLine" id="cb423-16" title="16">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.13</span>)))</a>
+<a class="sourceLine" id="cb423-17" title="17"><span class="kw">anova</span>(tomato_reduzido.b1, tomato_completo)</a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: num ~ b1[Reduzido]/(1 + exp(b2[Completo] - b3[Completo] * DAT))
@@ -883,21 +886,21 @@ Model 2: num ~ b1[Completo]/(1 + exp(b2[Completo] - b3[Completo] * DAT))
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Os valores da assintota diferem estatisticamente entre si. Percebe-se claramente que o genótipo Cordillera foi mais produtivo que o genótipo Gaúcho.</p>
 <p><strong>Testando a hipótese <span class="math inline">\(H_0:\beta_{31} = \beta_{32}\)</span></strong></p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="co">## Modelo completo</span></a>
-<a class="sourceLine" id="cb426-2" title="2">tomato_completo =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Completo]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Completo]<span class="op">*</span>DAT)), </a>
-<a class="sourceLine" id="cb426-3" title="3">                    <span class="dt">data =</span> nls_dummy,</a>
-<a class="sourceLine" id="cb426-4" title="4">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb426-5" title="5">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>,<span class="fl">39.68</span>),</a>
-<a class="sourceLine" id="cb426-6" title="6">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
-<a class="sourceLine" id="cb426-7" title="7">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.13</span>)))</a>
-<a class="sourceLine" id="cb426-8" title="8"><span class="co">## Modelo reduzido</span></a>
-<a class="sourceLine" id="cb426-9" title="9">tomato_reduzido.b3 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Completo]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Reduzido]<span class="op">*</span>DAT)), </a>
-<a class="sourceLine" id="cb426-10" title="10">                    <span class="dt">data =</span> nls_dummy,</a>
-<a class="sourceLine" id="cb426-11" title="11">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb426-12" title="12">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>,<span class="fl">39.68</span>),</a>
-<a class="sourceLine" id="cb426-13" title="13">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
-<a class="sourceLine" id="cb426-14" title="14">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.16</span>)))</a>
-<a class="sourceLine" id="cb426-15" title="15"><span class="kw">anova</span>(tomato_reduzido.b3, tomato_completo)</a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="co">## Modelo completo</span></a>
+<a class="sourceLine" id="cb425-2" title="2">tomato_completo =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Completo]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Completo]<span class="op">*</span>DAT)), </a>
+<a class="sourceLine" id="cb425-3" title="3">                    <span class="dt">data =</span> nls_dummy,</a>
+<a class="sourceLine" id="cb425-4" title="4">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb425-5" title="5">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>,<span class="fl">39.68</span>),</a>
+<a class="sourceLine" id="cb425-6" title="6">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
+<a class="sourceLine" id="cb425-7" title="7">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.13</span>)))</a>
+<a class="sourceLine" id="cb425-8" title="8"><span class="co">## Modelo reduzido</span></a>
+<a class="sourceLine" id="cb425-9" title="9">tomato_reduzido.b3 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>b1[Completo]<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2[Completo]<span class="op">-</span>b3[Reduzido]<span class="op">*</span>DAT)), </a>
+<a class="sourceLine" id="cb425-10" title="10">                    <span class="dt">data =</span> nls_dummy,</a>
+<a class="sourceLine" id="cb425-11" title="11">                    <span class="dt">start =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb425-12" title="12">                    <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">18.94</span>,<span class="fl">39.68</span>),</a>
+<a class="sourceLine" id="cb425-13" title="13">                    <span class="dt">b2 =</span> <span class="kw">c</span>(<span class="fl">16.04</span>,<span class="fl">13.54</span>),</a>
+<a class="sourceLine" id="cb425-14" title="14">                    <span class="dt">b3 =</span> <span class="kw">c</span>(<span class="fl">0.16</span>)))</a>
+<a class="sourceLine" id="cb425-15" title="15"><span class="kw">anova</span>(tomato_reduzido.b3, tomato_completo)</a></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: num ~ b1[Completo]/(1 + exp(b2[Completo] - b3[Reduzido] * DAT))
@@ -909,26 +912,26 @@ Model 2: num ~ b1[Completo]/(1 + exp(b2[Completo] - b3[Completo] * DAT))
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Os valores da taxa de produção de frutos não diferem estatisticamente entre si.</p>
 </div>
-<div id="representacao-grafica-dos-modelos" class="section level3">
+<div id="representação-gráfica-dos-modelos" class="section level3">
 <h3><span class="header-section-number">11.2.6</span> Representação gráfica dos modelos</h3>
 <p>Percebe-se claramente que um modelo comum aos dois genótipos não é possível (assintota diferem entre si). Por isso, optou-se por gerar um modelo em separado para cada genótipo. Podemos representar isso graficamente utilizando a função <code>ggplot()</code>  .</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1">formula =<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y ~ b1/(1 + exp(b2-b3*x))&quot;</span>)</a>
-<a class="sourceLine" id="cb428-2" title="2">start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="fl">10.224</span>, <span class="dt">b2 =</span> <span class="fl">6.765</span>, <span class="dt">b3 =</span> <span class="fl">0.0725</span>)</a>
-<a class="sourceLine" id="cb428-3" title="3"></a>
-<a class="sourceLine" id="cb428-4" title="4"><span class="kw">ggplot</span>(nls_tomato, <span class="kw">aes</span>(<span class="dt">x =</span> DAT, <span class="dt">y =</span> num, <span class="dt">colour =</span> Genotipo)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb428-5" title="5"><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb428-6" title="6"><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>, </a>
-<a class="sourceLine" id="cb428-7" title="7">            <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">formula =</span> formula, </a>
-<a class="sourceLine" id="cb428-8" title="8">                                <span class="dt">start =</span> start),</a>
-<a class="sourceLine" id="cb428-9" title="9">                                <span class="dt">se =</span> F,</a>
-<a class="sourceLine" id="cb428-10" title="10">                                <span class="dt">data =</span> <span class="kw">subset</span>(nls_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb428-11" title="11"><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>, </a>
-<a class="sourceLine" id="cb428-12" title="12">            <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">formula =</span> formula, </a>
-<a class="sourceLine" id="cb428-13" title="13">                                <span class="dt">start =</span> start),</a>
-<a class="sourceLine" id="cb428-14" title="14">                                <span class="dt">se =</span> F,</a>
-<a class="sourceLine" id="cb428-15" title="15">                                <span class="dt">data =</span> <span class="kw">subset</span>(nls_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Gaucho&quot;</span>))<span class="op">+</span></a>
-<a class="sourceLine" id="cb428-16" title="16"><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb428-17" title="17"><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Dias após o transplante&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de frutos&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1">formula =<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;y ~ b1/(1 + exp(b2-b3*x))&quot;</span>)</a>
+<a class="sourceLine" id="cb427-2" title="2">start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="fl">10.224</span>, <span class="dt">b2 =</span> <span class="fl">6.765</span>, <span class="dt">b3 =</span> <span class="fl">0.0725</span>)</a>
+<a class="sourceLine" id="cb427-3" title="3"></a>
+<a class="sourceLine" id="cb427-4" title="4"><span class="kw">ggplot</span>(nls_tomato, <span class="kw">aes</span>(<span class="dt">x =</span> DAT, <span class="dt">y =</span> num, <span class="dt">colour =</span> Genotipo)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb427-5" title="5"><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb427-6" title="6"><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>, </a>
+<a class="sourceLine" id="cb427-7" title="7">            <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">formula =</span> formula, </a>
+<a class="sourceLine" id="cb427-8" title="8">                                <span class="dt">start =</span> start),</a>
+<a class="sourceLine" id="cb427-9" title="9">                                <span class="dt">se =</span> F,</a>
+<a class="sourceLine" id="cb427-10" title="10">                                <span class="dt">data =</span> <span class="kw">subset</span>(nls_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb427-11" title="11"><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>, </a>
+<a class="sourceLine" id="cb427-12" title="12">            <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">formula =</span> formula, </a>
+<a class="sourceLine" id="cb427-13" title="13">                                <span class="dt">start =</span> start),</a>
+<a class="sourceLine" id="cb427-14" title="14">                                <span class="dt">se =</span> F,</a>
+<a class="sourceLine" id="cb427-15" title="15">                                <span class="dt">data =</span> <span class="kw">subset</span>(nls_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Gaucho&quot;</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb427-16" title="16"><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb427-17" title="17"><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Dias após o transplante&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Número de frutos&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-231"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-231-1.png" alt="Representação gráfica em modelos não lineares" width="384" />
 <p class="caption">
@@ -937,63 +940,63 @@ Figure 11.3: Representação gráfica em modelos não lineares
 </div>
 </div>
 </div>
-<div id="regressao-bisegmentada-com-plato" class="section level2">
+<div id="regressão-bisegmentada-com-platô" class="section level2">
 <h2><span class="header-section-number">11.3</span> Regressão bisegmentada com platô</h2>
 <p>Continuaremos tomando como exemplo a produção de olerícolas de múltiplas colheitas para exemplificar o uso deste tipo de regressão. Os modelos com platô são modelos bi-segmentados cujo primeiro segmento descreve o crescimento da produção até determinado ponto, e um segundo segmento que descreve a estabilização da produção (platô). Podemos representar um modelo linear-platô por:</p>
 <p><span class="math display">\[
 {Y_i} = \left\{ \begin{array}{l}{\beta _0} + {\beta _1}x + {\varepsilon _i}{\rm{, se }}{X_i}{\rm{  &lt;  }}{X_0}\\P{\rm{ se }}{X_i}{\rm{  &gt;  }}{X_0}{\rm{ }}\end{array} \right.
 \]</span></p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1">plato_tomato =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;PLATO&quot;</span>)</a>
-<a class="sourceLine" id="cb429-2" title="2">plato_cordillera =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0<span class="op">+</span>b1<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P))<span class="op">+</span></a>
-<a class="sourceLine" id="cb429-3" title="3"><span class="st">                    </span>(b1<span class="op">*</span>P<span class="op">*</span>(DAT<span class="op">&gt;</span>P)),</a>
-<a class="sourceLine" id="cb429-4" title="4">                     <span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>),</a>
-<a class="sourceLine" id="cb429-5" title="5">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="dv">5</span>, <span class="dt">b1 =</span> <span class="dv">11</span><span class="op">/</span><span class="dv">8</span>, <span class="dt">P =</span> <span class="dv">15</span>))</a>
-<a class="sourceLine" id="cb429-6" title="6">plato_SantaCl =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0<span class="op">+</span>b1<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P))<span class="op">+</span></a>
-<a class="sourceLine" id="cb429-7" title="7"><span class="st">                    </span>(b1<span class="op">*</span>P<span class="op">*</span>(DAT<span class="op">&gt;</span>P)),</a>
-<a class="sourceLine" id="cb429-8" title="8">                     <span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Santa.Clara&quot;</span>),</a>
-<a class="sourceLine" id="cb429-9" title="9">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="dv">5</span>, <span class="dt">b1 =</span> <span class="dv">11</span><span class="op">/</span><span class="dv">8</span>, <span class="dt">P =</span> <span class="dv">15</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1">plato_tomato =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;PLATO&quot;</span>)</a>
+<a class="sourceLine" id="cb428-2" title="2">plato_cordillera =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0<span class="op">+</span>b1<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P))<span class="op">+</span></a>
+<a class="sourceLine" id="cb428-3" title="3"><span class="st">                    </span>(b1<span class="op">*</span>P<span class="op">*</span>(DAT<span class="op">&gt;</span>P)),</a>
+<a class="sourceLine" id="cb428-4" title="4">                     <span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>),</a>
+<a class="sourceLine" id="cb428-5" title="5">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="dv">5</span>, <span class="dt">b1 =</span> <span class="dv">11</span><span class="op">/</span><span class="dv">8</span>, <span class="dt">P =</span> <span class="dv">15</span>))</a>
+<a class="sourceLine" id="cb428-6" title="6">plato_SantaCl =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0<span class="op">+</span>b1<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P))<span class="op">+</span></a>
+<a class="sourceLine" id="cb428-7" title="7"><span class="st">                    </span>(b1<span class="op">*</span>P<span class="op">*</span>(DAT<span class="op">&gt;</span>P)),</a>
+<a class="sourceLine" id="cb428-8" title="8">                     <span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Santa.Clara&quot;</span>),</a>
+<a class="sourceLine" id="cb428-9" title="9">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="dv">5</span>, <span class="dt">b1 =</span> <span class="dv">11</span><span class="op">/</span><span class="dv">8</span>, <span class="dt">P =</span> <span class="dv">15</span>))</a></code></pre></div>
 <p>O genótipo Cordillera produz a uma taxa de 1,33 frutos dia<span class="math inline">\(^-1\)</span> até os ~9 dias após o início das colheitas, quando começa a estabilizar a produção (17,19 frutos). Já o genótipo Santa Clara produz a uma taxa de 0,71 frutos <span class="math inline">\(^-1\)</span> até os ~14 dias após o início das colheitas, quando começa a estabilizar a produção (12,69 frutos). Podemos verificar a taxa de produção e o ponto de estabilização através de variáveis dummy .</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1">plato_dummy =<span class="st"> </span>plato_tomato <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb430-2" title="2"><span class="st">               </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(Genotipo, Completo, Reduzido), as.factor)</a>
-<a class="sourceLine" id="cb430-3" title="3"><span class="co"># Modelo completo</span></a>
-<a class="sourceLine" id="cb430-4" title="4">plato_completo =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0[Completo]<span class="op">+</span>b1[Completo]<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P[Completo]))<span class="op">+</span></a>
-<a class="sourceLine" id="cb430-5" title="5"><span class="st">                    </span>(b1[Completo]<span class="op">*</span>P[Completo]<span class="op">*</span>(DAT<span class="op">&gt;</span>P[Completo])),</a>
-<a class="sourceLine" id="cb430-6" title="6">                     <span class="dt">data =</span> plato_dummy,</a>
-<a class="sourceLine" id="cb430-7" title="7">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="kw">c</span>(<span class="fl">4.8</span>,<span class="fl">2.5</span>), </a>
-<a class="sourceLine" id="cb430-8" title="8">                                <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">1.33</span>,<span class="fl">0.71</span>), </a>
-<a class="sourceLine" id="cb430-9" title="9">                                <span class="dt">P =</span> <span class="kw">c</span>(<span class="fl">9.28</span>,<span class="fl">14.36</span>)))</a>
-<a class="sourceLine" id="cb430-10" title="10"></a>
-<a class="sourceLine" id="cb430-11" title="11"><span class="co"># Modelo reduzido (taxa de produção)</span></a>
-<a class="sourceLine" id="cb430-12" title="12">plato_reduzido.b1 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0[Completo]<span class="op">+</span>b1[Reduzido]<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P[Completo]))<span class="op">+</span></a>
-<a class="sourceLine" id="cb430-13" title="13"><span class="st">                    </span>(b1[Reduzido]<span class="op">*</span>P[Completo]<span class="op">*</span>(DAT<span class="op">&gt;</span>P[Completo])),</a>
-<a class="sourceLine" id="cb430-14" title="14">                     <span class="dt">data =</span> plato_dummy,</a>
-<a class="sourceLine" id="cb430-15" title="15">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="kw">c</span>(<span class="fl">4.8</span>,<span class="fl">2.5</span>), </a>
-<a class="sourceLine" id="cb430-16" title="16">                                <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb430-17" title="17">                                <span class="dt">P =</span> <span class="kw">c</span>(<span class="fl">9.28</span>,<span class="fl">14.36</span>)))</a>
-<a class="sourceLine" id="cb430-18" title="18"><span class="kw">anova</span>(plato_reduzido.b1, plato_completo)</a>
-<a class="sourceLine" id="cb430-19" title="19"></a>
-<a class="sourceLine" id="cb430-20" title="20"><span class="co"># Modelo reduzido (Platô)</span></a>
-<a class="sourceLine" id="cb430-21" title="21">plato_reduzido.P =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0[Completo]<span class="op">+</span>b1[Completo]<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P[Reduzido]))<span class="op">+</span></a>
-<a class="sourceLine" id="cb430-22" title="22"><span class="st">                    </span>(b1[Completo]<span class="op">*</span>P[Reduzido]<span class="op">*</span>(DAT<span class="op">&gt;</span>P[Reduzido])),</a>
-<a class="sourceLine" id="cb430-23" title="23">                     <span class="dt">data =</span> plato_dummy,</a>
-<a class="sourceLine" id="cb430-24" title="24">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="kw">c</span>(<span class="fl">4.8</span>,<span class="fl">2.5</span>), </a>
-<a class="sourceLine" id="cb430-25" title="25">                                <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">1.33</span>,<span class="fl">0.71</span>), </a>
-<a class="sourceLine" id="cb430-26" title="26">                                <span class="dt">P =</span> <span class="kw">c</span>(<span class="dv">12</span>)))</a>
-<a class="sourceLine" id="cb430-27" title="27"><span class="kw">anova</span>(plato_reduzido.P,plato_completo)</a></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1">plato_dummy =<span class="st"> </span>plato_tomato <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb429-2" title="2"><span class="st">               </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(Genotipo, Completo, Reduzido), as.factor)</a>
+<a class="sourceLine" id="cb429-3" title="3"><span class="co"># Modelo completo</span></a>
+<a class="sourceLine" id="cb429-4" title="4">plato_completo =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0[Completo]<span class="op">+</span>b1[Completo]<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P[Completo]))<span class="op">+</span></a>
+<a class="sourceLine" id="cb429-5" title="5"><span class="st">                    </span>(b1[Completo]<span class="op">*</span>P[Completo]<span class="op">*</span>(DAT<span class="op">&gt;</span>P[Completo])),</a>
+<a class="sourceLine" id="cb429-6" title="6">                     <span class="dt">data =</span> plato_dummy,</a>
+<a class="sourceLine" id="cb429-7" title="7">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="kw">c</span>(<span class="fl">4.8</span>,<span class="fl">2.5</span>), </a>
+<a class="sourceLine" id="cb429-8" title="8">                                <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">1.33</span>,<span class="fl">0.71</span>), </a>
+<a class="sourceLine" id="cb429-9" title="9">                                <span class="dt">P =</span> <span class="kw">c</span>(<span class="fl">9.28</span>,<span class="fl">14.36</span>)))</a>
+<a class="sourceLine" id="cb429-10" title="10"></a>
+<a class="sourceLine" id="cb429-11" title="11"><span class="co"># Modelo reduzido (taxa de produção)</span></a>
+<a class="sourceLine" id="cb429-12" title="12">plato_reduzido.b1 =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0[Completo]<span class="op">+</span>b1[Reduzido]<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P[Completo]))<span class="op">+</span></a>
+<a class="sourceLine" id="cb429-13" title="13"><span class="st">                    </span>(b1[Reduzido]<span class="op">*</span>P[Completo]<span class="op">*</span>(DAT<span class="op">&gt;</span>P[Completo])),</a>
+<a class="sourceLine" id="cb429-14" title="14">                     <span class="dt">data =</span> plato_dummy,</a>
+<a class="sourceLine" id="cb429-15" title="15">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="kw">c</span>(<span class="fl">4.8</span>,<span class="fl">2.5</span>), </a>
+<a class="sourceLine" id="cb429-16" title="16">                                <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb429-17" title="17">                                <span class="dt">P =</span> <span class="kw">c</span>(<span class="fl">9.28</span>,<span class="fl">14.36</span>)))</a>
+<a class="sourceLine" id="cb429-18" title="18"><span class="kw">anova</span>(plato_reduzido.b1, plato_completo)</a>
+<a class="sourceLine" id="cb429-19" title="19"></a>
+<a class="sourceLine" id="cb429-20" title="20"><span class="co"># Modelo reduzido (Platô)</span></a>
+<a class="sourceLine" id="cb429-21" title="21">plato_reduzido.P =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0[Completo]<span class="op">+</span>b1[Completo]<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P[Reduzido]))<span class="op">+</span></a>
+<a class="sourceLine" id="cb429-22" title="22"><span class="st">                    </span>(b1[Completo]<span class="op">*</span>P[Reduzido]<span class="op">*</span>(DAT<span class="op">&gt;</span>P[Reduzido])),</a>
+<a class="sourceLine" id="cb429-23" title="23">                     <span class="dt">data =</span> plato_dummy,</a>
+<a class="sourceLine" id="cb429-24" title="24">                     <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">b0 =</span> <span class="kw">c</span>(<span class="fl">4.8</span>,<span class="fl">2.5</span>), </a>
+<a class="sourceLine" id="cb429-25" title="25">                                <span class="dt">b1 =</span> <span class="kw">c</span>(<span class="fl">1.33</span>,<span class="fl">0.71</span>), </a>
+<a class="sourceLine" id="cb429-26" title="26">                                <span class="dt">P =</span> <span class="kw">c</span>(<span class="dv">12</span>)))</a>
+<a class="sourceLine" id="cb429-27" title="27"><span class="kw">anova</span>(plato_reduzido.P,plato_completo)</a></code></pre></div>
 <p>Percebe-se que a taxa de produção do genótipo Cordillera é significativamente superior a taxa de produção do genótipo Santa Clara. Como consequência, o momento de estabilização da produção ocorre mais precocemente no genótipo Cordillera. O exemplo foi realizado com dados de produção de olerícolas, mas pdoe ser adaptado para qualquer estudo (desde que tenha este comportamento).</p>
 <p><strong>Representação gráfica dos modelos</strong></p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1"><span class="kw">plot</span>(num<span class="op">~</span>DAT,<span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato,Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>),<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20</span>),</a>
-<a class="sourceLine" id="cb431-2" title="2">     <span class="dt">xlab =</span> <span class="st">&quot;Dias após o transplante (DAT)&quot;</span>,</a>
-<a class="sourceLine" id="cb431-3" title="3">     <span class="dt">ylab =</span> <span class="st">&quot;Número de frutos por planta&quot;</span>,<span class="dt">pch =</span> <span class="dv">1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb431-4" title="4"><span class="kw">points</span>(num<span class="op">~</span>DAT,<span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato,Genotipo <span class="op">==</span><span class="st"> &quot;Santa.Clara&quot;</span>),<span class="dt">pch =</span> <span class="dv">2</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb431-5" title="5"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">4.8385</span>, <span class="dt">x0 =</span> <span class="dv">0</span>, <span class="dt">y1 =</span> <span class="fl">17.2083</span>, <span class="dt">x1 =</span> <span class="fl">9.28641</span>,<span class="dt">lty =</span> <span class="dv">1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb431-6" title="6"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">17.2083</span>, <span class="dt">x0 =</span> <span class="fl">9.28641</span>, <span class="dt">y1 =</span> <span class="fl">17.2083</span>, <span class="dt">x1 =</span> <span class="dv">20</span>,<span class="dt">lty =</span> <span class="dv">1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb431-7" title="7"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">2.5000</span>, <span class="dt">x0 =</span> <span class="dv">0</span>, <span class="dt">y1 =</span> <span class="fl">12.7655</span>, <span class="dt">x1 =</span> <span class="fl">14.3606</span>,<span class="dt">lty =</span> <span class="dv">2</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb431-8" title="8"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">12.7655</span>, <span class="dt">x0 =</span> <span class="fl">14.3606</span>, <span class="dt">y1 =</span> <span class="fl">12.7655</span>, <span class="dt">x1 =</span> <span class="dv">20</span>,<span class="dt">lty =</span> <span class="dv">2</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb431-9" title="9"></a>
-<a class="sourceLine" id="cb431-10" title="10"></a>
-<a class="sourceLine" id="cb431-11" title="11"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Cordillera&quot;</span>, <span class="st">&quot;Santa Clara&quot;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb431-12" title="12">       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),<span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="kw">plot</span>(num<span class="op">~</span>DAT,<span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato,Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>),<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb430-2" title="2">     <span class="dt">xlab =</span> <span class="st">&quot;Dias após o transplante (DAT)&quot;</span>,</a>
+<a class="sourceLine" id="cb430-3" title="3">     <span class="dt">ylab =</span> <span class="st">&quot;Número de frutos por planta&quot;</span>,<span class="dt">pch =</span> <span class="dv">1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb430-4" title="4"><span class="kw">points</span>(num<span class="op">~</span>DAT,<span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato,Genotipo <span class="op">==</span><span class="st"> &quot;Santa.Clara&quot;</span>),<span class="dt">pch =</span> <span class="dv">2</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb430-5" title="5"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">4.8385</span>, <span class="dt">x0 =</span> <span class="dv">0</span>, <span class="dt">y1 =</span> <span class="fl">17.2083</span>, <span class="dt">x1 =</span> <span class="fl">9.28641</span>,<span class="dt">lty =</span> <span class="dv">1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb430-6" title="6"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">17.2083</span>, <span class="dt">x0 =</span> <span class="fl">9.28641</span>, <span class="dt">y1 =</span> <span class="fl">17.2083</span>, <span class="dt">x1 =</span> <span class="dv">20</span>,<span class="dt">lty =</span> <span class="dv">1</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb430-7" title="7"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">2.5000</span>, <span class="dt">x0 =</span> <span class="dv">0</span>, <span class="dt">y1 =</span> <span class="fl">12.7655</span>, <span class="dt">x1 =</span> <span class="fl">14.3606</span>,<span class="dt">lty =</span> <span class="dv">2</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb430-8" title="8"><span class="kw">segments</span>(<span class="dt">y0 =</span> <span class="fl">12.7655</span>, <span class="dt">x0 =</span> <span class="fl">14.3606</span>, <span class="dt">y1 =</span> <span class="fl">12.7655</span>, <span class="dt">x1 =</span> <span class="dv">20</span>,<span class="dt">lty =</span> <span class="dv">2</span>,<span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb430-9" title="9"></a>
+<a class="sourceLine" id="cb430-10" title="10"></a>
+<a class="sourceLine" id="cb430-11" title="11"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Cordillera&quot;</span>, <span class="st">&quot;Santa Clara&quot;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb430-12" title="12">       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),<span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-234"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-234-1.png" alt="Representação gráfica de regressão bisegmentada com platô" width="384" />
 <p class="caption">
@@ -1006,10 +1009,10 @@ Figure 11.4: Representação gráfica de regressão bisegmentada com platô
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-Bates1988">
-<p>Bates, D.M., and D.G. Watts. 1988. <em>Nonlinear Regression Analysis and Its Applications</em>. 2nd ed. Wiley Series in Probability and Statistics. Hoboken, NJ, USA: John Wiley &amp; Sons, Inc. <a href="https://doi.org/10.1002/9780470316757">https://doi.org/10.1002/9780470316757</a>.</p>
+<p>Bates, D. M., and D. G. Watts. 1988. <em>Nonlinear Regression Analysis and Its Applications</em>. 2nd ed. Wiley Series in Probability and Statistics. Hoboken, NJ, USA: John Wiley &amp; Sons, Inc. <a href="https://doi.org/10.1002/9780470316757">https://doi.org/10.1002/9780470316757</a>.</p>
 </div>
 <div id="ref-Draper1998">
-<p>Draper, Norman R, and Harry Smith. 1998. <em>Applied regression analysis</em>. John Wiley &amp; Sons. <a href="https://books.google.com.br/books?hl=pt-BR{\&amp;}lr={\&amp;}id=uSReBAAAQBAJ{\&amp;}oi=fnd{\&amp;}pg=PT12{\&amp;}ots=P9bwDDSasT{\&amp;}sig=4RbKqw-ZEgE40xtra-EsI9dLDPk">https://books.google.com.br/books?hl=pt-BR{\&amp;}lr={\&amp;}id=uSReBAAAQBAJ{\&amp;}oi=fnd{\&amp;}pg=PT12{\&amp;}ots=P9bwDDSasT{\&amp;}sig=4RbKqw-ZEgE40xtra-EsI9dLDPk</a>.</p>
+<p>Draper, Norman R, and Harry Smith. 1998. <em>Applied regression analysis</em>. John Wiley &amp; Sons. <a href="https://books.google.com.br/books?hl=pt-BR%7B\&amp;%7Dlr=%7B\&amp;%7Did=uSReBAAAQBAJ%7B\&amp;%7Doi=fnd%7B\&amp;%7Dpg=PT12%7B\&amp;%7Dots=P9bwDDSasT%7B\&amp;%7Dsig=4RbKqw-ZEgE40xtra-EsI9dLDPk">https://books.google.com.br/books?hl=pt-BR{\&amp;}lr={\&amp;}id=uSReBAAAQBAJ{\&amp;}oi=fnd{\&amp;}pg=PT12{\&amp;}ots=P9bwDDSasT{\&amp;}sig=4RbKqw-ZEgE40xtra-EsI9dLDPk</a>.</p>
 </div>
 <div id="ref-Kutner2005">
 <p>Kutner, Michael H., Chris Nachtsheim, John Neter, and William Li. 2005. <em>Applied linear statistical models</em>.</p>
@@ -1050,24 +1053,24 @@ Figure 11.4: Representação gráfica de regressão bisegmentada com platô
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",

@@ -4,7 +4,7 @@ bookdown::gitbook:
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
-    in_header: preamble.tex
+    in_header: [preamble.tex, google_analytics.html]
     after_body: index.md
   latex_engine: xelatex
   citation_package: natbib

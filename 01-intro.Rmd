@@ -39,7 +39,7 @@ Como exemplo inicial, vamos tentar selecionar a variável *Sepal.Length* do conj
 SL = select(iris, Sepal.Length)
 ```
 
-Neste caso, um erro é exibido pois o pacote **dplyr** não está instalado ou carregado. Caso ele já estiver instalado, a mensagem de erro acima é superada ao carregar o pacote antes de rodar a função.
+Neste caso, um erro é exibido pois o pacote **dplyr** não está instalado ou carregado. Caso ele já estiver instalado, a mensagem de erro acima é superada ao carregar o pacote antes de executar a função.
 
 ```{r eval=FALSE}
 library(dplyr)

@@ -344,7 +344,7 @@ p2 = fviz_cluster(km.res,
                   ellipse = TRUE,
                   main = "",
              ellipse.type = "confidence",
-             ggtheme = theme_waasb())+
+             ggtheme = theme_metan())+
   theme(legend.position = "bottom")
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```

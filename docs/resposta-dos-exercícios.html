@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 9 Exportando dados | Software R para avaliação de dados experimentais</title>
+  <title>A Resposta dos exercícios | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
   <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 9 Exportando dados | Software R para avaliação de dados experimentais" />
+  <meta property="og:title" content="A Resposta dos exercícios | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="figures/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="TiagoOlivoto/e-bookr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 9 Exportando dados | Software R para avaliação de dados experimentais" />
+  <meta name="twitter:title" content="A Resposta dos exercícios | Software R para avaliação de dados experimentais" />
   
   <meta name="twitter:description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
   <meta name="twitter:image" content="figures/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="graph.html"/>
-<link rel="next" href="analdata.html"/>
+<link rel="prev" href="interaction.html"/>
+<link rel="next" href="tabela-de-distribuições.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -369,108 +369,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exporta" class="section level1">
-<h1><span class="header-section-number">Capítulo 9</span> Exportando dados</h1>
-<p>Será demonstrado nessa seção como exportar dados e tabelas gerados dentro do <em>software R</em>. Quanto a saída de resultados, será dado enfase a saídas com extensões .csv, .txt e .xlsx. Quanto aos gráficos, será mostrado como salvar figuras em alta resolução.</p>
-<div id="exportando-com-diferentes-extensões" class="section level2">
-<h2><span class="header-section-number">9.1</span> Exportando com diferentes extensões</h2>
-<p><strong>Salvar em extensão .csv</strong></p>
-<p>Em arquivos <em>.csv</em>, os valores são separados por vírgula. Tabelas geradas no <em>R</em> podem ser salvos através da função <code>write.table()</code>.  Será utilizado como exemplo uma ANOVA, onde o objetivo é exportar os <em>p</em>-valores do teste F para blocos e tratamentos.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1">qualitativo =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</a>
-<a class="sourceLine" id="cb193-2" title="2">mod1 =<span class="st"> </span><span class="kw">aov</span>(RG <span class="op">~</span><span class="st"> </span>HIBRIDO <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(BLOCO), <span class="dt">data =</span> qualitativo) </a>
-<a class="sourceLine" id="cb193-3" title="3"><span class="kw">anova</span>(mod1)</a></code></pre></div>
-<pre><code>Analysis of Variance Table
-
-Response: RG
-              Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-HIBRIDO        9 65.662   7.296  18.716 2.030e-09 ***
-factor(BLOCO)  3 95.642  31.881  81.785 1.141e-13 ***
-Residuals     27 10.525   0.390                      
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">names</span>(<span class="kw">anova</span>(mod1))</a></code></pre></div>
-<pre><code>[1] &quot;Df&quot;      &quot;Sum Sq&quot;  &quot;Mean Sq&quot; &quot;F value&quot; &quot;Pr(&gt;F)&quot; </code></pre>
-<p>A função <code>names()</code>  mostra o que é armazenado dentro do objeto <code>anova(mod1)</code>. utilizando <code>$</code> selecionamos <code>Pr(&gt;F)</code>.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">anova</span>(mod1)<span class="op">$</span><span class="st">&quot;Pr(&gt;F)&quot;</span></a></code></pre></div>
-<pre><code>[1] 2.029779e-09 1.141473e-13           NA</code></pre>
-
-<p>Por fim, armazenamos os valores utilizando a função <code>write.table()</code>, indicando onde os resultados estão armazenados, o nome do arquivo que será exportado (“NOME_ARQUIVO.csv”).</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1">p.value =<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="kw">anova</span>(mod1)<span class="op">$</span><span class="st">&quot;Pr(&gt;F)&quot;</span>[<span class="dv">1</span>], <span class="kw">anova</span>(mod1)<span class="op">$</span><span class="st">&quot;Pr(&gt;F)&quot;</span>[<span class="dv">2</span>]))</a>
-<a class="sourceLine" id="cb199-2" title="2"><span class="kw">write.table</span>(p.value, <span class="st">&quot;p.valor_mod1.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p><strong>Salvar em extensão .txt</strong></p>
-<p>Para salvar as saídas em extensão .txt utiliza-se a função <code>sink()</code>, indicando o nome do arquivo que será exportado (“NOME_ARQUIVO.txt”).</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">sink</span>(<span class="st">&quot;Modelo 1.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb200-2" title="2"><span class="kw">cat</span>(<span class="st">&quot;-------------------------------MODELO------------------------------------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb200-3" title="3"><span class="kw">print</span>(mod1)</a>
-<a class="sourceLine" id="cb200-4" title="4"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb200-5" title="5"><span class="kw">cat</span>(<span class="st">&quot;-------------------------------ANOVA------------------------------------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb200-6" title="6"><span class="kw">print</span>(<span class="kw">anova</span>(mod1))</a>
-<a class="sourceLine" id="cb200-7" title="7"><span class="kw">sink</span>()</a></code></pre></div>
-<p><strong>Salvar em extensão . xls e .xlsx</strong></p>
-<p>Para salvar arquivos em extensão .xlsx usaremos a função <code>write_xlsx()</code>  do pacote <em>writexl</em>. Na função <code>write_xlsx()</code> é necesário indicar o nome do objeto que se deseja exportar, conforme o exemplo abaixo.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="kw">require</span>(writexl)</a>
-<a class="sourceLine" id="cb201-2" title="2"><span class="kw">write_xlsx</span>(x22, <span class="st">&quot;figuresTabela 1.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb201-3" title="3"><span class="kw">write_xlsx</span>(x22, <span class="st">&quot;figuresTabela 1.xlsx&quot;</span>)</a></code></pre></div>
+<div id="resposta-dos-exercícios" class="section level1">
+<h1><span class="header-section-number">A</span> Resposta dos exercícios</h1>
+<div id="exerc1" class="section level2">
+<h2><span class="header-section-number">A.1</span> Exercício 1</h2>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb575-1" title="1"><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>[1] 8</code></pre>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb577-1" title="1"><span class="kw">F2</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>[1] 8</code></pre>
+<p>O resultado foi o mesmo, pois embora se tenha invertido o valor dos números, no segundo exemplo se declarou a qual argumento o numero pertencial.</p>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb579-1" title="1"><span class="kw">F3</span>(<span class="dv">20</span>)</a></code></pre></div>
+<pre><code>Error in F3(20): O argumento x = 20 é inválido. &#39;x&#39; precisa ser maior que 10</code></pre>
+<p>Pois o argumento (if x &gt; 10) faz com que ocorra um erro e a função não seja executada.</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb581-1" title="1"><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</a></code></pre></div>
+<pre><code>Error in elevar(12, eleva = &quot;cubico&quot;): O argumento eleva = cubico deve ser ou &#39;quadrado&#39; ou &#39;cubo&#39;</code></pre>
+<p>O argumento ‘eleva’ não está correto. Ele deve ser ou ‘quadrado’ ou ‘cubo’.</p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb583-1" title="1">mega =<span class="st"> </span><span class="cf">function</span>(jogos, <span class="dt">numeros =</span> <span class="dv">6</span>){</a>
+<a class="sourceLine" id="cb583-2" title="2">  <span class="cf">if</span>(<span class="op">!</span>numeros <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">15</span>)){</a>
+<a class="sourceLine" id="cb583-3" title="3">    <span class="kw">stop</span>(<span class="st">&quot;O numero deve ser entre 6 e 15&quot;</span>)</a>
+<a class="sourceLine" id="cb583-4" title="4">  }</a>
+<a class="sourceLine" id="cb583-5" title="5">  result =<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb583-6" title="6"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>jogos){</a>
+<a class="sourceLine" id="cb583-7" title="7">result[[i]] =<span class="st"> </span><span class="kw">sort</span>(</a>
+<a class="sourceLine" id="cb583-8" title="8">  <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>, <span class="dt">size =</span> numeros, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb583-9" title="9">  )</a>
+<a class="sourceLine" id="cb583-10" title="10">}</a>
+<a class="sourceLine" id="cb583-11" title="11">  <span class="kw">return</span>(<span class="kw">do.call</span>(rbind, result))</a>
+<a class="sourceLine" id="cb583-12" title="12">}</a>
+<a class="sourceLine" id="cb583-13" title="13"></a>
+<a class="sourceLine" id="cb583-14" title="14"><span class="co"># 4 jogos</span></a>
+<a class="sourceLine" id="cb583-15" title="15"><span class="kw">mega</span>(<span class="dv">5</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+[1,]   11   15   21   30   34   40   50   51   54    58
+[2,]    1    5   15   23   26   27   29   36   45    59
+[3,]    2    7   16   31   40   41   42   46   56    58
+[4,]    2    9   26   33   34   37   44   45   47    48
+[5,]    3   22   36   37   46   50   53   55   56    59</code></pre>
 </div>
-<div id="exportanto-gráficos" class="section level2">
-<h2><span class="header-section-number">9.2</span> Exportanto gráficos</h2>
-<p>Os gráficos podem ser exportados clicando em <em>Export</em>  no <em>output</em> dos gráficos. Você pode escolher entre salvar como imagem ou como PDF. Os formatos de imagem disponíveis são: .PNG, .TIFF, .JPEG, .BMP , .SVG  e .ESP . A outra opção é salvar em um arquivo PDF . A principal diferença entre estes formatos é o método de renderização utilizado na formação do gráfico. Existem basicamente dois métodos de renderização de imagens: <em>raster images</em> e <em>vector-based images</em>. Imagens rasterizadas usam muitos pixels coloridos ou blocos de construção individuais para formar uma imagem completa. JPEGs, GIFs e PNGs e TIFFs são tipos de imagem raster mais comuns. Como as imagens raster são criadas usando um número fixo de pixels coloridos, elas não podem ser redimensionadas drasticamente sem comprometer sua resolução. Quando esticados para caber em um espaço que eles não foram projetados para preencher, seus pixels ficam visivelmente granulados e a imagem é distorcida. É importante que você salve os arquivos <em>raster</em> precisamente nas dimensões necessárias e com a devida resolução para uma boa apresentação. Para salvar estas imagens é necessário informar a <em>Density of Pixels per Inch</em> (DPI) , ou seja, quantos pontos por polegada quadrada deverá conter a imagem. Quanto maior este valor, maior será a qualidade da imagem e também maior será seu tamanho (em Mb).</p>
-<p>Imagens vetoriais (<em>vector-based graphics</em>), por outro lado, permitem mais flexibilidade. Construídos usando fórmulas matemáticas em vez de blocos coloridos individuais, os tipos de arquivos vetoriais, como .PDF e .EPS *, são excelentes para criar gráficos de alta resolução sem que seu redimensionamento prejudique a qualidade do gráfico. A maioria das revistas cintíficas aceitam todos estes tipos de formatos. Na dúvida, escolha sempre o formato .PDF (ou .EPS)!</p>
-<div class="figure">
-<img src="figures/Figura.png" alt="Salvando figuras como imagens" />
-<p class="caption">Salvando figuras como imagens</p>
+<div id="exerc2" class="section level2">
+<h2><span class="header-section-number">A.2</span> Exercício 2</h2>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb585-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb585-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MGRA_kg =</span> MGRA <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb585-3" title="3"><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, MGRA_kg) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb585-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, MGRA_kg)</a></code></pre></div>
 </div>
-<div class="figure">
-<img src="figures/Figura2.png" alt="Salvando figuras em PDF" />
-<p class="caption">Salvando figuras em PDF</p>
+<div id="exerc3" class="section level2">
+<h2><span class="header-section-number">A.3</span> Exercício 3</h2>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb586-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb586-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb586-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb586-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb586-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(Rank)</a></code></pre></div>
 </div>
-<p>Uma alternativa prática para salvar em pdf as imagens é através da função <code>pdf()</code>. Os argumentos <code>width</code> e <code>height</code> correspondem a dimensão da figura (em polegadas) e <code>pointsize</code> corresponde ao tamanho da fonte. </p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">pdf</span>(<span class="st">&quot;Figura1.pdf&quot;</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">height =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb202-2" title="2"></a>
-<a class="sourceLine" id="cb202-3" title="3">p1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_oat, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb202-4" title="4"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb202-5" title="5"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
-<a class="sourceLine" id="cb202-6" title="6"><span class="st">     </span><span class="kw">my_theme</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb202-7" title="7"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
-<a class="sourceLine" id="cb202-8" title="8">p1</a>
-<a class="sourceLine" id="cb202-9" title="9"></a>
-<a class="sourceLine" id="cb202-10" title="10"><span class="kw">dev.off</span>()</a></code></pre></div>
-<p>A função <code>ggsave()</code>  também pode ser utilizada para salvar os gráficos para o diretório de trabalho. POr padrão, esta função salva o último gráfico mostrado. Para salvar-mos o gráfico p1, gerado anteriormente, basta executar o seguinte comando.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="kw">ggsave</span>(<span class="st">&quot;Figure_ggsave.pdf&quot;</span>, p1)</a></code></pre></div>
-<p><strong>Exportando figuras como imagens em alta qualidade</strong></p>
-<p>Com as funções <code>tiff()</code> , <code>png()</code> , <code>jpeg()</code>  e <code>bmp()</code>  é possível salvar gráficos como imagem em alta resolução. Como na função <code>pdf()</code> , <code>width</code> e <code>height</code> correspondem a dimensão. Porém, nestas funções é possível escolher a unidade através do argumento <code>units</code> e a resolução através do argumento <code>res</code>.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">tiff</span>(<span class="dt">filename =</span> <span class="st">&quot;Figura3.tiff&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb204-2" title="2">     <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>,<span class="dt">pointsize =</span> <span class="dv">12</span>, <span class="st">&quot;lzw&quot;</span>,<span class="dt">res =</span> <span class="dv">1200</span>)</a>
-<a class="sourceLine" id="cb204-3" title="3">p1</a>
-<a class="sourceLine" id="cb204-4" title="4"><span class="kw">dev.off</span>()</a>
-<a class="sourceLine" id="cb204-5" title="5"></a>
-<a class="sourceLine" id="cb204-6" title="6"><span class="kw">png</span>(<span class="dt">filename =</span> <span class="st">&quot;Figura3.png&quot;</span>,<span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb204-7" title="7">     <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>,<span class="dt">pointsize =</span> <span class="dv">12</span>, <span class="st">&quot;lzw&quot;</span>,<span class="dt">res =</span> <span class="dv">1200</span>)</a>
-<a class="sourceLine" id="cb204-8" title="8">p1</a>
-<a class="sourceLine" id="cb204-9" title="9"><span class="kw">dev.off</span>()</a>
-<a class="sourceLine" id="cb204-10" title="10"></a>
-<a class="sourceLine" id="cb204-11" title="11"><span class="kw">jpeg</span>(<span class="dt">filename =</span> <span class="st">&quot;Figura3.jpeg&quot;</span>,<span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb204-12" title="12">     <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>,<span class="dt">pointsize =</span> <span class="dv">12</span>, <span class="st">&quot;lzw&quot;</span>,<span class="dt">res =</span> <span class="dv">1200</span>)</a>
-<a class="sourceLine" id="cb204-13" title="13">p1</a>
-<a class="sourceLine" id="cb204-14" title="14"><span class="kw">dev.off</span>()</a>
-<a class="sourceLine" id="cb204-15" title="15"></a>
-<a class="sourceLine" id="cb204-16" title="16"><span class="kw">bmp</span>(<span class="dt">filename =</span> <span class="st">&quot;Figura3.bmp&quot;</span>,<span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb204-17" title="17">     <span class="dt">units =</span> <span class="st">&quot;cm&quot;</span>,<span class="dt">pointsize =</span> <span class="dv">12</span>, <span class="st">&quot;lzw&quot;</span>,<span class="dt">res =</span> <span class="dv">1200</span>)</a>
-<a class="sourceLine" id="cb204-18" title="18">p1</a>
-<a class="sourceLine" id="cb204-19" title="19"><span class="kw">dev.off</span>()</a></code></pre></div>
+<div id="exerc4" class="section level2">
+<h2><span class="header-section-number">A.4</span> Exercício 4</h2>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb587-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB, <span class="dt">size =</span> APLA)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb587-2" title="2"><span class="kw">geom_point</span>()</a></code></pre></div>
+</div>
+<div id="exerc5" class="section level2">
+<h2><span class="header-section-number">A.5</span> Exercício 5</h2>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb588-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> GEN)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb588-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb588-3" title="3"><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB)<span class="op">+</span></a>
+<a class="sourceLine" id="cb588-4" title="4"><span class="st">     </span><span class="kw">my_theme</span>()</a></code></pre></div>
+</div>
+<div id="exerc6" class="section level2">
+<h2><span class="header-section-number">A.6</span> Exercício 6</h2>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb589-1" title="1"><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb589-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> AMB))<span class="op">+</span></a>
+<a class="sourceLine" id="cb589-3" title="3"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
+<a class="sourceLine" id="cb589-4" title="4"><span class="st">     </span><span class="kw">my_theme</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb589-5" title="5"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a></code></pre></div>
+</div>
+<div id="exerc7" class="section level2">
+<h2><span class="header-section-number">A.7</span> Exercício 7</h2>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" title="1">means =<span class="st"> </span>qualitativo <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb590-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIBRIDO) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb590-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">RG =</span> <span class="kw">mean</span>(RG)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb590-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">letras =</span> <span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb590-5" title="5"><span class="kw">ggplot</span>(means, <span class="kw">aes</span>(<span class="dt">x =</span> HIBRIDO, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb590-6" title="6"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">width =</span> <span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb590-7" title="7"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)))<span class="op">+</span></a>
+<a class="sourceLine" id="cb590-8" title="8"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> letras), <span class="dt">hjust =</span> <span class="dv">-1</span>, <span class="dt">size =</span> <span class="fl">3.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb590-9" title="9"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(means<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb590-10" title="10"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+</div>
+<div id="exerc8" class="section level2">
+<h2><span class="header-section-number">A.8</span> Exercício 8</h2>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb591-1" title="1"><span class="kw">plot_lines</span>(quantitativo, <span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG, <span class="dt">fit =</span> <span class="dv">2</span>, <span class="dt">col =</span> F)</a></code></pre></div>
+</div>
+<div id="exerc9" class="section level2">
+<h2><span class="header-section-number">A.9</span> Exercício 9</h2>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb592-1" title="1"><span class="kw">with</span>(quantitativo, <span class="kw">rbd</span>(DOSEN, BLOCO, RG, <span class="dt">quali =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+</div>
+<div id="exerc10" class="section level2">
+<h2><span class="header-section-number">A.10</span> Exercício 10</h2>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb593-1" title="1">res =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Convencional =</span> <span class="kw">residuals</span>(convencional),</a>
+<a class="sourceLine" id="cb593-2" title="2">             <span class="dt">Transformado =</span> <span class="kw">residuals</span>(transform),</a>
+<a class="sourceLine" id="cb593-3" title="3">             <span class="dt">Generalizado =</span> <span class="kw">residuals</span>(general, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>))</a>
+<a class="sourceLine" id="cb593-4" title="4"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Convencional)</a>
+<a class="sourceLine" id="cb593-5" title="5"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Transformado)</a>
+<a class="sourceLine" id="cb593-6" title="6"><span class="kw">shapiro.test</span>(res<span class="op">$</span>Generalizado)</a></code></pre></div>
+</div>
+<div id="exerc11" class="section level2">
+<h2><span class="header-section-number">A.11</span> Exercício 11</h2>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" title="1">NUPEC_<span class="dv">2</span> =<span class="st"> </span>FAT1_CI <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb594-2" title="2"><span class="st">  </span><span class="kw">filter</span>(HIBRIDO <span class="op">==</span><span class="st"> &quot;NUPEC_2&quot;</span>)</a>
+<a class="sourceLine" id="cb594-3" title="3"><span class="kw">ggplot</span>(NUPEC_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb594-4" title="4"><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb594-5" title="5"><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb594-6" title="6"><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">45</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb594-7" title="7"><span class="kw">eom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">46.41</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</a></code></pre></div>
+</div>
+<div id="exerc12" class="section level2">
+<h2><span class="header-section-number">A.12</span> Exercício 12</h2>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb595-1" title="1"><span class="kw">plot_factbars</span>(FAT2_CI,</a>
+<a class="sourceLine" id="cb595-2" title="2">              HIBRIDO,</a>
+<a class="sourceLine" id="cb595-3" title="3">              FONTEN,</a>
+<a class="sourceLine" id="cb595-4" title="4">              <span class="dt">resp =</span> RG,</a>
+<a class="sourceLine" id="cb595-5" title="5">              <span class="dt">errorbar =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb595-6" title="6">              <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb595-7" title="7">              <span class="dt">size.text.bar =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb595-8" title="8">              <span class="dt">lab.bar.vjust =</span> <span class="fl">-0.5</span>,</a>
+<a class="sourceLine" id="cb595-9" title="9">              <span class="dt">lab.bar =</span> <span class="kw">c</span>(<span class="st">&quot;bB&quot;</span>, <span class="st">&quot;cBC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cD&quot;</span>,</a>
+<a class="sourceLine" id="cb595-10" title="10">                          <span class="st">&quot;cD&quot;</span>, <span class="st">&quot;dC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bB&quot;</span>,</a>
+<a class="sourceLine" id="cb595-11" title="11">                          <span class="st">&quot;bA&quot;</span>, <span class="st">&quot;cA&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cC&quot;</span>,</a>
+<a class="sourceLine" id="cb595-12" title="12">                          <span class="st">&quot;cC&quot;</span>, <span class="st">&quot;dAB&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bA&quot;</span>),</a>
+<a class="sourceLine" id="cb595-13" title="13">              <span class="dt">palette =</span> <span class="st">&quot;Greens&quot;</span>)</a></code></pre></div>
+</div>
+<div id="exerc13" class="section level2">
+<h2><span class="header-section-number">A.13</span> Exercício 13</h2>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" title="1">covar_mat =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb596-2" title="2"><span class="st">  </span><span class="kw">split_factors</span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb596-3" title="3"><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</a>
+<a class="sourceLine" id="cb596-4" title="4">                <span class="dt">rep =</span> REP,</a>
+<a class="sourceLine" id="cb596-5" title="5">                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</a>
+<a class="sourceLine" id="cb596-6" title="6">                <span class="dt">type =</span> <span class="st">&quot;rcov&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="graph.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="analdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="interaction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tabela-de-distribuições.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

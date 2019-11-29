@@ -56,7 +56,7 @@ O modelo é ajustado com a função `ge_reg()` \indf{ge\_reg}. Os métodos S3 `p
 reg_model = ge_reg(data_ge, ENV, GEN, REP, GY)
 reg_model$GY$anova
 reg_model$GY$regression
-plot(reg_model$GY)
+plot(reg_model)
 ```
 
 
@@ -102,7 +102,7 @@ Um método que combina análise de estabilidade e estratificação ambiental usa
 
 ```{r, fig.width = 5, fig.height = 4, aviso = FALSE, mensagem = FALSE}
 fato = ge_factanal(data_ge, ENV, GEN, REP, GY)
-plot(fato$GY)
+plot(fato)
 print(fato$GY$PCA)
 print(fato$GY$FA)
 print(fato$GY$env_strat)
@@ -174,7 +174,7 @@ Note que os argumentos inseridos na função obedecem a ordem dos argumentos req
 O pacote **metan** conta com uma opção para análise residual do modelo AMMI ajustado. Gráficos podem ser obtidos utilizando o seguinte comando. 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.width=8, fig.height=8, fig.align="center"}
-autoplot(AMMI_model$GY)
+plot(AMMI_model)
 ```
 
 A figura acima, obtida com a função `autoplot()`, mostra 4 gráficos. Os dois primeiros são os mais importantes. O primeiro (*Residual vs fitted*) pode ser utilizado para identificar a homogeneidade das variâncias. Uma distribuição aleatória dos pontos no gráfico deve ser observada. Quando um padrão de distibuição é observado --como, por exemplo, a distribuição dos pontos em forma de funil-- uma investigação deve ser realizada, pois este padrão indica a possiblidade de  heterogeneidade das variâncias. O segundo gráfico (*Normal Q-Q*) nos informa quanto a normalidade dos resíduos, ou seja, é desejado que os pontos sejam distribuídos ao redor da linha diagonal.
@@ -310,9 +310,8 @@ O biplot conhecido como **AMMI2** é confeccionado utilizando o argumento `type 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=5, fig.width=10, fig.align="center", fig.cap="Biplot AMMI2, gerado pelo pacote metan"}
 
-p1 = plot_scores(AMMI_model$GY)
-p2 = plot_scores(AMMI_model$GY,
-                 polygon = TRUE,
+p1 = plot_scores(AMMI_model)
+p2 = plot_scores(AMMI_model,
                  col.gen = "black",
                  col.env = "gray70",
                  col.segm.env = "gray70",
@@ -326,8 +325,10 @@ O biplot conhecido como **AMMI1** é confeccionado utilizando o argumento `type 
 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=5, fig.width=10, fig.align="center", fig.cap="Biplot AMMI1 gerado pelo pacote metan"}
-p3 = plot_scores(AMMI_model$GY, type = 2)
-p4 = plot_scores(AMMI_model$GY, type = 2,
+p3 = plot_scores(AMMI_model, type = 2)
+p4 = plot_scores(AMMI_model,
+                 type = 2,
+                 polygon = TRUE,
                  col.segm.env = "transparent") +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
@@ -344,7 +345,7 @@ Com o objetivo de identificar possíveis mega-ambientes, bem como visualizar o p
 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=3.5, fig.width=4, fig.align="center", fig.cap="Gráfico do tipo 'which-won-where' baseado no modelo AMMI"}
-plot_scores(AMMI_model$GY,
+plot_scores(AMMI_model,
             type = 4,
             size.tex.pa = 2,
             x.lab = "Rendimento nominal (Mg/ha)",
@@ -698,7 +699,7 @@ get_model_data(BLUP_model, "vcomp")
 
 A função `autoplot()` também pode ser utilizada para a investigação dos pressupostos do modelo neste exemplo. Dois gráficos que são gerados mas não mostrados por padrão são vistos neste exemplo.
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.width=8, fig.height=8, fig.align="center"}
-autoplot(BLUP_model$GY)
+plot(BLUP_model)
 ```
 
 
@@ -732,8 +733,8 @@ print(BLUP_model$GY$blupGEN)
 * plotando os BLUPs preditos para genótipos
 
 ```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F, fig.cap = "Médias preditas para genótipos considerando um modelo misto"}
-p1 = plot_blup(BLUP_model$GY)
-p2 = plot_blup(BLUP_model$GY, 
+p1 = plot_blup(BLUP_model)
+p2 = plot_blup(BLUP_model, 
                col.shape  =  c("gray20", "gray80"),
                y.lab = "Genótipos",
                x.lab = "Rendimento de grãos predito") + coord_flip()
@@ -773,8 +774,8 @@ Devido a aplicação da ténica de decomposição por valores singulares, é pos
 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=5, fig.width=10, fig.align="center", fig.cap="Biplot AMMI2 gerado pelo pacote metan"}
-p5 = plot_scores(BLUP_model$GY, type = 3)
-p6 = plot_scores(BLUP_model$GY, type = 3) +
+p5 = plot_scores(BLUP_model, type = 3)
+p6 = plot_scores(BLUP_model, type = 3) +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
                        legend.background = element_rect(fill = NA))
@@ -799,8 +800,8 @@ onde $WAASBY_i$ é o índice de superioridade para o genótipo *i* que pondera e
 Este índice permite atribuir pesos para estabilidade e produtividade na classificação dos genótipos. Para isto, o argumento `wresp` da função `waasb()` \indf{waasb} é usado. Por exemplo, se o objetivo é selecionar genótipos com alto rendimento (independentemente de sua estabilidade), então o `wresp = 100` deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação da variável de resposta. Por outro lado, visando selecionar genótipos altamente estáveis (independentemente da produtividade), então o `wresp = 0` deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação do índice WAASB. Qualquer valor entre 0 e 100 pode ser usado no argumento `wresp` para ponderar entre o desempenho médio e a estabilidade. Em nosso exemplo, o índice WAASBY foi calculado considerando `wresp = 50` (padrão da função), o que significa pesos iguais para desempenho e estabilidade médios. Para plotar os valores de WAASBY, o código a seguir é usado.
 
 ```{r fig.height = 5, fig.width = 50, fig.align = "center", message = F, warning = F }
-p1 = plot_waasby(BLUP_model$GY)
-p2 = plot_waasby(BLUP_model$GY,
+p1 = plot_waasby(BLUP_model)
+p2 = plot_waasby(BLUP_model,
                  col.shape = c("black", "gray")) +
   coord_flip()
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 5 Construindo uma tabela | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 5 Construindo uma tabela | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-11-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -148,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
 <li class="chapter" data-level="2.4" data-path="objects.html"><a href="objects.html#tibbles"><i class="fa fa-check"></i><b>2.4</b> Tibbles</a></li>
 <li class="chapter" data-level="2.5" data-path="objects.html"><a href="objects.html#lista"><i class="fa fa-check"></i><b>2.5</b> Lista</a></li>
-<li class="chapter" data-level="2.6" data-path="objects.html"><a href="objects.html#funcoes"><i class="fa fa-check"></i><b>2.6</b> Funções</a></li>
+<li class="chapter" data-level="2.6" data-path="objects.html"><a href="objects.html#funções"><i class="fa fa-check"></i><b>2.6</b> Funções</a></li>
 <li class="chapter" data-level="2.7" data-path="objects.html"><a href="objects.html#identificando-as-classes-de-objetos"><i class="fa fa-check"></i><b>2.7</b> Identificando as classes de objetos</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>3</b> Operações matemáticas</a></li>
@@ -157,64 +160,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
 <li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#adicionar-novas-variaveis"><i class="fa fa-check"></i><b>7.1</b> Adicionar novas variáveis</a></li>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#adicionar-novas-variáveis"><i class="fa fa-check"></i><b>7.1</b> Adicionar novas variáveis</a></li>
 <li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.2</b> Selecionar linhas com base em seus valores</a></li>
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
-<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variaveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
+<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variáveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
 <li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posicao"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
 <li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulacao"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
 <li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#juncoes-com-mutacao-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#juncoes-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operacoes-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-grafico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-grafico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.4" data-path="graph.html"><a href="graph.html#aesthetics-estetica"><i class="fa fa-check"></i><b>8.4</b> Aesthetics (estética)</a></li>
+<li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8.4" data-path="graph.html"><a href="graph.html#aesthetics-estética"><i class="fa fa-check"></i><b>8.4</b> Aesthetics (estética)</a></li>
 <li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
 <li class="chapter" data-level="8.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>8.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensoes"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
-<li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-graficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
+<li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
+<li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
 <li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
 <li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendencia-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
+<li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
 <li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
-<li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderencia"><i class="fa fa-check"></i><b>10.1.3</b> Testes de aderência</a></li>
-<li class="chapter" data-level="10.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confianca"><i class="fa fa-check"></i><b>10.1.4</b> Intervalos de confiança</a></li>
-<li class="chapter" data-level="10.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipoteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.5</b> Teste de hipóteses para amostras independentes</a></li>
-<li class="chapter" data-level="10.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipoteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
+<li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderência"><i class="fa fa-check"></i><b>10.1.3</b> Testes de aderência</a></li>
+<li class="chapter" data-level="10.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confiança"><i class="fa fa-check"></i><b>10.1.4</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="10.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.5</b> Teste de hipóteses para amostras independentes</a></li>
+<li class="chapter" data-level="10.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#principios-basicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
+<li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
-<li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimacao"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
-<li class="chapter" data-level="10.2.4" data-path="analdata.html"><a href="analdata.html#reparametrizacao-condicoes-marginais-ou-combinacoes-lineares"><i class="fa fa-check"></i><b>10.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
+<li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
+<li class="chapter" data-level="10.2.4" data-path="analdata.html"><a href="analdata.html#reparametrização-condições-marginais-ou-combinações-lineares"><i class="fa fa-check"></i><b>10.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
 <li class="chapter" data-level="10.2.5" data-path="analdata.html"><a href="analdata.html#delineamento-inteiramente-casualizado-dic"><i class="fa fa-check"></i><b>10.2.5</b> Delineamento inteiramente casualizado (DIC)</a></li>
 <li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformacao-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
+<li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
 <li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introducao"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
-<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatistico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
-<li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independencia-entre-a-covariavel-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
-<li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressao"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
-<li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numerico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
+<li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
+<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
+<li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
+<li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
+<li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-analise-de-variacao-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
-<li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estrategias-para-analise-de-dados-nao-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
-<li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introducao-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
-<li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporcao"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
+<li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
+<li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
+<li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
+<li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
 <li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
@@ -226,60 +229,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressao-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimacao-1"><i class="fa fa-check"></i><b>11.1.1</b> Estimação</a></li>
-<li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressoes-com-a-funcao-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
-<li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#selecao-de-variaveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimação-1"><i class="fa fa-check"></i><b>11.1.1</b> Estimação</a></li>
+<li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
+<li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
 <li class="chapter" data-level="11.1.4" data-path="reg.html"><a href="reg.html#falta-de-ajuste"><i class="fa fa-check"></i><b>11.1.4</b> Falta de ajuste</a></li>
-<li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#analise-dos-residuos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressao-nao-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimacao-2"><i class="fa fa-check"></i><b>11.2.1</b> Estimação</a></li>
-<li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-funcao-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
-<li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#analise-dos-residuos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="11.2.4" data-path="reg.html"><a href="reg.html#medidas-de-nao-linearidade"><i class="fa fa-check"></i><b>11.2.4</b> Medidas de não linearidade</a></li>
-<li class="chapter" data-level="11.2.5" data-path="reg.html"><a href="reg.html#comparacao-de-parametros"><i class="fa fa-check"></i><b>11.2.5</b> Comparação de parâmetros</a></li>
-<li class="chapter" data-level="11.2.6" data-path="reg.html"><a href="reg.html#representacao-grafica-dos-modelos"><i class="fa fa-check"></i><b>11.2.6</b> Representação gráfica dos modelos</a></li>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimação-2"><i class="fa fa-check"></i><b>11.2.1</b> Estimação</a></li>
+<li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
+<li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="11.2.4" data-path="reg.html"><a href="reg.html#medidas-de-não-linearidade"><i class="fa fa-check"></i><b>11.2.4</b> Medidas de não linearidade</a></li>
+<li class="chapter" data-level="11.2.5" data-path="reg.html"><a href="reg.html#comparação-de-parâmetros"><i class="fa fa-check"></i><b>11.2.5</b> Comparação de parâmetros</a></li>
+<li class="chapter" data-level="11.2.6" data-path="reg.html"><a href="reg.html#representação-gráfica-dos-modelos"><i class="fa fa-check"></i><b>11.2.6</b> Representação gráfica dos modelos</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressao-bisegmentada-com-plato"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
+<li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
 <li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlacao-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualizacao-grafica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
-<li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlacao"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
-<li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
-<li class="chapter" data-level="12.2.4" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-ii"><i class="fa fa-check"></i><b>12.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
-<li class="chapter" data-level="12.2.5" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-iii"><i class="fa fa-check"></i><b>12.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
-<li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualizacao-grafica-e-numerica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
+<li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
+<li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
+<li class="chapter" data-level="12.2.4" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-ii"><i class="fa fa-check"></i><b>12.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
+<li class="chapter" data-level="12.2.5" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iii"><i class="fa fa-check"></i><b>12.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
+<li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlacoes-geneticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confianca"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#parametrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
-<li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#nao-parametrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
+<li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
+<li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
-<li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlacao-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#analise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introducao-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimacao-3"><i class="fa fa-check"></i><b>12.7.2</b> Estimação</a></li>
+<li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimação-3"><i class="fa fa-check"></i><b>12.7.2</b> Estimação</a></li>
 <li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
-<li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#metodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
-<li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#analise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
-<li class="chapter" data-level="12.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correcao-k"><i class="fa fa-check"></i><b>12.7.6</b> Incluindo um fator de correção (k)</a></li>
-<li class="chapter" data-level="12.7.7" data-path="relations.html"><a href="relations.html#excluindo-variaveis"><i class="fa fa-check"></i><b>12.7.7</b> Excluindo variáveis</a></li>
-<li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#selecao-de-variaveis-em-analise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
-<li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#analise-de-trilha-para-cada-nivel-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
+<li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
+<li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
+<li class="chapter" data-level="12.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correção-k"><i class="fa fa-check"></i><b>12.7.6</b> Incluindo um fator de correção (k)</a></li>
+<li class="chapter" data-level="12.7.7" data-path="relations.html"><a href="relations.html#excluindo-variáveis"><i class="fa fa-check"></i><b>12.7.7</b> Excluindo variáveis</a></li>
+<li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
+<li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
-<li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlacoes-canonicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#analise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variaveis-numericas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
-<li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-media-de-cada-genotipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#selecao-de-variaveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
-<li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-numero-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
+<li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
+<li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
+<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
 <li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
 <li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
@@ -287,31 +290,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
-<li class="chapter" data-level="13.3.4" data-path="multivariate.html"><a href="multivariate.html#codigo-r"><i class="fa fa-check"></i><b>13.3.4</b> Código R</a></li>
+<li class="chapter" data-level="13.3.4" data-path="multivariate.html"><a href="multivariate.html#código-r"><i class="fa fa-check"></i><b>13.3.4</b> Código R</a></li>
 <li class="chapter" data-level="13.3.5" data-path="multivariate.html"><a href="multivariate.html#autovalores"><i class="fa fa-check"></i><b>13.3.5</b> Autovalores</a></li>
-<li class="chapter" data-level="13.3.6" data-path="multivariate.html"><a href="multivariate.html#grafico-das-variaveis"><i class="fa fa-check"></i><b>13.3.6</b> Gráfico das variáveis</a></li>
-<li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#grafico-de-individuos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
-<li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#grafico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
+<li class="chapter" data-level="13.3.6" data-path="multivariate.html"><a href="multivariate.html#gráfico-das-variáveis"><i class="fa fa-check"></i><b>13.3.6</b> Gráfico das variáveis</a></li>
+<li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
+<li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
 <li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
-<li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-codigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
+<li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
-<li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#analise-grafica-da-interacao"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
-<li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#analise-de-variancia-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
-<li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressao"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
-<li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#indice-de-confianca-genotipico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
-<li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#indice-de-superioridade-genotipico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
-<li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificacao-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
+<li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
+<li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
+<li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
+<li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
+<li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
+<li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
 <li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
 <li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
-<li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-numero-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
+<li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
 <li class="chapter" data-level="14.7.4" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.7.4</b> Valores estimados pelo modelo AMMI</a></li>
-<li class="chapter" data-level="14.7.5" data-path="interaction.html"><a href="interaction.html#indices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
+<li class="chapter" data-level="14.7.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
 <li class="chapter" data-level="14.7.6" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.7.6</b> Biplots</a></li>
 </ul></li>
 <li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.8</b> O modelo GGE</a><ul>
@@ -322,32 +325,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.8.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.8.5</b> Valores estimados pelo modelo GGE</a></li>
 <li class="chapter" data-level="14.8.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.8.6</b> Visualizando o Biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliacao-de-met"><i class="fa fa-check"></i><b>14.9</b> Modelos mistos na avaliação de MET</a><ul>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.9</b> Modelos mistos na avaliação de MET</a><ul>
 <li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.9.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#analise-dos-residuos-2"><i class="fa fa-check"></i><b>14.9.2</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#parametros-geneticos"><i class="fa fa-check"></i><b>14.9.3</b> Parâmetros genéticos</a></li>
-<li class="chapter" data-level="14.9.4" data-path="interaction.html"><a href="interaction.html#medias-preditas"><i class="fa fa-check"></i><b>14.9.4</b> Médias preditas</a></li>
-<li class="chapter" data-level="14.9.5" data-path="interaction.html"><a href="interaction.html#indices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
+<li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.9.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.9.3</b> Parâmetros genéticos</a></li>
+<li class="chapter" data-level="14.9.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.9.4</b> Médias preditas</a></li>
+<li class="chapter" data-level="14.9.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisao-em-cada-caso"><i class="fa fa-check"></i><b>14.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
-<li class="chapter" data-level="A" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
-<li class="chapter" data-level="A.1" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
-<li class="chapter" data-level="A.2" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
-<li class="chapter" data-level="A.3" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
-<li class="chapter" data-level="A.4" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc4"><i class="fa fa-check"></i><b>A.4</b> Exercício 4</a></li>
-<li class="chapter" data-level="A.5" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc5"><i class="fa fa-check"></i><b>A.5</b> Exercício 5</a></li>
-<li class="chapter" data-level="A.6" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc6"><i class="fa fa-check"></i><b>A.6</b> Exercício 6</a></li>
-<li class="chapter" data-level="A.7" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc7"><i class="fa fa-check"></i><b>A.7</b> Exercício 7</a></li>
-<li class="chapter" data-level="A.8" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc8"><i class="fa fa-check"></i><b>A.8</b> Exercício 8</a></li>
-<li class="chapter" data-level="A.9" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc9"><i class="fa fa-check"></i><b>A.9</b> Exercício 9</a></li>
-<li class="chapter" data-level="A.10" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc10"><i class="fa fa-check"></i><b>A.10</b> Exercício 10</a></li>
-<li class="chapter" data-level="A.11" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc11"><i class="fa fa-check"></i><b>A.11</b> Exercício 11</a></li>
-<li class="chapter" data-level="A.12" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc12"><i class="fa fa-check"></i><b>A.12</b> Exercício 12</a></li>
-<li class="chapter" data-level="A.13" data-path="resposta-dos-exercicios.html"><a href="resposta-dos-exercicios.html#exerc13"><i class="fa fa-check"></i><b>A.13</b> Exercício 13</a></li>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
+<li class="chapter" data-level="A.1" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
+<li class="chapter" data-level="A.2" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
+<li class="chapter" data-level="A.3" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
+<li class="chapter" data-level="A.4" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc4"><i class="fa fa-check"></i><b>A.4</b> Exercício 4</a></li>
+<li class="chapter" data-level="A.5" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc5"><i class="fa fa-check"></i><b>A.5</b> Exercício 5</a></li>
+<li class="chapter" data-level="A.6" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc6"><i class="fa fa-check"></i><b>A.6</b> Exercício 6</a></li>
+<li class="chapter" data-level="A.7" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc7"><i class="fa fa-check"></i><b>A.7</b> Exercício 7</a></li>
+<li class="chapter" data-level="A.8" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc8"><i class="fa fa-check"></i><b>A.8</b> Exercício 8</a></li>
+<li class="chapter" data-level="A.9" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc9"><i class="fa fa-check"></i><b>A.9</b> Exercício 9</a></li>
+<li class="chapter" data-level="A.10" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc10"><i class="fa fa-check"></i><b>A.10</b> Exercício 10</a></li>
+<li class="chapter" data-level="A.11" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc11"><i class="fa fa-check"></i><b>A.11</b> Exercício 11</a></li>
+<li class="chapter" data-level="A.12" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc12"><i class="fa fa-check"></i><b>A.12</b> Exercício 12</a></li>
+<li class="chapter" data-level="A.13" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc13"><i class="fa fa-check"></i><b>A.13</b> Exercício 13</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="tabela-de-distribuicoes.html"><a href="tabela-de-distribuicoes.html"><i class="fa fa-check"></i>Tabela de distribuições</a></li>
+<li class="chapter" data-level="" data-path="tabela-de-distribuições.html"><a href="tabela-de-distribuições.html"><i class="fa fa-check"></i>Tabela de distribuições</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -400,24 +403,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
