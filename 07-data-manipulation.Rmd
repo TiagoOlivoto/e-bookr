@@ -51,6 +51,27 @@ mean_sqrt
 
 A utilização do operador `%>%` parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o `%>%` se mostrará muito mais útil.
 
+O pacote [`metan`](https://tiagoolivoto.github.io/metan/) fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:
+
+1. [Utilitários para lidar com linhas e colunas](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html)
+   * `add_cols()` e `add_rows()` para adicionar colunas e linhas, respectivamente, com possibilidade de ordenamento das novas colunas ou linhas;
+   * `all_pairs()` para computar todos os possíveis pares entre níveis de um fator;
+   * `column_exists()` para checar se determinadas colunas existem;
+   * `concatenate()` para concatenar colunas;
+   * `get_levels()` para extrair os níveisde um fator;
+   * `get_level_size()` para identificar a quantidade de elementos em cada fator;
+   * `reorder_cols()` para reordenar colunas;
+   * `remove_cols()` e `remove_rows()` para remover colunas e linhas, respectivamente.
+   * `select_numeric_cols()` e `select_non_numeric_cols()` para selecionar apenas variáveis numéricas e não-numéricas, respectivamente;
+   * `select_cols()` e `select_rows()` para selecionar colunas e linhas, respectivamente.
+
+2. [Utilitários para lidar com números e strings](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html)
+   * `all_lower_case()` e `all_upper_case()` converte todas as seqüências não numéricas de um quadro de dados para minúsculas e maiúsculas, respectivamente;
+   * `extract_number()` e `extract_string()` extrai todas os números e letras (ignorando maiúsculas e minúsculas) de uma ou mais colunas.
+   * `replace_number()` e `replace_string()` substitui todas os números e letras (ignorando maiúsculas e minúsculas) de uma ou mais colunas;
+   * `round_cols()`: arredonda uma coluna selecionada ou um data frame completo para valores significativos.
+   
+   
 O conjunto de dados **maize** será utilizado como exemplo para as operações de manipulação de dados. O primeiro passo é carregálo no ambiente de trabalho.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
@@ -61,14 +82,31 @@ str(maize)
 
 ## Adicionar novas variáveis
 
-A função `mutate()` \indf{mutate} é utilizada quando se deseja adicionar novas variáveis no conjunto de dados. Estas variáveis são funções de variáveis existentes. Como exemplo, vamos criar uma nova variável chamada PRE_2 no conjunto de dados `maize`, qual será a razão entre AIES e APLA. Note que a função adiciona a nova variável e mantém todas as demais
+A função `mutate()` \indf{mutate} é utilizada quando se deseja adicionar novas variáveis no conjunto de dados. Estas variáveis são funções de variáveis existentes. Como exemplo, vamos criar uma nova variável chamada PRE_2 no conjunto de dados `maize`, qual será a razão entre AIES e APLA. Note que a função adiciona a nova variável após a última variável origina e mantém todas as demais. Digamos que queríamos adicionar a nova variável criada após a variável REP, a seguinte abordagem com o pacote `dplyr` deve ser usada.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 maize %>% 
   mutate(PRE_2 = AIES/APLA) %>%
-  select(PRE_2)
+  select(AMB, HIB, REP, PRE_2, everything())
 
 ```
+
+Com a função `add_cols()`, o mesmo resultado pode ser obtido com:
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+
+add_cols(maize,
+         PRE_2 = AIES/APLA,
+         .after = "REP")
+
+```
+
+## Concatenar colunas
+
+A função `concatetate()` pode ser usada para concatenar várias colunas de um conjunto de dados.
+```{r}
+concatenate(maize, AMB, HIB, REP)
+```
+
 
 
 Utilizando a função `case_when()` \indf{case\_when} é possível criar uma variável baseado em um argumento `if()`\indf{if} vetorizado. `case_when()` é particularmente útil dentro da função `mutate()`\indf{mutate} quando você quer criar uma nova variável que depende de uma combinação complexa de variáveis existentes. No exemplo abaixo, uma nova variável será criada, dependendo dos valores de APLA, AIES ou CESP
@@ -90,9 +128,9 @@ maize %>%
 A função `transmute()` \indf{transmute} \indf{pull} cria a nova variável e exclui todas as demais. Em adição, se o resultado da função precisa ser extraído para um vetor numérico, basta adicionar a função `pull()`, conforme segue
 
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-vect = maize %>% 
-       transmute(PRE_2 = AIES/APLA) %>%
-       pull()
+maize %>% 
+  transmute(PRE_2 = AIES/APLA) %>%
+  pull()
 
 ```
 
@@ -144,7 +182,6 @@ Para identificar quais os valores distintos de `APLA` foram observados a funçã
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 distinct(maize, APLA)
-
 ```
 
 
@@ -219,6 +256,43 @@ Nos deparamos aqui com três termos não vistos até então: `starts_with()`, `e
 * `ends_with()` \indf{ends\_with}seleciona variáveis que terminam com um determinado sufixo. No exemplo anterior as variáveis AIES e DIES foram selecionadas por esta função.
 * `contains()` \indf{contains}seleciona variáveis que contém determinados caracteres. No exemplo anterior, NGRA foi selecionada pois contém **GR**, mas não inicia com M e nem termina com S.
 
+
+A função `desc_stat()` pode ser usada para calcular medidas de tendência central, posição e dispersão. Por padrão, sete estatísticas (coeficiente de variação, máximo, média, mediana, mínimo, erro padrão e variação da amostra) são computadas. Para calcular todas as estatísticas, use o argumento `stats ="all"` ou use um vetor separado por vírgula com os nomes das estatísticas, por exemplo, `stats = c("mean, CV")`. Use `hist = TRUE` para criar um histograma para cada variável.
+
+```{r, message = FALSE, fig.height = 10, fig.width = 10, fig.align =" center "}
+stats <- 
+maize %>%
+ desc_stat(hist = TRUE)
+print(stats)
+```
+
+Para calcular as estatísticas para cada nível de um fator, use a função `split_factor()` antes de chamar `desc_stat()`. Além disso, é possível selecionar as estatísticas a serem calculadas usando o argumento `stats`, que é um vetor de nomes separados por vírgula com` "` apenas no início e no final do vetor.
+
+* Isso funcionará:
+   * `stats = c ("mean, SE.mean, CV, max, min")`
+   * `stats = "mean"`
+   
+* Isso NÃO funcionará:
+   * `stats = c("mean, "SE.mean", "CV", "max", "min") `
+   * `stats = c("mean, SE.mean, CV, max, min ")`
+
+```{r, message = FALSE, fig.height = 5, fig.width = 5.5, fig.align =" center "}
+stats2 <-
+  maize%>%
+  split_factors(HIB)%>%
+  desc_stat(contains("A"),
+            stats = "all",
+            verbose = FALSE)
+stats2
+```
+
+Podemos converter os resultados acima em um formato *wide* usando a função `desc_wider()`
+
+```{r, message = FALSE, fig.height = 5, fig.width = 5.5, fig.align =" center "}
+desc_wider(stats2, AIES)
+```
+
+
 ## Selecionar variáveis com base em seus nomes
 A função `select()` \indf{select} é utilizada para selecionar variáveis de um conjunto de dados. O seguinte código seleciona as variáveis MGRA e AIES do conjunto de dados
 
@@ -228,22 +302,19 @@ maize %>%
   select(MGRA, AIES)
 ```
 
-Note que a seleção pode ser mais eficiente utilizando as variantes `select_all()`, `select_if()`, ou `select_at()`.
-\indf{select\_all}
-\indf{select\_at}
-\indf{select\_if}
+Para selecionar apenas as variáveis numéricas, vamos utilizar a função `select_numeric_cols()` do pacote `metan`. Variáveis não numéricas podem ser selecionadas com `select_non_numeric_cols()`
 
-```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-maize %>%
-  select_at(vars(contains("A")))
+```{r}
+select_numeric_cols(maize)
+select_non_numeric_cols(maize)
 ```
 
-Se o objetivo é excluir as variáveis selecionadas, basta incluir o operador `-` antes dos nomes das variáveis. No próximo exemplo, serão selecionadas todas as variáveis, exceto aquelas que contém **A** no nome. Em adição, o nome da variável MMG será modificado para `Massa de mil grãos`.
+
+Se o objetivo é excluir as variáveis basta utilizar a função `remove_cols()`. No próximo exemplo, serão selecionadas todas as variáveis, exceto aquelas que contém **A** no nome.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 maize %>%
-  select_at(vars(-contains("A"))) %>%
-  rename(`Massa de mil grãos` =  MMG)
+  remove_cols(contains("A"))
 ```
 
 
@@ -327,7 +398,6 @@ top_n(maize, 2, MGRA)
 
 # seleciona as duas linhas com o menor valor de MGRA
 top_n(maize, 2, -MGRA)
-
 
 # Maior produtividade em cada ambiente
 maize %>%
@@ -456,3 +526,101 @@ setdiff(data_1_to_5, data_3_to_10)
 ```
 
 
+
+# Utilitários para números e sequências de caracteres
+## Arredondar um conjunto de dados inteiro
+A função `round_cols()` arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 2). Se nenhuma variável for informada, todas as variáveis numéricas serão arredondadas.
+
+```{r}
+round_cols(maize)
+```
+
+Como alternativa, selecione variáveis para arredondar.
+
+```{r}
+round_cols(maize, MGRA, APLA, digits = 1)
+```
+
+## Extraindo e substituindo números
+
+As funções `extract_number()` e `replace_number()` podem ser usadas para extrair ou substituir números. Como exemplo, extrairemos o número de cada genótipo em `data_g`. Por padrão, os números extraídos são colocados como uma nova variável chamada `new_var` após a última coluna dos dados.
+
+```{r}
+extract_number(maize, HIB)
+```
+
+Se o argumento `drop` estiver definido como` TRUE`, apenas a nova variável será mantida e todas as outras serão descartadas.
+
+```{r}
+extract_number(maize, HIB, drop = TRUE)
+```
+
+Para extrair os resultados em um vetor, use o argumento `pull = TRUE`. Isso é particularmente útil quando `extract_ *` ou `replace_ *` são usados em uma alguma função, como `add_cols()`.
+
+
+```{r}
+extract_number(maize, HIB, pull = TRUE)
+```
+
+Para substituir números de uma determinada coluna por uma substituição especificada, use `replace_number ()`. Por padrão, os números são substituídos por "". O argumento `drop` e` pull` também podem ser usados, como mostrado acima.
+
+```{r}
+replace_number(maize, HIB)
+replace_number(maize,
+               var = REP,
+               pattern = "1",
+               replacement = "Rep_1",
+               new_var = R_ONE)
+```
+
+## Extraindo, substituindo e removendo strings
+As funções `extract_string()` e `replace_string()` são usadas no mesmo contexto de `extract_number()` e `replace_number()`, mas para lidar com strings.
+
+```{r}
+extract_string(maize, HIB, drop = TRUE)
+```
+
+Para substituir strings, podemos usar a função `replace_strings()`.
+
+```{r}
+replace_string(maize,
+               var = HIB,
+               new_var = GENOTYPE,
+               replacement = "HIBRIDO") %>% 
+  reorder_cols(GENOTYPE, .after = "HIB")
+```
+
+Para remover todas as strings de conjunto de dados, use `remove_strings()`
+
+```{r}
+remove_strings(maize)
+```
+
+
+
+# Utilitários para linhas e colunas
+## Adicionar colunas e linhas
+As funções `add_cols()` e `add_rows()` podem ser usadas para adicionar colunas e linhas, respectivamente, a um quadro de dados.
+
+```{r message = FALSE, aviso = FALSE}
+add_cols(maize,
+         ROW_ID = 1:780,
+         .before = "AMB")
+
+```
+
+Também é possível adicionar uma coluna com base nos dados existentes. Note que os argumentos `.after` e` .before` são utilizados para selecionar a posição da(s) nova(s) coluna(s). Isso é particularmente útil para reunir variáveis da mesma categoria.
+
+```{r}
+add_cols(maize,
+         APLA2 = APLA^2,
+         .after = "APLA")
+```
+
+## Obtendo níveis de um fator
+Para obter os níveis e o tamanho dos níveis de um fator, as funções `get_levels()` e `get_level_size()` podem ser usadas.
+
+```{r}
+get_levels(maize, AMB)
+get_level_size(maize, AMB)
+```

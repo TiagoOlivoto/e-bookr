@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais</title>
+  <title>Capítulo 10 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais" />
+  <meta property="og:title" content="Capítulo 10 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="figures/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="TiagoOlivoto/e-bookr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais" />
+  <meta name="twitter:title" content="Capítulo 10 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais" />
   
   <meta name="twitter:description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
   <meta name="twitter:image" content="figures/cover.png" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2019-12-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="manipula.html"/>
+<link rel="prev" href="utilitários-para-linhas-e-colunas.html"/>
 <link rel="next" href="exporta.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -161,178 +161,188 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
 <li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#adicionar-novas-variáveis"><i class="fa fa-check"></i><b>7.1</b> Adicionar novas variáveis</a></li>
-<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.2</b> Selecionar linhas com base em seus valores</a></li>
-<li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.3</b> Resumir um conjunto de dados</a></li>
-<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#selecionar-variáveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.4</b> Selecionar variáveis com base em seus nomes</a></li>
-<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.5</b> Ordenar linhas</a></li>
-<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.6</b> Selecionar linhas por sua posição</a></li>
-<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.7</b> Selecionar top n linhas baseado em valor</a></li>
-<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.8</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.9</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
-<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.10</b> Junções com mutação de dados</a></li>
-<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com filtragem de dados</a></li>
-<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.12</b> Operações com conjuntos</a></li>
+<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#concatenar-colunas"><i class="fa fa-check"></i><b>7.2</b> Concatenar colunas</a></li>
+<li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.3</b> Selecionar linhas com base em seus valores</a></li>
+<li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#resumir-um-conjunto-de-dados"><i class="fa fa-check"></i><b>7.4</b> Resumir um conjunto de dados</a></li>
+<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#selecionar-variáveis-com-base-em-seus-nomes"><i class="fa fa-check"></i><b>7.5</b> Selecionar variáveis com base em seus nomes</a></li>
+<li class="chapter" data-level="7.6" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.6</b> Ordenar linhas</a></li>
+<li class="chapter" data-level="7.7" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.7</b> Selecionar linhas por sua posição</a></li>
+<li class="chapter" data-level="7.8" data-path="manipula.html"><a href="manipula.html#selecionar-top-n-linhas-baseado-em-valor"><i class="fa fa-check"></i><b>7.8</b> Selecionar top n linhas baseado em valor</a></li>
+<li class="chapter" data-level="7.9" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.9</b> Combinando os verbos para manipulação</a></li>
+<li class="chapter" data-level="7.10" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.10</b> Trabalhando com duas tabelas ao mesmo tempo</a></li>
+<li class="chapter" data-level="7.11" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.11</b> Junções com mutação de dados</a></li>
+<li class="chapter" data-level="7.12" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.12</b> Junções com filtragem de dados</a></li>
+<li class="chapter" data-level="7.13" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.13</b> Operações com conjuntos</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
-<li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
-<li class="chapter" data-level="8.4" data-path="graph.html"><a href="graph.html#aesthetics-estética"><i class="fa fa-check"></i><b>8.4</b> Aesthetics (estética)</a></li>
-<li class="chapter" data-level="8.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>8.5</b> Facet (facetas)</a></li>
-<li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
-<li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
-<li class="chapter" data-level="8.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>8.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="8" data-path="utilitários-para-números-e-sequências-de-caracteres.html"><a href="utilitários-para-números-e-sequências-de-caracteres.html"><i class="fa fa-check"></i><b>8</b> Utilitários para números e sequências de caracteres</a><ul>
+<li class="chapter" data-level="8.1" data-path="utilitários-para-números-e-sequências-de-caracteres.html"><a href="utilitários-para-números-e-sequências-de-caracteres.html#arredondar-um-conjunto-de-dados-inteiro"><i class="fa fa-check"></i><b>8.1</b> Arredondar um conjunto de dados inteiro</a></li>
+<li class="chapter" data-level="8.2" data-path="utilitários-para-números-e-sequências-de-caracteres.html"><a href="utilitários-para-números-e-sequências-de-caracteres.html#extraindo-e-substituindo-números"><i class="fa fa-check"></i><b>8.2</b> Extraindo e substituindo números</a></li>
+<li class="chapter" data-level="8.3" data-path="utilitários-para-números-e-sequências-de-caracteres.html"><a href="utilitários-para-números-e-sequências-de-caracteres.html#extraindo-substituindo-e-removendo-strings"><i class="fa fa-check"></i><b>8.3</b> Extraindo, substituindo e removendo strings</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
-<li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
+<li class="chapter" data-level="9" data-path="utilitários-para-linhas-e-colunas.html"><a href="utilitários-para-linhas-e-colunas.html"><i class="fa fa-check"></i><b>9</b> Utilitários para linhas e colunas</a><ul>
+<li class="chapter" data-level="9.1" data-path="utilitários-para-linhas-e-colunas.html"><a href="utilitários-para-linhas-e-colunas.html#adicionar-colunas-e-linhas"><i class="fa fa-check"></i><b>9.1</b> Adicionar colunas e linhas</a></li>
+<li class="chapter" data-level="9.2" data-path="utilitários-para-linhas-e-colunas.html"><a href="utilitários-para-linhas-e-colunas.html#obtendo-níveis-de-um-fator"><i class="fa fa-check"></i><b>9.2</b> Obtendo níveis de um fator</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>10</b> Gráficos com o pacote ggplot2</a><ul>
+<li class="chapter" data-level="10.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>10.1</b> O pacote <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="10.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Meu primeiro gráfico em <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="10.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>10.3</b> As camadas de um gráfico <strong>ggplot2</strong></a></li>
+<li class="chapter" data-level="10.4" data-path="graph.html"><a href="graph.html#aesthetics-estética"><i class="fa fa-check"></i><b>10.4</b> Aesthetics (estética)</a></li>
+<li class="chapter" data-level="10.5" data-path="graph.html"><a href="graph.html#facet-facetas"><i class="fa fa-check"></i><b>10.5</b> Facet (facetas)</a></li>
+<li class="chapter" data-level="10.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>10.6</b> Theme (temas)</a></li>
+<li class="chapter" data-level="10.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>10.7</b> Geoms (geometria)</a></li>
+<li class="chapter" data-level="10.8" data-path="graph.html"><a href="graph.html#interface-shiny-para-ggplot2"><i class="fa fa-check"></i><b>10.8</b> Interface Shiny para <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>11</b> Exportando dados</a><ul>
+<li class="chapter" data-level="11.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>11.1</b> Exportando com diferentes extensões</a></li>
+<li class="chapter" data-level="11.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>11.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
-<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
-<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
-<li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
-<li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderência"><i class="fa fa-check"></i><b>10.1.3</b> Testes de aderência</a></li>
-<li class="chapter" data-level="10.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confiança"><i class="fa fa-check"></i><b>10.1.4</b> Intervalos de confiança</a></li>
-<li class="chapter" data-level="10.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.5</b> Teste de hipóteses para amostras independentes</a></li>
-<li class="chapter" data-level="10.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
+<li class="chapter" data-level="12" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>12</b> Análise de dados experimentais</a><ul>
+<li class="chapter" data-level="12.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>12.1</b> Estatistica básica</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>12.1.1</b> Medidas de tendência central</a></li>
+<li class="chapter" data-level="12.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>12.1.2</b> Medidas de variabilidade</a></li>
+<li class="chapter" data-level="12.1.3" data-path="analdata.html"><a href="analdata.html#testes-de-aderência"><i class="fa fa-check"></i><b>12.1.3</b> Testes de aderência</a></li>
+<li class="chapter" data-level="12.1.4" data-path="analdata.html"><a href="analdata.html#intervalos-de-confiança"><i class="fa fa-check"></i><b>12.1.4</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="12.1.5" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>12.1.5</b> Teste de hipóteses para amostras independentes</a></li>
+<li class="chapter" data-level="12.1.6" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>12.1.6</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
-<li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
-<li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
-<li class="chapter" data-level="10.2.4" data-path="analdata.html"><a href="analdata.html#reparametrização-condições-marginais-ou-combinações-lineares"><i class="fa fa-check"></i><b>10.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
-<li class="chapter" data-level="10.2.5" data-path="analdata.html"><a href="analdata.html#delineamento-inteiramente-casualizado-dic"><i class="fa fa-check"></i><b>10.2.5</b> Delineamento inteiramente casualizado (DIC)</a></li>
-<li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
+<li class="chapter" data-level="12.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>12.2</b> Delineamentos básicos</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>12.2.1</b> Princípios básicos</a></li>
+<li class="chapter" data-level="12.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>12.2.2</b> Pressupostos</a></li>
+<li class="chapter" data-level="12.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>12.2.3</b> Estimação</a></li>
+<li class="chapter" data-level="12.2.4" data-path="analdata.html"><a href="analdata.html#reparametrização-condições-marginais-ou-combinações-lineares"><i class="fa fa-check"></i><b>12.2.4</b> Reparametrização, condições marginais ou combinações lineares?</a></li>
+<li class="chapter" data-level="12.2.5" data-path="analdata.html"><a href="analdata.html#delineamento-inteiramente-casualizado-dic"><i class="fa fa-check"></i><b>12.2.5</b> Delineamento inteiramente casualizado (DIC)</a></li>
+<li class="chapter" data-level="12.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>12.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
-<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
-<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
-<li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
-<li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
-<li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
+<li class="chapter" data-level="12.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>12.3</b> Transformação de dados</a></li>
+<li class="chapter" data-level="12.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>12.4</b> Análise de covariância (ANCOVA)</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>12.4.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico"><i class="fa fa-check"></i><b>12.4.2</b> Modelo estatístico</a></li>
+<li class="chapter" data-level="12.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>12.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
+<li class="chapter" data-level="12.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>12.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
+<li class="chapter" data-level="12.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>12.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
-<li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
-<li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
-<li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
-<li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
+<li class="chapter" data-level="12.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>12.5</b> Análise de dados não gaussianos</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>12.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
+<li class="chapter" data-level="12.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>12.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
+<li class="chapter" data-level="12.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>12.5.3</b> Introdução aos modelos lineares generalizados</a></li>
+<li class="chapter" data-level="12.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>12.5.4</b> Dados de proporção</a></li>
+<li class="chapter" data-level="12.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>12.5.5</b> Dados de contagem</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
-<li class="chapter" data-level="10.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>10.6.1</b> Download dos dados</a></li>
-<li class="chapter" data-level="10.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.2</b> Qualitativo vs quantitativo</a></li>
-<li class="chapter" data-level="10.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>10.6.3</b> Qualitativo vs qualitativo</a></li>
-<li class="chapter" data-level="10.6.4" data-path="analdata.html"><a href="analdata.html#quantitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.4</b> Quantitativo vs quantitativo</a></li>
-<li class="chapter" data-level="10.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>10.6.5</b> Experimentos em parcelas subdivididas</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimação-1"><i class="fa fa-check"></i><b>11.1.1</b> Estimação</a></li>
-<li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
-<li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
-<li class="chapter" data-level="11.1.4" data-path="reg.html"><a href="reg.html#falta-de-ajuste"><i class="fa fa-check"></i><b>11.1.4</b> Falta de ajuste</a></li>
-<li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimação-2"><i class="fa fa-check"></i><b>11.2.1</b> Estimação</a></li>
-<li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
-<li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="11.2.4" data-path="reg.html"><a href="reg.html#medidas-de-não-linearidade"><i class="fa fa-check"></i><b>11.2.4</b> Medidas de não linearidade</a></li>
-<li class="chapter" data-level="11.2.5" data-path="reg.html"><a href="reg.html#comparação-de-parâmetros"><i class="fa fa-check"></i><b>11.2.5</b> Comparação de parâmetros</a></li>
-<li class="chapter" data-level="11.2.6" data-path="reg.html"><a href="reg.html#representação-gráfica-dos-modelos"><i class="fa fa-check"></i><b>11.2.6</b> Representação gráfica dos modelos</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
-<li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
-<li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
-<li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
-<li class="chapter" data-level="12.2.4" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-ii"><i class="fa fa-check"></i><b>12.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
-<li class="chapter" data-level="12.2.5" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iii"><i class="fa fa-check"></i><b>12.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
-<li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
-<li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
-<li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimação-3"><i class="fa fa-check"></i><b>12.7.2</b> Estimação</a></li>
-<li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
-<li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
-<li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
-<li class="chapter" data-level="12.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correção-k"><i class="fa fa-check"></i><b>12.7.6</b> Incluindo um fator de correção (k)</a></li>
-<li class="chapter" data-level="12.7.7" data-path="relations.html"><a href="relations.html#excluindo-variáveis"><i class="fa fa-check"></i><b>12.7.7</b> Excluindo variáveis</a></li>
-<li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
-<li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
+<li class="chapter" data-level="12.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>12.6</b> Experimentos bifatoriais</a><ul>
+<li class="chapter" data-level="12.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>12.6.1</b> Download dos dados</a></li>
+<li class="chapter" data-level="12.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>12.6.2</b> Qualitativo vs quantitativo</a></li>
+<li class="chapter" data-level="12.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>12.6.3</b> Qualitativo vs qualitativo</a></li>
+<li class="chapter" data-level="12.6.4" data-path="analdata.html"><a href="analdata.html#quantitativo-vs-quantitativo"><i class="fa fa-check"></i><b>12.6.4</b> Quantitativo vs quantitativo</a></li>
+<li class="chapter" data-level="12.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>12.6.5</b> Experimentos em parcelas subdivididas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
-<li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
-<li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
-<li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
-<li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
-<li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
+<li class="chapter" data-level="13" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>13</b> Análise de regressão</a><ul>
+<li class="chapter" data-level="13.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>13.1</b> Regressão Linear</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="reg.html"><a href="reg.html#estimação-1"><i class="fa fa-check"></i><b>13.1.1</b> Estimação</a></li>
+<li class="chapter" data-level="13.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>13.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
+<li class="chapter" data-level="13.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>13.1.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.1.4" data-path="reg.html"><a href="reg.html#falta-de-ajuste"><i class="fa fa-check"></i><b>13.1.4</b> Falta de ajuste</a></li>
+<li class="chapter" data-level="13.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>13.1.5</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="13.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>13.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
-<li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
-<li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
-<li class="chapter" data-level="13.3.4" data-path="multivariate.html"><a href="multivariate.html#código-r"><i class="fa fa-check"></i><b>13.3.4</b> Código R</a></li>
-<li class="chapter" data-level="13.3.5" data-path="multivariate.html"><a href="multivariate.html#autovalores"><i class="fa fa-check"></i><b>13.3.5</b> Autovalores</a></li>
-<li class="chapter" data-level="13.3.6" data-path="multivariate.html"><a href="multivariate.html#gráfico-das-variáveis"><i class="fa fa-check"></i><b>13.3.6</b> Gráfico das variáveis</a></li>
-<li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
-<li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
+<li class="chapter" data-level="13.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>13.2</b> Regressão não linear</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="reg.html"><a href="reg.html#estimação-2"><i class="fa fa-check"></i><b>13.2.1</b> Estimação</a></li>
+<li class="chapter" data-level="13.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>13.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
+<li class="chapter" data-level="13.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>13.2.3</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="13.2.4" data-path="reg.html"><a href="reg.html#medidas-de-não-linearidade"><i class="fa fa-check"></i><b>13.2.4</b> Medidas de não linearidade</a></li>
+<li class="chapter" data-level="13.2.5" data-path="reg.html"><a href="reg.html#comparação-de-parâmetros"><i class="fa fa-check"></i><b>13.2.5</b> Comparação de parâmetros</a></li>
+<li class="chapter" data-level="13.2.6" data-path="reg.html"><a href="reg.html#representação-gráfica-dos-modelos"><i class="fa fa-check"></i><b>13.2.6</b> Representação gráfica dos modelos</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
-<li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
-<li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
+<li class="chapter" data-level="13.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>13.3</b> Regressão bisegmentada com platô</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>14</b> Relações lineares entre variáveis</a><ul>
+<li class="chapter" data-level="14.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>14.1</b> Dados</a></li>
+<li class="chapter" data-level="14.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>14.2</b> Correlação linear</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>14.2.1</b> Visualização gráfica</a></li>
+<li class="chapter" data-level="14.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>14.2.2</b> Estimativa dos coeficientes de correlação</a></li>
+<li class="chapter" data-level="14.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>14.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
+<li class="chapter" data-level="14.2.4" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-ii"><i class="fa fa-check"></i><b>14.2.4</b> Combinando visualização gráfica e numérica (II)</a></li>
+<li class="chapter" data-level="14.2.5" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iii"><i class="fa fa-check"></i><b>14.2.5</b> Combinando visualização gráfica e numérica (III)</a></li>
+<li class="chapter" data-level="14.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>14.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>14.3</b> Correlações genéticas</a></li>
+<li class="chapter" data-level="14.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>14.4</b> Intervalo de confiança</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>14.4.1</b> Paramétrico</a></li>
+<li class="chapter" data-level="14.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>14.4.2</b> Não paramétrico</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>14.5</b> Tamanho da amostra</a></li>
+<li class="chapter" data-level="14.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>14.6</b> Correlação parcial</a></li>
+<li class="chapter" data-level="14.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>14.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>14.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="14.7.2" data-path="relations.html"><a href="relations.html#estimação-3"><i class="fa fa-check"></i><b>14.7.2</b> Estimação</a></li>
+<li class="chapter" data-level="14.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>14.7.3</b> Multicolinearidade</a></li>
+<li class="chapter" data-level="14.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>14.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
+<li class="chapter" data-level="14.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>14.7.5</b> Análise tradicional</a></li>
+<li class="chapter" data-level="14.7.6" data-path="relations.html"><a href="relations.html#incluindo-um-fator-de-correção-k"><i class="fa fa-check"></i><b>14.7.6</b> Incluindo um fator de correção (k)</a></li>
+<li class="chapter" data-level="14.7.7" data-path="relations.html"><a href="relations.html#excluindo-variáveis"><i class="fa fa-check"></i><b>14.7.7</b> Excluindo variáveis</a></li>
+<li class="chapter" data-level="14.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>14.7.8</b> Seleção de variáveis em análise de trilha</a></li>
+<li class="chapter" data-level="14.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>14.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
-<li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
-<li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
-<li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
-<li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
-<li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
-<li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
-<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
-<li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
-<li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
-<li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
-<li class="chapter" data-level="14.7.4" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.7.4</b> Valores estimados pelo modelo AMMI</a></li>
-<li class="chapter" data-level="14.7.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
-<li class="chapter" data-level="14.7.6" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.7.6</b> Biplots</a></li>
+<li class="chapter" data-level="15" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>15</b> Análise multivariada</a><ul>
+<li class="chapter" data-level="15.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>15.1</b> Correlações canônicas</a></li>
+<li class="chapter" data-level="15.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>15.2</b> Análise de agrupamento</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>15.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
+<li class="chapter" data-level="15.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>15.2.2</b> Com base na média de cada genótipo</a></li>
+<li class="chapter" data-level="15.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>15.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="15.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>15.2.4</b> Escolha do número de clusters</a></li>
+<li class="chapter" data-level="15.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>15.2.5</b> Dendrogramas personalizados</a></li>
+<li class="chapter" data-level="15.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>15.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
-<li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.8</b> O modelo GGE</a><ul>
-<li class="chapter" data-level="14.8.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>14.8.1</b> Data centering</a></li>
-<li class="chapter" data-level="14.8.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>14.8.2</b> Data scaling</a></li>
-<li class="chapter" data-level="14.8.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>14.8.3</b> Singular value partition</a></li>
-<li class="chapter" data-level="14.8.4" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo-gge"><i class="fa fa-check"></i><b>14.8.4</b> Ajustando o modelo GGE</a></li>
-<li class="chapter" data-level="14.8.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.8.5</b> Valores estimados pelo modelo GGE</a></li>
-<li class="chapter" data-level="14.8.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.8.6</b> Visualizando o Biplot</a></li>
+<li class="chapter" data-level="15.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>15.3</b> Componentes principais</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>15.3.1</b> Conceito</a></li>
+<li class="chapter" data-level="15.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>15.3.2</b> Pacotes R</a></li>
+<li class="chapter" data-level="15.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>15.3.3</b> Formato dos dados</a></li>
+<li class="chapter" data-level="15.3.4" data-path="multivariate.html"><a href="multivariate.html#código-r"><i class="fa fa-check"></i><b>15.3.4</b> Código R</a></li>
+<li class="chapter" data-level="15.3.5" data-path="multivariate.html"><a href="multivariate.html#autovalores"><i class="fa fa-check"></i><b>15.3.5</b> Autovalores</a></li>
+<li class="chapter" data-level="15.3.6" data-path="multivariate.html"><a href="multivariate.html#gráfico-das-variáveis"><i class="fa fa-check"></i><b>15.3.6</b> Gráfico das variáveis</a></li>
+<li class="chapter" data-level="15.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>15.3.7</b> Gráfico de indivíduos</a></li>
+<li class="chapter" data-level="15.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>15.3.8</b> Gráfico biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.9</b> Modelos mistos na avaliação de MET</a><ul>
-<li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.9.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.9.2</b> Análise dos resíduos</a></li>
-<li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.9.3</b> Parâmetros genéticos</a></li>
-<li class="chapter" data-level="14.9.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.9.4</b> Médias preditas</a></li>
-<li class="chapter" data-level="14.9.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
+<li class="chapter" data-level="15.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>15.4</b> K-means</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>15.4.1</b> Conceito</a></li>
+<li class="chapter" data-level="15.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>15.4.2</b> Pacotes R</a></li>
+<li class="chapter" data-level="15.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>15.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>16</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
+<li class="chapter" data-level="16.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>16.1</b> Análise gráfica da interação</a></li>
+<li class="chapter" data-level="16.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>16.2</b> Análise de variância individual</a></li>
+<li class="chapter" data-level="16.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>16.3</b> Baseada em regressão</a></li>
+<li class="chapter" data-level="16.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>16.4</b> Índice de confiança genotípico</a></li>
+<li class="chapter" data-level="16.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>16.5</b> Índice de superioridade genotípico</a></li>
+<li class="chapter" data-level="16.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>16.6</b> Estratificação ambiental</a></li>
+<li class="chapter" data-level="16.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>16.7</b> O modelo AMMI</a><ul>
+<li class="chapter" data-level="16.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>16.7.1</b> Ajuste do modelo</a></li>
+<li class="chapter" data-level="16.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>16.7.2</b> Analise residual</a></li>
+<li class="chapter" data-level="16.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>16.7.3</b> Escolha do número de termos multiplicativos</a></li>
+<li class="chapter" data-level="16.7.4" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>16.7.4</b> Valores estimados pelo modelo AMMI</a></li>
+<li class="chapter" data-level="16.7.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>16.7.5</b> Índices de estabilidade baseados em AMMI</a></li>
+<li class="chapter" data-level="16.7.6" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>16.7.6</b> Biplots</a></li>
+</ul></li>
+<li class="chapter" data-level="16.8" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>16.8</b> O modelo GGE</a><ul>
+<li class="chapter" data-level="16.8.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>16.8.1</b> Data centering</a></li>
+<li class="chapter" data-level="16.8.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>16.8.2</b> Data scaling</a></li>
+<li class="chapter" data-level="16.8.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>16.8.3</b> Singular value partition</a></li>
+<li class="chapter" data-level="16.8.4" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo-gge"><i class="fa fa-check"></i><b>16.8.4</b> Ajustando o modelo GGE</a></li>
+<li class="chapter" data-level="16.8.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>16.8.5</b> Valores estimados pelo modelo GGE</a></li>
+<li class="chapter" data-level="16.8.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>16.8.6</b> Visualizando o Biplot</a></li>
+</ul></li>
+<li class="chapter" data-level="16.9" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>16.9</b> Modelos mistos na avaliação de MET</a><ul>
+<li class="chapter" data-level="16.9.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>16.9.1</b> Ajustando o modelo</a></li>
+<li class="chapter" data-level="16.9.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>16.9.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="16.9.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>16.9.3</b> Parâmetros genéticos</a></li>
+<li class="chapter" data-level="16.9.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>16.9.4</b> Médias preditas</a></li>
+<li class="chapter" data-level="16.9.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>16.9.5</b> Índices de estabilidade baseados em BLUP</a></li>
+</ul></li>
+<li class="chapter" data-level="16.10" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>16.10</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
 <li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
@@ -370,20 +380,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="graph" class="section level1">
-<h1><span class="header-section-number">Capítulo 8</span> Gráficos com o pacote ggplot2</h1>
+<h1><span class="header-section-number">Capítulo 10</span> Gráficos com o pacote ggplot2</h1>
 <blockquote>
 <p>“O gráfico simples trouxe mais informações à mente do analista de dados
 do que qualquer outro dispositivo.” — John Tukey</p>
 </blockquote>
 <div id="o-pacote-ggplot2" class="section level2">
-<h2><span class="header-section-number">8.1</span> O pacote <strong>ggplot2</strong></h2>
+<h2><span class="header-section-number">10.1</span> O pacote <strong>ggplot2</strong></h2>
 <p>O <strong>ggplot2</strong>  é um pacote R para produção de gráficos que diferentemente da maioria dos outros pacotes, apresenta uma profunda gramática baseada no livro <em>The grammar of graphics</em> <span class="citation">(Wilkinson <a href="#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span>. Os gráficos originados em <strong>ggplot2</strong> são baseados em camadas, e cada gráfico tem três componentes chave: <code>data</code>, os dados de onde o gráfico será criado; <code>aes()</code> (<em>aesthetic mappings</em>), que controla o mapeamento estético e as propriedades visuais do gráfico; e ao menos uma camada que irá descrever como cada observação será renderizada. Camadas são usualmente criadas utilizando uma função <code>geom_()</code>. A referência principal ao pacote é o livro <em>Ggplot2 : elegant graphics for data analysis</em> <span class="citation">(Wickham <a href="#ref-Wickham2009" role="doc-biblioref">2009</a>)</span>.</p>
 </div>
 <div id="meu-primeiro-gráfico-em-ggplot2" class="section level2">
-<h2><span class="header-section-number">8.2</span> Meu primeiro gráfico em <strong>ggplot2</strong></h2>
+<h2><span class="header-section-number">10.2</span> Meu primeiro gráfico em <strong>ggplot2</strong></h2>
 <p>A seguir, vamos discutir os aspcetos básicos para a construção de gráficos utilizando o pacote <strong>ggplot2</strong>. A função <code>plot_grid()</code> do pacote <a href="https://github.com/wilkelab/cowplot">cowplot</a><a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> foi utilizado aqui para organizar os gráficos em forma de painéis. O pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> também é utilizado como uma <a href="http://www.ggplot2-exts.org/gallery/">extensão do pacote ggplot2</a><a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> para confecção de gráficos do tipo Q-Q plots. Os dados contidos na aba <em>gg</em> do arquivo <em>data_R.xlsx</em> serão utilizados. Estes dados podem ser carregados pelo seguinte comando.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1">dados_gg =<span class="st">  </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;gg&quot;</span>)</a>
-<a class="sourceLine" id="cb179-2" title="2"><span class="kw">str</span>(dados_gg)</a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1">dados_gg =<span class="st">  </span><span class="kw">read_excel</span>(<span class="st">&quot;data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;gg&quot;</span>)</a>
+<a class="sourceLine" id="cb220-2" title="2"><span class="kw">str</span>(dados_gg)</a></code></pre></div>
 <pre><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   120 obs. of  6 variables:
  $ AMB  : chr  &quot;E1&quot; &quot;E1&quot; &quot;E1&quot; &quot;E1&quot; ...
  $ GEN  : chr  &quot;G1&quot; &quot;G1&quot; &quot;G1&quot; &quot;G2&quot; ...
@@ -393,27 +403,27 @@ do que qualquer outro dispositivo.” — John Tukey</p>
  $ MMG  : num  31.3 32.9 32.3 29 30.5 ...</code></pre>
 </div>
 <div id="as-camadas-de-um-gráfico-ggplot2" class="section level2">
-<h2><span class="header-section-number">8.3</span> As camadas de um gráfico <strong>ggplot2</strong></h2>
+<h2><span class="header-section-number">10.3</span> As camadas de um gráfico <strong>ggplot2</strong></h2>
 <p>No <strong>ggplot2</strong>, os gráficos são construídos camada por camada (ou, <em>layers</em>, em inglês). Neste exemplo, vamos confecionar um gráfico onde o eixo x será representado pela variável <code>RG</code> e o eixo y pela variável <code>PH</code>.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1">p1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb181-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">p1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p>Este comando criou um gráfico e armazenou no objeto <code>p1</code>, que será plotado posteriormente. Observe que o primeiro argumento da função é o data frame onde nossos dados foram armazenados. A função <code>aes()</code>  descreve como as variáveis são mapeadas (neste caso RG no eixo x e PH no eixo y). A função <code>geom_point</code> definiu que a forma geométrica a ser utilizada é baseada em pontos, gerando, assim, um gráfico de dispersão. Isto é tudo que precisa ser feito para a confecção de um gráfico simples.</p>
 </div>
 <div id="aesthetics-estética" class="section level2">
-<h2><span class="header-section-number">8.4</span> Aesthetics (estética)</h2>
+<h2><span class="header-section-number">10.4</span> Aesthetics (estética)</h2>
 <blockquote>
 <p>“O maior valor de uma imagem é quando ela nos obriga a perceber
 o que nunca esperamos ver.” — John Tukey</p>
 </blockquote>
 <p>Alterar a estética dos gráficos <strong>ggplot2</strong> é uma tarefa relativamente simples. No gráfico anterior, os valores do <code>PH</code> e <code>RG</code> foram plotados sem nenhum tipo de mapeamento estético. Digamos que marcadores com diferentes cores para cada ambiente poderia nos ajudar a compreender melhor os o padrão presente em nossos dados. Vamos confecionar este gráfico.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">p2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb182-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb182-3" title="3"></a>
-<a class="sourceLine" id="cb182-4" title="4"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-90"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-90-1.png" alt="Gráfico de dispersão padrão (p1) e com pontos mapeados por cores para cada nível do fator 'AMB' (p2)." width="768" />
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1">p2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb223-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb223-3" title="3"></a>
+<a class="sourceLine" id="cb223-4" title="4"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-107"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-107-1.png" alt="Gráfico de dispersão padrão (p1) e com pontos mapeados por cores para cada nível do fator 'AMB' (p2)." width="768" />
 <p class="caption">
-Figure 8.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores para cada nível do fator ‘AMB’ (p2).
+Figure 10.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores para cada nível do fator ‘AMB’ (p2).
 </p>
 </div>
 <p>Ao incluirmos <code>colour = AMB</code> dentro da função <code>aes</code>, dizemos ao <code>ggplot</code> que os pontos devem ser mapeados esteticamente (neste caso utilziando cores) para cada nível do fator <code>AMB</code> presente em nossos dados. Digamos que em vez de utilizar diferentes cores, os ambientes deveriam ser representados por diferentes tipos de marcadores (quadrados, triângulo, etc.) Neste caso, o argumento <code>colour = AMB</code> deveria ser substituído por <code>shape = AMB</code>.</p>
@@ -429,11 +439,11 @@ Figure 8.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores 
 <p><a href="resposta-dos-exercícios.html#exerc4">Resposta</a></p>
 </div>
 <div id="facet-facetas" class="section level2">
-<h2><span class="header-section-number">8.5</span> Facet (facetas)</h2>
+<h2><span class="header-section-number">10.5</span> Facet (facetas)</h2>
 <p>Mapeando os diferentes níveis de <code>AMB</code> para diferentes cores, incluímos em um único gráfico os dados de todos os ambientes. Mas, e se nosso objetivo fosse realizar um gráfico para cada ambiente? O <strong>ggplot2</strong> tem uma poderosa ferramenta para isto: as funções <code>facet_</code>. Ao utilziar estas funções, o conjunto de dados é subdividido e um gráfico é construído para cada um destes subconjuntos. Vamos ver como elas podem nos ajudar em nossso problema. </p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1">fac1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb183-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb183-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>AMB)</a></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1">fac1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb224-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>AMB)</a></code></pre></div>
 <p>Neste exemplo, um gráfico completamente diferente do anterior é gerado com apenas uma simples modificação: excluímos do mapeamento estético o argumento <code>colour = AMB</code> e incluímos uma nova função, <code>facet_wrap(~AMB)</code>. Neste caso, informamos que um gráfico deveria ser realizado para cada ambiente. Simples, não? </p>
 
 <div class="dica">
@@ -445,46 +455,46 @@ Figure 8.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores 
 
 </div>
 <div id="theme-temas" class="section level2">
-<h2><span class="header-section-number">8.6</span> Theme (temas)</h2>
+<h2><span class="header-section-number">10.6</span> Theme (temas)</h2>
 <p>Cada gráfico criado com a função <code>ggplot()</code> tem um tema padrão. <em>Tema</em>, aqui, é toda propriedade relacionada ao aspecto visual do gráfico, que não foi definida na função <code>aes()</code> e que pode ser modificada utilizando a função <code>theme()</code> (veja <code>?theme</code>). O <strong>ggplot2</strong> já conta com alguns temas personalizados para facilitar nosso trabalho. Considerando o exemplo anterior, vamos utilziar a função <code>theme_bw()</code> (preto e branco) e a função <code>theme()</code> para modificar as propriedades visuais do gráfico.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">fac2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb184-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb184-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB) <span class="op">+</span></a>
-<a class="sourceLine" id="cb184-4" title="4"><span class="st">       </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb184-5" title="5"><span class="st">       </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), <span class="co"># remove as linhas do corpo do gráfico</span></a>
-<a class="sourceLine" id="cb184-6" title="6">             <span class="co"># sem bordas entre os painéis</span></a>
-<a class="sourceLine" id="cb184-7" title="7">             <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;cm&quot;</span>),</a>
-<a class="sourceLine" id="cb184-8" title="8">             <span class="co"># modifica o texto dos eixos</span></a>
-<a class="sourceLine" id="cb184-9" title="9">             <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
-<a class="sourceLine" id="cb184-10" title="10">             <span class="co"># cor dos marcadores</span></a>
-<a class="sourceLine" id="cb184-11" title="11">             <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
-<a class="sourceLine" id="cb184-12" title="12">             <span class="co"># tamanho dos marcadores</span></a>
-<a class="sourceLine" id="cb184-13" title="13">             <span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>), </a>
-<a class="sourceLine" id="cb184-14" title="14">             <span class="co">#cor da borda</span></a>
-<a class="sourceLine" id="cb184-15" title="15">             <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>))<span class="op">+</span></a>
-<a class="sourceLine" id="cb184-16" title="16"><span class="st">       </span><span class="co"># título dos eixos</span></a>
-<a class="sourceLine" id="cb184-17" title="17"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>) </a>
-<a class="sourceLine" id="cb184-18" title="18"></a>
-<a class="sourceLine" id="cb184-19" title="19"><span class="kw">plot_grid</span>(fac1, fac2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;f1&quot;</span>, <span class="st">&quot;f2&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-94"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-94-1.png" alt="Modificações na propriedades do tema de um gráfico ggplot2 " width="960" />
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1">fac2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-4" title="4"><span class="st">       </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-5" title="5"><span class="st">       </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), <span class="co"># remove as linhas do corpo do gráfico</span></a>
+<a class="sourceLine" id="cb225-6" title="6">             <span class="co"># sem bordas entre os painéis</span></a>
+<a class="sourceLine" id="cb225-7" title="7">             <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;cm&quot;</span>),</a>
+<a class="sourceLine" id="cb225-8" title="8">             <span class="co"># modifica o texto dos eixos</span></a>
+<a class="sourceLine" id="cb225-9" title="9">             <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb225-10" title="10">             <span class="co"># cor dos marcadores</span></a>
+<a class="sourceLine" id="cb225-11" title="11">             <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb225-12" title="12">             <span class="co"># tamanho dos marcadores</span></a>
+<a class="sourceLine" id="cb225-13" title="13">             <span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>), </a>
+<a class="sourceLine" id="cb225-14" title="14">             <span class="co">#cor da borda</span></a>
+<a class="sourceLine" id="cb225-15" title="15">             <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb225-16" title="16"><span class="st">       </span><span class="co"># título dos eixos</span></a>
+<a class="sourceLine" id="cb225-17" title="17"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>) </a>
+<a class="sourceLine" id="cb225-18" title="18"></a>
+<a class="sourceLine" id="cb225-19" title="19"><span class="kw">plot_grid</span>(fac1, fac2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;f1&quot;</span>, <span class="st">&quot;f2&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-111"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-111-1.png" alt="Modificações na propriedades do tema de um gráfico ggplot2 " width="960" />
 <p class="caption">
-Figure 8.2: Modificações na propriedades do tema de um gráfico ggplot2
+Figure 10.2: Modificações na propriedades do tema de um gráfico ggplot2
 </p>
 </div>
 <p>Os argumentos inseridos dentro das função <code>theme()</code> modificaram a aparência do nosso gráfico. Inúmeros outros argumentos são disponíveis, fazendo com que os gráficos originados sejam completamente personalizáveis. Digamos que precisamos confecionar diversos gráficos e gostaríamos de manter o mesmo tema do gráfico acima. Seria exaustivo e desinteressante informar cada vez estes argumentos para cada gráfico, não? Felizmente, outra poderosa ferramenta proporcionada pelo <strong>ggplot2</strong> é a possibilidade de confecionarmos nossos próprios temas. Para isto, vamos executar o seguinte comando para criar um tema personalizado (<code>my_theme()</code>). Este tema pode então ser aplicado como uma camada adicional a cada gráfico que confecionarmos. Para evitar a necessidade da inclusão deste tema em cada gráfico gerado, iremos definir este tema como padrão utilizando a função <code>theme_set()</code> .</p>
 
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1">my_theme =<span class="st"> </span><span class="cf">function</span> () {</a>
-<a class="sourceLine" id="cb185-2" title="2">  <span class="kw">theme_bw</span>() <span class="op">%+replace%</span><span class="st"> </span><span class="co"># permite que os valores informados possam ser sobescritos</span></a>
-<a class="sourceLine" id="cb185-3" title="3"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>),</a>
-<a class="sourceLine" id="cb185-4" title="4">          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
-<a class="sourceLine" id="cb185-5" title="5">          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
-<a class="sourceLine" id="cb185-6" title="6">          <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
-<a class="sourceLine" id="cb185-7" title="7">          <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
-<a class="sourceLine" id="cb185-8" title="8">          <span class="dt">panel.grid =</span>  <span class="kw">element_blank</span>())</a>
-<a class="sourceLine" id="cb185-9" title="9">}</a>
-<a class="sourceLine" id="cb185-10" title="10"></a>
-<a class="sourceLine" id="cb185-11" title="11"><span class="kw">theme_set</span>(<span class="kw">my_theme</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1">my_theme =<span class="st"> </span><span class="cf">function</span> () {</a>
+<a class="sourceLine" id="cb226-2" title="2">  <span class="kw">theme_bw</span>() <span class="op">%+replace%</span><span class="st"> </span><span class="co"># permite que os valores informados possam ser sobescritos</span></a>
+<a class="sourceLine" id="cb226-3" title="3"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>),</a>
+<a class="sourceLine" id="cb226-4" title="4">          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb226-5" title="5">          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb226-6" title="6">          <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb226-7" title="7">          <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb226-8" title="8">          <span class="dt">panel.grid =</span>  <span class="kw">element_blank</span>())</a>
+<a class="sourceLine" id="cb226-9" title="9">}</a>
+<a class="sourceLine" id="cb226-10" title="10"></a>
+<a class="sourceLine" id="cb226-11" title="11"><span class="kw">theme_set</span>(<span class="kw">my_theme</span>())</a></code></pre></div>
 
 
 <div class="tarefa">
@@ -497,7 +507,7 @@ Figure 8.2: Modificações na propriedades do tema de um gráfico ggplot2
 <p><a href="resposta-dos-exercícios.html#exerc5">Resposta</a></p>
 </div>
 <div id="geoms-geometria" class="section level2">
-<h2><span class="header-section-number">8.7</span> Geoms (geometria)</h2>
+<h2><span class="header-section-number">10.7</span> Geoms (geometria)</h2>
 <p>As funções <code>geom_</code> definem qual forma geométrica será utilizada para a visualização dos dados no gráfico. Até agora, utilizamos a função <code>geom_point()</code>  para construir gráficos de dispersão. Basicamente, qualquer outro tipo de gráfico pode ser criado dependendo da função <code>geom_</code> utilizada. Dentre as diversas disponíveis no pacote <strong>ggplot2</strong> as funções <code>geom_</code> mais utilizadas são:</p>
 <ul>
 <li><code>geom_abline()</code>: para retas definidas por um intercepto e uma inclinação;</li>
@@ -512,22 +522,22 @@ Figure 8.2: Modificações na propriedades do tema de um gráfico ggplot2
 <li><code>geom_errorbar()</code> para barras de erro;</li>
 </ul>
 <p>Deste ponto em diante, vamos confeccionar alguns exemplos utilziando algumas destas funções (ou combinações destas funções) incluindo argumentos de mapeamento de estética e temas vistos até agora. </p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">s1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb186-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb186-3" title="3"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span><span class="st"> </span><span class="co"># estima uma regressão linear</span></a>
-<a class="sourceLine" id="cb186-4" title="4"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
-<a class="sourceLine" id="cb186-5" title="5"></a>
-<a class="sourceLine" id="cb186-6" title="6">s2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb186-7" title="7"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb186-8" title="8"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
-<a class="sourceLine" id="cb186-9" title="9"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
-<a class="sourceLine" id="cb186-10" title="10"></a>
-<a class="sourceLine" id="cb186-11" title="11"></a>
-<a class="sourceLine" id="cb186-12" title="12"><span class="kw">plot_grid</span>(s1, s2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>), <span class="dt">rel_widths  =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-97"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-97-1.png" alt="Gráfico de dispersão, combinando pontos e linhas de regressão." width="960" />
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1">s1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb227-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb227-3" title="3"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span><span class="st"> </span><span class="co"># estima uma regressão linear</span></a>
+<a class="sourceLine" id="cb227-4" title="4"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
+<a class="sourceLine" id="cb227-5" title="5"></a>
+<a class="sourceLine" id="cb227-6" title="6">s2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb227-7" title="7"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb227-8" title="8"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
+<a class="sourceLine" id="cb227-9" title="9"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
+<a class="sourceLine" id="cb227-10" title="10"></a>
+<a class="sourceLine" id="cb227-11" title="11"></a>
+<a class="sourceLine" id="cb227-12" title="12"><span class="kw">plot_grid</span>(s1, s2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>), <span class="dt">rel_widths  =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-114"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-114-1.png" alt="Gráfico de dispersão, combinando pontos e linhas de regressão." width="960" />
 <p class="caption">
-Figure 8.3: Gráfico de dispersão, combinando pontos e linhas de regressão.
+Figure 10.3: Gráfico de dispersão, combinando pontos e linhas de regressão.
 </p>
 </div>
 
@@ -545,22 +555,22 @@ No gráfico s1, uma regressão linear foi ajustada quando incluímos a função 
 <ul>
 <li><strong>Gráficos do tipo boxplot</strong></li>
 </ul>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1">mean_rg =<span class="st"> </span><span class="kw">mean</span>(dados_gg<span class="op">$</span>RG) <span class="co"># calcula a média geral do RG</span></a>
-<a class="sourceLine" id="cb187-2" title="2">box1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb187-3" title="3"><span class="st">       </span><span class="kw">geom_boxplot</span>()</a>
-<a class="sourceLine" id="cb187-4" title="4"></a>
-<a class="sourceLine" id="cb187-5" title="5">box2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb187-6" title="6"><span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># boxplot</span></a>
-<a class="sourceLine" id="cb187-7" title="7"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean)<span class="op">+</span><span class="st"> </span><span class="co"># mostra a média por um ponto</span></a>
-<a class="sourceLine" id="cb187-8" title="8"><span class="st">      </span><span class="co"># adiciona uma linha na média geral</span></a>
-<a class="sourceLine" id="cb187-9" title="9"><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_rg, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb187-10" title="10"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
-<a class="sourceLine" id="cb187-11" title="11"></a>
-<a class="sourceLine" id="cb187-12" title="12"><span class="kw">plot_grid</span>(box1, box2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-99"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-99-1.png" alt="Gráfico do tipo boxplot combinando mapeamentos estéticos e inclusão de linhas." width="864" />
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1">mean_rg =<span class="st"> </span><span class="kw">mean</span>(dados_gg<span class="op">$</span>RG) <span class="co"># calcula a média geral do RG</span></a>
+<a class="sourceLine" id="cb228-2" title="2">box1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb228-3" title="3"><span class="st">       </span><span class="kw">geom_boxplot</span>()</a>
+<a class="sourceLine" id="cb228-4" title="4"></a>
+<a class="sourceLine" id="cb228-5" title="5">box2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb228-6" title="6"><span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># boxplot</span></a>
+<a class="sourceLine" id="cb228-7" title="7"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean)<span class="op">+</span><span class="st"> </span><span class="co"># mostra a média por um ponto</span></a>
+<a class="sourceLine" id="cb228-8" title="8"><span class="st">      </span><span class="co"># adiciona uma linha na média geral</span></a>
+<a class="sourceLine" id="cb228-9" title="9"><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_rg, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb228-10" title="10"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
+<a class="sourceLine" id="cb228-11" title="11"></a>
+<a class="sourceLine" id="cb228-12" title="12"><span class="kw">plot_grid</span>(box1, box2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-116"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-116-1.png" alt="Gráfico do tipo boxplot combinando mapeamentos estéticos e inclusão de linhas." width="864" />
 <p class="caption">
-Figure 8.4: Gráfico do tipo boxplot combinando mapeamentos estéticos e inclusão de linhas.
+Figure 10.4: Gráfico do tipo boxplot combinando mapeamentos estéticos e inclusão de linhas.
 </p>
 </div>
 
@@ -569,25 +579,25 @@ Figure 8.4: Gráfico do tipo boxplot combinando mapeamentos estéticos e inclus�
 <ul>
 <li><strong>Gráficos do tipo histograma</strong></li>
 </ul>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">h1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-2" title="2"><span class="st">     </span><span class="kw">geom_histogram</span>()</a>
-<a class="sourceLine" id="cb188-3" title="3"></a>
-<a class="sourceLine" id="cb188-4" title="4">h2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-5" title="5"><span class="st">     </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">200</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, </a>
-<a class="sourceLine" id="cb188-6" title="6">                    <span class="kw">aes</span>(<span class="dt">y =</span> ..density.., <span class="dt">fill =</span> ..count..)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-7" title="7"><span class="st">     </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-8" title="8"><span class="st">     </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
-<a class="sourceLine" id="cb188-9" title="9">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</a>
-<a class="sourceLine" id="cb188-10" title="10">                   <span class="dt">size =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb188-11" title="11">                   <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dados_gg<span class="op">$</span>RG),</a>
-<a class="sourceLine" id="cb188-12" title="12">                               <span class="dt">sd =</span> <span class="kw">sd</span>(dados_gg<span class="op">$</span>RG))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-13" title="13"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidade&quot;</span>)</a>
-<a class="sourceLine" id="cb188-14" title="14"></a>
-<a class="sourceLine" id="cb188-15" title="15"><span class="kw">plot_grid</span>(h1, h2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.4</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;h1&quot;</span>, <span class="st">&quot;h2&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-100"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-100-1.png" alt="Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal." width="672" />
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1">h1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb229-2" title="2"><span class="st">     </span><span class="kw">geom_histogram</span>()</a>
+<a class="sourceLine" id="cb229-3" title="3"></a>
+<a class="sourceLine" id="cb229-4" title="4">h2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb229-5" title="5"><span class="st">     </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">200</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, </a>
+<a class="sourceLine" id="cb229-6" title="6">                    <span class="kw">aes</span>(<span class="dt">y =</span> ..density.., <span class="dt">fill =</span> ..count..)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb229-7" title="7"><span class="st">     </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb229-8" title="8"><span class="st">     </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb229-9" title="9">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</a>
+<a class="sourceLine" id="cb229-10" title="10">                   <span class="dt">size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb229-11" title="11">                   <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dados_gg<span class="op">$</span>RG),</a>
+<a class="sourceLine" id="cb229-12" title="12">                               <span class="dt">sd =</span> <span class="kw">sd</span>(dados_gg<span class="op">$</span>RG))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb229-13" title="13"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidade&quot;</span>)</a>
+<a class="sourceLine" id="cb229-14" title="14"></a>
+<a class="sourceLine" id="cb229-15" title="15"><span class="kw">plot_grid</span>(h1, h2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.4</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;h1&quot;</span>, <span class="st">&quot;h2&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-117"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-117-1.png" alt="Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal." width="672" />
 <p class="caption">
-Figure 8.5: Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal.
+Figure 10.5: Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal.
 </p>
 </div>
 
@@ -596,27 +606,27 @@ Figure 8.5: Gráfico do tipo histograma com estimativas de função de probabili
 <ul>
 <li><strong>Gráficos do tipo barra</strong></li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1">bar1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb189-2" title="2"><span class="st">       </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;summary&quot;</span>,</a>
-<a class="sourceLine" id="cb189-3" title="3">               <span class="dt">fun.y =</span> <span class="st">&quot;mean&quot;</span>,</a>
-<a class="sourceLine" id="cb189-4" title="4">               <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a>
-<a class="sourceLine" id="cb189-5" title="5"></a>
-<a class="sourceLine" id="cb189-6" title="6">bar2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG, <span class="dt">fill =</span> AMB)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb189-7" title="7"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,</a>
-<a class="sourceLine" id="cb189-8" title="8">                    <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</a>
-<a class="sourceLine" id="cb189-9" title="9">                    <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb189-10" title="10">                    <span class="dt">width =</span> <span class="fl">0.8</span>,</a>
-<a class="sourceLine" id="cb189-11" title="11">                    <span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb189-12" title="12"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se,</a>
-<a class="sourceLine" id="cb189-13" title="13">                    <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</a>
-<a class="sourceLine" id="cb189-14" title="14">                    <span class="dt">width =</span> <span class="fl">0.2</span>,</a>
-<a class="sourceLine" id="cb189-15" title="15">                    <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.8</span>))</a>
-<a class="sourceLine" id="cb189-16" title="16"> </a>
-<a class="sourceLine" id="cb189-17" title="17"><span class="kw">plot_grid</span>(bar1, bar2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">1.2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;bar1&quot;</span>, <span class="st">&quot;bar2&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-101"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-101-1.png" alt="Gráfico do tipo barras, com mapeamento estético e barras de erro." width="960" />
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1">bar1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb230-2" title="2"><span class="st">       </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;summary&quot;</span>,</a>
+<a class="sourceLine" id="cb230-3" title="3">               <span class="dt">fun.y =</span> <span class="st">&quot;mean&quot;</span>,</a>
+<a class="sourceLine" id="cb230-4" title="4">               <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a>
+<a class="sourceLine" id="cb230-5" title="5"></a>
+<a class="sourceLine" id="cb230-6" title="6">bar2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG, <span class="dt">fill =</span> AMB)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb230-7" title="7"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,</a>
+<a class="sourceLine" id="cb230-8" title="8">                    <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</a>
+<a class="sourceLine" id="cb230-9" title="9">                    <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb230-10" title="10">                    <span class="dt">width =</span> <span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb230-11" title="11">                    <span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb230-12" title="12"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se,</a>
+<a class="sourceLine" id="cb230-13" title="13">                    <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</a>
+<a class="sourceLine" id="cb230-14" title="14">                    <span class="dt">width =</span> <span class="fl">0.2</span>,</a>
+<a class="sourceLine" id="cb230-15" title="15">                    <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.8</span>))</a>
+<a class="sourceLine" id="cb230-16" title="16"> </a>
+<a class="sourceLine" id="cb230-17" title="17"><span class="kw">plot_grid</span>(bar1, bar2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">1.2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;bar1&quot;</span>, <span class="st">&quot;bar2&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-118"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-118-1.png" alt="Gráfico do tipo barras, com mapeamento estético e barras de erro." width="960" />
 <p class="caption">
-Figure 8.6: Gráfico do tipo barras, com mapeamento estético e barras de erro.
+Figure 10.6: Gráfico do tipo barras, com mapeamento estético e barras de erro.
 </p>
 </div>
 
@@ -624,49 +634,49 @@ Figure 8.6: Gráfico do tipo barras, com mapeamento estético e barras de erro.
 <ul>
 <li><strong>Gráficos de dispersão com linhas de valores preditos</strong></li>
 </ul>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co">#### Polinômio de segundo grau</span></a>
-<a class="sourceLine" id="cb190-2" title="2">dado_reg =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">dose =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">35</span>,<span class="dv">40</span>),</a>
-<a class="sourceLine" id="cb190-3" title="3">                  <span class="dt">prod =</span> <span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">69</span>,<span class="dv">62</span>))</a>
-<a class="sourceLine" id="cb190-4" title="4">l1 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
-<a class="sourceLine" id="cb190-5" title="5"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb190-6" title="6"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
-<a class="sourceLine" id="cb190-7" title="7">                 <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 1)&quot;</span>),</a>
-<a class="sourceLine" id="cb190-8" title="8">                 <span class="dt">se =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb190-9" title="9">l2 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
-<a class="sourceLine" id="cb190-10" title="10"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb190-11" title="11"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
-<a class="sourceLine" id="cb190-12" title="12">                  <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>),</a>
-<a class="sourceLine" id="cb190-13" title="13">                  <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</a>
-<a class="sourceLine" id="cb190-14" title="14">                  <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb190-15" title="15">                  <span class="dt">level =</span> <span class="fl">0.95</span>)</a>
-<a class="sourceLine" id="cb190-16" title="16"></a>
-<a class="sourceLine" id="cb190-17" title="17"><span class="kw">plot_grid</span>(l1, l2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;l1&quot;</span>, <span class="st">&quot;l2&quot;</span>))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-102"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-102-1.png" alt="Gráfico de dispersão combinado com inclusão de curvas ajustadas." width="672" />
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1"><span class="co">#### Polinômio de segundo grau</span></a>
+<a class="sourceLine" id="cb231-2" title="2">dado_reg =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">dose =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">35</span>,<span class="dv">40</span>),</a>
+<a class="sourceLine" id="cb231-3" title="3">                  <span class="dt">prod =</span> <span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">69</span>,<span class="dv">62</span>))</a>
+<a class="sourceLine" id="cb231-4" title="4">l1 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
+<a class="sourceLine" id="cb231-5" title="5"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb231-6" title="6"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
+<a class="sourceLine" id="cb231-7" title="7">                 <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 1)&quot;</span>),</a>
+<a class="sourceLine" id="cb231-8" title="8">                 <span class="dt">se =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb231-9" title="9">l2 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
+<a class="sourceLine" id="cb231-10" title="10"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb231-11" title="11"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
+<a class="sourceLine" id="cb231-12" title="12">                  <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>),</a>
+<a class="sourceLine" id="cb231-13" title="13">                  <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</a>
+<a class="sourceLine" id="cb231-14" title="14">                  <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb231-15" title="15">                  <span class="dt">level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb231-16" title="16"></a>
+<a class="sourceLine" id="cb231-17" title="17"><span class="kw">plot_grid</span>(l1, l2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;l1&quot;</span>, <span class="st">&quot;l2&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-119"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-119-1.png" alt="Gráfico de dispersão combinado com inclusão de curvas ajustadas." width="672" />
 <p class="caption">
-Figure 8.7: Gráfico de dispersão combinado com inclusão de curvas ajustadas.
+Figure 10.7: Gráfico de dispersão combinado com inclusão de curvas ajustadas.
 </p>
 </div>
 <ul>
 <li><strong>Gráficos do tipo quantil-quantil (Q-Q plots)</strong></li>
 </ul>
 <p>Esta função é muito util para verificar a normalidade dos resíduos da ANOVA e regressões lineares ou não lineares. A programação abaixo foi utilizada no artigo de <span class="citation">Lúcio, Santos, and Olivoto (<a href="#ref-Lucio2017" role="doc-biblioref">2017</a>)</span> para demonstrar a intepretação dos gráficos. As funções <code>stat_qq_band()</code>, <code>stat_qq_line()</code> e <code>stat_qq_point()</code> do pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a> serão utilizadas. Este é uma das inúmeras extensões do pacote <strong>ggplot2</strong> que podem ser encontradas <a href="http://www.ggplot2-exts.org/gallery/">aqui.</a><a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a>.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co"># simulando dados com diferentes assimetrias</span></a>
-<a class="sourceLine" id="cb191-2" title="2">assimetria =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">esquerda =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">1</span>,<span class="dv">7</span>),</a>
-<a class="sourceLine" id="cb191-3" title="3">                    <span class="dt">direita =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">7</span>,<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb191-4" title="4">                    <span class="dt">normal =</span> <span class="kw">rnorm</span>(<span class="dv">5000</span>,<span class="dv">5</span>,<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb191-5" title="5"></a>
-<a class="sourceLine" id="cb191-6" title="6">assimetria_graf =<span class="st"> </span><span class="kw">gather</span>(assimetria) <span class="co"># organiza os dados para usar facete_wrap</span></a>
-<a class="sourceLine" id="cb191-7" title="7"><span class="kw">ggplot</span>(assimetria_graf, <span class="kw">aes</span>(<span class="dt">sample =</span> value))<span class="op">+</span></a>
-<a class="sourceLine" id="cb191-8" title="8"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>key, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb191-9" title="9"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_band</span>(<span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb191-10" title="10"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_line</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb191-11" title="11"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_point</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb191-12" title="12"><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Theoretical quantiles&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Sample quantiles&quot;</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-103"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-103-1.png" alt="Gráfico quantil-quantil de conjuntos de dados com assimetria à esquerda, direita e com distribuição normal." width="960" />
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="co"># simulando dados com diferentes assimetrias</span></a>
+<a class="sourceLine" id="cb232-2" title="2">assimetria =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">esquerda =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">1</span>,<span class="dv">7</span>),</a>
+<a class="sourceLine" id="cb232-3" title="3">                    <span class="dt">direita =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">7</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb232-4" title="4">                    <span class="dt">normal =</span> <span class="kw">rnorm</span>(<span class="dv">5000</span>,<span class="dv">5</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb232-5" title="5"></a>
+<a class="sourceLine" id="cb232-6" title="6">assimetria_graf =<span class="st"> </span><span class="kw">gather</span>(assimetria) <span class="co"># organiza os dados para usar facete_wrap</span></a>
+<a class="sourceLine" id="cb232-7" title="7"><span class="kw">ggplot</span>(assimetria_graf, <span class="kw">aes</span>(<span class="dt">sample =</span> value))<span class="op">+</span></a>
+<a class="sourceLine" id="cb232-8" title="8"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>key, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb232-9" title="9"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_band</span>(<span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb232-10" title="10"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_line</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb232-11" title="11"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb232-12" title="12"><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Theoretical quantiles&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Sample quantiles&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-120"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-120-1.png" alt="Gráfico quantil-quantil de conjuntos de dados com assimetria à esquerda, direita e com distribuição normal." width="960" />
 <p class="caption">
-Figure 8.8: Gráfico quantil-quantil de conjuntos de dados com assimetria à esquerda, direita e com distribuição normal.
+Figure 10.8: Gráfico quantil-quantil de conjuntos de dados com assimetria à esquerda, direita e com distribuição normal.
 </p>
 </div>
 <p>   
@@ -679,14 +689,14 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo <s
 
 </div>
 <div id="interface-shiny-para-ggplot2" class="section level2">
-<h2><span class="header-section-number">8.8</span> Interface Shiny para <strong>ggplot2</strong></h2>
+<h2><span class="header-section-number">10.8</span> Interface Shiny para <strong>ggplot2</strong></h2>
 <p>O pacote <strong>ggplot2</strong> está se tornando um sinônimo para visualização de dados em R. Seu nível de personalização baseado em <em>The grammar of graphics</em> <span class="citation">(Wilkinson <a href="#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span> o torna uma das melhores alternativas para aqueles que desejam criar um gráfico completamente personalizado. Seu nível de dificuldade e a necessidade da digitação de linhas de códigos, no entanto, pode dificultrar um pouco a tarefa (até mesmo para os mais acostumados!). Neste sentido, algumas aplicações que utilizam o <em>mouse</em> foram desenvolvidas e servem como um add-in para o <strong>ggplot2</strong> no Rstudio. Focaremos aqui no pacote <a href="https://github.com/dreamRs/esquisse">esquisse</a><a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>.</p>
 <p>O objetivo deste suplemento é permitir que você explore seus dados rapidamente para extrair as informações que eles contêm. Você só pode criar gráficos simples, não poderá usar escalas personalizadas e todo o poder do ggplot2. Este é apenas o começo! Este add-in permite que você explore seus dados de forma interativa, visualizando-os com o pacote <strong>ggplot2</strong>. Ele permite que você desenhe gráficos de barras, curvas, gráficos de dispersão, histogramas, objetos boxplot e depois exporte o gráfico ou recupere o código para reproduzir o gráfico. A imagem abaixo foi retirada do site do pacote e mostra como o esquisse é utilizado.</p>
 <p><img src="figures/esquisse.gif" /></p>
 <p>Para instalação do pacote e execução da aplicação, os seguintes códigos são utilizados.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;esquisse&quot;</span>)</a>
-<a class="sourceLine" id="cb192-2" title="2"><span class="kw">library</span>(esquisse)</a>
-<a class="sourceLine" id="cb192-3" title="3"><span class="kw">esquisser</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;esquisse&quot;</span>)</a>
+<a class="sourceLine" id="cb233-2" title="2"><span class="kw">library</span>(esquisse)</a>
+<a class="sourceLine" id="cb233-3" title="3"><span class="kw">esquisser</span>()</a></code></pre></div>
 
 </div>
 </div>
@@ -722,7 +732,7 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo <s
           </div>
         </div>
       </div>
-<a href="manipula.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="utilitários-para-linhas-e-colunas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="exporta.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -739,6 +749,7 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo <s
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -757,6 +768,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
