@@ -219,7 +219,7 @@ maize %>%
 \indt{Exercícios}
 ```{block2, type="tarefa"}
 **Exercício 13**
-Compute a matriz de (co)variâncias residuais para cada ambiente combinando as funções `split_factors()` e `covcor_design()`
+Compute a matriz de (co)variâncias residuais para cada ambiente combinando as funções `group_by()` e `covcor_design()`
 ```
 [Resposta](#exerc13)
 
@@ -504,12 +504,12 @@ Três objetos são criados por esta função: `Summary`, `Models` e `Selectedpre
 
 ### Análise de trilha para cada nível de um fator
 
-Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando a função `split_factors()` \indf{split\_factors} isto é facilmente realizado. Esta função divide o conjunto original de dados em uma lista onde cada objeto contém um nível do fator utilizado. O operador `%>%` passa o resultado para a função `path_coeff()`, qual estima os coeficientes de triha para cada um dos níveis do fator. Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados `maize`.
+Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando a função `group_by()` \indf{split\_factors} isto é facilmente realizado. Esta função divide o conjunto original de dados em uma lista onde cada objeto contém um nível do fator utilizado. O operador `%>%` passa o resultado para a função `path_coeff()`, qual estima os coeficientes de triha para cada um dos níveis do fator. Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados `maize`.
 
 \indt{seleção de variáveis} \indt{stepwise}
 ```{r, message = F, warning = F}
 path_levels = maize %>%
-  split_factors(ENV) %>%
+  group_by(ENV) %>%
   path_coeff(resp = KW,
              pred = c(TKW, NKE, PERK))
     ```

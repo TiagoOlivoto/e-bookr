@@ -75,26 +75,11 @@ if (!require("pacman")){
 install.packages("pacman")
 }
 library(pacman)
-p_load(hnp, asbio, car, dplyr, devtools, emmeans, effects, multcomp,
-       lme4, readxl, ExpDes, manipulate, MASS, tidyverse, agricolae,
-       psych, corrplot, pvclust, factoextra, kableExtra, ggfortify)
+p_load(hnp, asbio, car, DT, dplyr, devtools, emmeans, effects, multcomp,
+       lme4, rio, ExpDes, manipulate, metan, MASS, tidyverse, agricolae,
+       psych, corrplot, pvclust, factoextra, ggfortify)
 
 ```
-
-O pacote [metan](https://tiagoolivoto.github.io/metan/)^[https://tiagoolivoto.github.io/metan/] é utilizado neste material e sua instalação é realizada do repositório [GitHub](https://github.com/TiagoOlivoto/metan)^[https://github.com/TiagoOlivoto/metan] utilizando a função `install_github()` do pacote [devtools](https://github.com/r-lib/devtools)^[https://github.com/r-lib/devtools].
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-install_github("TiagoOlivoto/metan")
-library(metan)
-```
-
-
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-
-library(metan)
-```
-
-
 
 Os pacotes disponibilizados no software *R* estão em constante atualização. Utilizando a função `packageStatus()` e `summary(packageStatus())` é possível verificar se os pacotes estão atualizados. Outra forma é ir em *Packages > Update* que se encontra no canto inferior direito conforme demonstrado na Figura 5. Por fim, para citar os pacotes \indt{pacotes}, recomenda-se verificar a referência através da função `citation()`. \indt{citação de pacotes} \indt{atualização}
 

@@ -40,16 +40,20 @@ Existem muitos métodos para calcular as informações de (di)similaridade. As o
 Por padrão, a função computa as distancias para cada combinação de linhas do conjunto de dados, utilizando todas as variáveis numéricas do conjunto. Isto significa que, considerando o conjunto de dados **maize**, com 156 observações, 12090 distancias serão computadas baseadas nas 15 variáveis numéricas do conjunto.
 
 ```{r message=FALSE, warning=FALSE}
-d1 = clustering(maize)
+d1 <- clustering(maize)
 ```
 
 
 ### Com base na média de cada genótipo
-Supondo que o pesquisador deseja computar as distancias entre cada genótipo (o que é lógico em melhoramento genético vegetal) e que esta distancia deve ser computada apenas com algumas variáveis numéricas do conjunto de dados, o seguinte código deverá ser utilizado. Para selecionar as variáveis a serem utilziadas, basta apenas fornecer uma lista de nomes separadas por vírgula e sem o uso do conhecido (e ultrapassado) "". Em adição, para que a distância seja computada entre os genótipos, basta apenas incluir o argumento `means_by = GEN`. Neste caso, a média de cada genótipo é calculada internamente para cada variável numérica e a distãncia é computada utilizando estas médias. Em adiçãço, a função `plot()` pode ser usada para plotar um dendrograma. Uma linha é desenhada no ponto de corte sugerido de acordo com @Mojena1977.
+Supondo que o pesquisador deseja computar as distancias entre cada genótipo (o que é lógico em melhoramento genético vegetal) e que esta distancia deve ser computada apenas com algumas variáveis numéricas do conjunto de dados, o seguinte código deverá ser utilizado. Para selecionar as variáveis a serem utilziadas, basta apenas fornecer uma lista de nomes separadas por vírgula e sem o uso do conhecido (e ultrapassado) "". Em adição, para que a distância seja computada entre os genótipos, basta passar os dados médios de cada genótipo computados com `means_by()` \indf{means\_by}. Neste caso, a média de cada genótipo é calculada internamente para cada variável numérica e a distãncia é computada utilizando estas médias. A função `plot()` pode ser usada para plotar um dendrograma. Uma linha é desenhada no ponto de corte sugerido de acordo com @Mojena1977.
 
 
 ```{r message=FALSE, warning=FALSE, fig.width=7, fig.height=5, fig.align="center"}
-d2 = clustering(maize, NKR, TKW, NKE, means_by = GEN)
+mgen <- 
+  maize %>% 
+  means_by(GEN) %>% 
+  column_to_rownames("GEN")
+d2 <- clustering(mgen, NKR, TKW, NKE)
 plot(d2, horiz = FALSE, ylab = "Distância euclidiana")
 ```
 
@@ -78,7 +82,7 @@ O algoritmo de seleção de variáveis é executado quando o argumento `selvar =
 
 
 ```{r message=FALSE, warning=FALSE}
-d3 =  clustering(maize, means_by = GEN, selvar = TRUE)
+d3 <- clustering(mgen, selvar = TRUE)
 
 ```
 
@@ -90,7 +94,6 @@ Um dos problemas com o agrupamento \indt{agrupamento} hierárquico é que ele n�
 Procedimentos baseado em reamostragens bootstrap que calcula a probabilidade de erro de cada *galho* do dendrograma \indt{dendrograma} podem ser utilizados. O código abaixo estima p-valores para cada junção no dendrograma do modelo `d3`. Para maiore detalhes sobre o métoddo veja @Suzuki2006.
 
 ```{r message=FALSE, warning=FALSE, fig.align="center"}
-
 pv_clust <- pvclust(t(d3$data), nboot = 100, method.dist = "euclidean")
 plot(pv_clust, hang = -1, cex = 0.5)
 pvrect(pv_clust, alpha = 0.95)
@@ -103,41 +106,42 @@ O resultado do procedimento bootstrap indicou a formação de dois clusters, com
 O pacote [factoextra](https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html) oferece um conjunto de funções para estender objetos dendrogramas em R. Um exemplo simples é dado abaixo.
 
 ```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=12, fig.height=8}
-
-de1 = fviz_dend(d3$hc,
-                k = 2,
-                xlab = "Genótipos",
-                ylab =  "Distância euclidiana",
-                main = "") 
-de2 = fviz_dend(d3$hc,
-                k = 2,
-                type = "circular")
-de3 = fviz_dend(d3$hc,
-                k = 2,
-                type = "phylogenic",
-                repel = TRUE)
-de4 = fviz_dend(d1$hc,
-                k = 5,
-                xlab = "Genótipos",
-                ylab =  "Distância euclidiana",
-                palette = "jco",
-                show_labels = FALSE,
-                main = "")
-cp1 = plot_grid(de1, de2, de3, nrow = 1,
-                         labels = c("de1", "de2", "de3"))
+de1 <- fviz_dend(d3$hc,
+                 k = 2,
+                 xlab = "Genótipos",
+                 ylab =  "Distância euclidiana",
+                 main = "") 
+de2 <- fviz_dend(d3$hc,
+                 k = 2,
+                 type = "circular")
+de3 <- fviz_dend(d3$hc,
+                 k = 2,
+                 type = "phylogenic",
+                 repel = TRUE)
+de4 <- fviz_dend(d1$hc,
+                 k = 5,
+                 xlab = "Genótipos",
+                 ylab =  "Distância euclidiana",
+                 palette = "jco",
+                 show_labels = FALSE,
+                 main = "")
+cp1 <- plot_grid(de1, de2, de3, nrow = 1,
+                 labels = c("de1", "de2", "de3"))
 plot_grid(cp1, de4, rows = 2, labels = c("", "de4"))
+
 ```
 
 
 
 ### Distancias para cada ambiente
 
-O seguinte código computa as distâncias para cada nível do fator **AMB** do conjunto de dados maize. A função `split_factors()` \indf{split\_factors} é utilizada para criar uma lista onde cada elemento conterá os dados de cada ambiente. Note que o argumento `keep_factors = TRUE` foi utilizado para manter as colunas de fatores. Assim é possível computar a média para cada genótipo quando informado o argumento `means_by = GEN` na função `clustering()` \indf{clustering}. O resultado desta função é então passado para a função `pairs_mantel()`. \indf{pairs\_mantel} Esta função é utilizada para avaliar a associação entre as quatro matrizes de distância.
+O seguinte código computa as distâncias para cada nível do fator **AMB** do conjunto de dados maize. A função `group_by()` \indf{group\_by} é utilizada para criar uma lista onde cada elemento conterá os dados de cada ambiente. Note que o argumento `keep_factors = TRUE` foi utilizado para manter as colunas de fatores. Assim é possível computar a média para cada genótipo quando informado o argumento `means_by = GEN` na função `clustering()` \indf{clustering}. O resultado desta função é então passado para a função `pairs_mantel()`. \indf{pairs\_mantel} Esta função é utilizada para avaliar a associação entre as quatro matrizes de distância.
 
 ```{r fig.align="center", fig.height=3, fig.width=3, message=FALSE, warning=FALSE}
-d4 = maize %>%
-  split_factors(ENV, keep_factors = TRUE) %>%
-  clustering(NKR, TKW, NKE, means_by = GEN)
+d4 <- 
+  maize %>%
+  group_by(ENV) %>%
+  clustering(NKR, TKW, NKE, nclust = 4)
 pairs_mantel(d4, names = c("A1", "A2", "A3", "A4"),
              maxsize = 5, minsize = 3)
 ```
@@ -241,7 +245,7 @@ p2 = fviz_pca_var(res.pca,
                   ylab = "PCA2 (18,1%)",
                   geom = c("point", "arrow", "text"),
                   title = "Gráfico das variáveis",
-                  repel = TRUE) + my_theme()
+                  repel = TRUE)
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 

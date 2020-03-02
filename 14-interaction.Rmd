@@ -21,20 +21,33 @@ Nesta seção, usaremos o conjunto de dados `data_ge` disponível no pacote **me
 
 ## Análise gráfica da interação
 
-A função `ge_plot()` \indf{ge\_plot} pode ser usada para visualizar o desempenho dos genótipos nos ambientes. O losângulo preto indica a média de cada ambiente.
-
-```{r fig.height=4, fig.width=10}
-p1 = ge_plot(data_ge, ENV, GEN, GY)
-p2 = ge_plot(data_ge, ENV, GEN, GY) + theme_grey() + coord_flip()
-plot_grid(p1, p2)
+A função `ge_plot()` pode ser usada para visualizar o desempenho do genótipo através dos ambientes. O losango preto mostra a média para cada ambiente.
+```{r, fig.width = 10, fig.height = 5, aviso = FALSE, mensagem = FALSE}
+a <- ge_plot (data_ge, ENV, GEN, GY)
+b <- ge_plot (data_ge, ENV, GEN, GY) + ggplot2::coord_flip ()
+arrange_ggplot(a, b)
 ```
 
+Para identificar o genótipo vencedor em cada ambiente, podemos usar a função `ge_winners()`.
+```{r}
+ge_winners(data_ge2, ENV, GEN, resp = everything())
+```
+
+Ou obtenha a classificação dos genótipos em cada ambiente.
+```{r}
+ge_winners(data_ge2, ENV, GEN, resp = everything (), type = "ranks")
+```
+
+Para mais detalhes sobre os testes, podemos usar `ge_details()`
+```{r}
+ge_details(data_ge2, ENV, GEN, resp = everything())
+```
 ## Análise de variância individual
 
 A função `anova_ind()` \indf{anova\_ind} pode ser utilziada para realizar uma análise de variância para cada ambiente, conforme o seguinte código.
 
 ```{r}
-ind = anova_ind(data_ge, ENV, GEN, REP, GY)
+ind <- anova_ind(data_ge, ENV, GEN, REP, GY)
 print(ind$GY$individual)
 
 ```
@@ -53,7 +66,7 @@ O modelo é ajustado com a função `ge_reg()` \indf{ge\_reg}. Os métodos S3 `p
 
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-reg_model = ge_reg(data_ge, ENV, GEN, REP, GY)
+reg_model <- ge_reg(data_ge, ENV, GEN, REP, GY)
 reg_model$GY$anova
 reg_model$GY$regression
 plot(reg_model)
@@ -76,7 +89,7 @@ $$
 Onde $\alpha$ é o quantil da distribuição normal padrão a uma dada probabilidade de erro ($\alpha \approx 1.64$ a 0.05). O método é implementado usando a função `Annicchiarico()` \indf{Annicchiarico}. O índice de confiança é estimado considerando todos os ambientes, os ambientes favoráveis (índice positivo) e os ambientes desfavoráveis (índice negativo), como segue:
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-ann = Annicchiarico(data_ge, ENV, GEN, REP, GY)
+ann <- Annicchiarico(data_ge, ENV, GEN, REP, GY)
 ann$GY$general
 ```
 
@@ -101,7 +114,7 @@ super$GY$index
 Um método que combina análise de estabilidade e estratificação ambiental usando análise fatorial foi proposto por @murakami2004. Este método é implementado com a função `ge_factanal()`\indf{ge\_factanal}, como segue:
 
 ```{r, fig.width = 5, fig.height = 4, aviso = FALSE, mensagem = FALSE}
-fato = ge_factanal(data_ge, ENV, GEN, REP, GY)
+fato <- ge_factanal(data_ge, ENV, GEN, REP, GY)
 plot(fato)
 print(fato$GY$PCA)
 print(fato$GY$FA)
@@ -113,7 +126,7 @@ A maneira mais fácil de calcular os índices de estabilidade acima mencionados 
 
 
 ```{r, eval=FALSE}
-stat_ge = ge_stats(data_ge, ENV, GEN, REP, GY)
+stat_ge <- ge_stats(data_ge, ENV, GEN, REP, GY)
 ```
 
 Se você deseja exportar um resumo dos resultados, a maneira mais simples é usando função `summary()`.
@@ -155,10 +168,11 @@ onde ${\lambda_k}$ é o valor singular para o *k*-ésimo eixo do componente prin
 
 ### Ajuste do modelo
 
-O modelo AMMI é ajustado com a função `waas()`\indf{waas}. O primeiro argumento é os dados, no nosso exemplo `data_ge`. Os próximos argumentos (`ENV`, `GEN` e `REP`) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. No argumento `resp` são declaradas as variáveis resposta. Uma única variável pode ser analizada (como em nosso exemplo) ou, um vetor de variáveis, usando, por exemplo `resp = c(GY, HM)`.
+O modelo AMMI é ajustado com a função `performs_ammi()`\indf{performs\_ammi}. O primeiro argumento é os dados, no nosso exemplo `data_ge`. Os próximos argumentos (`ENV`, `GEN` e `REP`) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. No argumento `resp` são declaradas as variáveis resposta. Uma única variável pode ser analizada (como em nosso exemplo) ou, um vetor de variáveis, usando, por exemplo `resp = c(GY, HM)`.
 
 ```{r echo = TRUE}
-AMMI_model = waas(data_ge, ENV, GEN, REP, GY)
+
+AMMI_model <- performs_ammi(data_ge, ENV, GEN, REP, GY)
 
 ```
 
@@ -181,7 +195,7 @@ A figura acima, obtida com a função `autoplot()`, mostra 4 gráficos. Os dois 
 
 ### Escolha do número de termos multiplicativos
 
-Conforme já discutido, a análise AMMI \indt{AMMI}aplica a técnica de decomposição por valores singulares na matriz dos efeitos não aditivos do modelo (__*A*__). Logo, esta matriz pode ser aproximada pela pelo seguinte modelo: $A = U \lambda V^T$, onde onde **U** é uma matriz *g* $\times$ *e* contendo os vetores singulares de $AA^T$ e formam a base ortonormal para os efeitos de genótipos; $V^T$ é uma matriz *e* $\times$ *e* que contém os vetores singulares de  $\mathbf{A^TA}$ e formam a base ortonormal para os efeitos de ambientes; e $\lambda$ é uma matriz diagonal *e* $\times$ *e* contendo *k*-valores singulares de $A^TA$ , onde *k* = $min(G-1; E-1)$. Assim, diferentes modelos (dependendo do número de termos multiplicativos utilizados) podem ser utilziados para predizer o rendimento do genótipo *i* no ambiente *j*. A tabela abaixo mostra os possíveis modelos. No modelo AMMI0 apenas os efeitos aditivos são considerados. No modelo AMMI1, o primeiro termo multiplicativo é considerado, e assim por diante, até o modelo AMMIF, onde $min(G-1;E-1)$ termos são considerados. 
+Conforme já discutido, a análise AMMI \indt{AMMI}aplica a técnica de decomposição por valores singulares na matriz dos efeitos não aditivos do modelo (__*A*__). Logo, esta matriz pode ser aproximada pela pelo seguinte modelo: $A = U \lambda V^T$, onde onde **U** é uma matriz *g* $\times$ *e* contendo os vetores singulares de $AA^T$ e formam a base ortonormal para os efeitos de genótipos; $V^T$ é uma matriz *e* $\times$ *e* que contém os vetores singulares de  $\mathbf{A^TA}$ e formam a base ortonormal para os efeitos de ambientes; e $\lambda$ é uma matriz diagonal *e* $\times$ *e* contendo *k*-valores singulares de $A^TA$ , onde *k* = $min(G-1; E-1)$. Assim, diferentes modelos (dependendo do número de termos multiplicativos utilizados) podem ser utilziados para predizer o rendimento do genótipo *i* no ambiente *j*. A tabela abaixo mostra os possíveis modelos. No modelo AMMI0 apenas os efeitos aditivos são considerados. No modelo AMMI1, o primeiro termo multiplicativo é considerado, e assim por diante, até o modelo AMMIF, onde $min(G-1;E-1)$ termos são considerados.
 
 | Família AMMI     | Resposta esperado do genótipo *i* no ambiente *j*                             |
 |:-----------------|:------------------------------------------------------------------------------|
@@ -189,57 +203,100 @@ Conforme já discutido, a análise AMMI \indt{AMMI}aplica a técnica de decompos
 | AMMI1            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}$ |
 | AMMI2            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}$ |
 | ...              |                                                                               |
-| AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$  
+| AMMIF            |$\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..} +\lambda_1 a_{i1}t_{j1}+\lambda_2 a_{i2}t_{j2}+...+\lambda_p a_{ip}t_{jp}$
 
 A escolha do número de termos multiplicativos a ser utilizado é baseada em basicamente dois critérios de sucesso de análise: **Postdiscritive sucess** e **Predictive sucess**. Por definição, **Predictive sucess** significa literalmente a afirmação prévia do que acontecerá em algum momento futuro. Neste contexto, testes de validação cruzada (cross-validation) podem ser utilizadas para avaliar o sucesso preditivo dos membros de modelos da familia AMMI [@Olivoto2019]. Por outro lado, **Postdiscritive sucess** significa fazer uma afirmação ou dedução sobre algo que aconteceu no passado. Na escolha do número de termos multiplicativos da análise AMMI \indt{AMMI}este sucesso pode ser calculado utilizando testes como o proposto por @Gollob1968.
 
-* **Postdiscritive sucess**
+#### Postdiscritive sucess
 
 \indt{postdiscritive sucess}
 No objeto `anova` \indt{ANOVA} gerado pela função `waas()` \indf{waas} testes de hipóteses são realizados e probabilidades de erro são atribuídas para cada modelo considerando a distribuição de graus de liberdade proposto por @Gollob1968. Assim é possível identificar qual é o número ideal de termos a ser considerado na predição. Em nosso exemplo, dois termos foram significativos a 5% de probabilidade de erro.
 
-* **Predictive sucess**
+#### Predictive sucess
 
 \indt{predictive sucess}
-O pacote **metan** fornece uma solução completa para validaçao cruzada do modelo AMMI. Utilizando a função `cv_ammif()` \indf{cv\_ammif}, por exemplo, é possível realizar um teste de *cross-validation* para a família de modelos AMMI \indt{AMMI}(AMMI0-AMMIF) usando dados com repetições. Automaticamente, a primeira validação é realizada considerando a AMMIF (todos possíveis IPCAs são usados). Considerando esse modelo, o conjunto de dados original é dividido em dois conjuntos de dados: dados de modelagem e dados de validação, conforme o esquema ao lado.
-
-<img style="float: right;" src="figures/validacao.png" width="400" height="600" >
-
-O conjunto de dados "modelagem" possui todas as combinações (genótipo *vs* ambiente) com R-1 repetições. O conjunto de dados "validação" tem uma repetição. O diagrama abaixo representa o procedimento realizado.
+O pacote **metan** fornece uma solução completa para validaçao cruzada do modelo AMMI. Utilizando a função `cv_ammif()` \indf{cv\_ammif}, por exemplo, é possível realizar um teste de *cross-validation* para a família de modelos AMMI \indt{AMMI}(AMMI0-AMMIF) usando dados com repetições. Automaticamente, a primeira validação é realizada considerando a AMMIF (todos possíveis IPCAs são usados). Considerando esse modelo, o conjunto de dados original é dividido em dois conjuntos de dados: dados de modelagem e dados de validação. O conjunto de dados "modelagem" possui todas as combinações (genótipo *vs* ambiente) com R-1 repetições. O conjunto de dados "validação" tem uma repetição. O diagrama abaixo representa o procedimento realizado.
 
 
 A divisão do conjunto de dados em dados de modelagem e validação depende do design informado. Considerando um delineamento de blocos completos casualizados (DBC)\index{DBC}, blocos completos são aleatoriamente selecionados dentro de ambientes, como mostrado por @Olivoto2019. O bloco restante serve dados de validação. Se `design = "CRD"` for informado, assim declarando que um delineamento intericamente casualizado (DIC) \index{DIC} foi usado, observações são aleatoriamente selecionadas para cada tratamento (combinação genótipo-*vs*-ambiente). Este é o mesmo procedimento sugerido por @Gauch1988. Os valores estimados para o membro da família AMMI \index{AMMI}em estudo são então comparados com os dados de "validação" e um erro de predição $\hat{z}_{ij}$ é estimado para cada tratamento. A raiz quadrada do quadrado médio da diferença de predição (RMSPD) é calculado. Este procedimento é repetido *n* vezes, utilizando o argumento `nboot = n`. Ao final do procedimento, o algorítimo armazena as *n* estimativas do RMSPD para o modelo em questão, e um novo modelo é então testado seguindo os mesmos passos.
 
-\End{multicols}
-\setlength{\parindent}{3em}
+Como exemplo, a função `cv_ammi()`\indf{cv\_ammi} é usada para calcular um procedimento de validação cruzada para os modelos AMMI0, AMMI2 e AMMIF (9 eixos).
+```{r echo = FALSE}
+load("cvali.RData")
+```
 
 
+```{r eval=FALSE}
+AMMI0 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 0) # AMMI0
+AMMI2 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 2) # AMMI2
+AMMI9 <- cv_ammi(data_ge, ENV, GEN, REP, GY, naxis = 9) # AMMIF
+
+```
+
+
+* **AMMI0 para AMMIF**
+A função `cv_ammif()`\indf{cv\_ammif} é usada para calcular um procedimento de validação cruzada para todos os membros do modelo da família AMMI. Nesse caso, AMMI0-AMMI9.
+
+```{r eval = FALSE}
+AMMIF <- cv_ammif(data_ge, ENV, GEN, REP, GY)
+```
+
+* **Validação cruzada para previsão de BLUP**
+A função `cv_blup ()` fornece uma validação cruzada de dados baseados em replicação usando modelos mistos. Por padrão, blocos completos são selecionados aleatoriamente para cada ambiente. Usando o argumento `random ', é possível escolher os efeitos aleatórios do modelo, como mostrado abaixo.
+
+* **Genótipo e genótipo versus ambiente como efeitos aleatórios**
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align =" center "}
+BLUP_g <- cv_blup (dados_ge, ENV, GEN, REP, GY, aleatório = "gen")
+```
+
+* **Ambiente, replicação dentro do ambiente e interação como efeitos aleatórios**
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align =" center "}
+BLUP_e <- cv_blup (dados_ge, ENV, GEN, REP, GY, aleatório = "env")
+```
+
+* **Um modelo aleatório (todos os termos como efeitos aleatórios)**
+```{r eval = F, fig.height = 5, fig.width = 10, fig.align =" center "}
+BLUP_ge <- cv_blup (dados_ge, ENV, GEN, REP, GY, aleatório = "todos")
+```
+
+
+## Imprimindo os meios das estimativas RMSPD
 
 
 ```{r}
-AMMIF = cv_ammif(data_ge, ENV, GEN, REP, GY, nboot = 20)
+bind_mod <- bind_cv(AMMIF, BLUP_g, bind = "means")
+print(bind_mod$RMSPD)
+
 ```
 
-Os valores das estimativas de RMSPD \indt{RMSPD} obtidos no processo de validação cruzada podem ser plotados usando a função `plot()`. \indf{plot}
+A tabela acima mostra as estatísticas descritivas (média, desvio padrão, erro padrão da média e quantis 2,5% e 97,5%) das 100 estimativas RMSPD para cada modelo, e são apresentadas a partir do modelo mais preciso (menor média RMSPD) para o modelo menos preciso (maior média RMSPD).
 
-```{r fig.height=5, fig.width=10}
-p1 = plot(AMMIF)
-p2 = plot(AMMIF,
-          width.boxplot = 0.6,
-          col.boxplot = "cyan",
-          order_box = TRUE)
-plot_grid(p1, p2)
+## Plotagem dos valores RMSPD
+
+Os valores das estimativas RMSPD obtidas no processo de validação cruzada podem ser plotados usando a função `plot ()`.
+```{r eval = TRUE, fig.height = 5, fig.width = 10, fig.align =" center ", mensagem = F, aviso = F}
+bind1 <- bind_cv (AMMI0, AMMI2, AMMI9)
+bind2 <- bind_cv (AMMIF, BLUP_g, BLUP_e, BLUP_ge)
+a <- plot(bind1, violino = TRUE)
+b <- plot(bind2,
+          width.boxplot = 0.6,
+          order_box = TRUE,
+          plot_theme = theme_metan_minimal ())
+arrange_ggplot(a, b, labels = letters[1:2])
+
 ```
 
-Cinco estatísticas são mostradas neste boxplot. A mediana, o primeiro e terceiro quartis (comprimento da caixa) e os valores que não ultrapassam 1.5 $\times$ a amplitude interquartílica (linhas que se extendem além da caixa). Dados além do fim dos bigodes são considerados outliers. Se a condição `violin = TRUE`, um gráfico de violino é adicionado ao boxplot. Um gráfico de violino é uma exibição compacta de uma distribuição contínua.
+Seis estatísticas são mostradas neste boxplot. A média (losango preto), a mediana (linha preta), as dobradiças inferior e superior que correspondem ao primeiro e terceiro quartis (percentis 25 e 75, respectivamente). O bigode superior se estende da dobradiça até o maior valor não mais que $1,5 \times {IQR}$ a partir da dobradiça (em que IQR é o intervalo entre quartis). O bigode mais baixo se estende da dobradiça ao menor valor, no máximo $1,5 \times {IQR}$ da dobradiça. Dados além do final dos bigodes são considerados pontos extremos. Se a condição `violin = TRUE`, uma plotagem de violino é adicionada junto com o boxplot. Um gráfico de violino é uma exibição compacta de uma distribuição contínua exibida da mesma maneira que um gráfico de caixa.
+
 
 
 ### Valores estimados pelo modelo AMMI
 Em nosso exemplo, o modelo AMMI2 foi o que apresentou o menor RMSPD, sendo então o mais indicado para estimar a variável GY. A estimativa considerando dois termos multiplicativos pode realizada utilizando a função `predict()`, tendo como argumentos o modelo AMMI ajustado (`AMMI_model`) e o número de termos multiplicativos considerados na estimação (`naxis`). \indf{predict}
 
 ```{r fig.height=5, fig.width=10}
-predicted = predict(AMMI_model, naxis = 2)
+predicted <- predict(AMMI_model, naxis = 2)
 predicted$GY
+
 ```
 
 As seguintes variáveis são retornadas: **ENV** é o ambiente; **GEN** é o genótipo; **Y** é o valor observado; **resOLS** é o residual ($\hat{z}_{ij}$) estimado pelos Mínimos Quadrados Ordinários, onde $\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..}$; **Ypred** é o valor estimado pelos mínimos quadrados ordinários ($\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}$); **ResAMMI** é o residual estimado pelo modelo AMMI \index{AMMI}($\hat{a}_{ij}$) considerando o número de termos multiplicativos informado na função (neste caso 2), onde $\hat{a}_{ij} = \lambda_1a_{i1}t_{j1}$; **YpredAMMI** é o valor estimado pelo modelo AMMI $\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}+\hat{a}_{ij}$; e **AMMI0** é o valor estimado quando nenhum termo multiplicativo é usado, ou seja, $\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}$.
@@ -252,7 +309,7 @@ As seguintes variáveis são retornadas: **ENV** é o ambiente; **GEN** é o gen
 ```{r}
 waas(data_ge2, ENV, GEN, REP,
      resp = c(PH, ED, TKW, NKR)) %>%
- get_model_data(what = "WAASB")
+ get_model_data(what = "WAAS")
 ```
 
 
@@ -291,10 +348,11 @@ Onde ${\theta _k}$ é o percentual da soma de quadrados explicada pelo *k* -ési
 A função `AMMI_index ()` tem dois argumentos. O primeiro (x) é o modelo, que deve ser um objeto da classe `waas`. O segundo, (order.y) é a ordem para a variável resposta. Por padrão, ele é definido como nulo, o que significa que a variável resposta é ordenada em ordem decrescente. Se `x` é uma lista com mais de uma variável, então `order.y` deve ser um vetor com o mesmo comprimento de x. Cada elemento do vetor deve ser um dos "h" ou "l". Se "h" for usado, a variável resposta será ordenada em ordem decrescente. Se "l" for usado, a variável resposta será ordenada em ordem crescente da média dos genótipos. Usando o operador *%>% * é possível estruturar uma sequência lógica de operações. Vamos construir esse modelo.
 
 ```{r }
-stab_indexes = data_ge %>%
-               waas(ENV, GEN, REP, GY, verbose = FALSE) %>%
-               AMMI_indexes() %>%
-               print(digits = 2)
+stab_indexes <- 
+  data_ge %>%
+  waas(ENV, GEN, REP, GY, verbose = FALSE) %>%
+  AMMI_indexes()
+print(stab_indexes)
     ```
 
 
@@ -304,37 +362,39 @@ stab_indexes = data_ge %>%
 
 O pacote **metan** conta com gráficos gerados pelo pacote **ggplot2**, o que lhe confere um alto nível de personalização. A função utilizada para obtenção dos diferentes tipos de biplots será a `plot_scores()`. \indf{plot\_scores}Para maiores detalhes veja `?plot_._scores`.
 
-#### biplot tipo 1: IPCA1 x IPCA2
-
-O biplot conhecido como **AMMI2** é confeccionado utilizando o argumento `type = 1` (padrão) na função `plot_scores()`. O biplot **AMMI2** representa os dois primeiros IPCAs oriundos da decomposição por valor singular da matriz dos efeitos da interação e é utilizado para realizar inferências quanto aos padrões da interação genótipo *vs* ambiente. Neste caso, os dois primeiros IPCAs explicam 66.2% da da soma de quadrados da interação. 
-
-```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=5, fig.width=10, fig.align="center", fig.cap="Biplot AMMI2, gerado pelo pacote metan"}
-
-p1 = plot_scores(AMMI_model)
-p2 = plot_scores(AMMI_model,
-                 col.gen = "black",
-                 col.env = "gray70",
-                 col.segm.env = "gray70",
-                 axis.expand = 1.5)
-plot_grid(p1, p2, labels = c("p1","p2"))
-
-```
-
 #### Biplot tipo 2: GY x PC1
 O biplot conhecido como **AMMI1** é confeccionado utilizando o argumento `type = 2` na função `plot_scores()`. O biplot **AMMI1** é utilizado para identificar tanto a estabilidade quando a produtividade dos genótipos. Neste tipo de biplot, os genótipos com escores do PC1 próximos de zero e à direita da linha vertical, são considerados os mais estáveis e com rendimento superior a média geral.\indf{plot\_scores}
 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=5, fig.width=10, fig.align="center", fig.cap="Biplot AMMI1 gerado pelo pacote metan"}
-p3 = plot_scores(AMMI_model, type = 2)
-p4 = plot_scores(AMMI_model,
-                 type = 2,
-                 polygon = TRUE,
+p3 <-plot_scores(AMMI_model)
+p4 <-plot_scores(AMMI_model,
                  col.segm.env = "transparent") +
                  theme_gray() +
                  theme(legend.position = c(0.1, 0.9),
                        legend.background = element_rect(fill = NA))
 
-plot_grid(p3, p4, labels = c("p3","p4"))
+arrange_ggplot(p3, p4, labels = c("p3","p4"))
+
+```
+
+
+
+#### biplot tipo 1: IPCA1 x IPCA2
+
+O biplot conhecido como **AMMI2** é confeccionado utilizando o argumento `type = 1` (padrão) na função `plot_scores()`. O biplot **AMMI2** representa os dois primeiros IPCAs oriundos da decomposição por valor singular da matriz dos efeitos da interação e é utilizado para realizar inferências quanto aos padrões da interação genótipo *vs* ambiente. Neste caso, os dois primeiros IPCAs explicam 66.2% da da soma de quadrados da interação.
+
+```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=5, fig.width=10, fig.align="center", fig.cap="Biplot AMMI2, gerado pelo pacote metan"}
+
+p1 <-plot_scores(AMMI_model, type = 2)
+p2 <-plot_scores(AMMI_model,
+                 type = 2,
+                 polygon = TRUE,
+                 col.gen = "black",
+                 col.env = "gray70",
+                 col.segm.env = "gray70",
+                 axis.expand = 1.5)
+arrange_ggplot(p1, p2, labels = c("p1","p2"))
 
 ```
 
@@ -410,7 +470,7 @@ A função `gge()` ajusta um modelo GGE baseado em uma tabela bidirecional (`ge_
 \indf{gge}
 ```{r echo = TRUE}
 # Usando um data frame
-gge_model = gge(data_ge, ENV, GEN, GY)
+gge_model <- gge(data_ge, ENV, GEN, GY)
 
 ```
 
@@ -446,11 +506,11 @@ Neste material, para cada tipo de biplot, dois gráficos são produzidos. Um com
 Esta é a configuração padrão no gráfico da função, portanto, este biplot é produzido apenas chamando `plot(model) `, como mostrado abaixo.
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-p1 = plot(gge_model)
-p2 = plot(gge_model,
-          col.gen = "blue",
-          size.text.env = 2)
-plot_grid(p1, p2)
+p1 <- plot(gge_model)
+p2 <- plot(gge_model,
+           col.gen = "blue",
+           size.text.env = 2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -462,14 +522,14 @@ Neste biplot, a visualização da média e da estabilidade dos genótipos é obt
 A ordenada de AEC é a linha que passa pela origem do biplot e é perpendicular à abscissa do AEC. Portanto, se a abscissa AEC representa o G, a ordenada AEC deve aproximar o GEI associado a cada genótipo, que é uma medida de variabilidade ou instabilidade dos genótipos [@Yan2007]. Uma projeção maior na ordenada AEC, independentemente da direção, significa maior instabilidade. Em nosso exemplo, o G3 foi o mais estável e o segundo genótipo mais produtivo, enquanto o G9 apresentou alta instabilidade.
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "genotype")
-p1 = plot(gge_model, type = 2)
-p2 = plot(gge_model,
+gge_model <-gge(data_ge, ENV, GEN, GY, svp = "genotype")
+p1 <-plot(gge_model, type = 2)
+p2 <-plot(gge_model,
           type = 2,
           col.gen = "black",
           col.env = "gray",
           axis_expand = 1.5)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -481,9 +541,9 @@ Neste biplot (obtido com particionamento de valores singulares simétrico) um po
 As linhas perpendiculares aos lados do polígono dividem o biplot em setores. Cada setor tem um genótipo vértice. Por exemplo, o setor com o genótipo-vértice G4 pode ser referido como o setor G4. Um ambiente (E9), foi enquadrado neste setor. Como regra geral, o genótipo vértex é o genótipo de mais alto rendimento em todos os ambientes que compartilham o setor com ele [@Yan2007]. Neste caso, G4 teve o maior rendimento em E9, como mostrado na tabela acima.
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-p1 = plot(gge_model, type = 3)
-p2 = plot(gge_model,
+gge_model <-gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
+p1 <-plot(gge_model, type = 3)
+p2 <-plot(gge_model,
           type = 3,
           size.shape.win = 5,
           large_label = 6,
@@ -491,19 +551,19 @@ p2 = plot(gge_model,
           col.env = "gray",
           annotation = FALSE,
           title = FALSE)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
 #### Biplot tipo 4: Discriminação vs. representatividade
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-p1 = plot(gge_model, type = 4)
-p2 = plot(gge_model,
+p1 <-plot(gge_model, type = 4)
+p2 <-plot(gge_model,
           type = 4,
           plot_theme = theme_gray())+
   theme(legend.position = "bottom")
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -512,16 +572,16 @@ plot_grid(p1, p2)
 A identificação de genótipos mais adaptados a um ambiente pode ser facilmente alcançada utilizando o biplot GGE. Por exemplo, para visualizar o desempenho de diferentes genótipos em um dado ambiente, por exemplo, E10, simplesmente desenhe uma linha que passa pela origem biplot e o marcador do E10. Os genótipos podem ser classificados de acordo com suas projeções no eixo E10 com base em seu desempenho neste ambiente, na direção apontada pela seta. Em nosso exemplo, no E10, o genótipo de maior rendimento foi o genótipo G8 e o genótipo de menor rendimento foi G10. A ordem dos genótipos foi G8 > G7 > G3 > G2 > G4 > G1 > G6 > G5 > G9 > G10.
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-p1 = plot(gge_model, type = 5, sel_env = "E10")
-p2 = plot(gge_model,
+gge_model <-gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
+p1 <-plot(gge_model, type = 5, sel_env = "E10")
+p2 <-plot(gge_model,
           type = 5,
           sel_env = "E10",
           col.gen = "black",
           col.env = "black",
           size.text.env = 10,
           axis_expand = 1.5)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -531,15 +591,15 @@ plot_grid(p1, p2)
 Neste biplot o ambiente "ideal" é usado como o centro de um conjunto de linhas concêntricas que servem para medir a distância entre um ambiente e o ambiente "ideal". Como o foco principal neste biplot são os ambientes, a partição de valor singular usada é "ambiente" (padrão). Pode ser visto que E13 é o mais próximo do ambiente ideal e, portanto, é o mais desejável de todos os 14 ambientes. E4 e E9 foram os ambientes de teste menos desejados.
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY)
-p1 = plot(gge_model, type = 6)
-p2 = plot(gge_model,
-          type = 6,
-          col.gen = "black",
-          col.env = "black",
-          size.text.env = 10,
-          axis_expand = 1.5)
-plot_grid(p1, p2)
+gge_model <- gge(data_ge, ENV, GEN, GY)
+p1 <- plot(gge_model, type = 6)
+p2 <- plot(gge_model,
+           type = 6,
+           col.gen = "black",
+           col.env = "black",
+           size.text.env = 10,
+           axis_expand = 1.5)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -548,16 +608,16 @@ plot_grid(p1, p2)
 Semelhante à visualização dos desempenhos genotípicos em um determinado ambiente (biplot 5), a visualização da média e da estabilidade dos genótipos é obtida desenhando-se uma AEC no biplot com foco no genótipo, ou *row metric preserving* [@Yan2007].
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "genotype")
-p1 = plot(gge_model, type = 7, sel_gen = "G8")
-p2 = plot(gge_model,
-          type = 7,
-          sel_gen = "G8",
-          col.gen = "black",
-          col.env = "black",
-          size.text.env = 10,
-          axis_expand = 1.5)
-plot_grid(p1, p2)
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+p1 <- plot(gge_model, type = 7, sel_gen = "G8")
+p2 <- plot(gge_model,
+           type = 7,
+           sel_gen = "G8",
+           col.gen = "black",
+           col.env = "black",
+           size.text.env = 10,
+           axis_expand = 1.5)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -567,14 +627,14 @@ plot_grid(p1, p2)
 Este biplot compara todos os genótipos com o genótipo "ideal". O genótipo ideal, representado pelo pequeno círculo com uma seta apontando para ele, é definido como tendo o maior rendimento em todos os ambientes. Ou seja, tem o maior rendimento médio e é absolutamente estável. Os genótipos são classificados com base em sua distância do genótipo ideal [@Yan2007]. Em nosso exemplo, o G3 e o G8 superaram os outros genótipos.
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "genotype")
-p1 = plot(gge_model, type = 8)
-p2 = plot(gge_model,
-          type = 8,
-          col.gen = "black",
-          col.env = "gray",
-          size.text.gen = 6)
-plot_grid(p1, p2)
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "genotype")
+p1 <- plot(gge_model, type = 8)
+p2 <- plot(gge_model,
+           type = 8,
+           col.gen = "black",
+           col.env = "gray",
+           size.text.gen = 6)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -583,30 +643,30 @@ plot_grid(p1, p2)
 Para comparar dois genótipos, por exemplo, G10 e G8, desenhe uma linha de conexão para conectá-los e trace uma linha perpendicular que passa pela origem do biplot e é perpendicular à linha de conexão. Vemos que um ambiente, E9, está do mesmo lado da linha perpendicular do G10, e os outros 13 ambientes estão do outro lado da linha perpendicular, junto com o G8. Isso indica que G10 produziu mais do que o G8 no E9, mas G8 produziu mais que o G10 nos outros 13 ambientes [@Yan2007].
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
-p1 = plot(gge_model, type = 9, sel_gen1 = "G8", sel_gen2 = "G10")
-p2 = plot(gge_model,
-          type = 9,
-          sel_gen1 = "G8",
-          sel_gen2 = "G10",
-          col.gen = "black",
-          title = FALSE,
-          annotation = FALSE)
-plot_grid(p1, p2)
+gge_model <- gge(data_ge, ENV, GEN, GY, svp = "symmetrical")
+p1 <- plot(gge_model, type = 9, sel_gen1 = "G8", sel_gen2 = "G10")
+p2 <- plot(gge_model,
+           type = 9,
+           sel_gen1 = "G8",
+           sel_gen2 = "G10",
+           col.gen = "black",
+           title = FALSE,
+           annotation = FALSE)
+arrange_ggplot(p1, p2)
 
 ```
 
 #### Biplot tipo 10: relação entre os ambientes
 \indt{biplot}
 ```{r echo = TRUE, fig.width=10, fig.height=5, fig.align = "center", message=F, warning=F}
-gge_model = gge(data_ge, ENV, GEN, GY)
-p1 = plot(gge_model, type = 10)
-p2 = plot(gge_model,
+gge_model <-gge(data_ge, ENV, GEN, GY)
+p1 <-plot(gge_model, type = 10)
+p2 <-plot(gge_model,
           type = 10,
           col.gen = "black",
           title = FALSE,
           annotation = FALSE)
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 
@@ -640,7 +700,7 @@ Os vetores ${\boldsymbol{\beta }}$ e $\boldsymbol{u}$ são estimados considerand
 $$ \label{ad}
 \left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\boldsymbol{\hat u}}}\end{array}} \right]{\boldsymbol{ = }}{\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{X'}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{X}}}&{{\boldsymbol{X'}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{Z}}}\\{{\boldsymbol{Z'}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{X}}}&{{\boldsymbol{Z'}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{Z + }}{{\boldsymbol{G}}^{ - {\boldsymbol{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{X'}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{y}}}\\{{\boldsymbol{Z'}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{y}}}\end{array}} \right]
 $$
-	
+
 Onde o sobescrito $^{-1}$ e $^-$ representam as inversas e inversas generalizadas das matrizes, respectivamente. A estimativa dos componentes de variância em ${\boldsymbol{\hat G}}$ e ${\boldsymbol{\hat R}}$, pode ser realizada sem maiores problemas utilizando ANOVA \indt{ANOVA} convencional quando os dados são balanceados. Quando este pressuposto não é cumprido, a estimativa baseada em Restricted Maximum Likelihood (REML) \indt{REML} utilizando o algoritmo Expectation-Maximization [@Dempster1977] é a mais indicada.
 
 Desde a década de 1990, os modelos mistos vêm ganhando cada vez mais espaço na avaliação de MET, pois permitem a estimativa de parâmetros genéticos \indt{parâmetros genéticos} e ambientais, bem como a predição dos valores genotípicos de forma não-viciada [@Smith2005]. Da mesma forma, modelos mistos reduzem os ruídos de análises realizadas com dados desbalanceados e também de variáveis que não assumem aditividade, características frequentemente observadas em MET [@Hu2015]. Na avaliação dos dados oriundos de MET é de interesse do pesquisador predizer o "verdadeiro" rendimento $w_{ij}$ dado os rendimentos observados $y_{ij}$. Quando um fator é considerado fixo, as inferências são limitadas apenas aos níveis testados deste fator e os efeitos são estimados por Best Linear Unbiased Estimator, ou BLUE \indt{BLUE}. Para efeitos aleatórios, onde deseja-se expandir as inferências para uma população de tratamentos (ou ambientes), a predição é realizada por Best Linear Unbiased Predictor, ou BLUP \indt{BLUP} [@Henderson1975].
@@ -649,7 +709,7 @@ Eq. \ref{ad}
 
 ### Ajustando o modelo
 
-A função `waasb()` \indf{waasb} do pacote **metan** será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-*vs*-ambiente. 
+A função `waasb()` \indf{waasb} do pacote **metan** será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-*vs*-ambiente.
 
 
 
@@ -684,7 +744,7 @@ O teste LRT \indt{LRT} indicou diferenças significativas para os efeitos aleat�
 * Componentes da variância
 
 ```{r warning = F, message = F}
-get_model_data(BLUP_model, "vcomp") 
+get_model_data(BLUP_model, "vcomp")
 
 ```
 
@@ -717,7 +777,7 @@ Além dos componentes de variância \indt{componentes de variância} para os efe
 
 ```{r }
 
-print(BLUP_model$GY$blupGEN) 
+print(BLUP_model$GY$blupGEN)
 
 
     ```
@@ -727,13 +787,13 @@ print(BLUP_model$GY$blupGEN)
 * plotando os BLUPs preditos para genótipos
 
 ```{r echo = TRUE, fig.height = 4, fig.width = 10, fig.align = "center", message = F, warning = F, fig.cap = "Médias preditas para genótipos considerando um modelo misto"}
-p1 = plot_blup(BLUP_model)
-p2 = plot_blup(BLUP_model, 
+p1 <-plot_blup(BLUP_model)
+p2 <-plot_blup(BLUP_model,
                col.shape  =  c("gray20", "gray80"),
                y.lab = "Genótipos",
                x.lab = "Rendimento de grãos predito") + coord_flip()
 
-plot_grid(p1, p2, labels = c("p1", "p2"))
+arrange_ggplot(p1, p2, labels = c("p1", "p2"))
 
 ```
 
@@ -757,7 +817,7 @@ Para obter os valores acima para cada variável do modelo basta utilizar a funç
 Recentemente, [@Olivoto2019] propuseram um índice de estabilidade, WAASB (**W**eighted **A**verage of **A**bsolute **S**cores), que combina as características do modelo AMMI e BLUP. O índice é baseado na média ponderada dos escores absolutos obtidos pela decomposição por valores singulares da matriz BLUP dos efeitos da interação em um modelo de efeito misto, conforme a seguite equação.
 
 $$
-        WAASB_i  = 
+        WAASB_i  =
         \sum_{k = 1}^{p} |IPCA_{ik} \times EP_k|/ \sum_{k = 1}^{p}EP_k
 $$
 
@@ -774,7 +834,7 @@ p6 = plot_scores(BLUP_model, type = 3) +
                  theme(legend.position = c(0.1, 0.9),
                        legend.background = element_rect(fill = NA))
 
-plot_grid(p5, p6, labels = c("p5","p6"))
+arrange_ggplot(p5, p6, labels = c("p5","p6"))
 
 ```
 
@@ -794,8 +854,8 @@ onde $WAASBY_i$ é o índice de superioridade para o genótipo *i* que pondera e
 Este índice permite atribuir pesos para estabilidade e produtividade na classificação dos genótipos. Para isto, o argumento `wresp` da função `waasb()` \indf{waasb} é usado. Por exemplo, se o objetivo é selecionar genótipos com alto rendimento (independentemente de sua estabilidade), então o `wresp = 100` deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação da variável de resposta. Por outro lado, visando selecionar genótipos altamente estáveis (independentemente da produtividade), então o `wresp = 0` deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação do índice WAASB. Qualquer valor entre 0 e 100 pode ser usado no argumento `wresp` para ponderar entre o desempenho médio e a estabilidade. Em nosso exemplo, o índice WAASBY foi calculado considerando `wresp = 50` (padrão da função), o que significa pesos iguais para desempenho e estabilidade médios. Para plotar os valores de WAASBY, o código a seguir é usado.
 
 ```{r fig.height = 5, fig.width = 50, fig.align = "center", message = F, warning = F }
-p1 = plot_waasby(BLUP_model)
-p2 = plot_waasby(BLUP_model,
+p1 <-plot_waasby(BLUP_model)
+p2 <-plot_waasby(BLUP_model,
                  col.shape = c("black", "gray")) +
   coord_flip()
 
@@ -805,7 +865,7 @@ p2 = plot_waasby(BLUP_model,
 
 \indt{Dicas}
 ```{block2, type = "dica"}
-O reescalonamento da variável resposta e do índice WAASB é necessário para que eles sejam diretamente comparáveis. Por padrão, a variável resposta é reescalonada de forma que o valor máximo (genótipo com a maior média) seja 100 e o valor mínimo (genótipo com a menor média) seja 0. Digamos que para uma determinada variável, menores valores são desejados, então o argumento `mresp = 100` (padrão) deve ser ajustado para `mresp = 0`. 
+O reescalonamento da variável resposta e do índice WAASB é necessário para que eles sejam diretamente comparáveis. Por padrão, a variável resposta é reescalonada de forma que o valor máximo (genótipo com a maior média) seja 100 e o valor mínimo (genótipo com a menor média) seja 0. Digamos que para uma determinada variável, menores valores são desejados, então o argumento `mresp = 100` (padrão) deve ser ajustado para `mresp = 0`.
 
 ```
 
@@ -816,7 +876,7 @@ Par obter o índice WAASBY para múltiplas variáveis, por exemplo, basta utiliz
 waas(data_ge2, ENV, GEN, REP,
      resp = c(PH, ED, TKW, NKR),
      wresp = rep(65, 4)) %>%
- get_model_data(what = "WAASBY")
+ get_model_data(what = "WAASY")
 ```
 
 
@@ -828,7 +888,7 @@ No exemplo a seguir, aplicaremos a função `wsmp()` \indf{wsmp} (**w**eighting 
 
 
 ```{r}
-scenarios = wsmp(BLUP_model)
+scenarios <- wsmp(BLUP_model)
 ```
 
 
@@ -854,7 +914,7 @@ onde *e* é o número de ambientes incluídos na análise, $Gv_{ij}$ é o valor 
 
 
 ```{r}
-Indexes = Resende_indexes(BLUP_model)
+Indexes <- Resende_indexes(BLUP_model)
 print(Indexes$GY)
 ```
 
@@ -866,25 +926,25 @@ Vimos anteriormente que um membro da família de modelos AMMI \indt{AMMI}(AMMI2)
 A função `cv_blup()` realiza uma validação cruzada para experimentos com repetição usando modelos mistos. Por padrão,  blocos completos são selecionados aleatoriamente em cada ambiente. O procedimento para calcular o RMSPD é idêntico ao apresentado na análise AMMI.
 
 ```{r }
-valida_blup = cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 20)
+valida_blup <- cv_blup(data_ge, ENV, GEN, REP, GY, nboot = 20)
 
 ```
 Para unir os resultados obtidos pelas funções `cv_ammif()` e `cv_blup()` a função `bind_cv()`. Usando o argumento `bind = "means"` é possível concatenar os valores médios obtidos por cada modelo. \indf{cv\_ammif} \indf{cv\_blup} \indf{bind\_cv}
 
 ```{r }
-val_means = bind_cv(AMMIF, valida_blup, bind = "means")
+val_means <- bind_cv(AMMIF, valida_blup, bind = "means")
 val_means$RMSPD
     ```
 
 
 Um gráfico boxplot também pode ser obtido utilizando o argumento `bind = "boot"` (padrão).
 ```{r, fig.width=10, fig.height=5 }
-val_plot = bind_cv(AMMIF, valida_blup)
-p1 = plot(val_plot)
-p2 = plot(val_plot,
+val_plot <- bind_cv(AMMIF, valida_blup)
+p1 <-plot(val_plot)
+p2 <-plot(val_plot,
           width.boxplot = 0.6,
           col.boxplot = "cyan")
-plot_grid(p1, p2)
+arrange_ggplot(p1, p2)
 
 ```
 

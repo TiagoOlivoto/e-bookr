@@ -105,7 +105,8 @@ A função `lm()` \indf{lm} é utilizada para ajustar regresões lineares simple
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 
-reg = read_excel("data/data_R.xlsx", sheet = "REG")
+reg <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+              sheet = "REG")
 mod7 = lm(Y ~ X1 + X2 + X3, data = reg)
 mod7.1 = lm(Y ~ 1, data = reg)
 anova(mod7.1, mod7) # Verificar a significância do modelo
@@ -342,8 +343,9 @@ $$
 $$
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-nls_tomato = read_excel("data/data_R.xlsx", sheet = "TOMATE")
-nls_tomato_cord = subset(nls_tomato,Genotipo  ==  "Cordillera") 
+nls_tomato <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                     sheet = "TOMATE")
+nls_tomato_cord <- subset(nls_tomato,Genotipo  ==  "Cordillera") 
 ```
 
 ```{r,  echo = TRUE, eval=FALSE, results="hide", message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
@@ -410,7 +412,8 @@ plot(res1_nls1)
 No exemplo acima, apenas uma observação foi realizada para cada variável independente (dias após o transplante, no caso). Por isso optou-se por utilizar o teste de *Breusch-Pagan* para realizar o diagnóstico de homocedasticidade dos resíduos. Quando mais de uma observação é realizada em cada variável independente, pode-se utilizar os testes de *Bartlett* ou *Levene*.
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-nls_eggplant = read_excel("data/data_R.xlsx", sheet = "EGGPLANT")
+nls_eggplant <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                       sheet = "EGGPLANT")
 nls_eggplant = subset(nls_eggplant, ESTUFA  ==  "E1") 
 start = list(b1 = 10,b2 = 6.7,b3 = 0.073)
 nls2 = nls(NUMERO ~ b1/(1+exp(b2-b3*DAT)), 
@@ -544,7 +547,8 @@ $$
 $$
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.width = 4, fig.height = 4, fig.align = "center"}
-plato_tomato = read_excel("data/data_R.xlsx", sheet = "PLATO")
+plato_tomato <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                       sheet = "PLATO")
 plato_cordillera = nls(num~(b0+b1*DAT*(DAT<= P))+
                     (b1*P*(DAT>P)),
                      data = subset(plato_tomato, Genotipo == "Cordillera"),

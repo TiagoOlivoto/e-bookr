@@ -10,7 +10,8 @@ Em arquivos *.csv*, os valores são separados por vírgula. Tabelas geradas no *
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 
-qualitativo = read_excel("data/data_R.xlsx", sheet = "QUALI")
+qualitativo <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                      sheet = "QUALI")
 mod1 = aov(RG ~ HIBRIDO + factor(BLOCO), data = qualitativo) 
 anova(mod1)
 names(anova(mod1))

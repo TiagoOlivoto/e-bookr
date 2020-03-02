@@ -50,7 +50,7 @@ IQR(Amostra1)
 
 ```
 
-Não existe no R uma função para computar o coeficiente de variação, então vamos criá-la utilizando a abordagem `function()`: \indf{function} \indt{CV}
+Não existe no R base uma função para computar o coeficiente de variação, então vamos criá-la utilizando a abordagem `function()`: \indf{function} \indt{CV}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 CV = function(dados){
@@ -66,40 +66,200 @@ CV = function(dados){
 CV(Amostra1)
 ```
 
-A distribuição dos dados pode ser determinada utilizando histograma de frequências, QQ-Plos e Box-Plot (conforme visto anteriormente). Estatísticas como a amplitude, erro padrão da média, intervalo de confiança, entre outros, podem ser obtidas com a função `desc_stat()` \indf{desc\_stat} do pacote [metan](https://tiagoolivoto.github.io/metan/)^[https://tiagoolivoto.github.io/metan/]. Esta função permite computar as estatisticas para uma ou mais variáveis de um data frame ou um vetor de dados numéricos, conforme mostrado abaixo.
+A distribuição dos dados pode ser determinada utilizando histograma de frequências, QQ-Plos e Box-Plot (conforme visto anteriormente). Estatísticas como a amplitude, erro padrão da média, intervalo de confiança, entre outros, podem ser obtidas com a função `desc_stat()` \indf{desc\_stat} do pacote [metan](https://tiagoolivoto.github.io/metan/)^[https://tiagoolivoto.github.io/metan/]. Esta função permite computar as estatisticas para uma ou mais variáveis de um data frame ou um vetor de dados numéricos. Para um exemplo numérico, consulte a [seção 7.3.1](#dstat).
+
+### Resumindo dados com o pacote `dplyr`
+Diversos verbos do pacote `dplyr` podem ser utilizados para resumir conjuntos de dados. Iniciaremos 
+com a função `count()`\indf{count} para contar valores que se repetem em uma determinada variável.  Por exemplo, é possível identificar qual é o valor de `APLA` que mais se repete utilizando 
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-data_ge2 %>%
-  desc_stat(EP, EL, CL, CW, NR, NKR,
-            stats = c("mean, SE.mean, CV, max, min"))
+library(metan)
+count(maize, APLA, sort = TRUE)
+
 ```
 
-Utilizando a função `split_factors()` é possível computar as estatísticas para cada nível de um fator. Neste exemplo, vamos calcular as estatísticas para cada um dos ambientes em que o experimento foi realizado, selecionando somente os valores da média, desvio padrão e coeficiente de variação. O argumento `stats` é utilizado para selecionar as estatísticas. Ele é um vetor de nomes separados por vírgula com` "` no início e no final do vetor apenas.
-
-* Isso vai funcionar:
-   * `stats = c("mean, SE.mean, CV, max, min")`
-   * `stats = "mean"`
-
-* Isso não vai funcionar:
-   * `stats = c("mean", "SE.mean", "CV", "max", "min")`
-   * `stats = c("mean,SE.mean, CV, max,min")`
+Para identificar quais os valores distintos de `APLA` foram observados a função `distinct()`\indf{distinct} é usada.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+distinct(maize, APLA)
+```
+
+
+Utilizando a função `summarise()`\indf{summarise} é possível criar uma ou mais variáveis escalares resumindo as variáveis de um tibble existente. Como resultado, uma linha é retornada. O seguinte código calcula a média global da MGRA e retorna o *n* utilizado na estimativa.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  summarise(MGRA_mean = mean(MGRA),
+            n = n())
+```
+
+
+Muitas vezes é necessário computar uma determinada função (como a média) para cada nível de uma variável categórica. Felizmente, o pacote **dplyr** possibilita que isto seja realizado facilmente. Continuamos no mesmo exemplo anterior. Neste caso, no entanto, o objetivo é calcular a média da MGRA para cada híbrido. Utilizando a função `group_by()` \indf{group\_by} antes da função `summarise()` \indf{summarise} uma linha de resultado para cada nível do fator híbrido é retornado.
+
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  group_by(HIB) %>%
+  summarise(MGRA_mean = mean(MGRA),
+            n = n())
+```
+
+Até aqui vimos como a média (global ou para cada híbrido) da MGRA pode ser calculada. Quase sempre, no entanto, quando calculamos a média (ou qualquer outra medida) em um conjunto de dados, queremos fazê-la para todas as variáveis numéricas. Implementar isto com **dplyr** é relativamente fácil. Existem basicamente três opções para isto, utilizando as variantes `summarise_all()`, `summarise_if()`, ou `summarise_at()`. Todos os *verbos* principais do pacote **dplyr** apresentam estas variantes, o que torna fácil aplicar a mesma função para múltiplas variáveis. Estas três variantes proporcionam: \indf{summarise\_at}
+
+* `_all()` aplicar a função a todas as variáveis;
+* `_at()` aplicar a função a variáveis selecionadas com vetores de caracteres ou utilizando `vars()`
+* `_if()` aplicar a função a variáveis selecionadas com uma função, por exemplo `is.numeric()`.
+
+Veremos como estas variantes funcionam, calculando a média para as variáveis do conjunto de dados.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  summarise_all(mean)
+```
+
+Note que utilizando a função `summarise_all()`\indf{summarise\_all} a média para todas as variáveis numéricas foi calculada e um valor `NA` foi retornado para as variáveis categóricas. Se o objetivo é computar a média somente para as variáveis numéricas (o que é o mais lógico), a função `summarise_if()` \indf{summarise\_if}é a melhor escolha.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>% 
+  summarise_if(is.numeric, mean)
+```
+
+Funções próprias podem ser aplicadas dentro da função summarise para computar uma estatística personalizada. Como exemplo, vamos criar uma função chamada `mse` que retornará o valor da média e o erro padrão da média e aplicá-la para cada nível do fator AMB.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+mse <- function(x){
+  me = round(mean(x), 3)
+  se = round(sd(x)/sqrt(n()), 3)
+  return(paste(me, "+-", se))
+}
+maize %>% 
+  group_by(AMB) %>%
+  summarise(MGRA_mean_se = mse(MGRA))
+```
+
+
+Se desejamos computar mais de uma função para variáveis específicas, então o próximo código nos ajudará. Note que para aplicar mais de uma função é necessário declarar o argumento `.funs` e criar um vetor com o nome das funções. Neste caso, os sufixos `_m` e `_sd` representam a média e o desvio padrão, respectivamente.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  group_by(AMB) %>%
+  summarise_at(vars(starts_with("M"),
+                    ends_with("S"),
+                    contains("GR")),
+               .funs = c(m = mean, sd = sd))
+```
+
+
+### Estatística descritiva com pacote metan {#dstat}
+
+O pacote `metan` fornece uma estrutura simples e intuitiva para o cálculo de estatísticas descritivas. Um [conjunto de funções](https://tiagoolivoto.github.io/metan/reference/utils_stats.html) pode ser usado para calcular rapidamente as estatísticas descritivas mais usadas. 
+
+Para calcular os valores médios para cada nível de um fator, por exemplo para cada nível do fator `HIB` do conjunto de dados `maize`, usamos a função` means_by() `.\indf{means\_by}
+
+```{r}
+means_by(maize, HIB)
+
+```
+
+As seguintes funções `_by()` estão disponíveis para calcular as principais estatísticas descritivas por níveis de um fator.
+
+* `cv_by ()` Para cálculo do coeficiente de variação.\indf{cv\_by}
+* `max_by ()` Para calcular valores máximos.\indf{max\_by}
+* `means_by ()` Para calcular meios aritméticos.\indf{means\_by}
+* `min_by ()` Para compilar valores mínimos.\indf{min\_by}
+* `n_by ()` Para obter o comprimento.\indf{n\_by}
+* `sd_by ()` Para calcular o desvio padrão amostral.\indf{sd\_by}
+* `sem_by ()` Para calcular o erro padrão da média.\indf{sem\_by}
+
+#### Funções úteis
+
+Outras funções úteis também são implementadas. Todos eles funcionam naturalmente com `%>%`, lidam com dados agrupados com `group_by()` e várias variáveis (todas as variáveis numéricas de `.data` por padrão).\indf{group\_by}
+
+* `av_dev ()` calcula o desvio médio absoluto.\indf{av\_dev}
+* `ci_mean ()` calcula o intervalo de confiança para a média.\indf{ci\_mean}
+* `cv ()` calcula o coeficiente de variação.\indf{cv}
+* `freq_table ()` Calcula a fábula de frequência.\indf{freq\_table}
+* `hm_mean ()`, `gm_mean ()` calcula as médias harmônica e geométrica, respectivamente. A média harmônica é o recíproco da média aritmética dos recíprocos. A média geométrica é a enésima raiz de n produtos.\indf{hm\_mean}\indf{gm\_mean}
+* `kurt ()` calcula a curtose como usada no SAS e no SPSS.\indf{kurt}
+* `range_data ()` Calcula o intervalo dos valores.\indf{range\_data}
+* `sd_amo ()`, `sd_pop ()` Calcula amostra e desvio padrão populacional, respectivamente.\indf{sd\_amo}\indf{sd\_pop}
+* `sem ()` calcula o erro padrão da média.\indf{sem}
+* `skew ()` calcula a assimetria usada no SAS e no SPSS.\indf{skew}
+* `sum_dev ()` calcula a soma dos desvios absolutos.\indf{sum\_dev}
+* `sum_sq_dev ()` calcula a soma dos desvios ao quadrado.\indf{sum\_sq\_dev}
+* `var_amo ()`, `var_pop ()` calcula amostra e variação populacional.\indf{var\_amo}\indf{var\_pop}
+* `valid_n ()` Retorna o comprimento válido (não NA) de um dado.\indf{valid\_n}
+
+#### A função `desc_stat()`
+
+Para calcular todas as estatísticas de uma só vez, podemos usar `desc_stat()`\indf{desc\_stat}. Esta função pode ser usada para calcular medidas de tendência central, posição e dispersão. Por padrão (`stats = "main"`), sete estatísticas (coeficiente de variação, máximo, média, mediana, mínimo, desvio padrão da amostra, erro padrão e intervalo de confiança da média) são calculadas. Outros valores permitidos são `"all"` para mostrar todas as estatísticas, `"robust"` para mostrar estatísticas robustas, `"quantile"` para mostrar estatísticas quantílicas ou escolher uma (ou mais) estatísticas usando um vetor separado por vírgula com os nomes das estatísticas, por exemplo, `stats = c("mean, cv")`. Também podemos usar `hist = TRUE` para criar um histograma para cada variável. Aqui, auxiliares selecionados também podem ser usados no argumento `...`.
+
+
+
+* **Todas as estatísticas para todas as variáveis numéricas**
+
+```{r, message = FALSE, fig.height = 5, fig.width = 10, fig.align =" center "}
+desc_stat(maize, stats = "all")
+```
+
+* **Estatísticas robustas usando select helpers**
+```{r, message = FALSE, fig.height = 5, fig.width = 10, fig.align =" center "}
+maize%>%
+  desc_stat(contains("N"),
+            stats = "robust")
+```
+
+* **Funções quantílicas escolhendo nomes de variáveis**
+```{r, message = FALSE, fig.height = 5, fig.width = 10, fig.align =" center "}
+maize%>%
+  desc_stat(APLA, AIES, CESP,
+            stats = "quantile")
+```
+
+* **Crie um histograma para cada variável**
+```{r, message = FALSE, fig.height = 3.33, fig.width = 10, fig.align =" center "}
+maize%>%
+  desc_stat(APLA, AIES, CESP,
+            hist = TRUE)
+```
+
+#### Estatísticas por níveis de fatores
+Para calcular as estatísticas para cada nível de um fator, use o argumento `by`. Além disso, é possível selecionar as estatísticas a serem computadas usando o argumento `stats`, que é um único nome estatístico, por exemplo,` "mean" `ou um vetor de nomes separados por vírgula com `"` no início e apenas o final do vetor. Tenha em atenção que os nomes das estatísticas **NÃO** diferenciam maiúsculas de minúsculas, por exemplo, são reconhecidos `"mean"`, `"Mean"` ou `"MEAN"`. Vírgula ou espaços podem ser usados para separar os nomes das estatísticas.
+
+* Todas as opções abaixo funcionarão:
+
+   * `stats = c ("mean, se, cv, max, min")`
+   * `stats = c ("mean se cv max min")`
+   * `stats = c ("MEAN, Se, CV max MIN")`
+
+
+```{r, message = FALSE, fig.height = 5, fig.width = 5.5, fig.align =" center "}
+desc_stat (maize,
+          contains("C"),
+          stats = ("mean, se, cv, max, min"),
+          by = AMB)
+```
+\indf{desc\_stat}
+Para calcular as estatísticas descritivas por mais de uma variável de agrupamento, precisamos passar dados agrupados para o argumento `.data` com a função` group_by() `. Vamos calcular a média, o erro padrão da média e o tamanho da amostra para as variáveis `EP` e` EL` para todas as combinações dos fatores `AMB` e` HIB`.
+
+```{r warning = FALSE}
 stats <- 
-  data_ge2 %>%
-  split_factors(GEN) %>%
-  desc_stat(EP, EL, CL, CD, CW, NR,
-            stats = c("mean, SE.mean, CV, max, min, median"),
-            verbose = F)
-print(stats)
+maize %>% 
+  group_by(AMB, HIB) %>% 
+  desc_stat(APLA, AIES, CESP,
+            stats = c("mean, se, n"))
+stats
+```
+
+Quando as estatísticas são calculadas para níveis de um fator, a função `desc_wider()` pode ser utilizada para converter uma estatística calculada em um conjunto de dados em formato *wide*, ou seja, variáveis nas colunas, fatores nas linhas com o valor da estatística escolhida preenchendo a tabela.
+```{r}
+desc_wider(stats, se)
 ```
 
 
-O resultado obtido pela função acima pode ser convertido em um format  *longo* utilizando a função `desc_wider()`
 
-```{r, message=FALSE, fig.height = 5, fig.width = 5.5, fig.align = "center" }
-desc_wider(stats, CD)
-```
+
+
 
 
 ### Testes de aderência
@@ -373,7 +533,8 @@ Para maiores detalhes, ver o [pdf do pacote](https://cran.r-project.org/web/pack
 Os dados utilizados neste exemplo estão na planilha QUALI do conjunto de dados *data/data_R.xlsx*. Os próximos códigos carregam o conjunto de dados e criam um gráfico do tipo boxplot para explorar o padrão dos dados.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, fig.width=10, fig.height=5}
-qualitativo = read_excel("data/data_R.xlsx", sheet = "QUALI")
+qualitativo <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                      sheet = "QUALI")
 p1 = ggplot(qualitativo, aes(HIBRIDO, RG))+
        geom_hline(yintercept = mean(qualitativo$RG), linetype = "dashed")+
        geom_boxplot()+
@@ -421,8 +582,7 @@ geom_area(data = subset(df, X > qf(p = 1-Alpha.obs, df1 = df1, df2 = df2, ncp=0)
 geom_area(data = subset(df, X > qf(p = 1-Alpha.des, df1 = df1, df2 = df2, ncp=0)),
                    aes(x=X, y=df(x = X, df1 = df1, df2 = df2, ncp=2)), fill = "green")+
 geom_area(aes(x=X, y=df(x = X, df1 = df1, df2 = df2, ncp=2)), color="black", fill="blue", alpha = 0.1)+
-labs(x = "Valor do teste F", y = "Probabilidade acumulada") +
-  my_theme()
+labs(x = "Valor do teste F", y = "Probabilidade acumulada")
 ```
 
 Em sequência a ANOVA, a função retorna o resultado da análise complementar solicitada. Neste exemplo, o teste de Tukey (5% de erro) é utilizado. Este teste realiza todas as combinações possíveis entre as médias (por isso o nome comparação múltipla de medias), comparando se a diferença entre duas médias é maior ou menor que uma diferença mínima significativa (DMS). Esta DMS é calculada pela seguinte fórmula $DMS = q \times \sqrt{QME/r}$, onde *q* é um valor tabelado, considerando o número de tratamentos e o GL do erro; *QME* é o quadrado médio do erro; e *r* é o número de repetições (ou blocos). O valor de *q* pode ser encontrado no apêndice 1. Para este caso, considerando 10 e 30 como o número de tratamentos e o GL do erro, respectivamente, o valor de q é 5,76, que aplicado na fórmula resulta em $DMS = 5,76 \times \sqrt{3.5389/4}=5.417$. Logo, a diferença mínima entre duas médias para que estas sejam significativamente diferentes (5% de erro), deve ser de 5,417 toneladas. Como a diferença entre a maior média (NUPEC_01) e a menor média (NUPEC_10), foi de 3,994 toneladas, a média de todos os tratamentos foram consideradas iguais.
@@ -469,7 +629,8 @@ O *p*-valor do teste de Shapiro-Wilk indicou que os resíduos \indt{resíduos} n
 Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a $SQ_{Trat}$ é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função `crd()`, basta indicar como `FALSE` no argumentos `quali`. O arquivo de dados "QUALITATIVO.xlsx" contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no `ggplot2` até agora, vamos criar um gráfico para visualisar estes dados. \indf{ggplot} \indf{geom\_point} \indf{geom\_smooth}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, fig.height = 3, fig.width = 5, fig.cap = "Exemplo de regressão com comportamento linear, quadrático e cúbico", fig.align = "center"}
-quantitativo_todos = read_excel("data/data_R.xlsx", sheet = "QUANTI")
+quantitativo_todos <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                             sheet = "QUANTI")
 ggplot(quantitativo_todos, aes(DOSEN, RG, col = TIPO)) +
   geom_point() +
   geom_smooth()
@@ -719,7 +880,8 @@ Baseado no modelo estatístico apresentado, percebe-se que quando uma ANCOVA\ind
 
 
 ```{r warning = FALSE, message = FALSE, echo=FALSE, fig.height=3.5, fig.align="center", fig.cap="Gráfico de dispersão e linhas de regressão entre a variável dependente e a covariável. As diferentes cores represetam três tratamentos hipotéticos."}
-cov2 <- read_excel("data/data_R.xlsx", sheet = "SCENARIO")
+cov2 <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+               sheet = "SCENARIO")
 ggplot(cov2, aes(X, Y, col = TRAT))+
   geom_point()+
   geom_smooth(method = "lm", se = F)+
@@ -761,13 +923,18 @@ Vamos agora ver cada uma destas etapas detalhadamente.
 O seguinte código é utilizado para instalar/carregar os pacotes necessários bem como para fazer o upload dos dados e armazenar no dataframe `covar` \indf{p\_load}
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE}
+
 # dados
-covar = read_excel("data/data_R.xlsx", sheet = "COVAR")
+covar <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                sheet = "COVAR")
 # duas primeiras colunas como fator
-covar = covar %>% mutate_at(c(1:2), as.factor)
-covar_ggplot = covar %>% gather(key = "variable", value = "val", NPUE, GE)
+covar <- to_factor(covar, 1:2)
+
+covar_ggplot <- 
+  covar %>%
+  pivot_longer(names_to = "variable", values_to = "val", cols = c(NPUE, GE))
 # Estrutura dos dados
-str(covar)
+covar_ggplot
 ```
 
 \indf{mutate\_at} \indf{gather} \indf{gather}
@@ -776,9 +943,10 @@ str(covar)
 A construção de gráficos do tipo boxplot para a variável resposta e a covariável são importantes, pois permitem identificar a presença de possíveis *outliers* nos dados além de facilitar a visualização de padrões de associação entre as variáveis.
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.width=6.5, fig.height=3, fig.align="center", fig.cap="Gráfico boxplot da variável independente (GE) e da covariável (NPUE) em cada nível do tratamento (T)."}
-mean_var = covar_ggplot %>%
-    group_by(variable) %>%
-    summarise(mean = mean(val))
+mean_var <- 
+  covar_ggplot %>%
+  group_by(variable) %>%
+  summarise(mean = mean(val))
 
 ggplot(covar_ggplot, aes(x = TRAT, y = val)) +
   geom_boxplot(fill = "gray75", width = 0.6) +
@@ -801,7 +969,7 @@ A independência entre a covariavel e os efeitos de tratamento, demostrada grafi
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=6, fig.width=6, fig.align="center"}
 # modelo ANOVA convencional para a covariável
-convencional = aov(NPUE ~  TRAT + BLOCO, data = covar)
+convencional <- aov(NPUE ~  TRAT + BLOCO, data = covar)
 # Análise de variância
 anova(convencional) 
 
@@ -818,7 +986,7 @@ Para realizar a ANCOVA, utilizaremos a mesma função `aov()`. Agora, no entanto
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=6, fig.width=6, fig.align="center"}
 # modelo ANOVA convencional
-ancova = aov(GE ~  TRAT + NPUE + BLOCO, data = covar)
+ancova <- aov(GE ~  TRAT + NPUE + BLOCO, data = covar)
 # Análise de variância
 Anova(ancova, type = 3)
 
@@ -828,7 +996,7 @@ Analisando primeiro os valores de significância, fica claro que a covariável p
 
 \indf{leveneTest} \indf{tukey.add.test} \indf{shapiro.test}  \indf{autoplot}
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.height=8, fig.width=8, fig.align="center", fig.cap="Gráfico residual do modelo ANCOVA obtido pela função autoplot()."}
-residuals = residuals(ancova)
+residuals <- residuals(ancova)
 # normalidade dos resíduos
 shapiro.test(residuals)
 
@@ -1046,7 +1214,7 @@ Para o exemplo, os dados de proporção de legumes viáveis descrito anteriormen
 
 ```{r collapse = TRUE,  eval=T, fig.width=10, fig.height=5,  fig.align="center", fig.cap="Proporção de legumes viáveis em nove cultivares de soja (a) e gráfico Q-Q plot (b)."}
 
-SOJA = read_excel("data/data_R.xlsx", sheet = "SOJA")
+SOJA <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx", sheet = "SOJA")
 medlvia = mean(SOJA$NLV / SOJA$NLT) # Média de legumes viáveis
 
 # Explorando os dados
@@ -1299,11 +1467,16 @@ Nesta seção, serão analisados dados de experimentos bifatoriais com diferente
 
 
 ```{r warning = FALSE, message = FALSE}
-FAT1_CI = read_excel("data/data_R.xlsx", sheet = "FAT1_CI")
-FAT1_SI = read_excel("data/data_R.xlsx", sheet = "FAT1_SI")
-FAT2_CI = read_excel("data/data_R.xlsx", sheet = "FAT2_CI")
-FAT2_SI = read_excel("data/data_R.xlsx", sheet = "FAT2_SI")
-FAT3 =read_excel("data/data_R.xlsx", sheet = "FAT3")
+FAT1_CI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                  sheet = "FAT1_CI")
+FAT1_SI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                  sheet = "FAT1_SI")
+FAT2_CI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                  sheet = "FAT2_CI")
+FAT2_SI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                  sheet = "FAT2_SI")
+FAT3 <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+                  sheet = "FAT3")
 
 ```
 

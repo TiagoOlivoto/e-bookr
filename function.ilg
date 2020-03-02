@@ -1,0 +1,7 @@
+This is makeindex, version 2.15 [MiKTeX 2.9.6930 64-bit] (kpathsea + Thai support).
+Scanning style file ./pyro.ist...done (3 attributes redefined, 0 ignored).
+Scanning input file function.idx....done (254 entries accepted, 0 rejected).
+Sorting entries.....done (2119 comparisons).
+Generating output file function.ind....done (279 lines written, 0 warnings).
+Output written in function.ind.
+Transcript written in function.ilg.
