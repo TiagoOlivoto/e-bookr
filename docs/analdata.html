@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-01" />
+<meta name="date" content="2020-03-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
 <li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
 <li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
-<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
+<li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico-1"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
 <li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
 <li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
 <li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
@@ -1121,12 +1121,15 @@ factor(dados$Tratamentos)4 -0.79675</code></pre>
 </div>
 <div id="delineamento-inteiramente-casualizado-dic" class="section level3">
 <h3><span class="header-section-number">10.2.5</span> Delineamento inteiramente casualizado (DIC)</h3>
-<p>O DIC é um delineamento adequado para áreas uniformes (parcelas são uniformes), onde não há necessidade de controle local (bloqueamento). Com esse delineamento, os tratamentos devem ser distribuidos aleatoriamente nas parcelas.</p>
+<div id="modelo-estatístico" class="section level4">
+<h4><span class="header-section-number">10.2.5.1</span> Modelo estatístico</h4>
+<p>O delineamento inteiramente casualizado (DIC) é um delineamento adequado para áreas uniformes (parcelas são uniformes), onde não há necessidade de controle local (bloqueamento). Neste delineamento, os tratamentos devem ser distribuidos aleatoriamente nas parcelas.</p>
 <p>O modelo do DIC é dado por </p>
 <p><span class="math display">\[
 {Y_{ij}} = m + {t_i} + {\varepsilon _{ij}}
 \]</span></p>
-<p>Onde <span class="math inline">\(m\)</span> é a média geral do experimento, <span class="math inline">\(t_i\)</span> é o efeito de tratamentos e <span class="math inline">\(\epsilon_{ij}\)</span> é o erro experimental. Experimentos em DIC serão executados através da função <code>crd()</code>  do pacote <em>ExpDes</em>. Os argumentos desta função são:</p>
+<p>Onde <span class="math inline">\(m\)</span> é a média geral do experimento, <span class="math inline">\(t_i\)</span> é o efeito de tratamentos, sendo estimado por <span class="math inline">\(\hat t_i = \bar Y_{i.} - \bar Y_{..}\)</span> com a seguinte restrição: <span class="math inline">\(\sum_i \hat t_i = 0 ~~~~\forall_i\)</span> (leia-se, o somatório dos efeitos de tratamento é zero para todo tratamento <em>i</em>). <span class="math inline">\(\epsilon_{ij}\)</span> é o erro experimental estimado por (<span class="math inline">\(\hat e_{ij = Y_{ij} - m - \hat t_i}\)</span>) onde <span class="math inline">\({e_{ij}}\sim NID(0,{\sigma ^2})\)</span>.</p>
+<p>Experimentos em DIC serão executados utilizando da função <code>crd()</code>  do pacote <em>ExpDes</em>. Os argumentos desta função são:</p>
 <table>
 <thead>
 <tr class="header">
@@ -1170,23 +1173,23 @@ factor(dados$Tratamentos)4 -0.79675</code></pre>
 </tbody>
 </table>
 <p>Para maiores detalhes, ver o <a href="https://cran.r-project.org/web/packages/ExpDes/ExpDes.pdf">pdf do pacote</a><a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a> ou ir em ajuda (digitar <code>?ExpDes</code> no console).</p>
+</div>
 <div id="dic-com-fatores-qualitativos" class="section level4">
-<h4><span class="header-section-number">10.2.5.1</span> DIC com fatores qualitativos</h4>
+<h4><span class="header-section-number">10.2.5.2</span> DIC com fatores qualitativos</h4>
 
 <p>Os dados utilizados neste exemplo estão na planilha QUALI do conjunto de dados <em>data/data_R.xlsx</em>. Os próximos códigos carregam o conjunto de dados e criam um gráfico do tipo boxplot para explorar o padrão dos dados.</p>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="analdata.html#cb389-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
-<span id="cb389-2"><a href="analdata.html#cb389-2"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(url,</span>
-<span id="cb389-3"><a href="analdata.html#cb389-3"></a>                      <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
-<span id="cb389-4"><a href="analdata.html#cb389-4"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(HIBRIDO, RG))<span class="op">+</span></span>
-<span id="cb389-5"><a href="analdata.html#cb389-5"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
-<span id="cb389-6"><a href="analdata.html#cb389-6"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
-<span id="cb389-7"><a href="analdata.html#cb389-7"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)<span class="op">+</span></span>
-<span id="cb389-8"><a href="analdata.html#cb389-8"></a><span class="st">       </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb389-9"><a href="analdata.html#cb389-9"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(<span class="kw">factor</span>(BLOCO), RG))<span class="op">+</span></span>
-<span id="cb389-10"><a href="analdata.html#cb389-10"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
-<span id="cb389-11"><a href="analdata.html#cb389-11"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
-<span id="cb389-12"><a href="analdata.html#cb389-12"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)</span>
-<span id="cb389-13"><a href="analdata.html#cb389-13"></a><span class="kw">plot_grid</span>(p1, p2)</span></code></pre></div>
+<span id="cb389-2"><a href="analdata.html#cb389-2"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
+<span id="cb389-3"><a href="analdata.html#cb389-3"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(HIBRIDO, RG))<span class="op">+</span></span>
+<span id="cb389-4"><a href="analdata.html#cb389-4"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
+<span id="cb389-5"><a href="analdata.html#cb389-5"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
+<span id="cb389-6"><a href="analdata.html#cb389-6"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)<span class="op">+</span></span>
+<span id="cb389-7"><a href="analdata.html#cb389-7"></a><span class="st">       </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb389-8"><a href="analdata.html#cb389-8"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(<span class="kw">factor</span>(BLOCO), RG))<span class="op">+</span></span>
+<span id="cb389-9"><a href="analdata.html#cb389-9"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
+<span id="cb389-10"><a href="analdata.html#cb389-10"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
+<span id="cb389-11"><a href="analdata.html#cb389-11"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)</span>
+<span id="cb389-12"><a href="analdata.html#cb389-12"></a><span class="kw">plot_grid</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-166-1.png" width="960" style="display: block; margin: auto;" />
  </p>
 <p>Analizando o boxplot acima é razoável dizer que as médias dos tratamentos são diferentes, principalmente comparando o NUPEC_10 com NUPEC_1. Esta suspeita de diferença, no entanto, deve ser suportada com a realização da análise de variância. No pacote <strong>ExpDes</strong>, quando os fatores são qualitativos, a análise complementar aplicada é a comparção de médias. A função <code>crd()</code> do pacote retorna a tabela da ANOVA, a análise de pressupostos  (normalidade e homogeneidade) e o teste de comparação de médias.</p>
@@ -1268,7 +1271,7 @@ Figure 10.2: Gráfico de resíduos gerado pela função plotres()
 <p><a href="resposta-dos-exercícios.html#exerc7">Resposta</a></p>
 </div>
 <div id="dic-com-fatores-quantitativos" class="section level4">
-<h4><span class="header-section-number">10.2.5.2</span> DIC com fatores quantitativos</h4>
+<h4><span class="header-section-number">10.2.5.3</span> DIC com fatores quantitativos</h4>
 
 <p>Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a <span class="math inline">\(SQ_{Trat}\)</span> é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função <code>crd()</code>, basta indicar como <code>FALSE</code> no argumentos <code>quali</code>. O arquivo de dados “QUALITATIVO.xlsx” contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no <code>ggplot2</code> até agora, vamos criar um gráfico para visualisar estes dados.   </p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="analdata.html#cb393-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
@@ -1625,7 +1628,7 @@ Figure 10.5: Gráfico gerado pela função boxcox() para identificar o valor de 
 <p>Neta seção, veremos alguns conceitos estatísticos e uma aplicação numérica de uma técnica interessante que pode ser útil, se corretamente utilizada, para reduzir o erro experimental em experimentos agronômicos: a análise de covariância (ANCOVA). A ANCOVA é um modelo linear geral que combina princípios de ANOVA e regressão para avaliar se as médias de uma variável dependente são iguais entre níveis de uma variável independente categórica (tratamento), controlando estatisticamente os efeitos de outras variáveis contínuas que não são de interesse primário. Tais variáveis contínuas são medidas em cada unidade experimental e são chamadas <em>covariáveis</em>. Idealmente, estas variáveis devem ser determinadas antes que os tratamentos tenham sido atribuídos às unidades experimentais ou, no mínimo, que os valores das covariáveis não sejam afetados pelos tratamentos aplicados <span class="citation">(Snedecor and Cochran <a href="#ref-Snedecor1967" role="doc-biblioref">1967</a>)</span>. A ANCOVA tem várias aplicações. No contexto da experimentação agronômica, ela é frequentemente utilizada reduzir a variabilidade no experimento pela contabilização da variabilidade nas unidades experimentais que não puderam ser controladas pelo design experimental.</p>
 <p>Considere um experimento conduzido em uma área em que as unidades experimentais exibem considerável variabilidade que não pode ser controlada utilizando estratégias de bloqueio. O pesquisador acredita, digamos, baseado em experiências passadas, que uma ou mais características das unidades experimentais podem ajudar a descrever parte da variabilidade entre as unidades experimentais. Nesta condição, o pesquisador pode utilizar resultados de experimentos passados observados nas mesmas unidades experimentais –excluido o efeito de tratamento– como uma covariável. Outra estratégia –embora um pouco distante em tempos de recursos financeiros limitados– poderia ser a realização de uma análise de solo em cada unidade experimental e utilizar os resultados obtidos como covariáveis. Neste sentido, ao utilizar informações relacionadas as características fisico-químicas do solo como uma covariável, o pesquisador tenta explicar a variabilidade nas unidades experimentais que não podem ser convenientemente controladas por outra técnica experimental.</p>
 </div>
-<div id="modelo-estatístico" class="section level3">
+<div id="modelo-estatístico-1" class="section level3">
 <h3><span class="header-section-number">10.4.2</span> Modelo estatístico</h3>
 <p>Em uma estrura de tratamentos fixos, unifatorial, conduzidos em delineamento inteiramente casualizado, o modelo da ANOVA tradicional visto anteriormente pode ser escrito da seguinte forma quando uma covariável numérica (<span class="math inline">\(X\)</span>) também foi mensurada em cada unidade experimental.</p>
 <p><span class="math display">\[

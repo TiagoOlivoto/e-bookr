@@ -503,8 +503,8 @@ Demonstrar como o procedimento de estimação e cálculo da ANOVA serviu apenas 
 \indf{lm} \indf{aov}
 
 ### Delineamento inteiramente casualizado (DIC)
-
-O DIC é um delineamento adequado para áreas uniformes (parcelas são uniformes), onde não há necessidade de controle local (bloqueamento). Com esse delineamento, os tratamentos devem ser distribuidos aleatoriamente nas parcelas. 
+#### Modelo estatístico
+O delineamento inteiramente casualizado (DIC) é um delineamento adequado para áreas uniformes (parcelas são uniformes), onde não há necessidade de controle local (bloqueamento). Neste delineamento, os tratamentos devem ser distribuidos aleatoriamente nas parcelas. 
 
 O modelo do DIC é dado por \indt{DIC}
 
@@ -512,7 +512,9 @@ $$
 {Y_{ij}} = m + {t_i} + {\varepsilon _{ij}}
 $$
 
-Onde $m$ é a média geral do experimento, $t_i$ é o efeito de tratamentos e $\epsilon_{ij}$ é o erro experimental. Experimentos em DIC serão executados através da função `crd()` \indt{crd()} do pacote *ExpDes*. Os argumentos desta função são:
+Onde $m$ é a média geral do experimento, $t_i$ é o efeito de tratamentos, sendo estimado por $\hat t_i = \bar Y_{i.} - \bar Y_{..}$ com a seguinte restrição: $\sum_i \hat t_i = 0 ~~~~\forall_i$ (leia-se, o somatório dos efeitos de tratamento é zero para todo tratamento *i*). $\epsilon_{ij}$ é o erro experimental estimado por ($\hat e_{ij = Y_{ij} - m - \hat t_i}$) onde ${e_{ij}}\sim NID(0,{\sigma ^2})$.
+
+Experimentos em DIC serão executados utilizando da função `crd()` \indt{crd()} do pacote *ExpDes*. Os argumentos desta função são:
 
 |Argumento                |Descrição
 |-------------------------|-------------------------|
@@ -534,8 +536,7 @@ Os dados utilizados neste exemplo estão na planilha QUALI do conjunto de dados 
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, fig.width=10, fig.height=5}
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
-qualitativo <- import(url,
-                      sheet = "QUALI")
+qualitativo <- import(url, sheet = "QUALI")
 p1 = ggplot(qualitativo, aes(HIBRIDO, RG))+
        geom_hline(yintercept = mean(qualitativo$RG), linetype = "dashed")+
        geom_boxplot()+
