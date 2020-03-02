@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -635,7 +636,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <h4><span class="header-section-number">10.1.4.2</span> A função <code>desc_stat()</code></h4>
 <p>Para calcular todas as estatísticas de uma só vez, podemos usar <code>desc_stat()</code>. Esta função pode ser usada para calcular medidas de tendência central, posição e dispersão. Por padrão (<code>stats = "main"</code>), sete estatísticas (coeficiente de variação, máximo, média, mediana, mínimo, desvio padrão da amostra, erro padrão e intervalo de confiança da média) são calculadas. Outros valores permitidos são <code>"all"</code> para mostrar todas as estatísticas, <code>"robust"</code> para mostrar estatísticas robustas, <code>"quantile"</code> para mostrar estatísticas quantílicas ou escolher uma (ou mais) estatísticas usando um vetor separado por vírgula com os nomes das estatísticas, por exemplo, <code>stats = c("mean, cv")</code>. Também podemos usar <code>hist = TRUE</code> para criar um histograma para cada variável. Aqui, auxiliares selecionados também podem ser usados no argumento <code>...</code>.</p>
 <ul>
-<li><strong>Todas as estatísticas para todas as variáveis ​​numéricas</strong></li>
+<li><strong>Todas as estatísticas para todas as variáveis numéricas</strong></li>
 </ul>
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="analdata.html#cb325-1"></a><span class="kw">desc_stat</span>(maize, <span class="dt">stats =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 7 x 29
@@ -1173,18 +1174,19 @@ factor(dados$Tratamentos)4 -0.79675</code></pre>
 <h4><span class="header-section-number">10.2.5.1</span> DIC com fatores qualitativos</h4>
 
 <p>Os dados utilizados neste exemplo estão na planilha QUALI do conjunto de dados <em>data/data_R.xlsx</em>. Os próximos códigos carregam o conjunto de dados e criam um gráfico do tipo boxplot para explorar o padrão dos dados.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="analdata.html#cb389-1"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb389-2"><a href="analdata.html#cb389-2"></a>                      <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
-<span id="cb389-3"><a href="analdata.html#cb389-3"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(HIBRIDO, RG))<span class="op">+</span></span>
-<span id="cb389-4"><a href="analdata.html#cb389-4"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
-<span id="cb389-5"><a href="analdata.html#cb389-5"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
-<span id="cb389-6"><a href="analdata.html#cb389-6"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)<span class="op">+</span></span>
-<span id="cb389-7"><a href="analdata.html#cb389-7"></a><span class="st">       </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb389-8"><a href="analdata.html#cb389-8"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(<span class="kw">factor</span>(BLOCO), RG))<span class="op">+</span></span>
-<span id="cb389-9"><a href="analdata.html#cb389-9"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
-<span id="cb389-10"><a href="analdata.html#cb389-10"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
-<span id="cb389-11"><a href="analdata.html#cb389-11"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)</span>
-<span id="cb389-12"><a href="analdata.html#cb389-12"></a><span class="kw">plot_grid</span>(p1, p2)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="analdata.html#cb389-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb389-2"><a href="analdata.html#cb389-2"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(url,</span>
+<span id="cb389-3"><a href="analdata.html#cb389-3"></a>                      <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
+<span id="cb389-4"><a href="analdata.html#cb389-4"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(HIBRIDO, RG))<span class="op">+</span></span>
+<span id="cb389-5"><a href="analdata.html#cb389-5"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
+<span id="cb389-6"><a href="analdata.html#cb389-6"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
+<span id="cb389-7"><a href="analdata.html#cb389-7"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)<span class="op">+</span></span>
+<span id="cb389-8"><a href="analdata.html#cb389-8"></a><span class="st">       </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb389-9"><a href="analdata.html#cb389-9"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(qualitativo, <span class="kw">aes</span>(<span class="kw">factor</span>(BLOCO), RG))<span class="op">+</span></span>
+<span id="cb389-10"><a href="analdata.html#cb389-10"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(qualitativo<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
+<span id="cb389-11"><a href="analdata.html#cb389-11"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
+<span id="cb389-12"><a href="analdata.html#cb389-12"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean, <span class="dt">shape =</span> <span class="dv">23</span>)</span>
+<span id="cb389-13"><a href="analdata.html#cb389-13"></a><span class="kw">plot_grid</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-166-1.png" width="960" style="display: block; margin: auto;" />
  </p>
 <p>Analizando o boxplot acima é razoável dizer que as médias dos tratamentos são diferentes, principalmente comparando o NUPEC_10 com NUPEC_1. Esta suspeita de diferença, no entanto, deve ser suportada com a realização da análise de variância. No pacote <strong>ExpDes</strong>, quando os fatores são qualitativos, a análise complementar aplicada é a comparção de médias. A função <code>crd()</code> do pacote retorna a tabela da ANOVA, a análise de pressupostos  (normalidade e homogeneidade) e o teste de comparação de médias.</p>
@@ -1269,8 +1271,8 @@ Figure 10.2: Gráfico de resíduos gerado pela função plotres()
 <h4><span class="header-section-number">10.2.5.2</span> DIC com fatores quantitativos</h4>
 
 <p>Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a <span class="math inline">\(SQ_{Trat}\)</span> é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função <code>crd()</code>, basta indicar como <code>FALSE</code> no argumentos <code>quali</code>. O arquivo de dados “QUALITATIVO.xlsx” contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no <code>ggplot2</code> até agora, vamos criar um gráfico para visualisar estes dados.   </p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="analdata.html#cb393-1"></a>quantitativo_todos &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb393-2"><a href="analdata.html#cb393-2"></a>                             <span class="dt">sheet =</span> <span class="st">&quot;QUANTI&quot;</span>)</span>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="analdata.html#cb393-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb393-2"><a href="analdata.html#cb393-2"></a>quantitativo_todos &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;QUANTI&quot;</span>)</span>
 <span id="cb393-3"><a href="analdata.html#cb393-3"></a><span class="kw">ggplot</span>(quantitativo_todos, <span class="kw">aes</span>(DOSEN, RG, <span class="dt">col =</span> TIPO)) <span class="op">+</span></span>
 <span id="cb393-4"><a href="analdata.html#cb393-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb393-5"><a href="analdata.html#cb393-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
@@ -1673,9 +1675,9 @@ Figure 10.6: Gráfico de dispersão e linhas de regressão entre a variável dep
 <p>Vamos agora ver cada uma destas etapas detalhadamente.</p>
 <p><strong>1. Download dos dados e pacotes necessários</strong></p>
 <p>O seguinte código é utilizado para instalar/carregar os pacotes necessários bem como para fazer o upload dos dados e armazenar no dataframe <code>covar</code> </p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="analdata.html#cb431-1"></a><span class="co"># dados</span></span>
-<span id="cb431-2"><a href="analdata.html#cb431-2"></a>covar &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb431-3"><a href="analdata.html#cb431-3"></a>                <span class="dt">sheet =</span> <span class="st">&quot;COVAR&quot;</span>)</span>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="analdata.html#cb431-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb431-2"><a href="analdata.html#cb431-2"></a><span class="co"># dados</span></span>
+<span id="cb431-3"><a href="analdata.html#cb431-3"></a>covar &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;COVAR&quot;</span>)</span>
 <span id="cb431-4"><a href="analdata.html#cb431-4"></a><span class="co"># duas primeiras colunas como fator</span></span>
 <span id="cb431-5"><a href="analdata.html#cb431-5"></a>covar &lt;-<span class="st"> </span><span class="kw">to_factor</span>(covar, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</span>
 <span id="cb431-6"><a href="analdata.html#cb431-6"></a></span>
@@ -1943,8 +1945,8 @@ ancova 11 187.0242</code></pre>
 <li><strong>Exemplo numérico</strong></li>
 </ul>
 <p>Para o exemplo, os dados de proporção de legumes viáveis descrito anteriormente serão utilizados. A figura 25 mostra a proporção de legumes viáveis para cada tratamento bem como a distribuição dos pontos em torno de uma linha de probabilidade normal esperada.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="analdata.html#cb452-1"></a></span>
-<span id="cb452-2"><a href="analdata.html#cb452-2"></a>SOJA &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;SOJA&quot;</span>)</span>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="analdata.html#cb452-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb452-2"><a href="analdata.html#cb452-2"></a>SOJA &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;SOJA&quot;</span>)</span>
 <span id="cb452-3"><a href="analdata.html#cb452-3"></a>medlvia =<span class="st"> </span><span class="kw">mean</span>(SOJA<span class="op">$</span>NLV <span class="op">/</span><span class="st"> </span>SOJA<span class="op">$</span>NLT) <span class="co"># Média de legumes viáveis</span></span>
 <span id="cb452-4"><a href="analdata.html#cb452-4"></a></span>
 <span id="cb452-5"><a href="analdata.html#cb452-5"></a><span class="co"># Explorando os dados</span></span>
@@ -2203,16 +2205,12 @@ Figure 10.15: Médias estimadas, intervalos de confiança e comparação de méd
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="analdata.html#cb470-1"></a>FAT1_CI &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb470-2"><a href="analdata.html#cb470-2"></a>                  <span class="dt">sheet =</span> <span class="st">&quot;FAT1_CI&quot;</span>)</span>
-<span id="cb470-3"><a href="analdata.html#cb470-3"></a>FAT1_SI &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb470-4"><a href="analdata.html#cb470-4"></a>                  <span class="dt">sheet =</span> <span class="st">&quot;FAT1_SI&quot;</span>)</span>
-<span id="cb470-5"><a href="analdata.html#cb470-5"></a>FAT2_CI &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb470-6"><a href="analdata.html#cb470-6"></a>                  <span class="dt">sheet =</span> <span class="st">&quot;FAT2_CI&quot;</span>)</span>
-<span id="cb470-7"><a href="analdata.html#cb470-7"></a>FAT2_SI &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb470-8"><a href="analdata.html#cb470-8"></a>                  <span class="dt">sheet =</span> <span class="st">&quot;FAT2_SI&quot;</span>)</span>
-<span id="cb470-9"><a href="analdata.html#cb470-9"></a>FAT3 &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb470-10"><a href="analdata.html#cb470-10"></a>                  <span class="dt">sheet =</span> <span class="st">&quot;FAT3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="analdata.html#cb470-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb470-2"><a href="analdata.html#cb470-2"></a>FAT1_CI &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;FAT1_CI&quot;</span>)</span>
+<span id="cb470-3"><a href="analdata.html#cb470-3"></a>FAT1_SI &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;FAT1_SI&quot;</span>)</span>
+<span id="cb470-4"><a href="analdata.html#cb470-4"></a>FAT2_CI &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;FAT2_CI&quot;</span>)</span>
+<span id="cb470-5"><a href="analdata.html#cb470-5"></a>FAT2_SI &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;FAT2_SI&quot;</span>)</span>
+<span id="cb470-6"><a href="analdata.html#cb470-6"></a>FAT3 &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;FAT3&quot;</span>)</span></code></pre></div>
 <p>O pacote <strong>metan</strong> será utilizado nesta seção e na seção <a href="#biometria-aplicada%20ao-melhoramento-genetico-de-plantas">biometria-aplicada-ao melhoramento-genetico-de-plantas</a>. Este pacote contém funções para análise multivariada com diversas opções gráficas.</p>
 </div>
 <div id="qualitativo-vs-quantitativo" class="section level3">
@@ -2940,7 +2938,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

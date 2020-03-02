@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -408,32 +409,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">A</span> Resposta dos exercícios</h1>
 <div id="exerc1" class="section level2">
 <h2><span class="header-section-number">A.1</span> Exercício 1</h2>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="resposta-dos-exercícios.html#cb712-1"></a><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="resposta-dos-exercícios.html#cb724-1"></a><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>[1] 8</code></pre>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="resposta-dos-exercícios.html#cb714-1"></a><span class="kw">F2</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="resposta-dos-exercícios.html#cb726-1"></a><span class="kw">F2</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 8</code></pre>
 <p>O resultado foi o mesmo, pois embora se tenha invertido o valor dos números, no segundo exemplo se declarou a qual argumento o numero pertencial.</p>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="resposta-dos-exercícios.html#cb716-1"></a><span class="kw">F3</span>(<span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="resposta-dos-exercícios.html#cb728-1"></a><span class="kw">F3</span>(<span class="dv">20</span>)</span></code></pre></div>
 <pre><code>Error in F3(20): O argumento x = 20 é inválido. &#39;x&#39; precisa ser maior que 10</code></pre>
 <p>Pois o argumento (if x &gt; 10) faz com que ocorra um erro e a função não seja executada.</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="resposta-dos-exercícios.html#cb718-1"></a><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="resposta-dos-exercícios.html#cb730-1"></a><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</span></code></pre></div>
 <pre><code>Error in elevar(12, eleva = &quot;cubico&quot;): O argumento eleva = cubico deve ser ou &#39;quadrado&#39; ou &#39;cubo&#39;</code></pre>
 <p>O argumento ‘eleva’ não está correto. Ele deve ser ou ‘quadrado’ ou ‘cubo’.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="resposta-dos-exercícios.html#cb720-1"></a>mega =<span class="st"> </span><span class="cf">function</span>(jogos, <span class="dt">numeros =</span> <span class="dv">6</span>){</span>
-<span id="cb720-2"><a href="resposta-dos-exercícios.html#cb720-2"></a>  <span class="cf">if</span>(<span class="op">!</span>numeros <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">15</span>)){</span>
-<span id="cb720-3"><a href="resposta-dos-exercícios.html#cb720-3"></a>    <span class="kw">stop</span>(<span class="st">&quot;O numero deve ser entre 6 e 15&quot;</span>)</span>
-<span id="cb720-4"><a href="resposta-dos-exercícios.html#cb720-4"></a>  }</span>
-<span id="cb720-5"><a href="resposta-dos-exercícios.html#cb720-5"></a>  result =<span class="st"> </span><span class="kw">list</span>()</span>
-<span id="cb720-6"><a href="resposta-dos-exercícios.html#cb720-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>jogos){</span>
-<span id="cb720-7"><a href="resposta-dos-exercícios.html#cb720-7"></a>result[[i]] =<span class="st"> </span><span class="kw">sort</span>(</span>
-<span id="cb720-8"><a href="resposta-dos-exercícios.html#cb720-8"></a>  <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>, <span class="dt">size =</span> numeros, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb720-9"><a href="resposta-dos-exercícios.html#cb720-9"></a>  )</span>
-<span id="cb720-10"><a href="resposta-dos-exercícios.html#cb720-10"></a>}</span>
-<span id="cb720-11"><a href="resposta-dos-exercícios.html#cb720-11"></a>  <span class="kw">return</span>(<span class="kw">do.call</span>(rbind, result))</span>
-<span id="cb720-12"><a href="resposta-dos-exercícios.html#cb720-12"></a>}</span>
-<span id="cb720-13"><a href="resposta-dos-exercícios.html#cb720-13"></a></span>
-<span id="cb720-14"><a href="resposta-dos-exercícios.html#cb720-14"></a><span class="co"># 4 jogos</span></span>
-<span id="cb720-15"><a href="resposta-dos-exercícios.html#cb720-15"></a><span class="kw">mega</span>(<span class="dv">5</span>, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="resposta-dos-exercícios.html#cb732-1"></a>mega =<span class="st"> </span><span class="cf">function</span>(jogos, <span class="dt">numeros =</span> <span class="dv">6</span>){</span>
+<span id="cb732-2"><a href="resposta-dos-exercícios.html#cb732-2"></a>  <span class="cf">if</span>(<span class="op">!</span>numeros <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">15</span>)){</span>
+<span id="cb732-3"><a href="resposta-dos-exercícios.html#cb732-3"></a>    <span class="kw">stop</span>(<span class="st">&quot;O numero deve ser entre 6 e 15&quot;</span>)</span>
+<span id="cb732-4"><a href="resposta-dos-exercícios.html#cb732-4"></a>  }</span>
+<span id="cb732-5"><a href="resposta-dos-exercícios.html#cb732-5"></a>  result =<span class="st"> </span><span class="kw">list</span>()</span>
+<span id="cb732-6"><a href="resposta-dos-exercícios.html#cb732-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>jogos){</span>
+<span id="cb732-7"><a href="resposta-dos-exercícios.html#cb732-7"></a>result[[i]] =<span class="st"> </span><span class="kw">sort</span>(</span>
+<span id="cb732-8"><a href="resposta-dos-exercícios.html#cb732-8"></a>  <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>, <span class="dt">size =</span> numeros, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb732-9"><a href="resposta-dos-exercícios.html#cb732-9"></a>  )</span>
+<span id="cb732-10"><a href="resposta-dos-exercícios.html#cb732-10"></a>}</span>
+<span id="cb732-11"><a href="resposta-dos-exercícios.html#cb732-11"></a>  <span class="kw">return</span>(<span class="kw">do.call</span>(rbind, result))</span>
+<span id="cb732-12"><a href="resposta-dos-exercícios.html#cb732-12"></a>}</span>
+<span id="cb732-13"><a href="resposta-dos-exercícios.html#cb732-13"></a></span>
+<span id="cb732-14"><a href="resposta-dos-exercícios.html#cb732-14"></a><span class="co"># 4 jogos</span></span>
+<span id="cb732-15"><a href="resposta-dos-exercícios.html#cb732-15"></a><span class="kw">mega</span>(<span class="dv">5</span>, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 [1,]    2   10   20   25   28   32   37   47   57    58
 [2,]    1    3    9   13   18   29   34   36   47    50
@@ -443,103 +444,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="exerc2" class="section level2">
 <h2><span class="header-section-number">A.2</span> Exercício 2</h2>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="resposta-dos-exercícios.html#cb722-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb722-2"><a href="resposta-dos-exercícios.html#cb722-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MGRA_kg =</span> MGRA <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span></span>
-<span id="cb722-3"><a href="resposta-dos-exercícios.html#cb722-3"></a><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, MGRA_kg) <span class="op">%&gt;%</span></span>
-<span id="cb722-4"><a href="resposta-dos-exercícios.html#cb722-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, MGRA_kg)</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="resposta-dos-exercícios.html#cb734-1"></a>maize <span class="op">%&gt;%</span></span>
+<span id="cb734-2"><a href="resposta-dos-exercícios.html#cb734-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MGRA_kg =</span> MGRA <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb734-3"><a href="resposta-dos-exercícios.html#cb734-3"></a><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, MGRA_kg) <span class="op">%&gt;%</span></span>
+<span id="cb734-4"><a href="resposta-dos-exercícios.html#cb734-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>, MGRA_kg)</span></code></pre></div>
 </div>
 <div id="exerc3" class="section level2">
 <h2><span class="header-section-number">A.3</span> Exercício 3</h2>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="resposta-dos-exercícios.html#cb723-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb723-2"><a href="resposta-dos-exercícios.html#cb723-2"></a><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></span>
-<span id="cb723-3"><a href="resposta-dos-exercícios.html#cb723-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></span>
-<span id="cb723-4"><a href="resposta-dos-exercícios.html#cb723-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></span>
-<span id="cb723-5"><a href="resposta-dos-exercícios.html#cb723-5"></a><span class="st">  </span><span class="kw">arrange</span>(Rank)</span></code></pre></div>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="resposta-dos-exercícios.html#cb735-1"></a>maize <span class="op">%&gt;%</span></span>
+<span id="cb735-2"><a href="resposta-dos-exercícios.html#cb735-2"></a><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></span>
+<span id="cb735-3"><a href="resposta-dos-exercícios.html#cb735-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></span>
+<span id="cb735-4"><a href="resposta-dos-exercícios.html#cb735-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></span>
+<span id="cb735-5"><a href="resposta-dos-exercícios.html#cb735-5"></a><span class="st">  </span><span class="kw">arrange</span>(Rank)</span></code></pre></div>
 </div>
 <div id="exerc4" class="section level2">
 <h2><span class="header-section-number">A.4</span> Exercício 4</h2>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="resposta-dos-exercícios.html#cb724-1"></a><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB, <span class="dt">size =</span> APLA)) <span class="op">+</span></span>
-<span id="cb724-2"><a href="resposta-dos-exercícios.html#cb724-2"></a><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="resposta-dos-exercícios.html#cb736-1"></a><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB, <span class="dt">size =</span> APLA)) <span class="op">+</span></span>
+<span id="cb736-2"><a href="resposta-dos-exercícios.html#cb736-2"></a><span class="kw">geom_point</span>()</span></code></pre></div>
 </div>
 <div id="exerc5" class="section level2">
 <h2><span class="header-section-number">A.5</span> Exercício 5</h2>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="resposta-dos-exercícios.html#cb725-1"></a><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> GEN)) <span class="op">+</span></span>
-<span id="cb725-2"><a href="resposta-dos-exercícios.html#cb725-2"></a><span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb725-3"><a href="resposta-dos-exercícios.html#cb725-3"></a><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB)<span class="op">+</span></span>
-<span id="cb725-4"><a href="resposta-dos-exercícios.html#cb725-4"></a><span class="st">     </span><span class="kw">my_theme</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="resposta-dos-exercícios.html#cb737-1"></a><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> GEN)) <span class="op">+</span></span>
+<span id="cb737-2"><a href="resposta-dos-exercícios.html#cb737-2"></a><span class="st">     </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb737-3"><a href="resposta-dos-exercícios.html#cb737-3"></a><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB)<span class="op">+</span></span>
+<span id="cb737-4"><a href="resposta-dos-exercícios.html#cb737-4"></a><span class="st">     </span><span class="kw">my_theme</span>()</span></code></pre></div>
 </div>
 <div id="exerc6" class="section level2">
 <h2><span class="header-section-number">A.6</span> Exercício 6</h2>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="resposta-dos-exercícios.html#cb726-1"></a><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></span>
-<span id="cb726-2"><a href="resposta-dos-exercícios.html#cb726-2"></a><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> AMB))<span class="op">+</span></span>
-<span id="cb726-3"><a href="resposta-dos-exercícios.html#cb726-3"></a><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></span>
-<span id="cb726-4"><a href="resposta-dos-exercícios.html#cb726-4"></a><span class="st">     </span><span class="kw">my_theme</span>()<span class="op">+</span></span>
-<span id="cb726-5"><a href="resposta-dos-exercícios.html#cb726-5"></a><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="resposta-dos-exercícios.html#cb738-1"></a><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></span>
+<span id="cb738-2"><a href="resposta-dos-exercícios.html#cb738-2"></a><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> AMB))<span class="op">+</span></span>
+<span id="cb738-3"><a href="resposta-dos-exercícios.html#cb738-3"></a><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></span>
+<span id="cb738-4"><a href="resposta-dos-exercícios.html#cb738-4"></a><span class="st">     </span><span class="kw">my_theme</span>()<span class="op">+</span></span>
+<span id="cb738-5"><a href="resposta-dos-exercícios.html#cb738-5"></a><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exerc7" class="section level2">
 <h2><span class="header-section-number">A.7</span> Exercício 7</h2>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="resposta-dos-exercícios.html#cb727-1"></a>means =<span class="st"> </span>qualitativo <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb727-2"><a href="resposta-dos-exercícios.html#cb727-2"></a><span class="st">  </span><span class="kw">group_by</span>(HIBRIDO) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb727-3"><a href="resposta-dos-exercícios.html#cb727-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">RG =</span> <span class="kw">mean</span>(RG)) <span class="op">%&gt;%</span></span>
-<span id="cb727-4"><a href="resposta-dos-exercícios.html#cb727-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">letras =</span> <span class="st">&quot;a&quot;</span>)</span>
-<span id="cb727-5"><a href="resposta-dos-exercícios.html#cb727-5"></a><span class="kw">ggplot</span>(means, <span class="kw">aes</span>(<span class="dt">x =</span> HIBRIDO, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
-<span id="cb727-6"><a href="resposta-dos-exercícios.html#cb727-6"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">width =</span> <span class="fl">0.5</span>)<span class="op">+</span></span>
-<span id="cb727-7"><a href="resposta-dos-exercícios.html#cb727-7"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)))<span class="op">+</span></span>
-<span id="cb727-8"><a href="resposta-dos-exercícios.html#cb727-8"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> letras), <span class="dt">hjust =</span> <span class="dv">-1</span>, <span class="dt">size =</span> <span class="fl">3.5</span>)<span class="op">+</span></span>
-<span id="cb727-9"><a href="resposta-dos-exercícios.html#cb727-9"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(means<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
-<span id="cb727-10"><a href="resposta-dos-exercícios.html#cb727-10"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="resposta-dos-exercícios.html#cb739-1"></a>means =<span class="st"> </span>qualitativo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb739-2"><a href="resposta-dos-exercícios.html#cb739-2"></a><span class="st">  </span><span class="kw">group_by</span>(HIBRIDO) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb739-3"><a href="resposta-dos-exercícios.html#cb739-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">RG =</span> <span class="kw">mean</span>(RG)) <span class="op">%&gt;%</span></span>
+<span id="cb739-4"><a href="resposta-dos-exercícios.html#cb739-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">letras =</span> <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb739-5"><a href="resposta-dos-exercícios.html#cb739-5"></a><span class="kw">ggplot</span>(means, <span class="kw">aes</span>(<span class="dt">x =</span> HIBRIDO, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
+<span id="cb739-6"><a href="resposta-dos-exercícios.html#cb739-6"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">width =</span> <span class="fl">0.5</span>)<span class="op">+</span></span>
+<span id="cb739-7"><a href="resposta-dos-exercícios.html#cb739-7"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">expand_scale</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)))<span class="op">+</span></span>
+<span id="cb739-8"><a href="resposta-dos-exercícios.html#cb739-8"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> letras), <span class="dt">hjust =</span> <span class="dv">-1</span>, <span class="dt">size =</span> <span class="fl">3.5</span>)<span class="op">+</span></span>
+<span id="cb739-9"><a href="resposta-dos-exercícios.html#cb739-9"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(means<span class="op">$</span>RG), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span></span>
+<span id="cb739-10"><a href="resposta-dos-exercícios.html#cb739-10"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 </div>
 <div id="exerc8" class="section level2">
 <h2><span class="header-section-number">A.8</span> Exercício 8</h2>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="resposta-dos-exercícios.html#cb728-1"></a><span class="kw">plot_lines</span>(quantitativo, <span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG, <span class="dt">fit =</span> <span class="dv">2</span>, <span class="dt">col =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="resposta-dos-exercícios.html#cb740-1"></a><span class="kw">plot_lines</span>(quantitativo, <span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG, <span class="dt">fit =</span> <span class="dv">2</span>, <span class="dt">col =</span> F)</span></code></pre></div>
 </div>
 <div id="exerc9" class="section level2">
 <h2><span class="header-section-number">A.9</span> Exercício 9</h2>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="resposta-dos-exercícios.html#cb729-1"></a><span class="kw">with</span>(quantitativo, <span class="kw">rbd</span>(DOSEN, BLOCO, RG, <span class="dt">quali =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="resposta-dos-exercícios.html#cb741-1"></a><span class="kw">with</span>(quantitativo, <span class="kw">rbd</span>(DOSEN, BLOCO, RG, <span class="dt">quali =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
 </div>
 <div id="exerc10" class="section level2">
 <h2><span class="header-section-number">A.10</span> Exercício 10</h2>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="resposta-dos-exercícios.html#cb730-1"></a>res =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Convencional =</span> <span class="kw">residuals</span>(convencional),</span>
-<span id="cb730-2"><a href="resposta-dos-exercícios.html#cb730-2"></a>             <span class="dt">Transformado =</span> <span class="kw">residuals</span>(transform),</span>
-<span id="cb730-3"><a href="resposta-dos-exercícios.html#cb730-3"></a>             <span class="dt">Generalizado =</span> <span class="kw">residuals</span>(general, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>))</span>
-<span id="cb730-4"><a href="resposta-dos-exercícios.html#cb730-4"></a><span class="kw">shapiro.test</span>(res<span class="op">$</span>Convencional)</span>
-<span id="cb730-5"><a href="resposta-dos-exercícios.html#cb730-5"></a><span class="kw">shapiro.test</span>(res<span class="op">$</span>Transformado)</span>
-<span id="cb730-6"><a href="resposta-dos-exercícios.html#cb730-6"></a><span class="kw">shapiro.test</span>(res<span class="op">$</span>Generalizado)</span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="resposta-dos-exercícios.html#cb742-1"></a>res =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Convencional =</span> <span class="kw">residuals</span>(convencional),</span>
+<span id="cb742-2"><a href="resposta-dos-exercícios.html#cb742-2"></a>             <span class="dt">Transformado =</span> <span class="kw">residuals</span>(transform),</span>
+<span id="cb742-3"><a href="resposta-dos-exercícios.html#cb742-3"></a>             <span class="dt">Generalizado =</span> <span class="kw">residuals</span>(general, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>))</span>
+<span id="cb742-4"><a href="resposta-dos-exercícios.html#cb742-4"></a><span class="kw">shapiro.test</span>(res<span class="op">$</span>Convencional)</span>
+<span id="cb742-5"><a href="resposta-dos-exercícios.html#cb742-5"></a><span class="kw">shapiro.test</span>(res<span class="op">$</span>Transformado)</span>
+<span id="cb742-6"><a href="resposta-dos-exercícios.html#cb742-6"></a><span class="kw">shapiro.test</span>(res<span class="op">$</span>Generalizado)</span></code></pre></div>
 </div>
 <div id="exerc11" class="section level2">
 <h2><span class="header-section-number">A.11</span> Exercício 11</h2>
-<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="resposta-dos-exercícios.html#cb731-1"></a>NUPEC_<span class="dv">2</span> =<span class="st"> </span>FAT1_CI <span class="op">%&gt;%</span></span>
-<span id="cb731-2"><a href="resposta-dos-exercícios.html#cb731-2"></a><span class="st">  </span><span class="kw">filter</span>(HIBRIDO <span class="op">==</span><span class="st"> &quot;NUPEC_2&quot;</span>)</span>
-<span id="cb731-3"><a href="resposta-dos-exercícios.html#cb731-3"></a><span class="kw">ggplot</span>(NUPEC_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
-<span id="cb731-4"><a href="resposta-dos-exercícios.html#cb731-4"></a><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb731-5"><a href="resposta-dos-exercícios.html#cb731-5"></a><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>)) <span class="op">+</span></span>
-<span id="cb731-6"><a href="resposta-dos-exercícios.html#cb731-6"></a><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">45</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span></span>
-<span id="cb731-7"><a href="resposta-dos-exercícios.html#cb731-7"></a><span class="kw">eom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">46.41</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="resposta-dos-exercícios.html#cb743-1"></a>NUPEC_<span class="dv">2</span> =<span class="st"> </span>FAT1_CI <span class="op">%&gt;%</span></span>
+<span id="cb743-2"><a href="resposta-dos-exercícios.html#cb743-2"></a><span class="st">  </span><span class="kw">filter</span>(HIBRIDO <span class="op">==</span><span class="st"> &quot;NUPEC_2&quot;</span>)</span>
+<span id="cb743-3"><a href="resposta-dos-exercícios.html#cb743-3"></a><span class="kw">ggplot</span>(NUPEC_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">x =</span> DOSEN, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
+<span id="cb743-4"><a href="resposta-dos-exercícios.html#cb743-4"></a><span class="kw">geom_point</span>()<span class="op">+</span></span>
+<span id="cb743-5"><a href="resposta-dos-exercícios.html#cb743-5"></a><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>)) <span class="op">+</span></span>
+<span id="cb743-6"><a href="resposta-dos-exercícios.html#cb743-6"></a><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">45</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span></span>
+<span id="cb743-7"><a href="resposta-dos-exercícios.html#cb743-7"></a><span class="kw">eom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">46.41</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exerc12" class="section level2">
 <h2><span class="header-section-number">A.12</span> Exercício 12</h2>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="resposta-dos-exercícios.html#cb732-1"></a><span class="kw">plot_factbars</span>(FAT2_CI,</span>
-<span id="cb732-2"><a href="resposta-dos-exercícios.html#cb732-2"></a>              HIBRIDO,</span>
-<span id="cb732-3"><a href="resposta-dos-exercícios.html#cb732-3"></a>              FONTEN,</span>
-<span id="cb732-4"><a href="resposta-dos-exercícios.html#cb732-4"></a>              <span class="dt">resp =</span> RG,</span>
-<span id="cb732-5"><a href="resposta-dos-exercícios.html#cb732-5"></a>              <span class="dt">errorbar =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb732-6"><a href="resposta-dos-exercícios.html#cb732-6"></a>              <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb732-7"><a href="resposta-dos-exercícios.html#cb732-7"></a>              <span class="dt">size.text.bar =</span> <span class="dv">3</span>,</span>
-<span id="cb732-8"><a href="resposta-dos-exercícios.html#cb732-8"></a>              <span class="dt">lab.bar.vjust =</span> <span class="fl">-0.5</span>,</span>
-<span id="cb732-9"><a href="resposta-dos-exercícios.html#cb732-9"></a>              <span class="dt">lab.bar =</span> <span class="kw">c</span>(<span class="st">&quot;bB&quot;</span>, <span class="st">&quot;cBC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cD&quot;</span>,</span>
-<span id="cb732-10"><a href="resposta-dos-exercícios.html#cb732-10"></a>                          <span class="st">&quot;cD&quot;</span>, <span class="st">&quot;dC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bB&quot;</span>,</span>
-<span id="cb732-11"><a href="resposta-dos-exercícios.html#cb732-11"></a>                          <span class="st">&quot;bA&quot;</span>, <span class="st">&quot;cA&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cC&quot;</span>,</span>
-<span id="cb732-12"><a href="resposta-dos-exercícios.html#cb732-12"></a>                          <span class="st">&quot;cC&quot;</span>, <span class="st">&quot;dAB&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bA&quot;</span>),</span>
-<span id="cb732-13"><a href="resposta-dos-exercícios.html#cb732-13"></a>              <span class="dt">palette =</span> <span class="st">&quot;Greens&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="resposta-dos-exercícios.html#cb744-1"></a><span class="kw">plot_factbars</span>(FAT2_CI,</span>
+<span id="cb744-2"><a href="resposta-dos-exercícios.html#cb744-2"></a>              HIBRIDO,</span>
+<span id="cb744-3"><a href="resposta-dos-exercícios.html#cb744-3"></a>              FONTEN,</span>
+<span id="cb744-4"><a href="resposta-dos-exercícios.html#cb744-4"></a>              <span class="dt">resp =</span> RG,</span>
+<span id="cb744-5"><a href="resposta-dos-exercícios.html#cb744-5"></a>              <span class="dt">errorbar =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb744-6"><a href="resposta-dos-exercícios.html#cb744-6"></a>              <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb744-7"><a href="resposta-dos-exercícios.html#cb744-7"></a>              <span class="dt">size.text.bar =</span> <span class="dv">3</span>,</span>
+<span id="cb744-8"><a href="resposta-dos-exercícios.html#cb744-8"></a>              <span class="dt">lab.bar.vjust =</span> <span class="fl">-0.5</span>,</span>
+<span id="cb744-9"><a href="resposta-dos-exercícios.html#cb744-9"></a>              <span class="dt">lab.bar =</span> <span class="kw">c</span>(<span class="st">&quot;bB&quot;</span>, <span class="st">&quot;cBC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cD&quot;</span>,</span>
+<span id="cb744-10"><a href="resposta-dos-exercícios.html#cb744-10"></a>                          <span class="st">&quot;cD&quot;</span>, <span class="st">&quot;dC&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bB&quot;</span>,</span>
+<span id="cb744-11"><a href="resposta-dos-exercícios.html#cb744-11"></a>                          <span class="st">&quot;bA&quot;</span>, <span class="st">&quot;cA&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;cC&quot;</span>,</span>
+<span id="cb744-12"><a href="resposta-dos-exercícios.html#cb744-12"></a>                          <span class="st">&quot;cC&quot;</span>, <span class="st">&quot;dAB&quot;</span>, <span class="st">&quot;aA&quot;</span>, <span class="st">&quot;bA&quot;</span>),</span>
+<span id="cb744-13"><a href="resposta-dos-exercícios.html#cb744-13"></a>              <span class="dt">palette =</span> <span class="st">&quot;Greens&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exerc13" class="section level2">
 <h2><span class="header-section-number">A.13</span> Exercício 13</h2>
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="resposta-dos-exercícios.html#cb733-1"></a>covar_mat =<span class="st"> </span>maize <span class="op">%&gt;%</span></span>
-<span id="cb733-2"><a href="resposta-dos-exercícios.html#cb733-2"></a><span class="st">  </span><span class="kw">split_factors</span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb733-3"><a href="resposta-dos-exercícios.html#cb733-3"></a><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</span>
-<span id="cb733-4"><a href="resposta-dos-exercícios.html#cb733-4"></a>                <span class="dt">rep =</span> REP,</span>
-<span id="cb733-5"><a href="resposta-dos-exercícios.html#cb733-5"></a>                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</span>
-<span id="cb733-6"><a href="resposta-dos-exercícios.html#cb733-6"></a>                <span class="dt">type =</span> <span class="st">&quot;rcov&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="resposta-dos-exercícios.html#cb745-1"></a>covar_mat =<span class="st"> </span>maize <span class="op">%&gt;%</span></span>
+<span id="cb745-2"><a href="resposta-dos-exercícios.html#cb745-2"></a><span class="st">  </span><span class="kw">split_factors</span>(ENV, <span class="dt">keep_factors =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb745-3"><a href="resposta-dos-exercícios.html#cb745-3"></a><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</span>
+<span id="cb745-4"><a href="resposta-dos-exercícios.html#cb745-4"></a>                <span class="dt">rep =</span> REP,</span>
+<span id="cb745-5"><a href="resposta-dos-exercícios.html#cb745-5"></a>                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</span>
+<span id="cb745-6"><a href="resposta-dos-exercícios.html#cb745-6"></a>                <span class="dt">type =</span> <span class="st">&quot;rcov&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -591,7 +592,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

@@ -7,9 +7,9 @@ Conhecer o grau de associação linear entre caracteres é de fundamental import
 Nesta sessão, e na sessão de [análise multivariada](#multivariate) iremos utilizar o conjunto de dados `datage_2` do pacote **metan**. Para maiores informações veja `?data_ge2`
 
 ```{r warning = FALSE, message = FALSE}
-maize  = data_ge2
-numeric_var = maize %>% select_if(is.numeric)
-datacor = maize %>% dplyr::select(CD, CL, CW, PH, EH, EP, EL, ED)
+maize <- data_ge2
+numeric_var <- maize %>% select_numeric_cols()
+datacor <- maize %>% select_cols(CD, CL, CW, PH, EH, EP, EL, ED)
 ```
 
 
@@ -37,13 +37,12 @@ pairs(datacor)
 
 
 ### Estimativa dos coeficientes de correlação
-\indf{correlation}
+\indf{corr\_coef}
 ```{r,  message=FALSE}
-corr = correlation(datacor)
-print(corr$correlation, digits = 3)
-print(corr$pvalue, digits = 3)
+corr <- corr_coef(datacor)
+print(corr)
 
-    ```
+```
 
 ### Combinando visualização gráfica e numérica (I)
 
@@ -113,7 +112,7 @@ A função `corrplot.mixed()` \indf{corrplot.mixed} do pacote [corrplot](https:/
 * 8 variáveis | 28 combinações
 ```{r message = F, warning = F, fig.height = 4, fig.width = 4, fig.align = "center"}
 
-cor1 = cor(datacor)
+cor1 <- cor(datacor)
 corrplot.mixed(cor1,
                upper = "ellipse",
                lower = "number",
@@ -126,8 +125,8 @@ corrplot.mixed(cor1,
 * 14 variáveis | 91 combinações
 
 ```{r message = F, warning = F }
-cor2 = cor(numeric_var)
-pval = cor.mtest(cor2)$p
+cor2 <- cor(numeric_var)
+pval <- cor.mtest(cor2)$p
 
 ```
 
@@ -229,7 +228,7 @@ Compute a matriz de (co)variâncias residuais para cada ambiente combinando as f
 O intervalo de confiança para o coeficiente de correlação pode ser obtido utilizando a função `cor.mtest()` do pacote **corrplot**, conforme o seguinte exemplo.
 
 ```{r message=FALSE}
-ci_corr = cor.mtest(datacor)
+ci_corr <- cor.mtest(datacor)
 
 ```
 
@@ -266,14 +265,12 @@ As matrizes de coeficientes de correlação linear e parcial podem ser facilment
 
 ```{r,  message = F, warning = F}
 
-partial = datacor %>% 
-  select(PH, EH, CW, EL) %>% 
-  lpcor()
-
+partial <- lpcor(datacor)
+print(partial)
 
 ```
 
-A função retorna 3 objetos: `linear.mat` que contém a  matriz de correlação linear simples; `partial.mat` que contém a matriz de correlações parciais, `results` que contém tibble contendo todas as combinações de correlação com seus respectivos testes de hipótese.
+A função retorna 3 objetos: `linear.mat` que contém a  matriz de correlação linear simples; `partial.mat` que contém a matriz de correlações parciais, `results` que contém todas as combinações de correlação com seus respectivos testes de hipótese.
 
 
 
@@ -396,18 +393,56 @@ Um determinantes muito próximo a zero indica dependência linear entre as carac
  
 onde $\mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }$ é o fator de inflação de variância o k-ésimo elemento de $\beta$ para *k* = 1, 2, ..., *p*; $\mathop {{\rm{EV}}}\nolimits_{KC{\rm{1}}}$ é o componente do *k*-ésimo autovetor para *k* = 1, 2, ..., *p* e *C* = 1, 2, ..., *p*; e $\lambda$ é o autovalor associado ao respectivo autovetor para $\lambda$ = 1, 2, ..., *p*. Os VIFs também podem ser considerados como os elementos da diagonal da inversa da matriz $X'X$. Considera-se que a presença de VIFs maiores que 10 é um indicativo de multicolinearidade \indt{multicolinearidade}.
 
-A função `colindiag()` \indf{colindiag} do pacote **metan** é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Vamos utilizá-la para realizar o diagnóstico da multicolinearidade da matriz de correlação entre as variáveis presentes no dataframe "datacor". Para maiores detalhes veja `?colindiag`
+#### Diagnóstico da multicolinearidade
 
-```{r,  message = F, warning = F}
-multicol = colindiag(datacor)
+A função `colindiag()` \indf{colindiag} do pacote **metan** é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Os códigos a seguir calculam um diagnóstico completo de colinearidade de uma matriz de correlação de características preditivas. Vários indicadores, como fator de inflação de variação, número de condição e determinante de matriz são considerados [@Olivoto2017f; @Olivoto2017c] O diagnóstico pode ser realizado usando: (i) matrizes de correlação; (ii) quadros de dados ou (iii) um objeto agrupado passado de `group_by()`.
+
+* **Usando uma matriz de correlação, estimada anteriormente**
+
+```{r}
+cor_data <- cor(datacor)
+n <- nrow(datacor)
+cold1 <- colindiag(cor_data, n = n)
+print(cold1)
 ```
+
+* **Usando um dataframe**
+
+```{r}
+cold2 <- colindiag(datacor)
+print(cold2)
+```
+
+
+* **Diagnóstico para cada nível do fator ENV**
+
+```{r}
+cold3 <- colindiag(data_ge2, by = ENV)
+print(cold3)
+```
+#### Seleção de preditores com mínima multicolinearidade
+
+A função `non_collinear_vars()`\indf{non\_collinear\_vars} seleciona um conjunto de preditores com multicolinearidade mínima usando o fator de inflação de variação (VIF) como critério para remover variáveis colineares. O algoritmo irá: **(i)** calcular o valor VIF da matriz de correlação que contém as variáveis originais; **(ii)** ordenar os valores do VIF e excluir a variável com maior VIF; e **(iii)** iterar a etapa **ii** até que o valor VIF seja menor ou igual a um valor pré-estabelecido.
+
+```{r}
+non_collinear_vars(data_ge2)
+non_collinear_vars(data_ge2, EH, CL, CW, KW, NKE, max_vif = 5)
+
+```
+
+
 
 ```{block2, type="dica"}
 Em análise de trilha, o diagnóstico da multicolinearidade deve ser realizado na matriz de correlação das variáveis explicativas. No exemplo acima, supondo que a análise de trilha fosse realizada considerando a variável **PH** como dependente, o seguinte comando deveria ter sido utilizado para o diagnóstico da multicolinearidade.
 
-`multicol = datacor %>% select(-PH) %>% colindiag()`
+`multicol <- datacor %>% select(-PH) %>% colindiag()`
 
 ```
+
+
+
+
+
 
 
 ### Métodos para ajustar a multicolinearidade
@@ -420,7 +455,9 @@ Embora os problemas relacionados a multicolinearidade \indt{multicolinearidade} 
 Esta sessão está focada principalmente em três objetivos: (i) diagnóstico da multicolinearidade\indt{multicolinearidade}; (ii) seleção de variáveis \indt{seleção de variáveis} preditoras; e (iii) estimação dos coeficientes de trilha. Embora esta seja a sequência correta a ser seguida para a estimativa dos coeficientes de trilha, utilizaremos somente a função `path_coeff()`, \indf{path\_coeff} que possibilita todas estas abordagens. Para isto, o conjunto de dados `maize` será utilizado.
 
 ```{r,  message = T, warning = F}
-pathtodas = maize %>% path_coeff(KW, verbose = FALSE)
+pathtodas <- 
+  maize %>%
+  path_coeff(KW, verbose = FALSE)
 
 ```
 
@@ -453,7 +490,9 @@ pathtodas$plot
 O gráfico acima nos proporciona uma interpretação sobre qual é o valor de *k* mais indicado a ser utilizado. Para fins didátidos, escolheremos, por enquanto, o valor de *k* igual a 0.04, valor no qual os coeficientes de regressão da maioria das variávies se estabiliza. Para incluir este valor de correção, utilizaremos novamente a função `path_coeff()`, no entanto, agora, incluiremos o argumento `correction = 0.04`.
 
 ```{r, message = T, warning = F}
-pathtodas_k = maize %>% path_coeff(KW, correction = 0.04, verbose = FALSE)
+pathtodas_k <- 
+  maize %>% 
+  path_coeff(KW, correction = 0.04, verbose = FALSE)
 ```
 
 
@@ -464,7 +503,8 @@ Com a inclusão do fator de correção (*k* = 0.04) na diagonal de $X'X$, a mult
 O ajuste do novo modelo excluindo estas variáveis é facilmente realizado. Para isto, iremos utilizar dois argumentos da função `path_coeff()` \indf{path\_coeff}  não vistos até agora: `pred` e `exclude`. As variáveis informadas em `pred` podem ser as variáveis preditoras (*default*) ou as variáveis a serem excluídas, se `exclude = TRUE`. Vamos ao exemplo.
 
 ```{r,  message = F, warning = F}
-path_exclude = maize %>% 
+path_exclude <- 
+  maize %>% 
   path_coeff(resp = KW,
              pred = c(PERK, EH, CDED),
              exclude = TRUE,
@@ -494,7 +534,8 @@ Conforme também observado por @Hoerl1970 e @Olivoto2017f, a exclusão de variá
 
 
 ```{r,  message = F, warning = F}
-path_step = maize %>% 
+path_step <- 
+  maize %>% 
   path_coeff(resp = KW,
              brutstep = TRUE)
     ```
@@ -504,14 +545,38 @@ Três objetos são criados por esta função: `Summary`, `Models` e `Selectedpre
 
 ### Análise de trilha para cada nível de um fator
 
-Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando a função `group_by()` \indf{split\_factors} isto é facilmente realizado. Esta função divide o conjunto original de dados em uma lista onde cada objeto contém um nível do fator utilizado. O operador `%>%` passa o resultado para a função `path_coeff()`, qual estima os coeficientes de triha para cada um dos níveis do fator. Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados `maize`.
+Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando o argumento `by`, isto é facilmente realizado. . Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados `maize`.
 
 \indt{seleção de variáveis} \indt{stepwise}
 ```{r, message = F, warning = F}
-path_levels = maize %>%
+path_levels <- 
+  maize %>%
   group_by(ENV) %>%
   path_coeff(resp = KW,
              pred = c(TKW, NKE, PERK))
     ```
 
+## Correlação canônica
 
+Correlações canônicas podem ser implementadas com a função `can_corr()`\indf{can\_corr}. Primeiro, renomearemos as variáveis relacionadas à planta `PH` `EH` e `EP` com o sufixo `_PLA` para mostrar a usabilidade do *select helper* `contains()`.
+
+```{r }
+data_cc <- rename(data_ge2,
+                  PH_PLA = PH,
+                  EH_PLA = EH,
+                  EP_PLA = EP)
+
+# Digitar nome das variáveis
+cc1 <- can_corr(data_cc,
+                FG = c(PH_PLA, EH_PLA, EP_PLA),
+                SG = c(EL, ED, CL, CD, CW, KW))
+
+# Use select helpers
+cc2 <- can_corr(data_cc,
+                FG = contains("_PLA"),
+                SG = c(EL, ED, CL, CD, CW, KW))
+
+```
+
+
+$$

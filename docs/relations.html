@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -410,9 +411,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dados" class="section level2">
 <h2><span class="header-section-number">12.1</span> Dados</h2>
 <p>Nesta sessão, e na sessão de <a href="multivariate.html#multivariate">análise multivariada</a> iremos utilizar o conjunto de dados <code>datage_2</code> do pacote <strong>metan</strong>. Para maiores informações veja <code>?data_ge2</code></p>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="relations.html#cb558-1"></a>maize  =<span class="st"> </span>data_ge2</span>
-<span id="cb558-2"><a href="relations.html#cb558-2"></a>numeric_var =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric)</span>
-<span id="cb558-3"><a href="relations.html#cb558-3"></a>datacor =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(CD, CL, CW, PH, EH, EP, EL, ED)</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="relations.html#cb558-1"></a>maize &lt;-<span class="st"> </span>data_ge2</span>
+<span id="cb558-2"><a href="relations.html#cb558-2"></a>numeric_var &lt;-<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_numeric_cols</span>()</span>
+<span id="cb558-3"><a href="relations.html#cb558-3"></a>datacor &lt;-<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_cols</span>(CD, CL, CW, PH, EH, EP, EL, ED)</span></code></pre></div>
 </div>
 <div id="correlação-linear" class="section level2">
 <h2><span class="header-section-number">12.2</span> Correlação linear</h2>
@@ -432,32 +433,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="estimativa-dos-coeficientes-de-correlação" class="section level3">
 <h3><span class="header-section-number">12.2.2</span> Estimativa dos coeficientes de correlação</h3>
 
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="relations.html#cb560-1"></a>corr =<span class="st"> </span><span class="kw">correlation</span>(datacor)</span>
-<span id="cb560-2"><a href="relations.html#cb560-2"></a><span class="kw">print</span>(corr<span class="op">$</span>correlation, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>     CD   CL   CW   PH   EH   EP   EL   ED
-CD 1.00 0.30 0.48 0.32 0.28 0.18 0.91 0.39
-CL 0.30 1.00 0.74 0.33 0.40 0.39 0.26 0.70
-CW 0.48 0.74 1.00 0.50 0.52 0.42 0.46 0.74
-PH 0.32 0.33 0.50 1.00 0.93 0.64 0.38 0.66
-EH 0.28 0.40 0.52 0.93 1.00 0.87 0.36 0.63
-EP 0.18 0.39 0.42 0.64 0.87 1.00 0.26 0.46
-EL 0.91 0.26 0.46 0.38 0.36 0.26 1.00 0.39
-ED 0.39 0.70 0.74 0.66 0.63 0.46 0.39 1.00</code></pre>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="relations.html#cb562-1"></a><span class="kw">print</span>(corr<span class="op">$</span>pvalue, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>         CD       CL       CW       PH       EH       EP       EL       ED
-CD 1.00e+00 1.39e-04 1.54e-10 6.06e-05 3.90e-04 2.88e-02 0.00e+00 4.94e-07
-CL 1.39e-04 1.00e+00 0.00e+00 3.45e-05 2.84e-07 4.55e-07 1.29e-03 0.00e+00
-CW 1.54e-10 0.00e+00 1.00e+00 1.83e-11 3.76e-12 3.25e-08 1.81e-09 0.00e+00
-PH 6.06e-05 3.45e-05 1.83e-11 1.00e+00 0.00e+00 0.00e+00 9.80e-07 0.00e+00
-EH 3.90e-04 2.84e-07 3.76e-12 0.00e+00 1.00e+00 0.00e+00 3.28e-06 0.00e+00
-EP 2.88e-02 4.55e-07 3.25e-08 0.00e+00 0.00e+00 1.00e+00 8.92e-04 1.83e-09
-EL 0.00e+00 1.29e-03 1.81e-09 9.80e-07 3.28e-06 8.92e-04 1.00e+00 6.88e-07
-ED 4.94e-07 0.00e+00 0.00e+00 0.00e+00 0.00e+00 1.83e-09 6.88e-07 1.00e+00</code></pre>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="relations.html#cb560-1"></a>corr &lt;-<span class="st"> </span><span class="kw">corr_coef</span>(datacor)</span>
+<span id="cb560-2"><a href="relations.html#cb560-2"></a><span class="kw">print</span>(corr)</span></code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+Pearson&#39;s correlation coefficient
+---------------------------------------------------------------------------
+      CD    CL    CW    PH    EH    EP    EL    ED
+CD 1.000 0.300 0.484 0.315 0.281 0.175 0.912 0.390
+CL 0.300 1.000 0.738 0.325 0.397 0.391 0.255 0.697
+CW 0.484 0.738 1.000 0.505 0.519 0.425 0.458 0.737
+PH 0.315 0.325 0.505 1.000 0.932 0.638 0.380 0.661
+EH 0.281 0.397 0.519 0.932 1.000 0.870 0.363 0.630
+EP 0.175 0.391 0.425 0.638 0.870 1.000 0.263 0.458
+EL 0.912 0.255 0.458 0.380 0.363 0.263 1.000 0.385
+ED 0.390 0.697 0.737 0.661 0.630 0.458 0.385 1.000
+---------------------------------------------------------------------------
+p-values for the correlation coefficients
+---------------------------------------------------------------------------
+         CD       CL       CW       PH       EH       EP       EL       ED
+CD 0.00e+00 1.39e-04 1.54e-10 6.06e-05 3.90e-04 2.88e-02 1.97e-61 4.94e-07
+CL 1.39e-04 0.00e+00 3.92e-28 3.45e-05 2.84e-07 4.55e-07 1.29e-03 4.74e-24
+CW 1.54e-10 3.92e-28 0.00e+00 1.83e-11 3.76e-12 3.25e-08 1.81e-09 5.31e-28
+PH 6.06e-05 3.45e-05 1.83e-11 0.00e+00 1.11e-69 3.10e-19 9.80e-07 5.66e-21
+EH 3.90e-04 2.84e-07 3.76e-12 1.11e-69 0.00e+00 4.80e-49 3.28e-06 1.19e-18
+EP 2.88e-02 4.55e-07 3.25e-08 3.10e-19 4.80e-49 0.00e+00 8.92e-04 1.83e-09
+EL 1.97e-61 1.29e-03 1.81e-09 9.80e-07 3.28e-06 8.92e-04 0.00e+00 6.88e-07
+ED 4.94e-07 4.74e-24 5.31e-28 5.66e-21 1.19e-18 1.83e-09 6.88e-07 0.00e+00</code></pre>
 </div>
 <div id="combinando-visualização-gráfica-e-numérica-i" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> Combinando visualização gráfica e numérica (I)</h3>
 
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="relations.html#cb564-1"></a><span class="kw">pairs.panels</span>(datacor)</span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="relations.html#cb562-1"></a><span class="kw">pairs.panels</span>(datacor)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-273-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Na figura acima, os pontos observados são plotados na diagonal inferior. Na diagonal, é apresentada a estimativa da densidade Kernel (linha preta) e um histgrama de cada variável. A diagonal superior contém os coeficientes de correlação.</p>
 </div>
@@ -465,7 +471,7 @@ ED 4.94e-07 0.00e+00 0.00e+00 0.00e+00 0.00e+00 1.83e-09 6.88e-07 1.00e+00</code
 <h3><span class="header-section-number">12.2.4</span> Combinando visualização gráfica e numérica (II)</h3>
 
 <p>A função <code>corr_plot()</code>do pacote <strong>metan</strong> retorna um gráfico semelhante ao anterior, no entanto possui diversas opções, tais como mudança no tamanho da letra dependendo da magnitude da correlação e indicação de cores para correlações significativas.</p>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="relations.html#cb565-1"></a><span class="kw">corr_plot</span>(datacor)</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="relations.html#cb563-1"></a><span class="kw">corr_plot</span>(datacor)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-274"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-274-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
 <p class="caption">
@@ -473,41 +479,41 @@ Figure 12.1: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
 <p>A função <code>corr_plot()</code> pode ser utilizada com o operador <code>%&gt;%</code>. Em adição, é possível escolher as variáveis a serem plotadas. Para isto, basta digitar o nome das variáveis.</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="relations.html#cb566-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb566-2"><a href="relations.html#cb566-2"></a><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</span>
-<span id="cb566-3"><a href="relations.html#cb566-3"></a>            <span class="dt">shape.point =</span> <span class="dv">19</span>,</span>
-<span id="cb566-4"><a href="relations.html#cb566-4"></a>            <span class="dt">size.point =</span> <span class="dv">2</span>,</span>
-<span id="cb566-5"><a href="relations.html#cb566-5"></a>            <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</span>
-<span id="cb566-6"><a href="relations.html#cb566-6"></a>            <span class="dt">alpha.diag =</span> <span class="dv">0</span>,</span>
-<span id="cb566-7"><a href="relations.html#cb566-7"></a>            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</span>
-<span id="cb566-8"><a href="relations.html#cb566-8"></a>            <span class="dt">col.sign =</span> <span class="st">&quot;gray&quot;</span>,</span>
-<span id="cb566-9"><a href="relations.html#cb566-9"></a>            <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</span>
-<span id="cb566-10"><a href="relations.html#cb566-10"></a>            <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb566-11"><a href="relations.html#cb566-11"></a>            <span class="dt">progress =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="relations.html#cb564-1"></a>maize <span class="op">%&gt;%</span></span>
+<span id="cb564-2"><a href="relations.html#cb564-2"></a><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</span>
+<span id="cb564-3"><a href="relations.html#cb564-3"></a>            <span class="dt">shape.point =</span> <span class="dv">19</span>,</span>
+<span id="cb564-4"><a href="relations.html#cb564-4"></a>            <span class="dt">size.point =</span> <span class="dv">2</span>,</span>
+<span id="cb564-5"><a href="relations.html#cb564-5"></a>            <span class="dt">alpha.point =</span> <span class="fl">0.5</span>,</span>
+<span id="cb564-6"><a href="relations.html#cb564-6"></a>            <span class="dt">alpha.diag =</span> <span class="dv">0</span>,</span>
+<span id="cb564-7"><a href="relations.html#cb564-7"></a>            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</span>
+<span id="cb564-8"><a href="relations.html#cb564-8"></a>            <span class="dt">col.sign =</span> <span class="st">&quot;gray&quot;</span>,</span>
+<span id="cb564-9"><a href="relations.html#cb564-9"></a>            <span class="dt">alpha.sign =</span> <span class="fl">0.3</span>,</span>
+<span id="cb564-10"><a href="relations.html#cb564-10"></a>            <span class="dt">axis.labels =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb564-11"><a href="relations.html#cb564-11"></a>            <span class="dt">progress =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-275"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-275-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
 <p class="caption">
 Figure 12.2: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="relations.html#cb567-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb567-2"><a href="relations.html#cb567-2"></a><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</span>
-<span id="cb567-3"><a href="relations.html#cb567-3"></a>            <span class="dt">shape.point =</span> <span class="dv">21</span>,</span>
-<span id="cb567-4"><a href="relations.html#cb567-4"></a>            <span class="dt">col.point =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb567-5"><a href="relations.html#cb567-5"></a>            <span class="dt">fill.point =</span> <span class="st">&quot;orange&quot;</span>,</span>
-<span id="cb567-6"><a href="relations.html#cb567-6"></a>            <span class="dt">size.point =</span> <span class="dv">2</span>,</span>
-<span id="cb567-7"><a href="relations.html#cb567-7"></a>            <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</span>
-<span id="cb567-8"><a href="relations.html#cb567-8"></a>            <span class="dt">maxsize =</span> <span class="dv">4</span>,</span>
-<span id="cb567-9"><a href="relations.html#cb567-9"></a>            <span class="dt">minsize =</span> <span class="dv">2</span>,</span>
-<span id="cb567-10"><a href="relations.html#cb567-10"></a>            <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb567-11"><a href="relations.html#cb567-11"></a>            <span class="dt">col.smooth =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb567-12"><a href="relations.html#cb567-12"></a>            <span class="dt">col.sign =</span> <span class="st">&quot;cyan&quot;</span>,</span>
-<span id="cb567-13"><a href="relations.html#cb567-13"></a>            <span class="dt">upper =</span> <span class="st">&quot;scatter&quot;</span>,</span>
-<span id="cb567-14"><a href="relations.html#cb567-14"></a>            <span class="dt">lower =</span> <span class="st">&quot;corr&quot;</span>,</span>
-<span id="cb567-15"><a href="relations.html#cb567-15"></a>            <span class="dt">diag.type =</span> <span class="st">&quot;density&quot;</span>,</span>
-<span id="cb567-16"><a href="relations.html#cb567-16"></a>            <span class="dt">col.diag =</span> <span class="st">&quot;cyan&quot;</span>,</span>
-<span id="cb567-17"><a href="relations.html#cb567-17"></a>            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</span>
-<span id="cb567-18"><a href="relations.html#cb567-18"></a>            <span class="dt">lab.position =</span> <span class="st">&quot;bl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="relations.html#cb565-1"></a>maize <span class="op">%&gt;%</span></span>
+<span id="cb565-2"><a href="relations.html#cb565-2"></a><span class="st">  </span><span class="kw">corr_plot</span>(CD, EL, PERK, NKR, CW,</span>
+<span id="cb565-3"><a href="relations.html#cb565-3"></a>            <span class="dt">shape.point =</span> <span class="dv">21</span>,</span>
+<span id="cb565-4"><a href="relations.html#cb565-4"></a>            <span class="dt">col.point =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb565-5"><a href="relations.html#cb565-5"></a>            <span class="dt">fill.point =</span> <span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb565-6"><a href="relations.html#cb565-6"></a>            <span class="dt">size.point =</span> <span class="dv">2</span>,</span>
+<span id="cb565-7"><a href="relations.html#cb565-7"></a>            <span class="dt">alpha.point =</span> <span class="fl">0.6</span>,</span>
+<span id="cb565-8"><a href="relations.html#cb565-8"></a>            <span class="dt">maxsize =</span> <span class="dv">4</span>,</span>
+<span id="cb565-9"><a href="relations.html#cb565-9"></a>            <span class="dt">minsize =</span> <span class="dv">2</span>,</span>
+<span id="cb565-10"><a href="relations.html#cb565-10"></a>            <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb565-11"><a href="relations.html#cb565-11"></a>            <span class="dt">col.smooth =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb565-12"><a href="relations.html#cb565-12"></a>            <span class="dt">col.sign =</span> <span class="st">&quot;cyan&quot;</span>,</span>
+<span id="cb565-13"><a href="relations.html#cb565-13"></a>            <span class="dt">upper =</span> <span class="st">&quot;scatter&quot;</span>,</span>
+<span id="cb565-14"><a href="relations.html#cb565-14"></a>            <span class="dt">lower =</span> <span class="st">&quot;corr&quot;</span>,</span>
+<span id="cb565-15"><a href="relations.html#cb565-15"></a>            <span class="dt">diag.type =</span> <span class="st">&quot;density&quot;</span>,</span>
+<span id="cb565-16"><a href="relations.html#cb565-16"></a>            <span class="dt">col.diag =</span> <span class="st">&quot;cyan&quot;</span>,</span>
+<span id="cb565-17"><a href="relations.html#cb565-17"></a>            <span class="dt">pan.spacing =</span> <span class="dv">0</span>,</span>
+<span id="cb565-18"><a href="relations.html#cb565-18"></a>            <span class="dt">lab.position =</span> <span class="st">&quot;bl&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-276"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-276-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480" />
 <p class="caption">
@@ -523,11 +529,11 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 <li>Criando a matrix de correlação utilizando o conjunto de dados <code>datacor</code>.</li>
 <li>8 variáveis | 28 combinações</li>
 </ul>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="relations.html#cb568-1"></a>cor1 =<span class="st"> </span><span class="kw">cor</span>(datacor)</span>
-<span id="cb568-2"><a href="relations.html#cb568-2"></a><span class="kw">corrplot.mixed</span>(cor1,</span>
-<span id="cb568-3"><a href="relations.html#cb568-3"></a>               <span class="dt">upper =</span> <span class="st">&quot;ellipse&quot;</span>,</span>
-<span id="cb568-4"><a href="relations.html#cb568-4"></a>               <span class="dt">lower =</span> <span class="st">&quot;number&quot;</span>,</span>
-<span id="cb568-5"><a href="relations.html#cb568-5"></a>               <span class="dt">number.digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="relations.html#cb566-1"></a>cor1 &lt;-<span class="st"> </span><span class="kw">cor</span>(datacor)</span>
+<span id="cb566-2"><a href="relations.html#cb566-2"></a><span class="kw">corrplot.mixed</span>(cor1,</span>
+<span id="cb566-3"><a href="relations.html#cb566-3"></a>               <span class="dt">upper =</span> <span class="st">&quot;ellipse&quot;</span>,</span>
+<span id="cb566-4"><a href="relations.html#cb566-4"></a>               <span class="dt">lower =</span> <span class="st">&quot;number&quot;</span>,</span>
+<span id="cb566-5"><a href="relations.html#cb566-5"></a>               <span class="dt">number.digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-277-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combinando-visualização-gráfica-e-numérica-iv" class="section level3">
@@ -536,33 +542,33 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 <li>Criando a matrix de correlação utilizando o conjunto de dados dataset.</li>
 <li>14 variáveis | 91 combinações</li>
 </ul>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="relations.html#cb569-1"></a>cor2 =<span class="st"> </span><span class="kw">cor</span>(numeric_var)</span>
-<span id="cb569-2"><a href="relations.html#cb569-2"></a>pval =<span class="st"> </span><span class="kw">cor.mtest</span>(cor2)<span class="op">$</span>p</span></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="relations.html#cb567-1"></a>cor2 &lt;-<span class="st"> </span><span class="kw">cor</span>(numeric_var)</span>
+<span id="cb567-2"><a href="relations.html#cb567-2"></a>pval &lt;-<span class="st"> </span><span class="kw">cor.mtest</span>(cor2)<span class="op">$</span>p</span></code></pre></div>
 <p>A função <code>corrplot()</code>  do pacote <code>corrplot</code> permite uma poderosa personalização. Esta função tem a vantagem de apresentar um elevado número de combinações em um gráfico claro e intuitivo.</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="relations.html#cb570-1"></a><span class="kw">corrplot</span>(cor2,</span>
-<span id="cb570-2"><a href="relations.html#cb570-2"></a>         <span class="dt">method =</span> <span class="st">&quot;pie&quot;</span>,</span>
-<span id="cb570-3"><a href="relations.html#cb570-3"></a>         <span class="dt">p.mat =</span> pval,</span>
-<span id="cb570-4"><a href="relations.html#cb570-4"></a>         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb570-5"><a href="relations.html#cb570-5"></a>         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</span>
-<span id="cb570-6"><a href="relations.html#cb570-6"></a>         <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>,</span>
-<span id="cb570-7"><a href="relations.html#cb570-7"></a>         <span class="dt">diag =</span> F,</span>
-<span id="cb570-8"><a href="relations.html#cb570-8"></a>         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb570-9"><a href="relations.html#cb570-9"></a>         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="relations.html#cb568-1"></a><span class="kw">corrplot</span>(cor2,</span>
+<span id="cb568-2"><a href="relations.html#cb568-2"></a>         <span class="dt">method =</span> <span class="st">&quot;pie&quot;</span>,</span>
+<span id="cb568-3"><a href="relations.html#cb568-3"></a>         <span class="dt">p.mat =</span> pval,</span>
+<span id="cb568-4"><a href="relations.html#cb568-4"></a>         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb568-5"><a href="relations.html#cb568-5"></a>         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</span>
+<span id="cb568-6"><a href="relations.html#cb568-6"></a>         <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>,</span>
+<span id="cb568-7"><a href="relations.html#cb568-7"></a>         <span class="dt">diag =</span> F,</span>
+<span id="cb568-8"><a href="relations.html#cb568-8"></a>         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb568-9"><a href="relations.html#cb568-9"></a>         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-279"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-279-1.png" alt="Gráfico de pizza de uma matriz de correlação de Pearson" width="384" />
 <p class="caption">
 Figure 12.4: Gráfico de pizza de uma matriz de correlação de Pearson
 </p>
 </div>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="relations.html#cb571-1"></a><span class="kw">corrplot</span>(cor2,</span>
-<span id="cb571-2"><a href="relations.html#cb571-2"></a>         <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,</span>
-<span id="cb571-3"><a href="relations.html#cb571-3"></a>         <span class="dt">p.mat =</span> pval,</span>
-<span id="cb571-4"><a href="relations.html#cb571-4"></a>         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb571-5"><a href="relations.html#cb571-5"></a>         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</span>
-<span id="cb571-6"><a href="relations.html#cb571-6"></a>         <span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>,</span>
-<span id="cb571-7"><a href="relations.html#cb571-7"></a>         <span class="dt">diag =</span> F,</span>
-<span id="cb571-8"><a href="relations.html#cb571-8"></a>         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb571-9"><a href="relations.html#cb571-9"></a>         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="relations.html#cb569-1"></a><span class="kw">corrplot</span>(cor2,</span>
+<span id="cb569-2"><a href="relations.html#cb569-2"></a>         <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,</span>
+<span id="cb569-3"><a href="relations.html#cb569-3"></a>         <span class="dt">p.mat =</span> pval,</span>
+<span id="cb569-4"><a href="relations.html#cb569-4"></a>         <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb569-5"><a href="relations.html#cb569-5"></a>         <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>,</span>
+<span id="cb569-6"><a href="relations.html#cb569-6"></a>         <span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>,</span>
+<span id="cb569-7"><a href="relations.html#cb569-7"></a>         <span class="dt">diag =</span> F,</span>
+<span id="cb569-8"><a href="relations.html#cb569-8"></a>         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb569-9"><a href="relations.html#cb569-9"></a>         <span class="dt">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-280-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -592,12 +598,12 @@ var^g_x = (MST_x - MSE_x)/r \\
 var^g_y = (MST_x - MSE_y)/r
 \]</span></p>
 <p>onde <em>QMT</em> é o quadrado médio para tratamento, <em>QME</em> é o quadrado médio do erro e <em>r</em> é o número de repetições/blocos. A função <code>covcor_design()</code>  retorna uma lista com as matrizes de (co)variâncias e correlações. Matrizes específicas podem ser retornadas usando o tipo de argumento <code>type</code>. No exemplo abaixo, o coeficiente de correlação genotípico entre as variáveis PH, EH, NKE e TKW será computado para o ambiente A1, considerando um DBC.</p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="relations.html#cb572-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb572-2"><a href="relations.html#cb572-2"></a><span class="st">  </span><span class="kw">filter</span>(ENV <span class="op">==</span><span class="st"> &quot;A1&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb572-3"><a href="relations.html#cb572-3"></a><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</span>
-<span id="cb572-4"><a href="relations.html#cb572-4"></a>                <span class="dt">rep =</span> REP,</span>
-<span id="cb572-5"><a href="relations.html#cb572-5"></a>                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</span>
-<span id="cb572-6"><a href="relations.html#cb572-6"></a>                <span class="dt">type =</span> <span class="st">&quot;gcor&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="relations.html#cb570-1"></a>maize <span class="op">%&gt;%</span></span>
+<span id="cb570-2"><a href="relations.html#cb570-2"></a><span class="st">  </span><span class="kw">filter</span>(ENV <span class="op">==</span><span class="st"> &quot;A1&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb570-3"><a href="relations.html#cb570-3"></a><span class="st">  </span><span class="kw">covcor_design</span>(<span class="dt">gen =</span> GEN,</span>
+<span id="cb570-4"><a href="relations.html#cb570-4"></a>                <span class="dt">rep =</span> REP,</span>
+<span id="cb570-5"><a href="relations.html#cb570-5"></a>                <span class="dt">resp =</span> <span class="kw">c</span>(PH, EH, NKE, TKW),</span>
+<span id="cb570-6"><a href="relations.html#cb570-6"></a>                <span class="dt">type =</span> <span class="st">&quot;gcor&quot;</span>)</span></code></pre></div>
 <pre><code>              PH           EH        NKE        TKW
 PH   1.000000000 -0.006544623  0.2801806  0.2459377
 EH  -0.006544623  1.000000000 -0.7752497  0.7247684
@@ -617,22 +623,22 @@ Compute a matriz de (co)variâncias residuais para cada ambiente combinando as f
 <div id="paramétrico" class="section level3">
 <h3><span class="header-section-number">12.4.1</span> Paramétrico</h3>
 <p>O intervalo de confiança para o coeficiente de correlação pode ser obtido utilizando a função <code>cor.mtest()</code> do pacote <strong>corrplot</strong>, conforme o seguinte exemplo.</p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="relations.html#cb574-1"></a>ci_corr =<span class="st"> </span><span class="kw">cor.mtest</span>(datacor)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="relations.html#cb572-1"></a>ci_corr &lt;-<span class="st"> </span><span class="kw">cor.mtest</span>(datacor)</span></code></pre></div>
 </div>
 <div id="não-paramétrico" class="section level3">
 <h3><span class="header-section-number">12.4.2</span> Não paramétrico</h3>
 <p>Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função <code>corr_ci()</code> do pacote <strong>metan</strong>.  É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém <strong>E</strong> no nome. Note o benefício do operador <code>%&gt;%</code> neste caso.</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="relations.html#cb575-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb575-2"><a href="relations.html#cb575-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;E&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb575-3"><a href="relations.html#cb575-3"></a><span class="st">  </span><span class="kw">corr_ci</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb575-4"><a href="relations.html#cb575-4"></a><span class="st">  </span><span class="kw">plot_ci</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="relations.html#cb573-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb573-2"><a href="relations.html#cb573-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;E&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb573-3"><a href="relations.html#cb573-3"></a><span class="st">  </span><span class="kw">corr_ci</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb573-4"><a href="relations.html#cb573-4"></a><span class="st">  </span><span class="kw">plot_ci</span>()</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-284-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="tamanho-da-amostra" class="section level2">
 <h2><span class="header-section-number">12.5</span> Tamanho da amostra</h2>
 <p>Baseado no modelo proposto por <span class="citation">Olivoto et al. (<a href="#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>, o tamanho da amostra suficiente para a estimativa do coeficiente de correlação considerando um intervalo de confiança desejado é obtido pela função <code>corr_ss()</code>. Neste exemplo, vamos calcular o tamanho da amostra necessário para que uma correlação de 0.6 apresente uma semi-amplitude do intervalo de confiança igual a 0.1 </p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="relations.html#cb576-1"></a><span class="kw">corr_ss</span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="relations.html#cb574-1"></a><span class="kw">corr_ss</span>(<span class="dt">r =</span> <span class="fl">0.6</span>, <span class="dt">CI =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <pre><code>------------------------------------------------- 
 Sample size planning for correlation coefficient 
 ------------------------------------------------- 
@@ -650,10 +656,23 @@ Required sample size: 194
 \]</span></p>
 <p>onde <span class="math inline">\(r_{ij.m}\)</span> é o coeficiente de correlação parcial  entre as variável <em>i</em> e <em>j</em>, sem o efeito das outras <em>m</em> outras variáveis; <span class="math inline">\(a_{ij}\)</span> é o elemento da ordem <em>ij</em> da inversa da matriz de correlação simples; <span class="math inline">\(a_{ii}\)</span> e <span class="math inline">\(a_{jj}\)</span> são os elementos de ordens <em>ii</em> e <em>jj</em>, respectivamente, da inversa da matriz de correlação simples.</p>
 <p>As matrizes de coeficientes de correlação linear e parcial podem ser facilmente obtida utilizando a função <code>lpcor()</code>  do pacote <strong>metan</strong>. A entrada dos dados pode ser realizada de duas maneiras. (i) utilizando os dados com as observações de cada variável; ou (ii) utilizando uma matriz de correlação linear simples pré estimada. Em nosso exemplo, vamos utilziar os mesmos dados utilizados nas funções anteriores (<em>datacor</em>).</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="relations.html#cb578-1"></a>partial =<span class="st"> </span>datacor <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb578-2"><a href="relations.html#cb578-2"></a><span class="st">  </span><span class="kw">select</span>(PH, EH, CW, EL) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb578-3"><a href="relations.html#cb578-3"></a><span class="st">  </span><span class="kw">lpcor</span>()</span></code></pre></div>
-<p>A função retorna 3 objetos: <code>linear.mat</code> que contém a matriz de correlação linear simples; <code>partial.mat</code> que contém a matriz de correlações parciais, <code>results</code> que contém tibble contendo todas as combinações de correlação com seus respectivos testes de hipótese.</p>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="relations.html#cb576-1"></a>partial &lt;-<span class="st"> </span><span class="kw">lpcor</span>(datacor)</span>
+<span id="cb576-2"><a href="relations.html#cb576-2"></a><span class="kw">print</span>(partial)</span></code></pre></div>
+<pre><code># A tibble: 28 x 5
+   Pairs   linear partial      t          prob
+   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;
+ 1 CD x CL  0.300  0.0767  0.936 0.351        
+ 2 CD x CW  0.484  0.125   1.53  0.129        
+ 3 CD x PH  0.315  0.0196  0.238 0.812        
+ 4 CD x EH  0.281 -0.0258 -0.314 0.754        
+ 5 CD x EP  0.175 -0.0121 -0.147 0.884        
+ 6 CD x EL  0.912  0.893  24.1   0            
+ 7 CD x ED  0.390  0.0108  0.131 0.896        
+ 8 CL x CW  0.738  0.465   6.40  0.00000000198
+ 9 CL x PH  0.325 -0.309  -3.95  0.000121     
+10 CL x EH  0.397  0.256   3.22  0.00158      
+# ... with 18 more rows</code></pre>
+<p>A função retorna 3 objetos: <code>linear.mat</code> que contém a matriz de correlação linear simples; <code>partial.mat</code> que contém a matriz de correlações parciais, <code>results</code> que contém todas as combinações de correlação com seus respectivos testes de hipótese.</p>
 </div>
 <div id="análise-de-trilha" class="section level2">
 <h2><span class="header-section-number">12.7</span> Análise de trilha</h2>
@@ -684,46 +703,46 @@ r_{b:y} = \hat \beta_{1_{rb:a}} + \hat \beta_2 + \hat \beta_{3_{rb:c}}\\
 r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 \end{gather*}\]</span></p>
 <p>Como exemplo numérico, vamos utilizar as variáveis PERK, EH, CDED como variáveis explicativas e a variável KW como dependente, do conjunto de dados <code>maize</code>. Para seleção destas variáveis, a função <code>select()</code> é utilizada.</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="relations.html#cb579-1"></a>x =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(PERK, EH, CDED)</span>
-<span id="cb579-2"><a href="relations.html#cb579-2"></a>y =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(KW)</span>
-<span id="cb579-3"><a href="relations.html#cb579-3"></a></span>
-<span id="cb579-4"><a href="relations.html#cb579-4"></a>xx =<span class="st"> </span><span class="kw">cor</span>(x) <span class="co"># Correlação entre as variáveis explicativas</span></span>
-<span id="cb579-5"><a href="relations.html#cb579-5"></a>xy =<span class="st"> </span><span class="kw">cor</span>(x, y) <span class="co"># Correlação das explicativas com a dependente</span></span>
-<span id="cb579-6"><a href="relations.html#cb579-6"></a>b =<span class="st"> </span><span class="kw">solve</span>(xx) <span class="op">%*%</span><span class="st"> </span>xy <span class="co"># Estimativa dos coeficientes</span></span>
-<span id="cb579-7"><a href="relations.html#cb579-7"></a></span>
-<span id="cb579-8"><a href="relations.html#cb579-8"></a>PERK_KW_DIR =<span class="st"> </span>b[<span class="dv">1</span>] <span class="co"># Direto de PERK em KW</span></span>
-<span id="cb579-9"><a href="relations.html#cb579-9"></a>PERK_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">2</span>] <span class="co"># Indireto de PERK em KW via EH</span></span>
-<span id="cb579-10"><a href="relations.html#cb579-10"></a>PERK_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">3</span>] <span class="co"># Indireto de PERK em KW via CDED</span></span>
-<span id="cb579-11"><a href="relations.html#cb579-11"></a></span>
-<span id="cb579-12"><a href="relations.html#cb579-12"></a>EH_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># Indireto de EH em KW via PERK</span></span>
-<span id="cb579-13"><a href="relations.html#cb579-13"></a>EH_KW_DIR =<span class="st"> </span>b[<span class="dv">2</span>] <span class="co"># Direto de EH em KW</span></span>
-<span id="cb579-14"><a href="relations.html#cb579-14"></a>EH_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">3</span>] <span class="co"># Indireto de EH em KW via CDED</span></span>
-<span id="cb579-15"><a href="relations.html#cb579-15"></a></span>
-<span id="cb579-16"><a href="relations.html#cb579-16"></a>CDED_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">1</span>] <span class="co"># Indireto de CDED em KW via PERK</span></span>
-<span id="cb579-17"><a href="relations.html#cb579-17"></a>CDED_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">2</span>] <span class="co"># Indireto de CDED em KW via EH</span></span>
-<span id="cb579-18"><a href="relations.html#cb579-18"></a>CDED_KW_DIR =<span class="st"> </span>b[<span class="dv">3</span>] <span class="co"># Direto de CDED em KW</span></span>
-<span id="cb579-19"><a href="relations.html#cb579-19"></a></span>
-<span id="cb579-20"><a href="relations.html#cb579-20"></a><span class="co"># Coeficientes de trilha (direto na diagonal, indireto fora da diagonal)</span></span>
-<span id="cb579-21"><a href="relations.html#cb579-21"></a>coeff =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,</span>
-<span id="cb579-22"><a href="relations.html#cb579-22"></a>                 EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,</span>
-<span id="cb579-23"><a href="relations.html#cb579-23"></a>                 CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),</span>
-<span id="cb579-24"><a href="relations.html#cb579-24"></a>               <span class="dt">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb579-25"><a href="relations.html#cb579-25"></a><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</span>
-<span id="cb579-26"><a href="relations.html#cb579-26"></a>coeff</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="relations.html#cb578-1"></a>x =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(PERK, EH, CDED)</span>
+<span id="cb578-2"><a href="relations.html#cb578-2"></a>y =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(KW)</span>
+<span id="cb578-3"><a href="relations.html#cb578-3"></a></span>
+<span id="cb578-4"><a href="relations.html#cb578-4"></a>xx =<span class="st"> </span><span class="kw">cor</span>(x) <span class="co"># Correlação entre as variáveis explicativas</span></span>
+<span id="cb578-5"><a href="relations.html#cb578-5"></a>xy =<span class="st"> </span><span class="kw">cor</span>(x, y) <span class="co"># Correlação das explicativas com a dependente</span></span>
+<span id="cb578-6"><a href="relations.html#cb578-6"></a>b =<span class="st"> </span><span class="kw">solve</span>(xx) <span class="op">%*%</span><span class="st"> </span>xy <span class="co"># Estimativa dos coeficientes</span></span>
+<span id="cb578-7"><a href="relations.html#cb578-7"></a></span>
+<span id="cb578-8"><a href="relations.html#cb578-8"></a>PERK_KW_DIR =<span class="st"> </span>b[<span class="dv">1</span>] <span class="co"># Direto de PERK em KW</span></span>
+<span id="cb578-9"><a href="relations.html#cb578-9"></a>PERK_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">2</span>] <span class="co"># Indireto de PERK em KW via EH</span></span>
+<span id="cb578-10"><a href="relations.html#cb578-10"></a>PERK_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">1</span>,<span class="dv">3</span>] <span class="co"># Indireto de PERK em KW via CDED</span></span>
+<span id="cb578-11"><a href="relations.html#cb578-11"></a></span>
+<span id="cb578-12"><a href="relations.html#cb578-12"></a>EH_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># Indireto de EH em KW via PERK</span></span>
+<span id="cb578-13"><a href="relations.html#cb578-13"></a>EH_KW_DIR =<span class="st"> </span>b[<span class="dv">2</span>] <span class="co"># Direto de EH em KW</span></span>
+<span id="cb578-14"><a href="relations.html#cb578-14"></a>EH_KW_CDED =<span class="st"> </span>b[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">2</span>,<span class="dv">3</span>] <span class="co"># Indireto de EH em KW via CDED</span></span>
+<span id="cb578-15"><a href="relations.html#cb578-15"></a></span>
+<span id="cb578-16"><a href="relations.html#cb578-16"></a>CDED_KW_PERK =<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">1</span>] <span class="co"># Indireto de CDED em KW via PERK</span></span>
+<span id="cb578-17"><a href="relations.html#cb578-17"></a>CDED_KW_EH =<span class="st"> </span>b[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>xx[<span class="dv">3</span>,<span class="dv">2</span>] <span class="co"># Indireto de CDED em KW via EH</span></span>
+<span id="cb578-18"><a href="relations.html#cb578-18"></a>CDED_KW_DIR =<span class="st"> </span>b[<span class="dv">3</span>] <span class="co"># Direto de CDED em KW</span></span>
+<span id="cb578-19"><a href="relations.html#cb578-19"></a></span>
+<span id="cb578-20"><a href="relations.html#cb578-20"></a><span class="co"># Coeficientes de trilha (direto na diagonal, indireto fora da diagonal)</span></span>
+<span id="cb578-21"><a href="relations.html#cb578-21"></a>coeff =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,</span>
+<span id="cb578-22"><a href="relations.html#cb578-22"></a>                 EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,</span>
+<span id="cb578-23"><a href="relations.html#cb578-23"></a>                 CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),</span>
+<span id="cb578-24"><a href="relations.html#cb578-24"></a>               <span class="dt">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb578-25"><a href="relations.html#cb578-25"></a><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</span>
+<span id="cb578-26"><a href="relations.html#cb578-26"></a>coeff</span></code></pre></div>
 <pre><code>            PERK          EH        CDED
 PERK -0.10410823 0.002222624  0.05948542
 EH   -0.01473329 0.690110850 -0.04548514
 CDED  0.09200901 0.010613425 -0.16102929</code></pre>
 <p>Utilizando os conhecimentos acumulados até agora, estes mesmos coeficientes podem ser estimados de maneira mais “elegantemente”, utilizando o código abaixo.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="relations.html#cb581-1"></a>n =<span class="st"> </span><span class="kw">ncol</span>(xx)</span>
-<span id="cb581-2"><a href="relations.html#cb581-2"></a>Coeff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(xx)</span>
-<span id="cb581-3"><a href="relations.html#cb581-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
-<span id="cb581-4"><a href="relations.html#cb581-4"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
-<span id="cb581-5"><a href="relations.html#cb581-5"></a>    Coeff[j, i] &lt;-<span class="st"> </span>b[j] <span class="op">*</span><span class="st"> </span>xx[j, i]</span>
-<span id="cb581-6"><a href="relations.html#cb581-6"></a>  }</span>
-<span id="cb581-7"><a href="relations.html#cb581-7"></a>}</span>
-<span id="cb581-8"><a href="relations.html#cb581-8"></a><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</span>
-<span id="cb581-9"><a href="relations.html#cb581-9"></a>Coeff</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="relations.html#cb580-1"></a>n =<span class="st"> </span><span class="kw">ncol</span>(xx)</span>
+<span id="cb580-2"><a href="relations.html#cb580-2"></a>Coeff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(xx)</span>
+<span id="cb580-3"><a href="relations.html#cb580-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb580-4"><a href="relations.html#cb580-4"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb580-5"><a href="relations.html#cb580-5"></a>    Coeff[j, i] &lt;-<span class="st"> </span>b[j] <span class="op">*</span><span class="st"> </span>xx[j, i]</span>
+<span id="cb580-6"><a href="relations.html#cb580-6"></a>  }</span>
+<span id="cb580-7"><a href="relations.html#cb580-7"></a>}</span>
+<span id="cb580-8"><a href="relations.html#cb580-8"></a><span class="kw">rownames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">colnames</span>(coeff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PERK&quot;</span>, <span class="st">&quot;EH&quot;</span>, <span class="st">&quot;CDED&quot;</span>)</span>
+<span id="cb580-9"><a href="relations.html#cb580-9"></a>Coeff</span></code></pre></div>
 <pre><code>            PERK          EH        CDED
 PERK -0.10410823 0.002222624  0.05948542
 EH   -0.01473329 0.690110850 -0.04548514
@@ -754,14 +773,78 @@ CDED  0.09200901 0.010613425 -0.16102929</code></pre>
 \mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }  = \left( {\frac{{\mathop {{\rm{(AV}}}\nolimits_{KC1} {)^2}}}{{\lambda 1}} + \frac{{{{(\mathop {{\rm{AV}}}\nolimits_{KC2} )}^2}}}{{\lambda 2}} + ... + \frac{{{{(\mathop {{\rm{AV}}}\nolimits_{KCp} )}^2}}}{{\lambda p}}} \right)
  \]</span></p>
 <p>onde <span class="math inline">\(\mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }\)</span> é o fator de inflação de variância o k-ésimo elemento de <span class="math inline">\(\beta\)</span> para <em>k</em> = 1, 2, …, <em>p</em>; <span class="math inline">\(\mathop {{\rm{EV}}}\nolimits_{KC{\rm{1}}}\)</span> é o componente do <em>k</em>-ésimo autovetor para <em>k</em> = 1, 2, …, <em>p</em> e <em>C</em> = 1, 2, …, <em>p</em>; e <span class="math inline">\(\lambda\)</span> é o autovalor associado ao respectivo autovetor para <span class="math inline">\(\lambda\)</span> = 1, 2, …, <em>p</em>. Os VIFs também podem ser considerados como os elementos da diagonal da inversa da matriz <span class="math inline">\(X&#39;X\)</span>. Considera-se que a presença de VIFs maiores que 10 é um indicativo de multicolinearidade .</p>
-<p>A função <code>colindiag()</code>  do pacote <strong>metan</strong> é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Vamos utilizá-la para realizar o diagnóstico da multicolinearidade da matriz de correlação entre as variáveis presentes no dataframe “datacor”. Para maiores detalhes veja <code>?colindiag</code></p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="relations.html#cb583-1"></a>multicol =<span class="st"> </span><span class="kw">colindiag</span>(datacor)</span></code></pre></div>
+<div id="diagnóstico-da-multicolinearidade" class="section level4">
+<h4><span class="header-section-number">12.7.3.1</span> Diagnóstico da multicolinearidade</h4>
+<p>A função <code>colindiag()</code>  do pacote <strong>metan</strong> é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Os códigos a seguir calculam um diagnóstico completo de colinearidade de uma matriz de correlação de características preditivas. Vários indicadores, como fator de inflação de variação, número de condição e determinante de matriz são considerados <span class="citation">(T. Olivoto, Souza, et al. <a href="#ref-Olivoto2017f" role="doc-biblioref">2017</a>; Olivoto et al. <a href="#ref-Olivoto2017c" role="doc-biblioref">2017</a>)</span> O diagnóstico pode ser realizado usando: (i) matrizes de correlação; (ii) quadros de dados ou (iii) um objeto agrupado passado de <code>group_by()</code>.</p>
+<ul>
+<li><strong>Usando uma matriz de correlação, estimada anteriormente</strong></li>
+</ul>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="relations.html#cb582-1"></a>cor_data &lt;-<span class="st"> </span><span class="kw">cor</span>(datacor)</span>
+<span id="cb582-2"><a href="relations.html#cb582-2"></a>n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datacor)</span>
+<span id="cb582-3"><a href="relations.html#cb582-3"></a>cold1 &lt;-<span class="st"> </span><span class="kw">colindiag</span>(cor_data, <span class="dt">n =</span> n)</span>
+<span id="cb582-4"><a href="relations.html#cb582-4"></a><span class="kw">print</span>(cold1)</span></code></pre></div>
+<pre><code>Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 1830.678
+Matrix determinant: 2.32e-05 
+Largest correlation: PH x EH = 0.932 
+Smallest correlation: CD x EP = 0.175 
+Number of VIFs &gt; 10: 3 
+Number of correlations with r &gt;= |0.8|: 3 
+Variables with largest weight in the last eigenvalues: 
+EH &gt; PH &gt; EP &gt; CL &gt; ED &gt; CW &gt; CD &gt; EL </code></pre>
+<ul>
+<li><strong>Usando um dataframe</strong></li>
+</ul>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="relations.html#cb584-1"></a>cold2 &lt;-<span class="st"> </span><span class="kw">colindiag</span>(datacor)</span>
+<span id="cb584-2"><a href="relations.html#cb584-2"></a><span class="kw">print</span>(cold2)</span></code></pre></div>
+<pre><code>Severe multicollinearity in the matrix! Pay attention on the variables listed bellow
+CN = 1830.678
+Matrix determinant: 2.32e-05 
+Largest correlation: PH x EH = 0.932 
+Smallest correlation: CD x EP = 0.175 
+Number of VIFs &gt; 10: 3 
+Number of correlations with r &gt;= |0.8|: 3 
+Variables with largest weight in the last eigenvalues: 
+EH &gt; PH &gt; EP &gt; CL &gt; ED &gt; CW &gt; CD &gt; EL </code></pre>
+<ul>
+<li><strong>Diagnóstico para cada nível do fator ENV</strong></li>
+</ul>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="relations.html#cb586-1"></a>cold3 &lt;-<span class="st"> </span><span class="kw">colindiag</span>(data_ge2, <span class="dt">by =</span> ENV)</span>
+<span id="cb586-2"><a href="relations.html#cb586-2"></a><span class="kw">print</span>(cold3)</span></code></pre></div>
+<pre><code># A tibble: 4 x 2
+  ENV   data      
+  &lt;fct&gt; &lt;list&gt;    
+1 A1    &lt;colindig&gt;
+2 A2    &lt;colindig&gt;
+3 A3    &lt;colindig&gt;
+4 A4    &lt;colindig&gt;</code></pre>
+</div>
+<div id="seleção-de-preditores-com-mínima-multicolinearidade" class="section level4">
+<h4><span class="header-section-number">12.7.3.2</span> Seleção de preditores com mínima multicolinearidade</h4>
+<p>A função <code>non_collinear_vars()</code> seleciona um conjunto de preditores com multicolinearidade mínima usando o fator de inflação de variação (VIF) como critério para remover variáveis colineares. O algoritmo irá: <strong>(i)</strong> calcular o valor VIF da matriz de correlação que contém as variáveis originais; <strong>(ii)</strong> ordenar os valores do VIF e excluir a variável com maior VIF; e <strong>(iii)</strong> iterar a etapa <strong>ii</strong> até que o valor VIF seja menor ou igual a um valor pré-estabelecido.</p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="relations.html#cb588-1"></a><span class="kw">non_collinear_vars</span>(data_ge2)</span></code></pre></div>
+<pre><code>         Parameter                                       values
+1       Predictors                                           10
+2              VIF                                         7.16
+3 Condition Number                                       56.797
+4      Determinant                                 0.0008810515
+5         Selected PERK, EP, CDED, NKR, PH, NR, TKW, EL, CD, ED
+6          Removed                          EH, CL, CW, KW, NKE</code></pre>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="relations.html#cb590-1"></a><span class="kw">non_collinear_vars</span>(data_ge2, EH, CL, CW, KW, NKE, <span class="dt">max_vif =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>         Parameter          values
+1       Predictors               4
+2              VIF           2.934
+3 Condition Number          11.248
+4      Determinant    0.2400583901
+5         Selected NKE, EH, CL, CW
+6          Removed              KW</code></pre>
 
 <div class="dica">
 <p>Em análise de trilha, o diagnóstico da multicolinearidade deve ser realizado na matriz de correlação das variáveis explicativas. No exemplo acima, supondo que a análise de trilha fosse realizada considerando a variável <strong>PH</strong> como dependente, o seguinte comando deveria ter sido utilizado para o diagnóstico da multicolinearidade.</p>
-<p><code>multicol = datacor %&gt;% select(-PH) %&gt;% colindiag()</code></p>
+<p><code>multicol &lt;- datacor %&gt;% select(-PH) %&gt;% colindiag()</code></p>
 </div>
 
+</div>
 </div>
 <div id="métodos-para-ajustar-a-multicolinearidade" class="section level3">
 <h3><span class="header-section-number">12.7.4</span> Métodos para ajustar a multicolinearidade</h3>
@@ -770,7 +853,9 @@ CDED  0.09200901 0.010613425 -0.16102929</code></pre>
 <div id="análise-tradicional" class="section level3">
 <h3><span class="header-section-number">12.7.5</span> Análise tradicional</h3>
 <p>Esta sessão está focada principalmente em três objetivos: (i) diagnóstico da multicolinearidade; (ii) seleção de variáveis  preditoras; e (iii) estimação dos coeficientes de trilha. Embora esta seja a sequência correta a ser seguida para a estimativa dos coeficientes de trilha, utilizaremos somente a função <code>path_coeff()</code>,  que possibilita todas estas abordagens. Para isto, o conjunto de dados <code>maize</code> será utilizado.</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="relations.html#cb584-1"></a>pathtodas =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">path_coeff</span>(KW, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="relations.html#cb592-1"></a>pathtodas &lt;-<span class="st"> </span></span>
+<span id="cb592-2"><a href="relations.html#cb592-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span></span>
+<span id="cb592-3"><a href="relations.html#cb592-3"></a><span class="st">  </span><span class="kw">path_coeff</span>(KW, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Com a função acima, os coeficientes de trilha foram estimados considerando a variável KW (massa de grãos por espiga) como dependente, e todas as outras variáveis numéricas do conjunto de dados como explicativas. A função <code>summary()</code> pode ser utilizada para resumir os resultados da análise. Note que os coeficientes foram estimados considerando todos os níveis dos fatores <strong>ENV</strong>, <strong>GEN</strong>, e <strong>REP</strong>.</p>
 
 <div class="dica">
@@ -786,25 +871,28 @@ CDED  0.09200901 0.010613425 -0.16102929</code></pre>
 \hat \beta = (X&#39;X+Ik)^{-1} X&#39;Y
 \]</span></p>
 <p>A escolha da magnitude de <em>k</em>, no entanto, deve ser cautelosa. Sugere-se que o valor a ser incluído seja aquele menor possível que estabilize os coeficientes de regressão (<span class="math inline">\(\beta_p\)</span>). Felizmente, grande parte deste trabalho já foi realizado quando utilizamos a função <code>path_coeff()</code>  na <a href="#analise-tradicional">sessão anterior</a>. Um conjunto de estimativas de <span class="math inline">\(\beta_p\)</span> foi estimado com 101 valores de <em>k</em>, (<span class="math inline">\(k = 0, 0.01, ..., 1\)</span>) e representado graficamente.</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="relations.html#cb585-1"></a>pathtodas<span class="op">$</span>plot</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-293"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-293-1.png" alt="Valores de beta obtidos com 101 valores de k" width="384" />
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="relations.html#cb593-1"></a>pathtodas<span class="op">$</span>plot</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-296"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-296-1.png" alt="Valores de beta obtidos com 101 valores de k" width="384" />
 <p class="caption">
 Figure 12.5: Valores de beta obtidos com 101 valores de k
 </p>
 </div>
 <p>O gráfico acima nos proporciona uma interpretação sobre qual é o valor de <em>k</em> mais indicado a ser utilizado. Para fins didátidos, escolheremos, por enquanto, o valor de <em>k</em> igual a 0.04, valor no qual os coeficientes de regressão da maioria das variávies se estabiliza. Para incluir este valor de correção, utilizaremos novamente a função <code>path_coeff()</code>, no entanto, agora, incluiremos o argumento <code>correction = 0.04</code>.</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="relations.html#cb586-1"></a>pathtodas_k =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">path_coeff</span>(KW, <span class="dt">correction =</span> <span class="fl">0.04</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="relations.html#cb594-1"></a>pathtodas_k &lt;-<span class="st"> </span></span>
+<span id="cb594-2"><a href="relations.html#cb594-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb594-3"><a href="relations.html#cb594-3"></a><span class="st">  </span><span class="kw">path_coeff</span>(KW, <span class="dt">correction =</span> <span class="fl">0.04</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Com a inclusão do fator de correção (<em>k</em> = 0.04) na diagonal de <span class="math inline">\(X&#39;X\)</span>, a multicolinearidade foi classificada como moderada (NC = 141). Inevitavelmente, temos duas opções para obtermos menores níveis de multicollinearidade. A primeira é aumentar o valor de <em>k</em>, digamos, para 0.1. Isto iria reduzir ainda mais o nível de multicolinearidade  em nossa matriz, no entanto, o viés na estimativa dos coeficientes aumentaria. A segunda (e mais razoável) opção, é a exclusão das variáveis que mais causam problemas de multicolinearidade. Por exemplo, podemos considerar as variáveis com maior peso nos últimos autovalores, ou aquelas com maior VIF. As variáveis CL e EL apresentam alta correlação (veja a seção <a href="#estimativa-dos-coeficientes-de-correlacao">estimativas dos coeficientes de correlação</a>), assim poderíamos manter apenas uma destas variáveis. A mesma interpretação pode ser considerada para CDED. Esta é uma co-variável (razão do diâmetro do sabugo e diâmetro da espiga, CDED = CD/ED). Vamos considerar então a exclusão destas variáveis.</p>
 </div>
 <div id="excluindo-variáveis" class="section level3">
 <h3><span class="header-section-number">12.7.7</span> Excluindo variáveis</h3>
 <p>O ajuste do novo modelo excluindo estas variáveis é facilmente realizado. Para isto, iremos utilizar dois argumentos da função <code>path_coeff()</code>  não vistos até agora: <code>pred</code> e <code>exclude</code>. As variáveis informadas em <code>pred</code> podem ser as variáveis preditoras (<em>default</em>) ou as variáveis a serem excluídas, se <code>exclude = TRUE</code>. Vamos ao exemplo.</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="relations.html#cb587-1"></a>path_exclude =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb587-2"><a href="relations.html#cb587-2"></a><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</span>
-<span id="cb587-3"><a href="relations.html#cb587-3"></a>             <span class="dt">pred =</span> <span class="kw">c</span>(PERK, EH, CDED),</span>
-<span id="cb587-4"><a href="relations.html#cb587-4"></a>             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb587-5"><a href="relations.html#cb587-5"></a>             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="relations.html#cb595-1"></a>path_exclude &lt;-<span class="st"> </span></span>
+<span id="cb595-2"><a href="relations.html#cb595-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb595-3"><a href="relations.html#cb595-3"></a><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</span>
+<span id="cb595-4"><a href="relations.html#cb595-4"></a>             <span class="dt">pred =</span> <span class="kw">c</span>(PERK, EH, CDED),</span>
+<span id="cb595-5"><a href="relations.html#cb595-5"></a>             <span class="dt">exclude =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb595-6"><a href="relations.html#cb595-6"></a>             <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Abaixo, um resumo das três abordagens realizadas até agora, utilizando o resumo apresentado na tabela abaixo.</p>
 <table>
 <thead>
@@ -854,9 +942,10 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 <div id="seleção-de-variáveis-em-análise-de-trilha" class="section level3">
 <h3><span class="header-section-number">12.7.8</span> Seleção de variáveis em análise de trilha</h3>
 <p> </p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="relations.html#cb588-1"></a>path_step =<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb588-2"><a href="relations.html#cb588-2"></a><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</span>
-<span id="cb588-3"><a href="relations.html#cb588-3"></a>             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="relations.html#cb596-1"></a>path_step &lt;-<span class="st"> </span></span>
+<span id="cb596-2"><a href="relations.html#cb596-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb596-3"><a href="relations.html#cb596-3"></a><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</span>
+<span id="cb596-4"><a href="relations.html#cb596-4"></a>             <span class="dt">brutstep =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>--------------------------------------------------------------------------
 The algorithm has selected a set of 10 predictors with largest VIF = 7.16. 
 Selected predictors: PERK EP CDED NKR PH NR TKW EL CD ED 
@@ -888,12 +977,13 @@ Summary of the adjusted models
 </div>
 <div id="análise-de-trilha-para-cada-nível-de-um-fator" class="section level3">
 <h3><span class="header-section-number">12.7.9</span> Análise de trilha para cada nível de um fator</h3>
-<p>Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando a função <code>group_by()</code>  isto é facilmente realizado. Esta função divide o conjunto original de dados em uma lista onde cada objeto contém um nível do fator utilizado. O operador <code>%&gt;%</code> passa o resultado para a função <code>path_coeff()</code>, qual estima os coeficientes de triha para cada um dos níveis do fator. Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados <code>maize</code>.</p>
+<p>Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando o argumento <code>by</code>, isto é facilmente realizado. . Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados <code>maize</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="relations.html#cb590-1"></a>path_levels =<span class="st"> </span>maize <span class="op">%&gt;%</span></span>
-<span id="cb590-2"><a href="relations.html#cb590-2"></a><span class="st">  </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></span>
-<span id="cb590-3"><a href="relations.html#cb590-3"></a><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</span>
-<span id="cb590-4"><a href="relations.html#cb590-4"></a>             <span class="dt">pred =</span> <span class="kw">c</span>(TKW, NKE, PERK))</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="relations.html#cb598-1"></a>path_levels &lt;-<span class="st"> </span></span>
+<span id="cb598-2"><a href="relations.html#cb598-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span></span>
+<span id="cb598-3"><a href="relations.html#cb598-3"></a><span class="st">  </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></span>
+<span id="cb598-4"><a href="relations.html#cb598-4"></a><span class="st">  </span><span class="kw">path_coeff</span>(<span class="dt">resp =</span> KW,</span>
+<span id="cb598-5"><a href="relations.html#cb598-5"></a>             <span class="dt">pred =</span> <span class="kw">c</span>(TKW, NKE, PERK))</span></code></pre></div>
 <pre><code>Weak multicollinearity. 
 Condition Number = 4.697
 You will probably have path coefficients close to being unbiased. 
@@ -906,8 +996,168 @@ You will probably have path coefficients close to being unbiased.
 Weak multicollinearity. 
 Condition Number = 1.884
 You will probably have path coefficients close to being unbiased. </code></pre>
-
 </div>
+</div>
+<div id="correlação-canônica" class="section level2">
+<h2><span class="header-section-number">12.8</span> Correlação canônica</h2>
+<p>Correlações canônicas podem ser implementadas com a função <code>can_corr()</code>. Primeiro, renomearemos as variáveis relacionadas à planta <code>PH</code> <code>EH</code> e <code>EP</code> com o sufixo <code>_PLA</code> para mostrar a usabilidade do <em>select helper</em> <code>contains()</code>.</p>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="relations.html#cb600-1"></a>data_cc &lt;-<span class="st"> </span><span class="kw">rename</span>(data_ge2,</span>
+<span id="cb600-2"><a href="relations.html#cb600-2"></a>                  <span class="dt">PH_PLA =</span> PH,</span>
+<span id="cb600-3"><a href="relations.html#cb600-3"></a>                  <span class="dt">EH_PLA =</span> EH,</span>
+<span id="cb600-4"><a href="relations.html#cb600-4"></a>                  <span class="dt">EP_PLA =</span> EP)</span>
+<span id="cb600-5"><a href="relations.html#cb600-5"></a></span>
+<span id="cb600-6"><a href="relations.html#cb600-6"></a><span class="co"># Digitar nome das variáveis</span></span>
+<span id="cb600-7"><a href="relations.html#cb600-7"></a>cc1 &lt;-<span class="st"> </span><span class="kw">can_corr</span>(data_cc,</span>
+<span id="cb600-8"><a href="relations.html#cb600-8"></a>                <span class="dt">FG =</span> <span class="kw">c</span>(PH_PLA, EH_PLA, EP_PLA),</span>
+<span id="cb600-9"><a href="relations.html#cb600-9"></a>                <span class="dt">SG =</span> <span class="kw">c</span>(EL, ED, CL, CD, CW, KW))</span></code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+Matrix (correlation/covariance) between variables of first group (FG)
+---------------------------------------------------------------------------
+          PH_PLA    EH_PLA    EP_PLA
+PH_PLA 1.0000000 0.9318282 0.6384123
+EH_PLA 0.9318282 1.0000000 0.8695460
+EP_PLA 0.6384123 0.8695460 1.0000000
+---------------------------------------------------------------------------
+Collinearity within first group 
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Matrix (correlation/covariance) between variables of second group (SG)
+---------------------------------------------------------------------------
+          EL        ED        CL        CD        CW        KW
+EL 1.0000000 0.3851451 0.2554068 0.9118653 0.4581728 0.6685601
+ED 0.3851451 1.0000000 0.6974629 0.3897128 0.7371305 0.8241426
+CL 0.2554068 0.6974629 1.0000000 0.3003636 0.7383379 0.4709310
+CD 0.9118653 0.3897128 0.3003636 1.0000000 0.4840299 0.6259806
+CW 0.4581728 0.7371305 0.7383379 0.4840299 1.0000000 0.7348622
+KW 0.6685601 0.8241426 0.4709310 0.6259806 0.7348622 1.0000000
+---------------------------------------------------------------------------
+Collinearity within second group 
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Matrix (correlation/covariance) between FG and SG
+---------------------------------------------------------------------------
+              EL        ED        CL        CD        CW        KW
+PH_PLA 0.3801960 0.6613148 0.3251648 0.3153910 0.5047388 0.7534439
+EH_PLA 0.3626537 0.6302561 0.3971935 0.2805118 0.5193136 0.7029469
+EP_PLA 0.2634237 0.4580196 0.3908239 0.1750448 0.4248098 0.4974193
+---------------------------------------------------------------------------
+Correlation of the canonical pairs and hypothesis testing 
+---------------------------------------------------------------------------
+             Var   Percent       Sum      Corr  Lambda     Chisq DF   p_val
+U1V1 0.630438540 78.617161  78.61716 0.7940016 0.30668 177.29224 18 0.00000
+U2V2 0.163384310 20.374406  98.99157 0.4042083 0.82985  27.97651 10 0.00182
+U3V3 0.008086721  1.008433 100.00000 0.0899262 0.99191   1.21794  4 0.87514
+---------------------------------------------------------------------------
+Canonical coefficients of the first group 
+---------------------------------------------------------------------------
+              U1        U2         U3
+PH_PLA  2.609792  5.490798   7.575090
+EH_PLA -2.559005 -7.646096 -12.812234
+EP_PLA  1.191023  2.428742   6.604968
+---------------------------------------------------------------------------
+Canonical coefficients of the second group 
+---------------------------------------------------------------------------
+            V1         V2          V3
+EL -0.01008726 -1.0481893  0.60553720
+ED  0.14629899  0.7853469 -1.30457763
+CL -0.09112023 -1.2989864 -0.07497186
+CD -0.29105227  1.1513083 -1.50589651
+CW -0.12527616 -0.0361706  0.21180796
+KW  1.16041981 -0.1022916  1.34278026
+---------------------------------------------------------------------------
+Canonical loads of the first group 
+---------------------------------------------------------------------------
+              U1          U2         U3
+PH_PLA 0.9856022 -0.08351129 -0.1470178
+EH_PLA 0.9085216 -0.41771278 -0.0102277
+EP_PLA 0.6319736 -0.71449671  0.3001730
+---------------------------------------------------------------------------
+Canonical loads of the second group 
+---------------------------------------------------------------------------
+          V1          V2         V3
+EL 0.4759982 -0.11260907 -0.2944636
+ED 0.8294407 -0.18663860 -0.4477426
+CL 0.3749015 -0.74801793 -0.4937819
+CD 0.3951578  0.02985218 -0.5415818
+CW 0.6225367 -0.41451273 -0.2698904
+KW 0.9570820 -0.07344796 -0.1498587</code></pre>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="relations.html#cb602-1"></a><span class="co"># Use select helpers</span></span>
+<span id="cb602-2"><a href="relations.html#cb602-2"></a>cc2 &lt;-<span class="st"> </span><span class="kw">can_corr</span>(data_cc,</span>
+<span id="cb602-3"><a href="relations.html#cb602-3"></a>                <span class="dt">FG =</span> <span class="kw">contains</span>(<span class="st">&quot;_PLA&quot;</span>),</span>
+<span id="cb602-4"><a href="relations.html#cb602-4"></a>                <span class="dt">SG =</span> <span class="kw">c</span>(EL, ED, CL, CD, CW, KW))</span></code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+Matrix (correlation/covariance) between variables of first group (FG)
+---------------------------------------------------------------------------
+          PH_PLA    EH_PLA    EP_PLA
+PH_PLA 1.0000000 0.9318282 0.6384123
+EH_PLA 0.9318282 1.0000000 0.8695460
+EP_PLA 0.6384123 0.8695460 1.0000000
+---------------------------------------------------------------------------
+Collinearity within first group 
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Matrix (correlation/covariance) between variables of second group (SG)
+---------------------------------------------------------------------------
+          EL        ED        CL        CD        CW        KW
+EL 1.0000000 0.3851451 0.2554068 0.9118653 0.4581728 0.6685601
+ED 0.3851451 1.0000000 0.6974629 0.3897128 0.7371305 0.8241426
+CL 0.2554068 0.6974629 1.0000000 0.3003636 0.7383379 0.4709310
+CD 0.9118653 0.3897128 0.3003636 1.0000000 0.4840299 0.6259806
+CW 0.4581728 0.7371305 0.7383379 0.4840299 1.0000000 0.7348622
+KW 0.6685601 0.8241426 0.4709310 0.6259806 0.7348622 1.0000000
+---------------------------------------------------------------------------
+Collinearity within second group 
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Matrix (correlation/covariance) between FG and SG
+---------------------------------------------------------------------------
+              EL        ED        CL        CD        CW        KW
+PH_PLA 0.3801960 0.6613148 0.3251648 0.3153910 0.5047388 0.7534439
+EH_PLA 0.3626537 0.6302561 0.3971935 0.2805118 0.5193136 0.7029469
+EP_PLA 0.2634237 0.4580196 0.3908239 0.1750448 0.4248098 0.4974193
+---------------------------------------------------------------------------
+Correlation of the canonical pairs and hypothesis testing 
+---------------------------------------------------------------------------
+             Var   Percent       Sum      Corr  Lambda     Chisq DF   p_val
+U1V1 0.630438540 78.617161  78.61716 0.7940016 0.30668 177.29224 18 0.00000
+U2V2 0.163384310 20.374406  98.99157 0.4042083 0.82985  27.97651 10 0.00182
+U3V3 0.008086721  1.008433 100.00000 0.0899262 0.99191   1.21794  4 0.87514
+---------------------------------------------------------------------------
+Canonical coefficients of the first group 
+---------------------------------------------------------------------------
+              U1        U2         U3
+PH_PLA  2.609792  5.490798   7.575090
+EH_PLA -2.559005 -7.646096 -12.812234
+EP_PLA  1.191023  2.428742   6.604968
+---------------------------------------------------------------------------
+Canonical coefficients of the second group 
+---------------------------------------------------------------------------
+            V1         V2          V3
+EL -0.01008726 -1.0481893  0.60553720
+ED  0.14629899  0.7853469 -1.30457763
+CL -0.09112023 -1.2989864 -0.07497186
+CD -0.29105227  1.1513083 -1.50589651
+CW -0.12527616 -0.0361706  0.21180796
+KW  1.16041981 -0.1022916  1.34278026
+---------------------------------------------------------------------------
+Canonical loads of the first group 
+---------------------------------------------------------------------------
+              U1          U2         U3
+PH_PLA 0.9856022 -0.08351129 -0.1470178
+EH_PLA 0.9085216 -0.41771278 -0.0102277
+EP_PLA 0.6319736 -0.71449671  0.3001730
+---------------------------------------------------------------------------
+Canonical loads of the second group 
+---------------------------------------------------------------------------
+          V1          V2         V3
+EL 0.4759982 -0.11260907 -0.2944636
+ED 0.8294407 -0.18663860 -0.4477426
+CL 0.3749015 -0.74801793 -0.4937819
+CD 0.3951578  0.02985218 -0.5415818
+CW 0.6225367 -0.41451273 -0.2698904
+KW 0.9570820 -0.07344796 -0.1498587</code></pre>
+<p>$$</p>
+
 </div>
 </div>
 <h3>References</h3>
@@ -929,6 +1179,9 @@ You will probably have path coefficients close to being unbiased. </code></pre>
 </div>
 <div id="ref-Niles1922">
 <p>Niles, Henry E. 1922. “Correlation, Causation and Wright’s Theory of "Path Coefficients".” <em>Genetics</em> 7 (3): 258–73. <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1200533/">http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1200533/</a>.</p>
+</div>
+<div id="ref-Olivoto2017c">
+<p>Olivoto, Tiago, Maicon Nardino, Ivan Ivan Ricardo Carvalho, Diego Nicolau Follmann, Maurício Ferrari, Alan Júnior de Pelegrin, Vinícius Jardel Szareski, Antônio Costa de Oliveira, Braulio Otomar Caron, and Velcio Queiroz de Souza. 2017. “Optimal sample size and data arrangement method in estimating correlation matrices with lesser collinearity: A statistical focus in maize breeding.” <em>African Journal of Agricultural Research</em> 12 (2): 93–103. <a href="https://doi.org/10.5897/AJAR2016.11799">https://doi.org/10.5897/AJAR2016.11799</a>.</p>
 </div>
 <div id="ref-Olivoto2018">
 <p>Olivoto, T., A. D. C Lúcio, V. Q. Souza, M. Nardino, M. I. Diel, B. G. Sari, D .K. Krysczun, D. Meira, and C. Meier. 2018. “Confidence interval width for Pearson’s correlation coefficient: a Gaussian-independent estimator based on sample size and strength of association.” <em>Agronomy Journal</em> 110 (1): 1–8. <a href="https://doi.org/10.2134/agronj2017.09.0566">https://doi.org/10.2134/agronj2017.09.0566</a>.</p>
@@ -1006,7 +1259,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

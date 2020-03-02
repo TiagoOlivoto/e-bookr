@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -417,8 +418,8 @@ do que qualquer outro dispositivo.” — John Tukey</p>
 <div id="meu-primeiro-gráfico-em-ggplot2" class="section level2">
 <h2><span class="header-section-number">8.2</span> Meu primeiro gráfico em <strong>ggplot2</strong></h2>
 <p>A seguir, vamos discutir os aspcetos básicos para a construção de gráficos utilizando o pacote <strong>ggplot2</strong>. A função <code>plot_grid()</code> do pacote <a href="https://github.com/wilkelab/cowplot">cowplot</a><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> foi utilizado aqui para organizar os gráficos em forma de painéis. O pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> também é utilizado como uma <a href="http://www.ggplot2-exts.org/gallery/">extensão do pacote ggplot2</a><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> para confecção de gráficos do tipo Q-Q plots. Os dados contidos na aba <em>gg</em> do arquivo <em>data_R.xlsx</em> serão utilizados. Estes dados podem ser carregados pelo seguinte comando.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="graph.html#cb268-1"></a>dados_gg &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb268-2"><a href="graph.html#cb268-2"></a>                   <span class="dt">sheet =</span> <span class="st">&quot;gg&quot;</span>)</span>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="graph.html#cb268-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb268-2"><a href="graph.html#cb268-2"></a>dados_gg &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;gg&quot;</span>)</span>
 <span id="cb268-3"><a href="graph.html#cb268-3"></a><span class="kw">str</span>(dados_gg)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   120 obs. of  6 variables:
  $ AMB  : chr  &quot;E1&quot; &quot;E1&quot; &quot;E1&quot; &quot;E1&quot; ...
@@ -790,7 +791,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

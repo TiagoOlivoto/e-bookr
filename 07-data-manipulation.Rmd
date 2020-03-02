@@ -52,7 +52,7 @@ mean_sqrt
 
 A utilização do operador `%>%` parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o `%>%` se mostrará muito mais útil.
 
-O pacote [`metan`](https://tiagoolivoto.github.io/metan/) fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:
+O pacote [`metan`](https://tiagoolivoto.github.io/metan/) @ fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:
 
 1. [Utilitários para lidar com linhas e colunas](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html)
 
@@ -157,14 +157,15 @@ O pacote [`metan`](https://tiagoolivoto.github.io/metan/) fornece funções úte
 * `round_cols()`: Arredonda uma coluna selecionada ou um conjunto de dados inteiro para números significativos.
 
 \indf{round\_cols}
-* `tidy_strings()`: arruma seqüências de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um conjunto de dados colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por `'_'` e colocando `'_'` entre letras maiúsculas e minúsculas. Suponha que `str = c("Env1", "env 1", "env.1")` (que por definição deve representar um nível único nos ensaios de melhoramento de plantas, por exemplo, ambiente 1) seja submetido a * `tidy_strings(str)`: o resultado será então `c("ENV_1", "ENV_1", "ENV_1")`.
+* `tidy_strings()`: arruma seqüências de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um conjunto de dados colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por `'_'` e colocando `'_'` entre letras maiúsculas e minúsculas. Suponha que `str = c("Env1", "env 1", "env.1")` (que por definição deve representar um nível único nos ensaios de melhoramento de plantas, por exemplo, ambiente 1) seja submetido a `tidy_strings(str)`: o resultado será então `c("ENV_1", "ENV_1", "ENV_1")`.
 
    \indf{tidy\_strings}
    
 O conjunto de dados **maize** será utilizado como exemplo para as operações de manipulação de dados. Este arquivo em formato `.xlsx` está hospedado em https://github.com/TiagoOlivoto/e-bookr/tree/master/data e pode ser carregado no ambiente R com a função `import()` do pacote [rio](https://cran.r-project.org/web/packages/rio/index.html).
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-maize <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+maize <- import(url,
                 sheet = "maize", 
                 setclass = "tibble")
 
@@ -455,7 +456,7 @@ Para eliminar as variáveis existentes e manter apenas a coluna concatenada, use
 
 ```{r}
 concatenate(data_ge, ENV, GEN, REP, drop = TRUE)
-concatenate(data_ge, ENV, GEN, REP, pull = TRUE)
+concatenate(data_ge, ENV, GEN, REP, pull = TRUE) %>% head()
 ```
 
 
@@ -553,14 +554,15 @@ maize[maize$MGRA > 220 & maize$APLA < 2, ]
 A função [`round_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 0). Se nenhuma variável for informada, todas as variáveis numéricas serão arredondadas.\indf{round\_cols}
 
 ```{r}
-head (data_ge2)
-round_cols(data_ge2)
+df_round <- as.data.frame(data_ge2)
+head(df_round)
+round_cols(df_round) %>% head()
 ```
 
 
 Como alternativa, selecione variáveis para arredondar.
 ```{r}
-round_cols (data_ge2, PH, EP, digits = 1)
+round_cols(df_round, PH, EP, digits = 1) %>% head()
 ```
 
 ### Extraindo e substituindo números

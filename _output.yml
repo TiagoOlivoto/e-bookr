@@ -1,7 +1,5 @@
 bookdown::gitbook:
   css: style.css
-  config:
-    download: [pdf, epub]
 bookdown::pdf_book:
   includes:
     in_header: [preamble.tex, google_analytics.html]

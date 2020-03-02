@@ -1,13 +1,13 @@
 # Análise de regressão {#reg}
 ## Regressão Linear
 
-A análise de regressão \indt{regressão simple} tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla\indt{regressão múltipla}. Na regressão simples, apenas uma variável dependente é declarada no modelo:
+A análise de regressão \indt{regressão simple} tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla\indt{regressão múltipla}. Na regressão simples, apenas uma variável independente é declarada no modelo:
 
 $$
 Y_i = {\beta _0} + {\beta _1}x + \varepsilon_i  
 $$
 
-Onde $Y_i$ é a variável dependente, $x$ é a variável independente, $\beta_0$ é o intercepto, $\beta_1$ é a inclinação da reta e $\varepsilon$ é o erro. Na regressão linear múltipla, mais de uma variável dependente é declarada no modelo:  
+Onde $Y_i$ é a variável dependente, $x$ é a variável independente, $\beta_0$ é o intercepto, $\beta_1$ é a inclinação da reta e $\varepsilon$ é o erro. Na regressão linear múltipla, mais de uma variável independente é declarada no modelo:  
 
 $$
 Y_i = {\beta _0} + {\beta _1}x_1 + {\beta _2}x_2 + ... + {\beta _k}x_k + \varepsilon_i  
@@ -104,9 +104,8 @@ Quando há multicolinearidade\indt{multicolinearidade}, conjuntos de diferentes 
 A função `lm()` \indf{lm} é utilizada para ajustar regresões lineares simples e múltipla. Os argumentos mais importantes desta função são a `formula`, onde indicamos a função resposta; e `data`, onde indicamos o banco de dados.  Vamos utiliza um exemplo simples retirado de @Schneider2009: 
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-
-reg <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-              sheet = "REG")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+reg <- import(url, sheet = "REG")
 mod7 = lm(Y ~ X1 + X2 + X3, data = reg)
 mod7.1 = lm(Y ~ 1, data = reg)
 anova(mod7.1, mod7) # Verificar a significância do modelo
@@ -343,8 +342,8 @@ $$
 $$
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-nls_tomato <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                     sheet = "TOMATE")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+nls_tomato <- import(url, sheet = "TOMATE")
 nls_tomato_cord <- subset(nls_tomato,Genotipo  ==  "Cordillera") 
 ```
 
@@ -412,8 +411,8 @@ plot(res1_nls1)
 No exemplo acima, apenas uma observação foi realizada para cada variável independente (dias após o transplante, no caso). Por isso optou-se por utilizar o teste de *Breusch-Pagan* para realizar o diagnóstico de homocedasticidade dos resíduos. Quando mais de uma observação é realizada em cada variável independente, pode-se utilizar os testes de *Bartlett* ou *Levene*.
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-nls_eggplant <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                       sheet = "EGGPLANT")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+nls_eggplant <- import(url, sheet = "EGGPLANT")
 nls_eggplant = subset(nls_eggplant, ESTUFA  ==  "E1") 
 start = list(b1 = 10,b2 = 6.7,b3 = 0.073)
 nls2 = nls(NUMERO ~ b1/(1+exp(b2-b3*DAT)), 
@@ -547,8 +546,8 @@ $$
 $$
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.width = 4, fig.height = 4, fig.align = "center"}
-plato_tomato <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                       sheet = "PLATO")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+plato_tomato <- import(url, sheet = "PLATO")
 plato_cordillera = nls(num~(b0+b1*DAT*(DAT<= P))+
                     (b1*P*(DAT>P)),
                      data = subset(plato_tomato, Genotipo == "Cordillera"),

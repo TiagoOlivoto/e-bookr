@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -454,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb106-9"><a href="manipula.html#cb106-9"></a>mean_sqrt  </span></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <p>A utilização do operador <code>%&gt;%</code> parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o <code>%&gt;%</code> se mostrará muito mais útil.</p>
-<p>O pacote <a href="https://tiagoolivoto.github.io/metan/"><code>metan</code></a> fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:</p>
+<p>O pacote <a href="https://tiagoolivoto.github.io/metan/"><code>metan</code></a> @ fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html">Utilitários para lidar com linhas e colunas</a></li>
 </ol>
@@ -590,15 +591,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 <ul>
-<li><p><code>tidy_strings()</code>: arruma seqüências de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um conjunto de dados colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por <code>'_'</code> e colocando <code>'_'</code> entre letras maiúsculas e minúsculas. Suponha que <code>str = c("Env1", "env 1", "env.1")</code> (que por definição deve representar um nível único nos ensaios de melhoramento de plantas, por exemplo, ambiente 1) seja submetido a * <code>tidy_strings(str)</code>: o resultado será então <code>c("ENV_1", "ENV_1", "ENV_1")</code>.</p>
+<li><p><code>tidy_strings()</code>: arruma seqüências de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um conjunto de dados colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por <code>'_'</code> e colocando <code>'_'</code> entre letras maiúsculas e minúsculas. Suponha que <code>str = c("Env1", "env 1", "env.1")</code> (que por definição deve representar um nível único nos ensaios de melhoramento de plantas, por exemplo, ambiente 1) seja submetido a <code>tidy_strings(str)</code>: o resultado será então <code>c("ENV_1", "ENV_1", "ENV_1")</code>.</p>
 <p></p></li>
 </ul>
 <p>O conjunto de dados <strong>maize</strong> será utilizado como exemplo para as operações de manipulação de dados. Este arquivo em formato <code>.xlsx</code> está hospedado em <a href="https://github.com/TiagoOlivoto/e-bookr/tree/master/data" class="uri">https://github.com/TiagoOlivoto/e-bookr/tree/master/data</a> e pode ser carregado no ambiente R com a função <code>import()</code> do pacote <a href="https://cran.r-project.org/web/packages/rio/index.html">rio</a>.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manipula.html#cb108-1"></a>maize &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb108-2"><a href="manipula.html#cb108-2"></a>                <span class="dt">sheet =</span> <span class="st">&quot;maize&quot;</span>, </span>
-<span id="cb108-3"><a href="manipula.html#cb108-3"></a>                <span class="dt">setclass =</span> <span class="st">&quot;tibble&quot;</span>)</span>
-<span id="cb108-4"><a href="manipula.html#cb108-4"></a></span>
-<span id="cb108-5"><a href="manipula.html#cb108-5"></a><span class="kw">inspect</span>(maize)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manipula.html#cb108-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb108-2"><a href="manipula.html#cb108-2"></a>maize &lt;-<span class="st"> </span><span class="kw">import</span>(url,</span>
+<span id="cb108-3"><a href="manipula.html#cb108-3"></a>                <span class="dt">sheet =</span> <span class="st">&quot;maize&quot;</span>, </span>
+<span id="cb108-4"><a href="manipula.html#cb108-4"></a>                <span class="dt">setclass =</span> <span class="st">&quot;tibble&quot;</span>)</span>
+<span id="cb108-5"><a href="manipula.html#cb108-5"></a></span>
+<span id="cb108-6"><a href="manipula.html#cb108-6"></a><span class="kw">inspect</span>(maize)</span></code></pre></div>
 <pre><code># A tibble: 10 x 9
    Variable Class     Missing Levels Valid_n   Min Median    Max Outlier
    &lt;chr&gt;    &lt;fct&gt;     &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -995,7 +997,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 A1    H2    1      2.55  1.22 0.481  15.1  51.7  27.7  15.3  23.7  198.  16.4
 # ... with 140 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,
 #   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
-<p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>remove_rows_na()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>remove_rows_na()</code></a> são usados ​​para remover linhas e colunas com valores <code>NA</code>, respectivamente. </p>
+<p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>remove_rows_na()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>remove_rows_na()</code></a> são usados para remover linhas e colunas com valores <code>NA</code>, respectivamente. </p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manipula.html#cb158-1"></a>data_with_na &lt;-<span class="st"> </span>maize</span>
 <span id="cb158-2"><a href="manipula.html#cb158-2"></a>data_with_na[<span class="kw">c</span> (<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="kw">c</span> (<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">10</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
 <span id="cb158-3"><a href="manipula.html#cb158-3"></a><span class="kw">remove_cols_na</span>(data_with_na)</span></code></pre></div>
@@ -1201,81 +1203,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 E1_G3_3
 10 E1_G4_1
 # ... with 410 more rows</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="manipula.html#cb182-1"></a><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">pull =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>  [1] &quot;E1_G1_1&quot;   &quot;E1_G1_2&quot;   &quot;E1_G1_3&quot;   &quot;E1_G2_1&quot;   &quot;E1_G2_2&quot;   &quot;E1_G2_3&quot;  
-  [7] &quot;E1_G3_1&quot;   &quot;E1_G3_2&quot;   &quot;E1_G3_3&quot;   &quot;E1_G4_1&quot;   &quot;E1_G4_2&quot;   &quot;E1_G4_3&quot;  
- [13] &quot;E1_G5_1&quot;   &quot;E1_G5_2&quot;   &quot;E1_G5_3&quot;   &quot;E1_G6_1&quot;   &quot;E1_G6_2&quot;   &quot;E1_G6_3&quot;  
- [19] &quot;E1_G7_1&quot;   &quot;E1_G7_2&quot;   &quot;E1_G7_3&quot;   &quot;E1_G8_1&quot;   &quot;E1_G8_2&quot;   &quot;E1_G8_3&quot;  
- [25] &quot;E1_G9_1&quot;   &quot;E1_G9_2&quot;   &quot;E1_G9_3&quot;   &quot;E1_G10_1&quot;  &quot;E1_G10_2&quot;  &quot;E1_G10_3&quot; 
- [31] &quot;E2_G1_1&quot;   &quot;E2_G1_2&quot;   &quot;E2_G1_3&quot;   &quot;E2_G2_1&quot;   &quot;E2_G2_2&quot;   &quot;E2_G2_3&quot;  
- [37] &quot;E2_G3_1&quot;   &quot;E2_G3_2&quot;   &quot;E2_G3_3&quot;   &quot;E2_G4_1&quot;   &quot;E2_G4_2&quot;   &quot;E2_G4_3&quot;  
- [43] &quot;E2_G5_1&quot;   &quot;E2_G5_2&quot;   &quot;E2_G5_3&quot;   &quot;E2_G6_1&quot;   &quot;E2_G6_2&quot;   &quot;E2_G6_3&quot;  
- [49] &quot;E2_G7_1&quot;   &quot;E2_G7_2&quot;   &quot;E2_G7_3&quot;   &quot;E2_G8_1&quot;   &quot;E2_G8_2&quot;   &quot;E2_G8_3&quot;  
- [55] &quot;E2_G9_1&quot;   &quot;E2_G9_2&quot;   &quot;E2_G9_3&quot;   &quot;E2_G10_1&quot;  &quot;E2_G10_2&quot;  &quot;E2_G10_3&quot; 
- [61] &quot;E3_G1_1&quot;   &quot;E3_G1_2&quot;   &quot;E3_G1_3&quot;   &quot;E3_G2_1&quot;   &quot;E3_G2_2&quot;   &quot;E3_G2_3&quot;  
- [67] &quot;E3_G3_1&quot;   &quot;E3_G3_2&quot;   &quot;E3_G3_3&quot;   &quot;E3_G4_1&quot;   &quot;E3_G4_2&quot;   &quot;E3_G4_3&quot;  
- [73] &quot;E3_G5_1&quot;   &quot;E3_G5_2&quot;   &quot;E3_G5_3&quot;   &quot;E3_G6_1&quot;   &quot;E3_G6_2&quot;   &quot;E3_G6_3&quot;  
- [79] &quot;E3_G7_1&quot;   &quot;E3_G7_2&quot;   &quot;E3_G7_3&quot;   &quot;E3_G8_1&quot;   &quot;E3_G8_2&quot;   &quot;E3_G8_3&quot;  
- [85] &quot;E3_G9_1&quot;   &quot;E3_G9_2&quot;   &quot;E3_G9_3&quot;   &quot;E3_G10_1&quot;  &quot;E3_G10_2&quot;  &quot;E3_G10_3&quot; 
- [91] &quot;E4_G1_1&quot;   &quot;E4_G1_2&quot;   &quot;E4_G1_3&quot;   &quot;E4_G2_1&quot;   &quot;E4_G2_2&quot;   &quot;E4_G2_3&quot;  
- [97] &quot;E4_G3_1&quot;   &quot;E4_G3_2&quot;   &quot;E4_G3_3&quot;   &quot;E4_G4_1&quot;   &quot;E4_G4_2&quot;   &quot;E4_G4_3&quot;  
-[103] &quot;E4_G5_1&quot;   &quot;E4_G5_2&quot;   &quot;E4_G5_3&quot;   &quot;E4_G6_1&quot;   &quot;E4_G6_2&quot;   &quot;E4_G6_3&quot;  
-[109] &quot;E4_G7_1&quot;   &quot;E4_G7_2&quot;   &quot;E4_G7_3&quot;   &quot;E4_G8_1&quot;   &quot;E4_G8_2&quot;   &quot;E4_G8_3&quot;  
-[115] &quot;E4_G9_1&quot;   &quot;E4_G9_2&quot;   &quot;E4_G9_3&quot;   &quot;E4_G10_1&quot;  &quot;E4_G10_2&quot;  &quot;E4_G10_3&quot; 
-[121] &quot;E5_G1_1&quot;   &quot;E5_G1_2&quot;   &quot;E5_G1_3&quot;   &quot;E5_G2_1&quot;   &quot;E5_G2_2&quot;   &quot;E5_G2_3&quot;  
-[127] &quot;E5_G3_1&quot;   &quot;E5_G3_2&quot;   &quot;E5_G3_3&quot;   &quot;E5_G4_1&quot;   &quot;E5_G4_2&quot;   &quot;E5_G4_3&quot;  
-[133] &quot;E5_G5_1&quot;   &quot;E5_G5_2&quot;   &quot;E5_G5_3&quot;   &quot;E5_G6_1&quot;   &quot;E5_G6_2&quot;   &quot;E5_G6_3&quot;  
-[139] &quot;E5_G7_1&quot;   &quot;E5_G7_2&quot;   &quot;E5_G7_3&quot;   &quot;E5_G8_1&quot;   &quot;E5_G8_2&quot;   &quot;E5_G8_3&quot;  
-[145] &quot;E5_G9_1&quot;   &quot;E5_G9_2&quot;   &quot;E5_G9_3&quot;   &quot;E5_G10_1&quot;  &quot;E5_G10_2&quot;  &quot;E5_G10_3&quot; 
-[151] &quot;E6_G1_1&quot;   &quot;E6_G1_2&quot;   &quot;E6_G1_3&quot;   &quot;E6_G2_1&quot;   &quot;E6_G2_2&quot;   &quot;E6_G2_3&quot;  
-[157] &quot;E6_G3_1&quot;   &quot;E6_G3_2&quot;   &quot;E6_G3_3&quot;   &quot;E6_G4_1&quot;   &quot;E6_G4_2&quot;   &quot;E6_G4_3&quot;  
-[163] &quot;E6_G5_1&quot;   &quot;E6_G5_2&quot;   &quot;E6_G5_3&quot;   &quot;E6_G6_1&quot;   &quot;E6_G6_2&quot;   &quot;E6_G6_3&quot;  
-[169] &quot;E6_G7_1&quot;   &quot;E6_G7_2&quot;   &quot;E6_G7_3&quot;   &quot;E6_G8_1&quot;   &quot;E6_G8_2&quot;   &quot;E6_G8_3&quot;  
-[175] &quot;E6_G9_1&quot;   &quot;E6_G9_2&quot;   &quot;E6_G9_3&quot;   &quot;E6_G10_1&quot;  &quot;E6_G10_2&quot;  &quot;E6_G10_3&quot; 
-[181] &quot;E7_G1_1&quot;   &quot;E7_G1_2&quot;   &quot;E7_G1_3&quot;   &quot;E7_G2_1&quot;   &quot;E7_G2_2&quot;   &quot;E7_G2_3&quot;  
-[187] &quot;E7_G3_1&quot;   &quot;E7_G3_2&quot;   &quot;E7_G3_3&quot;   &quot;E7_G4_1&quot;   &quot;E7_G4_2&quot;   &quot;E7_G4_3&quot;  
-[193] &quot;E7_G5_1&quot;   &quot;E7_G5_2&quot;   &quot;E7_G5_3&quot;   &quot;E7_G6_1&quot;   &quot;E7_G6_2&quot;   &quot;E7_G6_3&quot;  
-[199] &quot;E7_G7_1&quot;   &quot;E7_G7_2&quot;   &quot;E7_G7_3&quot;   &quot;E7_G8_1&quot;   &quot;E7_G8_2&quot;   &quot;E7_G8_3&quot;  
-[205] &quot;E7_G9_1&quot;   &quot;E7_G9_2&quot;   &quot;E7_G9_3&quot;   &quot;E7_G10_1&quot;  &quot;E7_G10_2&quot;  &quot;E7_G10_3&quot; 
-[211] &quot;E8_G1_1&quot;   &quot;E8_G1_2&quot;   &quot;E8_G1_3&quot;   &quot;E8_G2_1&quot;   &quot;E8_G2_2&quot;   &quot;E8_G2_3&quot;  
-[217] &quot;E8_G3_1&quot;   &quot;E8_G3_2&quot;   &quot;E8_G3_3&quot;   &quot;E8_G4_1&quot;   &quot;E8_G4_2&quot;   &quot;E8_G4_3&quot;  
-[223] &quot;E8_G5_1&quot;   &quot;E8_G5_2&quot;   &quot;E8_G5_3&quot;   &quot;E8_G6_1&quot;   &quot;E8_G6_2&quot;   &quot;E8_G6_3&quot;  
-[229] &quot;E8_G7_1&quot;   &quot;E8_G7_2&quot;   &quot;E8_G7_3&quot;   &quot;E8_G8_1&quot;   &quot;E8_G8_2&quot;   &quot;E8_G8_3&quot;  
-[235] &quot;E8_G9_1&quot;   &quot;E8_G9_2&quot;   &quot;E8_G9_3&quot;   &quot;E8_G10_1&quot;  &quot;E8_G10_2&quot;  &quot;E8_G10_3&quot; 
-[241] &quot;E9_G1_1&quot;   &quot;E9_G1_2&quot;   &quot;E9_G1_3&quot;   &quot;E9_G2_1&quot;   &quot;E9_G2_2&quot;   &quot;E9_G2_3&quot;  
-[247] &quot;E9_G3_1&quot;   &quot;E9_G3_2&quot;   &quot;E9_G3_3&quot;   &quot;E9_G4_1&quot;   &quot;E9_G4_2&quot;   &quot;E9_G4_3&quot;  
-[253] &quot;E9_G5_1&quot;   &quot;E9_G5_2&quot;   &quot;E9_G5_3&quot;   &quot;E9_G6_1&quot;   &quot;E9_G6_2&quot;   &quot;E9_G6_3&quot;  
-[259] &quot;E9_G7_1&quot;   &quot;E9_G7_2&quot;   &quot;E9_G7_3&quot;   &quot;E9_G8_1&quot;   &quot;E9_G8_2&quot;   &quot;E9_G8_3&quot;  
-[265] &quot;E9_G9_1&quot;   &quot;E9_G9_2&quot;   &quot;E9_G9_3&quot;   &quot;E9_G10_1&quot;  &quot;E9_G10_2&quot;  &quot;E9_G10_3&quot; 
-[271] &quot;E10_G1_1&quot;  &quot;E10_G1_2&quot;  &quot;E10_G1_3&quot;  &quot;E10_G2_1&quot;  &quot;E10_G2_2&quot;  &quot;E10_G2_3&quot; 
-[277] &quot;E10_G3_1&quot;  &quot;E10_G3_2&quot;  &quot;E10_G3_3&quot;  &quot;E10_G4_1&quot;  &quot;E10_G4_2&quot;  &quot;E10_G4_3&quot; 
-[283] &quot;E10_G5_1&quot;  &quot;E10_G5_2&quot;  &quot;E10_G5_3&quot;  &quot;E10_G6_1&quot;  &quot;E10_G6_2&quot;  &quot;E10_G6_3&quot; 
-[289] &quot;E10_G7_1&quot;  &quot;E10_G7_2&quot;  &quot;E10_G7_3&quot;  &quot;E10_G8_1&quot;  &quot;E10_G8_2&quot;  &quot;E10_G8_3&quot; 
-[295] &quot;E10_G9_1&quot;  &quot;E10_G9_2&quot;  &quot;E10_G9_3&quot;  &quot;E10_G10_1&quot; &quot;E10_G10_2&quot; &quot;E10_G10_3&quot;
-[301] &quot;E11_G1_1&quot;  &quot;E11_G1_2&quot;  &quot;E11_G1_3&quot;  &quot;E11_G2_1&quot;  &quot;E11_G2_2&quot;  &quot;E11_G2_3&quot; 
-[307] &quot;E11_G3_1&quot;  &quot;E11_G3_2&quot;  &quot;E11_G3_3&quot;  &quot;E11_G4_1&quot;  &quot;E11_G4_2&quot;  &quot;E11_G4_3&quot; 
-[313] &quot;E11_G5_1&quot;  &quot;E11_G5_2&quot;  &quot;E11_G5_3&quot;  &quot;E11_G6_1&quot;  &quot;E11_G6_2&quot;  &quot;E11_G6_3&quot; 
-[319] &quot;E11_G7_1&quot;  &quot;E11_G7_2&quot;  &quot;E11_G7_3&quot;  &quot;E11_G8_1&quot;  &quot;E11_G8_2&quot;  &quot;E11_G8_3&quot; 
-[325] &quot;E11_G9_1&quot;  &quot;E11_G9_2&quot;  &quot;E11_G9_3&quot;  &quot;E11_G10_1&quot; &quot;E11_G10_2&quot; &quot;E11_G10_3&quot;
-[331] &quot;E12_G1_1&quot;  &quot;E12_G1_2&quot;  &quot;E12_G1_3&quot;  &quot;E12_G2_1&quot;  &quot;E12_G2_2&quot;  &quot;E12_G2_3&quot; 
-[337] &quot;E12_G3_1&quot;  &quot;E12_G3_2&quot;  &quot;E12_G3_3&quot;  &quot;E12_G4_1&quot;  &quot;E12_G4_2&quot;  &quot;E12_G4_3&quot; 
-[343] &quot;E12_G5_1&quot;  &quot;E12_G5_2&quot;  &quot;E12_G5_3&quot;  &quot;E12_G6_1&quot;  &quot;E12_G6_2&quot;  &quot;E12_G6_3&quot; 
-[349] &quot;E12_G7_1&quot;  &quot;E12_G7_2&quot;  &quot;E12_G7_3&quot;  &quot;E12_G8_1&quot;  &quot;E12_G8_2&quot;  &quot;E12_G8_3&quot; 
-[355] &quot;E12_G9_1&quot;  &quot;E12_G9_2&quot;  &quot;E12_G9_3&quot;  &quot;E12_G10_1&quot; &quot;E12_G10_2&quot; &quot;E12_G10_3&quot;
-[361] &quot;E13_G1_1&quot;  &quot;E13_G1_2&quot;  &quot;E13_G1_3&quot;  &quot;E13_G2_1&quot;  &quot;E13_G2_2&quot;  &quot;E13_G2_3&quot; 
-[367] &quot;E13_G3_1&quot;  &quot;E13_G3_2&quot;  &quot;E13_G3_3&quot;  &quot;E13_G4_1&quot;  &quot;E13_G4_2&quot;  &quot;E13_G4_3&quot; 
-[373] &quot;E13_G5_1&quot;  &quot;E13_G5_2&quot;  &quot;E13_G5_3&quot;  &quot;E13_G6_1&quot;  &quot;E13_G6_2&quot;  &quot;E13_G6_3&quot; 
-[379] &quot;E13_G7_1&quot;  &quot;E13_G7_2&quot;  &quot;E13_G7_3&quot;  &quot;E13_G8_1&quot;  &quot;E13_G8_2&quot;  &quot;E13_G8_3&quot; 
-[385] &quot;E13_G9_1&quot;  &quot;E13_G9_2&quot;  &quot;E13_G9_3&quot;  &quot;E13_G10_1&quot; &quot;E13_G10_2&quot; &quot;E13_G10_3&quot;
-[391] &quot;E14_G1_1&quot;  &quot;E14_G1_2&quot;  &quot;E14_G1_3&quot;  &quot;E14_G2_1&quot;  &quot;E14_G2_2&quot;  &quot;E14_G2_3&quot; 
-[397] &quot;E14_G3_1&quot;  &quot;E14_G3_2&quot;  &quot;E14_G3_3&quot;  &quot;E14_G4_1&quot;  &quot;E14_G4_2&quot;  &quot;E14_G4_3&quot; 
-[403] &quot;E14_G5_1&quot;  &quot;E14_G5_2&quot;  &quot;E14_G5_3&quot;  &quot;E14_G6_1&quot;  &quot;E14_G6_2&quot;  &quot;E14_G6_3&quot; 
-[409] &quot;E14_G7_1&quot;  &quot;E14_G7_2&quot;  &quot;E14_G7_3&quot;  &quot;E14_G8_1&quot;  &quot;E14_G8_2&quot;  &quot;E14_G8_3&quot; 
-[415] &quot;E14_G9_1&quot;  &quot;E14_G9_2&quot;  &quot;E14_G9_3&quot;  &quot;E14_G10_1&quot; &quot;E14_G10_2&quot; &quot;E14_G10_3&quot;</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="manipula.html#cb182-1"></a><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">pull =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code>[1] &quot;E1_G1_1&quot; &quot;E1_G1_2&quot; &quot;E1_G1_3&quot; &quot;E1_G2_1&quot; &quot;E1_G2_2&quot; &quot;E1_G2_3&quot;</code></pre>
 </div>
 <div id="formatar-nomes-de-coluna" class="section level3">
 <h3><span class="header-section-number">7.1.7</span> Formatar nomes de coluna</h3>
-<p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_lower()</code></a>, <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>colnames_to_upper()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_title()</code></a> podem ser usados ​​para converter nomes de colunas em maiúsculas, minúsculas ou em formato de título, respectivamente .  </p>
+<p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_lower()</code></a>, <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>colnames_to_upper()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_title()</code></a> podem ser usados para converter nomes de colunas em maiúsculas, minúsculas ou em formato de título, respectivamente .  </p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="manipula.html#cb184-1"></a><span class="kw">colnames_to_lower</span>(data_ge)</span></code></pre></div>
 <pre><code># A tibble: 420 x 5
    env   gen   rep      gy    hm
@@ -1453,52 +1386,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.2</span> Trabalhando com números e seqüências de caracteres</h2>
 <div id="arredondando" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Arredondando</h3>
-<p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>round_cols()</code></a> arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 0). Se nenhuma variável for informada, todas as variáveis ​​numéricas serão arredondadas.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="manipula.html#cb209-1"></a><span class="kw">head</span> (data_ge2)</span></code></pre></div>
-<pre><code># A tibble: 6 x 18
-  ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 A1    H1    1      2.61  1.71 0.658  16.1  52.2  28.1  16.3  25.1  217.  15.6
-2 A1    H1    2      2.87  1.76 0.628  14.2  50.3  27.6  14.5  21.4  184.  16  
-3 A1    H1    3      2.68  1.58 0.591  16.0  50.7  28.4  16.4  24.0  208.  17.2
-4 A1    H10   1      2.83  1.64 0.581  16.7  54.1  31.7  17.4  26.2  194.  15.6
-5 A1    H10   2      2.79  1.71 0.616  14.9  52.7  32.0  15.5  20.7  176.  17.6
-6 A1    H10   3      2.72  1.51 0.554  16.7  52.7  30.4  17.5  26.8  207.  16.8
-# ... with 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,
-#   NKE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="manipula.html#cb211-1"></a><span class="kw">round_cols</span>(data_ge2)</span></code></pre></div>
-<pre><code># A tibble: 156 x 18
-   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 A1    H1    1      2.61  1.71 0.66   16.1  52.2  28.1  16.3  25.1  217.  15.6
- 2 A1    H1    2      2.87  1.76 0.63   14.2  50.3  27.6  14.5  21.4  184.  16  
- 3 A1    H1    3      2.68  1.58 0.59   16.0  50.7  28.4  16.4  24.0  208.  17.2
- 4 A1    H10   1      2.83  1.64 0.580  16.7  54.0  31.7  17.4  26.2  194.  15.6
- 5 A1    H10   2      2.79  1.71 0.62   14.9  52.7  32.0  15.5  20.7  176.  17.6
- 6 A1    H10   3      2.72  1.51 0.55   16.7  52.7  30.4  17.5  26.8  207.  16.8
- 7 A1    H11   1      2.75  1.51 0.55   17.4  51.7  30.6  18.0  26.2  217.  16.8
- 8 A1    H11   2      2.72  1.56 0.570  16.7  47.2  28.7  17.2  24.1  181.  13.6
- 9 A1    H11   3      2.77  1.67 0.6    15.8  47.9  27.6  16.4  20.5  166.  15.2
-10 A1    H12   1      2.73  1.54 0.56   14.9  47.5  28.2  15.5  20.1  161.  14.8
-# ... with 146 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,
-#   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
-<p>Como alternativa, selecione variáveis ​​para arredondar.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="manipula.html#cb213-1"></a><span class="kw">round_cols</span> (data_ge2, PH, EP, <span class="dt">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code># A tibble: 156 x 18
-   ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
-   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 A1    H1    1       2.6  1.71   0.7  16.1  52.2  28.1  16.3  25.1  217.  15.6
- 2 A1    H1    2       2.9  1.76   0.6  14.2  50.3  27.6  14.5  21.4  184.  16  
- 3 A1    H1    3       2.7  1.58   0.6  16.0  50.7  28.4  16.4  24.0  208.  17.2
- 4 A1    H10   1       2.8  1.64   0.6  16.7  54.1  31.7  17.4  26.2  194.  15.6
- 5 A1    H10   2       2.8  1.71   0.6  14.9  52.7  32.0  15.5  20.7  176.  17.6
- 6 A1    H10   3       2.7  1.51   0.6  16.7  52.7  30.4  17.5  26.8  207.  16.8
- 7 A1    H11   1       2.8  1.51   0.5  17.4  51.7  30.6  18.0  26.2  217.  16.8
- 8 A1    H11   2       2.7  1.56   0.6  16.7  47.2  28.7  17.2  24.1  181.  13.6
- 9 A1    H11   3       2.8  1.67   0.6  15.8  47.9  27.6  16.4  20.5  166.  15.2
-10 A1    H12   1       2.7  1.54   0.6  14.9  47.5  28.2  15.5  20.1  161.  14.8
-# ... with 146 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,
-#   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
+<p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>round_cols()</code></a> arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 0). Se nenhuma variável for informada, todas as variáveis numéricas serão arredondadas.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="manipula.html#cb209-1"></a>df_round &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(data_ge2)</span>
+<span id="cb209-2"><a href="manipula.html#cb209-2"></a><span class="kw">head</span>(df_round)</span></code></pre></div>
+<pre><code>  ENV GEN REP    PH    EH        EP    EL     ED     CL    CD       CW       KW
+1  A1  H1   1 2.612 1.706 0.6579767 16.10 52.222 28.108 16.30 25.06168 216.5231
+2  A1  H1   2 2.872 1.760 0.6275319 14.16 50.300 27.616 14.46 21.43085 183.9417
+3  A1  H1   3 2.684 1.584 0.5912328 16.04 50.728 28.440 16.38 23.96624 207.6040
+4  A1 H10   1 2.832 1.644 0.5813520 16.72 54.054 31.664 17.40 26.20079 193.6866
+5  A1 H10   2 2.794 1.706 0.6159704 14.90 52.730 32.032 15.48 20.73916 176.4336
+6  A1 H10   3 2.724 1.512 0.5538698 16.68 52.736 30.404 17.50 26.81685 207.1072
+    NR  NKR      CDED     PERK      TKW   NKE
+1 15.6 36.6 0.5383791 89.61893 417.9800 521.4
+2 16.0 31.4 0.5514266 89.48590 360.7694 494.2
+3 17.2 31.8 0.5607058 89.68650 366.7125 565.2
+4 15.6 32.8 0.5855966 87.89310 373.9682 519.2
+5 17.6 28.0 0.6074037 89.66285 346.8787 502.4
+6 16.8 32.8 0.5767149 88.46255 394.0328 524.6</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="manipula.html#cb211-1"></a><span class="kw">round_cols</span>(df_round) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code>  ENV GEN REP   PH   EH   EP    EL    ED    CL    CD    CW     KW   NR  NKR
+1  A1  H1   1 2.61 1.71 0.66 16.10 52.22 28.11 16.30 25.06 216.52 15.6 36.6
+2  A1  H1   2 2.87 1.76 0.63 14.16 50.30 27.62 14.46 21.43 183.94 16.0 31.4
+3  A1  H1   3 2.68 1.58 0.59 16.04 50.73 28.44 16.38 23.97 207.60 17.2 31.8
+4  A1 H10   1 2.83 1.64 0.58 16.72 54.05 31.66 17.40 26.20 193.69 15.6 32.8
+5  A1 H10   2 2.79 1.71 0.62 14.90 52.73 32.03 15.48 20.74 176.43 17.6 28.0
+6  A1 H10   3 2.72 1.51 0.55 16.68 52.74 30.40 17.50 26.82 207.11 16.8 32.8
+  CDED  PERK    TKW   NKE
+1 0.54 89.62 417.98 521.4
+2 0.55 89.49 360.77 494.2
+3 0.56 89.69 366.71 565.2
+4 0.59 87.89 373.97 519.2
+5 0.61 89.66 346.88 502.4
+6 0.58 88.46 394.03 524.6</code></pre>
+<p>Como alternativa, selecione variáveis para arredondar.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="manipula.html#cb213-1"></a><span class="kw">round_cols</span>(df_round, PH, EP, <span class="dt">digits =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code>  ENV GEN REP  PH    EH  EP    EL     ED     CL    CD       CW       KW   NR
+1  A1  H1   1 2.6 1.706 0.7 16.10 52.222 28.108 16.30 25.06168 216.5231 15.6
+2  A1  H1   2 2.9 1.760 0.6 14.16 50.300 27.616 14.46 21.43085 183.9417 16.0
+3  A1  H1   3 2.7 1.584 0.6 16.04 50.728 28.440 16.38 23.96624 207.6040 17.2
+4  A1 H10   1 2.8 1.644 0.6 16.72 54.054 31.664 17.40 26.20079 193.6866 15.6
+5  A1 H10   2 2.8 1.706 0.6 14.90 52.730 32.032 15.48 20.73916 176.4336 17.6
+6  A1 H10   3 2.7 1.512 0.6 16.68 52.736 30.404 17.50 26.81685 207.1072 16.8
+   NKR      CDED     PERK      TKW   NKE
+1 36.6 0.5383791 89.61893 417.9800 521.4
+2 31.4 0.5514266 89.48590 360.7694 494.2
+3 31.8 0.5607058 89.68650 366.7125 565.2
+4 32.8 0.5855966 87.89310 373.9682 519.2
+5 28.0 0.6074037 89.66285 346.8787 502.4
+6 32.8 0.5767149 88.46255 394.0328 524.6</code></pre>
 </div>
 <div id="extraindo-e-substituindo-números" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> Extraindo e substituindo números</h3>
@@ -1534,7 +1469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9       3
 10       4
 # ... with 410 more rows</code></pre>
-<p>Para extrair os resultados em um vetor, use o argumento <code>pull = TRUE</code>. Isso é particularmente útil quando <code>extract_ *</code> ou <code>replace_ *</code> são usados ​​em uma função como <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>add_cols()</code></a>.</p>
+<p>Para extrair os resultados em um vetor, use o argumento <code>pull = TRUE</code>. Isso é particularmente útil quando <code>extract_ *</code> ou <code>replace_ *</code> são usados em uma função como <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>add_cols()</code></a>.</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="manipula.html#cb219-1"></a><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">pull =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>  [1]  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9
  [26]  9  9 10 10 10  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7
@@ -1593,7 +1528,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="extraindo-substituindo-e-removendo-strings" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Extraindo, substituindo e removendo strings</h3>
-<p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_string()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_num_str.html"><code>replace_string()</code></a> são usados ​​no mesmo contexto de <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_number()</code></a> e <a href="https%20:%20//tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_number()</code></a>, mas para lidar com seqüências de caracteres.</p>
+<p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_string()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_num_str.html"><code>replace_string()</code></a> são usados no mesmo contexto de <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_number()</code></a> e <a href="https%20:%20//tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_number()</code></a>, mas para lidar com seqüências de caracteres.</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="manipula.html#cb225-1"></a><span class="kw">extract_string</span>(data_ge, GEN, <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   new_var REP      GY    HM
@@ -1972,7 +1907,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

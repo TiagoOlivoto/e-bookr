@@ -13,8 +13,8 @@ O  **ggplot2** \indt{ggplot2} é um pacote R para produção de gráficos que di
 A seguir, vamos discutir os aspcetos básicos para a construção de gráficos utilizando o pacote **ggplot2**. A função `plot_grid()` \indf{plot\_grid}do pacote [cowplot](https://github.com/wilkelab/cowplot)^[https://github.com/wilkelab/cowplot] foi utilizado aqui para organizar os gráficos em forma de painéis. O pacote [qqplotr](https://github.com/aloy/qqplotr)^[https://github.com/aloy/qqplotr] também é utilizado como uma [extensão do pacote ggplot2](http://www.ggplot2-exts.org/gallery/)^[http://www.ggplot2-exts.org/gallery/] para confecção de gráficos do tipo Q-Q plots. Os dados contidos na aba *gg* do arquivo *data_R.xlsx* serão utilizados. Estes dados podem ser carregados pelo seguinte comando.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-dados_gg <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                   sheet = "gg")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+dados_gg <- import(url, sheet = "gg")
 str(dados_gg)
 ```
 

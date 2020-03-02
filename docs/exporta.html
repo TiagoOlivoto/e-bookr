@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -411,8 +412,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.1</span> Exportando com diferentes extensões</h2>
 <p><strong>Salvar em extensão .csv</strong></p>
 <p>Em arquivos <em>.csv</em>, os valores são separados por vírgula. Tabelas geradas no <em>R</em> podem ser salvos através da função <code>write.table()</code>.  Será utilizado como exemplo uma ANOVA, onde o objetivo é exportar os <em>p</em>-valores do teste F para blocos e tratamentos.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="exporta.html#cb281-1"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb281-2"><a href="exporta.html#cb281-2"></a>                      <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="exporta.html#cb281-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb281-2"><a href="exporta.html#cb281-2"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
 <span id="cb281-3"><a href="exporta.html#cb281-3"></a>mod1 =<span class="st"> </span><span class="kw">aov</span>(RG <span class="op">~</span><span class="st"> </span>HIBRIDO <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(BLOCO), <span class="dt">data =</span> qualitativo) </span>
 <span id="cb281-4"><a href="exporta.html#cb281-4"></a><span class="kw">anova</span>(mod1)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
@@ -548,7 +549,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

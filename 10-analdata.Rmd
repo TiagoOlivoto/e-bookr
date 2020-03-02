@@ -533,7 +533,8 @@ Para maiores detalhes, ver o [pdf do pacote](https://cran.r-project.org/web/pack
 Os dados utilizados neste exemplo estão na planilha QUALI do conjunto de dados *data/data_R.xlsx*. Os próximos códigos carregam o conjunto de dados e criam um gráfico do tipo boxplot para explorar o padrão dos dados.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, fig.width=10, fig.height=5}
-qualitativo <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+qualitativo <- import(url,
                       sheet = "QUALI")
 p1 = ggplot(qualitativo, aes(HIBRIDO, RG))+
        geom_hline(yintercept = mean(qualitativo$RG), linetype = "dashed")+
@@ -629,8 +630,8 @@ O *p*-valor do teste de Shapiro-Wilk indicou que os resíduos \indt{resíduos} n
 Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a $SQ_{Trat}$ é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função `crd()`, basta indicar como `FALSE` no argumentos `quali`. O arquivo de dados "QUALITATIVO.xlsx" contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no `ggplot2` até agora, vamos criar um gráfico para visualisar estes dados. \indf{ggplot} \indf{geom\_point} \indf{geom\_smooth}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, fig.height = 3, fig.width = 5, fig.cap = "Exemplo de regressão com comportamento linear, quadrático e cúbico", fig.align = "center"}
-quantitativo_todos <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                             sheet = "QUANTI")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+quantitativo_todos <- import(url, sheet = "QUANTI")
 ggplot(quantitativo_todos, aes(DOSEN, RG, col = TIPO)) +
   geom_point() +
   geom_smooth()
@@ -880,8 +881,8 @@ Baseado no modelo estatístico apresentado, percebe-se que quando uma ANCOVA\ind
 
 
 ```{r warning = FALSE, message = FALSE, echo=FALSE, fig.height=3.5, fig.align="center", fig.cap="Gráfico de dispersão e linhas de regressão entre a variável dependente e a covariável. As diferentes cores represetam três tratamentos hipotéticos."}
-cov2 <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-               sheet = "SCENARIO")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+cov2 <- import(url, sheet = "SCENARIO")
 ggplot(cov2, aes(X, Y, col = TRAT))+
   geom_point()+
   geom_smooth(method = "lm", se = F)+
@@ -923,10 +924,9 @@ Vamos agora ver cada uma destas etapas detalhadamente.
 O seguinte código é utilizado para instalar/carregar os pacotes necessários bem como para fazer o upload dos dados e armazenar no dataframe `covar` \indf{p\_load}
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE}
-
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 # dados
-covar <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                sheet = "COVAR")
+covar <- import(url, sheet = "COVAR")
 # duas primeiras colunas como fator
 covar <- to_factor(covar, 1:2)
 
@@ -1213,8 +1213,8 @@ Para o exemplo, os dados de proporção de legumes viáveis descrito anteriormen
 
 
 ```{r collapse = TRUE,  eval=T, fig.width=10, fig.height=5,  fig.align="center", fig.cap="Proporção de legumes viáveis em nove cultivares de soja (a) e gráfico Q-Q plot (b)."}
-
-SOJA <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx", sheet = "SOJA")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+SOJA <- import(url, sheet = "SOJA")
 medlvia = mean(SOJA$NLV / SOJA$NLT) # Média de legumes viáveis
 
 # Explorando os dados
@@ -1467,16 +1467,12 @@ Nesta seção, serão analisados dados de experimentos bifatoriais com diferente
 
 
 ```{r warning = FALSE, message = FALSE}
-FAT1_CI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                  sheet = "FAT1_CI")
-FAT1_SI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                  sheet = "FAT1_SI")
-FAT2_CI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                  sheet = "FAT2_CI")
-FAT2_SI <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                  sheet = "FAT2_SI")
-FAT3 <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                  sheet = "FAT3")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+FAT1_CI <- import(url, sheet = "FAT1_CI")
+FAT1_SI <- import(url, sheet = "FAT1_SI")
+FAT2_CI <- import(url, sheet = "FAT2_CI")
+FAT2_SI <- import(url, sheet = "FAT2_SI")
+FAT3 <- import(url, sheet = "FAT3")
 
 ```
 

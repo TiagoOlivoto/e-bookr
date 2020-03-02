@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.7.8" data-path="relations.html"><a href="relations.html#seleção-de-variáveis-em-análise-de-trilha"><i class="fa fa-check"></i><b>12.7.8</b> Seleção de variáveis em análise de trilha</a></li>
 <li class="chapter" data-level="12.7.9" data-path="relations.html"><a href="relations.html#análise-de-trilha-para-cada-nível-de-um-fator"><i class="fa fa-check"></i><b>12.7.9</b> Análise de trilha para cada nível de um fator</a></li>
 </ul></li>
+<li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
@@ -408,11 +409,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Capítulo 11</span> Análise de regressão</h1>
 <div id="regressão-linear" class="section level2">
 <h2><span class="header-section-number">11.1</span> Regressão Linear</h2>
-<p>A análise de regressão  tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla. Na regressão simples, apenas uma variável dependente é declarada no modelo:</p>
+<p>A análise de regressão  tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla. Na regressão simples, apenas uma variável independente é declarada no modelo:</p>
 <p><span class="math display">\[
 Y_i = {\beta _0} + {\beta _1}x + \varepsilon_i  
 \]</span></p>
-<p>Onde <span class="math inline">\(Y_i\)</span> é a variável dependente, <span class="math inline">\(x\)</span> é a variável independente, <span class="math inline">\(\beta_0\)</span> é o intercepto, <span class="math inline">\(\beta_1\)</span> é a inclinação da reta e <span class="math inline">\(\varepsilon\)</span> é o erro. Na regressão linear múltipla, mais de uma variável dependente é declarada no modelo:</p>
+<p>Onde <span class="math inline">\(Y_i\)</span> é a variável dependente, <span class="math inline">\(x\)</span> é a variável independente, <span class="math inline">\(\beta_0\)</span> é o intercepto, <span class="math inline">\(\beta_1\)</span> é a inclinação da reta e <span class="math inline">\(\varepsilon\)</span> é o erro. Na regressão linear múltipla, mais de uma variável independente é declarada no modelo:</p>
 <p><span class="math display">\[
 Y_i = {\beta _0} + {\beta _1}x_1 + {\beta _2}x_2 + ... + {\beta _k}x_k + \varepsilon_i  
 \]</span></p>
@@ -489,8 +490,8 @@ S = {\boldsymbol{\varepsilon &#39;\varepsilon }} = \sum\limits_{i = 1}^n {{{\lef
 <div id="ajustando-regressões-com-a-função-lm" class="section level3">
 <h3><span class="header-section-number">11.1.2</span> Ajustando regressões com a função <code>lm()</code></h3>
 <p>A função <code>lm()</code>  é utilizada para ajustar regresões lineares simples e múltipla. Os argumentos mais importantes desta função são a <code>formula</code>, onde indicamos a função resposta; e <code>data</code>, onde indicamos o banco de dados. Vamos utiliza um exemplo simples retirado de <span class="citation">Schenider, Schenider, and Souza (<a href="#ref-Schneider2009" role="doc-biblioref">2009</a>)</span>:</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="reg.html#cb492-1"></a>reg &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb492-2"><a href="reg.html#cb492-2"></a>              <span class="dt">sheet =</span> <span class="st">&quot;REG&quot;</span>)</span>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="reg.html#cb492-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb492-2"><a href="reg.html#cb492-2"></a>reg &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;REG&quot;</span>)</span>
 <span id="cb492-3"><a href="reg.html#cb492-3"></a>mod7 =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X1 <span class="op">+</span><span class="st"> </span>X2 <span class="op">+</span><span class="st"> </span>X3, <span class="dt">data =</span> reg)</span>
 <span id="cb492-4"><a href="reg.html#cb492-4"></a>mod7<span class="fl">.1</span> =<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> reg)</span>
 <span id="cb492-5"><a href="reg.html#cb492-5"></a><span class="kw">anova</span>(mod7<span class="fl">.1</span>, mod7) <span class="co"># Verificar a significância do modelo</span></span></code></pre></div>
@@ -786,8 +787,8 @@ f\left( {x,{\boldsymbol{\theta }}} \right) = f\left( {x,{{\boldsymbol{\theta }}^
 <p><span class="math display">\[
 {Y_i} = \frac{{{\beta _1}}}{{1 + {e^{\left( {{\beta _2} - {\beta _3}{t_i}} \right)}}}} + {\varepsilon _i}
 \]</span></p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="reg.html#cb536-1"></a>nls_tomato &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb536-2"><a href="reg.html#cb536-2"></a>                     <span class="dt">sheet =</span> <span class="st">&quot;TOMATE&quot;</span>)</span>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="reg.html#cb536-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb536-2"><a href="reg.html#cb536-2"></a>nls_tomato &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;TOMATE&quot;</span>)</span>
 <span id="cb536-3"><a href="reg.html#cb536-3"></a>nls_tomato_cord &lt;-<span class="st"> </span><span class="kw">subset</span>(nls_tomato,Genotipo  <span class="op">==</span><span class="st">  &quot;Cordillera&quot;</span>) </span></code></pre></div>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="reg.html#cb537-1"></a><span class="co"># Modelo logístico</span></span>
 <span id="cb537-2"><a href="reg.html#cb537-2"></a>logi &lt;-<span class="st"> </span><span class="cf">function</span>(x, b1, b2, b3){</span>
@@ -859,8 +860,8 @@ BP = 1.5734, df = 2, p-value = 0.4554</code></pre>
 <span id="cb546-3"><a href="reg.html#cb546-3"></a><span class="kw">plot</span>(res1_nls1)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-261-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No exemplo acima, apenas uma observação foi realizada para cada variável independente (dias após o transplante, no caso). Por isso optou-se por utilizar o teste de <em>Breusch-Pagan</em> para realizar o diagnóstico de homocedasticidade dos resíduos. Quando mais de uma observação é realizada em cada variável independente, pode-se utilizar os testes de <em>Bartlett</em> ou <em>Levene</em>.</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="reg.html#cb547-1"></a>nls_eggplant &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb547-2"><a href="reg.html#cb547-2"></a>                       <span class="dt">sheet =</span> <span class="st">&quot;EGGPLANT&quot;</span>)</span>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="reg.html#cb547-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb547-2"><a href="reg.html#cb547-2"></a>nls_eggplant &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;EGGPLANT&quot;</span>)</span>
 <span id="cb547-3"><a href="reg.html#cb547-3"></a>nls_eggplant =<span class="st"> </span><span class="kw">subset</span>(nls_eggplant, ESTUFA  <span class="op">==</span><span class="st">  &quot;E1&quot;</span>) </span>
 <span id="cb547-4"><a href="reg.html#cb547-4"></a>start =<span class="st"> </span><span class="kw">list</span>(<span class="dt">b1 =</span> <span class="dv">10</span>,<span class="dt">b2 =</span> <span class="fl">6.7</span>,<span class="dt">b3 =</span> <span class="fl">0.073</span>)</span>
 <span id="cb547-5"><a href="reg.html#cb547-5"></a>nls2 =<span class="st"> </span><span class="kw">nls</span>(NUMERO <span class="op">~</span><span class="st"> </span>b1<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(b2<span class="op">-</span>b3<span class="op">*</span>DAT)), </span>
@@ -984,8 +985,8 @@ Figure 11.3: Representação gráfica em modelos não lineares
 <p><span class="math display">\[
 {Y_i} = \left\{ \begin{array}{l}{\beta _0} + {\beta _1}x + {\varepsilon _i}{\rm{, se }}{X_i}{\rm{  &lt;  }}{X_0}\\P{\rm{ se }}{X_i}{\rm{  &gt;  }}{X_0}{\rm{ }}\end{array} \right.
 \]</span></p>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="reg.html#cb555-1"></a>plato_tomato &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span>,</span>
-<span id="cb555-2"><a href="reg.html#cb555-2"></a>                       <span class="dt">sheet =</span> <span class="st">&quot;PLATO&quot;</span>)</span>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="reg.html#cb555-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
+<span id="cb555-2"><a href="reg.html#cb555-2"></a>plato_tomato &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;PLATO&quot;</span>)</span>
 <span id="cb555-3"><a href="reg.html#cb555-3"></a>plato_cordillera =<span class="st"> </span><span class="kw">nls</span>(num<span class="op">~</span>(b0<span class="op">+</span>b1<span class="op">*</span>DAT<span class="op">*</span>(DAT<span class="op">&lt;=</span><span class="st"> </span>P))<span class="op">+</span></span>
 <span id="cb555-4"><a href="reg.html#cb555-4"></a><span class="st">                    </span>(b1<span class="op">*</span>P<span class="op">*</span>(DAT<span class="op">&gt;</span>P)),</span>
 <span id="cb555-5"><a href="reg.html#cb555-5"></a>                     <span class="dt">data =</span> <span class="kw">subset</span>(plato_tomato, Genotipo <span class="op">==</span><span class="st"> &quot;Cordillera&quot;</span>),</span>
@@ -1129,7 +1130,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["html_r.pdf", "html_r.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

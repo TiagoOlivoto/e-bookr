@@ -9,9 +9,8 @@ Será demonstrado nessa seção como exportar dados e tabelas gerados dentro do 
 Em arquivos *.csv*, os valores são separados por vírgula. Tabelas geradas no *R* podem ser salvos através da função `write.table()`. \indf{write.table} Será utilizado como exemplo uma ANOVA, onde o objetivo é exportar os *p*-valores do teste F para blocos e tratamentos.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-
-qualitativo <- import("https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx",
-                      sheet = "QUALI")
+url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
+qualitativo <- import(url, sheet = "QUALI")
 mod1 = aov(RG ~ HIBRIDO + factor(BLOCO), data = qualitativo) 
 anova(mod1)
 names(anova(mod1))
