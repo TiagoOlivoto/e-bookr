@@ -123,7 +123,7 @@ plot_lines(quantitativo, x = DOSEN, y = RG, fit = 2, col = F)
 
 ## Exercício 9 {#exerc9}
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-with(quantitativo, rbd(DOSEN, BLOCO, RG, quali = FALSE))
+with(quantitativo, dbc(DOSEN, BLOCO, RG, quali = FALSE))
 ```
 
 

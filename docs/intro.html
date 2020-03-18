@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 1 Introdução ao ambiente R | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 1 Introdução ao ambiente R | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -417,12 +415,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Quem ja é usuário de softwares por linhas de comando, como o SAS, provavelmente não notou nenhuma grande diferença até aqui. Toda análise se resume à seguinte sequência <em>dados &gt; códigos &gt; saída</em>. A experiência do usuário com o R, no entanto, pode ser mais atrativa utilizando o <a href="https://www.rstudio.com/">RStudio</a><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>. O Rstudio é um produto de código aberto disponível publicamente em 28/02/2011 que está disponível gratuitamente. Ele é um ambiente de desenvolvimento integrado para R que inclui (i) janelas de edição de texto a partir das quais o código pode ser enviado para o console e/ou salvo no sistema operacional, (ii) listas de objetos em sua área de trabalho, (iii) histórico infinito dos comandos facilmente pesquisável com capacidade de inserir, a partir do histórico, um comando no console novamente; (iv); interface com o sistema operacional para acesso a arquivos; (v) janela de ajuda com botões de voltar e avançar; (vi) download de pacotes. Apesar de todas estas capacidades, o RStudio é muito fácil de utilizar.</p>
 <p>Nesta seção serão abordados alguns aspectos básicos para que o usuário do R possa desenvolver as suas análises. Será dado enfoque para áreas básicas da interface, cujo conhecimento é necessário para que um usuário inicante possa realizar sua primeira análisee. A figura abaixo mostra as principais janelas do <strong>Rstudio</strong>, incluindo o <em>script</em>, o <em>console</em>, a <em>“área de trabalho”</em> e o <em>output</em> para gráficos.</p>
 <div class="figure">
-<img src="figures/Console.png" alt="" />
+<img src="figures/Console.png" alt="Interface do RStudio" />
 <p class="caption">Interface do RStudio</p>
 </div>
 <p>Antes de iniciar as análises, recomenda-se escolher um diretório  onde devem estar os <em>inputs</em> (dados) e para onde serão enviados os <em>outputs</em> (gráficos, arquivos .txt, .xlsx, etc) . Para selecionar o diretório, basta seguir o caminho <em>Session &gt; Set Working Directory &gt; Choosing diretory</em> ou utilizar as teclas de atalho <em>Ctrl+Shift+H</em>.</p>
 <div class="figure">
-<img src="figures/Diretory.png" alt="" />
+<img src="figures/Diretory.png" alt="Selecionando um diretório" />
 <p class="caption">Selecionando um diretório</p>
 </div>
 <p>Posteriormente, um <em>R Script</em> é iniciado conforme a figura abaixo ou pelas teclas de atalho <em>Ctrl+Shift+N</em>. No canto inferior direito, além de servir como <em>output</em> para gráficos (<em>Plots</em>), também é o local onde os pacotes utilizados nas análises (<em>Packages</em>) são instalados e maiores informações sobre as funções podem ser encontradas (<em>Help</em>).</p>
@@ -432,22 +430,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Se você realizou o download do software R pela primeira vez e achou um tanto quanto “estranho” o pequeno tamanho do arquivo (~80 Mb), provalemente deve ter se perguntado como um software estatistico tão poderoso pode ser comprimido em um arquivo tão pequeno (pequeno em comparação com os +20 GB do SAS). A resposta é simples, somente os pacote básicos do R são baixados com o arquivo de instalação. Na medida em que o usuário necessita realizar uma análise específica, a instalação de um pacote que contém uma função específica para realizar tal análise é necessária.</p>
 <p>A instalação dos pacotes pode ser realizada conforme a figura abaixo, ou através da função <code>install.packages()</code>. Após a instalação do pacote, o usuário deve utilizar as funções <code>require()</code> ou <code>library()</code>  para que o pacote seja carregado e as suas funções possam ser utilizadas. Quando o usuário tenta utilizar uma função pertencente a um determinado pacote e este pacote não está instalado (ou carregado), um erro é exibido.</p>
 <div class="figure">
-<img src="figures/Install.png" alt="" />
+<img src="figures/Install.png" alt="Instalando pacotes" />
 <p class="caption">Instalando pacotes</p>
 </div>
 <div class="figure">
-<img src="figures/Help.png" alt="" />
+<img src="figures/Help.png" alt="Ajuda para a função nls()" />
 <p class="caption">Ajuda para a função <code>nls()</code></p>
 </div>
 <p>Como exemplo inicial, vamos tentar selecionar a variável <em>Sepal.Length</em> do conjunto de dados base <code>iris</code> utilizando a função abaixo. <strong>Cuidado, spoilers do pacote dplyr!</strong> O primero passo é criar um novo script, seguindo os seguintes passos: <em>File &gt; New File &gt; R script</em> ou utilizando o atalho <code>Ctrl+Shift+N</code>. Posteriormente, o seguinte código é digitado e executado ao se selecionar a linha do código e clicar no botão <em>run</em> ou utilizando o atalho <code>Ctrl+Enter</code>).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a>SL =<span class="st"> </span><span class="kw">select</span>(iris, Sepal.Length)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">SL =<span class="st"> </span><span class="kw">select</span>(iris, Sepal.Length)</a></code></pre></div>
 <pre><code>Error in select(iris, Sepal.Length): não foi possível encontrar a função &quot;select&quot;</code></pre>
 <p>Neste caso, um erro é exibido pois o pacote <strong>dplyr</strong> não está instalado ou carregado. Caso ele já estiver instalado, a mensagem de erro acima é superada ao carregar o pacote antes de executar a função.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb3-2"><a href="intro.html#cb3-2"></a>SL =<span class="st"> </span><span class="kw">select</span>(iris, Sepal.Length)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" title="2">SL =<span class="st"> </span><span class="kw">select</span>(iris, Sepal.Length)</a></code></pre></div>
 <p>Caso o pacote <strong>dplyr</strong> não esteja instalado, a maneira mais fácil de instalá-lo é instalando a coleção de pacotes <a href="https://www.tidyverse.org/">tidyverse</a><a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> seguindo os passos da Figura 3 ou utilizando a seguinte função.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb4-2"><a href="intro.html#cb4-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 <p>O <strong>tidyverse</strong> é uma coleção de pacotes R projetados para a ciência de dados, contendo, dentre outros, seguintes pacotes que serão utilizados neste material.</p>
 <ul>
 <li><strong>ggplot2</strong>, para criação de gráficos.</li>
@@ -456,19 +454,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>tibble</strong>, para criação de tibbles.</li>
 </ul>
 <p>Praticamente todas as rotinas realizadas no R são baseadas em bibliotecas de códigos. Com a manipulaçao de pacotes não seria diferente. O pacote <a href="https://github.com/trinker/pacman">pacman</a><a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> é uma ferramenta de gerenciamento de pacotes R que combina a funcionalidade das funções relacionadas à biblioteca base em funções intuitivamente nomeadas, reduzindo o código para executar simultaneamente várias ações. Uma das funções mais úteis do pacote pacman é a <code>p_load()</code> (<em>package load</em>). Esta função checa se um pacote está instalado e em caso afirmativo, carrega-o como se a função <code>library()</code> tivesse sido usada. Caso o pacote não esteja instalado, ela primeiro o instala-rá antes de carregá-lo. Vamos, agora, instalar (para quem está utilizando o R pela primeira vez) ou carregar (para quem já tem instalado) os pacotes utilizados neste material.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)){</span>
-<span id="cb5-2"><a href="intro.html#cb5-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb5-3"><a href="intro.html#cb5-3"></a>}</span>
-<span id="cb5-4"><a href="intro.html#cb5-4"></a><span class="kw">library</span>(pacman)</span>
-<span id="cb5-5"><a href="intro.html#cb5-5"></a><span class="kw">p_load</span>(hnp, asbio, car, DT, dplyr, devtools, emmeans, effects, multcomp,</span>
-<span id="cb5-6"><a href="intro.html#cb5-6"></a>       lme4, rio, ExpDes, manipulate, metan, MASS, tidyverse, agricolae,</span>
-<span id="cb5-7"><a href="intro.html#cb5-7"></a>       psych, corrplot, pvclust, factoextra, ggfortify)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)){</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3">}</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw">library</span>(pacman)</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="kw">p_load</span>(hnp, asbio, car, DT, dplyr, devtools, emmeans, effects, multcomp,</a>
+<a class="sourceLine" id="cb5-6" title="6">       lme4, rio, ExpDes.pt, manipulate, metan, MASS, tidyverse, agricolae,</a>
+<a class="sourceLine" id="cb5-7" title="7">       psych, corrplot, pvclust, factoextra, ggfortify)</a></code></pre></div>
 <p>Os pacotes disponibilizados no software <em>R</em> estão em constante atualização. Utilizando a função <code>packageStatus()</code> e <code>summary(packageStatus())</code> é possível verificar se os pacotes estão atualizados. Outra forma é ir em <em>Packages &gt; Update</em> que se encontra no canto inferior direito conforme demonstrado na Figura 5. Por fim, para citar os pacotes , recomenda-se verificar a referência através da função <code>citation()</code>.  </p>
 <div class="figure">
-<img src="figures/Update.png" alt="" />
+<img src="figures/Update.png" alt="Verificando se há atualizações disponíveis" />
 <p class="caption">Verificando se há atualizações disponíveis</p>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a><span class="kw">citation</span>(<span class="st">&quot;metan&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">citation</span>(<span class="st">&quot;metan&quot;</span>)</a></code></pre></div>
 <pre><code>
 Please, support the project metan by citing it in your publications:
 
@@ -493,12 +491,12 @@ A BibTeX entry for LaTeX users is
 <div class="footnotes">
 <hr />
 <ol start="13">
-<li id="fn13"><p><a href="https://www.jstor.org/stable/1390807?seq=1#page_scan_tab_contents" class="uri">https://www.jstor.org/stable/1390807?seq=1#page_scan_tab_contents</a><a href="intro.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p><a href="https://www.gnu.org/licenses/quick-guide-gplv3.html" class="uri">https://www.gnu.org/licenses/quick-guide-gplv3.html</a><a href="intro.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a><a href="intro.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p><a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a><a href="intro.html#fnref16" class="footnote-back">↩︎</a></p></li>
-<li id="fn17"><p><a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a><a href="intro.html#fnref17" class="footnote-back">↩︎</a></p></li>
-<li id="fn18"><p><a href="https://github.com/trinker/pacman" class="uri">https://github.com/trinker/pacman</a><a href="intro.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p><a href="https://www.jstor.org/stable/1390807?seq=1#page_scan_tab_contents" class="uri">https://www.jstor.org/stable/1390807?seq=1#page_scan_tab_contents</a><a href="intro.html#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p><a href="https://www.gnu.org/licenses/quick-guide-gplv3.html" class="uri">https://www.gnu.org/licenses/quick-guide-gplv3.html</a><a href="intro.html#fnref14" class="footnote-back">↩</a></p></li>
+<li id="fn15"><p><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a><a href="intro.html#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p><a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a><a href="intro.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p><a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a><a href="intro.html#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p><a href="https://github.com/trinker/pacman" class="uri">https://github.com/trinker/pacman</a><a href="intro.html#fnref18" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

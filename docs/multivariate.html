@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 13 Análise multivariada | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 13 Análise multivariada | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -413,11 +411,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="correlações-canônicas" class="section level2">
 <h2><span class="header-section-number">13.1</span> Correlações canônicas</h2>
 <p>Correlações canonicas podem ser computadas utilizando a função <code>can_corr()</code> do pacote <strong>metan</strong>. O primeiro argumento da função é o conjunto de dados (opcional) que deve conter as variáveis numéricas que serão usadas na estimativa das correlações canônicas. Os grupos de variáveis são definidos pelos argumentos <code>FG</code> (primeiro/menor grupo) e <code>SG</code> (segundo/maior grupo). Por padrão, um diagnótico da multicolinearidade é realizado em cada grupo de variável. No exemplo abaixo, os coeficientes foram armazenados no objeto <strong>cc1</strong>. Note que o argumento <code>verbose = FALSE</code> foi utilizado para previnir uma longa saída.</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="multivariate.html#cb604-1"></a>cc1 =<span class="st"> </span><span class="kw">can_corr</span>(maize,</span>
-<span id="cb604-2"><a href="multivariate.html#cb604-2"></a>               <span class="dt">FG =</span> <span class="kw">c</span>(PH, EH, EP),</span>
-<span id="cb604-3"><a href="multivariate.html#cb604-3"></a>               <span class="dt">SG =</span> <span class="kw">c</span>(EL, ED, CL, CD, CW, KW, NR),</span>
-<span id="cb604-4"><a href="multivariate.html#cb604-4"></a>               <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb604-5"><a href="multivariate.html#cb604-5"></a><span class="kw">print</span>(cc1<span class="op">$</span>Sigtest, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb604-1" title="1">cc1 =<span class="st"> </span><span class="kw">can_corr</span>(maize,</a>
+<a class="sourceLine" id="cb604-2" title="2">               <span class="dt">FG =</span> <span class="kw">c</span>(PH, EH, EP),</a>
+<a class="sourceLine" id="cb604-3" title="3">               <span class="dt">SG =</span> <span class="kw">c</span>(EL, ED, CL, CD, CW, KW, NR),</a>
+<a class="sourceLine" id="cb604-4" title="4">               <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb604-5" title="5"><span class="kw">print</span>(cc1<span class="op">$</span>Sigtest, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>       Var Percent Sum Corr Lambda Chisq DF  p_val
 U1V1 0.632    76.2  76 0.79   0.30 181.8 21 0.0000
 U2V2 0.187    22.5  99 0.43   0.80  32.5 12 0.0012
@@ -435,17 +433,17 @@ U3V3 0.011     1.3 100 0.10   0.99   1.6  5 0.9015</code></pre>
 <div id="todas-as-linhas-e-todas-as-variáveis-numéricas" class="section level3">
 <h3><span class="header-section-number">13.2.1</span> Todas as linhas e todas as variáveis numéricas</h3>
 <p>Por padrão, a função computa as distancias para cada combinação de linhas do conjunto de dados, utilizando todas as variáveis numéricas do conjunto. Isto significa que, considerando o conjunto de dados <strong>maize</strong>, com 156 observações, 12090 distancias serão computadas baseadas nas 15 variáveis numéricas do conjunto.</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="multivariate.html#cb606-1"></a>d1 &lt;-<span class="st"> </span><span class="kw">clustering</span>(maize)</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb606-1" title="1">d1 &lt;-<span class="st"> </span><span class="kw">clustering</span>(maize)</a></code></pre></div>
 </div>
 <div id="com-base-na-média-de-cada-genótipo" class="section level3">
 <h3><span class="header-section-number">13.2.2</span> Com base na média de cada genótipo</h3>
 <p>Supondo que o pesquisador deseja computar as distancias entre cada genótipo (o que é lógico em melhoramento genético vegetal) e que esta distancia deve ser computada apenas com algumas variáveis numéricas do conjunto de dados, o seguinte código deverá ser utilizado. Para selecionar as variáveis a serem utilziadas, basta apenas fornecer uma lista de nomes separadas por vírgula e sem o uso do conhecido (e ultrapassado) "". Em adição, para que a distância seja computada entre os genótipos, basta passar os dados médios de cada genótipo computados com <code>means_by()</code> . Neste caso, a média de cada genótipo é calculada internamente para cada variável numérica e a distãncia é computada utilizando estas médias. A função <code>plot()</code> pode ser usada para plotar um dendrograma. Uma linha é desenhada no ponto de corte sugerido de acordo com <span class="citation">Mojena (<a href="#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="multivariate.html#cb607-1"></a>mgen &lt;-<span class="st"> </span></span>
-<span id="cb607-2"><a href="multivariate.html#cb607-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb607-3"><a href="multivariate.html#cb607-3"></a><span class="st">  </span><span class="kw">means_by</span>(GEN) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb607-4"><a href="multivariate.html#cb607-4"></a><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;GEN&quot;</span>)</span>
-<span id="cb607-5"><a href="multivariate.html#cb607-5"></a>d2 &lt;-<span class="st"> </span><span class="kw">clustering</span>(mgen, NKR, TKW, NKE)</span>
-<span id="cb607-6"><a href="multivariate.html#cb607-6"></a><span class="kw">plot</span>(d2, <span class="dt">horiz =</span> <span class="ot">FALSE</span>, <span class="dt">ylab =</span> <span class="st">&quot;Distância euclidiana&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" title="1">mgen &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb607-2" title="2"><span class="st">  </span>maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb607-3" title="3"><span class="st">  </span><span class="kw">means_by</span>(GEN) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb607-4" title="4"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;GEN&quot;</span>)</a>
+<a class="sourceLine" id="cb607-5" title="5">d2 &lt;-<span class="st"> </span><span class="kw">clustering</span>(mgen, NKR, TKW, NKE)</a>
+<a class="sourceLine" id="cb607-6" title="6"><span class="kw">plot</span>(d2, <span class="dt">horiz =</span> <span class="ot">FALSE</span>, <span class="dt">ylab =</span> <span class="st">&quot;Distância euclidiana&quot;</span>)</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-305-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No dendrograma exibido acima, cada <em>folha</em> corresponde a um genótipo. À medida que subimos na <em>árvore</em>, genótipos que são semelhantes uns aos outros são combinados em <em>ramos</em>, que vão sendo fundidos a uma altura cada vez maior maior. A altura da fusão, fornecida no eixo vertical, indica a (di)similaridade/distância entre dois genótipos. Quanto maior a altura da fusão, menos semelhantes são os genótipos.</p>
 
@@ -455,7 +453,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 </div>
 
 <p>Após a confecção do dendrograma , convém avaliar se as distâncias (ou seja, as alturas) na árvore refletem as distâncias originais com precisão. Uma maneira de medir o quão bem o dendrograma gerado reflete seus dados é calcular a correlação entre as distâncias cofenéticas e a matriz de de distância originais. No procedimento anterior o dendrograma não foi mostrado, no entanto, o coeficiente de correlação cofenético foi calculado. Para isto basta incluir o seguinte comando:</p>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="multivariate.html#cb608-1"></a>d2<span class="op">$</span>cophenetic</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb608-1" title="1">d2<span class="op">$</span>cophenetic</a></code></pre></div>
 <pre><code>[1] 0.8640355</code></pre>
 <p>Quanto mais próximo o valor do coeficiente de correlação for de 1, mais precisamente o dendrograma  refletirá as distâncias originais. Valores acima de 0,75 são considerados bons. O método de ligação “average”, ou UPGMA (padrão na função <code>clustering()</code> parece produzir altos valores dessa estatística. Esta pode ser uma das razões por que ele é tão popular.</p>
 </div>
@@ -463,7 +461,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <h3><span class="header-section-number">13.2.3</span> Seleção de variáveis</h3>
 <p>A função <code>clustering()</code>  também conta com um algorítimo de seleção de variáveis . O objetivo é selecionar um grupo de variáveis que mais contribuam para explicar a variabilidade dos dados originais. Digamos que se algumas poucas variáveis pudessem ser utilizadas para agrupar os genótipos sem que haja perda de informação, recursos humanos e financeiros poderiam ser poupados. Assim ao envés de avaliarmos 15 variáveis (em nosso exemplo), poderiamos avaliar somente aquelas que realmente contribuiem para a distinção dos genótipos.</p>
 <p>O algoritmo de seleção de variáveis é executado quando o argumento <code>selvar = TRUE</code> é incluído na função. A seleção das variáveis é baseada na solução de autovalores/autovetores baseada nos seguintes passos: <strong>1:</strong> calcular a matriz de distância e a correlação cofenética com as variáveis originais (todas as variáveis numéricas no conjunto de dados); <strong>2:</strong> calcular os autovalores e autovetores da matriz de correlação entre as variáveis; <strong>3:</strong> deletar a variável com o maior peso (maior autovetor no menor autovalor); <strong>4:</strong> calcular a matriz de distância e correlação cofenética com as variáveis que restaram; <strong>5:</strong> calcular a correlação de Mantel entre a matriz de distâncias obtidas e a matriz de distância original; <strong>6:</strong> iterar os passos 2 a 5 <em>p</em> - 2 vezes, onde <em>p</em> é o número de variáveis originais. No final das iterações, um resumo dos modelos é retornado. A distância é calculada com as variáveis que geraram o modelo com a maior correlação copenética. Sugerimos uma avaliação criteriosa com o objetivo de escolher um modelo parcimonioso, ou seja, aquele com menor número de variáveis, que apresente correlação cofenética aceitável e alta similaridade com as distâncias originais.</p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="multivariate.html#cb610-1"></a>d3 &lt;-<span class="st"> </span><span class="kw">clustering</span>(mgen, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb610-1" title="1">d3 &lt;-<span class="st"> </span><span class="kw">clustering</span>(mgen, <span class="dt">selvar =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>Calculating model 1 with 15 variables. EH excluded in this step (7.1%).
 Calculating model 2 with 14 variables. EP excluded in this step (14.3%).
 Calculating model 3 with 13 variables. CDED excluded in this step (21.4%).
@@ -511,54 +509,54 @@ The variables included in this model were...
 <h3><span class="header-section-number">13.2.4</span> Escolha do número de clusters</h3>
 <p>Um dos problemas com o agrupamento  hierárquico é que ele não nos informa quantos clusters existem ou onde cortar o dendrograma  para formar os clusters. Você pode cortar a árvore hierárquica a uma determinada altura, digamos, na média das distâncias, no entanto esta decisão é puramente impirica. Por exemplo, se o ponto de corte for muito alto, tendemos a agrupar genótipos que podem, de fato, não ser semelhantes. Um ponto de corte muito baixo, por outro lado, pode resultar em fracassos na seleção, pois consideramos que os genótipos são distintos, podendo não o serem. Procedimentos estatisticos à exemplo de <span class="citation">Milligan and Cooper (<a href="#ref-Milligan1985" role="doc-biblioref">1985</a>)</span>, <span class="citation">Scott and Symons (<a href="#ref-Scott1971" role="doc-biblioref">1971</a>)</span>, <span class="citation">Krzanowski and Lai (<a href="#ref-Krzanowski1988" role="doc-biblioref">1988</a>)</span>, <span class="citation">Halkidi, Batistakis, and Vazirgiannis (<a href="#ref-Halkidi2001" role="doc-biblioref">2001</a>)</span> e <span class="citation">Hubert and Arabie (<a href="#ref-Hubert1985" role="doc-biblioref">1985</a>)</span> são recomendados para esta escolha. Estes algorítimos estão implementados no pacote <code>NbClust</code> <span class="citation">(Charrad et al. <a href="#ref-Charrad2014" role="doc-biblioref">2014</a>)</span> pode ser utilizado para este fim. Por padrão, a função fornece o ponto de corte calculado pelo método de <span class="citation">Mojena (<a href="#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
 <p>Procedimentos baseado em reamostragens bootstrap que calcula a probabilidade de erro de cada <em>galho</em> do dendrograma  podem ser utilizados. O código abaixo estima p-valores para cada junção no dendrograma do modelo <code>d3</code>. Para maiore detalhes sobre o métoddo veja <span class="citation">Suzuki and Shimodaira (<a href="#ref-Suzuki2006" role="doc-biblioref">2006</a>)</span>.</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="multivariate.html#cb612-1"></a>pv_clust &lt;-<span class="st"> </span><span class="kw">pvclust</span>(<span class="kw">t</span>(d3<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">&quot;euclidean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb612-1" title="1">pv_clust &lt;-<span class="st"> </span><span class="kw">pvclust</span>(<span class="kw">t</span>(d3<span class="op">$</span>data), <span class="dt">nboot =</span> <span class="dv">100</span>, <span class="dt">method.dist =</span> <span class="st">&quot;euclidean&quot;</span>)</a></code></pre></div>
 <pre><code>Bootstrap (r = 0.5)... Done.
 Bootstrap (r = 0.67)... Done.
 Bootstrap (r = 0.83)... Done.
 Bootstrap (r = 1.0)... Done.
 Bootstrap (r = 1.17)... Done.
 Bootstrap (r = 1.33)... Done.</code></pre>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="multivariate.html#cb614-1"></a><span class="kw">plot</span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</span>
-<span id="cb614-2"><a href="multivariate.html#cb614-2"></a><span class="kw">pvrect</span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb614-1" title="1"><span class="kw">plot</span>(pv_clust, <span class="dt">hang =</span> <span class="dv">-1</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb614-2" title="2"><span class="kw">pvrect</span>(pv_clust, <span class="dt">alpha =</span> <span class="fl">0.95</span>)</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-309-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>O resultado do procedimento bootstrap indicou a formação de dois clusters, com probabilidade de erro de 5%. Assim, nas próximas funções, serão demostrados os diferentes dendrogramas  que podem ser gerados</p>
 </div>
 <div id="dendrogramas-personalizados" class="section level3">
 <h3><span class="header-section-number">13.2.5</span> Dendrogramas personalizados</h3>
 <p>O pacote <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html">factoextra</a> oferece um conjunto de funções para estender objetos dendrogramas em R. Um exemplo simples é dado abaixo.</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="multivariate.html#cb615-1"></a>de1 &lt;-<span class="st"> </span><span class="kw">fviz_dend</span>(d3<span class="op">$</span>hc,</span>
-<span id="cb615-2"><a href="multivariate.html#cb615-2"></a>                 <span class="dt">k =</span> <span class="dv">2</span>,</span>
-<span id="cb615-3"><a href="multivariate.html#cb615-3"></a>                 <span class="dt">xlab =</span> <span class="st">&quot;Genótipos&quot;,</span></span>
-<span id="cb615-4"><a href="multivariate.html#cb615-4"></a><span class="st">                 ylab =  &quot;</span>Distância euclidiana<span class="st">&quot;,</span></span>
-<span id="cb615-5"><a href="multivariate.html#cb615-5"></a><span class="st">                 main = &quot;&quot;) </span></span>
-<span id="cb615-6"><a href="multivariate.html#cb615-6"></a><span class="st">de2 &lt;- fviz_dend(d3$hc,</span></span>
-<span id="cb615-7"><a href="multivariate.html#cb615-7"></a><span class="st">                 k = 2,</span></span>
-<span id="cb615-8"><a href="multivariate.html#cb615-8"></a><span class="st">                 type = &quot;</span>circular<span class="st">&quot;)</span></span>
-<span id="cb615-9"><a href="multivariate.html#cb615-9"></a><span class="st">de3 &lt;- fviz_dend(d3$hc,</span></span>
-<span id="cb615-10"><a href="multivariate.html#cb615-10"></a><span class="st">                 k = 2,</span></span>
-<span id="cb615-11"><a href="multivariate.html#cb615-11"></a><span class="st">                 type = &quot;</span>phylogenic<span class="st">&quot;,</span></span>
-<span id="cb615-12"><a href="multivariate.html#cb615-12"></a><span class="st">                 repel = TRUE)</span></span>
-<span id="cb615-13"><a href="multivariate.html#cb615-13"></a><span class="st">de4 &lt;- fviz_dend(d1$hc,</span></span>
-<span id="cb615-14"><a href="multivariate.html#cb615-14"></a><span class="st">                 k = 5,</span></span>
-<span id="cb615-15"><a href="multivariate.html#cb615-15"></a><span class="st">                 xlab = &quot;</span>Genótipos&quot;,</span>
-<span id="cb615-16"><a href="multivariate.html#cb615-16"></a>                 <span class="dt">ylab =</span>  <span class="st">&quot;Distância euclidiana&quot;</span>,</span>
-<span id="cb615-17"><a href="multivariate.html#cb615-17"></a>                 <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb615-18"><a href="multivariate.html#cb615-18"></a>                 <span class="dt">show_labels =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb615-19"><a href="multivariate.html#cb615-19"></a>                 <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb615-20"><a href="multivariate.html#cb615-20"></a>cp1 &lt;-<span class="st"> </span><span class="kw">plot_grid</span>(de1, de2, de3, <span class="dt">nrow =</span> <span class="dv">1</span>,</span>
-<span id="cb615-21"><a href="multivariate.html#cb615-21"></a>                 <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;de1&quot;</span>, <span class="st">&quot;de2&quot;</span>, <span class="st">&quot;de3&quot;</span>))</span>
-<span id="cb615-22"><a href="multivariate.html#cb615-22"></a><span class="kw">plot_grid</span>(cp1, de4, <span class="dt">rows =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;de4&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb615-1" title="1">de1 &lt;-<span class="st"> </span><span class="kw">fviz_dend</span>(d3<span class="op">$</span>hc,</a>
+<a class="sourceLine" id="cb615-2" title="2">                 <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb615-3" title="3">                 <span class="dt">xlab =</span> <span class="st">&quot;Genótipos&quot;,</span></a>
+<a class="sourceLine" id="cb615-4" title="4"><span class="st">                 ylab =  &quot;</span>Distância euclidiana<span class="st">&quot;,</span></a>
+<a class="sourceLine" id="cb615-5" title="5"><span class="st">                 main = &quot;&quot;) </span></a>
+<a class="sourceLine" id="cb615-6" title="6"><span class="st">de2 &lt;- fviz_dend(d3$hc,</span></a>
+<a class="sourceLine" id="cb615-7" title="7"><span class="st">                 k = 2,</span></a>
+<a class="sourceLine" id="cb615-8" title="8"><span class="st">                 type = &quot;</span>circular<span class="st">&quot;)</span></a>
+<a class="sourceLine" id="cb615-9" title="9"><span class="st">de3 &lt;- fviz_dend(d3$hc,</span></a>
+<a class="sourceLine" id="cb615-10" title="10"><span class="st">                 k = 2,</span></a>
+<a class="sourceLine" id="cb615-11" title="11"><span class="st">                 type = &quot;</span>phylogenic<span class="st">&quot;,</span></a>
+<a class="sourceLine" id="cb615-12" title="12"><span class="st">                 repel = TRUE)</span></a>
+<a class="sourceLine" id="cb615-13" title="13"><span class="st">de4 &lt;- fviz_dend(d1$hc,</span></a>
+<a class="sourceLine" id="cb615-14" title="14"><span class="st">                 k = 5,</span></a>
+<a class="sourceLine" id="cb615-15" title="15"><span class="st">                 xlab = &quot;</span>Genótipos&quot;,</a>
+<a class="sourceLine" id="cb615-16" title="16">                 <span class="dt">ylab =</span>  <span class="st">&quot;Distância euclidiana&quot;</span>,</a>
+<a class="sourceLine" id="cb615-17" title="17">                 <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,</a>
+<a class="sourceLine" id="cb615-18" title="18">                 <span class="dt">show_labels =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb615-19" title="19">                 <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb615-20" title="20">cp1 &lt;-<span class="st"> </span><span class="kw">plot_grid</span>(de1, de2, de3, <span class="dt">nrow =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb615-21" title="21">                 <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;de1&quot;</span>, <span class="st">&quot;de2&quot;</span>, <span class="st">&quot;de3&quot;</span>))</a>
+<a class="sourceLine" id="cb615-22" title="22"><span class="kw">plot_grid</span>(cp1, de4, <span class="dt">rows =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;de4&quot;</span>))</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-310-1.png" width="1152" style="display: block; margin: auto;" /></p>
 </div>
 <div id="distancias-para-cada-ambiente" class="section level3">
 <h3><span class="header-section-number">13.2.6</span> Distancias para cada ambiente</h3>
 <p>O seguinte código computa as distâncias para cada nível do fator <strong>AMB</strong> do conjunto de dados maize. A função <code>group_by()</code>  é utilizada para criar uma lista onde cada elemento conterá os dados de cada ambiente. Note que o argumento <code>keep_factors = TRUE</code> foi utilizado para manter as colunas de fatores. Assim é possível computar a média para cada genótipo quando informado o argumento <code>means_by = GEN</code> na função <code>clustering()</code> . O resultado desta função é então passado para a função <code>pairs_mantel()</code>.  Esta função é utilizada para avaliar a associação entre as quatro matrizes de distância.</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="multivariate.html#cb616-1"></a>d4 &lt;-<span class="st"> </span></span>
-<span id="cb616-2"><a href="multivariate.html#cb616-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span></span>
-<span id="cb616-3"><a href="multivariate.html#cb616-3"></a><span class="st">  </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></span>
-<span id="cb616-4"><a href="multivariate.html#cb616-4"></a><span class="st">  </span><span class="kw">clustering</span>(NKR, TKW, NKE, <span class="dt">nclust =</span> <span class="dv">4</span>)</span>
-<span id="cb616-5"><a href="multivariate.html#cb616-5"></a><span class="kw">pairs_mantel</span>(d4, <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;A3&quot;</span>, <span class="st">&quot;A4&quot;</span>),</span>
-<span id="cb616-6"><a href="multivariate.html#cb616-6"></a>             <span class="dt">maxsize =</span> <span class="dv">5</span>, <span class="dt">minsize =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" title="1">d4 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb616-2" title="2"><span class="st">  </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb616-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(ENV) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb616-4" title="4"><span class="st">  </span><span class="kw">clustering</span>(NKR, TKW, NKE, <span class="dt">nclust =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb616-5" title="5"><span class="kw">pairs_mantel</span>(d4, <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;A3&quot;</span>, <span class="st">&quot;A4&quot;</span>),</a>
+<a class="sourceLine" id="cb616-6" title="6">             <span class="dt">maxsize =</span> <span class="dv">5</span>, <span class="dt">minsize =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-311-1.png" width="288" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -575,10 +573,10 @@ Bootstrap (r = 1.33)... Done.</code></pre>
 <div id="formato-dos-dados" class="section level3">
 <h3><span class="header-section-number">13.3.3</span> Formato dos dados</h3>
 <p>Para realizar a aplicação da técnica de componentes principais, os dados em <em>data_ge2</em> serão utilizados. Precisamos, primeiramente, organizar os dados de modo que tenhamos uma matriz de dupla entrada, contendo os genótipos nas linhas e as variáveis nas colunas.</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="multivariate.html#cb617-1"></a>data_pca =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb617-2"><a href="multivariate.html#cb617-2"></a><span class="st">  </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span></span>
-<span id="cb617-3"><a href="multivariate.html#cb617-3"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)<span class="op">%&gt;%</span></span>
-<span id="cb617-4"><a href="multivariate.html#cb617-4"></a><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;GEN&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" title="1">data_pca =<span class="st"> </span>data_ge2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb617-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(GEN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb617-3" title="3"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb617-4" title="4"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;GEN&quot;</span>)</a></code></pre></div>
 <p>Em PCA, as variáveis são frequentemente dimensionadas (isto é, padronizadas). Isto é particularmente recomendado quando as variáveis são medidas em diferentes escalas (quilogramas, quilômetros, centímetros, …). Caso contrário, os resultados da PCA podem ser severamente afetados. Geralmente as variáveis são escalonadas para média zero e variáncia unitária, de acordo com a seguinte fórmula.</p>
 <p><span class="math display">\[
 x_s = \frac{x_i- mean(x)}{sd(x)}
@@ -587,7 +585,7 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 </div>
 <div id="código-r" class="section level3">
 <h3><span class="header-section-number">13.3.4</span> Código R</h3>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="multivariate.html#cb618-1"></a>res.pca =<span class="st"> </span><span class="kw">prcomp</span>(data_pca, <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" title="1">res.pca =<span class="st"> </span><span class="kw">prcomp</span>(data_pca, <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Para ajudar na interpretação do PCA realizado acima, usaremos funções do pacote factoextra. Essas funções incluem:
 <code>get_eigenvalue(res.pca)</code>: Extrai os autovalores/variâncias dos componentes principais
 <code>fviz_eig(res.pca)</code>: Para visualizar os autovalores
@@ -598,7 +596,7 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 <div id="autovalores" class="section level3">
 <h3><span class="header-section-number">13.3.5</span> Autovalores</h3>
 <p>Os autovalores medem a quantidade de variância retida por cada componente principal. Autovalores são grandes para os primeiros PCs e pequenos para os PCs subseqüentes. Ou seja, os primeiros PCs correspondem às direções com a quantidade máxima de variação no conjunto de dados. Examinamos os autovalores para determinar o número de componentes principais a serem considerados. Os autovalores e a proporção de variâncias (isto é, informação) retidos pelos componentes principais (PCs) são extraídos usando a função <code>get_eigenvalue()</code>.</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="multivariate.html#cb619-1"></a>eig.val &lt;-<span class="st"> </span><span class="kw">get_eigenvalue</span>(res.pca)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb619-1" title="1">eig.val &lt;-<span class="st"> </span><span class="kw">get_eigenvalue</span>(res.pca)</a></code></pre></div>
 <p>A soma de todos os autovalores resulta em uma variância total de 15 A proporção de variação explicada por cada autovalor é dada na segunda coluna. Por exemplo, 7.623 dividido por 15 é igual a 0.5082, ou, cerca de 50.82% da variação é explicada por este primeiro autovalor. A porcentagem acumulada explicada é obtida adicionando as proporções sucessivas de variação explicadas. Por exemplo, 50.82% mais 18.13% é igual a 68.95% e assim por diante. Assim, cerca de 59,627% da variação é explicada pelos dois primeiros autovalores.</p>
 
 
@@ -607,16 +605,16 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 </div>
 
 <p>Infelizmente, não há maneira objetiva bem aceita de decidir quantos componentes principais são suficientes. Em nossa análise, os três primeiros componentes principais explicam 83.62% da variação. Esta é uma percentagem aceitavelmente grande. Um método alternativo para determinar o número de componentes principais é olhar para um Scree Plot, que é o gráfico de autovalores ordenados do maior para o menor. O número de componentes é determinado no ponto, além do qual os autovalores remanescentes são todos relativamente pequenos.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="multivariate.html#cb620-1"></a>p1 =<span class="st"> </span><span class="kw">fviz_eig</span>(res.pca)</span>
-<span id="cb620-2"><a href="multivariate.html#cb620-2"></a>p2 =<span class="st"> </span><span class="kw">fviz_eig</span>(res.pca,</span>
-<span id="cb620-3"><a href="multivariate.html#cb620-3"></a>              <span class="dt">addlabels =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb620-4"><a href="multivariate.html#cb620-4"></a>              <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</span>
-<span id="cb620-5"><a href="multivariate.html#cb620-5"></a>              <span class="dt">barfill =</span> <span class="st">&quot;orange&quot;</span>,</span>
-<span id="cb620-6"><a href="multivariate.html#cb620-6"></a>              <span class="dt">barcolor =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb620-7"><a href="multivariate.html#cb620-7"></a>              <span class="dt">xlab =</span> <span class="st">&quot;Componentes Principais&quot;</span>,</span>
-<span id="cb620-8"><a href="multivariate.html#cb620-8"></a>              <span class="dt">ylab =</span> <span class="st">&quot;Percentagem da variância explicada&quot;</span>,</span>
-<span id="cb620-9"><a href="multivariate.html#cb620-9"></a>              <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb620-10"><a href="multivariate.html#cb620-10"></a><span class="kw">plot_grid</span>(p1, p2)</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" title="1">p1 =<span class="st"> </span><span class="kw">fviz_eig</span>(res.pca)</a>
+<a class="sourceLine" id="cb620-2" title="2">p2 =<span class="st"> </span><span class="kw">fviz_eig</span>(res.pca,</a>
+<a class="sourceLine" id="cb620-3" title="3">              <span class="dt">addlabels =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb620-4" title="4">              <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</a>
+<a class="sourceLine" id="cb620-5" title="5">              <span class="dt">barfill =</span> <span class="st">&quot;orange&quot;</span>,</a>
+<a class="sourceLine" id="cb620-6" title="6">              <span class="dt">barcolor =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb620-7" title="7">              <span class="dt">xlab =</span> <span class="st">&quot;Componentes Principais&quot;</span>,</a>
+<a class="sourceLine" id="cb620-8" title="8">              <span class="dt">ylab =</span> <span class="st">&quot;Percentagem da variância explicada&quot;</span>,</a>
+<a class="sourceLine" id="cb620-9" title="9">              <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb620-10" title="10"><span class="kw">plot_grid</span>(p1, p2)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-316"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-316-1.png" alt="Autovalores e variância acumulada na análise de componentes principais" width="960" />
 <p class="caption">
@@ -635,15 +633,15 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <div id="círculo-de-correlação" class="section level4">
 <h4><span class="header-section-number">13.3.6.1</span> Círculo de correlação</h4>
 <p>A correlação entre uma variável e um componente principal (PC) é usada como as coordenadas da variável no PC. Um gráfico pode ser obtido utilizando a função <code>fviz_pca_var()</code>, </p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="multivariate.html#cb621-1"></a>p1 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca)</span>
-<span id="cb621-2"><a href="multivariate.html#cb621-2"></a>p2 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</span>
-<span id="cb621-3"><a href="multivariate.html#cb621-3"></a>                  <span class="dt">col.circle =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb621-4"><a href="multivariate.html#cb621-4"></a>                  <span class="dt">xlab =</span> <span class="st">&quot;PCA1 (50,8%)&quot;</span>,</span>
-<span id="cb621-5"><a href="multivariate.html#cb621-5"></a>                  <span class="dt">ylab =</span> <span class="st">&quot;PCA2 (18,1%)&quot;</span>,</span>
-<span id="cb621-6"><a href="multivariate.html#cb621-6"></a>                  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;text&quot;</span>),</span>
-<span id="cb621-7"><a href="multivariate.html#cb621-7"></a>                  <span class="dt">title =</span> <span class="st">&quot;Gráfico das variáveis&quot;</span>,</span>
-<span id="cb621-8"><a href="multivariate.html#cb621-8"></a>                  <span class="dt">repel =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb621-9"><a href="multivariate.html#cb621-9"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" title="1">p1 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca)</a>
+<a class="sourceLine" id="cb621-2" title="2">p2 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</a>
+<a class="sourceLine" id="cb621-3" title="3">                  <span class="dt">col.circle =</span> <span class="st">&quot;red&quot;</span>,</a>
+<a class="sourceLine" id="cb621-4" title="4">                  <span class="dt">xlab =</span> <span class="st">&quot;PCA1 (50,8%)&quot;</span>,</a>
+<a class="sourceLine" id="cb621-5" title="5">                  <span class="dt">ylab =</span> <span class="st">&quot;PCA2 (18,1%)&quot;</span>,</a>
+<a class="sourceLine" id="cb621-6" title="6">                  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;text&quot;</span>),</a>
+<a class="sourceLine" id="cb621-7" title="7">                  <span class="dt">title =</span> <span class="st">&quot;Gráfico das variáveis&quot;</span>,</a>
+<a class="sourceLine" id="cb621-8" title="8">                  <span class="dt">repel =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb621-9" title="9"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-317-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>O gráfico acima mostra as relações entre todas as variáveis. Ele pode ser interpretado da seguinte forma:</p>
 <ul>
@@ -655,55 +653,55 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <div id="representação-e-contribuição-das-variáveis" class="section level4">
 <h4><span class="header-section-number">13.3.6.2</span> Representação e contribuição das variáveis</h4>
 <p>A qualidade e a contribuição das variáveis pode ser exibida no mapa de fatores utilizando o argumento <code>col.var = "cos2"</code> e <code>col.var = "contrib"</code>, respectivamente. Note que é possível também colorir as variáveis utilizando uma variável categórica. Para fins didáticos criaremos uma variável categórica com três neíveis, baseado no algorítmo kmeans aplicado nas coordenadas das variáveis.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="multivariate.html#cb622-1"></a>p1 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</span>
-<span id="cb622-2"><a href="multivariate.html#cb622-2"></a>                  <span class="dt">col.var =</span> <span class="st">&quot;cos2&quot;</span>,</span>
-<span id="cb622-3"><a href="multivariate.html#cb622-3"></a>                  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;text&quot;</span>),</span>
-<span id="cb622-4"><a href="multivariate.html#cb622-4"></a>                  <span class="dt">repel =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb622-5"><a href="multivariate.html#cb622-5"></a>res.km =<span class="st"> </span><span class="kw">kmeans</span>(<span class="kw">get_pca_var</span>(res.pca)<span class="op">$</span>coord, <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb622-6"><a href="multivariate.html#cb622-6"></a>grp =<span class="st"> </span><span class="kw">as.factor</span>(res.km<span class="op">$</span>cluster)</span>
-<span id="cb622-7"><a href="multivariate.html#cb622-7"></a>p2 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</span>
-<span id="cb622-8"><a href="multivariate.html#cb622-8"></a>                  <span class="dt">col.var =</span> grp,</span>
-<span id="cb622-9"><a href="multivariate.html#cb622-9"></a>                  <span class="dt">palette =</span> <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb622-10"><a href="multivariate.html#cb622-10"></a>                  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;text&quot;</span>),</span>
-<span id="cb622-11"><a href="multivariate.html#cb622-11"></a>                  <span class="dt">repel =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
-<span id="cb622-12"><a href="multivariate.html#cb622-12"></a><span class="st">     </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb622-13"><a href="multivariate.html#cb622-13"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" title="1">p1 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</a>
+<a class="sourceLine" id="cb622-2" title="2">                  <span class="dt">col.var =</span> <span class="st">&quot;cos2&quot;</span>,</a>
+<a class="sourceLine" id="cb622-3" title="3">                  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;text&quot;</span>),</a>
+<a class="sourceLine" id="cb622-4" title="4">                  <span class="dt">repel =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb622-5" title="5">res.km =<span class="st"> </span><span class="kw">kmeans</span>(<span class="kw">get_pca_var</span>(res.pca)<span class="op">$</span>coord, <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb622-6" title="6">grp =<span class="st"> </span><span class="kw">as.factor</span>(res.km<span class="op">$</span>cluster)</a>
+<a class="sourceLine" id="cb622-7" title="7">p2 =<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</a>
+<a class="sourceLine" id="cb622-8" title="8">                  <span class="dt">col.var =</span> grp,</a>
+<a class="sourceLine" id="cb622-9" title="9">                  <span class="dt">palette =</span> <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</a>
+<a class="sourceLine" id="cb622-10" title="10">                  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;text&quot;</span>),</a>
+<a class="sourceLine" id="cb622-11" title="11">                  <span class="dt">repel =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb622-12" title="12"><span class="st">     </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a>
+<a class="sourceLine" id="cb622-13" title="13"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-318-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="gráfico-de-indivíduos" class="section level3">
 <h3><span class="header-section-number">13.3.7</span> Gráfico de indivíduos</h3>
 <p>Os resultados, para indivíduos, podem ser extraídos usando a função <code>get_pca_ind()</code>. Similarmente ao <code>get_pca_var()</code>, esta função fornece uma lista de matrizes contendo todos os resultados para os indivíduos (coordenadas, correlação entre indivíduos e eixos, quadrado das distâncias e contribuições). A função <code>fviz_pca_ind()</code> é usada para produzir o gráfico de indivíduos.</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="multivariate.html#cb623-1"></a>p1 =<span class="st"> </span><span class="kw">fviz_pca_ind</span>(res.pca)</span>
-<span id="cb623-2"><a href="multivariate.html#cb623-2"></a>p2 =<span class="st"> </span><span class="kw">fviz_pca_ind</span>(res.pca,</span>
-<span id="cb623-3"><a href="multivariate.html#cb623-3"></a>                  <span class="dt">pointsize =</span> <span class="st">&quot;cos2&quot;</span>, </span>
-<span id="cb623-4"><a href="multivariate.html#cb623-4"></a>                  <span class="dt">pointshape =</span> <span class="dv">21</span>,</span>
-<span id="cb623-5"><a href="multivariate.html#cb623-5"></a>                  <span class="dt">fill =</span> <span class="st">&quot;#E7B800&quot;</span>,</span>
-<span id="cb623-6"><a href="multivariate.html#cb623-6"></a>                  <span class="dt">repel =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb623-7"><a href="multivariate.html#cb623-7"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" title="1">p1 =<span class="st"> </span><span class="kw">fviz_pca_ind</span>(res.pca)</a>
+<a class="sourceLine" id="cb623-2" title="2">p2 =<span class="st"> </span><span class="kw">fviz_pca_ind</span>(res.pca,</a>
+<a class="sourceLine" id="cb623-3" title="3">                  <span class="dt">pointsize =</span> <span class="st">&quot;cos2&quot;</span>, </a>
+<a class="sourceLine" id="cb623-4" title="4">                  <span class="dt">pointshape =</span> <span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb623-5" title="5">                  <span class="dt">fill =</span> <span class="st">&quot;#E7B800&quot;</span>,</a>
+<a class="sourceLine" id="cb623-6" title="6">                  <span class="dt">repel =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb623-7" title="7"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-319-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-biplot" class="section level3">
 <h3><span class="header-section-number">13.3.8</span> Gráfico biplot</h3>
 <p>Um gráfico biplot combina os marcadores de variáveis e indivíduos em um mesmo gráfico. A função <code>fviz_pca_biplot()</code> é utilizada para gerar este tipo de gráfico. O primeiro biplot (p1) é confeccionado com o exemplo em <code>res.pca</code>. Um exemplo um pouco mais complexo será mostrado utilizando o banco de dados do R iris. Neste exemplo, os indivíduos são coloridos por grupos (cor discreta) e variáveis por suas contribuições para os componentes principais (cores de gradiente). Além disso, alteraremos a transparência das variáveis por suas contribuições usando o argumento <code>alpha.var</code>. </p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="multivariate.html#cb624-1"></a>p1 =<span class="st"> </span><span class="kw">fviz_pca_biplot</span>(res.pca)</span>
-<span id="cb624-2"><a href="multivariate.html#cb624-2"></a></span>
-<span id="cb624-3"><a href="multivariate.html#cb624-3"></a>iris.pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb624-4"><a href="multivariate.html#cb624-4"></a>p2 =<span class="st"> </span><span class="kw">fviz_pca_biplot</span>(iris.pca, </span>
-<span id="cb624-5"><a href="multivariate.html#cb624-5"></a>                <span class="co"># indivíduos</span></span>
-<span id="cb624-6"><a href="multivariate.html#cb624-6"></a>                <span class="dt">geom.ind =</span> <span class="st">&quot;point&quot;</span>,</span>
-<span id="cb624-7"><a href="multivariate.html#cb624-7"></a>                <span class="dt">fill.ind =</span> iris<span class="op">$</span>Species, <span class="dt">col.ind =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb624-8"><a href="multivariate.html#cb624-8"></a>                <span class="dt">pointshape =</span> <span class="dv">21</span>, <span class="dt">pointsize =</span> <span class="dv">2</span>,</span>
-<span id="cb624-9"><a href="multivariate.html#cb624-9"></a>                <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb624-10"><a href="multivariate.html#cb624-10"></a>                <span class="dt">addEllipses =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb624-11"><a href="multivariate.html#cb624-11"></a>                <span class="dt">repel =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb624-12"><a href="multivariate.html#cb624-12"></a>                <span class="co"># variáveis</span></span>
-<span id="cb624-13"><a href="multivariate.html#cb624-13"></a>                <span class="dt">alpha.var =</span><span class="st">&quot;contrib&quot;</span>, <span class="dt">col.var =</span> <span class="st">&quot;contrib&quot;</span>,</span>
-<span id="cb624-14"><a href="multivariate.html#cb624-14"></a>                <span class="dt">gradient.cols =</span> <span class="st">&quot;RdYlBu&quot;</span>,</span>
-<span id="cb624-15"><a href="multivariate.html#cb624-15"></a>                <span class="dt">legend.title =</span> <span class="kw">list</span>(<span class="dt">fill =</span> <span class="st">&quot;Especies&quot;</span>,</span>
-<span id="cb624-16"><a href="multivariate.html#cb624-16"></a>                                    <span class="dt">color =</span> <span class="st">&quot;Contribuição&quot;</span>,</span>
-<span id="cb624-17"><a href="multivariate.html#cb624-17"></a>                                    <span class="dt">alpha =</span> <span class="st">&quot;Contribuição&quot;</span>))</span>
-<span id="cb624-18"><a href="multivariate.html#cb624-18"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb624-1" title="1">p1 =<span class="st"> </span><span class="kw">fviz_pca_biplot</span>(res.pca)</a>
+<a class="sourceLine" id="cb624-2" title="2"></a>
+<a class="sourceLine" id="cb624-3" title="3">iris.pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb624-4" title="4">p2 =<span class="st"> </span><span class="kw">fviz_pca_biplot</span>(iris.pca, </a>
+<a class="sourceLine" id="cb624-5" title="5">                <span class="co"># indivíduos</span></a>
+<a class="sourceLine" id="cb624-6" title="6">                <span class="dt">geom.ind =</span> <span class="st">&quot;point&quot;</span>,</a>
+<a class="sourceLine" id="cb624-7" title="7">                <span class="dt">fill.ind =</span> iris<span class="op">$</span>Species, <span class="dt">col.ind =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb624-8" title="8">                <span class="dt">pointshape =</span> <span class="dv">21</span>, <span class="dt">pointsize =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb624-9" title="9">                <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,</a>
+<a class="sourceLine" id="cb624-10" title="10">                <span class="dt">addEllipses =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb624-11" title="11">                <span class="dt">repel =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb624-12" title="12">                <span class="co"># variáveis</span></a>
+<a class="sourceLine" id="cb624-13" title="13">                <span class="dt">alpha.var =</span><span class="st">&quot;contrib&quot;</span>, <span class="dt">col.var =</span> <span class="st">&quot;contrib&quot;</span>,</a>
+<a class="sourceLine" id="cb624-14" title="14">                <span class="dt">gradient.cols =</span> <span class="st">&quot;RdYlBu&quot;</span>,</a>
+<a class="sourceLine" id="cb624-15" title="15">                <span class="dt">legend.title =</span> <span class="kw">list</span>(<span class="dt">fill =</span> <span class="st">&quot;Especies&quot;</span>,</a>
+<a class="sourceLine" id="cb624-16" title="16">                                    <span class="dt">color =</span> <span class="st">&quot;Contribuição&quot;</span>,</a>
+<a class="sourceLine" id="cb624-17" title="17">                                    <span class="dt">alpha =</span> <span class="st">&quot;Contribuição&quot;</span>))</a>
+<a class="sourceLine" id="cb624-18" title="18"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-320-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -727,17 +725,17 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <div id="formato-dos-dados-e-códigos-r" class="section level3">
 <h3><span class="header-section-number">13.4.3</span> Formato dos dados e códigos R</h3>
 <p>O formato dos dados utilizados é o mesmo dos utilizados para realizar a <a href="multivariate.html#componentes-principais">análise de componentes principais</a>. Assim, neste exemplo, somente criaremos um novo conjunto renomeando os dados organizados anteriormente (<code>data_pca</code>) para <code>data_km</code>. O próximo passo é ajustar o modelo <em>k</em>-means e armazenar em um objeto, em nosso exemplo, <code>kmres</code>. Posteriormente, a função <code>fviz_cluster()</code> é utilizada para confeccionar o gráfico.</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="multivariate.html#cb625-1"></a>data_km =<span class="st"> </span>data_pca</span>
-<span id="cb625-2"><a href="multivariate.html#cb625-2"></a>km.res &lt;-<span class="st"> </span><span class="kw">kmeans</span>(data_km, <span class="dv">2</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb625-3"><a href="multivariate.html#cb625-3"></a>p1 =<span class="st"> </span><span class="kw">fviz_cluster</span>(km.res, <span class="dt">data =</span> data_pca)</span>
-<span id="cb625-4"><a href="multivariate.html#cb625-4"></a>p2 =<span class="st"> </span><span class="kw">fviz_cluster</span>(km.res,</span>
-<span id="cb625-5"><a href="multivariate.html#cb625-5"></a>                  <span class="dt">data =</span> data_pca,</span>
-<span id="cb625-6"><a href="multivariate.html#cb625-6"></a>                  <span class="dt">ellipse =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb625-7"><a href="multivariate.html#cb625-7"></a>                  <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb625-8"><a href="multivariate.html#cb625-8"></a>             <span class="dt">ellipse.type =</span> <span class="st">&quot;confidence&quot;</span>,</span>
-<span id="cb625-9"><a href="multivariate.html#cb625-9"></a>             <span class="dt">ggtheme =</span> <span class="kw">theme_metan</span>())<span class="op">+</span></span>
-<span id="cb625-10"><a href="multivariate.html#cb625-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
-<span id="cb625-11"><a href="multivariate.html#cb625-11"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" title="1">data_km =<span class="st"> </span>data_pca</a>
+<a class="sourceLine" id="cb625-2" title="2">km.res &lt;-<span class="st"> </span><span class="kw">kmeans</span>(data_km, <span class="dv">2</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb625-3" title="3">p1 =<span class="st"> </span><span class="kw">fviz_cluster</span>(km.res, <span class="dt">data =</span> data_pca)</a>
+<a class="sourceLine" id="cb625-4" title="4">p2 =<span class="st"> </span><span class="kw">fviz_cluster</span>(km.res,</a>
+<a class="sourceLine" id="cb625-5" title="5">                  <span class="dt">data =</span> data_pca,</a>
+<a class="sourceLine" id="cb625-6" title="6">                  <span class="dt">ellipse =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb625-7" title="7">                  <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb625-8" title="8">             <span class="dt">ellipse.type =</span> <span class="st">&quot;confidence&quot;</span>,</a>
+<a class="sourceLine" id="cb625-9" title="9">             <span class="dt">ggtheme =</span> <span class="kw">theme_metan</span>())<span class="op">+</span></a>
+<a class="sourceLine" id="cb625-10" title="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a>
+<a class="sourceLine" id="cb625-11" title="11"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</a></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-321-1.png" width="960" style="display: block; margin: auto;" /></p>
 
 </div>

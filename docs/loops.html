@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 4 Loops | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 4 Loops | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -410,22 +408,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>Reescrever um código muitas vezes por necessidade de repetir um determinado procedimento seria bastante trabalhoso, além de precisarmos de mais tempo para isso. Por isso, o R tem algumas funções que fazem essas repetições para nós. Isso é muito comum e pode ser facilmente implementado pela função <code>for()</code>, <code>while()</code> e <code>repeat()</code>.
 A função <code>for()</code> repete o código indicado dentro de <code>{}</code> <em>n</em> vezes, sendo <em>n</em> o comprimento da sequência dentro dos parênteses.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="loops.html#cb87-1"></a>j =<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb87-2"><a href="loops.html#cb87-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>j) {</span>
-<span id="cb87-3"><a href="loops.html#cb87-3"></a>k =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb87-4"><a href="loops.html#cb87-4"></a><span class="kw">print</span> (k)</span>
-<span id="cb87-5"><a href="loops.html#cb87-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">j =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb87-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>j) {</a>
+<a class="sourceLine" id="cb87-3" title="3">k =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb87-4" title="4"><span class="kw">print</span> (k)</a>
+<a class="sourceLine" id="cb87-5" title="5">}</a></code></pre></div>
 <pre><code>[1] 2
 [1] 4
 [1] 6
 [1] 8
 [1] 10</code></pre>
 <p>A função <code>while()</code> (que significa enquanto) repete o código dentro de <code>{}</code> enquanto alguma condição for verdadeira.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="loops.html#cb89-1"></a>i =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb89-2"><a href="loops.html#cb89-2"></a><span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>) {</span>
-<span id="cb89-3"><a href="loops.html#cb89-3"></a><span class="kw">print</span>(i <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</span>
-<span id="cb89-4"><a href="loops.html#cb89-4"></a>i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb89-5"><a href="loops.html#cb89-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">i =<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb89-2" title="2"><span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb89-3" title="3"><span class="kw">print</span>(i <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb89-4" title="4">i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb89-5" title="5">}</a></code></pre></div>
 <pre><code>[1] 2
 [1] 4
 [1] 6
@@ -433,55 +431,55 @@ A função <code>for()</code> repete o código indicado dentro de <code>{}</code
 [1] 10</code></pre>
 <p>Note que os dois últimos exemplos apresentam o mesmo resultado: o R vai retornar uma sequência <code>i</code> sendo <code>i = 1:5</code>, onde cada número será o resultado da multiplicação <span class="math inline">\(i \times 2\)</span>. No caso <code>while()</code>, precisamos mudar o valor de <code>i</code> para que a sequência continue até que a condição <code>(i &lt;= 5)</code> for verdadeira. Em adição, precisamos declarar a variável (<code>i = 1</code>) antes para que o R possa testar a condição expressa dentro dos parênteses. No caso do <code>for()</code>, a sequência progride sem precisarmos fazer isso manualmente.</p>
 <p>No último exemplo, utilizando <code>repeat()</code>, o R repetirá o código dentro de <code>{}</code> sem condições. Com isso, precisamos utilizar a combinação das funções <code>if()</code> e <code>break()</code> para informar ao programa quando o código deve parar de ser repetido.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="loops.html#cb91-1"></a>i =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb91-2"><a href="loops.html#cb91-2"></a><span class="cf">repeat</span> {</span>
-<span id="cb91-3"><a href="loops.html#cb91-3"></a><span class="kw">print</span>(i <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</span>
-<span id="cb91-4"><a href="loops.html#cb91-4"></a>i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb91-5"><a href="loops.html#cb91-5"></a><span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>){</span>
-<span id="cb91-6"><a href="loops.html#cb91-6"></a>   <span class="cf">break</span>()</span>
-<span id="cb91-7"><a href="loops.html#cb91-7"></a>}</span>
-<span id="cb91-8"><a href="loops.html#cb91-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">i =<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb91-2" title="2"><span class="cf">repeat</span> {</a>
+<a class="sourceLine" id="cb91-3" title="3"><span class="kw">print</span>(i <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb91-4" title="4">i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb91-5" title="5"><span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>){</a>
+<a class="sourceLine" id="cb91-6" title="6">   <span class="cf">break</span>()</a>
+<a class="sourceLine" id="cb91-7" title="7">}</a>
+<a class="sourceLine" id="cb91-8" title="8">}</a></code></pre></div>
 <pre><code>[1] 2
 [1] 4
 [1] 6
 [1] 8
 [1] 10</code></pre>
 <p>Os Loops são importantes em estudos que utilizam reamostragens para realizar análises estatísticas. Através de reamostragnes é possível construir intervalos de confiança e testar hipóteses não paramétricas. Como exemplo, vamos demonstrar o teorema central do limite<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Para isto, criamos uma função (<code>teor_lim()</code>)  que tem 4 argumentos: <code>n</code> o tamanho da amostra a ser considerada, <code>namostra</code>, <code>min</code>, <code>max</code> são os parâmetros da distribuição uniforme (veja <code>?runif</code>). Para confecção dos dendrogramas, os pacotes <strong>ggplot2</strong> e <code>cowplot</code> serão utilizados. Veja a seção 1.6 para maiores informações sobre a confecção de gráficos com estes pacotes. </p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="loops.html#cb93-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb93-2"><a href="loops.html#cb93-2"></a><span class="kw">library</span>(cowplot)</span>
-<span id="cb93-3"><a href="loops.html#cb93-3"></a>teor_lim =<span class="st"> </span><span class="cf">function</span>(n, namostra, min, max){</span>
-<span id="cb93-4"><a href="loops.html#cb93-4"></a>  <span class="kw">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb93-5"><a href="loops.html#cb93-5"></a>  media =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">nrow =</span> n))</span>
-<span id="cb93-6"><a href="loops.html#cb93-6"></a>  <span class="kw">names</span>(media) =<span class="st"> &quot;value&quot;</span></span>
-<span id="cb93-7"><a href="loops.html#cb93-7"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</span>
-<span id="cb93-8"><a href="loops.html#cb93-8"></a>    media[j, <span class="dv">1</span>] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">runif</span>(namostra, min, max))</span>
-<span id="cb93-9"><a href="loops.html#cb93-9"></a>  }</span>
-<span id="cb93-10"><a href="loops.html#cb93-10"></a>  <span class="kw">return</span>(media)</span>
-<span id="cb93-11"><a href="loops.html#cb93-11"></a>}</span>
-<span id="cb93-12"><a href="loops.html#cb93-12"></a></span>
-<span id="cb93-13"><a href="loops.html#cb93-13"></a>teorema_limite =<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb93-14"><a href="loops.html#cb93-14"></a>  <span class="dt">n20 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</span>
-<span id="cb93-15"><a href="loops.html#cb93-15"></a>  <span class="dt">n200 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</span>
-<span id="cb93-16"><a href="loops.html#cb93-16"></a>  <span class="dt">n2000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">2000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</span>
-<span id="cb93-17"><a href="loops.html#cb93-17"></a>  <span class="dt">n20000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>)</span>
-<span id="cb93-18"><a href="loops.html#cb93-18"></a>)</span>
-<span id="cb93-19"><a href="loops.html#cb93-19"></a></span>
-<span id="cb93-20"><a href="loops.html#cb93-20"></a>p =<span class="st"> </span><span class="kw">lapply</span>(teorema_limite, <span class="cf">function</span>(d){</span>
-<span id="cb93-21"><a href="loops.html#cb93-21"></a>  <span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> value))<span class="op">+</span></span>
-<span id="cb93-22"><a href="loops.html#cb93-22"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb93-23"><a href="loops.html#cb93-23"></a>                 <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb93-24"><a href="loops.html#cb93-24"></a>                 <span class="dt">size =</span> <span class="fl">0.3</span>,</span>
-<span id="cb93-25"><a href="loops.html#cb93-25"></a>                 <span class="kw">aes</span>(<span class="dt">fill =</span> ..count..))<span class="op">+</span></span>
-<span id="cb93-26"><a href="loops.html#cb93-26"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
-<span id="cb93-27"><a href="loops.html#cb93-27"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Média&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>)</span>
-<span id="cb93-28"><a href="loops.html#cb93-28"></a></span>
-<span id="cb93-29"><a href="loops.html#cb93-29"></a>}</span>
-<span id="cb93-30"><a href="loops.html#cb93-30"></a>)</span>
-<span id="cb93-31"><a href="loops.html#cb93-31"></a></span>
-<span id="cb93-32"><a href="loops.html#cb93-32"></a><span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> p,</span>
-<span id="cb93-33"><a href="loops.html#cb93-33"></a>          <span class="dt">labels =</span> <span class="kw">names</span>(teorema_limite),</span>
-<span id="cb93-34"><a href="loops.html#cb93-34"></a>          <span class="dt">vjust =</span> <span class="fl">2.5</span>,</span>
-<span id="cb93-35"><a href="loops.html#cb93-35"></a>          <span class="dt">hjust =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.7</span>, <span class="fl">-1.5</span>, <span class="dv">-1</span>, <span class="dv">-1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb93-2" title="2"><span class="kw">library</span>(cowplot)</a>
+<a class="sourceLine" id="cb93-3" title="3">teor_lim =<span class="st"> </span><span class="cf">function</span>(n, namostra, min, max){</a>
+<a class="sourceLine" id="cb93-4" title="4">  <span class="kw">set.seed</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb93-5" title="5">  media =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">nrow =</span> n))</a>
+<a class="sourceLine" id="cb93-6" title="6">  <span class="kw">names</span>(media) =<span class="st"> &quot;value&quot;</span></a>
+<a class="sourceLine" id="cb93-7" title="7">  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb93-8" title="8">    media[j, <span class="dv">1</span>] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">runif</span>(namostra, min, max))</a>
+<a class="sourceLine" id="cb93-9" title="9">  }</a>
+<a class="sourceLine" id="cb93-10" title="10">  <span class="kw">return</span>(media)</a>
+<a class="sourceLine" id="cb93-11" title="11">}</a>
+<a class="sourceLine" id="cb93-12" title="12"></a>
+<a class="sourceLine" id="cb93-13" title="13">teorema_limite =<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb93-14" title="14">  <span class="dt">n20 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb93-15" title="15">  <span class="dt">n200 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb93-16" title="16">  <span class="dt">n2000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">2000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb93-17" title="17">  <span class="dt">n20000 =</span> <span class="kw">teor_lim</span>(<span class="dt">n =</span> <span class="dv">20000</span>, <span class="dt">namostra =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb93-18" title="18">)</a>
+<a class="sourceLine" id="cb93-19" title="19"></a>
+<a class="sourceLine" id="cb93-20" title="20">p =<span class="st"> </span><span class="kw">lapply</span>(teorema_limite, <span class="cf">function</span>(d){</a>
+<a class="sourceLine" id="cb93-21" title="21">  <span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> value))<span class="op">+</span></a>
+<a class="sourceLine" id="cb93-22" title="22"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb93-23" title="23">                 <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb93-24" title="24">                 <span class="dt">size =</span> <span class="fl">0.3</span>,</a>
+<a class="sourceLine" id="cb93-25" title="25">                 <span class="kw">aes</span>(<span class="dt">fill =</span> ..count..))<span class="op">+</span></a>
+<a class="sourceLine" id="cb93-26" title="26"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb93-27" title="27"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Média&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>)</a>
+<a class="sourceLine" id="cb93-28" title="28"></a>
+<a class="sourceLine" id="cb93-29" title="29">}</a>
+<a class="sourceLine" id="cb93-30" title="30">)</a>
+<a class="sourceLine" id="cb93-31" title="31"></a>
+<a class="sourceLine" id="cb93-32" title="32"><span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> p,</a>
+<a class="sourceLine" id="cb93-33" title="33">          <span class="dt">labels =</span> <span class="kw">names</span>(teorema_limite),</a>
+<a class="sourceLine" id="cb93-34" title="34">          <span class="dt">vjust =</span> <span class="fl">2.5</span>,</a>
+<a class="sourceLine" id="cb93-35" title="35">          <span class="dt">hjust =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.7</span>, <span class="fl">-1.5</span>, <span class="dv">-1</span>, <span class="dv">-1</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-41"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-41-1.png" alt="Demonstração do teorema central do limite" width="768" />
 <p class="caption">
@@ -493,7 +491,7 @@ Figure 4.1: Demonstração do teorema central do limite
 <div class="footnotes">
 <hr />
 <ol start="20">
-<li id="fn20"><p>O teorema central do limite define que as médias de amostras grandes e aleatórias são aproximadamente normais, independentemente da forma da distribuição da população<a href="loops.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>O teorema central do limite define que as médias de amostras grandes e aleatórias são aproximadamente normais, independentemente da forma da distribuição da população<a href="loops.html#fnref20" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

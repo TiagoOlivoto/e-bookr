@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 8 Gráficos com o pacote ggplot2 | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -418,9 +416,9 @@ do que qualquer outro dispositivo.” — John Tukey</p>
 <div id="meu-primeiro-gráfico-em-ggplot2" class="section level2">
 <h2><span class="header-section-number">8.2</span> Meu primeiro gráfico em <strong>ggplot2</strong></h2>
 <p>A seguir, vamos discutir os aspcetos básicos para a construção de gráficos utilizando o pacote <strong>ggplot2</strong>. A função <code>plot_grid()</code> do pacote <a href="https://github.com/wilkelab/cowplot">cowplot</a><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> foi utilizado aqui para organizar os gráficos em forma de painéis. O pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> também é utilizado como uma <a href="http://www.ggplot2-exts.org/gallery/">extensão do pacote ggplot2</a><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> para confecção de gráficos do tipo Q-Q plots. Os dados contidos na aba <em>gg</em> do arquivo <em>data_R.xlsx</em> serão utilizados. Estes dados podem ser carregados pelo seguinte comando.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="graph.html#cb268-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
-<span id="cb268-2"><a href="graph.html#cb268-2"></a>dados_gg &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;gg&quot;</span>)</span>
-<span id="cb268-3"><a href="graph.html#cb268-3"></a><span class="kw">str</span>(dados_gg)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1">url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></a>
+<a class="sourceLine" id="cb268-2" title="2">dados_gg &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;gg&quot;</span>)</a>
+<a class="sourceLine" id="cb268-3" title="3"><span class="kw">str</span>(dados_gg)</a></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   120 obs. of  6 variables:
  $ AMB  : chr  &quot;E1&quot; &quot;E1&quot; &quot;E1&quot; &quot;E1&quot; ...
  $ GEN  : chr  &quot;G1&quot; &quot;G1&quot; &quot;G1&quot; &quot;G2&quot; ...
@@ -432,8 +430,8 @@ do que qualquer outro dispositivo.” — John Tukey</p>
 <div id="as-camadas-de-um-gráfico-ggplot2" class="section level2">
 <h2><span class="header-section-number">8.3</span> As camadas de um gráfico <strong>ggplot2</strong></h2>
 <p>No <strong>ggplot2</strong>, os gráficos são construídos camada por camada (ou, <em>layers</em>, em inglês). Neste exemplo, vamos confecionar um gráfico onde o eixo x será representado pela variável <code>RG</code> e o eixo y pela variável <code>PH</code>.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="graph.html#cb270-1"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></span>
-<span id="cb270-2"><a href="graph.html#cb270-2"></a><span class="st">     </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1">p1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb270-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p>Este comando criou um gráfico e armazenou no objeto <code>p1</code>, que será plotado posteriormente. Observe que o primeiro argumento da função é o data frame onde nossos dados foram armazenados. A função <code>aes()</code>  descreve como as variáveis são mapeadas (neste caso RG no eixo x e PH no eixo y). A função <code>geom_point</code> definiu que a forma geométrica a ser utilizada é baseada em pontos, gerando, assim, um gráfico de dispersão. Isto é tudo que precisa ser feito para a confecção de um gráfico simples.</p>
 </div>
 <div id="aesthetics-estética" class="section level2">
@@ -443,10 +441,10 @@ do que qualquer outro dispositivo.” — John Tukey</p>
 o que nunca esperamos ver.” — John Tukey</p>
 </blockquote>
 <p>Alterar a estética dos gráficos <strong>ggplot2</strong> é uma tarefa relativamente simples. No gráfico anterior, os valores do <code>PH</code> e <code>RG</code> foram plotados sem nenhum tipo de mapeamento estético. Digamos que marcadores com diferentes cores para cada ambiente poderia nos ajudar a compreender melhor os o padrão presente em nossos dados. Vamos confecionar este gráfico.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="graph.html#cb271-1"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></span>
-<span id="cb271-2"><a href="graph.html#cb271-2"></a><span class="st">     </span><span class="kw">geom_point</span>()</span>
-<span id="cb271-3"><a href="graph.html#cb271-3"></a></span>
-<span id="cb271-4"><a href="graph.html#cb271-4"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1">p2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb271-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb271-3" title="3"></a>
+<a class="sourceLine" id="cb271-4" title="4"><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-113"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-113-1.png" alt="Gráfico de dispersão padrão (p1) e com pontos mapeados por cores para cada nível do fator 'AMB' (p2)." width="768" />
 <p class="caption">
@@ -468,9 +466,9 @@ Figure 8.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores 
 <div id="facet-facetas" class="section level2">
 <h2><span class="header-section-number">8.5</span> Facet (facetas)</h2>
 <p>Mapeando os diferentes níveis de <code>AMB</code> para diferentes cores, incluímos em um único gráfico os dados de todos os ambientes. Mas, e se nosso objetivo fosse realizar um gráfico para cada ambiente? O <strong>ggplot2</strong> tem uma poderosa ferramenta para isto: as funções <code>facet_</code>. Ao utilziar estas funções, o conjunto de dados é subdividido e um gráfico é construído para cada um destes subconjuntos. Vamos ver como elas podem nos ajudar em nossso problema. </p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="graph.html#cb272-1"></a>fac1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></span>
-<span id="cb272-2"><a href="graph.html#cb272-2"></a><span class="st">       </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb272-3"><a href="graph.html#cb272-3"></a><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>AMB)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1">fac1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb272-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb272-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>AMB)</a></code></pre></div>
 <p>Neste exemplo, um gráfico completamente diferente do anterior é gerado com apenas uma simples modificação: excluímos do mapeamento estético o argumento <code>colour = AMB</code> e incluímos uma nova função, <code>facet_wrap(~AMB)</code>. Neste caso, informamos que um gráfico deveria ser realizado para cada ambiente. Simples, não? </p>
 
 <div class="dica">
@@ -484,25 +482,25 @@ Figure 8.1: Gráfico de dispersão padrão (p1) e com pontos mapeados por cores 
 <div id="theme-temas" class="section level2">
 <h2><span class="header-section-number">8.6</span> Theme (temas)</h2>
 <p>Cada gráfico criado com a função <code>ggplot()</code> tem um tema padrão. <em>Tema</em>, aqui, é toda propriedade relacionada ao aspecto visual do gráfico, que não foi definida na função <code>aes()</code> e que pode ser modificada utilizando a função <code>theme()</code> (veja <code>?theme</code>). O <strong>ggplot2</strong> já conta com alguns temas personalizados para facilitar nosso trabalho. Considerando o exemplo anterior, vamos utilziar a função <code>theme_bw()</code> (preto e branco) e a função <code>theme()</code> para modificar as propriedades visuais do gráfico.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="graph.html#cb273-1"></a>fac2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></span>
-<span id="cb273-2"><a href="graph.html#cb273-2"></a><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb273-3"><a href="graph.html#cb273-3"></a><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB) <span class="op">+</span></span>
-<span id="cb273-4"><a href="graph.html#cb273-4"></a><span class="st">       </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb273-5"><a href="graph.html#cb273-5"></a><span class="st">       </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), <span class="co"># remove as linhas do corpo do gráfico</span></span>
-<span id="cb273-6"><a href="graph.html#cb273-6"></a>             <span class="co"># sem bordas entre os painéis</span></span>
-<span id="cb273-7"><a href="graph.html#cb273-7"></a>             <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;cm&quot;</span>),</span>
-<span id="cb273-8"><a href="graph.html#cb273-8"></a>             <span class="co"># modifica o texto dos eixos</span></span>
-<span id="cb273-9"><a href="graph.html#cb273-9"></a>             <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb273-10"><a href="graph.html#cb273-10"></a>             <span class="co"># cor dos marcadores</span></span>
-<span id="cb273-11"><a href="graph.html#cb273-11"></a>             <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb273-12"><a href="graph.html#cb273-12"></a>             <span class="co"># tamanho dos marcadores</span></span>
-<span id="cb273-13"><a href="graph.html#cb273-13"></a>             <span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>), </span>
-<span id="cb273-14"><a href="graph.html#cb273-14"></a>             <span class="co">#cor da borda</span></span>
-<span id="cb273-15"><a href="graph.html#cb273-15"></a>             <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>))<span class="op">+</span></span>
-<span id="cb273-16"><a href="graph.html#cb273-16"></a><span class="st">       </span><span class="co"># título dos eixos</span></span>
-<span id="cb273-17"><a href="graph.html#cb273-17"></a><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>) </span>
-<span id="cb273-18"><a href="graph.html#cb273-18"></a></span>
-<span id="cb273-19"><a href="graph.html#cb273-19"></a><span class="kw">plot_grid</span>(fac1, fac2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;f1&quot;</span>, <span class="st">&quot;f2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1">fac2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb273-2" title="2"><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb273-3" title="3"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>AMB) <span class="op">+</span></a>
+<a class="sourceLine" id="cb273-4" title="4"><span class="st">       </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb273-5" title="5"><span class="st">       </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), <span class="co"># remove as linhas do corpo do gráfico</span></a>
+<a class="sourceLine" id="cb273-6" title="6">             <span class="co"># sem bordas entre os painéis</span></a>
+<a class="sourceLine" id="cb273-7" title="7">             <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;cm&quot;</span>),</a>
+<a class="sourceLine" id="cb273-8" title="8">             <span class="co"># modifica o texto dos eixos</span></a>
+<a class="sourceLine" id="cb273-9" title="9">             <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb273-10" title="10">             <span class="co"># cor dos marcadores</span></a>
+<a class="sourceLine" id="cb273-11" title="11">             <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb273-12" title="12">             <span class="co"># tamanho dos marcadores</span></a>
+<a class="sourceLine" id="cb273-13" title="13">             <span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>), </a>
+<a class="sourceLine" id="cb273-14" title="14">             <span class="co">#cor da borda</span></a>
+<a class="sourceLine" id="cb273-15" title="15">             <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb273-16" title="16"><span class="st">       </span><span class="co"># título dos eixos</span></a>
+<a class="sourceLine" id="cb273-17" title="17"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>) </a>
+<a class="sourceLine" id="cb273-18" title="18"></a>
+<a class="sourceLine" id="cb273-19" title="19"><span class="kw">plot_grid</span>(fac1, fac2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;f1&quot;</span>, <span class="st">&quot;f2&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-117"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-117-1.png" alt="Modificações na propriedades do tema de um gráfico ggplot2 " width="960" />
 <p class="caption">
@@ -511,17 +509,17 @@ Figure 8.2: Modificações na propriedades do tema de um gráfico ggplot2
 </div>
 <p>Os argumentos inseridos dentro das função <code>theme()</code> modificaram a aparência do nosso gráfico. Inúmeros outros argumentos são disponíveis, fazendo com que os gráficos originados sejam completamente personalizáveis. Digamos que precisamos confecionar diversos gráficos e gostaríamos de manter o mesmo tema do gráfico acima. Seria exaustivo e desinteressante informar cada vez estes argumentos para cada gráfico, não? Felizmente, outra poderosa ferramenta proporcionada pelo <strong>ggplot2</strong> é a possibilidade de confecionarmos nossos próprios temas. Para isto, vamos executar o seguinte comando para criar um tema personalizado (<code>my_theme()</code>). Este tema pode então ser aplicado como uma camada adicional a cada gráfico que confecionarmos. Para evitar a necessidade da inclusão deste tema em cada gráfico gerado, iremos definir este tema como padrão utilizando a função <code>theme_set()</code> .</p>
 
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="graph.html#cb274-1"></a>my_theme =<span class="st"> </span><span class="cf">function</span> () {</span>
-<span id="cb274-2"><a href="graph.html#cb274-2"></a>  <span class="kw">theme_bw</span>() <span class="op">%+replace%</span><span class="st"> </span><span class="co"># permite que os valores informados possam ser sobescritos</span></span>
-<span id="cb274-3"><a href="graph.html#cb274-3"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>),</span>
-<span id="cb274-4"><a href="graph.html#cb274-4"></a>          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb274-5"><a href="graph.html#cb274-5"></a>          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb274-6"><a href="graph.html#cb274-6"></a>          <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb274-7"><a href="graph.html#cb274-7"></a>          <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>),</span>
-<span id="cb274-8"><a href="graph.html#cb274-8"></a>          <span class="dt">panel.grid =</span>  <span class="kw">element_blank</span>())</span>
-<span id="cb274-9"><a href="graph.html#cb274-9"></a>}</span>
-<span id="cb274-10"><a href="graph.html#cb274-10"></a></span>
-<span id="cb274-11"><a href="graph.html#cb274-11"></a><span class="kw">theme_set</span>(<span class="kw">my_theme</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1">my_theme =<span class="st"> </span><span class="cf">function</span> () {</a>
+<a class="sourceLine" id="cb274-2" title="2">  <span class="kw">theme_bw</span>() <span class="op">%+replace%</span><span class="st"> </span><span class="co"># permite que os valores informados possam ser sobescritos</span></a>
+<a class="sourceLine" id="cb274-3" title="3"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>),</a>
+<a class="sourceLine" id="cb274-4" title="4">          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb274-5" title="5">          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb274-6" title="6">          <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<a class="sourceLine" id="cb274-7" title="7">          <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb274-8" title="8">          <span class="dt">panel.grid =</span>  <span class="kw">element_blank</span>())</a>
+<a class="sourceLine" id="cb274-9" title="9">}</a>
+<a class="sourceLine" id="cb274-10" title="10"></a>
+<a class="sourceLine" id="cb274-11" title="11"><span class="kw">theme_set</span>(<span class="kw">my_theme</span>())</a></code></pre></div>
 
 
 <div class="tarefa">
@@ -549,18 +547,18 @@ Figure 8.2: Modificações na propriedades do tema de um gráfico ggplot2
 <li><code>geom_errorbar()</code> para barras de erro;</li>
 </ul>
 <p>Deste ponto em diante, vamos confeccionar alguns exemplos utilziando algumas destas funções (ou combinações destas funções) incluindo argumentos de mapeamento de estética e temas vistos até agora. </p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="graph.html#cb275-1"></a>s1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></span>
-<span id="cb275-2"><a href="graph.html#cb275-2"></a><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb275-3"><a href="graph.html#cb275-3"></a><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span><span class="st"> </span><span class="co"># estima uma regressão linear</span></span>
-<span id="cb275-4"><a href="graph.html#cb275-4"></a><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</span>
-<span id="cb275-5"><a href="graph.html#cb275-5"></a></span>
-<span id="cb275-6"><a href="graph.html#cb275-6"></a>s2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></span>
-<span id="cb275-7"><a href="graph.html#cb275-7"></a><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb275-8"><a href="graph.html#cb275-8"></a><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></span>
-<span id="cb275-9"><a href="graph.html#cb275-9"></a><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</span>
-<span id="cb275-10"><a href="graph.html#cb275-10"></a></span>
-<span id="cb275-11"><a href="graph.html#cb275-11"></a></span>
-<span id="cb275-12"><a href="graph.html#cb275-12"></a><span class="kw">plot_grid</span>(s1, s2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>), <span class="dt">rel_widths  =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1">s1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb275-3" title="3"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span><span class="st"> </span><span class="co"># estima uma regressão linear</span></a>
+<a class="sourceLine" id="cb275-4" title="4"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
+<a class="sourceLine" id="cb275-5" title="5"></a>
+<a class="sourceLine" id="cb275-6" title="6">s2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG, <span class="dt">y =</span> PH, <span class="dt">colour =</span> AMB)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-7" title="7"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb275-8" title="8"><span class="st">     </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)<span class="op">+</span></a>
+<a class="sourceLine" id="cb275-9" title="9"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
+<a class="sourceLine" id="cb275-10" title="10"></a>
+<a class="sourceLine" id="cb275-11" title="11"></a>
+<a class="sourceLine" id="cb275-12" title="12"><span class="kw">plot_grid</span>(s1, s2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>), <span class="dt">rel_widths  =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.2</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-120"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-120-1.png" alt="Gráfico de dispersão, combinando pontos e linhas de regressão." width="960" />
 <p class="caption">
@@ -582,18 +580,18 @@ No gráfico s1, uma regressão linear foi ajustada quando incluímos a função 
 <ul>
 <li><strong>Gráficos do tipo boxplot</strong></li>
 </ul>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="graph.html#cb276-1"></a>mean_rg =<span class="st"> </span><span class="kw">mean</span>(dados_gg<span class="op">$</span>RG) <span class="co"># calcula a média geral do RG</span></span>
-<span id="cb276-2"><a href="graph.html#cb276-2"></a>box1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
-<span id="cb276-3"><a href="graph.html#cb276-3"></a><span class="st">       </span><span class="kw">geom_boxplot</span>()</span>
-<span id="cb276-4"><a href="graph.html#cb276-4"></a></span>
-<span id="cb276-5"><a href="graph.html#cb276-5"></a>box2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
-<span id="cb276-6"><a href="graph.html#cb276-6"></a><span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># boxplot</span></span>
-<span id="cb276-7"><a href="graph.html#cb276-7"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean)<span class="op">+</span><span class="st"> </span><span class="co"># mostra a média por um ponto</span></span>
-<span id="cb276-8"><a href="graph.html#cb276-8"></a><span class="st">      </span><span class="co"># adiciona uma linha na média geral</span></span>
-<span id="cb276-9"><a href="graph.html#cb276-9"></a><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_rg, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb276-10"><a href="graph.html#cb276-10"></a><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</span>
-<span id="cb276-11"><a href="graph.html#cb276-11"></a></span>
-<span id="cb276-12"><a href="graph.html#cb276-12"></a><span class="kw">plot_grid</span>(box1, box2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1">mean_rg =<span class="st"> </span><span class="kw">mean</span>(dados_gg<span class="op">$</span>RG) <span class="co"># calcula a média geral do RG</span></a>
+<a class="sourceLine" id="cb276-2" title="2">box1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb276-3" title="3"><span class="st">       </span><span class="kw">geom_boxplot</span>()</a>
+<a class="sourceLine" id="cb276-4" title="4"></a>
+<a class="sourceLine" id="cb276-5" title="5">box2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb276-6" title="6"><span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># boxplot</span></a>
+<a class="sourceLine" id="cb276-7" title="7"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">fun.y =</span> mean)<span class="op">+</span><span class="st"> </span><span class="co"># mostra a média por um ponto</span></a>
+<a class="sourceLine" id="cb276-8" title="8"><span class="st">      </span><span class="co"># adiciona uma linha na média geral</span></a>
+<a class="sourceLine" id="cb276-9" title="9"><span class="st">       </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_rg, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb276-10" title="10"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Peso hectolitro&quot;</span>)</a>
+<a class="sourceLine" id="cb276-11" title="11"></a>
+<a class="sourceLine" id="cb276-12" title="12"><span class="kw">plot_grid</span>(box1, box2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-122"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-122-1.png" alt="Gráfico do tipo boxplot combinando mapeamentos estéticos e inclusão de linhas." width="864" />
 <p class="caption">
@@ -606,21 +604,21 @@ Figure 8.4: Gráfico do tipo boxplot combinando mapeamentos estéticos e inclus�
 <ul>
 <li><strong>Gráficos do tipo histograma</strong></li>
 </ul>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="graph.html#cb277-1"></a>h1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></span>
-<span id="cb277-2"><a href="graph.html#cb277-2"></a><span class="st">     </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb277-3"><a href="graph.html#cb277-3"></a></span>
-<span id="cb277-4"><a href="graph.html#cb277-4"></a>h2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></span>
-<span id="cb277-5"><a href="graph.html#cb277-5"></a><span class="st">     </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">200</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb277-6"><a href="graph.html#cb277-6"></a>                    <span class="kw">aes</span>(<span class="dt">y =</span> ..density.., <span class="dt">fill =</span> ..count..)) <span class="op">+</span></span>
-<span id="cb277-7"><a href="graph.html#cb277-7"></a><span class="st">     </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
-<span id="cb277-8"><a href="graph.html#cb277-8"></a><span class="st">     </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</span>
-<span id="cb277-9"><a href="graph.html#cb277-9"></a>                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb277-10"><a href="graph.html#cb277-10"></a>                   <span class="dt">size =</span> <span class="dv">1</span>,</span>
-<span id="cb277-11"><a href="graph.html#cb277-11"></a>                   <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dados_gg<span class="op">$</span>RG),</span>
-<span id="cb277-12"><a href="graph.html#cb277-12"></a>                               <span class="dt">sd =</span> <span class="kw">sd</span>(dados_gg<span class="op">$</span>RG))) <span class="op">+</span></span>
-<span id="cb277-13"><a href="graph.html#cb277-13"></a><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidade&quot;</span>)</span>
-<span id="cb277-14"><a href="graph.html#cb277-14"></a></span>
-<span id="cb277-15"><a href="graph.html#cb277-15"></a><span class="kw">plot_grid</span>(h1, h2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.4</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;h1&quot;</span>, <span class="st">&quot;h2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1">h1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb277-2" title="2"><span class="st">     </span><span class="kw">geom_histogram</span>()</a>
+<a class="sourceLine" id="cb277-3" title="3"></a>
+<a class="sourceLine" id="cb277-4" title="4">h2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb277-5" title="5"><span class="st">     </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">200</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, </a>
+<a class="sourceLine" id="cb277-6" title="6">                    <span class="kw">aes</span>(<span class="dt">y =</span> ..density.., <span class="dt">fill =</span> ..count..)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb277-7" title="7"><span class="st">     </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb277-8" title="8"><span class="st">     </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb277-9" title="9">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</a>
+<a class="sourceLine" id="cb277-10" title="10">                   <span class="dt">size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb277-11" title="11">                   <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dados_gg<span class="op">$</span>RG),</a>
+<a class="sourceLine" id="cb277-12" title="12">                               <span class="dt">sd =</span> <span class="kw">sd</span>(dados_gg<span class="op">$</span>RG))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb277-13" title="13"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;rendimento de grãos&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidade&quot;</span>)</a>
+<a class="sourceLine" id="cb277-14" title="14"></a>
+<a class="sourceLine" id="cb277-15" title="15"><span class="kw">plot_grid</span>(h1, h2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.4</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;h1&quot;</span>, <span class="st">&quot;h2&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-123"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-123-1.png" alt="Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal." width="672" />
 <p class="caption">
@@ -633,23 +631,23 @@ Figure 8.5: Gráfico do tipo histograma com estimativas de função de probabili
 <ul>
 <li><strong>Gráficos do tipo barra</strong></li>
 </ul>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="graph.html#cb278-1"></a>bar1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></span>
-<span id="cb278-2"><a href="graph.html#cb278-2"></a><span class="st">       </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
-<span id="cb278-3"><a href="graph.html#cb278-3"></a>               <span class="dt">fun.y =</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb278-4"><a href="graph.html#cb278-4"></a>               <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
-<span id="cb278-5"><a href="graph.html#cb278-5"></a></span>
-<span id="cb278-6"><a href="graph.html#cb278-6"></a>bar2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG, <span class="dt">fill =</span> AMB)) <span class="op">+</span></span>
-<span id="cb278-7"><a href="graph.html#cb278-7"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,</span>
-<span id="cb278-8"><a href="graph.html#cb278-8"></a>                    <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</span>
-<span id="cb278-9"><a href="graph.html#cb278-9"></a>                    <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb278-10"><a href="graph.html#cb278-10"></a>                    <span class="dt">width =</span> <span class="fl">0.8</span>,</span>
-<span id="cb278-11"><a href="graph.html#cb278-11"></a>                    <span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb278-12"><a href="graph.html#cb278-12"></a><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se,</span>
-<span id="cb278-13"><a href="graph.html#cb278-13"></a>                    <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</span>
-<span id="cb278-14"><a href="graph.html#cb278-14"></a>                    <span class="dt">width =</span> <span class="fl">0.2</span>,</span>
-<span id="cb278-15"><a href="graph.html#cb278-15"></a>                    <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.8</span>))</span>
-<span id="cb278-16"><a href="graph.html#cb278-16"></a> </span>
-<span id="cb278-17"><a href="graph.html#cb278-17"></a><span class="kw">plot_grid</span>(bar1, bar2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">1.2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;bar1&quot;</span>, <span class="st">&quot;bar2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1">bar1 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb278-2" title="2"><span class="st">       </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;summary&quot;</span>,</a>
+<a class="sourceLine" id="cb278-3" title="3">               <span class="dt">fun.y =</span> <span class="st">&quot;mean&quot;</span>,</a>
+<a class="sourceLine" id="cb278-4" title="4">               <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a>
+<a class="sourceLine" id="cb278-5" title="5"></a>
+<a class="sourceLine" id="cb278-6" title="6">bar2 =<span class="st"> </span><span class="kw">ggplot</span>(dados_gg, <span class="kw">aes</span>(<span class="dt">x =</span> GEN, <span class="dt">y =</span> RG, <span class="dt">fill =</span> AMB)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb278-7" title="7"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,</a>
+<a class="sourceLine" id="cb278-8" title="8">                    <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</a>
+<a class="sourceLine" id="cb278-9" title="9">                    <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb278-10" title="10">                    <span class="dt">width =</span> <span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb278-11" title="11">                    <span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb278-12" title="12"><span class="st">       </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se,</a>
+<a class="sourceLine" id="cb278-13" title="13">                    <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</a>
+<a class="sourceLine" id="cb278-14" title="14">                    <span class="dt">width =</span> <span class="fl">0.2</span>,</a>
+<a class="sourceLine" id="cb278-15" title="15">                    <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.8</span>))</a>
+<a class="sourceLine" id="cb278-16" title="16"> </a>
+<a class="sourceLine" id="cb278-17" title="17"><span class="kw">plot_grid</span>(bar1, bar2, <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">1.2</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;bar1&quot;</span>, <span class="st">&quot;bar2&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-124"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-124-1.png" alt="Gráfico do tipo barras, com mapeamento estético e barras de erro." width="960" />
 <p class="caption">
@@ -661,23 +659,23 @@ Figure 8.6: Gráfico do tipo barras, com mapeamento estético e barras de erro.
 <ul>
 <li><strong>Gráficos de dispersão com linhas de valores preditos</strong></li>
 </ul>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="graph.html#cb279-1"></a><span class="co">#### Polinômio de segundo grau</span></span>
-<span id="cb279-2"><a href="graph.html#cb279-2"></a>dado_reg =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">dose =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">35</span>,<span class="dv">40</span>),</span>
-<span id="cb279-3"><a href="graph.html#cb279-3"></a>                  <span class="dt">prod =</span> <span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">69</span>,<span class="dv">62</span>))</span>
-<span id="cb279-4"><a href="graph.html#cb279-4"></a>l1 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></span>
-<span id="cb279-5"><a href="graph.html#cb279-5"></a><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb279-6"><a href="graph.html#cb279-6"></a><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb279-7"><a href="graph.html#cb279-7"></a>                 <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 1)&quot;</span>),</span>
-<span id="cb279-8"><a href="graph.html#cb279-8"></a>                 <span class="dt">se =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb279-9"><a href="graph.html#cb279-9"></a>l2 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></span>
-<span id="cb279-10"><a href="graph.html#cb279-10"></a><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb279-11"><a href="graph.html#cb279-11"></a><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb279-12"><a href="graph.html#cb279-12"></a>                  <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>),</span>
-<span id="cb279-13"><a href="graph.html#cb279-13"></a>                  <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb279-14"><a href="graph.html#cb279-14"></a>                  <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb279-15"><a href="graph.html#cb279-15"></a>                  <span class="dt">level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb279-16"><a href="graph.html#cb279-16"></a></span>
-<span id="cb279-17"><a href="graph.html#cb279-17"></a><span class="kw">plot_grid</span>(l1, l2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;l1&quot;</span>, <span class="st">&quot;l2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="co">#### Polinômio de segundo grau</span></a>
+<a class="sourceLine" id="cb279-2" title="2">dado_reg =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">dose =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">35</span>,<span class="dv">40</span>),</a>
+<a class="sourceLine" id="cb279-3" title="3">                  <span class="dt">prod =</span> <span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">70</span>,<span class="dv">73</span>,<span class="dv">75</span>,<span class="dv">69</span>,<span class="dv">62</span>))</a>
+<a class="sourceLine" id="cb279-4" title="4">l1 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
+<a class="sourceLine" id="cb279-5" title="5"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb279-6" title="6"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
+<a class="sourceLine" id="cb279-7" title="7">                 <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 1)&quot;</span>),</a>
+<a class="sourceLine" id="cb279-8" title="8">                 <span class="dt">se =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb279-9" title="9">l2 =<span class="st"> </span><span class="kw">ggplot</span>(dado_reg, <span class="kw">aes</span>(dose, prod))<span class="op">+</span></a>
+<a class="sourceLine" id="cb279-10" title="10"><span class="st">     </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb279-11" title="11"><span class="st">     </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</a>
+<a class="sourceLine" id="cb279-12" title="12">                  <span class="dt">formula =</span> <span class="kw">as.formula</span>(<span class="st">&quot;y ~ poly(x, 2)&quot;</span>),</a>
+<a class="sourceLine" id="cb279-13" title="13">                  <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</a>
+<a class="sourceLine" id="cb279-14" title="14">                  <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb279-15" title="15">                  <span class="dt">level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb279-16" title="16"></a>
+<a class="sourceLine" id="cb279-17" title="17"><span class="kw">plot_grid</span>(l1, l2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;l1&quot;</span>, <span class="st">&quot;l2&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-125"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-125-1.png" alt="Gráfico de dispersão combinado com inclusão de curvas ajustadas." width="672" />
 <p class="caption">
@@ -688,18 +686,18 @@ Figure 8.7: Gráfico de dispersão combinado com inclusão de curvas ajustadas.
 <li><strong>Gráficos do tipo quantil-quantil (Q-Q plots)</strong></li>
 </ul>
 <p>Esta função é muito util para verificar a normalidade dos resíduos da ANOVA e regressões lineares ou não lineares. A programação abaixo foi utilizada no artigo de <span class="citation">Lúcio, Santos, and Olivoto (<a href="#ref-Lucio2017" role="doc-biblioref">2017</a>)</span> para demonstrar a intepretação dos gráficos. As funções <code>stat_qq_band()</code>, <code>stat_qq_line()</code> e <code>stat_qq_point()</code> do pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> serão utilizadas. Este é uma das inúmeras extensões do pacote <strong>ggplot2</strong> que podem ser encontradas <a href="http://www.ggplot2-exts.org/gallery/">aqui.</a><a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="graph.html#cb280-1"></a><span class="co"># simulando dados com diferentes assimetrias</span></span>
-<span id="cb280-2"><a href="graph.html#cb280-2"></a>assimetria =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">esquerda =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">1</span>,<span class="dv">7</span>),</span>
-<span id="cb280-3"><a href="graph.html#cb280-3"></a>                    <span class="dt">direita =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">7</span>,<span class="dv">1</span>),</span>
-<span id="cb280-4"><a href="graph.html#cb280-4"></a>                    <span class="dt">normal =</span> <span class="kw">rnorm</span>(<span class="dv">5000</span>,<span class="dv">5</span>,<span class="dv">3</span>))</span>
-<span id="cb280-5"><a href="graph.html#cb280-5"></a></span>
-<span id="cb280-6"><a href="graph.html#cb280-6"></a>assimetria_graf =<span class="st"> </span><span class="kw">gather</span>(assimetria) <span class="co"># organiza os dados para usar facete_wrap</span></span>
-<span id="cb280-7"><a href="graph.html#cb280-7"></a><span class="kw">ggplot</span>(assimetria_graf, <span class="kw">aes</span>(<span class="dt">sample =</span> value))<span class="op">+</span></span>
-<span id="cb280-8"><a href="graph.html#cb280-8"></a><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>key, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)<span class="op">+</span></span>
-<span id="cb280-9"><a href="graph.html#cb280-9"></a><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_band</span>(<span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span></span>
-<span id="cb280-10"><a href="graph.html#cb280-10"></a><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_line</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb280-11"><a href="graph.html#cb280-11"></a><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_point</span>()<span class="op">+</span></span>
-<span id="cb280-12"><a href="graph.html#cb280-12"></a><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Theoretical quantiles&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Sample quantiles&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="co"># simulando dados com diferentes assimetrias</span></a>
+<a class="sourceLine" id="cb280-2" title="2">assimetria =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">esquerda =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">1</span>,<span class="dv">7</span>),</a>
+<a class="sourceLine" id="cb280-3" title="3">                    <span class="dt">direita =</span> <span class="kw">rbeta</span>(<span class="dv">5000</span>,<span class="dv">7</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb280-4" title="4">                    <span class="dt">normal =</span> <span class="kw">rnorm</span>(<span class="dv">5000</span>,<span class="dv">5</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb280-5" title="5"></a>
+<a class="sourceLine" id="cb280-6" title="6">assimetria_graf =<span class="st"> </span><span class="kw">gather</span>(assimetria) <span class="co"># organiza os dados para usar facete_wrap</span></a>
+<a class="sourceLine" id="cb280-7" title="7"><span class="kw">ggplot</span>(assimetria_graf, <span class="kw">aes</span>(<span class="dt">sample =</span> value))<span class="op">+</span></a>
+<a class="sourceLine" id="cb280-8" title="8"><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>key, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb280-9" title="9"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_band</span>(<span class="dt">fill =</span> <span class="st">&quot;gray&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb280-10" title="10"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_line</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb280-11" title="11"><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb280-12" title="12"><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Theoretical quantiles&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Sample quantiles&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-126"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-126-1.png" alt="Gráfico quantil-quantil de conjuntos de dados com assimetria à esquerda, direita e com distribuição normal." width="960" />
 <p class="caption">
@@ -735,12 +733,12 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo <s
 <div class="footnotes">
 <hr />
 <ol start="23">
-<li id="fn23"><p><a href="https://github.com/wilkelab/cowplot" class="uri">https://github.com/wilkelab/cowplot</a><a href="graph.html#fnref23" class="footnote-back">↩︎</a></p></li>
-<li id="fn24"><p><a href="https://github.com/aloy/qqplotr" class="uri">https://github.com/aloy/qqplotr</a><a href="graph.html#fnref24" class="footnote-back">↩︎</a></p></li>
-<li id="fn25"><p><a href="http://www.ggplot2-exts.org/gallery/" class="uri">http://www.ggplot2-exts.org/gallery/</a><a href="graph.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p><a href="https://github.com/aloy/qqplotr" class="uri">https://github.com/aloy/qqplotr</a><a href="graph.html#fnref26" class="footnote-back">↩︎</a></p></li>
-<li id="fn27"><p><a href="http://www.ggplot2-exts.org/gallery/" class="uri">http://www.ggplot2-exts.org/gallery/</a><a href="graph.html#fnref27" class="footnote-back">↩︎</a></p></li>
-<li id="fn28"><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a><a href="graph.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p><a href="https://github.com/wilkelab/cowplot" class="uri">https://github.com/wilkelab/cowplot</a><a href="graph.html#fnref23" class="footnote-back">↩</a></p></li>
+<li id="fn24"><p><a href="https://github.com/aloy/qqplotr" class="uri">https://github.com/aloy/qqplotr</a><a href="graph.html#fnref24" class="footnote-back">↩</a></p></li>
+<li id="fn25"><p><a href="http://www.ggplot2-exts.org/gallery/" class="uri">http://www.ggplot2-exts.org/gallery/</a><a href="graph.html#fnref25" class="footnote-back">↩</a></p></li>
+<li id="fn26"><p><a href="https://github.com/aloy/qqplotr" class="uri">https://github.com/aloy/qqplotr</a><a href="graph.html#fnref26" class="footnote-back">↩</a></p></li>
+<li id="fn27"><p><a href="http://www.ggplot2-exts.org/gallery/" class="uri">http://www.ggplot2-exts.org/gallery/</a><a href="graph.html#fnref27" class="footnote-back">↩</a></p></li>
+<li id="fn28"><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a><a href="graph.html#fnref28" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

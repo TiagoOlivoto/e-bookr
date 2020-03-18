@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 7 Manipulação de dados | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 7 Manipulação de dados | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -421,38 +419,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Utilizando as funções bases do R (código massivo)</li>
 </ul>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manipula.html#cb102-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb102-2"><a href="manipula.html#cb102-2"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb102-3"><a href="manipula.html#cb102-3"></a>              <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</span>
-<span id="cb102-4"><a href="manipula.html#cb102-4"></a>data<span class="op">$</span>z &lt;-<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</span>
-<span id="cb102-5"><a href="manipula.html#cb102-5"></a>data &lt;-<span class="st"> </span><span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)</span>
-<span id="cb102-6"><a href="manipula.html#cb102-6"></a>data &lt;-<span class="st"> </span>data[, <span class="dv">3</span>]</span>
-<span id="cb102-7"><a href="manipula.html#cb102-7"></a>sqr_dat &lt;-<span class="st"> </span><span class="kw">sqrt</span>(data<span class="op">$</span>z)</span>
-<span id="cb102-8"><a href="manipula.html#cb102-8"></a>mean_sqrt &lt;-<span class="st"> </span><span class="kw">mean</span>(sqr_dat)</span>
-<span id="cb102-9"><a href="manipula.html#cb102-9"></a>mean_sqrt</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb102-2" title="2">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb102-3" title="3">              <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb102-4" title="4">data<span class="op">$</span>z &lt;-<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</a>
+<a class="sourceLine" id="cb102-5" title="5">data &lt;-<span class="st"> </span><span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb102-6" title="6">data &lt;-<span class="st"> </span>data[, <span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb102-7" title="7">sqr_dat &lt;-<span class="st"> </span><span class="kw">sqrt</span>(data<span class="op">$</span>z)</a>
+<a class="sourceLine" id="cb102-8" title="8">mean_sqrt &lt;-<span class="st"> </span><span class="kw">mean</span>(sqr_dat)</a>
+<a class="sourceLine" id="cb102-9" title="9">mean_sqrt</a></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <ul>
 <li>Utilizando as funções bases do R (código mais limpo)</li>
 </ul>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="manipula.html#cb104-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb104-2"><a href="manipula.html#cb104-2"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb104-3"><a href="manipula.html#cb104-3"></a>               <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</span>
-<span id="cb104-4"><a href="manipula.html#cb104-4"></a>data<span class="op">$</span>z &lt;-<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</span>
-<span id="cb104-5"><a href="manipula.html#cb104-5"></a>mean_sqrt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">sqrt</span>(<span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)<span class="op">$</span>z))</span>
-<span id="cb104-6"><a href="manipula.html#cb104-6"></a>mean_sqrt</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb104-2" title="2">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb104-3" title="3">               <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb104-4" title="4">data<span class="op">$</span>z &lt;-<span class="st"> </span>data<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>data<span class="op">$</span>y</a>
+<a class="sourceLine" id="cb104-5" title="5">mean_sqrt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">sqrt</span>(<span class="kw">subset</span>(data, z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>)<span class="op">$</span>z))</a>
+<a class="sourceLine" id="cb104-6" title="6">mean_sqrt</a></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <ul>
 <li>Utilizando o operdor <code>%&gt;%</code></li>
 </ul>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="manipula.html#cb106-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb106-2"><a href="manipula.html#cb106-2"></a>mean_sqrt &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb106-3"><a href="manipula.html#cb106-3"></a>                    <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb106-4"><a href="manipula.html#cb106-4"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">z =</span> x <span class="op">*</span><span class="st"> </span>y) <span class="op">%&gt;%</span></span>
-<span id="cb106-5"><a href="manipula.html#cb106-5"></a><span class="st">            </span><span class="kw">filter</span>(z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span></span>
-<span id="cb106-6"><a href="manipula.html#cb106-6"></a><span class="st">            </span><span class="kw">pull</span>(z) <span class="op">%&gt;%</span></span>
-<span id="cb106-7"><a href="manipula.html#cb106-7"></a><span class="st">            </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span></span>
-<span id="cb106-8"><a href="manipula.html#cb106-8"></a><span class="st">            </span><span class="kw">mean</span>()</span>
-<span id="cb106-9"><a href="manipula.html#cb106-9"></a>mean_sqrt  </span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb106-2" title="2">mean_sqrt &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span>  <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb106-3" title="3">                    <span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-4" title="4"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">z =</span> x <span class="op">*</span><span class="st"> </span>y) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-5" title="5"><span class="st">            </span><span class="kw">filter</span>(z <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-6" title="6"><span class="st">            </span><span class="kw">pull</span>(z) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-7" title="7"><span class="st">            </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb106-8" title="8"><span class="st">            </span><span class="kw">mean</span>()</a>
+<a class="sourceLine" id="cb106-9" title="9">mean_sqrt  </a></code></pre></div>
 <pre><code>[1] 1.977507</code></pre>
 <p>A utilização do operador <code>%&gt;%</code> parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o <code>%&gt;%</code> se mostrará muito mais útil.</p>
 <p>O pacote <a href="https://tiagoolivoto.github.io/metan/"><code>metan</code></a> @ fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:</p>
@@ -595,12 +593,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p></li>
 </ul>
 <p>O conjunto de dados <strong>maize</strong> será utilizado como exemplo para as operações de manipulação de dados. Este arquivo em formato <code>.xlsx</code> está hospedado em <a href="https://github.com/TiagoOlivoto/e-bookr/tree/master/data" class="uri">https://github.com/TiagoOlivoto/e-bookr/tree/master/data</a> e pode ser carregado no ambiente R com a função <code>import()</code> do pacote <a href="https://cran.r-project.org/web/packages/rio/index.html">rio</a>.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manipula.html#cb108-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
-<span id="cb108-2"><a href="manipula.html#cb108-2"></a>maize &lt;-<span class="st"> </span><span class="kw">import</span>(url,</span>
-<span id="cb108-3"><a href="manipula.html#cb108-3"></a>                <span class="dt">sheet =</span> <span class="st">&quot;maize&quot;</span>, </span>
-<span id="cb108-4"><a href="manipula.html#cb108-4"></a>                <span class="dt">setclass =</span> <span class="st">&quot;tibble&quot;</span>)</span>
-<span id="cb108-5"><a href="manipula.html#cb108-5"></a></span>
-<span id="cb108-6"><a href="manipula.html#cb108-6"></a><span class="kw">inspect</span>(maize)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></a>
+<a class="sourceLine" id="cb108-2" title="2">maize &lt;-<span class="st"> </span><span class="kw">import</span>(url,</a>
+<a class="sourceLine" id="cb108-3" title="3">                <span class="dt">sheet =</span> <span class="st">&quot;maize&quot;</span>, </a>
+<a class="sourceLine" id="cb108-4" title="4">                <span class="dt">setclass =</span> <span class="st">&quot;tibble&quot;</span>)</a>
+<a class="sourceLine" id="cb108-5" title="5"></a>
+<a class="sourceLine" id="cb108-6" title="6"><span class="kw">inspect</span>(maize)</a></code></pre></div>
 <pre><code># A tibble: 10 x 9
    Variable Class     Missing Levels Valid_n   Min Median    Max Outlier
    &lt;chr&gt;    &lt;fct&gt;     &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -619,7 +617,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="selecionar-colunas" class="section level3">
 <h3><span class="header-section-number">7.1.1</span> Selecionar colunas</h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>select_cols()</code></a> pode ser usada para selecionar colunas de um conjunto de dados.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="manipula.html#cb110-1"></a><span class="kw">select_cols</span>(data_ge2, ENV, GEN)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">select_cols</span>(data_ge2, ENV, GEN)</a></code></pre></div>
 <pre><code># A tibble: 156 x 2
    ENV   GEN  
    &lt;fct&gt; &lt;fct&gt;
@@ -635,7 +633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 A1    H12  
 # ... with 146 more rows</code></pre>
 <p>As colunas numéricas podem ser selecionadas rapidamente usando a função <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>select_numeric_cols()</code></a>. As colunas não numéricas são selecionadas com <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>select_non_numeric_cols()</code></a>.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="manipula.html#cb112-1"></a><span class="kw">select_numeric_cols</span>(data_ge2)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="kw">select_numeric_cols</span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 15
       PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED  PERK
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -650,7 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9  2.77  1.67 0.600  15.8  47.9  27.6  16.4  20.5  166.  15.2  34.8 0.576  89.0
 10  2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8  31.6 0.597  88.7
 # ... with 146 more rows, and 2 more variables: TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="manipula.html#cb114-1"></a><span class="kw">select_non_numeric_cols</span>(data_ge2)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">select_non_numeric_cols</span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 3
    ENV   GEN   REP  
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
@@ -666,7 +664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 A1    H12   1    
 # ... with 146 more rows</code></pre>
 <p>Podemos selecionar a primeira ou a última coluna rapidamente com <code>select_first_col()</code> e <code>select_last_col()</code>, respectivamente.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manipula.html#cb116-1"></a><span class="kw">select_first_col</span>(data_ge2)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">select_first_col</span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 1
    ENV  
    &lt;fct&gt;
@@ -681,7 +679,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 A1   
 10 A1   
 # ... with 146 more rows</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manipula.html#cb118-1"></a><span class="kw">select_last_col</span>(data_ge2)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">select_last_col</span>(data_ge2)</a></code></pre></div>
 <pre><code># A tibble: 156 x 1
      NKE
    &lt;dbl&gt;
@@ -701,7 +699,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecionando variáveis que começam com um prefixo.</strong></li>
 </ul>
 <p>Se quisermos selecionar as variáveis que começam com “N”, podemos usar:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="manipula.html#cb120-1"></a><span class="kw">select_cols</span>(data_ge2, <span class="kw">starts_with</span>(<span class="st">&quot;C&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">select_cols</span>(data_ge2, <span class="kw">starts_with</span>(<span class="st">&quot;C&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 4
       CL    CD    CW  CDED
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -717,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10  28.2  15.5  20.1 0.597
 # ... with 146 more rows</code></pre>
 <p>mas se quisermos selecionar aqueles que não começam com “C”, basta adicionar “-” logo antes de <a href="https://tidyselect.r-lib.org/reference/select_helpers.html"><code>starts_with()</code></a></p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="manipula.html#cb122-1"></a><span class="kw">select_cols</span>(data_ge2, <span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;C&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">select_cols</span>(data_ge2, <span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;C&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 14
    ENV   GEN   REP      PH    EH    EP    EL    ED    KW    NR   NKR  PERK   TKW
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -736,7 +734,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecionando variáveis que terminam com um sufixo.</strong></li>
 </ul>
 <p>Da mesma forma, se quisermos selecionar as variáveis que terminam com “D”, podemos usar:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="manipula.html#cb124-1"></a><span class="kw">select_cols</span>(data_ge2, <span class="kw">ends_with</span>(<span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">select_cols</span>(data_ge2, <span class="kw">ends_with</span>(<span class="st">&quot;D&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 3
       ED    CD  CDED
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -755,7 +753,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecionando variáveis que começam com um prefixo <em>E</em> terminam com um sufixo.</strong></li>
 </ul>
 <p>Agora, se quisermos selecionar variáveis que começam com “C” e terminam com “D”, ou seja, a interseção entre a letra inicial “C” e a letra final “D”, podemos:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="manipula.html#cb126-1"></a><span class="kw">select_cols</span>(data_ge2, <span class="kw">intersect_var</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">select_cols</span>(data_ge2, <span class="kw">intersect_var</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 2
       CD  CDED
    &lt;dbl&gt; &lt;dbl&gt;
@@ -774,7 +772,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecionando variáveis que começam com um prefixo <em>OU</em> terminam com um sufixo.</strong></li>
 </ul>
 <p>Também podemos obter a união entre a letra inicial “C” e a letra final “D”, ou seja, variáveis que começam com “C” ou terminam com “D”.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="manipula.html#cb128-1"></a><span class="kw">select_cols</span>(data_ge2, <span class="kw">union_var</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">select_cols</span>(data_ge2, <span class="kw">union_var</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 5
       CL    CD    CW  CDED    ED
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -793,7 +791,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>** Selecionando variáveis que começam com um prefixo <em>E NÃO</em> terminam com um sufixo.**</li>
 </ul>
 <p>Também podemos obter a diferença entre a letra inicial “C” e a letra final “D”, ou seja, variáveis que começam com “C” e não terminam com “D”.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="manipula.html#cb130-1"></a><span class="kw">select_cols</span>(data_ge2, <span class="kw">difference_var</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="kw">select_cols</span>(data_ge2, <span class="kw">difference_var</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 2
       CL    CW
    &lt;dbl&gt; &lt;dbl&gt;
@@ -812,16 +810,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecionando variáveis que contêm uma string literal.</strong></li>
 </ul>
 <p>Se as variáveis no conjunto de dados tiverem um padrão com diferenças entre um grupo de variáveis, podemos usar o código a seguir para selecionar variáveis com um padrão. Primeiro, iremos alterar os nomes das variáveis <code>PH</code>, <code>EH</code>, <code>EP</code> e <code>EL</code> incluindo <code>_PLANT</code> para indicar que são variáveis relacionadas à planta. Em seguida, selecionaremos essas variáveis com a função <a href="https://tidyselect.r-lib.org/reference/select_helpers.html"><code>contains()</code></a>.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="manipula.html#cb132-1"></a>data_vars &lt;-<span class="st"> </span>data_ge2<span class="op">%&gt;%</span></span>
-<span id="cb132-2"><a href="manipula.html#cb132-2"></a>  <span class="kw">rename</span>(<span class="dt">PH_PLANT =</span> PH,</span>
-<span id="cb132-3"><a href="manipula.html#cb132-3"></a>         <span class="dt">EH_PLANT =</span> EH,</span>
-<span id="cb132-4"><a href="manipula.html#cb132-4"></a>         <span class="dt">EP_PLANT =</span> EP,</span>
-<span id="cb132-5"><a href="manipula.html#cb132-5"></a>         <span class="dt">EL_PLANT =</span> EL)</span>
-<span id="cb132-6"><a href="manipula.html#cb132-6"></a><span class="kw">names</span>(data_vars)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">data_vars &lt;-<span class="st"> </span>data_ge2<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb132-2" title="2">  <span class="kw">rename</span>(<span class="dt">PH_PLANT =</span> PH,</a>
+<a class="sourceLine" id="cb132-3" title="3">         <span class="dt">EH_PLANT =</span> EH,</a>
+<a class="sourceLine" id="cb132-4" title="4">         <span class="dt">EP_PLANT =</span> EP,</a>
+<a class="sourceLine" id="cb132-5" title="5">         <span class="dt">EL_PLANT =</span> EL)</a>
+<a class="sourceLine" id="cb132-6" title="6"><span class="kw">names</span>(data_vars)</a></code></pre></div>
 <pre><code> [1] &quot;ENV&quot;      &quot;GEN&quot;      &quot;REP&quot;      &quot;PH_PLANT&quot; &quot;EH_PLANT&quot; &quot;EP_PLANT&quot;
  [7] &quot;EL_PLANT&quot; &quot;ED&quot;       &quot;CL&quot;       &quot;CD&quot;       &quot;CW&quot;       &quot;KW&quot;      
 [13] &quot;NR&quot;       &quot;NKR&quot;      &quot;CDED&quot;     &quot;PERK&quot;     &quot;TKW&quot;      &quot;NKE&quot;     </code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="manipula.html#cb134-1"></a><span class="kw">select_cols</span>(data_vars, <span class="kw">contains</span>(<span class="st">&quot;PLANT&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">select_cols</span>(data_vars, <span class="kw">contains</span>(<span class="st">&quot;PLANT&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 4
    PH_PLANT EH_PLANT EP_PLANT EL_PLANT
       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -840,13 +838,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecionando variáveis que correspondem a uma expressão regular.</strong></li>
 </ul>
 <p>Seleções mais sofisticadas podem ser feitas usando <a href="https://tidyselect.r-lib.org/reference/select_helpers.html"><code>matches()</code></a>. Supondo que gostaríamos de selecionar as variáveis que começam com “E” tem a segunda letra entre “A” e “L” e terminam com “T”, usaríamos algo como:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="manipula.html#cb136-1"></a><span class="kw">select_cols</span>(data_vars, <span class="kw">matches</span>(<span class="st">&quot;^ E [A-L]. * T $&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="kw">select_cols</span>(data_vars, <span class="kw">matches</span>(<span class="st">&quot;^ E [A-L]. * T $&quot;</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 0</code></pre>
 <ul>
 <li><strong>Selecionando a última ou a primeira variável, possivelmente com um deslocamento.</strong></li>
 </ul>
 <p>Podemos selecionar a <em>n</em>-ésima primeira ou a última coluna com <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>select_last_col()</code></a> ou <a href="https%20:%20//tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>select_first_col()</code></a>.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="manipula.html#cb138-1"></a><span class="kw">select_first_col</span>(data_vars)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">select_first_col</span>(data_vars)</a></code></pre></div>
 <pre><code># A tibble: 156 x 1
    ENV  
    &lt;fct&gt;
@@ -861,7 +859,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 A1   
 10 A1   
 # ... with 146 more rows</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="manipula.html#cb140-1"></a><span class="kw">select_last_col</span>(data_vars)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">select_last_col</span>(data_vars)</a></code></pre></div>
 <pre><code># A tibble: 156 x 1
      NKE
    &lt;dbl&gt;
@@ -880,7 +878,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecione variáveis com um comprimento de nome específico (quatro letras)</strong></li>
 </ul>
 
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="manipula.html#cb142-1"></a><span class="kw">select_cols</span>(data_vars, <span class="kw">width_of</span>(<span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">select_cols</span>(data_vars, <span class="kw">width_of</span>(<span class="dv">4</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 2
     CDED  PERK
    &lt;dbl&gt; &lt;dbl&gt;
@@ -899,7 +897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>**Selecione variáveis com largura menor que *n**.</li>
 </ul>
 
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="manipula.html#cb144-1"></a><span class="kw">select_cols</span>(data_vars, <span class="kw">width_less_than</span>(<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">select_cols</span>(data_vars, <span class="kw">width_less_than</span>(<span class="dv">3</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 6
       ED    CL    CD    CW    KW    NR
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -918,7 +916,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecione variáveis com largura maior que * n </strong>*.</li>
 </ul>
 
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="manipula.html#cb146-1"></a><span class="kw">select_cols</span>(data_vars, <span class="kw">width_greater_than</span>(<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="kw">select_cols</span>(data_vars, <span class="kw">width_greater_than</span>(<span class="dv">3</span>))</a></code></pre></div>
 <pre><code># A tibble: 156 x 6
    PH_PLANT EH_PLANT EP_PLANT EL_PLANT  CDED  PERK
       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -937,23 +935,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Selecione variáveis por tipo de letra</strong></li>
 </ul>
 <p>Vamos criar um conjunto de dados com nomes de colunas <em>bagunçados</em>.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="manipula.html#cb148-1"></a>df &lt;-<span class="st"> </span><span class="kw">head</span>(data_ge, <span class="dv">3</span>)</span>
-<span id="cb148-2"><a href="manipula.html#cb148-2"></a><span class="kw">colnames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;Env&quot;</span>, <span class="st">&quot;gen&quot;</span>, <span class="st">&quot;Rep&quot;</span>, <span class="st">&quot;GY&quot;</span>, <span class="st">&quot;hm&quot;</span>)</span>
-<span id="cb148-3"><a href="manipula.html#cb148-3"></a><span class="kw">select_cols</span>(df, <span class="kw">lower_case_only</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">df &lt;-<span class="st"> </span><span class="kw">head</span>(data_ge, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb148-2" title="2"><span class="kw">colnames</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;Env&quot;</span>, <span class="st">&quot;gen&quot;</span>, <span class="st">&quot;Rep&quot;</span>, <span class="st">&quot;GY&quot;</span>, <span class="st">&quot;hm&quot;</span>)</a>
+<a class="sourceLine" id="cb148-3" title="3"><span class="kw">select_cols</span>(df, <span class="kw">lower_case_only</span>())</a></code></pre></div>
 <pre><code># A tibble: 3 x 2
   gen      hm
   &lt;fct&gt; &lt;dbl&gt;
 1 G1     44.9
 2 G1     46.9
 3 G1     47.8</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="manipula.html#cb150-1"></a><span class="kw">select_cols</span>(df, <span class="kw">upper_case_only</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">select_cols</span>(df, <span class="kw">upper_case_only</span>())</a></code></pre></div>
 <pre><code># A tibble: 3 x 1
      GY
   &lt;dbl&gt;
 1  2.17
 2  2.50
 3  2.43</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="manipula.html#cb152-1"></a><span class="kw">select_cols</span>(df, <span class="kw">title_case_only</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">select_cols</span>(df, <span class="kw">title_case_only</span>())</a></code></pre></div>
 <pre><code># A tibble: 3 x 2
   Env   Rep  
   &lt;fct&gt; &lt;fct&gt;
@@ -965,7 +963,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="remover-linhas-ou-colunas" class="section level3">
 <h3><span class="header-section-number">7.1.2</span> Remover linhas ou colunas</h3>
 <p>Podemos usar <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>remove_cols()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_rows_cols.html"><code>remove_rows()</code></a> para remover colunas e linhas, respectivamente.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="manipula.html#cb154-1"></a><span class="kw">remove_cols</span>(data_ge2, ENV, GEN)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">remove_cols</span>(data_ge2, ENV, GEN)</a></code></pre></div>
 <pre><code># A tibble: 156 x 16
    REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR   NKR  CDED
    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -981,7 +979,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 1      2.73  1.54 0.563  14.9  47.5  28.2  15.5  20.1  161.  14.8  31.6 0.597
 # ... with 146 more rows, and 3 more variables: PERK &lt;dbl&gt;, TKW &lt;dbl&gt;,
 #   NKE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="manipula.html#cb156-1"></a><span class="kw">remove_rows</span>(data_ge2, <span class="dv">1</span><span class="op">:</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">5</span><span class="op">:</span><span class="st"> </span><span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">remove_rows</span>(data_ge2, <span class="dv">1</span><span class="op">:</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">5</span><span class="op">:</span><span class="st"> </span><span class="dv">8</span>)</a></code></pre></div>
 <pre><code># A tibble: 150 x 18
    ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW    KW    NR
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -998,9 +996,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # ... with 140 more rows, and 5 more variables: NKR &lt;dbl&gt;, CDED &lt;dbl&gt;,
 #   PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>remove_rows_na()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>remove_rows_na()</code></a> são usados para remover linhas e colunas com valores <code>NA</code>, respectivamente. </p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manipula.html#cb158-1"></a>data_with_na &lt;-<span class="st"> </span>maize</span>
-<span id="cb158-2"><a href="manipula.html#cb158-2"></a>data_with_na[<span class="kw">c</span> (<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="kw">c</span> (<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">10</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb158-3"><a href="manipula.html#cb158-3"></a><span class="kw">remove_cols_na</span>(data_with_na)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1">data_with_na &lt;-<span class="st"> </span>maize</a>
+<a class="sourceLine" id="cb158-2" title="2">data_with_na[<span class="kw">c</span> (<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="kw">c</span> (<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">10</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb158-3" title="3"><span class="kw">remove_cols_na</span>(data_with_na)</a></code></pre></div>
 <pre><code>Warning: Column(s) REP, APLA, AIES, MMG, NGRA with NA values deleted.</code></pre>
 <pre><code># A tibble: 780 x 5
    AMB   HIB    CESP  DIES  MGRA
@@ -1016,7 +1014,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 A1    H1     13.6  50.8 187. 
 10 A1    H1     16.3  53.9 250. 
 # ... with 770 more rows</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manipula.html#cb161-1"></a><span class="kw">remove_rows_na</span>(data_with_na)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1"><span class="kw">remove_rows_na</span>(data_with_na)</a></code></pre></div>
 <pre><code>Warning: Row(s) 1, 5, 10 with NA values deleted.</code></pre>
 <pre><code># A tibble: 777 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
@@ -1036,11 +1034,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ordenar-linhas" class="section level3">
 <h3><span class="header-section-number">7.1.3</span> Ordenar linhas</h3>
 <p>A função <code>arrange()</code>  é utilizada para ordenar as linhas de um tibble (ou data.frames) com base em uma expressão envolvendo suas variáveis. Considerando as funções que vimos até aqui, vamos computar a média para a MGRA, criar uma nova variável chamada <strong>Rank</strong>, qual corresponde ao ranqueamento dos híbridos para a variável em questão e ordenar a variável Rank em ordem crescente, onde o híbrido com a maior média ficará na primeira linha.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="manipula.html#cb164-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb164-2"><a href="manipula.html#cb164-2"></a><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></span>
-<span id="cb164-3"><a href="manipula.html#cb164-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></span>
-<span id="cb164-4"><a href="manipula.html#cb164-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></span>
-<span id="cb164-5"><a href="manipula.html#cb164-5"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>Rank)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_mean =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rank =</span> <span class="kw">rank</span>(MGRA_mean)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>Rank)</a></code></pre></div>
 <pre><code># A tibble: 13 x 3
    HIB   MGRA_mean  Rank
    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -1068,9 +1066,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><a href="resposta-dos-exercícios.html#exerc3">Resposta</a></p>
 <p>Ao combinar a função <code>group_by()</code> com <code>arrange()</code> é possível realizar o ordenamento para cada nível de um determinado fator. No exemplo abaixo, a variável <code>APLA</code> é ordenada de maneira crescente para cada híbrido.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="manipula.html#cb166-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb166-2"><a href="manipula.html#cb166-2"></a><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></span>
-<span id="cb166-3"><a href="manipula.html#cb166-3"></a><span class="st">  </span><span class="kw">arrange</span>(APLA, <span class="dt">.by_group =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb166-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb166-3" title="3"><span class="st">  </span><span class="kw">arrange</span>(APLA, <span class="dt">.by_group =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 780 x 10
 # Groups:   HIB [13]
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
@@ -1090,24 +1088,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="selecionar-top-n-linhas-baseado-em-valor" class="section level3">
 <h3><span class="header-section-number">7.1.4</span> Selecionar top n linhas baseado em valor</h3>
 <p>A função <code>top_n()</code> é usada para selecionar linhas superiores ou inferiores em cada grupo.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="manipula.html#cb168-1"></a><span class="co"># seleciona as duas linhas com o maior valor de MGRA</span></span>
-<span id="cb168-2"><a href="manipula.html#cb168-2"></a><span class="kw">top_n</span>(maize, <span class="dv">2</span>, MGRA)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="co"># seleciona as duas linhas com o maior valor de MGRA</span></a>
+<a class="sourceLine" id="cb168-2" title="2"><span class="kw">top_n</span>(maize, <span class="dv">2</span>, MGRA)</a></code></pre></div>
 <pre><code># A tibble: 2 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 A1    H6    I      2.92  1.64  18    56.0  289.  393.   734
 2 A1    H13   II     2.47  1.28  15.3  53.0  291.  417.   698</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="manipula.html#cb170-1"></a><span class="co"># seleciona as duas linhas com o menor valor de MGRA</span></span>
-<span id="cb170-2"><a href="manipula.html#cb170-2"></a><span class="kw">top_n</span>(maize, <span class="dv">2</span>, <span class="op">-</span>MGRA)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="co"># seleciona as duas linhas com o menor valor de MGRA</span></a>
+<a class="sourceLine" id="cb170-2" title="2"><span class="kw">top_n</span>(maize, <span class="dv">2</span>, <span class="op">-</span>MGRA)</a></code></pre></div>
 <pre><code># A tibble: 2 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 A1    H9    III    2.72  1.54  11    42.8  58.5  295.   198
 2 A2    H8    I      1.92  0.63  12.1  39.7  59.5  243.   245</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="manipula.html#cb172-1"></a><span class="co"># Maior produtividade em cada ambiente</span></span>
-<span id="cb172-2"><a href="manipula.html#cb172-2"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb172-3"><a href="manipula.html#cb172-3"></a><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></span>
-<span id="cb172-4"><a href="manipula.html#cb172-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, MGRA)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1"><span class="co"># Maior produtividade em cada ambiente</span></a>
+<a class="sourceLine" id="cb172-2" title="2">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb172-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb172-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, MGRA)</a></code></pre></div>
 <pre><code># A tibble: 4 x 10
 # Groups:   AMB [4]
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
@@ -1120,9 +1118,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adicionar-novas-variáveis" class="section level3">
 <h3><span class="header-section-number">7.1.5</span> Adicionar novas variáveis</h3>
 <p>A função <code>mutate()</code>  é utilizada quando se deseja adicionar novas variáveis no conjunto de dados. Estas variáveis são funções de variáveis existentes. Como exemplo, vamos criar uma nova variável chamada <code>PRE_2</code> no conjunto de dados <code>maize</code>, qual será a razão entre AIES e APLA. Note que a função adiciona a nova variável após a última variável origina e mantém todas as demais. Digamos que queríamos adicionar a nova variável criada após a variável REP, a seguinte abordagem com o pacote <code>dplyr</code> deve ser usada.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="manipula.html#cb174-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb174-2"><a href="manipula.html#cb174-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA) <span class="op">%&gt;%</span></span>
-<span id="cb174-3"><a href="manipula.html#cb174-3"></a><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, PRE_<span class="dv">2</span>, <span class="kw">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb174-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb174-3" title="3"><span class="st">  </span><span class="kw">select</span>(AMB, HIB, REP, PRE_<span class="dv">2</span>, <span class="kw">everything</span>())</a></code></pre></div>
 <pre><code># A tibble: 780 x 11
    AMB   HIB   REP   PRE_2  APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1138,9 +1136,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 A1    H1    II    0.530  3.02  1.6   16.3  53.9 250.   430.   582
 # ... with 770 more rows</code></pre>
 <p>Com a função <code>add_cols()</code>, o mesmo resultado pode ser obtido com:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="manipula.html#cb176-1"></a><span class="kw">add_cols</span>(maize,</span>
-<span id="cb176-2"><a href="manipula.html#cb176-2"></a>         <span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA,</span>
-<span id="cb176-3"><a href="manipula.html#cb176-3"></a>         <span class="dt">.after =</span> <span class="st">&quot;REP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1"><span class="kw">add_cols</span>(maize,</a>
+<a class="sourceLine" id="cb176-2" title="2">         <span class="dt">PRE_2 =</span> AIES<span class="op">/</span>APLA,</a>
+<a class="sourceLine" id="cb176-3" title="3">         <span class="dt">.after =</span> <span class="st">&quot;REP&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 780 x 11
    AMB   HIB   REP   PRE_2  APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1171,7 +1169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="concatenar-colunas" class="section level3">
 <h3><span class="header-section-number">7.1.6</span> Concatenar colunas</h3>
 <p>A função <code>concatenate()</code> pode ser usada para concatenar várias colunas de um conjunto de dados. <code>concatenate()</code> retorna um quadro de dados com todas as colunas originais em <code>.data</code> mais a variável concatenada, após a última coluna. Para escolher a posição da nova variável, use o argumento <code>.after</code> ou<code>.before</code>, como a seguir.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="manipula.html#cb178-1"></a><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">.after =</span> <span class="st">&quot;REP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">.after =</span> <span class="st">&quot;REP&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP   new_var    GY    HM
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1188,7 +1186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # ... with 410 more rows</code></pre>
 
 <p>Para eliminar as variáveis existentes e manter apenas a coluna concatenada, use o argumento <code>drop = TRUE</code>. Para usar <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>concatenate()</code></a> dentro de uma determinada função como <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>add_cols()</code></a> use o argumento <code>pull = TRUE</code> para extrair os resultados para um vetor.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="manipula.html#cb180-1"></a><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 1
    new_var
    &lt;chr&gt;  
@@ -1203,13 +1201,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 E1_G3_3
 10 E1_G4_1
 # ... with 410 more rows</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="manipula.html#cb182-1"></a><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">pull =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">concatenate</span>(data_ge, ENV, GEN, REP, <span class="dt">pull =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>[1] &quot;E1_G1_1&quot; &quot;E1_G1_2&quot; &quot;E1_G1_3&quot; &quot;E1_G2_1&quot; &quot;E1_G2_2&quot; &quot;E1_G2_3&quot;</code></pre>
 </div>
 <div id="formatar-nomes-de-coluna" class="section level3">
 <h3><span class="header-section-number">7.1.7</span> Formatar nomes de coluna</h3>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_lower()</code></a>, <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>colnames_to_upper()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_title()</code></a> podem ser usados para converter nomes de colunas em maiúsculas, minúsculas ou em formato de título, respectivamente .  </p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="manipula.html#cb184-1"></a><span class="kw">colnames_to_lower</span>(data_ge)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">colnames_to_lower</span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 420 x 5
    env   gen   rep      gy    hm
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1224,7 +1222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 E1    G3    3      2.28  47.8
 10 E1    G4    1      2.36  47.9
 # ... with 410 more rows</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="manipula.html#cb186-1"></a><span class="kw">colnames_to_upper</span>(data_ge)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">colnames_to_upper</span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 420 x 5
    ENV   GEN   REP      GY    HM
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1239,7 +1237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 E1    G3    3      2.28  47.8
 10 E1    G4    1      2.36  47.9
 # ... with 410 more rows</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="manipula.html#cb188-1"></a><span class="kw">colnames_to_title</span>(data_ge)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">colnames_to_title</span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 420 x 5
    Env   Gen   Rep      Gy    Hm
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1258,7 +1256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reordenando-colunas" class="section level3">
 <h3><span class="header-section-number">7.1.8</span> Reordenando colunas</h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>reorder_cols()</code></a> pode ser usada para reordenar as colunas de um quadro de dados.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="manipula.html#cb190-1"></a><span class="kw">reorder_cols</span> (data_vars, <span class="kw">contains</span>(<span class="st">&quot;PLANT&quot;</span>), <span class="dt">.before =</span> <span class="st">&quot;ENV&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="kw">reorder_cols</span> (data_vars, <span class="kw">contains</span>(<span class="st">&quot;PLANT&quot;</span>), <span class="dt">.before =</span> <span class="st">&quot;ENV&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 156 x 18
    PH_PLANT EH_PLANT EP_PLANT EL_PLANT ENV   GEN   REP      ED    CL    CD    CW
       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1274,7 +1272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10     2.73     1.54    0.563     14.9 A1    H12   1      47.5  28.2  15.5  20.1
 # ... with 146 more rows, and 7 more variables: KW &lt;dbl&gt;, NR &lt;dbl&gt;, NKR &lt;dbl&gt;,
 #   CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="manipula.html#cb192-1"></a><span class="kw">reorder_cols</span> (data_vars, ENV, GEN, <span class="dt">.after =</span> <span class="st">&quot;ED&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">reorder_cols</span> (data_vars, ENV, GEN, <span class="dt">.after =</span> <span class="st">&quot;ED&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 156 x 18
    REP   PH_PLANT EH_PLANT EP_PLANT EL_PLANT    ED ENV   GEN      CL    CD    CW
    &lt;fct&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1291,7 +1289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # ... with 146 more rows, and 7 more variables: KW &lt;dbl&gt;, NR &lt;dbl&gt;, NKR &lt;dbl&gt;,
 #   CDED &lt;dbl&gt;, PERK &lt;dbl&gt;, TKW &lt;dbl&gt;, NKE &lt;dbl&gt;</code></pre>
 <p>É possível colocar as colunas no primeiro e no último lugar rapidamente com <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>columns_to_first()</code></a> e <a href="https:%20//tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>columns_to_last()</code></a>, respectivamente.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="manipula.html#cb194-1"></a><span class="kw">column_to_first</span>(data_ge2, NKE, NR)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">column_to_first</span>(data_ge2, NKE, NR)</a></code></pre></div>
 <pre><code># A tibble: 156 x 18
      NKE    NR ENV   GEN   REP      PH    EH    EP    EL    ED    CL    CD    CW
    &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1312,22 +1310,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.9</span> Obtendo níveis de fatores</h3>
 <p>Para obter os níveis e o tamanho dos níveis de um fator, as funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>get_levels()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>get_level_size()</code></a> pode ser usado.
 </p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="manipula.html#cb196-1"></a><span class="kw">get_levels</span>(data_ge, ENV)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">get_levels</span>(data_ge, ENV)</a></code></pre></div>
 <pre><code> [1] &quot;E1&quot;  &quot;E10&quot; &quot;E11&quot; &quot;E12&quot; &quot;E13&quot; &quot;E14&quot; &quot;E2&quot;  &quot;E3&quot;  &quot;E4&quot;  &quot;E5&quot;  &quot;E6&quot;  &quot;E7&quot; 
 [13] &quot;E8&quot;  &quot;E9&quot; </code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="manipula.html#cb198-1"></a><span class="kw">get_level_size</span>(data_ge, ENV)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">get_level_size</span>(data_ge, ENV)</a></code></pre></div>
 <pre><code> E1 E10 E11 E12 E13 E14  E2  E3  E4  E5  E6  E7  E8  E9 
  30  30  30  30  30  30  30  30  30  30  30  30  30  30 </code></pre>
 <p>Utilizando a função <code>case_when()</code>  é possível criar uma variável baseado em um argumento <code>if()</code> vetorizado. <code>case_when()</code> é particularmente útil dentro da função <code>mutate()</code> quando você quer criar uma nova variável que depende de uma combinação complexa de variáveis existentes. No exemplo abaixo, uma nova variável será criada, dependendo dos valores de APLA, AIES ou CESP</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="manipula.html#cb200-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb200-2"><a href="manipula.html#cb200-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb200-3"><a href="manipula.html#cb200-3"></a>    <span class="dt">CASE =</span> <span class="kw">case_when</span>(</span>
-<span id="cb200-4"><a href="manipula.html#cb200-4"></a>      MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span> <span class="op">~</span><span class="st">  &quot;Selecionar&quot;</span>,</span>
-<span id="cb200-5"><a href="manipula.html#cb200-5"></a>      APLA <span class="op">&gt;</span><span class="st"> </span><span class="fl">2.3</span> <span class="op">~</span><span class="st"> &quot;Alto&quot;</span>,</span>
-<span id="cb200-6"><a href="manipula.html#cb200-6"></a>      MGRA <span class="op">&lt;</span><span class="st"> </span><span class="dv">130</span> <span class="op">~</span><span class="st"> &quot;Pouco produtivo&quot;</span>,</span>
-<span id="cb200-7"><a href="manipula.html#cb200-7"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Outro&quot;</span></span>
-<span id="cb200-8"><a href="manipula.html#cb200-8"></a>      )</span>
-<span id="cb200-9"><a href="manipula.html#cb200-9"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb200-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb200-3" title="3">    <span class="dt">CASE =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb200-4" title="4">      MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span> <span class="op">~</span><span class="st">  &quot;Selecionar&quot;</span>,</a>
+<a class="sourceLine" id="cb200-5" title="5">      APLA <span class="op">&gt;</span><span class="st"> </span><span class="fl">2.3</span> <span class="op">~</span><span class="st"> &quot;Alto&quot;</span>,</a>
+<a class="sourceLine" id="cb200-6" title="6">      MGRA <span class="op">&lt;</span><span class="st"> </span><span class="dv">130</span> <span class="op">~</span><span class="st"> &quot;Pouco produtivo&quot;</span>,</a>
+<a class="sourceLine" id="cb200-7" title="7">      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Outro&quot;</span></a>
+<a class="sourceLine" id="cb200-8" title="8">      )</a>
+<a class="sourceLine" id="cb200-9" title="9">    )</a></code></pre></div>
 <pre><code># A tibble: 780 x 11
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA CASE 
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -1346,8 +1344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="selecionar-linhas-com-base-em-seus-valores" class="section level3">
 <h3><span class="header-section-number">7.1.10</span> Selecionar linhas com base em seus valores</h3>
 <p>Utilizando a função <code>filter()</code>  é possivel filtrar as linhas de um conjunto de dados com base no valor de suas variáveis. No primeiro exemplo, selecionaremos as linhas onde o valor da variável MGRA é maior que 280.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="manipula.html#cb202-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb202-2"><a href="manipula.html#cb202-2"></a><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span>)</a></code></pre></div>
 <pre><code># A tibble: 4 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1356,8 +1354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 A1    H13   II     2.47  1.28  15.3  53.0  291.  417.   698
 4 A4    H10   I      2.65  1.47  14    50.3  287.  275.   493</code></pre>
 <p>No segundo exemplo, selecionaremos apenas as linhas onde a MGRA é maior que 220 <strong>OU</strong> a APLA é menor que 1.3 <strong>OU</strong> o NGRA é maior que 820.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="manipula.html#cb204-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb204-2"><a href="manipula.html#cb204-2"></a><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb204-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">280</span> <span class="op">|</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.3</span> <span class="op">|</span><span class="st"> </span>NGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">820</span>)</a></code></pre></div>
 <pre><code># A tibble: 10 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1372,14 +1370,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 A4    H8    I      2.95  1.7   18.6  52.9 249.   302.   824
 10 A4    H10   I      2.65  1.47  14    50.3 287.   275.   493</code></pre>
 <p>No último exemplo, selecionaremos apenas as linhas onde MGRA é maior que é maior que 220 <strong>E</strong> a APLA é menor que 2.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="manipula.html#cb206-1"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb206-2"><a href="manipula.html#cb206-2"></a><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">maize <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-2" title="2"><span class="st">  </span><span class="kw">filter</span>(MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code># A tibble: 1 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 A1    H6    II     1.97  1.63  17.1  54.7  230.  375.   614</code></pre>
 <p>Isto é aproximadamente equivalente ao seguinte código R base.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="manipula.html#cb208-1"></a>maize[maize<span class="op">$</span>MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>maize<span class="op">$</span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">maize[maize<span class="op">$</span>MGRA <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span> <span class="op">&amp;</span><span class="st"> </span>maize<span class="op">$</span>APLA <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>, ]</a></code></pre></div>
 </div>
 </div>
 <div id="trabalhando-com-números-e-seqüências-de-caracteres" class="section level2">
@@ -1387,8 +1385,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="arredondando" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Arredondando</h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>round_cols()</code></a> arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 0). Se nenhuma variável for informada, todas as variáveis numéricas serão arredondadas.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="manipula.html#cb209-1"></a>df_round &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(data_ge2)</span>
-<span id="cb209-2"><a href="manipula.html#cb209-2"></a><span class="kw">head</span>(df_round)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1">df_round &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(data_ge2)</a>
+<a class="sourceLine" id="cb209-2" title="2"><span class="kw">head</span>(df_round)</a></code></pre></div>
 <pre><code>  ENV GEN REP    PH    EH        EP    EL     ED     CL    CD       CW       KW
 1  A1  H1   1 2.612 1.706 0.6579767 16.10 52.222 28.108 16.30 25.06168 216.5231
 2  A1  H1   2 2.872 1.760 0.6275319 14.16 50.300 27.616 14.46 21.43085 183.9417
@@ -1403,7 +1401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4 15.6 32.8 0.5855966 87.89310 373.9682 519.2
 5 17.6 28.0 0.6074037 89.66285 346.8787 502.4
 6 16.8 32.8 0.5767149 88.46255 394.0328 524.6</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="manipula.html#cb211-1"></a><span class="kw">round_cols</span>(df_round) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">round_cols</span>(df_round) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>  ENV GEN REP   PH   EH   EP    EL    ED    CL    CD    CW     KW   NR  NKR
 1  A1  H1   1 2.61 1.71 0.66 16.10 52.22 28.11 16.30 25.06 216.52 15.6 36.6
 2  A1  H1   2 2.87 1.76 0.63 14.16 50.30 27.62 14.46 21.43 183.94 16.0 31.4
@@ -1419,7 +1417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5 0.61 89.66 346.88 502.4
 6 0.58 88.46 394.03 524.6</code></pre>
 <p>Como alternativa, selecione variáveis para arredondar.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="manipula.html#cb213-1"></a><span class="kw">round_cols</span>(df_round, PH, EP, <span class="dt">digits =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="kw">round_cols</span>(df_round, PH, EP, <span class="dt">digits =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>  ENV GEN REP  PH    EH  EP    EL     ED     CL    CD       CW       KW   NR
 1  A1  H1   1 2.6 1.706 0.7 16.10 52.222 28.108 16.30 25.06168 216.5231 15.6
 2  A1  H1   2 2.9 1.760 0.6 14.16 50.300 27.616 14.46 21.43085 183.9417 16.0
@@ -1438,7 +1436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="extraindo-e-substituindo-números" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> Extraindo e substituindo números</h3>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_number()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_num_str.html"><code>replace_number()</code></a> pode ser usado para extrair ou substituir números. Como exemplo, extrairemos o número de cada genótipo em <code>data_g</code>. Por padrão, os números extraídos são colocados como uma nova variável chamada <code>new_var</code> após a última coluna dos dados.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="manipula.html#cb215-1"></a><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   new_var REP      GY    HM
    &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1454,7 +1452,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 E1    G4          4 1      2.36  47.9
 # ... with 410 more rows</code></pre>
 <p>Se o argumento <code>drop</code> estiver definido como <code>TRUE</code>, apenas a nova variável será mantida e todas as outras serão descartadas.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="manipula.html#cb217-1"></a><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 1
    new_var
      &lt;dbl&gt;
@@ -1470,7 +1468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10       4
 # ... with 410 more rows</code></pre>
 <p>Para extrair os resultados em um vetor, use o argumento <code>pull = TRUE</code>. Isso é particularmente útil quando <code>extract_ *</code> ou <code>replace_ *</code> são usados em uma função como <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>add_cols()</code></a>.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="manipula.html#cb219-1"></a><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">pull =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1"><span class="kw">extract_number</span>(data_ge, GEN, <span class="dt">pull =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>  [1]  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9
  [26]  9  9 10 10 10  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5  6  6  6  7  7
  [51]  7  8  8  8  9  9  9 10 10 10  1  1  1  2  2  2  3  3  3  4  4  4  5  5  5
@@ -1490,7 +1488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [401]  4  4  5  5  5  6  6  6  7  7  7  8  8  8  9  9  9 10 10 10</code></pre>
 
 <p>Para substituir números de uma determinada coluna por uma substituição especificada, use <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_number()</code></a>. Por padrão, os números são substituídos por "". O argumento <code>drop</code> e<code>pull</code> também podem ser usados, como mostrado acima.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="manipula.html#cb221-1"></a><span class="kw">replace_number</span>(data_ge, GEN)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">replace_number</span>(data_ge, GEN)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP      GY    HM new_var
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
@@ -1505,12 +1503,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 E1    G3    3      2.28  47.8 G      
 10 E1    G4    1      2.36  47.9 G      
 # ... with 410 more rows</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="manipula.html#cb223-1"></a><span class="kw">replace_number</span>(data_ge,</span>
-<span id="cb223-2"><a href="manipula.html#cb223-2"></a>               <span class="dt">var =</span> REP,</span>
-<span id="cb223-3"><a href="manipula.html#cb223-3"></a>               <span class="dt">pattern =</span> <span class="st">&quot;1&quot;</span>,</span>
-<span id="cb223-4"><a href="manipula.html#cb223-4"></a>               <span class="dt">replacement =</span> <span class="st">&quot;Rep_1&quot;</span>,</span>
-<span id="cb223-5"><a href="manipula.html#cb223-5"></a>               <span class="dt">new_var =</span> R_ONE,</span>
-<span id="cb223-6"><a href="manipula.html#cb223-6"></a>               <span class="dt">.after =</span> <span class="st">&quot;REP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="kw">replace_number</span>(data_ge,</a>
+<a class="sourceLine" id="cb223-2" title="2">               <span class="dt">var =</span> REP,</a>
+<a class="sourceLine" id="cb223-3" title="3">               <span class="dt">pattern =</span> <span class="st">&quot;1&quot;</span>,</a>
+<a class="sourceLine" id="cb223-4" title="4">               <span class="dt">replacement =</span> <span class="st">&quot;Rep_1&quot;</span>,</a>
+<a class="sourceLine" id="cb223-5" title="5">               <span class="dt">new_var =</span> R_ONE,</a>
+<a class="sourceLine" id="cb223-6" title="6">               <span class="dt">.after =</span> <span class="st">&quot;REP&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   REP   R_ONE    GY    HM
    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1529,7 +1527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="extraindo-substituindo-e-removendo-strings" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Extraindo, substituindo e removendo strings</h3>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_string()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_num_str.html"><code>replace_string()</code></a> são usados no mesmo contexto de <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_number()</code></a> e <a href="https%20:%20//tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_number()</code></a>, mas para lidar com seqüências de caracteres.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="manipula.html#cb225-1"></a><span class="kw">extract_string</span>(data_ge, GEN, <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1"><span class="kw">extract_string</span>(data_ge, GEN, <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   new_var REP      GY    HM
    &lt;fct&gt; &lt;fct&gt; &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1546,11 +1544,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # ... with 410 more rows</code></pre>
 
 <p>Para substituir strings, podemos usar a função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_strings()</code></a>.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="manipula.html#cb227-1"></a><span class="kw">replace_string</span>(data_ge,</span>
-<span id="cb227-2"><a href="manipula.html#cb227-2"></a>               <span class="dt">var =</span> GEN,</span>
-<span id="cb227-3"><a href="manipula.html#cb227-3"></a>               <span class="dt">new_var =</span> GENOTYPE,</span>
-<span id="cb227-4"><a href="manipula.html#cb227-4"></a>               <span class="dt">replacement =</span> <span class="st">&quot;GENOTYPE_&quot;</span>,</span>
-<span id="cb227-5"><a href="manipula.html#cb227-5"></a>               <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">replace_string</span>(data_ge,</a>
+<a class="sourceLine" id="cb227-2" title="2">               <span class="dt">var =</span> GEN,</a>
+<a class="sourceLine" id="cb227-3" title="3">               <span class="dt">new_var =</span> GENOTYPE,</a>
+<a class="sourceLine" id="cb227-4" title="4">               <span class="dt">replacement =</span> <span class="st">&quot;GENOTYPE_&quot;</span>,</a>
+<a class="sourceLine" id="cb227-5" title="5">               <span class="dt">.after =</span> <span class="st">&quot;GEN&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 420 x 6
    ENV   GEN   GENOTYPE   REP      GY    HM
    &lt;fct&gt; &lt;fct&gt; &lt;chr&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1566,7 +1564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 E1    G4    GENOTYPE_4 1      2.36  47.9
 # ... with 410 more rows</code></pre>
 <p>Para remover todas as seqüências de caracteres de um quadro de dados, use <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>remove_strings()</code></a>.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="manipula.html#cb229-1"></a><span class="kw">remove_strings</span>(data_ge)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">remove_strings</span>(data_ge)</a></code></pre></div>
 <pre><code># A tibble: 420 x 5
      ENV   GEN   REP    GY    HM
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1586,24 +1584,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="formatando-strings" class="section level3">
 <h3><span class="header-section-number">7.2.4</span> Formatando strings</h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> organiza cadeias de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um quadro de dados, colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por <code>_</code> e colocando <code>_</code> entre letras maiúsculas e minúsculas. Considere as seguintes cadeias de caracteres: <code>messy_env</code> por definição deve representar um nível único do ambiente de fator (ambiente 1). <code>messy_gen</code> mostra seis genótipos, e<code>messy_int</code> representa a interação desses genótipos com o ambiente 1.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="manipula.html#cb231-1"></a>messy_env &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ENV 1&quot;</span>, <span class="st">&quot;Env 1&quot;</span>, <span class="st">&quot;Env1&quot;</span>, <span class="st">&quot;env1&quot;</span>, <span class="st">&quot;Env.1&quot;</span>, <span class="st">&quot;Env_1&quot;</span>)</span>
-<span id="cb231-2"><a href="manipula.html#cb231-2"></a>messy_gen &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GEN1&quot;</span>, <span class="st">&quot;gen 2&quot;</span>, <span class="st">&quot;Gen.3&quot;</span>, <span class="st">&quot;gen-4&quot;</span>, <span class="st">&quot;Gen_5&quot;</span>, <span class="st">&quot;GEN_6&quot;</span>)</span>
-<span id="cb231-3"><a href="manipula.html#cb231-3"></a>messy_int &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Env1Gen1&quot;</span>, <span class="st">&quot;Env1_Gen2&quot;</span>, <span class="st">&quot;env1 gen3&quot;</span>, <span class="st">&quot;Env1 Gen4&quot;</span>, <span class="st">&quot;ENV_1GEN5&quot;</span>, <span class="st">&quot;ENV1GEN6&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1">messy_env &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ENV 1&quot;</span>, <span class="st">&quot;Env 1&quot;</span>, <span class="st">&quot;Env1&quot;</span>, <span class="st">&quot;env1&quot;</span>, <span class="st">&quot;Env.1&quot;</span>, <span class="st">&quot;Env_1&quot;</span>)</a>
+<a class="sourceLine" id="cb231-2" title="2">messy_gen &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GEN1&quot;</span>, <span class="st">&quot;gen 2&quot;</span>, <span class="st">&quot;Gen.3&quot;</span>, <span class="st">&quot;gen-4&quot;</span>, <span class="st">&quot;Gen_5&quot;</span>, <span class="st">&quot;GEN_6&quot;</span>)</a>
+<a class="sourceLine" id="cb231-3" title="3">messy_int &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Env1Gen1&quot;</span>, <span class="st">&quot;Env1_Gen2&quot;</span>, <span class="st">&quot;env1 gen3&quot;</span>, <span class="st">&quot;Env1 Gen4&quot;</span>, <span class="st">&quot;ENV_1GEN5&quot;</span>, <span class="st">&quot;ENV1GEN6&quot;</span>)</a></code></pre></div>
 <p>Esses vetores de caracteres são visualmente confusos. Vamos arrumá-los.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="manipula.html#cb232-1"></a><span class="kw">tidy_strings</span>(messy_env)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="kw">tidy_strings</span>(messy_env)</a></code></pre></div>
 <pre><code>[1] &quot;ENV_1&quot; &quot;ENV_1&quot; &quot;ENV_1&quot; &quot;ENV_1&quot; &quot;ENV_1&quot; &quot;ENV_1&quot;</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="manipula.html#cb234-1"></a><span class="kw">tidy_strings</span>(messy_gen)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="kw">tidy_strings</span>(messy_gen)</a></code></pre></div>
 <pre><code>[1] &quot;GEN_1&quot; &quot;GEN_2&quot; &quot;GEN_3&quot; &quot;GEN_4&quot; &quot;GEN_5&quot; &quot;GEN_6&quot;</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="manipula.html#cb236-1"></a><span class="kw">tidy_strings</span>(messy_int)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">tidy_strings</span>(messy_int)</a></code></pre></div>
 <pre><code>[1] &quot;ENV_1_GEN_1&quot; &quot;ENV_1_GEN_2&quot; &quot;ENV_1_GEN_3&quot; &quot;ENV_1_GEN_4&quot; &quot;ENV_1_GEN_5&quot;
 [6] &quot;ENV_1_GEN_6&quot;</code></pre>
 <p>O <code>tidy_strings()</code> também funciona para arrumar um quadro de dados inteiro ou colunas específicas. Vamos criar um quadro de dados ‘bagunçado’ no contexto de testes de melhoramento de plantas.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="manipula.html#cb238-1"></a><span class="kw">library</span>(tibble)</span>
-<span id="cb238-2"><a href="manipula.html#cb238-2"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Env =</span> messy_env,</span>
-<span id="cb238-3"><a href="manipula.html#cb238-3"></a>             <span class="dt">gen =</span> messy_gen,</span>
-<span id="cb238-4"><a href="manipula.html#cb238-4"></a>             <span class="dt">Env_GEN =</span> <span class="kw">interaction</span>(Env, gen),</span>
-<span id="cb238-5"><a href="manipula.html#cb238-5"></a>             <span class="dt">y =</span> <span class="kw">rnorm</span> (<span class="dv">6</span>, <span class="dv">300</span>, <span class="dv">10</span>))</span>
-<span id="cb238-6"><a href="manipula.html#cb238-6"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb238-2" title="2">df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Env =</span> messy_env,</a>
+<a class="sourceLine" id="cb238-3" title="3">             <span class="dt">gen =</span> messy_gen,</a>
+<a class="sourceLine" id="cb238-4" title="4">             <span class="dt">Env_GEN =</span> <span class="kw">interaction</span>(Env, gen),</a>
+<a class="sourceLine" id="cb238-5" title="5">             <span class="dt">y =</span> <span class="kw">rnorm</span> (<span class="dv">6</span>, <span class="dv">300</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb238-6" title="6">df</a></code></pre></div>
 <pre><code># A tibble: 6 x 4
   Env   gen   Env_GEN         y
   &lt;chr&gt; &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt;
@@ -1613,7 +1611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4 env1  gen-4 env1.gen-4   302.
 5 Env.1 Gen_5 Env.1.Gen_5  293.
 6 Env_1 GEN_6 Env_1.GEN_6  318.</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="manipula.html#cb240-1"></a><span class="kw">tidy_strings</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1"><span class="kw">tidy_strings</span>(df)</a></code></pre></div>
 <pre><code># A tibble: 6 x 4
   Env   gen   Env_GEN         y
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
@@ -1623,7 +1621,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4 ENV_1 GEN_4 ENV_1_GEN_4  302.
 5 ENV_1 GEN_5 ENV_1_GEN_5  293.
 6 ENV_1 GEN_6 ENV_1_GEN_6  318.</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="manipula.html#cb242-1"></a><span class="kw">tidy_strings</span>(df, gen)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">tidy_strings</span>(df, gen)</a></code></pre></div>
 <pre><code># A tibble: 6 x 4
   Env   gen   Env_GEN         y
   &lt;chr&gt; &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt;
@@ -1638,26 +1636,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="selecionar-linhas-por-sua-posição" class="section level2">
 <h2><span class="header-section-number">7.3</span> Selecionar linhas por sua posição</h2>
 <p>A função <code>slice()</code> é usada para selecionar linhas por sua posição ordinal no tibble. Os tibbles agrupados usam a posição ordinal dentro do grupo.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="manipula.html#cb244-1"></a><span class="co"># seleciona as três primeiras linhas</span></span>
-<span id="cb244-2"><a href="manipula.html#cb244-2"></a><span class="kw">slice</span>(maize, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="co"># seleciona as três primeiras linhas</span></a>
+<a class="sourceLine" id="cb244-2" title="2"><span class="kw">slice</span>(maize, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code># A tibble: 3 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 A1    H1    I      2.45  2.39  16.9  52.1  228.  375.   609
 2 A1    H1    I      2.5   1.43  14.4  50.7  187.  437.   427
 3 A1    H1    I      2.69  1.52  16.5  54.7  230.  464.   497</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="manipula.html#cb246-1"></a><span class="co"># Seleciona as 3 últimas linhas</span></span>
-<span id="cb246-2"><a href="manipula.html#cb246-2"></a><span class="kw">slice</span>(maize, <span class="dv">778</span><span class="op">:</span><span class="kw">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="co"># Seleciona as 3 últimas linhas</span></a>
+<a class="sourceLine" id="cb246-2" title="2"><span class="kw">slice</span>(maize, <span class="dv">778</span><span class="op">:</span><span class="kw">n</span>())</a></code></pre></div>
 <pre><code># A tibble: 3 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 A4    H13   III    2.2   0.9   12.1  40.9  92.8  322.   288
 2 A4    H13   III    2.15  1.07  10.6  46.0  91.4  300.   305
 3 A4    H13   III    2.19  1.12  14.5  51.9 144.   352.   408</code></pre>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="manipula.html#cb248-1"></a><span class="co"># seleciona as duas primeiras linhas de cada ambiente</span></span>
-<span id="cb248-2"><a href="manipula.html#cb248-2"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb248-3"><a href="manipula.html#cb248-3"></a><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></span>
-<span id="cb248-4"><a href="manipula.html#cb248-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="co"># seleciona as duas primeiras linhas de cada ambiente</span></a>
+<a class="sourceLine" id="cb248-2" title="2">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb248-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb248-4" title="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code># A tibble: 8 x 10
 # Groups:   AMB [4]
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
@@ -1678,12 +1676,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 </p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="manipula.html#cb250-1"></a>maize <span class="op">%&gt;%</span></span>
-<span id="cb250-2"><a href="manipula.html#cb250-2"></a><span class="st">  </span><span class="kw">filter</span>(REP <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb250-3"><a href="manipula.html#cb250-3"></a><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></span>
-<span id="cb250-4"><a href="manipula.html#cb250-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_me =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></span>
-<span id="cb250-5"><a href="manipula.html#cb250-5"></a><span class="st">  </span><span class="kw">spread</span>(AMB, MGRA_me) <span class="op">%&gt;%</span></span>
-<span id="cb250-6"><a href="manipula.html#cb250-6"></a><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;HIB&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1">maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-2" title="2"><span class="st">  </span><span class="kw">filter</span>(REP <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MGRA_me =</span> <span class="kw">mean</span>(MGRA)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-5" title="5"><span class="st">  </span><span class="kw">spread</span>(AMB, MGRA_me) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-6" title="6"><span class="st">  </span><span class="kw">column_to_rownames</span>(<span class="st">&quot;HIB&quot;</span>)</a></code></pre></div>
 <pre><code>          A1       A2       A3       A4
 H1  200.2324 193.7994 147.2241 195.1622
 H10 185.0601 151.2758 116.9737 179.5325
@@ -1705,31 +1703,31 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <h3><span class="header-section-number">7.5.1</span> Junções com mutação de dados</h3>
 <p>É raro que uma análise de dados envolva apenas uma única tabela de dados. Na prática, diversas tabela podem existir e ferramentas flexíveis para combiná-las são necessárias. No <strong>dplyr</strong>, existem três famílias de <strong>verbos</strong> que permitem trabalhar com duas tabelas ao mesmo tempo, permitindo: (i) juntar tabelas, (ii) Filtrar registros e (iii) realizar operações.</p>
 <p>Os seguintes códigos criam três novos conjuntos de dados. <strong>maize2</strong> contém dados de duas repetições para os híbridos H1:H5 nos ambientes H1 e H2. <strong>mean_h</strong> e <strong>mean_a</strong> contém as médias para os híbridos e ambientes, respectivamente. </p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="manipula.html#cb252-1"></a>maize2 &lt;-<span class="st"> </span></span>
-<span id="cb252-2"><a href="manipula.html#cb252-2"></a><span class="st">  </span>maize <span class="op">%&gt;%</span></span>
-<span id="cb252-3"><a href="manipula.html#cb252-3"></a><span class="st">  </span><span class="kw">filter</span>(HIB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>, <span class="st">&quot;H3&quot;</span>,<span class="st">&quot;H4&quot;</span>,<span class="st">&quot;H5&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb252-4"><a href="manipula.html#cb252-4"></a><span class="st">  </span><span class="kw">filter</span>(AMB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb252-5"><a href="manipula.html#cb252-5"></a><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></span>
-<span id="cb252-6"><a href="manipula.html#cb252-6"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)<span class="op">%&gt;%</span></span>
-<span id="cb252-7"><a href="manipula.html#cb252-7"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
-<span id="cb252-8"><a href="manipula.html#cb252-8"></a></span>
-<span id="cb252-9"><a href="manipula.html#cb252-9"></a>mean_h &lt;-<span class="st"> </span>maize2 <span class="op">%&gt;%</span></span>
-<span id="cb252-10"><a href="manipula.html#cb252-10"></a><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></span>
-<span id="cb252-11"><a href="manipula.html#cb252-11"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></span>
-<span id="cb252-12"><a href="manipula.html#cb252-12"></a><span class="st">  </span><span class="kw">select</span>(HIB, <span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb252-13"><a href="manipula.html#cb252-13"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
-<span id="cb252-14"><a href="manipula.html#cb252-14"></a></span>
-<span id="cb252-15"><a href="manipula.html#cb252-15"></a>mean_a &lt;-<span class="st"> </span>maize2 <span class="op">%&gt;%</span></span>
-<span id="cb252-16"><a href="manipula.html#cb252-16"></a><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></span>
-<span id="cb252-17"><a href="manipula.html#cb252-17"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></span>
-<span id="cb252-18"><a href="manipula.html#cb252-18"></a><span class="st">  </span><span class="kw">select</span>(AMB, <span class="kw">contains</span>(<span class="st">&quot;ES&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb252-19"><a href="manipula.html#cb252-19"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">maize2 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb252-2" title="2"><span class="st">  </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-3" title="3"><span class="st">  </span><span class="kw">filter</span>(HIB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>, <span class="st">&quot;H3&quot;</span>,<span class="st">&quot;H4&quot;</span>,<span class="st">&quot;H5&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-4" title="4"><span class="st">  </span><span class="kw">filter</span>(AMB <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-5" title="5"><span class="st">  </span><span class="kw">group_by</span>(AMB, HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-6" title="6"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-7" title="7"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb252-8" title="8"></a>
+<a class="sourceLine" id="cb252-9" title="9">mean_h &lt;-<span class="st"> </span>maize2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-10" title="10"><span class="st">  </span><span class="kw">group_by</span>(HIB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-11" title="11"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-12" title="12"><span class="st">  </span><span class="kw">select</span>(HIB, <span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-13" title="13"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb252-14" title="14"></a>
+<a class="sourceLine" id="cb252-15" title="15">mean_a &lt;-<span class="st"> </span>maize2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-16" title="16"><span class="st">  </span><span class="kw">group_by</span>(AMB) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-17" title="17"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, <span class="dt">.funs =</span> <span class="kw">c</span>(<span class="dt">m =</span>mean))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-18" title="18"><span class="st">  </span><span class="kw">select</span>(AMB, <span class="kw">contains</span>(<span class="st">&quot;ES&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-19" title="19"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <ul>
 <li>Juntando a coluna <strong>MGRA_m</strong> da tabela <strong>mean_h</strong> na tabela <strong>maize2</strong> considerando as variáveis com mesmo nome nas duas tabelas (neste caso, HIB)</li>
 </ul>
 
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="manipula.html#cb253-1"></a><span class="kw">left_join</span>(maize2, mean_h <span class="op">%&gt;%</span></span>
-<span id="cb253-2"><a href="manipula.html#cb253-2"></a><span class="st">            </span><span class="kw">select</span>(HIB, MGRA_m))</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">left_join</span>(maize2, mean_h <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb253-2" title="2"><span class="st">            </span><span class="kw">select</span>(HIB, MGRA_m))</a></code></pre></div>
 <pre><code># A tibble: 10 x 10
    AMB   HIB    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA MGRA_m
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -1747,7 +1745,7 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <li>Juntando as colunas da tabela <strong>mean_g</strong> na tabela <strong>maize2</strong></li>
 </ul>
 
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="manipula.html#cb255-1"></a><span class="kw">full_join</span>(maize2, mean_a)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">full_join</span>(maize2, mean_a)</a></code></pre></div>
 <pre><code># A tibble: 10 x 12
    AMB   HIB    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA AIES_m CESP_m DIES_m
    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -1767,7 +1765,7 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <ul>
 <li>Filtrando as linhas da tabela <strong>maize</strong> com base nas variáveis que combinam na tabela <strong>mean_h</strong> (neste caso, a coluna HIB) </li>
 </ul>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="manipula.html#cb257-1"></a><span class="kw">semi_join</span>(maize, mean_h)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">semi_join</span>(maize, mean_h)</a></code></pre></div>
 <pre><code># A tibble: 300 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1785,7 +1783,7 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <ul>
 <li>Filtrando as linhas da tabela <strong>maize</strong> com base nas variáveis que <strong>NÃO</strong> combinam na tabela <strong>mean_h</strong> (neste caso, a coluna HIB) </li>
 </ul>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="manipula.html#cb259-1"></a><span class="kw">anti_join</span>(maize, mean_h)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1"><span class="kw">anti_join</span>(maize, mean_h)</a></code></pre></div>
 <pre><code># A tibble: 480 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1805,14 +1803,14 @@ H9  203.4182 107.2212 117.3108 154.8263</code></pre>
 <h3><span class="header-section-number">7.5.3</span> Operações com conjuntos</h3>
 <p>Nesta seção será demonstrado como é possivel utilizar operações de cojuntos como interseção e união. É esperado que as entradas x e y tenham as mesmas variáveis. Para isto, vamos criar dois novos conjuntos de dados chamados <strong>data_1_to_5</strong> e <strong>data_3_to_10</strong>, quais contém, respectivamente as cinco primeiras linhas
 e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()</code>  é utilizada para selecionar as linhas com base em sua posição.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="manipula.html#cb261-1"></a>data_<span class="dv">1</span>_to_<span class="dv">5</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></span>
-<span id="cb261-2"><a href="manipula.html#cb261-2"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb261-3"><a href="manipula.html#cb261-3"></a>data_<span class="dv">3</span>_to_<span class="dv">10</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></span>
-<span id="cb261-4"><a href="manipula.html#cb261-4"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1">data_<span class="dv">1</span>_to_<span class="dv">5</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb261-2" title="2"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb261-3" title="3">data_<span class="dv">3</span>_to_<span class="dv">10</span> =<span class="st"> </span>maize <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb261-4" title="4"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
 <div id="interseção-de-conjuntos" class="section level4">
 <h4><span class="header-section-number">7.5.3.1</span> Interseção de conjuntos</h4>
 <p>A função <code>intersect()</code> (interseção de conjunto) retorna somente as linhas presentes nos dois conjuntos, neste caso, as linhas 3, 4 and 5 do conjunto <strong>maize</strong></p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="manipula.html#cb262-1"></a><span class="kw">intersect</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="kw">intersect</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code># A tibble: 3 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1823,7 +1821,7 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()<
 <div id="união-de-conjuntos" class="section level4">
 <h4><span class="header-section-number">7.5.3.2</span> União de conjuntos</h4>
 <p>A função <code>union()</code> (união de conjunto) junta os dois conjuntos sem que haja duplicação de registros.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="manipula.html#cb264-1"></a><span class="kw">union</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="kw">union</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code># A tibble: 10 x 10
    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1841,7 +1839,7 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()<
 <div id="diferença-de-conjuntos" class="section level4">
 <h4><span class="header-section-number">7.5.3.3</span> Diferença de conjuntos</h4>
 <p>A função <code>setdiff()</code>  (diferença de conjunto, ou complementar) cria uma tabela somente com os registros em <strong>data_1_to_5</strong> que não estão em <strong>data_3_to_10</strong>.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="manipula.html#cb266-1"></a><span class="kw">setdiff</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">setdiff</span>(data_<span class="dv">1</span>_to_<span class="dv">5</span>, data_<span class="dv">3</span>_to_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code># A tibble: 2 x 10
   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1855,8 +1853,8 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code>slice()<
 <div class="footnotes">
 <hr />
 <ol start="21">
-<li id="fn21"><p><a href="https://tidyr.tidyverse.org/" class="uri">https://tidyr.tidyverse.org/</a><a href="manipula.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p><a href="https://www.tidyverse.org/packages/" class="uri">https://www.tidyverse.org/packages/</a><a href="manipula.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p><a href="https://tidyr.tidyverse.org/" class="uri">https://tidyr.tidyverse.org/</a><a href="manipula.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p><a href="https://www.tidyverse.org/packages/" class="uri">https://www.tidyverse.org/packages/</a><a href="manipula.html#fnref22" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

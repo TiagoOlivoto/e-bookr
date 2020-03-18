@@ -76,7 +76,7 @@ install.packages("pacman")
 }
 library(pacman)
 p_load(hnp, asbio, car, DT, dplyr, devtools, emmeans, effects, multcomp,
-       lme4, rio, ExpDes, manipulate, metan, MASS, tidyverse, agricolae,
+       lme4, rio, ExpDes.pt, manipulate, metan, MASS, tidyverse, agricolae,
        psych, corrplot, pvclust, factoextra, ggfortify)
 
 ```

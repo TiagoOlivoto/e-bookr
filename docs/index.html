@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -409,7 +407,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Software R para avaliação de dados experimentais</h1>
 <h2 class="subtitle"><em>Um foco em experimentos agronômicos</em></h2>
 <p class="author"><em>Tiago Olivoto, Bruno Giacomini Sari</em></p>
-<p class="date"><em>2020-03-02</em></p>
+<p class="date"><em>2020-03-18</em></p>
 </div>
 <div id="prefácio" class="section level1 unnumbered">
 <h1>Prefácio</h1>
@@ -443,18 +441,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p><a href="http://www.sthda.com/english/wiki/easy-r-programming-basics" class="uri">http://www.sthda.com/english/wiki/easy-r-programming-basics</a><a href="index.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p><a href="http://www.sthda.com/english/wiki/data-visualization" class="uri">http://www.sthda.com/english/wiki/data-visualization</a><a href="index.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p><a href="http://www.sthda.com/english/wiki/r-basic-statistics" class="uri">http://www.sthda.com/english/wiki/r-basic-statistics</a><a href="index.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p><a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a><a href="index.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p><a href="https://stats.stackexchange.com/" class="uri">https://stats.stackexchange.com/</a><a href="index.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a><a href="index.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a><a href="index.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p><a href="https://www.r-bloggers.com" class="uri">https://www.r-bloggers.com</a><a href="index.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p><a href="http://r-br.2285057.n4.nabble.com/" class="uri">http://r-br.2285057.n4.nabble.com/</a><a href="index.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>Additive Main Effect and Multiplicative Interaction<a href="index.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p>Best Linear Unbiased Prediction<a href="index.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>Genotype plus Genotype-vs-Environment Interaction<a href="index.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p><a href="http://www.sthda.com/english/wiki/easy-r-programming-basics" class="uri">http://www.sthda.com/english/wiki/easy-r-programming-basics</a><a href="index.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="http://www.sthda.com/english/wiki/data-visualization" class="uri">http://www.sthda.com/english/wiki/data-visualization</a><a href="index.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p><a href="http://www.sthda.com/english/wiki/r-basic-statistics" class="uri">http://www.sthda.com/english/wiki/r-basic-statistics</a><a href="index.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p><a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a><a href="index.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p><a href="https://stats.stackexchange.com/" class="uri">https://stats.stackexchange.com/</a><a href="index.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a><a href="index.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a><a href="index.html#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p><a href="https://www.r-bloggers.com" class="uri">https://www.r-bloggers.com</a><a href="index.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p><a href="http://r-br.2285057.n4.nabble.com/" class="uri">http://r-br.2285057.n4.nabble.com/</a><a href="index.html#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>Additive Main Effect and Multiplicative Interaction<a href="index.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Best Linear Unbiased Prediction<a href="index.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>Genotype plus Genotype-vs-Environment Interaction<a href="index.html#fnref12" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

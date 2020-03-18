@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>References | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="References | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -81,16 +81,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -99,9 +97,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -587,7 +585,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Mojena, R. 1977. “Hierarchical grouping methods and stopping rules: an evaluation.” <em>The Computer Journal</em> 20 (4): 359–63. <a href="https://doi.org/10.1093/comjnl/20.4.359">https://doi.org/10.1093/comjnl/20.4.359</a>.</p>
 </div>
 <div>
-<p>Mora, F., L. M. Goncalves, C. A. Scapim, E. N. Martins, and M. F. P. S. Machado. 2008. “Generalized lineal models for the analysis of binary data from propagation experiments of Brazilian orchids.” <em>Brazilian Archives of Biology and Technology</em> 51 (5): 963–70. <a href="https://doi.org/10.1590/S1516-89132008000500013">https://doi.org/10.1590/S1516-89132008000500013</a>.</p>
+<p>Mora, F., L. M. Goncalves, C. A. Scapim, E. N. Martins, and M. F.P. S. Machado. 2008. “Generalized lineal models for the analysis of binary data from propagation experiments of Brazilian orchids.” <em>Brazilian Archives of Biology and Technology</em> 51 (5): 963–70. <a href="https://doi.org/10.1590/S1516-89132008000500013">https://doi.org/10.1590/S1516-89132008000500013</a>.</p>
 </div>
 <div>
 <p>Murakami, D. M., and C. D. Cruz. 2004. “Proposal of methodologies for environment stratification and analysis of genotype adaptability.” <em>Crop Breeding and Applied Biotechnology</em> 4 (1): 7–11. <a href="http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf">http://www.sbmp.org.br/cbab/siscbab/uploads/c8128f42-aefe-cdf5.pdf</a>.</p>
@@ -635,7 +633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Rencher, Alvin C., and G. Bruce. Schaalje. 2008. <em>Linear models in statistics</em>. John Wiley &amp; Sons.</p>
 </div>
 <div>
-<p>Rodrigues-Soares, J. P, G. F. A. Jesus, E. L. T. Gonçalves, K.TN. Moraes, E. C. Chagas, F. C. M. Chaves, M. A. A. Belo, Adolfo Jatobá, J. L. P. Mouriño, and M. L. Martins. 2018. “Induced aerocystitis and hemato-immunological parameters in Nile tilapia fed supplemented diet with essential oil of Lippia alba.” <em>Brazilian Journal of Veterinary Research and Animal Science</em> 55 (1): 1–12. <a href="https://doi.org/10.11606/issn.1678-4456.bjvras.2018.136717">https://doi.org/10.11606/issn.1678-4456.bjvras.2018.136717</a>.</p>
+<p>Rodrigues-Soares, J. P, G. F.A. Jesus, E. L.T. Gonçalves, K.TN. Moraes, E. C. Chagas, F. C.M. Chaves, M. A. A. Belo, Adolfo Jatobá, J. L.P. Mouriño, and M. L. Martins. 2018. “Induced aerocystitis and hemato-immunological parameters in Nile tilapia fed supplemented diet with essential oil of Lippia alba.” <em>Brazilian Journal of Veterinary Research and Animal Science</em> 55 (1): 1–12. <a href="https://doi.org/10.11606/issn.1678-4456.bjvras.2018.136717">https://doi.org/10.11606/issn.1678-4456.bjvras.2018.136717</a>.</p>
 </div>
 <div>
 <p>Rutherford, A. 2001. <em>Introducing ANOVA and ANCOVA : a GLM approach</em>. London: SAGE.</p>

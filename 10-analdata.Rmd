@@ -499,7 +499,7 @@ p_val = pf(Fc, 3, 12, lower.tail = FALSE)
 ```
 
 
-Demonstrar como o procedimento de estimação e cálculo da ANOVA serviu apenas para verificar de maneira didática como as funções no *R* contornam o problema da singularidade da matriz delineamento. Conforme já relatado acima, as funções `aov()` e `lm()` podem ser utilizadas para realizar a ANOVA. Porém, nesta seção será dado enfase as funções do pacote **ExpDes**, \indt{ExpDes} cujas funções possibilitam analisar dados uni e bifatoriais, e este último com e sem parcelas subdivididas. Esse pacote tem dentro dele as principais funções que são necessárias para realizar a ANOVA (entre elas a `aov()`), o que facilita a obtenção dos resultados.  
+Demonstrar como o procedimento de estimação e cálculo da ANOVA serviu apenas para verificar de maneira didática como as funções no *R* contornam o problema da singularidade da matriz delineamento. Conforme já relatado acima, as funções `aov()` e `lm()` podem ser utilizadas para realizar a ANOVA. Porém, nesta seção será dado enfase as funções do pacote **ExpDes.pt**, \indt{ExpDes} cujas funções possibilitam analisar dados uni e bifatoriais, e este último com e sem parcelas subdivididas. Esse pacote tem dentro dele as principais funções que são necessárias para realizar a ANOVA (entre elas a `aov()`), o que facilita a obtenção dos resultados.  
 \indf{lm} \indf{aov}
 
 ### Delineamento inteiramente casualizado (DIC)
@@ -514,7 +514,7 @@ $$
 
 Onde $m$ é a média geral do experimento, $t_i$ é o efeito de tratamentos, sendo estimado por $\hat t_i = \bar Y_{i.} - \bar Y_{..}$ com a seguinte restrição: $\sum_i \hat t_i = 0 ~~~~\forall_i$ (leia-se, o somatório dos efeitos de tratamento é zero para todo tratamento *i*). $\epsilon_{ij}$ é o erro experimental estimado por ($\hat e_{ij = Y_{ij} - m - \hat t_i}$) onde ${e_{ij}}\sim NID(0,{\sigma ^2})$.
 
-Experimentos em DIC serão executados utilizando da função `crd()` \indt{crd()} do pacote *ExpDes*. Os argumentos desta função são:
+Experimentos em DIC serão executados utilizando da função `dic()` \indt{dic()} do pacote *ExpDes.pt*. Os argumentos desta função são:
 
 |Argumento                |Descrição
 |-------------------------|-------------------------|
@@ -528,7 +528,7 @@ Experimentos em DIC serão executados utilizando da função `crd()` \indt{crd()
 |`sigF`                   |Significância do teste F
 
 
-Para maiores detalhes, ver o [pdf do pacote](https://cran.r-project.org/web/packages/ExpDes/ExpDes.pdf)^[https://cran.r-project.org/web/packages/ExpDes/ExpDes.pdf] ou ir em ajuda (digitar `?ExpDes` no console).
+Para maiores detalhes, ver o [pdf do pacote](https://cran.r-project.org/web/packages/ExpDes.pt/ExpDes.pt.pdf)^[https://cran.r-project.org/web/packages/ExpDes.pt/ExpDes.pt.pdf] ou ir em ajuda (digitar `?ExpDes.pt` no console).
 
 #### DIC com fatores qualitativos 
 \indt{fatores qualitativos}
@@ -548,22 +548,22 @@ p2 = ggplot(qualitativo, aes(factor(BLOCO), RG))+
        stat_summary(geom = "point", fun.y = mean, shape = 23)
 plot_grid(p1, p2)
 ```
-\indf{crd} \indf{geom\_boxplot}
+\indf{dic} \indf{geom\_boxplot}
 
-Analizando o boxplot acima é razoável dizer que as médias dos tratamentos são diferentes, principalmente comparando o NUPEC_10 com NUPEC_1. Esta suspeita de diferença, no entanto, deve ser suportada com a realização da análise de variância. No pacote **ExpDes**, quando os fatores são qualitativos, a análise complementar aplicada é a comparção de médias. A função `crd()` do pacote retorna a tabela da ANOVA, a análise de pressupostos \indt{pressupostos} (normalidade e homogeneidade) e o teste de comparação de médias. 
+Analizando o boxplot acima é razoável dizer que as médias dos tratamentos são diferentes, principalmente comparando o NUPEC_10 com NUPEC_1. Esta suspeita de diferença, no entanto, deve ser suportada com a realização da análise de variância. No pacote **ExpDes.pt**, quando os fatores são qualitativos, a análise complementar aplicada é a comparção de médias. A função `dic()` do pacote retorna a tabela da ANOVA, a análise de pressupostos \indt{pressupostos} (normalidade e homogeneidade) e o teste de comparação de médias. 
 
 
 \indt{Dicas}
 
 ```{block2, type = "dica", eval =  FALSE}
-As funções do pacote **ExpDes** utilizam os dados "anexados" ao ambiente de trabalho, ou seja, um argumento `data = .` não existe para suas funções. Note que no exemplo abaixo foi utilizado a função `with(qualitativo, crd(...))`. Isto permite acessar variáveis presentes no data frame. Uma outra maneira de realizar esta mesma análise é utilizando a função `attach(qualitativo)`, qual carregará o data frame no ambiente R, assim é possível utilizar a função `crd(...)`. Após realizada a análise, é recomendado executar o comando `detach(qualitativo)` para "limpar" os dados do ambiente de trabalho.
+As funções do pacote **ExpDes.pt** utilizam os dados "anexados" ao ambiente de trabalho, ou seja, um argumento `data = .` não existe para suas funções. Note que no exemplo abaixo foi utilizado a função `with(qualitativo, dic(...))`. Isto permite acessar variáveis presentes no data frame. Uma outra maneira de realizar esta mesma análise é utilizando a função `attach(qualitativo)`, qual carregará o data frame no ambiente R, assim é possível utilizar a função `dic(...)`. Após realizada a análise, é recomendado executar o comando `detach(qualitativo)` para "limpar" os dados do ambiente de trabalho.
 
 ```
 
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 
-mod3 = with(qualitativo, crd(HIBRIDO, RG))
+mod3 = with(qualitativo, dic(HIBRIDO, RG))
 
 ```
 \indf{crd}
@@ -628,7 +628,7 @@ O *p*-valor do teste de Shapiro-Wilk indicou que os resíduos \indt{resíduos} n
 #### DIC com fatores quantitativos
 
 \indt{fatores quantitativos}
-Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a $SQ_{Trat}$ é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função `crd()`, basta indicar como `FALSE` no argumentos `quali`. O arquivo de dados "QUALITATIVO.xlsx" contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no `ggplot2` até agora, vamos criar um gráfico para visualisar estes dados. \indf{ggplot} \indf{geom\_point} \indf{geom\_smooth}
+Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a $SQ_{Trat}$ é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função `dic()`, basta indicar como `FALSE` no argumentos `quali`. O arquivo de dados "QUALITATIVO.xlsx" contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no `ggplot2` até agora, vamos criar um gráfico para visualisar estes dados. \indf{ggplot} \indf{geom\_point} \indf{geom\_smooth}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, fig.height = 3, fig.width = 5, fig.cap = "Exemplo de regressão com comportamento linear, quadrático e cúbico", fig.align = "center"}
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
@@ -644,7 +644,7 @@ Como exemplo didático, vamos analisar os dados que parecem ter comportamento qu
 
 ```{r echo = TRUE, results="hide", eval = TRUE, message = FALSE, warning = FALSE, fig.height = 3, fig.width = 5, fig.cap = "Exemplo de regressão com comportamento linear, quadrático e cúbico", fig.align = "center"}
 quantitativo = filter(quantitativo_todos, TIPO  ==  "QUADRÁTICA")
-crd_Reg = with(quantitativo, crd(DOSEN, RG, quali = FALSE, hvar = "levene"))
+crd_Reg = with(quantitativo, dic(DOSEN, RG, quali = FALSE, hvar = "levene"))
 ```
 
 Abaixo vamos reproduzir o exemplo para os usuários das funções `aov()` ou `lm()`.
@@ -668,7 +668,7 @@ $$
 $$
 
 Percebe-se claramente pelos resultados acima que a significância do grau do polinômio está diretamente relacionado com quanto ele "contribui" para explicar a $SQ_{Trat}$. 
-A forma mais prática de analisar uma regressão é através de gráficos. A função `crd()` fornece essa alternativa, através da função `graphics()`.\indt{graphics()} Nesta função existe dois argumentos obrigatórios: `a`, onde indicamos o objeto que contém a saída da análise do experimento e `grau`, onde indicamos o grau do polinômio.
+A forma mais prática de analisar uma regressão é através de gráficos. A função `dic()` fornece essa alternativa, através da função `graphics()`.\indt{graphics()} Nesta função existe dois argumentos obrigatórios: `a`, onde indicamos o objeto que contém a saída da análise do experimento e `grau`, onde indicamos o grau do polinômio.
 
 
 **Gráfico de resultados: uma proposta**
@@ -706,7 +706,7 @@ $$
 {Y_{ij}} = m + {b_j} + {t_i} + {\varepsilon _{ij}}
 $$
 
-Onde $m$ é a média geral do experimento, $b_j$ é o efeito de bloco, $t_i$ é o efeito de tratamentos e $\epsilon_{ij}$ é o erro experimental. No pacote *ExpDes*, este delineamento é executado pela função `rbd()`. Os argumentos desta função são:
+Onde $m$ é a média geral do experimento, $b_j$ é o efeito de bloco, $t_i$ é o efeito de tratamentos e $\epsilon_{ij}$ é o erro experimental. No pacote *ExpDes.pt*, este delineamento é executado pela função `dbc()`. Os argumentos desta função são:
 
 |Argumento                |Descrição
 |-------------------------|-------------------------|
@@ -727,10 +727,10 @@ Percebe-se que apenas um argumento foi adicionado a função: `bloco`.
 Neste exemplo, vamos realizar a ANOVA com os mesmos dados do exemplo \hypertarget{DBCQUALI}{\hyperlink{DICQUALI}{DIC com fatores qualitativos}}, agrupando as médias pelo teste Scott-Knott utilizando o argumento `mcomp = "sk"`: 
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE,fig.height = 7, fig.align = "center"}
-mod4 = with(qualitativo, rbd(HIBRIDO, BLOCO, RG, mcomp = "sk"))
+mod4 = with(qualitativo, dbc(HIBRIDO, BLOCO, RG, mcomp = "sk"))
 
 ```
-\indf{rbd}
+\indf{dbc}
 
 Considerando o bloco como um fator de variação no experimento, pode-se afirmar que a média de produtividade difere entre os híbridos testados. Como o efeito de bloco foi significativo Pr>Fc < 0.05, conclui-se que a escolha pelo delineamento em blocos casualizados foi correta, e, principalmente, que a disposição dos blocos na área experimental possibilitou lograr a heterogeneidade entre os blocos, deixando a homogeneidade dentro de cada bloco. O Fc para o fator de tratamento "HÍBRIDOS" foi de 18.716, qual acumula uma probabilidade de erro de somente 0.0000002029.
 
@@ -739,13 +739,13 @@ Incluindo o bloco como fonte de variação nota-se que 3 graus de liberdade (GL)
 
 #### DBC com fatores quantitativos
 
-Para realizar a análise de regressão considerando um delineamento DBC basta utilizar a função `rbd()` \indf{rbd} incluindo o seguinte argumento `quali = FALSE`.
+Para realizar a análise de regressão considerando um delineamento DBC basta utilizar a função `dbc()` \indf{rbd} incluindo o seguinte argumento `quali = FALSE`.
 
 \indt{Exercícios}
 ```{block2, type = "tarefa"}
 **Exercício 9**
 
-- Rode a programação para os dados quantitativos considerando o delineamento DBC e compare os resultados com aquela obtida pela função `crd()` para os mesmos dados.
+- Rode a programação para os dados quantitativos considerando o delineamento DBC e compare os resultados com aquela obtida pela função `dic()` para os mesmos dados.
 
 - As estimativas dos parâmetros da regressão são as mesmas?
 
@@ -835,7 +835,7 @@ locator(n = 1)
 
 ```{r echo = TRUE, eval = TRUE, results="hide", message = FALSE, warning = FALSE,fig.height = 7}
 
-mod5.1  = with(qualitativo, crd(HIBRIDO, log(RG)))
+mod5.1  = with(qualitativo, dic(HIBRIDO, log(RG)))
 plotres(mod5.1)
 ```
 
@@ -1507,11 +1507,11 @@ Gráficos iterativos podem ser obtidos utilizando a função `ggplotly()` do pac
 
 * Análise estatística dos dados
 
-Nesta seção, utilizaremos funções dos pacotes [metan](https://tiagoolivoto.github.io/metan/)^[https://tiagoolivoto.github.io/metan/] e **ExpDes** \indt{ExpDes} [@Ferreira2018] para análise estatistica dos dados. O pacote *ExpDes* contém funções úteis para análise de variância de experimentos nos delineamentos experimentais e arranjo de tratamentos mais conhecidos. A função do pacote **ExpDes** utilizada neste exemplo será `fat2.rbd()` \indf{fat2.rbd} a qual analisa dados de experimentos bifatoriais em delineamento de blocos completos casualizados. Uma explicação detalhada será dada agora ao passo em que nos outros experimentos serão apresentadas apenas as linhas de comandos e uma breve discussão. A delcaração dos argumentos na função é simples. Basta informarmos o nome das colunas do nosso arquivo correspondentes aos argumentos requeridos pela função. Por exemplo `factor1` e `fator2`, represetam os fatores em em estudo, que, neste caso, são híbridos e doses de nitrogênio. No argumento `block` informamos o nome da coluna de nossos dados correspondente aos blocos. O mesmo para o argumento `resp` que é a variável resposta, no caso, o rendimento de grãos.
+Nesta seção, utilizaremos funções dos pacotes [metan](https://tiagoolivoto.github.io/metan/)^[https://tiagoolivoto.github.io/metan/] e **ExpDes.pt** \indt{ExpDes} [@Ferreira2018] para análise estatistica dos dados. O pacote *ExpDes.pt* contém funções úteis para análise de variância de experimentos nos delineamentos experimentais e arranjo de tratamentos mais conhecidos. A função do pacote **ExpDes.pt** utilizada neste exemplo será `fat2.dbc()` \indf{fat2.dbc} a qual analisa dados de experimentos bifatoriais em delineamento de blocos completos casualizados. Uma explicação detalhada será dada agora ao passo em que nos outros experimentos serão apresentadas apenas as linhas de comandos e uma breve discussão. A delcaração dos argumentos na função é simples. Basta informarmos o nome das colunas do nosso arquivo correspondentes aos argumentos requeridos pela função. Por exemplo `fator1` e `fator2`, represetam os fatores em em estudo, que, neste caso, são híbridos e doses de nitrogênio. No argumento `block` informamos o nome da coluna de nossos dados correspondente aos blocos. O mesmo para o argumento `resp` que é a variável resposta, no caso, o rendimento de grãos.
 
 Definidos a entrada de dados, precisamos declarar quais as análises complementares a serem realizadas, em caso de significancia estatística. no argumento `quali`, informamos qual o tipo de fator em estudo. A declaração é um vetor lógico de comprimento 2. Em nosso caso, ao declararmos `quali = c(TRUE, FALSE)` estamos informando que o primeiro fator (no caso híbrido) é qualitativo e o segundo fator (dose de N) quantitativo. O argumento `mcomp` é utilizado para informar o teste de comparação (ou agrupamento \indt{agrupamento}) de médias utilizado. Em nosso exemplo, vamos utilizar o teste Tukey. No argumento `fac.names` é possivel informar nomes específicos para os fatores. Os argumentos `sigF` e `sigT` são utilizados para informar a probabilidade de erro assumida na análise de variância e nas analises de comparação de médias, respectivamente. Ambos tem padrão 5%.
 
-O resultado da função `fat2.rbd()` irá depender da significância das fontes de variação do experimento. Neste caso em específico, em caso de interação significativa \indt{interação} (o que já sabemos devido ao título da subseção), uma regressão é ajustada para cada híbrido e as médias de cada híbrido são comparadas em cada dose de nitrogênio. 
+O resultado da função `fat2.dbc()` irá depender da significância das fontes de variação do experimento. Neste caso em específico, em caso de interação significativa \indt{interação} (o que já sabemos devido ao título da subseção), uma regressão é ajustada para cada híbrido e as médias de cada híbrido são comparadas em cada dose de nitrogênio. 
 
 ```{block2, type = "importante"}
 Para evitar uma longa saída neste documento devido a interação significativa, a impressão dos resultados foi suprimida. Rode a programação em seu console para observar os resultados.
@@ -1521,9 +1521,9 @@ Para evitar uma longa saída neste documento devido a interação significativa,
 
 ```{r warning = FALSE, message = FALSE, collapse = TRUE, results="hide"}
 F1_CI = with(FAT1_CI, 
-             fat2.rbd(factor1 =  HIBRIDO,
-                      factor2 =  DOSEN,
-                      block = BLOCO,
+             fat2.dbc(fator1 =  HIBRIDO,
+                      fator2 =  DOSEN,
+                      bloco = BLOCO,
                       resp =  RG,
                       quali = c(TRUE, FALSE),
                       mcomp = "tukey",
@@ -1534,7 +1534,7 @@ F1_CI = with(FAT1_CI,
 
 * Análise dos resíduos
 
-De acordo com o teste de normalidade Shapiro-Wilk (5% de erro), os resíduos \indt{resíduos} podem ser considerados normais. A função `plotres()` \indf{plotres} do pacotes `ExpDes` é utilizada para a plotagem dos resíduos do modelo ajustado.  É possível observar que apenas um ponto foi considerado como *outlier*.
+De acordo com o teste de normalidade Shapiro-Wilk (5% de erro), os resíduos \indt{resíduos} podem ser considerados normais. A função `plotres()` \indf{plotres} do pacotes `ExpDes.pt` é utilizada para a plotagem dos resíduos do modelo ajustado.  É possível observar que apenas um ponto foi considerado como *outlier*.
 
 ```{r warning = FALSE, message = FALSE, fig.height = 7}
 plotres(F1_CI)
@@ -1545,7 +1545,7 @@ A análise de indicou efeitos significativos tanto para os efeitos principais, q
 
 * Comparação das médias dos híbridos em cada dose de nitrogênio.
 
-As comparações de médias são apresentadas como saída da função `fat2.rbd()` após a análise de variância. Neste momento, utilizaremos a função `plot_factbars()` \indf{plot\_factbars} do pacote **metan** para plotar as médias dos híbridos em cada dose de nitrogênio. A apresentação gráfica de resultados, mesmo considerando médias, é uma alternativa interessante à tabela, pois permite uma interpretação mais clara e intuitiva dos resultados.
+As comparações de médias são apresentadas como saída da função `fat2.dbc()` após a análise de variância. Neste momento, utilizaremos a função `plot_factbars()` \indf{plot\_factbars} do pacote **metan** para plotar as médias dos híbridos em cada dose de nitrogênio. A apresentação gráfica de resultados, mesmo considerando médias, é uma alternativa interessante à tabela, pois permite uma interpretação mais clara e intuitiva dos resultados.
 
 
 
@@ -1667,9 +1667,9 @@ A função `fat2.rdb()` \indf{fat2.rbd} será novamente utilizada neste exemplo.
 
 ```{r warning = FALSE, message = FALSE, collapse = TRUE, results="hide"}
 F1_SI = with(FAT1_SI, 
-             fat2.rbd(factor1 =  HIBRIDO,
-                      factor2 =  DOSEN,
-                      block = BLOCO,
+             fat2.dbc(fator1 =  HIBRIDO,
+                      fator2 =  DOSEN,
+                      bloco = BLOCO,
                       resp =  RG,
                       quali = c(TRUE, FALSE),
                       mcomp = "tukey",
@@ -1773,9 +1773,9 @@ O conjunto de dados utilizado neste exemplo será o **FAT2_CI**. A análise de v
 
 ```{r warning = FALSE, message = FALSE, collapse = TRUE, results="hide"}
 with(FAT2_CI,
-     fat2.rbd(factor1 =  HIBRIDO,
-              factor2 =  FONTEN,
-              block = BLOCO,
+     fat2.dbc(fator1 =  HIBRIDO,
+              fator2 =  FONTEN,
+              bloco = BLOCO,
               resp =  RG,
               quali = c(TRUE, TRUE),
               mcomp = "tukey",
@@ -1785,7 +1785,7 @@ with(FAT2_CI,
 
 ```
 
-Como a interação \indt{interação} foi significativa, o próximo passo é a comparação das médias considerando os efeitos da interação. Os valores das médias fixando os níveis de cada fator são, por padrão, calculados pela função `fat2.rbd()`\indt{fat2.rbd()}. A apresentação destas médias em um trabalho científico, por exemplo, pode ser por meio de tabelas, ou gráficos. A função abaixo confecciona um gráfico de barras semelhante ao visto no exemplo com fatores qualitativos e quantitativos.
+Como a interação \indt{interação} foi significativa, o próximo passo é a comparação das médias considerando os efeitos da interação. Os valores das médias fixando os níveis de cada fator são, por padrão, calculados pela função `fat2.dbc()`\indt{fat2.dbc()}. A apresentação destas médias em um trabalho científico, por exemplo, pode ser por meio de tabelas, ou gráficos. A função abaixo confecciona um gráfico de barras semelhante ao visto no exemplo com fatores qualitativos e quantitativos.
 
 
 * **Plotagem das médias considerando a interação**
@@ -1849,9 +1849,9 @@ plot_grid(hf3, hf4, labels = c("hf3", "hf4"))
 
 ```{r warning = FALSE, message = FALSE, collapse = TRUE, results="hide"}
 with(FAT2_SI,
-     fat2.rbd(factor1 =  HIBRIDO,
-              factor2 =  FONTEN,
-              block = BLOCO,
+     fat2.dbc(fator1 =  HIBRIDO,
+              fator2 =  FONTEN,
+              bloco = BLOCO,
               resp =  RG,
               quali = c(TRUE, TRUE),
               mcomp = "tukey",
@@ -1891,7 +1891,7 @@ As funções `plot_factlines()` e `plot_factbars()` foram utilizadas para confec
 
 Neste exemplo, iremos avaliar dados de um experimento que testou dois fatores quantitativos. O conjunto de dados utilizado é o **FAT3**.  A análise de variância, neste caso, é realizada da mesma maneira que os exemplos anteriores, o que muda agora é que a análise complementar, em caso de interação significativa será diferente. Por se tratar de dois fatores quantitativos, neste caso, doses de nitrogênio e de potássio na cultura do milho, é de se esperar que, em caso de interação \indt{interação} significativa, haja uma combinação de doses ótimas que proporcione a maior magnitude da variável resposta (rendimento de grãos). Assim, uma análise de superfície de resposta é a mais indicada para este tipo de experimento.
  
-Para a análise neste exemplo, utilizaremos a função `resp_surf()`\indf{resp\_surf}. Nesta função estão implementadas as seguintes rotinas: análise de variância, ajuste da equação de superfície de resposta, determinação dos pontos críticos, estatisticas de ajuste e análise residual. O procedimento para a análise é simples. Os seguintes argumentos precisam ser declarados: `.data`, o conjunto de dados; `factor1` o nome da coluna com o primeiro fator; `factor2` o nome da coluna com o segundo fator; `rep` o nome da coluna com os blocos; e `resp` o nome da coluna com a variável resposta que se deseja analizar. Neste exemplo, vamos armazenar os resultados no objeto `sresp`.
+Para a análise neste exemplo, utilizaremos a função `resp_surf()`\indf{resp\_surf}. Nesta função estão implementadas as seguintes rotinas: análise de variância, ajuste da equação de superfície de resposta, determinação dos pontos críticos, estatisticas de ajuste e análise residual. O procedimento para a análise é simples. Os seguintes argumentos precisam ser declarados: `.data`, o conjunto de dados; `fator1` o nome da coluna com o primeiro fator; `fator2` o nome da coluna com o segundo fator; `rep` o nome da coluna com os blocos; e `resp` o nome da coluna com a variável resposta que se deseja analizar. Neste exemplo, vamos armazenar os resultados no objeto `sresp`.
 
 * **Análise estatística**
 
@@ -1971,11 +1971,11 @@ onde ${y_{ijk}}$ é a variável resposta observada; $\mu$ é a média geral; $\m
 
 ```{r  warning = FALSE, message = FALSE, collapse = TRUE, results="hide"}
 with(FAT2_SI,
-split2.rbd(factor1 =  HIBRIDO,
-           factor2 =  FONTEN,
-           block = BLOCO,
-           resp =  RG,
-           fac.names = c("HIBRIDO", "FONTEN"))
+psub2.dbc(fator1 =  HIBRIDO,
+          fator2 =  FONTEN,
+          bloco = BLOCO,
+          resp =  RG,
+          fac.names = c("HIBRIDO", "FONTEN"))
 )
 
 ```
