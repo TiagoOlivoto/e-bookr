@@ -139,34 +139,30 @@ shapiro.test(res$Generalizado)
 ```
 
 
+
+
+
 ## Exercício 11 {#exerc11}
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-NUPEC_2 = FAT1_CI %>%
-  filter(HIBRIDO == "NUPEC_2")
-ggplot(NUPEC_2, aes(x = DOSEN, y = RG)) +
-geom_point()+
-stat_smooth(method = "lm", formula = as.formula("y ~ poly(x, 2)")) +
-geom_vline(xintercept = 45, linetype = "dashed", col = "gray") +
-eom_vline(xintercept = 46.41, col = "gray")
+plot_factbars(FAT1_CI,
+              HIBRIDO,
+              FONTEN,
+              resp = RG,
+              palette = "Greys")
 ```
 
 
 
 ## Exercício 12 {#exerc12}
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-plot_factbars(FAT2_CI,
-              HIBRIDO,
-              FONTEN,
-              resp = RG,
-              errorbar = FALSE,
-              verbose = FALSE,
-              size.text.bar = 3,
-              lab.bar.vjust = -0.5,
-              lab.bar = c("bB", "cBC", "aA", "cD",
-                          "cD", "dC", "aA", "bB",
-                          "bA", "cA", "aA", "cC",
-                          "cC", "dAB", "aA", "bA"),
-              palette = "Greens")
+NUPEC_1 <- 
+  FAT2_CI %>%
+  filter(HIBRIDO == "NUPEC_1")
+ggplot(NUPEC_1, aes(x = DOSEN, y = RG)) +
+geom_point()+
+stat_smooth(method = "lm", formula = as.formula("y ~ poly(x, 2)")) +
+geom_vline(xintercept = 50, linetype = "dashed", col = "gray") +
+geom_vline(xintercept = 48, col = "gray")
 ```
 
 

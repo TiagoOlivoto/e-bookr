@@ -17,9 +17,7 @@ cover-image: "figures/cover.png"
 
 
 ```{r global_options, include = FALSE}
-knitr::opts_chunk$set(cache = TRUE, comment = "", fig.align="center")
-
-
+knitr::opts_chunk$set(cache = TRUE, comment = "#", fig.align="center", collapse = TRUE)
 ```
 
 

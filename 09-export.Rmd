@@ -1,58 +1,45 @@
 # Exportando dados {#exporta}
 
-Será demonstrado nessa seção como exportar dados e tabelas gerados dentro do *software R*. Quanto a saída de resultados, será dado enfase a saídas com extensões .csv, .txt e .xlsx. Quanto aos gráficos, será mostrado como salvar figuras em alta resolução.
+Será demonstrado nessa seção como exportar dados e tabelas gerados dentro do *software R*. Quanto a saída de resultados, será dado enfase a saídas com extensões `.csv`, `.txt` e `.xlsx`. Quanto aos gráficos, será mostrado como salvar figuras em alta resolução.
 
 ## Exportando com diferentes extensões
+A função `export()` d pacote `rio` (https://cran.r-project.org/web/packages/rio/index.html) pode ser utilizada para exportar objetos do R em arquivos dos mais diversos formatos.
 
-**Salvar em extensão .csv**
+Em arquivos `.csv`, os valores são separados por vírgula. No exemplo abaixo, é mostrado como o objeto `quantitativo` pode ser salvo em um arquivo `.csv` com nome `quanti_exemplo`. Para salvar as saídas em extensão `.txt` ou `.xlsx`, basta substituir a extensão do arquivo.
 
-Em arquivos *.csv*, os valores são separados por vírgula. Tabelas geradas no *R* podem ser salvos através da função `write.table()`. \indf{write.table} Será utilizado como exemplo uma ANOVA, onde o objetivo é exportar os *p*-valores do teste F para blocos e tratamentos.
-
-```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
-qualitativo <- import(url, sheet = "QUALI")
-mod1 = aov(RG ~ HIBRIDO + factor(BLOCO), data = qualitativo) 
-anova(mod1)
-names(anova(mod1))
+quanti <- import(url, sheet = "QUANTI")
+head(quanti)
+# exportar para o diretóri padrão (csv)
+export(quanti, file = "quanti_exemplo.csv")
+# exportar para o diretóri padrão (txt)
+export(quanti, file = "quanti_exemplo.txt")
+# exportar para o diretóri padrão (xslx)
+export(quanti, file = "quanti_exemplo.xlsx")
 ```
 
-A função `names()` \indf{names} mostra o que é armazenado dentro do objeto `anova(mod1)`. utilizando `$` selecionamos `Pr(>F)`.
 
-```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-anova(mod1)$"Pr(>F)"
+No formato `.xlsx` é possível informar em qual planilha o objeto será salvo. Neste caso, as planilhas existentes não serão modificadas.
+```{r eval=FALSE}
+export(quanti, file = "quanti_exemplo.xlsx", which = "quanti2")
 ```
 
-\indf{anova}
-Por fim, armazenamos os valores utilizando a função `write.table()`, indicando onde os resultados estão armazenados, o nome do arquivo que será exportado ("NOME_ARQUIVO.csv"). 
 
-```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-p.value = cbind(c(anova(mod1)$"Pr(>F)"[1], anova(mod1)$"Pr(>F)"[2]))
-write.table(p.value, "p.valor_mod1.csv", row.names = FALSE)
+Também é possível salvar diferentes objetos em diferentes planilhas do mesmo arquivo. Vamos considerar que cada nível do fator `TIPO` do objeto `quanti` deve ser salvo em uma planilha diferente.
+
+```{r eval = FALSE}
+linear <- subset(quanti, TIPO == "LINEAR")
+quadratico <- subset(quanti, TIPO == "QUADRÁTICA")
+cubico <- subset(quanti, TIPO == "CÚBICA")
+export(list(linear = linear,
+            quadratico = quadratico, 
+            cubico = cubico),
+       file = "quanti_exemplo_plan.xlsx")
 ```
+Neste caso, um arquivo chamado `quanti_exemplo_plan.xlsx` contendo as planilhas `linear`, `quadratico` e `cubico` foi criado no diretório padrão.
 
-**Salvar em extensão .txt**
 
-Para salvar as saídas em extensão .txt utiliza-se a função `sink()`,\indf{sink} indicando o nome do arquivo que será exportado ("NOME_ARQUIVO.txt"). 
-
-```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-sink("Modelo 1.txt")
-cat("-------------------------------MODELO------------------------------------\n")
-print(mod1)
-cat("\n")
-cat("-------------------------------ANOVA------------------------------------\n")
-print(anova(mod1))
-sink()
-```
-
-**Salvar em extensão . xls e .xlsx**
-
-Para salvar arquivos em extensão .xlsx usaremos a função `write_xlsx()` \indf{write\_xlsx} do pacote *writexl*. Na função `write_xlsx()` é necesário indicar o nome do objeto que se deseja exportar, conforme o exemplo abaixo.
-
-```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-require(writexl)
-write_xlsx(x22, "figuresTabela 1.xlsx")
-write_xlsx(x22, "figuresTabela 1.xlsx")
-```
 
 ## Exportanto gráficos
 
@@ -70,17 +57,17 @@ Uma alternativa prática para salvar em pdf as imagens é através da função `
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 pdf("Figura1.pdf", width = 5, height = 4)
 
-p1 = ggplot(dados_oat, aes(x = RG, y = PH, colour = AMB)) +
-     geom_point()+
-     geom_smooth(method = "lm", se = F)+
-     my_theme()+
-     labs(x = "Rendimento de grãos", y = "Peso hectolitro")
+p1 <- ggplot(dados_oat, aes(x = RG, y = PH, colour = AMB)) +
+      geom_point()+
+      geom_smooth(method = "lm", se = F)+
+      my_theme()+
+      labs(x = "Rendimento de grãos", y = "Peso hectolitro")
 p1
 
 dev.off()
 ```
 
-A função `ggsave()` \indf{ggsave} também pode ser utilizada para salvar os gráficos para o diretório de trabalho. POr padrão, esta função salva o último gráfico mostrado. Para salvar-mos o gráfico p1, gerado anteriormente, basta executar o seguinte comando.
+A função `ggsave()` \indf{ggsave} também pode ser utilizada para salvar os gráficos para o diretório de trabalho. Por padrão, esta função salva o último gráfico mostrado. Para salvar-mos o gráfico p1, gerado anteriormente, basta executar o seguinte comando.
 
 ```{r echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 ggsave("Figure_ggsave.pdf", p1)

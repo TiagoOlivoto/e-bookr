@@ -11,7 +11,7 @@ Nos primeiros anos do século XXI, a ampla disponibilidade de computadores pesso
 
 ## Correlações canônicas
 
-Correlações canonicas podem ser computadas utilizando a função `can_corr()` do pacote **metan**.\indf{can\_corr} O primeiro argumento da função é o conjunto de dados (opcional) que deve conter as variáveis numéricas que serão usadas na estimativa das correlações canônicas. Os grupos de variáveis são definidos pelos argumentos `FG` (primeiro/menor grupo) e `SG` (segundo/maior grupo). Por padrão, um diagnótico da multicolinearidade é realizado em cada grupo de variável. No exemplo abaixo, os coeficientes foram armazenados no objeto **cc1**. Note que o argumento `verbose = FALSE` foi utilizado para previnir uma longa saída.
+Correlações canonicas podem ser computadas utilizando a função `can_corr()` do pacote `metan`.\indf{can\_corr} O primeiro argumento da função é o conjunto de dados (opcional) que deve conter as variáveis numéricas que serão usadas na estimativa das correlações canônicas. Os grupos de variáveis são definidos pelos argumentos `FG` (primeiro/menor grupo) e `SG` (segundo/maior grupo). Por padrão, um diagnótico da multicolinearidade é realizado em cada grupo de variável. No exemplo abaixo, os coeficientes foram armazenados no objeto **cc1**. Note que o argumento `verbose = FALSE` foi utilizado para previnir uma longa saída.
 
 ```{r}
 cc1 = can_corr(maize,
@@ -32,7 +32,7 @@ Na função `can_corr()`, os dados também podem ser passados diretamente pelos 
 
 ## Análise de agrupamento
 
-A análise de agrupamento \indt{agrupamento} é um procedimento multivariado muito útil no melhoramento de plantas. O princípio básico é agrupar indivíduos (genótipos) de acordo com suas semelhanças (variáveis analizadas). Esta sessão é focada na estimativa de matrizes de distâncias e na implementação de algorítimos aglomerativos de agrupamento hierárquicos para confecção de dendrogramas. \indt{dendrograma} A função `clustering()` \indf{clustering} do pacote **metan** será utilizada para este fim.
+A análise de agrupamento \indt{agrupamento} é um procedimento multivariado muito útil no melhoramento de plantas. O princípio básico é agrupar indivíduos (genótipos) de acordo com suas semelhanças (variáveis analizadas). Esta sessão é focada na estimativa de matrizes de distâncias e na implementação de algorítimos aglomerativos de agrupamento hierárquicos para confecção de dendrogramas. \indt{dendrograma} A função `clustering()` \indf{clustering} do pacote `metan` será utilizada para este fim.
 
 Existem muitos métodos para calcular as informações de (di)similaridade. As opções incluidas na função são: "euclidean" (padrão), "maximum", "manhattan", "canberra", "binary", "minkowski", "pearson", "kendall" e "spearman". Estas três últimas são distâncias baseadas em correlação. Para maiores informações veja `?clustering`.
 
@@ -166,9 +166,9 @@ Para realizar a aplicação da técnica de componentes principais, os dados em *
 
 ```{r}
 
-data_pca = data_ge2 %>% 
-  group_by(GEN) %>%
-  summarise_if(is.numeric, mean)%>%
+data_pca <- 
+  data_ge2 %>% 
+  means_by(GEN) %>% 
   column_to_rownames("GEN")
 
 ```
@@ -184,7 +184,7 @@ onde $mean(x)$ é a média dos valores de x e $sd(x)$ é o desvio padrão. A fun
 ### Código R
 
 ```{r}
-res.pca = prcomp(data_pca, scale. = TRUE)
+res.pca <- prcomp(data_pca, scale. = TRUE)
 ```
 
 Para ajudar na interpretação do PCA realizado acima, usaremos funções do pacote factoextra. Essas funções incluem:
@@ -214,15 +214,15 @@ Um autovalor maior que 1 indica que os componentes principais são responsáveis
 Infelizmente, não há maneira objetiva bem aceita de decidir quantos componentes principais são suficientes. Em nossa análise, os três primeiros componentes principais explicam 83.62% da variação. Esta é uma percentagem aceitavelmente grande. Um método alternativo para determinar o número de componentes principais é olhar para um Scree Plot, que é o gráfico de autovalores ordenados do maior para o menor. O número de componentes é determinado no ponto, além do qual os autovalores remanescentes são todos relativamente pequenos.
 
 ```{r fig.height=5, fig.width=10, fig.cap="Autovalores e variância acumulada na análise de componentes principais"}
-p1 = fviz_eig(res.pca)
-p2 = fviz_eig(res.pca,
-              addlabels = TRUE,
-              geom = "bar",
-              barfill = "orange",
-              barcolor = "black",
-              xlab = "Componentes Principais",
-              ylab = "Percentagem da variância explicada",
-              main = "")
+p1 <- fviz_eig(res.pca)
+p2 <- fviz_eig(res.pca,
+               addlabels = TRUE,
+               geom = "bar",
+               barfill = "orange",
+               barcolor = "black",
+               xlab = "Componentes Principais",
+               ylab = "Percentagem da variância explicada",
+               main = "")
 plot_grid(p1, p2)
 ```
 
@@ -238,14 +238,14 @@ Um método simples para extrair os resultados, para variáveis, de uma saída da
 A correlação entre uma variável e um componente principal (PC) é usada como as coordenadas da variável no PC. Um gráfico pode ser obtido utilizando a função `fviz_pca_var()`, \indf{fviz\_pca\_var}
 
 ```{r fig.height=5, fig.width=10}
-p1 = fviz_pca_var(res.pca)
-p2 = fviz_pca_var(res.pca,
-                  col.circle = "red",
-                  xlab = "PCA1 (50,8%)",
-                  ylab = "PCA2 (18,1%)",
-                  geom = c("point", "arrow", "text"),
-                  title = "Gráfico das variáveis",
-                  repel = TRUE)
+p1 <- fviz_pca_var(res.pca)
+p2 <- fviz_pca_var(res.pca,
+                   col.circle = "red",
+                   xlab = "PCA1 (50,8%)",
+                   ylab = "PCA2 (18,1%)",
+                   geom = c("point", "arrow", "text"),
+                   title = "Gráfico das variáveis",
+                   repel = TRUE)
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 
@@ -260,18 +260,18 @@ O gráfico acima mostra as relações entre todas as variáveis. Ele pode ser in
 A qualidade e a contribuição das variáveis pode ser exibida no mapa de fatores utilizando o argumento `col.var = "cos2"` e `col.var = "contrib"`, respectivamente. Note que é possível também colorir as variáveis utilizando uma variável categórica. Para fins didáticos criaremos uma variável categórica com três neíveis, baseado no algorítmo kmeans aplicado nas coordenadas das variáveis.
 
 ```{r fig.height=5, fig.width=10}
-p1 = fviz_pca_var(res.pca,
-                  col.var = "cos2",
-                  geom = c("point", "arrow", "text"),
-                  repel = TRUE)
-res.km = kmeans(get_pca_var(res.pca)$coord, centers = 3, nstart = 25)
-grp = as.factor(res.km$cluster)
-p2 = fviz_pca_var(res.pca,
-                  col.var = grp,
-                  palette = c("green", "blue", "red"),
-                  geom = c("point", "arrow", "text"),
-                  repel = TRUE) +
-     theme(legend.position = "bottom")
+p1 <- fviz_pca_var(res.pca,
+                   col.var = "cos2",
+                   geom = c("point", "arrow", "text"),
+                   repel = TRUE)
+res.km <- kmeans(get_pca_var(res.pca)$coord, centers = 3, nstart = 25)
+grp <- as.factor(res.km$cluster)
+p2 <- fviz_pca_var(res.pca,
+                   col.var = grp,
+                   palette = c("green", "blue", "red"),
+                   geom = c("point", "arrow", "text"),
+                   repel = TRUE) +
+      theme(legend.position = "bottom")
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 
@@ -280,12 +280,12 @@ plot_grid(p1, p2, labels = c("p1", "p2"))
 Os resultados, para indivíduos, podem ser extraídos usando a função `get_pca_ind()`\indf{get\_pca\_ind}. Similarmente ao `get_pca_var()`, esta função fornece uma lista de matrizes contendo todos os resultados para os indivíduos (coordenadas, correlação entre indivíduos e eixos, quadrado das distâncias e contribuições). A função `fviz_pca_ind()` é usada para produzir o gráfico de indivíduos.
 
 ```{r fig.height=5, fig.width=10}
-p1 = fviz_pca_ind(res.pca)
-p2 = fviz_pca_ind(res.pca,
-                  pointsize = "cos2", 
-                  pointshape = 21,
-                  fill = "#E7B800",
-                  repel = TRUE)
+p1 <- fviz_pca_ind(res.pca)
+p2 <- fviz_pca_ind(res.pca,
+                   pointsize = "cos2", 
+                   pointshape = 21,
+                   fill = "#E7B800",
+                   repel = TRUE)
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```
 
@@ -295,10 +295,10 @@ plot_grid(p1, p2, labels = c("p1", "p2"))
 Um gráfico biplot combina os marcadores de variáveis e indivíduos em um mesmo gráfico. A função `fviz_pca_biplot()` é utilizada para gerar este tipo de gráfico. O primeiro biplot (p1) é confeccionado com o exemplo em `res.pca`. Um exemplo um pouco mais complexo será mostrado utilizando o banco de dados do R iris. Neste exemplo, os indivíduos são coloridos por grupos (cor discreta) e variáveis por suas contribuições para os componentes principais (cores de gradiente). Além disso, alteraremos a transparência das variáveis por suas contribuições usando o argumento `alpha.var`. \indf{fviz\_pca\_biplot}
 
 ```{r fig.height=5, fig.width=10}
-p1 = fviz_pca_biplot(res.pca)
+p1 <- fviz_pca_biplot(res.pca)
 
 iris.pca <- prcomp(iris[,-5], scale. = TRUE)
-p2 = fviz_pca_biplot(iris.pca, 
+p2 <- fviz_pca_biplot(iris.pca, 
                 # indivíduos
                 geom.ind = "point",
                 fill.ind = iris$Species, col.ind = "black",
@@ -340,15 +340,15 @@ Para implementar o método *k*-means\indt{kmeans}, a função `kmeans()`\indf{km
 O formato dos dados utilizados é o mesmo dos utilizados para realizar a [análise de componentes principais](#componentes-principais). Assim, neste exemplo, somente criaremos um novo conjunto renomeando os dados organizados anteriormente (`data_pca`) para `data_km`. O próximo passo é ajustar o modelo *k*-means e armazenar em um objeto, em nosso exemplo, `kmres`. Posteriormente, a função `fviz_cluster()` é utilizada para confeccionar o gráfico.
 
 ```{r fig.height = 5, fig.width = 10, fig.align = "center", message = F, warning = F}
-data_km = data_pca
+data_km <- data_pca
 km.res <- kmeans(data_km, 2, nstart = 25)
-p1 = fviz_cluster(km.res, data = data_pca)
-p2 = fviz_cluster(km.res,
-                  data = data_pca,
-                  ellipse = TRUE,
-                  main = "",
-             ellipse.type = "confidence",
-             ggtheme = theme_metan())+
-  theme(legend.position = "bottom")
+p1 <- fviz_cluster(km.res, data = data_pca)
+p2 <- fviz_cluster(km.res,
+                   data = data_pca,
+                   ellipse = TRUE,
+                   main = "",
+                   ellipse.type = "confidence",
+                   ggtheme = theme_metan())+
+      theme(legend.position = "bottom")
 plot_grid(p1, p2, labels = c("p1", "p2"))
 ```

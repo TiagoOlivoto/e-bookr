@@ -1,7 +1,7 @@
 # Análise de regressão {#reg}
 ## Regressão Linear
 
-A análise de regressão \indt{regressão simple} tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla\indt{regressão múltipla}. Na regressão simples, apenas uma variável independente é declarada no modelo:
+A análise de regressão \indt{regressão linear} tem como objetivo verificar como uma variável independente influencia a resposta de uma variável dependente. A análise de regressão é amplamente utilizada em ciências agrárias e pode ser dividida em simples ou múltipla\indt{regressão múltipla}. Na regressão simples, apenas uma variável independente é declarada no modelo:
 
 $$
 Y_i = {\beta _0} + {\beta _1}x + \varepsilon_i  
@@ -21,15 +21,15 @@ $$
 
 Onde $Y_i$ é a variável dependente, $f(x)$ é a função resposta do modelo e $\varepsilon$ é o erro. 
 
-### Estimação
+### Estimativa
 
-Uma das formas de estimar os parâmetros em regressão é minimizando os erros. Os erros são a diferença entre o valor estimado pela função resposta [(]$f(x)$] e o valor observado ($Y_i$), representados no gráfico abaixo por pontos vermelhos. Então, devemos encontrar valores para ${\boldsymbol{\beta}}$ que minimizem estes erros, representados pela distância entre a reta estimada e os valores observados. 
+Uma das formas de estimar os parâmetros em regressão é minimizando os erros. Os erros são a diferença entre o valor estimado pela função resposta $f(x)$ e o valor observado ($Y_i$), representados no gráfico abaixo por pontos vermelhos. Então, devemos encontrar valores para ${\boldsymbol{\beta}}$ que minimizem estes erros, representados pela distância entre a reta estimada e os valores observados. 
 
 \indf{lm} \indf{ggplot2}
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE, fig.height = 3, fig.width = 3.5, fig.align = "center", fig.cap = "Gráfico de dispersão de alguns dados com uma linha representando a tendência geral. As linhas verticais representam as diferenças (ou residuais) entre a linha e os dados observados."}
-data_error = data.frame(x = seq(0, 20, 2),
-                        y = c(3,9,4,10,12,9,14,16,18,16,14))
-mod = lm(y ~ x, data = data_error)
+data_error <- data.frame(x = seq(0, 20, 2),
+                         y = c(3,9,4,10,12,9,14,16,18,16,14))
+mod <- lm(y ~ x, data = data_error)
 ggplot(data_error, aes(x, y)) + 
        geom_segment(aes(x = x, y = y, xend = x, yend = fitted(mod))) +
        geom_point(color = "red") + 
@@ -37,7 +37,7 @@ ggplot(data_error, aes(x, y)) +
 
 ```
 
-Na figura abaixo, uma reta é traçada de modo que as distâncias entre ela e os pontos seja mínimo. Essa distância é obtida, pelo método dos mínimos quadrados\indt{mínimos quadrados}, minimizando a soma de quadrados dos resíduos \indt{resíduos} (uma vez que a soma dos resíduos é igual a zero). 
+Na figura acima, uma reta é traçada de modo que as distâncias entre ela e os pontos seja mínimo. Essa distância é obtida, pelo método dos mínimos quadrados\indt{mínimos quadrados}, minimizando a soma de quadrados dos resíduos \indt{resíduos} (uma vez que a soma dos resíduos é igual a zero). 
 
 $$
 S = {\boldsymbol{\varepsilon '\varepsilon }} = \sum\limits_{i = 1}^n {{{\left( {{Y_i} - {{\hat Y}_i}} \right)}^2}} = 0
@@ -58,43 +58,43 @@ Quando há multicolinearidade é possível resolver o sistema de equações norm
 Para demonstrar como a multicolinearidade afeta a estimativa dos parâmetros, utilizamos um exemplo hipotético de @Kutner2005. Execute a programação em casa e veja os resultados.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE, error = FALSE}
-X1 = c(2,8,6,10)
-X2 = c(6,9,8,10)
-cor(X1,X2) # correlação entre as variávies independentes
+X1 <- c(2,8,6,10)
+X2 <- c(6,9,8,10)
+cor(X1, X2) # correlação entre as variávies independentes
 
 ## Minimizando a soma de quadrados
 require (nls2)
-resultados = data.frame(matrix(ncol = 4,nrow = 20))
-names(resultados) = c("b0","b1","b2","sigma")
+resultados <- data.frame(matrix(ncol = 4,nrow = 20))
+names(resultados) <- c("b0","b1","b2","sigma")
 
 for(i in 1:20){
-Y = c(23,83,63,103)
-X1 = c(2,8,6,10)
-X2 = c(6,9,8,10)
-grid = expand.grid(list(
-b0 = seq(-i,i, by = 0.1),
-b1 = seq(-i, i, by = 0.1),
-b2 = seq(-i, i, by = 0.1)
+Y <- c(23,83,63,103)
+X1 <- c(2,8,6,10)
+X2 <- c(6,9,8,10)
+grid <- expand.grid(list(
+b0 <- seq(-i,i, by = 0.1),
+b1 <- seq(-i, i, by = 0.1),
+b2 <- seq(-i, i, by = 0.1)
 )) # Armazenando um conjunto de valores que quero dar aos parâmetros
 
-Resp = nls2(Y~b0+b1*X1+b2*X2,
-start = grid,
-algorithm = "brute-force")
+Resp <- nls2(Y~b0+b1*X1+b2*X2,
+start <- grid,
+algorithm <- "brute-force")
 
-b0 = summary(Resp)$coefficients[1,1]
-b1 = summary(Resp)$coefficients[2,1]
-b2 = summary(Resp)$coefficients[3,1]
-sigma = summary(Resp)$sigma
+b0 <- summary(Resp)$coefficients[1,1]
+b1 <- summary(Resp)$coefficients[2,1]
+b2 <- summary(Resp)$coefficients[3,1]
+sigma <- summary(Resp)$sigma
 ;
-resultados$b0[i] = b0
-resultados$b1[i] = b1
-resultados$b2[i] = b2
-resultados$sigma[i] = sigma
+resultados$b0[i] <- b0
+resultados$b1[i] <- b1
+resultados$b2[i] <- b2
+resultados$sigma[i] <- sigma
 }
 resultados
 ```
 
-Quando há multicolinearidade\indt{multicolinearidade}, conjuntos de diferentes  parâmetros \indt{parâmetros}resolvem o sitema de equações normais e minimizam a soma de quadrados. Por isso, relacionar a resposta da variável dependente em função das variáveis independentes passa a ser impossível. Por isso, por exemplo, que a multicolinearidade é importante na [análise de trilha](#analise-de-trilha). A relação entre as variáveis na análise de trilha é determinada com base no valor dos coeficientes de trilha, que nada mais são do que parâmetros de uma regressão múltipla.
+Quando há multicolinearidade\indt{multicolinearidade}, conjuntos de diferentes parâmetros \indt{parâmetros}resolvem o sitema de equações normais e minimizam a soma de quadrados. Por isso, relacionar a resposta da variável dependente em função das variáveis independentes passa a ser impossível. É por isso também que a multicolinearidade é importante na [análise de trilha](#analise-de-trilha). A relação entre as variáveis na análise de trilha é determinada com base no valor dos coeficientes de trilha, que nada mais são do que parâmetros de uma regressão múltipla estimados com as variáveis padronizadas.
 
 
 
@@ -106,8 +106,8 @@ A função `lm()` \indf{lm} é utilizada para ajustar regresões lineares simple
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 reg <- import(url, sheet = "REG")
-mod7 = lm(Y ~ X1 + X2 + X3, data = reg)
-mod7.1 = lm(Y ~ 1, data = reg)
+mod7 <- lm(Y ~ X1 + X2 + X3, data = reg)
+mod7.1 <- lm(Y ~ 1, data = reg)
 anova(mod7.1, mod7) # Verificar a significância do modelo
 ```
 
@@ -126,7 +126,7 @@ $$
 Onde, $SQ_{Erro}(\Omega)$ e $SQ_{Erro}(\omega)$ são as somas de quadrados dos resíduos \indt{resíduos} nos modelos completo e reduzido, respectivamente; $G{L_{Erro}}(\omega)$ e $G{L_{Erro}}(\Omega)$ são os graus de liberdade do resíduo do modelo completo e reduzido, respectivamente; e $Q{M_{Erro}}(\omega )$ é o quadrado médio do resíduo do modelo completo. Podemos realizar o teste F utilizando a função `anova()`:
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-mod8 = lm(Y ~ X1 + X2, data = reg)
+mod8 <- lm(Y ~ X1 + X2, data = reg)
 anova(mod8, mod7)
 ```
 
@@ -150,10 +150,10 @@ No método *forward* parte-se de um modelo com uma variável independente, que �
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 cor(reg[1], reg[2:4]) # Correlação
-mod_for1 = lm(Y ~ 1, data = reg)
-mod_for2 = lm(Y ~ X1, data = reg) # Adiciona X1 
-mod_for3 = lm(Y ~ X1 + X2, data = reg)  # Adiciona X2 
-mod_for4 = lm(Y ~ X1 + X2 + X3, data = reg)  # Adiciona X3 
+mod_for1 <- lm(Y ~ 1, data = reg)
+mod_for2 <- lm(Y ~ X1, data = reg) # Adiciona X1 
+mod_for3 <- lm(Y ~ X1 + X2, data = reg)  # Adiciona X2 
+mod_for4 <- lm(Y ~ X1 + X2 + X3, data = reg)  # Adiciona X3 
 anova(mod_for1, mod_for2, mod_for3, mod_for4)  # Seleciona o modelo 
 ```
 
@@ -163,27 +163,27 @@ No método *backward* parte-se do modelo completo. As variávies candidatas a se
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 # F parcial para X3
-mod_back.x3 = lm(Y~X1+X2+X3,data = reg)
-mod_back.x3.1 = lm(Y~X1+X2,data = reg)
+mod_back.x3 <- lm(Y~X1+X2+X3,data = reg)
+mod_back.x3.1 <- lm(Y~X1+X2,data = reg)
 anova(mod_back.x3.1,mod_back.x3) # Menor F parcial
 
 # F parcial para X2
-mod_back.x2 = lm(Y~X1+X2+X3,data = reg)
-mod_back.x2.1 = lm(Y~X1+X3,data = reg)
+mod_back.x2 <- lm(Y~X1+X2+X3,data = reg)
+mod_back.x2.1 <- lm(Y~X1+X3,data = reg)
 anova(mod_back.x2.1,mod_back.x2)
 
 # F parcial para X1
-mod_back.x1 = lm(Y~X1+X2+X3,data = reg)
-mod_back.x1.1 = lm(Y~X2+X3,data = reg)
+mod_back.x1 <- lm(Y~X1+X2+X3,data = reg)
+mod_back.x1.1 <- lm(Y~X2+X3,data = reg)
 anova(mod_back.x1.1,mod_back.x1) # Maior F parcial 
 
 # Elimina a 3, depois a 2 e depois a 1
-mod_back1 = lm(Y~X1+X2+X3,data = reg)
-mod_back2 = lm(Y~X1+X2,data = reg)
+mod_back1 <- lm(Y~X1+X2+X3,data = reg)
+mod_back2 <- lm(Y~X1+X2,data = reg)
 anova(mod_back2,mod_back1) # elimina X3
 
-mod_back2 = lm(Y~X1+X2,data = reg)
-mod_back3 = lm(Y~X1,data = reg)
+mod_back2 <- lm(Y~X1+X2,data = reg)
+mod_back3 <- lm(Y~X1,data = reg)
 anova(mod_back3,mod_back2) # não elimina X2 e seleciona
 ```
 
@@ -193,21 +193,21 @@ O método *stepwise* utiliza características dos métodos *forward* e *backward
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 # Passo 1
-mod_step1.0 = lm(Y ~ 1, data = reg)
-mod_step1 = lm(Y ~ X1, data = reg)
+mod_step1.0 <- lm(Y ~ 1, data = reg)
+mod_step1 <- lm(Y ~ X1, data = reg)
 anova(mod_step1.0, mod_step1) # adiciona X1
 
 # Passo 2
-mod_step2 = lm(Y ~ X1, data = reg)
-mod_step2.1 = lm(Y ~ X1 + X2, data = reg)
+mod_step2 <- lm(Y ~ X1, data = reg)
+mod_step2.1 <- lm(Y ~ X1 + X2, data = reg)
 anova(mod_step2, mod_step2.1) # adiciona X2
 
-mod_step2.2 = lm(Y ~ X2, data = reg)
+mod_step2.2 <- lm(Y ~ X2, data = reg)
 anova(mod_step2.2, mod_step2.1) # mantém X1 no modelo
 
 # Passo 3
-mod_step3 = lm(Y ~ X1 + X2, data = reg)
-mod_step3.1 = lm(Y ~ X1 + X2 + X3,data = reg)
+mod_step3 <- lm(Y ~ X1 + X2, data = reg)
+mod_step3.1 <- lm(Y ~ X1 + X2 + X3,data = reg)
 anova(mod_step3, mod_step3.1) # não adiciona X3, seleciona o modelo
 ```
 
@@ -240,15 +240,15 @@ Onde $\hat{Y_{ij}}-Y_{ij}$ é o erro do modelo, $(Y_{ij}-\bar{Y_j})$ é o erro p
 
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-mod10 = lm(RG ~ DOSEN, data = quantitativo) # Regressão linear
-mod10.1 = lm(RG ~  factor(DOSEN), data = quantitativo) #falta de ajuste
+mod10 <- lm(RG ~ DOSEN, data = quantitativo) # Regressão linear
+mod10.1 <- lm(RG ~  factor(DOSEN), data = quantitativo) #falta de ajuste
 anova(mod10, mod10.1) # Erro puro
 ```
 
 A significância do teste F indica que o modelo linear não é adequado para representar a relação entre as variávies dependentes e independentes. Isso indica que o modelo ajustado "não se aproxima" satisfatoriamente da média das variávies independentes, e que a falta de ajuste \indt{falta de ajuste} é elevada quando comparado ao erro puro. Agora, vamos ajustar um modelo quadrático:
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-mod11 = lm(RG ~  DOSEN +I(DOSEN^2), data = quantitativo) #Regressão quadrática
+mod11 <- lm(RG ~  DOSEN +I(DOSEN^2), data = quantitativo) #Regressão quadrática
 anova(mod11, mod10.1)
 ```
 
@@ -263,7 +263,7 @@ Na análise de regressão, os resíduos \indt{resíduos} devem ser normalmente d
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 8, fig.width = 8, fig.align = "center"}
 
-residuos = residuals(mod11)
+residuos <- residuals(mod11)
 shapiro.test(residuos) # Normalidade
 bartlett.test(residuos ~ DOSEN, data = quantitativo) # Homocedasticidade
 autoplot(mod11)# análise gráfica dos resíduos
@@ -272,7 +272,7 @@ autoplot(mod11)# análise gráfica dos resíduos
 A análise dos resíduos \indt{resíduos} também pode indicar a necessidade de adicionar variávies explicativas ao modelo. Por exemplo, vamos analisar os resíduos de um modelo linear ajustados a dados que tem (conhecidamente) comportamento quadrático.
 
 ``````{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 8, fig.width = 8, fig.align = "center"}
-residuos = residuals(mod10)
+residuos <- residuals(mod10)
 autoplot(mod10) # análise gráfica dos resíduos
 ```
 
@@ -313,7 +313,7 @@ As observações 8 e 12 são as que mais influenciam os valores preditos e as es
 
 Uma regressão é dita não linear quando os parâmetros \indt{parâmetros}não encontram-se de forma aditiva no modelo. Devido a isso, o sistema de equações normais ${\left( {{\boldsymbol{X'X}}} \right)^{{\boldsymbol{ - 1}}}}{\boldsymbol{\beta  = X'Y}}$ não pode ser resolvido analiticamente, e os parâmetros precisam ser estimados utilizando métodos iterativos. \indt{sistema de equações normais}
 
-### Estimação
+### Estimativa
 
 A estimação dos parâmetros é realizado pelo método dos mínimos quadrados \indt{mínimos quadrados}. O método iterativo utilizado nos softwares R e SAS, por exemplo, é o de *Gauss-Newton*. Este método utiliza aproximações lineares de Taylor de primeira ordem da função resposta, dada por 
 
@@ -373,12 +373,12 @@ manipulate({
 Os valores iniciais serão armazenados na lista `start`, e esta será declarada no argumento `start` da função `nls()` \indf{nls} . A função `summary()` \indf{summary} retorna o teste de Wald para os parâmetros.
 
 ```{r,  echo = FALSE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-start = list(b1 = 30, b2 = 20, b3 = 0.2)
+start <- list(b1 = 30, b2 = 20, b3 = 0.2)
 ```
 
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-nls1 = nls(num~b1/(1+exp(b2-b3*DAT)), 
+nls1 <- nls(num~b1/(1+exp(b2-b3*DAT)), 
          data = nls_tomato_cord, # indica os dados
          start = start) # indica os valores iniciais
 summary(nls1)
@@ -392,10 +392,10 @@ Os resíduos \indt{resíduos} dos modelos não lineares também deve ser normalm
 require(lmtest) # pacote para carregar teste de Breusch-Pagan (homogeneidade)
 require (car) # pacote para carregar teste de DW (independência)
 ### Normalidade
-res_nls1 = residuals(nls1)
+res_nls1 <- residuals(nls1)
 shapiro.test(res_nls1)
-nls1_grad = attr(nls1$m$fitted(), "gradient") # obtem matriz gradiente
-nls1_lm = lm(num~-1+nls1_grad, data = nls_tomato_cord) 
+nls1_grad <- attr(nls1$m$fitted(), "gradient") # obtem matriz gradiente
+nls1_lm <- lm(num~-1+nls1_grad, data = nls_tomato_cord) 
 bptest(nls1_lm) # teste de Breusch-Pagan (homogeneidade)
 durbinWatsonTest(nls1_lm) # teste de DW (independência)
 ```
@@ -413,11 +413,11 @@ No exemplo acima, apenas uma observação foi realizada para cada variável inde
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 nls_eggplant <- import(url, sheet = "EGGPLANT")
-nls_eggplant = subset(nls_eggplant, ESTUFA  ==  "E1") 
-start = list(b1 = 10,b2 = 6.7,b3 = 0.073)
-nls2 = nls(NUMERO ~ b1/(1+exp(b2-b3*DAT)), 
-         data = nls_eggplant,
-         start = start)
+nls_eggplant <- subset(nls_eggplant, ESTUFA  ==  "E1") 
+start <- list(b1 = 10,b2 = 6.7,b3 = 0.073)
+nls2 <- nls(NUMERO ~ b1/(1+exp(b2-b3*DAT)), 
+            data = nls_eggplant,
+            start = start)
 
 ```
 
@@ -428,13 +428,13 @@ Conforme vimos acima, a estimação dos parâmetros \indt{parâmetros}é realiza
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
 
-start = list(b1 = 30, b2 = 19, b3 = 0.2)
+start <- list(b1 = 30, b2 = 19, b3 = 0.2)
 ## Medidas de não linearidade
-nls1_hess = deriv3(~b1/(1 + exp(b2 - b3 * DAT)), c("b1","b2","b3"),
-                 function(DAT,b1,b2,b3)NULL) ## hessiana
-nls1_hess.1 = nls(num ~ nls1_hess(DAT,b1,b2,b3),
-                  data = nls_tomato_cord,
-                  start = start)
+nls1_hess <- deriv3(~b1/(1 + exp(b2 - b3 * DAT)), c("b1","b2","b3"),
+                   function(DAT,b1,b2,b3)NULL) ## hessiana
+nls1_hess.1 <- nls(num ~ nls1_hess(DAT,b1,b2,b3),
+                   data = nls_tomato_cord,
+                   start = start)
 rms.curv(nls1_hess.1)
 ```
 
@@ -465,22 +465,23 @@ Associamos os fatores a novas variávies através de uma nova coluna no banco de
 Para tertar esta hipótese, associamos variáveis dummy \indt{variáveis dummy}s apenas aos parâmetros $\beta_1$ e $\beta_3$. Neste caso, o modelo passa a ter 5 parâmetros (1 $\beta_1$, 2 $\beta_2$ e 2 $\beta_3$). Podemos comparar esse modelo reduzido com o modelo completo de 6 parâmetros. Se o teste F der significativo, concluímos que há influência do fator genótipo.
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-nls_dummy = nls_tomato %>%
-  mutate_at(vars(Genotipo, Completo, Reduzido), as.factor)
+nls_dummy <- 
+  nls_tomato %>%
+  to_factor(Genotipo, Completo, Reduzido)
 ## Modelo completo
-tomato_completo = nls(num~b1[Completo]/(1+exp(b2[Completo]-b3[Completo]*DAT)), 
-                    data = nls_dummy,
-                    start = list(
-                    b1 = c(18.94,39.68),
-                    b2 = c(16.04,13.54),
-                    b3 = c(0.17,0.13)))
-## Modelo reduzido
-tomato_reduzido.b1 = nls(num~b1[Reduzido]/(1+exp(b2[Completo]-b3[Completo]*DAT)), 
-                    data = nls_dummy,
-                    start = list(
-                    b1 = c(18.94),
-                    b2 = c(16.04,13.54),
-                    b3 = c(0.17,0.13)))
+tomato_completo <- 
+  nls(num ~ b1[Completo] / (1 + exp(b2[Completo] - b3[Completo] * DAT)), 
+      data = nls_dummy,
+      start = list(b1 = c(18.94, 39.68),
+                   b2 = c(16.04, 13.54),
+                   b3 = c(0.17, 0.13)))
+## Modelo reduzido (beta 1)
+tomato_reduzido.b1 <- 
+  nls(num ~ b1[Reduzido] / (1 + exp(b2[Completo] - b3[Completo] * DAT)), 
+      data = nls_dummy,
+      start = list(b1 = c(18.94),
+                   b2 = c(16.04, 13.54),
+                   b3 = c(0.17, 0.13)))
 anova(tomato_reduzido.b1, tomato_completo)
 ```
 
@@ -489,20 +490,13 @@ Os valores da assintota diferem estatisticamente entre si. Percebe-se claramente
 **Testando a hipótese $H_0:\beta_{31} = \beta_{32}$**
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-## Modelo completo
-tomato_completo = nls(num~b1[Completo]/(1+exp(b2[Completo]-b3[Completo]*DAT)), 
-                    data = nls_dummy,
-                    start = list(
-                    b1 = c(18.94,39.68),
-                    b2 = c(16.04,13.54),
-                    b3 = c(0.17,0.13)))
-## Modelo reduzido
-tomato_reduzido.b3 = nls(num~b1[Completo]/(1+exp(b2[Completo]-b3[Reduzido]*DAT)), 
-                    data = nls_dummy,
-                    start = list(
-                    b1 = c(18.94,39.68),
-                    b2 = c(16.04,13.54),
-                    b3 = c(0.16)))
+## Modelo reduzido (beta 3)
+tomato_reduzido.b3 <- 
+  nls(num ~ b1[Completo] / (1 + exp(b2[Completo] - b3[Reduzido] * DAT)), 
+      data = nls_dummy,
+      start = list(b1 = c(18.94, 39.68),
+                   b2 = c(16.04, 13.54),
+                   b3 = c(0.16)))
 anova(tomato_reduzido.b3, tomato_completo)
 ```
 
@@ -513,8 +507,8 @@ Os valores da taxa de produção de frutos não diferem estatisticamente entre s
 Percebe-se claramente que um modelo comum aos dois genótipos não é possível (assintota diferem entre si). Por isso, optou-se por gerar um modelo em separado para cada genótipo. Podemos representar isso graficamente utilizando a função `ggplot()` \indf{ggplot} .
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE, fig.cap = "Representação gráfica em modelos não lineares", fig.width = 4, fig.height = 4, fig.align = "center"}
-formula = as.formula("y ~ b1/(1 + exp(b2-b3*x))")
-start = list(b1 = 10.224, b2 = 6.765, b3 = 0.0725)
+formula <- as.formula("y ~ b1/(1 + exp(b2-b3*x))")
+start <- list(b1 = 10.224, b2 = 6.765, b3 = 0.0725)
 
 ggplot(nls_tomato, aes(x = DAT, y = num, colour = Genotipo)) + 
 geom_point() +
@@ -548,46 +542,50 @@ $$
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.width = 4, fig.height = 4, fig.align = "center"}
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 plato_tomato <- import(url, sheet = "PLATO")
-plato_cordillera = nls(num~(b0+b1*DAT*(DAT<= P))+
-                    (b1*P*(DAT>P)),
-                     data = subset(plato_tomato, Genotipo == "Cordillera"),
-                     start = list(b0 = 5, b1 = 11/8, P = 15))
-plato_SantaCl = nls(num~(b0+b1*DAT*(DAT<= P))+
-                    (b1*P*(DAT>P)),
-                     data = subset(plato_tomato, Genotipo == "Santa.Clara"),
-                     start = list(b0 = 5, b1 = 11/8, P = 15))
+plato_cordillera <- 
+  nls(num ~ (b0 + b1 * DAT * (DAT <= P)) + (b1 * P * (DAT > P)),
+      data = subset(plato_tomato, Genotipo == "Cordillera"),
+      start = list(b0 = 5, b1 = 11/8, P = 15))
+plato_SantaCl <- 
+  nls(num ~ (b0 + b1 * DAT * (DAT <= P)) + (b1 * P * (DAT > P)),
+      data = subset(plato_tomato, Genotipo == "Santa.Clara"),
+      start = list(b0 = 5, b1 = 11/8, P = 15))
 ```
 
 O genótipo Cordillera produz a uma taxa de 1,33 frutos dia$^-1$ até os ~9 dias após o início das colheitas, quando começa a estabilizar a produção (17,19 frutos). Já o genótipo Santa Clara produz a uma taxa de 0,71 frutos $^-1$ até os ~14 dias após o início das colheitas, quando começa a estabilizar a produção (12,69 frutos). Podemos verificar a taxa de produção e o ponto de estabilização através de variáveis dummy \indt{variáveis dummy}.  
 
 ```{r,  echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
-plato_dummy = plato_tomato %>%
-               mutate_at(vars(Genotipo, Completo, Reduzido), as.factor)
+plato_dummy <- 
+  plato_tomato %>%
+  to_factor(Genotipo, Completo, Reduzido)
 # Modelo completo
-plato_completo = nls(num~(b0[Completo]+b1[Completo]*DAT*(DAT<= P[Completo]))+
-                    (b1[Completo]*P[Completo]*(DAT>P[Completo])),
-                     data = plato_dummy,
-                     start = list(b0 = c(4.8,2.5), 
-                                b1 = c(1.33,0.71), 
-                                P = c(9.28,14.36)))
+plato_completo <- 
+  nls(num ~ (b0[Completo] + b1[Completo] * DAT * (DAT <= P[Completo]))+
+        (b1[Completo] * P[Completo] * (DAT > P[Completo])),
+      data = plato_dummy,
+      start = list(b0 = c(4.8, 2.5), 
+                   b1 = c(1.33, 0.71), 
+                   P = c(9.28, 14.36)))
 
 # Modelo reduzido (taxa de produção)
-plato_reduzido.b1 = nls(num~(b0[Completo]+b1[Reduzido]*DAT*(DAT<= P[Completo]))+
-                    (b1[Reduzido]*P[Completo]*(DAT>P[Completo])),
-                     data = plato_dummy,
-                     start = list(b0 = c(4.8,2.5), 
-                                b1 = c(1), 
-                                P = c(9.28,14.36)))
+plato_reduzido.b1 <- 
+  nls(num ~ (b0[Completo] + b1[Reduzido] * DAT * (DAT <= P[Completo]))+
+        (b1[Reduzido] * P[Completo] * (DAT > P[Completo])),
+      data = plato_dummy,
+      start = list(b0 = c(4.8,2.5), 
+                   b1 = c(1), 
+                   P = c(9.28,14.36)))
 anova(plato_reduzido.b1, plato_completo)
 
 # Modelo reduzido (Platô)
-plato_reduzido.P = nls(num~(b0[Completo]+b1[Completo]*DAT*(DAT<= P[Reduzido]))+
-                    (b1[Completo]*P[Reduzido]*(DAT>P[Reduzido])),
-                     data = plato_dummy,
-                     start = list(b0 = c(4.8,2.5), 
-                                b1 = c(1.33,0.71), 
-                                P = c(12)))
-anova(plato_reduzido.P,plato_completo)
+plato_reduzido.P <- 
+  nls(num ~ (b0[Completo] + b1[Completo] * DAT * (DAT <= P[Reduzido])) + 
+        (b1[Completo] * P[Reduzido] * (DAT > P[Reduzido])),
+      data = plato_dummy,
+      start = list(b0 = c(4.8, 2.5), 
+                   b1 = c(1.33, 0.71), 
+                   P = c(12)))
+anova(plato_reduzido.P, plato_completo)
 ```
 
 Percebe-se que a taxa de produção do genótipo Cordillera é significativamente superior a taxa de produção do genótipo Santa Clara. Como consequência, o momento de estabilização da produção ocorre mais precocemente no genótipo Cordillera. O exemplo foi realizado com dados de produção de olerícolas, mas pdoe ser adaptado para qualquer estudo (desde que tenha este comportamento).
@@ -595,7 +593,8 @@ Percebe-se que a taxa de produção do genótipo Cordillera é significativament
 **Representação gráfica dos modelos**
 
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE, fig.width = 4, fig.height = 4, fig.align = "center", fig.cap = "Representação gráfica de regressão bisegmentada com platô"}
-plot(num~DAT,data = subset(plato_tomato,Genotipo == "Cordillera"),ylim = c(0,20),
+plot(num ~ DAT,
+     data = subset(plato_tomato,Genotipo == "Cordillera"),ylim = c(0,20),
      xlab = "Dias após o transplante (DAT)",
      ylab = "Número de frutos por planta",pch = 1,lwd = 2)
 points(num~DAT,data = subset(plato_tomato,Genotipo == "Santa.Clara"),pch = 2,lwd = 2)

@@ -3,7 +3,7 @@
 Uma cultura pode ser vista como um sistema complexo com resultados (por exemplo, rendimento de grãos) que são afetados por informações genéticas, fisiológicas, pedoclimáticas e de manejo. Melhoristas e geneticistas se esforçam continuamente para aumentar a produtividade das culturas visando suprir a demanda mundial cada vez maior por alimentos. É na fase final de um programa de melhoramento de plantas que muito esforço e recursos precisam ser investidos na avaliação dos genótipos (_*g*_) a serem selecionados. Geralmente algumas centenas de genótipos precisam ser avaliados em um grande número de ambientes (_*e*_). Estes ensaios são conhecidos como ensaios multi-ambientes (\indt{EMA}) e os dados destes experimentos resultam em uma matriz __*M*__ de dimensões  $g  \times e$ . É nesta fase do processo que surge um dos maiores desafios da análise de \indt{EMA}: compreender a interação genótipo-*vs*-ambiente buscando novas formas de explorá-la e utilizá-la a favor da seleção de genótipos com estabilidade \indt{estabilidade} produtiva satisfatória.
 
 
-Funções do pacote **metan**, acrônimo para **m**ulti **e**nvironment **t**rial **an**alysis serão utilizadas para análise de dados de ensaios multi-ambientes\indt{EMA}. <img style="float: right;" src="figures/metan.png" width="160" height="181.2" > O foi desenvolvido em linguagem R e é distribuído sob a licença GPL (General Public Licence) 3.0. Isto significa que qualquer pessoa pode: (i) utilizar o código sem nenhuma restrição/pagamento; (ii) estudar o código e adaptá-lo às suas necessidades; (iii) sugerir modificações/melhorias no código de modo a aperfeiçoá-lo para uma comunidade maior de usuários, mantendo, porém, os direitos do autor. O pacote **metan** fornece funções úteis para analisar dados de ensaios multi-ambientes usando métodos paramétricos e não paramétricos, incluindo, mas não limitados a:
+Funções do pacote `metan`, acrônimo para **m**ulti **e**nvironment **t**rial **an**alysis serão utilizadas para análise de dados de ensaios multi-ambientes\indt{EMA}. <img style="float: right;" src="figures/metan.png" width="160" height="181.2" > O foi desenvolvido em linguagem R e é distribuído sob a licença GPL (General Public Licence) 3.0. Isto significa que qualquer pessoa pode: (i) utilizar o código sem nenhuma restrição/pagamento; (ii) estudar o código e adaptá-lo às suas necessidades; (iii) sugerir modificações/melhorias no código de modo a aperfeiçoá-lo para uma comunidade maior de usuários, mantendo, porém, os direitos do autor. O pacote `metan` fornece funções úteis para analisar dados de ensaios multi-ambientes usando métodos paramétricos e não paramétricos, incluindo, mas não limitados a:
 
 * Análise gráfica da interação genótipo-*vs*-ambiente;
 * Análise de variância individual
@@ -17,7 +17,7 @@ Funções do pacote **metan**, acrônimo para **m**ulti **e**nvironment **t**ria
 * Ferramentas gráficas para confecção de biplots.
 * Estatísticas de estabilidade paramétrica e não paramétrica.
 
-Nesta seção, usaremos o conjunto de dados `data_ge` disponível no pacote **metan**. Para mais informações, por favor, consulte `?data_ge`. Outros conjuntos de dados podem ser usados desde que as seguintes colunas estejam no conjunto de dados: ambiente, genótipo, bloco e variável(eis) resposta.
+Nesta seção, usaremos o conjunto de dados `data_ge` disponível no pacote `metan`. Para mais informações, por favor, consulte `?data_ge`. Outros conjuntos de dados podem ser usados desde que as seguintes colunas estejam no conjunto de dados: ambiente, genótipo, bloco e variável(eis) resposta.
 
 ## Análise gráfica da interação
 
@@ -104,7 +104,7 @@ onde *n* é o número de ambientes. Da mesma forma que o índice de confiança g
 
 
 ```{r, fig.width=5, fig.height=4, warning = FALSE, message = FALSE}
-super = superiority(data_ge, ENV, GEN, REP, GY)
+super <- superiority(data_ge, ENV, GEN, GY)
 super$GY$index
 ```
 
@@ -185,7 +185,7 @@ Note que os argumentos inseridos na função obedecem a ordem dos argumentos req
 
 ### Analise residual
 
-O pacote **metan** conta com uma opção para análise residual do modelo AMMI ajustado. Gráficos podem ser obtidos utilizando o seguinte comando. 
+O pacote `metan` conta com uma opção para análise residual do modelo AMMI ajustado. Gráficos podem ser obtidos utilizando o seguinte comando. 
 
 ```{r warning = FALSE, message = FALSE, echo=TRUE, fig.width=8, fig.height=8, fig.align="center"}
 plot(AMMI_model)
@@ -215,7 +215,7 @@ No objeto `anova` \indt{ANOVA} gerado pela função `waas()` \indf{waas} testes 
 #### Predictive sucess
 
 \indt{predictive sucess}
-O pacote **metan** fornece uma solução completa para validaçao cruzada do modelo AMMI. Utilizando a função `cv_ammif()` \indf{cv\_ammif}, por exemplo, é possível realizar um teste de *cross-validation* para a família de modelos AMMI \indt{AMMI}(AMMI0-AMMIF) usando dados com repetições. Automaticamente, a primeira validação é realizada considerando a AMMIF (todos possíveis IPCAs são usados). Considerando esse modelo, o conjunto de dados original é dividido em dois conjuntos de dados: dados de modelagem e dados de validação. O conjunto de dados "modelagem" possui todas as combinações (genótipo *vs* ambiente) com R-1 repetições. O conjunto de dados "validação" tem uma repetição. O diagrama abaixo representa o procedimento realizado.
+O pacote `metan` fornece uma solução completa para validaçao cruzada do modelo AMMI. Utilizando a função `cv_ammif()` \indf{cv\_ammif}, por exemplo, é possível realizar um teste de *cross-validation* para a família de modelos AMMI \indt{AMMI}(AMMI0-AMMIF) usando dados com repetições. Automaticamente, a primeira validação é realizada considerando a AMMIF (todos possíveis IPCAs são usados). Considerando esse modelo, o conjunto de dados original é dividido em dois conjuntos de dados: dados de modelagem e dados de validação. O conjunto de dados "modelagem" possui todas as combinações (genótipo *vs* ambiente) com R-1 repetições. O conjunto de dados "validação" tem uma repetição. O diagrama abaixo representa o procedimento realizado.
 
 
 A divisão do conjunto de dados em dados de modelagem e validação depende do design informado. Considerando um delineamento de blocos completos casualizados (DBC)\index{DBC}, blocos completos são aleatoriamente selecionados dentro de ambientes, como mostrado por @Olivoto2019. O bloco restante serve dados de validação. Se `design = "CRD"` for informado, assim declarando que um delineamento intericamente casualizado (DIC) \index{DIC} foi usado, observações são aleatoriamente selecionadas para cada tratamento (combinação genótipo-*vs*-ambiente). Este é o mesmo procedimento sugerido por @Gauch1988. Os valores estimados para o membro da família AMMI \index{AMMI}em estudo são então comparados com os dados de "validação" e um erro de predição $\hat{z}_{ij}$ é estimado para cada tratamento. A raiz quadrada do quadrado médio da diferença de predição (RMSPD) é calculado. Este procedimento é repetido *n* vezes, utilizando o argumento `nboot = n`. Ao final do procedimento, o algorítimo armazena as *n* estimativas do RMSPD para o modelo em questão, e um novo modelo é então testado seguindo os mesmos passos.
@@ -360,7 +360,7 @@ print(stab_indexes)
 ### Biplots
 
 
-O pacote **metan** conta com gráficos gerados pelo pacote **ggplot2**, o que lhe confere um alto nível de personalização. A função utilizada para obtenção dos diferentes tipos de biplots será a `plot_scores()`. \indf{plot\_scores}Para maiores detalhes veja `?plot_._scores`.
+O pacote `metan` conta com gráficos gerados pelo pacote **ggplot2**, o que lhe confere um alto nível de personalização. A função utilizada para obtenção dos diferentes tipos de biplots será a `plot_scores()`. \indf{plot\_scores}Para maiores detalhes veja `?plot_._scores`.
 
 #### Biplot tipo 2: GY x PC1
 O biplot conhecido como **AMMI1** é confeccionado utilizando o argumento `type = 2` na função `plot_scores()`. O biplot **AMMI1** é utilizado para identificar tanto a estabilidade quando a produtividade dos genótipos. Neste tipo de biplot, os genótipos com escores do PC1 próximos de zero e à direita da linha vertical, são considerados os mais estáveis e com rendimento superior a média geral.\indf{plot\_scores}
@@ -435,7 +435,7 @@ $$
 
 onde $\xi_{ik}^* = \lambda_k^ \alpha \xi_{ik}$; $\eta_{jk}^* = \lambda_k^{1-\alpha}\eta_{jk}$ sendo $\lambda_k$ o *k*-ésimo autovalor da SVD ($k = 1, ... p$), com $p \le min (e, g)$; $\alpha$ é o fator de partição do valor singular para o Componente Principal (PC) *k* [@Yan2002b]; $\xi_{ik}^*$ e $\eta_{jk}^*$ são os escores do PC *k* para genótipo *i* e ambiente *j*, respectivamente.
 
-A função `gge()` do pacote **metan** é usada para ajustar o modelo GGE. De acordo com @Yan2003, a função suporta quatro métodos de centralização de dados, dois métodos de escalonamento de dados e três opções para particionamento de valor singular:
+A função `gge()` do pacote `metan` é usada para ajustar o modelo GGE. De acordo com @Yan2003, a função suporta quatro métodos de centralização de dados, dois métodos de escalonamento de dados e três opções para particionamento de valor singular:
 
 ### Data centering
 
@@ -709,7 +709,7 @@ Eq. \ref{ad}
 
 ### Ajustando o modelo
 
-A função `waasb()` \indf{waasb} do pacote **metan** será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-*vs*-ambiente.
+A função `waasb()` \indf{waasb} do pacote `metan` será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-*vs*-ambiente.
 
 
 
@@ -734,8 +734,7 @@ get_model_data(BLUP_model, "details")
 * Teste de razão de máxima verossimilhanças (LRT)
 
 ```{r warning = F, message = F}
-get_model_data(BLUP_model, "lrt") # estatística
-get_model_data(BLUP_model, "pval_lrt") # p-valor
+get_model_data(BLUP_model, "lrt")
 
 ```
 
@@ -921,7 +920,7 @@ print(Indexes$GY)
 
 ## AMMI ou BLUP? Decisão em cada caso!
 
-Vimos anteriormente que um membro da família de modelos AMMI \indt{AMMI}(AMMI2) é o mais preciso na predição da variável resposta em nosso exemplo. Após analizar-mos os mesmos dados utilizando modelos mistos, nos surge a seguinte questão. Qual é o método mais preciso para predizer a variável resposta em nosso exemplo? A resposta a esta pergunda será dada agora. O pacote **metan** também conta com uma função para *cross-validation* considerando o modelo misto acima. A idéia é simples. Relizaremos uma validação cruzada semelhante àquela realizada no modelo AMMI e compararemos o RMSPD dos valores preditos utilizando BLUP com aqueles obtidos pelo modelo AMMI.
+Vimos anteriormente que um membro da família de modelos AMMI \indt{AMMI}(AMMI2) é o mais preciso na predição da variável resposta em nosso exemplo. Após analizar-mos os mesmos dados utilizando modelos mistos, nos surge a seguinte questão. Qual é o método mais preciso para predizer a variável resposta em nosso exemplo? A resposta a esta pergunda será dada agora. O pacote `metan` também conta com uma função para *cross-validation* considerando o modelo misto acima. A idéia é simples. Relizaremos uma validação cruzada semelhante àquela realizada no modelo AMMI e compararemos o RMSPD dos valores preditos utilizando BLUP com aqueles obtidos pelo modelo AMMI.
 
 A função `cv_blup()` realiza uma validação cruzada para experimentos com repetição usando modelos mistos. Por padrão,  blocos completos são selecionados aleatoriamente em cada ambiente. O procedimento para calcular o RMSPD é idêntico ao apresentado na análise AMMI.
 

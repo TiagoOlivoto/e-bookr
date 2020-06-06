@@ -13,25 +13,25 @@ O pacote **dplyr** é uma *gramática* de manipulação de dados. Nos rerferimos
 
 Anteriomente mencionamos que a manipulação dos dados com o pacote **dplyr** é lógica do ponto de vista da implementação do código. Isto só é possivel devido a utilização do operador `%>%` (*forward-pipe operator*), importado do pacote `magrittr`. Basicamente, este operador capta o argumento resultante de uma função à sua esquerda e passa como *input* à função à sua direita. Não é nossso objetivo aqui discutir os benefícios da utilização deste operador, mas uma pequena demonstração (com spoilers das funções do pacote dplyr) será apresentada. Considere as seguintes (e simples) operações. Crie um data frame com 100 linhas com as variáveis *x* e *y* contendo valores aleatórios. Adicione uma terceira variáveis (*z*) que será uma função da multiplicação de *x* e *y*, selecione apenas os valores de *z* menores que 10 e extraia a raiz quadrada destes valores. Finalmente, compute a média e armazene no object `mean_sqrt`.
 
+* Criando o conjunto de dados
+```{r}
+set.seed(1)
+data <- tibble(x = runif(100, 0, 10),
+               y = runif(100, 0, 10))
+```
 
 * Utilizando as funções bases do R (código massivo)
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-set.seed(1)
-data <- tibble(x =  runif(100, 0, 10),
-              y = runif(100, 0, 10))
 data$z <- data$x * data$y
-data <- subset(data, z < 10)
-data <- data[, 3]
-sqr_dat <- sqrt(data$z)
+df <- subset(data, z < 10)
+df <- df[, 3]
+sqr_dat <- sqrt(df$z)
 mean_sqrt <- mean(sqr_dat)
 mean_sqrt
 ```
 
 * Utilizando as funções bases do R (código mais limpo)
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-set.seed(1)
-data <- tibble(x =  runif(100, 0, 10),
-               y = runif(100, 0, 10))
 data$z <- data$x * data$y
 mean_sqrt <- mean(sqrt(subset(data, z < 10)$z))
 mean_sqrt
@@ -39,15 +39,14 @@ mean_sqrt
 
 * Utilizando o operdor `%>%` 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-set.seed(1)
-mean_sqrt <- tibble(x =  runif(100, 0, 10),
-                    y = runif(100, 0, 10)) %>%
-            mutate(z = x * y) %>%
-            filter(z < 10) %>%
-            pull(z) %>%
-            sqrt() %>%
-            mean()
-mean_sqrt  
+mean_sqrt <- 
+  data %>% 
+  mutate(z = x * y) %>%
+  filter(z < 10) %>%
+  pull(z) %>%
+  sqrt() %>%
+  mean()
+  
 ```
 
 A utilização do operador `%>%` parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o `%>%` se mostrará muito mais útil.
@@ -168,7 +167,6 @@ url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 maize <- import(url,
                 sheet = "maize", 
                 setclass = "tibble")
-
 inspect(maize)
 ```
 
@@ -177,22 +175,22 @@ inspect(maize)
 A função [`select_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) pode ser usada para selecionar colunas de um conjunto de dados.\indf{select\_cols}
 
 ```{r}
-select_cols(data_ge2, ENV, GEN)
+select_cols(maize, AMB, HIB)
 ```
 
 As colunas numéricas podem ser selecionadas rapidamente usando a função [`select_numeric_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html). As colunas não numéricas são selecionadas com [`select_non_numeric_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html).\indf{select\_numeric\_cols}\indf{select\_non\_numeric\_cols}
 
 ```{r}
-select_numeric_cols(data_ge2)
-select_non_numeric_cols(data_ge2)
+select_numeric_cols(maize)
+select_non_numeric_cols(maize)
 ```
 
 
 Podemos selecionar a primeira ou a última coluna rapidamente com `select_first_col()` e `select_last_col()`, respectivamente.\indf{select\_first\_cols}\indf{select\_last\_cols}
 
 ```{r}
-select_first_col(data_ge2)
-select_last_col(data_ge2)
+select_first_col(maize)
+select_last_col(maize)
 ```
 
 *Select helpers* podem ser usados para selecionar variáveis que correspondem a uma expressão. Isso significa que podemos usar uma função para selecionar variáveis em vez de digitar seus próprios nomes. O `metan` reexporta os [tidy select helpers](https://tidyselect.r-lib.org/reference/select_helpers.html) e implementa os próprios *select helpers* com base em operações com prefixos e sufixos ([`different_var()`]( https://tiagoolivoto.github.io/metan/reference/Select_helper.html), [`intersect_var()`](https://tiagoolivoto.github.io/metan/reference/Select_helper.html) e [`union_var()`](https://tiagoolivoto.github.io/metan/reference/Select_helper.html)), tamanho dos nomes das variáveis ([`width_of()`](https://tiagoolivoto.github.io/metan/ reference / Select_helper.html), [`width_gength_than()`](https://tiagoolivoto.github.io/metan/reference/Select_helper.html) e [`width_less_than()`](https: //tiagoolivoto.github .io / metan / reference / Select_helper.html)) e no tipo de letra ([`lower_case_only()`](https://tiagoolivoto.github.io/metan/reference/Select_helper.html), [`upper_case_only()`](https://tiagoolivoto.github.io/metan/reference/Select_helper.html) e [`title_case_only()`](https: //tiagoolivoto.github .io / metan / reference / Select_helper.html)).
@@ -202,47 +200,47 @@ select_last_col(data_ge2)
 
 * **Selecionando variáveis que começam com um prefixo.**
 
-Se quisermos selecionar as variáveis que começam com "N", podemos usar:
+Se quisermos selecionar as variáveis que começam com "C", podemos usar:
 
 ```{r}
-select_cols(data_ge2, starts_with("C"))
+select_cols(maize, starts_with("C"))
 ```
 
 mas se quisermos selecionar aqueles que não começam com "C", basta adicionar "-" logo antes de [`starts_with()`](https://tidyselect.r-lib.org/reference/select_helpers.html)\indf{start\_with}
 
 ```{r}
-select_cols(data_ge2, -starts_with("C"))
+select_cols(maize, -starts_with("C"))
 ```
 
 
 * **Selecionando variáveis que terminam com um sufixo.**
 
-Da mesma forma, se quisermos selecionar as variáveis que terminam com "D", podemos usar:\indf{ends\_with}
+Da mesma forma, se quisermos selecionar as variáveis que terminam com "S", podemos usar:\indf{ends\_with}
 ```{r}
-select_cols(data_ge2, ends_with("D"))
+select_cols(maize, ends_with("S"))
 ```
 
-* **Selecionando variáveis que começam com um prefixo *E* terminam com um sufixo.**
+* **Selecionando variáveis que começam com um prefixo *A* E terminam com um sufixo "S"**
 
-Agora, se quisermos selecionar variáveis que começam com "C" e terminam com "D", ou seja, a interseção entre a letra inicial "C" e a letra final "D", podemos:\indf{intersect\_var}
+Agora, se quisermos selecionar variáveis que começam com "A" e terminam com "S", ou seja, a interseção entre a letra inicial "A" e a letra final "S", podemos:\indf{intersect\_var}
 ```{r}
-select_cols(data_ge2, intersect_var("C", "D"))
+select_cols(maize, intersect_var("A", "S"))
 ```
 
 * **Selecionando variáveis que começam com um prefixo *OU* terminam com um sufixo.**
 
-Também podemos obter a união entre a letra inicial "C" e a letra final "D", ou seja, variáveis que começam com "C" ou terminam com "D".\indf{union\_var}
+Também podemos obter a união entre a letra inicial "A" e a letra final "S", ou seja, variáveis que começam com "A" ou terminam com "S".\indf{union\_var}
 
 ```{r}
-select_cols(data_ge2, union_var("C", "D"))
+select_cols(maize, union_var("A", "S"))
 ```
 
 * ** Selecionando variáveis que começam com um prefixo *E NÃO* terminam com um sufixo.**
 
-Também podemos obter a diferença entre a letra inicial "C" e a letra final "D", ou seja, variáveis que começam com "C" e não terminam com "D".\indf{difference\_var}
+Também podemos obter a diferença entre a letra inicial "A" e a letra final "S", ou seja, variáveis que começam com "C" e não terminam com "D".\indf{difference\_var}
 
 ```{r}
-select_cols(data_ge2, difference_var("C", "D"))
+select_cols(maize, difference_var("A", "S"))
 ```
 
 * **Selecionando variáveis que contêm uma string literal.**
@@ -250,11 +248,10 @@ select_cols(data_ge2, difference_var("C", "D"))
 Se as variáveis no conjunto de dados tiverem um padrão com diferenças entre um grupo de variáveis, podemos usar o código a seguir para selecionar variáveis com um padrão. Primeiro, iremos alterar os nomes das variáveis `PH`, `EH`, `EP` e `EL` incluindo `_PLANT` para indicar que são variáveis relacionadas à planta. Em seguida, selecionaremos essas variáveis com a função [ `contains()`](https://tidyselect.r-lib.org/reference/select_helpers.html).\indf{contains}
 
 ```{r}
-data_vars <- data_ge2%>%
-  rename(PH_PLANT = PH,
-         EH_PLANT = EH,
-         EP_PLANT = EP,
-         EL_PLANT = EL)
+data_vars <- 
+  maize %>%
+  rename(APLA_PLANT = APLA,
+         AIES_PLANT = AIES)
 names(data_vars)
 
 select_cols(data_vars, contains("PLANT"))
@@ -263,10 +260,10 @@ select_cols(data_vars, contains("PLANT"))
 
 * **Selecionando variáveis que correspondem a uma expressão regular.**
 
-Seleções mais sofisticadas podem ser feitas usando [`matches()`](https://tidyselect.r-lib.org/reference/select_helpers.html). Supondo que gostaríamos de selecionar as variáveis que começam com "E" tem a segunda letra entre "A" e "L" e terminam com "T", usaríamos algo como:\indf{matches}
+Seleções mais sofisticadas podem ser feitas usando [`matches()`](https://tidyselect.r-lib.org/reference/select_helpers.html). Supondo que gostaríamos de selecionar as variáveis que começam com "A" e tem a segunda letra entre "A" e "M", usaríamos algo como:\indf{matches}
 
 ```{r}
-select_cols(data_vars, matches("^ E [A-L]. * T $"))
+select_cols(maize, matches("^A[A-M]"))
 ```
 
 
@@ -295,7 +292,7 @@ select_cols(data_vars, width_of(4))
 \indf{width\_less\_than}
 
 ```{r}
-select_cols(data_vars, width_less_than(3))
+select_cols(data_vars, width_less_than(4))
 ```
 
 
@@ -313,8 +310,8 @@ select_cols(data_vars, width_greater_than(3))
 Vamos criar um conjunto de dados com nomes de colunas *bagunçados*.
 
 ```{r}
-df <- head(data_ge, 3)
-colnames(df) <- c ("Env", "gen", "Rep", "GY", "hm")
+df <- head(maize, 3)
+colnames(df) <- c ("Amg", "hib", "Rep", "APLA", "AIES", "CESp", "dies", "Mgra", "mmG", "ngra")
 select_cols(df, lower_case_only())
 select_cols(df, upper_case_only())
 select_cols(df, title_case_only())
@@ -328,8 +325,7 @@ select_cols(df, title_case_only())
 
 Podemos usar [`remove_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) e [`remove_rows()`](https://tiagoolivoto.github.io/metan/ reference / utils_rows_cols.html) para remover colunas e linhas, respectivamente.\indf{remove\_cols}\indf{remove\_rows}
 ```{r}
-remove_cols(data_ge2, ENV, GEN)
-remove_rows(data_ge2, 1: 2, 5: 8)
+remove_cols(maize, AMB, HIB)
 ```
 
 
@@ -448,15 +444,15 @@ add_cols(maize,
 A função `concatenate()`\indf{concatenate} pode ser usada para concatenar várias colunas de um conjunto de dados. `concatenate()` retorna um quadro de dados com todas as colunas originais em `.data` mais a variável concatenada, após a última coluna. Para escolher a posição da nova variável, use o argumento `.after` ou` .before`, como a seguir.
 
 ```{r}
-concatenate(data_ge, ENV, GEN, REP, .after = "REP")
+concatenate(maize, AMB:REP, .after = "REP")
 
 ```
 \indf{concatenate}
 Para eliminar as variáveis existentes e manter apenas a coluna concatenada, use o argumento `drop = TRUE`. Para usar [`concatenate()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) dentro de uma determinada função como [`add_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) use o argumento `pull = TRUE` para extrair os resultados para um vetor.\indf{concatenate}
 
 ```{r}
-concatenate(data_ge, ENV, GEN, REP, drop = TRUE)
-concatenate(data_ge, ENV, GEN, REP, pull = TRUE) %>% head()
+concatenate(maize, AMB:REP, drop = TRUE)
+concatenate(maize, AMB:REP, pull = TRUE) %>% head()
 ```
 
 
@@ -466,23 +462,23 @@ concatenate(data_ge, ENV, GEN, REP, pull = TRUE) %>% head()
 As funções [`colnames_to_lower()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html), [`colnames_to_upper()`](https://tiagoolivoto.github.io/metan/reference /utils_rows_cols.html) e [`colnames_to_title()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) podem ser usados para converter nomes de colunas em maiúsculas, minúsculas ou em formato de título, respectivamente .\indf{colnames\_to\_lower} \indf{colnames\_to\_upper} \indf{colnames\_to\_title} 
 
 ```{r}
-colnames_to_lower(data_ge)
-colnames_to_upper(data_ge)
-colnames_to_title(data_ge)
+colnames_to_lower(maize)
+colnames_to_upper(maize)
+colnames_to_title(maize)
 ```
 
 
 ### Reordenando colunas
 A função [`reorder_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) pode ser usada para reordenar as colunas de um quadro de dados.\indf{reorder\_cols}
 ```{r}
-reorder_cols (data_vars, contains("PLANT"), .before = "ENV")
-reorder_cols (data_vars, ENV, GEN, .after = "ED")
+reorder_cols(data_vars, contains("PLANT"), .before = "AMB")
+reorder_cols(data_vars, AMB, HIB, .after = "REP")
 ```
 
 É possível colocar as colunas no primeiro e no último lugar rapidamente com [`columns_to_first()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) e [`columns_to_last()`](https: //tiagoolivoto.github.io/metan/reference/utils_rows_cols.html), respectivamente.\indf{columns\_to\_first}\indf{columns\_to\_last}
 
 ```{r}
-column_to_first(data_ge2, NKE, NR)
+column_to_first(maize, CESP, DIES)
 
 ```
 
@@ -491,8 +487,8 @@ column_to_first(data_ge2, NKE, NR)
 Para obter os níveis e o tamanho dos níveis de um fator, as funções [`get_levels()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) e [`get_level_size()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) pode ser usado.
 \indf{get\_levels}\indf{get\_levels\_size}
 ```{r}
-get_levels(data_ge, ENV)
-get_level_size(data_ge, ENV)
+get_levels(maize, AMB)
+get_level_size(maize, AMB)
 ```
 
 
@@ -507,8 +503,9 @@ maize %>%
       APLA > 2.3 ~ "Alto",
       MGRA < 130 ~ "Pouco produtivo",
       TRUE ~ "Outro"
-      )
     )
+  ) %>% 
+  select_non_numeric_cols()
 
 ```
 
@@ -554,15 +551,13 @@ maize[maize$MGRA > 220 & maize$APLA < 2, ]
 A função [`round_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 0). Se nenhuma variável for informada, todas as variáveis numéricas serão arredondadas.\indf{round\_cols}
 
 ```{r}
-df_round <- as.data.frame(data_ge2)
-head(df_round)
-round_cols(df_round) %>% head()
+round_cols(maize)
 ```
 
 
 Como alternativa, selecione variáveis para arredondar.
 ```{r}
-round_cols(df_round, PH, EP, digits = 1) %>% head()
+round_cols(maize, MGRA, MMG, digits = 1)
 ```
 
 ### Extraindo e substituindo números
@@ -570,55 +565,55 @@ round_cols(df_round, PH, EP, digits = 1) %>% head()
 As funções [`extract_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_number()`](https://tiagoolivoto.github.io/metan/ reference / utils_num_str.html) pode ser usado para extrair ou substituir números. Como exemplo, extrairemos o número de cada genótipo em `data_g`. Por padrão, os números extraídos são colocados como uma nova variável chamada `new_var` após a última coluna dos dados.\indf{extract\_number}\indf{replace\_number}
 
 ```{r}
-extract_number(data_ge, GEN, .after = "GEN")
+extract_number(maize, HIB, .after = "HIB")
 ```
 
 Se o argumento `drop` estiver definido como `TRUE`, apenas a nova variável será mantida e todas as outras serão descartadas.
 
 ```{r}
-extract_number(data_ge, GEN, drop = TRUE)
+extract_number(maize, HIB, drop = TRUE)
 ```
 
 Para extrair os resultados em um vetor, use o argumento `pull = TRUE`. Isso é particularmente útil quando `extract_ *` ou `replace_ *` são usados em uma função como [`add_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html).
 
 
 ```{r}
-extract_number(data_ge, GEN, pull = TRUE)
+extract_number(maize, HIB, pull = TRUE)
 ```
 \indf{extract\_number}
 
 Para substituir números de uma determinada coluna por uma substituição especificada, use [`replace_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html). Por padrão, os números são substituídos por "". O argumento `drop` e` pull` também podem ser usados, como mostrado acima.\indf{replace\_number}
 
 ```{r}
-replace_number(data_ge, GEN)
-replace_number(data_ge,
-               var = REP,
-               pattern = "1",
-               replacement = "Rep_1",
-               new_var = R_ONE,
-               .after = "REP")
+replace_number(maize, HIB)
+replace_number(maize,
+               var = REP,
+               pattern = "^I$",
+               replacement = "REP_1",
+               new_var = R_ONE,
+               .after = "REP")
 ```
 
 ### Extraindo, substituindo e removendo strings
 As funções [`extract_string()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_string()`](https://tiagoolivoto.github.io/metan/ reference / utils_num_str.html) são usados no mesmo contexto de [`extract_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_number()`](https : //tiagoolivoto.github.io/metan/reference/utils_num_str.html), mas para lidar com seqüências de caracteres.
 
 ```{r}
-extract_string(data_ge, GEN, .after = "GEN")
+extract_string(maize, HIB, .after = "HIB")
 ```
 \indf{extract\_string}
 
 Para substituir strings, podemos usar a função [`replace_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html).
 ```{r}
-replace_string(data_ge,
-               var = GEN,
-               new_var = GENOTYPE,
-               replacement = "GENOTYPE_",
-               .after = "GEN")
+replace_string(maize,
+               var = HIB,
+               new_var = HIBRIDO,
+               replacement = "HIB_",
+               .after = "HIB")
 ```
 
 Para remover todas as seqüências de caracteres de um quadro de dados, use [`remove_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html).
 ```{r}
-remove_strings(data_ge)
+remove_strings(maize)
 ```
 \indf{remove\_strings}
 
@@ -647,9 +642,9 @@ O `tidy_strings()` também funciona para arrumar um quadro de dados inteiro ou c
 ```{r}
 library(tibble)
 df <- tibble(Env = messy_env,
-             gen = messy_gen,
-             Env_GEN = interaction(Env, gen),
-             y = rnorm (6, 300, 10))
+             gen = messy_gen,
+             Env_GEN = interaction(Env, gen),
+             y = rnorm (6, 300, 10))
 df
 tidy_strings(df)
 tidy_strings(df, gen)
@@ -677,18 +672,30 @@ maize %>%
 
 ## Combinando os verbos para manipulação
 
-Esta sessão tem o objetivo de demonstrar como os *verbos* **dplyr** em conjunto com as funções `spread()` do pacote [tidyr](https://tidyr.tidyverse.org/) ^[https://tidyr.tidyverse.org/] e `column_to_rownames()` \indf{column\_to\_rownames} do pacote [tibble](https://www.tidyverse.org/packages/)^[https://www.tidyverse.org/packages/] podem ser combinados para construir uma matriz dupla entrada onde as linhas correspondem aos genótipos e as colunas correspondem aos ambientes. Esta matriz será preenchida com o valor médio da MGRA considerando apenas as duas primeiras repetições de cada híbrido em cada ambiente.
+Esta sessão tem o objetivo de demonstrar como os *verbos* **dplyr** em conjunto com as funções `pivot_longer()` do pacote [tidyr](https://tidyr.tidyverse.org/) ^[https://tidyr.tidyverse.org/] e `column_to_rownames()` \indf{column\_to\_rownames} do pacote [tibble](https://www.tidyverse.org/packages/)^[https://www.tidyverse.org/packages/] podem ser combinados para construir uma matriz dupla entrada onde as linhas correspondem aos genótipos e as colunas correspondem aos ambientes. Esta matriz será preenchida com o valor médio da MGRA considerando apenas as duas primeiras repetições de cada híbrido em cada ambiente.
 \indf{filter}
 \indf{group\_by}
 \indf{summarise}
-\indf{spread}
+\indf{pivot\_wider}
+\indf{make\_mat}
+
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 maize %>%
   filter(REP %in% c("I", "II")) %>%
   group_by(AMB, HIB) %>%
   summarise(MGRA_me = mean(MGRA)) %>%
-  spread(AMB, MGRA_me) %>%
-  column_to_rownames("HIB")
+  pivot_wider(names_from = HIB, values_from = MGRA_me) %>%
+  round_cols(digits = 1)
+
+```
+
+Note que a mesma tabela dupla entrada pode ser obtida com a função `make_mat()` do pacote `metan`.
+
+```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+maize %>%
+  filter(REP %in% c("I", "II")) %>%
+  make_mat(AMB, HIB, MGRA) %>% 
+  round_cols(digits = 1)
 
 ```
 
@@ -701,58 +708,61 @@ maize %>%
 Os seguintes códigos criam três novos conjuntos de dados. **maize2** contém dados de duas repetições para os híbridos H1:H5 nos ambientes H1 e H2. **mean_h** e **mean_a** contém as médias para os híbridos e ambientes, respectivamente. \indf{ungroup}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-maize2 <- 
+maize_small <- 
   maize %>%
-  filter(HIB %in% c("H1", "H2", "H3","H4","H5")) %>%
-  filter(AMB %in% c("A1", "A2")) %>%
-  group_by(AMB, HIB) %>%
-  summarise_if(is.numeric, mean)%>%
-  ungroup()
+  filter(HIB %in% c("H1", "H2", "H3")) %>%
+  filter(AMB %in% c("A1", "A2"))
 
-mean_h <- maize2 %>%
-  group_by(HIB) %>%
-  summarise_if(is.numeric, .funs = c(m =mean))%>%
-  select(HIB, contains("A"))%>%
-  ungroup()
+maize2 <- 
+  maize_small %>% 
+  means_by(AMB, HIB) %>% 
+  select(AMB:APLA) %>% 
+  round_cols(digits = 1)
+maize2
 
-mean_a <- maize2 %>%
-  group_by(AMB) %>%
-  summarise_if(is.numeric, .funs = c(m =mean))%>%
-  select(AMB, contains("ES"))%>%
-  ungroup()
+mean_h <- 
+  maize_small %>%
+  means_by(HIB) %>% 
+  select(HIB, contains("A")) %>% 
+  round_cols(digits = 1)
+  
+mean_a <-
+  maize_small %>%
+  means_by(AMB) %>% 
+  select(AMB, contains("ES")) %>% 
+  round_cols(digits = 1)
 
 
 ```
 
-* Juntando a coluna **MGRA_m** da tabela **mean_h** na tabela **maize2** considerando as variáveis com mesmo nome nas duas tabelas (neste caso, HIB)
+* Juntando a coluna **MGRA** e **NGRA** da tabela **mean_h** na tabela **maize2** considerando as variáveis com mesmo nome nas duas tabelas (neste caso, HIB)
 
 \indf{left\_join}
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-left_join(maize2, mean_h %>%
-            select(HIB, MGRA_m))
+left_join(maize2, mean_h %>% select(HIB, MGRA, NGRA), by = "HIB")
 ```
 
-* Juntando as colunas da tabela **mean_g** na tabela **maize2**
+* Juntando as colunas da tabela **mean_a** na tabela **maize2**
 
 \indf{full\_join}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-full_join(maize2, mean_a)
+full_join(maize2, mean_a, by = "AMB")
 ```
 
 ### Junções com filtragem de dados
 
-* Filtrando as linhas da tabela **maize** com base nas variáveis que combinam na tabela **mean_h** (neste caso, a coluna HIB) \indf{semi\_join}
+* Filtrando as linhas da tabela **maize2** com base nas variáveis que combinam na tabela **mean_h** (neste caso, a coluna HIB) \indf{semi\_join}
 
-```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-semi_join(maize, mean_h)
+```{r echo = TRUE, eval = TRUE}
+semi_join(maize2, mean_h, by = c("HIB", "APLA"))
 ```
 
 
-* Filtrando as linhas da tabela **maize** com base nas variáveis que **NÃO** combinam na tabela **mean_h** (neste caso, a coluna HIB) \indf{anti\_join}
+* Filtrando as linhas da tabela **maize2** com base nas variáveis que **NÃO** combinam na tabela **mean_h** (neste caso, a coluna HIB) \indf{anti\_join}
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-anti_join(maize, mean_h)
+anti_join(maize2, mean_h, by = c("HIB", "APLA"))
 ```
 
 ### Operações com conjuntos
@@ -761,10 +771,14 @@ Nesta seção será demonstrado como é possivel utilizar operações de cojunto
 e as linhas 3 a 10 de **maize**. Note que a função `slice()` \indf{slice} é utilizada para selecionar as linhas com base em sua posição.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-data_1_to_5 = maize %>%
-  slice(1:5)
-data_3_to_10 = maize %>%
-  slice(3:10)
+data_1_to_5 <- 
+  maize %>%
+  slice(1:5) %>% 
+  add_cols(id = 1:5, .before = 1)
+data_3_to_10 <- 
+  maize %>%
+  slice(3:10) %>% 
+  add_cols(id = 3:10, .before = 1)
 ```
 
 #### Interseção de conjuntos

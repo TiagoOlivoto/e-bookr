@@ -2,9 +2,10 @@
 
 Conhecer o grau de associação linear entre caracteres é de fundamental importância em um programa de melhoramento genético vegetal. Esta importância aumenta, principalmente se algum caractere desejável é de difícil mensuração, ou apresenta baixa herdabilidade. O coeficiente de correlação \indt{correlação} produto-momento de @Pearson1920, *r*, vem sendo amplamente utilizado para este fim. Embora o mérito desta análise seja atribuído à Karl Pearson, o método foi originalmente concebido por Francis Galton, que definiu o termo correlação como como o seguinte: *duas variáveis são ditas correlacionadas quando a variação de uma é acompanhada na média, mais ou menos a variação da outra, e no mesmo sentido* [@Galton1888].
 
+
 ## Dados
 
-Nesta sessão, e na sessão de [análise multivariada](#multivariate) iremos utilizar o conjunto de dados `datage_2` do pacote **metan**. Para maiores informações veja `?data_ge2`
+Nesta sessão, e na sessão de [análise multivariada](#multivariate) iremos utilizar o conjunto de dados `datage_2` do pacote `metan`. Para maiores informações veja `?data_ge2`
 
 ```{r warning = FALSE, message = FALSE}
 maize <- data_ge2
@@ -59,7 +60,7 @@ Na figura acima, os pontos observados são plotados na diagonal inferior. Na dia
 
 
 \indf{corr\_plot}
-A função `corr_plot()`do pacote **metan** retorna um gráfico semelhante ao anterior, no entanto possui diversas opções, tais como mudança no tamanho da letra dependendo da magnitude da correlação e indicação de cores para correlações significativas.
+A função `corr_plot()`do pacote `metan` retorna um gráfico semelhante ao anterior, no entanto possui diversas opções, tais como mudança no tamanho da letra dependendo da magnitude da correlação e indicação de cores para correlações significativas.
 ```{r message = F, fig.height = 5, fig.width = 5, fig.align = "center", fig.cap = "Scatter plot de uma matriz de correlação de Pearson"}
 corr_plot(datacor)
 ```
@@ -234,7 +235,7 @@ ci_corr <- cor.mtest(datacor)
 
 ### Não paramétrico
 
-Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por @Olivoto2018. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função `corr_ci()` do pacote **metan**. \indf{corr\_ci} É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém **E** no nome. Note o benefício do operador `%>%` neste caso.
+Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por @Olivoto2018. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função `corr_ci()` do pacote `metan`. \indf{corr\_ci} É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém **E** no nome. Note o benefício do operador `%>%` neste caso.
 
 ```{r, fig.align="center", }
 maize %>% 
@@ -261,7 +262,7 @@ $$
 
 onde $r_{ij.m}$ é o coeficiente de correlação parcial \indt{correlação parcial} entre as variável *i* e *j*, sem o efeito das outras *m* outras variáveis; $a_{ij}$ é o elemento da ordem *ij* da inversa da matriz de correlação simples; $a_{ii}$ e $a_{jj}$  são os elementos de ordens *ii* e *jj*, respectivamente, da inversa da matriz de correlação simples.
 
-As matrizes de coeficientes de correlação linear e parcial podem ser facilmente obtida utilizando a função `lpcor()` \indf{lpcor} do pacote **metan**. A entrada dos dados pode ser realizada de duas maneiras. (i) utilizando os dados com as observações de cada variável; ou (ii) utilizando uma matriz de correlação linear simples pré estimada. Em nosso exemplo, vamos utilziar os mesmos dados utilizados nas funções anteriores (*datacor*).
+As matrizes de coeficientes de correlação linear e parcial podem ser facilmente obtida utilizando a função `lpcor()` \indf{lpcor} do pacote `metan`. A entrada dos dados pode ser realizada de duas maneiras. (i) utilizando os dados com as observações de cada variável; ou (ii) utilizando uma matriz de correlação linear simples pré estimada. Em nosso exemplo, vamos utilziar os mesmos dados utilizados nas funções anteriores (*datacor*).
 
 ```{r,  message = F, warning = F}
 
@@ -276,7 +277,7 @@ A função retorna 3 objetos: `linear.mat` que contém a  matriz de correlação
 
 ## Análise de trilha
 
-Nesta sessão, primeiramente uma breve introdução à análise de trilha é apresentada. Algumas dificuldades, como , por exemplo, a presença de multicolinearidade \indt{multicolinearidade} e possíveis soluções para contorná-la serão discutidas. Posteriormente exemplos numéricos serão realizados utilizando funções do pacote **metan**.
+Nesta sessão, primeiramente uma breve introdução à análise de trilha é apresentada. Algumas dificuldades, como , por exemplo, a presença de multicolinearidade \indt{multicolinearidade} e possíveis soluções para contorná-la serão discutidas. Posteriormente exemplos numéricos serão realizados utilizando funções do pacote `metan`.
 
 ### Introdução
 
@@ -284,7 +285,7 @@ A análise de trilha vem se destacando na área do melhoramento genético, pois 
 
 No ano seguinte, 1923, Sewall Wright em seu [artigo](https://www.genetics.org/content/genetics/8/3/239.full.pdf)^[https://www.genetics.org/content/genetics/8/3/239.full.pdf] entitulado *The theory of path coefficients: a reply to Niles's criticism*, publicado na mesma revista *Genetics*, consolida seu método ao concluir que Niles pareceu se basear em conceitos matemáticos incorretos, resultado de uma falha em reconhecer que um coeficiente de trilha não é uma função simétrica de duas variáveis, mas que ele necessariamente tem direção. Este autor conclui seu trabalho afirmando que a análise de trilha não fornece uma fórmula geral para deduzir relações causais a partir do conhecimento das correlações. Ela é, no entanto, dentro de certas limitações, um método de avaliar as consequências lógicas de uma hipótese de relação causal em um sistema de variáveis correlacionadas. Acrescenta ainda que as críticas oferecidas por Niles em nada invalidam a teoria do método ou sua aplicação [@Wright1923]. Atualmente, o método estatístico é consolidado, e utilizado mundialmente em diversas áreas da ciência.
 
-### Estimação
+### Estimativa
 
 A decomposição das correlações lineares em efeitos diretos e indiretos de um conjunto de *p*-variáveis explicativas é realizada o sistema de equações normais \indt{sistema de equações normais} 
 
@@ -316,30 +317,30 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 Como exemplo numérico, vamos utilizar as variáveis PERK, EH, CDED como variáveis explicativas e a variável KW como dependente, do conjunto de dados `maize`. Para seleção destas variáveis, a função `select()`\indf{select} é utilizada.
 
 ```{r,  message = F, warning = F}
-x = maize %>% select(PERK, EH, CDED)
-y = maize %>% select(KW)
+x <- maize %>% select(PERK, EH, CDED)
+y <- maize %>% select(KW)
 
-xx = cor(x) # Correlação entre as variáveis explicativas
-xy = cor(x, y) # Correlação das explicativas com a dependente
-b = solve(xx) %*% xy # Estimativa dos coeficientes
+xx <- cor(x) # Correlação entre as variáveis explicativas
+xy <- cor(x, y) # Correlação das explicativas com a dependente
+b <- solve(xx) %*% xy # Estimativa dos coeficientes
 
-PERK_KW_DIR = b[1] # Direto de PERK em KW
-PERK_KW_EH = b[2] * xx[1,2] # Indireto de PERK em KW via EH
-PERK_KW_CDED = b[3] * xx[1,3] # Indireto de PERK em KW via CDED
+PERK_KW_DIR <- b[1] # Direto de PERK em KW
+PERK_KW_EH <- b[2] * xx[1,2] # Indireto de PERK em KW via EH
+PERK_KW_CDED <- b[3] * xx[1,3] # Indireto de PERK em KW via CDED
 
-EH_KW_PERK = b[1] * xx[2,1] # Indireto de EH em KW via PERK
-EH_KW_DIR = b[2] # Direto de EH em KW
-EH_KW_CDED = b[3] * xx[2,3] # Indireto de EH em KW via CDED
+EH_KW_PERK <- b[1] * xx[2,1] # Indireto de EH em KW via PERK
+EH_KW_DIR <- b[2] # Direto de EH em KW
+EH_KW_CDED <- b[3] * xx[2,3] # Indireto de EH em KW via CDED
 
-CDED_KW_PERK = b[1] * xx[3,1] # Indireto de CDED em KW via PERK
-CDED_KW_EH = b[2] * xx[3,2] # Indireto de CDED em KW via EH
-CDED_KW_DIR = b[3] # Direto de CDED em KW
+CDED_KW_PERK <- b[1] * xx[3,1] # Indireto de CDED em KW via PERK
+CDED_KW_EH <- b[2] * xx[3,2] # Indireto de CDED em KW via EH
+CDED_KW_DIR <- b[3] # Direto de CDED em KW
 
 # Coeficientes de trilha (direto na diagonal, indireto fora da diagonal)
-coeff = matrix(c(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,
-                 EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,
-                 CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),
-               ncol = 3)
+coeff <- matrix(c(PERK_KW_DIR, PERK_KW_EH, PERK_KW_CDED,
+                  EH_KW_PERK, EH_KW_DIR, EH_KW_CDED,
+                  CDED_KW_PERK, CDED_KW_EH, CDED_KW_DIR),
+                ncol = 3)
 rownames(coeff) <- colnames(coeff) <- c("PERK", "EH", "CDED")
 coeff
 
@@ -351,7 +352,7 @@ Utilizando os conhecimentos acumulados até agora, estes mesmos coeficientes pod
 
 
 ```{r,  message = F, warning = F}
-n = ncol(xx)
+n <- ncol(xx)
 Coeff <- data.frame(xx)
 for (i in 1:n) {
   for (j in 1:n) {
@@ -395,7 +396,7 @@ onde $\mathop {{\rm{VIF}}}\nolimits_{\mathop \beta \nolimits_k }$ é o fator de 
 
 #### Diagnóstico da multicolinearidade
 
-A função `colindiag()` \indf{colindiag} do pacote **metan** é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Os códigos a seguir calculam um diagnóstico completo de colinearidade de uma matriz de correlação de características preditivas. Vários indicadores, como fator de inflação de variação, número de condição e determinante de matriz são considerados [@Olivoto2017f; @Olivoto2017c] O diagnóstico pode ser realizado usando: (i) matrizes de correlação; (ii) quadros de dados ou (iii) um objeto agrupado passado de `group_by()`.
+A função `colindiag()` \indf{colindiag} do pacote `metan` é utilizada para realizar o diagnóstico da multicolinearidade de uma matriz de correlação. Os códigos a seguir calculam um diagnóstico completo de colinearidade de uma matriz de correlação de características preditivas. Vários indicadores, como fator de inflação de variação, número de condição e determinante de matriz são considerados [@Olivoto2017f; @Olivoto2017c] O diagnóstico pode ser realizado usando: (i) matrizes de correlação; (ii) quadros de dados ou (iii) um objeto agrupado passado de `group_by()`.
 
 * **Usando uma matriz de correlação, estimada anteriormente**
 
@@ -486,6 +487,7 @@ pathtodas$plot
 
 ```
 
+print()
 
 O gráfico acima nos proporciona uma interpretação sobre qual é o valor de *k* mais indicado a ser utilizado. Para fins didátidos, escolheremos, por enquanto, o valor de *k* igual a 0.04, valor no qual os coeficientes de regressão da maioria das variávies se estabiliza. Para incluir este valor de correção, utilizaremos novamente a função `path_coeff()`, no entanto, agora, incluiremos o argumento `correction = 0.04`.
 
@@ -561,20 +563,23 @@ path_levels <-
 Correlações canônicas podem ser implementadas com a função `can_corr()`\indf{can\_corr}. Primeiro, renomearemos as variáveis relacionadas à planta `PH` `EH` e `EP` com o sufixo `_PLA` para mostrar a usabilidade do *select helper* `contains()`.
 
 ```{r }
-data_cc <- rename(data_ge2,
-                  PH_PLA = PH,
-                  EH_PLA = EH,
-                  EP_PLA = EP)
+data_cc <- 
+  rename(data_ge2,
+         PH_PLA = PH,
+         EH_PLA = EH,
+         EP_PLA = EP)
 
 # Digitar nome das variáveis
-cc1 <- can_corr(data_cc,
-                FG = c(PH_PLA, EH_PLA, EP_PLA),
-                SG = c(EL, ED, CL, CD, CW, KW))
+cc1 <- 
+  can_corr(data_cc,
+           FG = c(PH_PLA, EH_PLA, EP_PLA),
+           SG = c(EL, ED, CL, CD, CW, KW))
 
 # Use select helpers
-cc2 <- can_corr(data_cc,
-                FG = contains("_PLA"),
-                SG = c(EL, ED, CL, CD, CW, KW))
+cc2 <- 
+  can_corr(data_cc,
+           FG = contains("_PLA"),
+           SG = c(EL, ED, CL, CD, CW, KW))
 
 ```
 

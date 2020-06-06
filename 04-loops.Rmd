@@ -5,20 +5,20 @@ A função `for()` repete o código indicado dentro de `{}` *n* vezes, sendo *n*
 
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-j = 5
-for (i in 1:j) {
-k = i * 2
-print (k)
+j <- 5
+for (i in 1:j){
+  k <- i * 2
+  print(k)
 }
 ```
 
 A função `while()` (que significa enquanto) repete o código dentro de `{}` enquanto alguma condição for verdadeira.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-i = 1
-while (i <= 5) {
-print(i * 2)
-i = i + 1
+i <- 1
+while (i <= 5){
+  print(i * 2)
+  i <- i + 1
 }
 ```
 
@@ -27,13 +27,13 @@ Note que os dois últimos exemplos apresentam o mesmo resultado: o R vai retorna
 No último exemplo, utilizando `repeat()`, o R repetirá o código dentro de `{}` sem condições. Com isso, precisamos utilizar a combinação das funções `if()` e `break()` para informar ao programa quando o código deve parar de ser repetido.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-i = 1
+i <- 1
 repeat {
-print(i * 2)
-i = i + 1
-if(i > 5){
-   break()
-}
+  print(i * 2)
+  i <- i + 1
+  if(i > 5){
+    break()
+  }
 }
 ```
 
@@ -42,9 +42,9 @@ Os Loops são importantes em estudos que utilizam reamostragens para realizar an
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE,fig.height = 7, fig.width = 8, fig.cap = "Demonstração do teorema central do limite"}
 library(ggplot2)
 library(cowplot)
-teor_lim = function(n, namostra, min, max){
+teor_lim <- function(n, namostra, min, max){
   set.seed(100)
-  media = data.frame(matrix(ncol = 1, nrow = n))
+  media <- data.frame(matrix(ncol = 1, nrow = n))
   names(media) = "value"
   for(j in 1:n){
     media[j, 1] = mean(runif(namostra, min, max))
@@ -52,25 +52,23 @@ teor_lim = function(n, namostra, min, max){
   return(media)
 }
 
-teorema_limite = list(
-  n20 = teor_lim(n = 20, namostra = 100, min = 0, max = 10),
-  n200 = teor_lim(n = 200, namostra = 100, min = 0, max = 10),
-  n2000 = teor_lim(n = 2000, namostra = 100, min = 0, max = 10),
-  n20000 = teor_lim(n = 20000, namostra = 100, min = 0, max = 10)
+teorema_limite <- list(
+  n20 <- teor_lim(n = 20, namostra = 100, min = 0, max = 10),
+  n200 <- teor_lim(n = 200, namostra = 100, min = 0, max = 10),
+  n2000 <- teor_lim(n = 2000, namostra = 100, min = 0, max = 10),
+  n20000 <- teor_lim(n = 20000, namostra = 100, min = 0, max = 10)
 )
 
-p = lapply(teorema_limite, function(d){
+p <- lapply(teorema_limite, function(d){
   ggplot(data = d, aes(x = value))+
-  geom_histogram(bins = 50,
-                 col = "black",
-                 size = 0.3,
-                 aes(fill = ..count..))+
+    geom_histogram(bins = 50,
+                   col = "black",
+                   size = 0.3,
+                   aes(fill = ..count..))+
     theme(legend.position = "none")+
     labs(x = "Média", y = "Contagem")
-
-}
-)
-
+  
+})
 plot_grid(plotlist = p,
           labels = names(teorema_limite),
           vjust = 2.5,
