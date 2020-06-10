@@ -32,6 +32,7 @@ median(Amostra1) # mediana
              
 O *R* calcula a média \indt{média} e mediana \indt{mediana} através das funções `mean()` \indf{mean} e `median()` \indf{median}, porém não calcula a moda. No blog [Ridículas](https://ridiculas.wordpress.com/2011/11/18/moda-de-uma-amostra-metodo-do-histograma-vs-metodo-kernel/), mantido pelo [LEG](http://www.leg.ufpr.br/doku.php/start) da UFPR, dois métodos são dicutidos. Incentivamos a leitura do material.
 
+
 ### Medidas de variabilidade
 As seguintes medidas de variabilidade podem ser computadas, com suas respectivas funções:
 

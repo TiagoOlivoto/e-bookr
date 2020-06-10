@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-06-06" />
+<meta name="date" content="2020-06-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -808,15 +808,15 @@ A função <code>cv_ammif()</code> é usada para calcular um procedimento de val
 A função <code>cv_blup ()</code> fornece uma validação cruzada de dados baseados em replicação usando modelos mistos. Por padrão, blocos completos são selecionados aleatoriamente para cada ambiente. Usando o argumento `random ’, é possível escolher os efeitos aleatórios do modelo, como mostrado abaixo.</p></li>
 <li><p><strong>Genótipo e genótipo versus ambiente como efeitos aleatórios</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="interaction.html#cb302-1"></a>BLUP_g &lt;-<span class="st"> </span><span class="kw">cv_blup</span> (dados_ge, ENV, GEN, REP, GY, aleatório =<span class="st"> &quot;gen&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="interaction.html#cb302-1"></a>BLUP_g &lt;-<span class="st"> </span><span class="kw">cv_blup</span> (dados_ge, ENV, GEN, REP, GY, <span class="dt">random =</span> <span class="st">&quot;gen&quot;</span>)</span></code></pre></div>
 <ul>
 <li><strong>Ambiente, replicação dentro do ambiente e interação como efeitos aleatórios</strong></li>
 </ul>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="interaction.html#cb303-1"></a>BLUP_e &lt;-<span class="st"> </span><span class="kw">cv_blup</span> (dados_ge, ENV, GEN, REP, GY, aleatório =<span class="st"> &quot;env&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="interaction.html#cb303-1"></a>BLUP_e &lt;-<span class="st"> </span><span class="kw">cv_blup</span> (dados_ge, ENV, GEN, REP, GY, <span class="dt">random =</span> <span class="st">&quot;env&quot;</span>)</span></code></pre></div>
 <ul>
 <li><strong>Um modelo aleatório (todos os termos como efeitos aleatórios)</strong></li>
 </ul>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="interaction.html#cb304-1"></a>BLUP_ge &lt;-<span class="st"> </span><span class="kw">cv_blup</span> (dados_ge, ENV, GEN, REP, GY, aleatório =<span class="st"> &quot;todos&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="interaction.html#cb304-1"></a>BLUP_ge &lt;-<span class="st"> </span><span class="kw">cv_blup</span> (dados_ge, ENV, GEN, REP, GY, <span class="dt">random =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -1339,9 +1339,9 @@ Eq. </p>
 <h3><span class="header-section-number">14.11.1</span> Ajustando o modelo</h3>
 <p>A função <code>waasb()</code>  do pacote <code>metan</code> será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-<em>vs</em>-ambiente.</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="interaction.html#cb326-1"></a></span>
-<span id="cb326-2"><a href="interaction.html#cb326-2"></a>BLUP_model =<span class="st"> </span><span class="kw">waasb</span>(data_ge, ENV, GEN, REP,</span>
-<span id="cb326-3"><a href="interaction.html#cb326-3"></a>                   <span class="dt">resp =</span> <span class="kw">c</span>(GY, HM),</span>
-<span id="cb326-4"><a href="interaction.html#cb326-4"></a>                   <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<span id="cb326-2"><a href="interaction.html#cb326-2"></a>BLUP_model &lt;-<span class="st"> </span><span class="kw">waasb</span>(data_ge, ENV, GEN, REP,</span>
+<span id="cb326-3"><a href="interaction.html#cb326-3"></a>                    <span class="dt">resp =</span> <span class="kw">c</span>(GY, HM),</span>
+<span id="cb326-4"><a href="interaction.html#cb326-4"></a>                    <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>A função <code>get_model_data()</code> pode ser utilizada para extrair importantes informações do modelo ajustado com a função <code>waasb()</code>.</p>
 <ul>
 <li>Resumo do experimento</li>
@@ -1418,8 +1418,20 @@ Eq. </p>
 <li>Imprimindo os BLUPs preditos para genótipos</li>
 </ul>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="interaction.html#cb332-1"></a></span>
-<span id="cb332-2"><a href="interaction.html#cb332-2"></a><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>blupGEN)</span>
-<span id="cb332-3"><a href="interaction.html#cb332-3"></a><span class="co"># NULL</span></span></code></pre></div>
+<span id="cb332-2"><a href="interaction.html#cb332-2"></a><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>BLUPgen)</span>
+<span id="cb332-3"><a href="interaction.html#cb332-3"></a><span class="co"># # A tibble: 10 x 6</span></span>
+<span id="cb332-4"><a href="interaction.html#cb332-4"></a><span class="co">#     Rank GEN     BLUPg Predicted    LL    UL</span></span>
+<span id="cb332-5"><a href="interaction.html#cb332-5"></a><span class="co">#    &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb332-6"><a href="interaction.html#cb332-6"></a><span class="co">#  1     1 G8     0.269       2.94  2.78  3.11</span></span>
+<span id="cb332-7"><a href="interaction.html#cb332-7"></a><span class="co">#  2     2 G3     0.229       2.90  2.74  3.07</span></span>
+<span id="cb332-8"><a href="interaction.html#cb332-8"></a><span class="co">#  3     3 G2     0.0570      2.73  2.57  2.90</span></span>
+<span id="cb332-9"><a href="interaction.html#cb332-9"></a><span class="co">#  4     4 G7     0.0543      2.73  2.56  2.89</span></span>
+<span id="cb332-10"><a href="interaction.html#cb332-10"></a><span class="co">#  5     5 G4    -0.0264      2.65  2.48  2.81</span></span>
+<span id="cb332-11"><a href="interaction.html#cb332-11"></a><span class="co">#  6     6 G1    -0.0575      2.62  2.45  2.78</span></span>
+<span id="cb332-12"><a href="interaction.html#cb332-12"></a><span class="co">#  7     7 G5    -0.112       2.56  2.40  2.73</span></span>
+<span id="cb332-13"><a href="interaction.html#cb332-13"></a><span class="co">#  8     8 G6    -0.114       2.56  2.39  2.73</span></span>
+<span id="cb332-14"><a href="interaction.html#cb332-14"></a><span class="co">#  9     9 G9    -0.134       2.54  2.37  2.71</span></span>
+<span id="cb332-15"><a href="interaction.html#cb332-15"></a><span class="co"># 10    10 G10   -0.166       2.51  2.34  2.67</span></span></code></pre></div>
 <p><code>blupGEN</code> mostra a média predita para os genótipos testados. <strong>BLUPg</strong> é o efeito genotípico <span class="math inline">\((\hat{g}_{i})\)</span> estimado por <span class="math inline">\(\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})\)</span> onde <span class="math inline">\(h_g^2\)</span> é o efeito <em>shrinkage</em> para genótipo, estimado por <span class="math inline">\(\mathop h\nolimits_g^2 = (\mathop {\hat \sigma }\nolimits_i^2 + E\mathop {\hat \sigma }\nolimits_g^2 )/(\mathop {\hat \sigma }\nolimits_i^2 + \mathop {\hat \sigma }\nolimits_\varepsilon ^2 + E\mathop {\hat \sigma }\nolimits_g^2 ).\)</span>. <strong>Predicted</strong> é a média predita por <span class="math inline">\(\hat{g}_{i}+\mu\)</span> onde <span class="math inline">\(\mu\)</span> é a média geral. <strong>LL</strong> e <strong>UL</strong> são os limites inferiore e superior, respectivamente estimado por <span class="math inline">\((\hat{g}_{i}+\mu)\pm{CI}\)</span>. <span class="math inline">\(CI\)</span> é o intervalo de confiança para predição BLUP, assumindo uma dada probabilidade de erro, onde <span class="math inline">\(CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}\)</span> onde <span class="math inline">\(t\)</span> é o valor <em>t</em>-Student para um teste bilateral a uma dada probabilidade de erro; <span class="math inline">\(Ac\)</span> é a acurácia de seleçao; e <span class="math inline">\(\mathop \sigma \nolimits_g^2\)</span> é a variância genotípica.</p>
 <ul>
 <li>plotando os BLUPs preditos para genótipos</li>
@@ -1441,12 +1453,27 @@ Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 <li>Imprimindo os BLUPs estimados para as combinações genótipo x ambiente (primeiras 10 entradas)</li>
 </ul>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="interaction.html#cb334-1"></a></span>
-<span id="cb334-2"><a href="interaction.html#cb334-2"></a><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>BLUPgge)</span>
-<span id="cb334-3"><a href="interaction.html#cb334-3"></a><span class="co"># NULL</span></span></code></pre></div>
+<span id="cb334-2"><a href="interaction.html#cb334-2"></a><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>BLUPint)</span>
+<span id="cb334-3"><a href="interaction.html#cb334-3"></a><span class="co"># # A tibble: 420 x 7</span></span>
+<span id="cb334-4"><a href="interaction.html#cb334-4"></a><span class="co">#    ENV   GEN   REP     BLUPg  BLUPge `BLUPg+ge` Predicted</span></span>
+<span id="cb334-5"><a href="interaction.html#cb334-5"></a><span class="co">#    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb334-6"><a href="interaction.html#cb334-6"></a><span class="co">#  1 E1    G1    1     -0.0575 -0.0621    -0.120       2.46</span></span>
+<span id="cb334-7"><a href="interaction.html#cb334-7"></a><span class="co">#  2 E1    G1    2     -0.0575 -0.0621    -0.120       2.44</span></span>
+<span id="cb334-8"><a href="interaction.html#cb334-8"></a><span class="co">#  3 E1    G1    3     -0.0575 -0.0621    -0.120       2.31</span></span>
+<span id="cb334-9"><a href="interaction.html#cb334-9"></a><span class="co">#  4 E1    G2    1      0.0570  0.207      0.264       2.84</span></span>
+<span id="cb334-10"><a href="interaction.html#cb334-10"></a><span class="co">#  5 E1    G2    2      0.0570  0.207      0.264       2.82</span></span>
+<span id="cb334-11"><a href="interaction.html#cb334-11"></a><span class="co">#  6 E1    G2    3      0.0570  0.207      0.264       2.69</span></span>
+<span id="cb334-12"><a href="interaction.html#cb334-12"></a><span class="co">#  7 E1    G3    1      0.229   0.0885     0.318       2.89</span></span>
+<span id="cb334-13"><a href="interaction.html#cb334-13"></a><span class="co">#  8 E1    G3    2      0.229   0.0885     0.318       2.87</span></span>
+<span id="cb334-14"><a href="interaction.html#cb334-14"></a><span class="co">#  9 E1    G3    3      0.229   0.0885     0.318       2.75</span></span>
+<span id="cb334-15"><a href="interaction.html#cb334-15"></a><span class="co"># 10 E1    G4    1     -0.0264  0.0601     0.0337      2.61</span></span>
+<span id="cb334-16"><a href="interaction.html#cb334-16"></a><span class="co"># # ... with 410 more rows</span></span></code></pre></div>
 <p>A saída acima os BLUPs  estimados para as combinações genótipo x ambiente. <strong>BLUPg</strong> é o efeito genotípico, descrito acima; <strong>BLUPge</strong> é o efeito genotípico do genótipo <em>i</em> no ambiente <em>j</em> <span class="math inline">\((\hat{g}_{ij})\)</span> estimado por <span class="math inline">\(\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})\)</span>, onde <span class="math inline">\(h_{ge}^2\)</span> é o efeito <em>shrinkage</em> para a interação GE, estimado por <span class="math inline">\(\mathop h\nolimits_{ge}^2 = \mathop {\hat \sigma }\nolimits_i^2 /(\mathop {\hat \sigma }\nolimits_i^2 + \mathop {\hat \sigma }\nolimits_\varepsilon ^2)\)</span>; <strong>BLUPg+ge</strong> é <span class="math inline">\(BLUP_g+BLUP_{ge}\)</span>; <strong>Predicted</strong> é a média predita (<span class="math inline">\(\hat{y}_{ij}\)</span>) estimada por <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}\)</span>.</p>
-<p>Para obter os valores acima para cada variável do modelo basta utilizar a função <code>get_model_data()</code>, por exemplo:
-* <code>get_model_data(BLUP_model, "blupg")</code> para as médias preditas de genótipos;
-* <code>get_model_data(BLUP_model, "blupge")</code> para as médias preditas de genótipos em ambientes;</p>
+<p>Para obter os valores acima para cada variável do modelo basta utilizar a função <code>get_model_data()</code>, por exemplo:</p>
+<ul>
+<li><code>get_model_data(BLUP_model, "blupg")</code> para as médias preditas de genótipos;</li>
+<li><code>get_model_data(BLUP_model, "blupge")</code> para as médias preditas de genótipos em ambientes;</li>
+</ul>
 </div>
 <div id="índices-de-estabilidade-baseados-em-blup" class="section level3" number="14.11.5">
 <h3><span class="header-section-number">14.11.5</span> Índices de estabilidade baseados em BLUP</h3>
@@ -1482,9 +1509,9 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 \]</span></p>
 <p>onde <span class="math inline">\(WAASBY_i\)</span> é o índice de superioridade para o genótipo <em>i</em> que pondera entre desempenho e estabilidade; <span class="math inline">\(rG_i\)</span> e <span class="math inline">\(rW_i\)</span> são os valores escalonados (0-100) para GY e WAASB, respectivamente; <span class="math inline">\(\theta_Y\)</span> e <span class="math inline">\(\theta_S\)</span> são os pesos para GY e WAASB, respectivamente.</p>
 <p>Este índice permite atribuir pesos para estabilidade e produtividade na classificação dos genótipos. Para isto, o argumento <code>wresp</code> da função <code>waasb()</code>  é usado. Por exemplo, se o objetivo é selecionar genótipos com alto rendimento (independentemente de sua estabilidade), então o <code>wresp = 100</code> deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação da variável de resposta. Por outro lado, visando selecionar genótipos altamente estáveis (independentemente da produtividade), então o <code>wresp = 0</code> deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação do índice WAASB. Qualquer valor entre 0 e 100 pode ser usado no argumento <code>wresp</code> para ponderar entre o desempenho médio e a estabilidade. Em nosso exemplo, o índice WAASBY foi calculado considerando <code>wresp = 50</code> (padrão da função), o que significa pesos iguais para desempenho e estabilidade médios. Para plotar os valores de WAASBY, o código a seguir é usado.</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="interaction.html#cb336-1"></a>p1 &lt;-<span class="kw">plot_waasby</span>(BLUP_model)</span>
-<span id="cb336-2"><a href="interaction.html#cb336-2"></a>p2 &lt;-<span class="kw">plot_waasby</span>(BLUP_model,</span>
-<span id="cb336-3"><a href="interaction.html#cb336-3"></a>                 <span class="dt">col.shape =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>)) <span class="op">+</span></span>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="interaction.html#cb336-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_waasby</span>(BLUP_model)</span>
+<span id="cb336-2"><a href="interaction.html#cb336-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">plot_waasby</span>(BLUP_model,</span>
+<span id="cb336-3"><a href="interaction.html#cb336-3"></a>                  <span class="dt">col.shape =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>)) <span class="op">+</span></span>
 <span id="cb336-4"><a href="interaction.html#cb336-4"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 
 <div class="dica">
@@ -1583,7 +1610,11 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <div id="diferentes-cenários-para-a-estimativa-do-waasby" class="section level4" number="14.11.5.3">
 <h4><span class="header-section-number">14.11.5.3</span> Diferentes cenários para a estimativa do WAASBY</h4>
 <p>No exemplo a seguir, aplicaremos a função <code>wsmp()</code>  (<strong>w</strong>eighting the <strong>s</strong>tability and the <strong>m</strong>ean <strong>p</strong>erformance) ao modelo previamente ajustado <code>BLUP_model</code> visando planejar diferentes cenários de estimação do WAASBY alterando os pesos atribuídos à estabilidade e ao desempenho médio. O número de cenários é definido pelo argumento <code>increment</code>. Por padrão, vinte e um cenários diferentes são simulados. Neste caso, o índice de superioridade WAASBY é calculado considerando os seguintes pesos: estabilidade = 100; desempenho médio = 0. Em outras palavras, apenas a estabilidade é considerada para a classificação dos genótipos. Na próxima iteração, os pesos se tornam 95/5 (uma vez que <code>increment = 5</code>). No terceiro cenário, os pesos se tornam 90/10, e assim por diante até esses pesos se tornarem 0/100. Na última iteração, a classificação do genótipo para o WAASBY corresponde perfeitamente às classificações da variável resposta.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="interaction.html#cb338-1"></a>scenarios &lt;-<span class="st"> </span><span class="kw">wsmp</span>(BLUP_model)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="interaction.html#cb338-1"></a>scenarios &lt;-<span class="st"> </span><span class="kw">wsmp</span>(BLUP_model)</span>
+<span id="cb338-2"><a href="interaction.html#cb338-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot</span>(scenarios)</span>
+<span id="cb338-3"><a href="interaction.html#cb338-3"></a>p2 &lt;-<span class="st"> </span><span class="kw">plot</span>(scenarios, <span class="dt">type =</span> <span class="dv">2</span>)</span>
+<span id="cb338-4"><a href="interaction.html#cb338-4"></a><span class="kw">arrange_ggplot</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
+<p><img src="html_r_files/figure-html/unnamed-chunk-374-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>A função genérica <code>plot()</code>  é então usada para plotar o objeto. Dois <em>heatmaps</em> são criados. O primeiro tipo mostra a classificação do genótipo dependendo do número de eixos de componentes principais usados para estimar o índice WAASB. Um dendrograma baseado na distância euclidiana é usado para agrupar a classificação dos genótipos. O segundo tipo mostra a classificação do genótipo dependendo da relação WAASB/GY. As classificações obtidas no cenário 100/0 consideram exclusivamente a estabilidade para o ranking de genótipos. Por outro lado, o cenário 0/100 considera exclusivamente a produtividade para o ranking de genótipos.</p>
 </div>
 <div id="performance-e-média-harmônica-dos-valores-genotípicos" class="section level4" number="14.11.5.4">

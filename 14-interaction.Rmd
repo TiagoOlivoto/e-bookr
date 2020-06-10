@@ -246,17 +246,17 @@ A função `cv_blup ()` fornece uma validação cruzada de dados baseados em rep
 
 * **Genótipo e genótipo versus ambiente como efeitos aleatórios**
 ```{r eval = F, fig.height = 5, fig.width = 10, fig.align =" center "}
-BLUP_g <- cv_blup (dados_ge, ENV, GEN, REP, GY, aleatório = "gen")
+BLUP_g <- cv_blup (dados_ge, ENV, GEN, REP, GY, random = "gen")
 ```
 
 * **Ambiente, replicação dentro do ambiente e interação como efeitos aleatórios**
 ```{r eval = F, fig.height = 5, fig.width = 10, fig.align =" center "}
-BLUP_e <- cv_blup (dados_ge, ENV, GEN, REP, GY, aleatório = "env")
+BLUP_e <- cv_blup (dados_ge, ENV, GEN, REP, GY, random = "env")
 ```
 
 * **Um modelo aleatório (todos os termos como efeitos aleatórios)**
 ```{r eval = F, fig.height = 5, fig.width = 10, fig.align =" center "}
-BLUP_ge <- cv_blup (dados_ge, ENV, GEN, REP, GY, aleatório = "todos")
+BLUP_ge <- cv_blup (dados_ge, ENV, GEN, REP, GY, random = "all")
 ```
 
 
@@ -715,9 +715,9 @@ A função `waasb()` \indf{waasb} do pacote `metan` será utilizada para a anál
 
 ```{r echo = TRUE}
 
-BLUP_model = waasb(data_ge, ENV, GEN, REP,
-                   resp = c(GY, HM),
-                   verbose = FALSE)
+BLUP_model <- waasb(data_ge, ENV, GEN, REP,
+                    resp = c(GY, HM),
+                    verbose = FALSE)
 
 ```
 
@@ -776,10 +776,9 @@ Além dos componentes de variância \indt{componentes de variância} para os efe
 
 ```{r }
 
-print(BLUP_model$GY$blupGEN)
+print(BLUP_model$GY$BLUPgen)
 
-
-    ```
+```
 
 `blupGEN` mostra a média predita para os genótipos testados. **BLUPg** é o efeito genotípico $(\hat{g}_{i})$ estimado por $\hat{g}_{i} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})$ onde $h_g^2$ é o efeito *shrinkage* para genótipo, estimado por $\mathop h\nolimits_g^2  = (\mathop {\hat \sigma }\nolimits_i^2  + E\mathop {\hat \sigma }\nolimits_g^2 )/(\mathop {\hat \sigma }\nolimits_i^2  + \mathop {\hat \sigma }\nolimits_\varepsilon ^2  + E\mathop {\hat \sigma }\nolimits_g^2 ).$. **Predicted** é a média predita por $\hat{g}_{i}+\mu$ onde $\mu$ é a média geral. **LL** e **UL** são os limites inferiore e superior, respectivamente estimado por $(\hat{g}_{i}+\mu)\pm{CI}$. $CI$ é o intervalo de confiança para predição BLUP, assumindo uma dada probabilidade de erro, onde $CI = t\times\sqrt{((1-Ac)\times{\mathop \sigma \nolimits_g^2)}}$ onde $t$ é o valor *t*-Student para um teste bilateral a uma dada probabilidade de erro; $Ac$ é a acurácia de seleçao; e $\mathop \sigma \nolimits_g^2$ é a variância genotípica.
 
@@ -800,13 +799,14 @@ arrange_ggplot(p1, p2, labels = c("p1", "p2"))
 
 ```{r}
 
-print(BLUP_model$GY$BLUPgge)
+print(BLUP_model$GY$BLUPint)
 
 ```
 
 A saída acima os BLUPs \indt{BLUP} estimados para as combinações genótipo x ambiente. **BLUPg** é o efeito genotípico, descrito acima; **BLUPge** é o efeito genotípico do genótipo *i* no ambiente *j* $(\hat{g}_{ij})$ estimado por $\hat{g}_{ij} = h_g^2(\bar{y}_{i.}-\bar{y}_{..})+h_{ge}^2(y_{ij}-\bar{y}_{i.}-\bar{y}_{.j}+\bar{y}_{..})$, onde $h_{ge}^2$ é o efeito *shrinkage* para a interação GE, estimado por $\mathop h\nolimits_{ge}^2  = \mathop {\hat \sigma }\nolimits_i^2 /(\mathop {\hat \sigma }\nolimits_i^2  + \mathop {\hat \sigma }\nolimits_\varepsilon ^2)$; **BLUPg+ge** é $BLUP_g+BLUP_{ge}$; **Predicted** é a média predita ($\hat{y}_{ij}$) estimada por $\hat{y}_{ij} = \bar{y}_{.j}+BLUP_{g+ge}$.
 
 Para obter os valores acima para cada variável do modelo basta utilizar a função `get_model_data()`, por exemplo:
+
  * `get_model_data(BLUP_model, "blupg")` para as médias preditas de genótipos;
  * `get_model_data(BLUP_model, "blupge")` para as médias preditas de genótipos em ambientes;
 
@@ -853,9 +853,9 @@ onde $WAASBY_i$ é o índice de superioridade para o genótipo *i* que pondera e
 Este índice permite atribuir pesos para estabilidade e produtividade na classificação dos genótipos. Para isto, o argumento `wresp` da função `waasb()` \indf{waasb} é usado. Por exemplo, se o objetivo é selecionar genótipos com alto rendimento (independentemente de sua estabilidade), então o `wresp = 100` deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação da variável de resposta. Por outro lado, visando selecionar genótipos altamente estáveis (independentemente da produtividade), então o `wresp = 0` deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação do índice WAASB. Qualquer valor entre 0 e 100 pode ser usado no argumento `wresp` para ponderar entre o desempenho médio e a estabilidade. Em nosso exemplo, o índice WAASBY foi calculado considerando `wresp = 50` (padrão da função), o que significa pesos iguais para desempenho e estabilidade médios. Para plotar os valores de WAASBY, o código a seguir é usado.
 
 ```{r fig.height = 5, fig.width = 50, fig.align = "center", message = F, warning = F }
-p1 <-plot_waasby(BLUP_model)
-p2 <-plot_waasby(BLUP_model,
-                 col.shape = c("black", "gray")) +
+p1 <- plot_waasby(BLUP_model)
+p2 <- plot_waasby(BLUP_model,
+                  col.shape = c("black", "gray")) +
   coord_flip()
 
 
@@ -886,8 +886,11 @@ No exemplo a seguir, aplicaremos a função `wsmp()` \indf{wsmp} (**w**eighting 
 
 
 
-```{r}
+```{r message=FALSE, warning=FALSE, fig.width=12, fig.height=5}
 scenarios <- wsmp(BLUP_model)
+p1 <- plot(scenarios)
+p2 <- plot(scenarios, type = 2)
+arrange_ggplot(p1, p2, labels = c("p1", "p2"))
 ```
 
 
