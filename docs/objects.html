@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 2 Tipos de objetos | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 2 Tipos de objetos | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="math.html"/>
-<script src="libs/header-attrs-2.2/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,9 +50,10 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.13/datatables.js"></script>
+<script src="libs/datatables-binding-0.14/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -71,17 +71,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +102,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -147,27 +148,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
-<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#por-que-eu-deveria-ler-este-e-book"><i class="fa fa-check"></i>Por que eu deveria ler este e-Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#estrutura"><i class="fa fa-check"></i>Estrutura</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#conjunto-de-dados"><i class="fa fa-check"></i>Conjunto de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a>
-<ul>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a><ul>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#tiago-olivoto"><i class="fa fa-check"></i>Tiago Olivoto</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#bruno-giacomini-sari"><i class="fa fa-check"></i>Bruno Giacomini Sari</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="detalhes-importantes.html"><a href="detalhes-importantes.html"><i class="fa fa-check"></i>Detalhes importantes</a></li>
 <li class="part"><span><b>I Parte I o ambiente R</b></span></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a>
-<ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#o-software-r"><i class="fa fa-check"></i><b>1.1</b> O software R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#o-software-rstudio"><i class="fa fa-check"></i><b>1.2</b> O software RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#meu-primeiro-script"><i class="fa fa-check"></i><b>1.3</b> Meu primeiro script</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a>
-<ul>
+<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a><ul>
 <li class="chapter" data-level="2.1" data-path="objects.html"><a href="objects.html#vetores"><i class="fa fa-check"></i><b>2.1</b> Vetores</a></li>
 <li class="chapter" data-level="2.2" data-path="objects.html"><a href="objects.html#matrizes"><i class="fa fa-check"></i><b>2.2</b> Matrizes</a></li>
 <li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
@@ -181,10 +178,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>5</b> Construindo uma tabela</a></li>
 <li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
-<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a>
-<ul>
+<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipula.html"><a href="manipula.html#selecionar-colunas"><i class="fa fa-check"></i><b>7.1.1</b> Selecionar colunas</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipula.html"><a href="manipula.html#remover-linhas-ou-colunas"><i class="fa fa-check"></i><b>7.1.2</b> Remover linhas ou colunas</a></li>
 <li class="chapter" data-level="7.1.3" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.1.3</b> Ordenar linhas</a></li>
@@ -196,8 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.9" data-path="manipula.html"><a href="manipula.html#obtendo-níveis-de-fatores"><i class="fa fa-check"></i><b>7.1.9</b> Obtendo níveis de fatores</a></li>
 <li class="chapter" data-level="7.1.10" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.1.10</b> Selecionar linhas com base em seus valores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a>
-<ul>
+<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="manipula.html"><a href="manipula.html#arredondando"><i class="fa fa-check"></i><b>7.2.1</b> Arredondando</a></li>
 <li class="chapter" data-level="7.2.2" data-path="manipula.html"><a href="manipula.html#extraindo-e-substituindo-números"><i class="fa fa-check"></i><b>7.2.2</b> Extraindo e substituindo números</a></li>
 <li class="chapter" data-level="7.2.3" data-path="manipula.html"><a href="manipula.html#extraindo-substituindo-e-removendo-strings"><i class="fa fa-check"></i><b>7.2.3</b> Extraindo, substituindo e removendo strings</a></li>
@@ -205,15 +199,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.3</b> Selecionar linhas por sua posição</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.4</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a>
-<ul>
+<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Junções com mutação de dados</a></li>
 <li class="chapter" data-level="7.5.2" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.5.2</b> Junções com filtragem de dados</a></li>
 <li class="chapter" data-level="7.5.3" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.5.3</b> Operações com conjuntos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a>
-<ul>
+<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <code>ggplot2</code></a></li>
@@ -222,16 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a>
-<ul>
+<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
 <li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
-<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a>
-<ul>
+<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
+<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
 <li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
 <li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#resumindo-dados-com-o-pacote-dplyr"><i class="fa fa-check"></i><b>10.1.3</b> Resumindo dados com o pacote <code>dplyr</code></a></li>
@@ -241,8 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.7" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.7</b> Teste de hipóteses para amostras independentes</a></li>
 <li class="chapter" data-level="10.1.8" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.8</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a>
-<ul>
+<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
 <li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
@@ -251,24 +239,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
-<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a>
-<ul>
+<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
 <li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
 <li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico-1"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
 <li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
 <li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
 <li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a>
-<ul>
+<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
 <li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
 <li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
 <li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
 <li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
 <li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a>
-<ul>
+<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>10.6.1</b> Download dos dados</a></li>
 <li class="chapter" data-level="10.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>10.6.2</b> Qualitativo vs qualitativo</a></li>
 <li class="chapter" data-level="10.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.3</b> Qualitativo vs quantitativo</a></li>
@@ -276,10 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>10.6.5</b> Experimentos em parcelas subdivididas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a>
-<ul>
+<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>11.1.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
 <li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
@@ -287,8 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a>
-<ul>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
 <li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimativa-1"><i class="fa fa-check"></i><b>11.2.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
 <li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
@@ -298,11 +280,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a>
-<ul>
+<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
 <li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a>
-<ul>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
 <li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
 <li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
@@ -311,17 +291,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a>
-<ul>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
 <li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
 <li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a>
-<ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimativa-2"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
 <li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
@@ -332,20 +310,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a>
-<ul>
+<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a>
-<ul>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
 <li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
 <li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
 <li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
 <li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a>
-<ul>
+<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
@@ -355,36 +330,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
 <li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a>
-<ul>
+<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
 <li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a>
-<ul>
+<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
 <li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
 <li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
 <li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
 <li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
 <li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
 <li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
-<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a>
-<ul>
+<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
 <li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
 <li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
 </ul></li>
 <li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#imprimindo-os-meios-das-estimativas-rmspd"><i class="fa fa-check"></i><b>14.8</b> Imprimindo os meios das estimativas RMSPD</a></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a>
-<ul>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a><ul>
 <li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.9.1</b> Valores estimados pelo modelo AMMI</a></li>
 <li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.9.2</b> Índices de estabilidade baseados em AMMI</a></li>
 <li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.9.3</b> Biplots</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a>
-<ul>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a><ul>
 <li class="chapter" data-level="14.10.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>14.10.1</b> Data centering</a></li>
 <li class="chapter" data-level="14.10.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>14.10.2</b> Data scaling</a></li>
 <li class="chapter" data-level="14.10.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>14.10.3</b> Singular value partition</a></li>
@@ -392,10 +362,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.10.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.10.5</b> Valores estimados pelo modelo GGE</a></li>
 <li class="chapter" data-level="14.10.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.10.6</b> Visualizando o Biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a>
-<ul>
+<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a><ul>
 <li class="chapter" data-level="14.11.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.11.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.11.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.11.2" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="14.11.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.11.3</b> Parâmetros genéticos</a></li>
 <li class="chapter" data-level="14.11.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.11.4</b> Médias preditas</a></li>
 <li class="chapter" data-level="14.11.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.11.5</b> Índices de estabilidade baseados em BLUP</a></li>
@@ -403,8 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.12" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.12</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
-<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a>
-<ul>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
 <li class="chapter" data-level="A.1" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
 <li class="chapter" data-level="A.2" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
 <li class="chapter" data-level="A.3" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
@@ -438,11 +406,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="objects" class="section level1" number="2">
+<div id="objects" class="section level1">
 <h1><span class="header-section-number">Capítulo 2</span> Tipos de objetos</h1>
 <p>Os tipos de objeto mais utilizados na linguagem <em>R</em> são: (i) vetores, (ii) matrizes, (iii) data frames, (iv) listas e (v) funções. Um enfoque maior será dado aos vetores, matrizes e data frames, pois estes são amplamen
 te utilizados, inclusive nas análises mais simples.</p>
-<div id="vetores" class="section level2" number="2.1">
+<div id="vetores" class="section level2">
 <h2><span class="header-section-number">2.1</span> Vetores</h2>
 <p>Existem quatro tipos principais de vetores: lógico, inteiro, duplo e caractere (que contém cadeias de caracteres). Vetores coletivamente inteiros e duplos são conhecidos como vetores numéricos. Cada um dos quatro tipos primários possui uma sintaxe especial para criar um valor individual, um escalar.</p>
 <ul>
@@ -457,7 +425,7 @@ te utilizados, inclusive nas análises mais simples.</p>
 <span id="cb6-3"><a href="objects.html#cb6-3"></a>x3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Vetor</span></span>
 <span id="cb6-4"><a href="objects.html#cb6-4"></a>x3</span>
 <span id="cb6-5"><a href="objects.html#cb6-5"></a><span class="co"># [1] 1 2 3</span></span>
-<span id="cb6-6"><a href="objects.html#cb6-6"></a>x3<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;um&quot;</span>,<span class="st">&quot;dois&quot;</span>,<span class="st">&quot;três&quot;</span>) <span class="co"># Vetor com caracteres</span></span></code></pre></div>
+<span id="cb6-6"><a href="objects.html#cb6-6"></a>x3<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;um&quot;</span>,<span class="st">&quot;dois&quot;</span>,<span class="st">&quot;três&quot;) # Vetor com caracteres</span></span></code></pre></div>
 <p>Os vetores foram armazenados em <em>x1</em>, <em>x2</em> e <em>x3</em> e ficaram armazenados como valores na área de trabalho como valores (<em>values</em>). Para que os valores sejam mostrados basta digitar no <em>console</em> onde os vetores foram armazenados.</p>
 <p>Vetores também podem ser criados utilizando as funções <code>rep()</code> e <code>seq()</code>, conforme mostrado abaixo.  </p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="objects.html#cb7-1"></a><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">10</span>)</span>
@@ -491,7 +459,7 @@ te utilizados, inclusive nas análises mais simples.</p>
 <span id="cb10-6"><a href="objects.html#cb10-6"></a><span class="kw">nth</span>(x, <span class="dv">23</span>)</span>
 <span id="cb10-7"><a href="objects.html#cb10-7"></a><span class="co"># [1] 53.21046</span></span></code></pre></div>
 </div>
-<div id="matrizes" class="section level2" number="2.2">
+<div id="matrizes" class="section level2">
 <h2><span class="header-section-number">2.2</span> Matrizes</h2>
 <p>As matrizes  são um conjunto de valores (ou variáveis) dispostos em linhas e colunas, e que formam um corpo delimitado por [ ]. As matrizes são geralmente representadas genericamente por <span class="math inline">\({{\boldsymbol{A}}_{{\boldsymbol{MxN}}}}\)</span>, onde <strong>M</strong> e <strong>N</strong> represetam os números de linhas e colunas da matriz, respectivamente. As matrizes podem ser facilmente construídas utilizando a função <code>matrix()</code>. Alternativamente, as funções <code>cbind()</code> e <code>rbind()</code> também podem ser utilizadas. A primeira função adiciona colunas as matrizes, enquanto que a segunda adiciona linhas. Veremos mais tarde que estas funções podem ser combinadas com outras funções para construção de data frames .</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="objects.html#cb11-1"></a><span class="co">## Usando cbind()</span></span>
@@ -543,7 +511,7 @@ te utilizados, inclusive nas análises mais simples.</p>
 <span id="cb15-5"><a href="objects.html#cb15-5"></a>x19[<span class="dv">1</span>, ] <span class="co"># &quot;,&quot; indica que todas as colunas serão selecionadas na linha 1</span></span>
 <span id="cb15-6"><a href="objects.html#cb15-6"></a><span class="co"># [1]  1  6 11</span></span></code></pre></div>
 </div>
-<div id="data-frame" class="section level2" number="2.3">
+<div id="data-frame" class="section level2">
 <h2><span class="header-section-number">2.3</span> Data Frame</h2>
 <p>A função <code>data.frame()</code>  cria estruturas cujas colunas podem ser valores numéricos ou caracteres. É uma estrutura muito utilizada em funções do <em>software R</em>.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="objects.html#cb16-1"></a>x22 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
@@ -552,14 +520,14 @@ te utilizados, inclusive nas análises mais simples.</p>
 <span id="cb16-4"><a href="objects.html#cb16-4"></a>                  <span class="dt">Rep =</span> <span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>, <span class="st">&quot;III&quot;</span>)),</span>
 <span id="cb16-5"><a href="objects.html#cb16-5"></a>                  <span class="dt">Y =</span> <span class="kw">rnorm</span>(<span class="dv">18</span>, <span class="dv">50</span>, <span class="dv">15</span>))</span>
 <span id="cb16-6"><a href="objects.html#cb16-6"></a><span class="kw">str</span>(x22)</span>
-<span id="cb16-7"><a href="objects.html#cb16-7"></a><span class="co"># &#39;data.frame&#39;: 18 obs. of  4 variables:</span></span>
+<span id="cb16-7"><a href="objects.html#cb16-7"></a><span class="co"># &#39;data.frame&#39;:	18 obs. of  4 variables:</span></span>
 <span id="cb16-8"><a href="objects.html#cb16-8"></a><span class="co">#  $ Ambiente: Factor w/ 2 levels &quot;A1&quot;,&quot;A2&quot;: 1 2 1 2 1 2 1 2 1 2 ...</span></span>
 <span id="cb16-9"><a href="objects.html#cb16-9"></a><span class="co">#  $ Genotipo: Factor w/ 3 levels &quot;G1&quot;,&quot;G2&quot;,&quot;G3&quot;: 1 1 2 2 3 3 1 1 2 2 ...</span></span>
 <span id="cb16-10"><a href="objects.html#cb16-10"></a><span class="co">#  $ Rep     : Factor w/ 3 levels &quot;I&quot;,&quot;II&quot;,&quot;III&quot;: 1 1 1 1 1 1 2 2 2 2 ...</span></span>
 <span id="cb16-11"><a href="objects.html#cb16-11"></a><span class="co">#  $ Y       : num  41.6 45.6 33.5 50.5 30.7 ...</span></span></code></pre></div>
 <p>Em <em>x22</em> simulamos como muitos experimentos são organizados no momento de tabulação dos dados (fatores nas colunas e variáveis nas linhas).</p>
 </div>
-<div id="tibbles" class="section level2" number="2.4">
+<div id="tibbles" class="section level2">
 <h2><span class="header-section-number">2.4</span> Tibbles</h2>
 <p>Um <code>tibble</code>, ou <code>tbl_df</code>, é uma versão moderna do <code>data.frame</code>. Tibbles são datas frames que não alteram nomes ou tipos de variáveis, possuindo um método <code>print()</code> aprimorado, que facilita o uso com grandes conjuntos de dados contendo objetos complexos. Você pode forçar um objeto de classe <code>data.frame</code> a um de classe <code>tibble</code> utilizando <code>as_tibble()</code>  ou criar um a partir de vetores individuais com <code>tibble()</code> . A função <code>tibble()</code>, diferente de <code>data.frame()</code> permite que você se refira às variáveis que você acabou de criar. É possível, também, que um tibble tenha nomes de colunas que não sejam nomes de variáveis R válidos. Por exemplo, elas podem não começar com uma letra ou podem conter caracteres incomuns como um espaço. Para se referir a essas variáveis, você precisa cercá-las com `. Neste documento, a estrutura de dados padrão a ser utilizada será tibble.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="objects.html#cb17-1"></a><span class="co"># Convertendo um dataframe a um tibble</span></span>
@@ -581,13 +549,13 @@ te utilizados, inclusive nas análises mais simples.</p>
 <span id="cb19-11"><a href="objects.html#cb19-11"></a><span class="co"># 4     4    16           20</span></span>
 <span id="cb19-12"><a href="objects.html#cb19-12"></a><span class="co"># 5     5    25           30</span></span></code></pre></div>
 </div>
-<div id="lista" class="section level2" number="2.5">
+<div id="lista" class="section level2">
 <h2><span class="header-section-number">2.5</span> Lista</h2>
 <p>No exemplo abaixo, será armazenado em uma lista  dois data-frames e uma matriz. Posteriomente, será selecionado a matriz que está armazenada na lista:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="objects.html#cb20-1"></a>x23 &lt;-<span class="st"> </span><span class="kw">list</span>(x19, x22)</span>
 <span id="cb20-2"><a href="objects.html#cb20-2"></a>x24 &lt;-<span class="st"> </span>x23[[<span class="dv">1</span>]]</span></code></pre></div>
 </div>
-<div id="funções" class="section level2" number="2.6">
+<div id="funções" class="section level2">
 <h2><span class="header-section-number">2.6</span> Funções</h2>
 <p>As funções  são a base da linguagem <em>R</em>. Através de <em>argumentos</em> que são indicados em <code>funtion()</code>, uma expressão (ou série de expressões) é resolvida e um valor (ou um conjunto de valores) é retornado. </p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="objects.html#cb21-1"></a>F1 &lt;-<span class="st"> </span><span class="cf">function</span>(x){ <span class="co"># x é o argumento da função</span></span>
@@ -638,6 +606,7 @@ te utilizados, inclusive nas análises mais simples.</p>
 <li>Crie uma função chamada <code>mega</code> que retorna os números a serem apostados em jogo da Mega Sena, tendo como argumentos <code>jogos</code>, que define quantos jogos e <code>numeros</code>, que define quantos numeros serão escolhidos em cada aposta (6-15). Para cada jogo ordene os números em ordem crescente.</li>
 </ul>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc1">Resposta</a></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="objects.html#cb22-1"></a><span class="kw">F1</span>(<span class="dv">2</span>)</span>
 <span id="cb22-2"><a href="objects.html#cb22-2"></a><span class="kw">F2</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
@@ -648,7 +617,7 @@ te utilizados, inclusive nas análises mais simples.</p>
 <span id="cb22-7"><a href="objects.html#cb22-7"></a><span class="kw">elevar</span>(<span class="dv">12</span>)</span>
 <span id="cb22-8"><a href="objects.html#cb22-8"></a><span class="kw">elevar</span>(<span class="dv">12</span>, <span class="dt">eleva =</span> <span class="st">&quot;cubico&quot;</span>)</span></code></pre></div>
 </div>
-<div id="identificando-as-classes-de-objetos" class="section level2" number="2.7">
+<div id="identificando-as-classes-de-objetos" class="section level2">
 <h2><span class="header-section-number">2.7</span> Identificando as classes de objetos</h2>
 <p>Conforme visto anteriormente, é possível construir várias classes de objetos em linguagem <em>R</em>. Veremos mais adiante que muitas funções exigem classes específicas como <em>argumento</em>, e por isso conhecê-los é muito importante. Funções genéricas como <code>class()</code>  ou <em>is.objeto</em> são importantes para identificar a qual tipo de classe tal objeto pertence.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="objects.html#cb23-1"></a><span class="kw">class</span>(x19)</span>
@@ -720,7 +689,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["html_r.epub"],
 "toc": {
 "collapse": "subsection"
 }

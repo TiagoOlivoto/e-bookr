@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 10 Análise de dados experimentais | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 10 Análise de dados experimentais | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="exporta.html"/>
 <link rel="next" href="reg.html"/>
-<script src="libs/header-attrs-2.2/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,9 +50,10 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.13/datatables.js"></script>
+<script src="libs/datatables-binding-0.14/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -71,17 +71,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +102,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -147,27 +148,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
-<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#por-que-eu-deveria-ler-este-e-book"><i class="fa fa-check"></i>Por que eu deveria ler este e-Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#estrutura"><i class="fa fa-check"></i>Estrutura</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#conjunto-de-dados"><i class="fa fa-check"></i>Conjunto de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a>
-<ul>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a><ul>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#tiago-olivoto"><i class="fa fa-check"></i>Tiago Olivoto</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#bruno-giacomini-sari"><i class="fa fa-check"></i>Bruno Giacomini Sari</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="detalhes-importantes.html"><a href="detalhes-importantes.html"><i class="fa fa-check"></i>Detalhes importantes</a></li>
 <li class="part"><span><b>I Parte I o ambiente R</b></span></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a>
-<ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#o-software-r"><i class="fa fa-check"></i><b>1.1</b> O software R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#o-software-rstudio"><i class="fa fa-check"></i><b>1.2</b> O software RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#meu-primeiro-script"><i class="fa fa-check"></i><b>1.3</b> Meu primeiro script</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a>
-<ul>
+<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a><ul>
 <li class="chapter" data-level="2.1" data-path="objects.html"><a href="objects.html#vetores"><i class="fa fa-check"></i><b>2.1</b> Vetores</a></li>
 <li class="chapter" data-level="2.2" data-path="objects.html"><a href="objects.html#matrizes"><i class="fa fa-check"></i><b>2.2</b> Matrizes</a></li>
 <li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
@@ -181,10 +178,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>5</b> Construindo uma tabela</a></li>
 <li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
-<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a>
-<ul>
+<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipula.html"><a href="manipula.html#selecionar-colunas"><i class="fa fa-check"></i><b>7.1.1</b> Selecionar colunas</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipula.html"><a href="manipula.html#remover-linhas-ou-colunas"><i class="fa fa-check"></i><b>7.1.2</b> Remover linhas ou colunas</a></li>
 <li class="chapter" data-level="7.1.3" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.1.3</b> Ordenar linhas</a></li>
@@ -196,8 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.9" data-path="manipula.html"><a href="manipula.html#obtendo-níveis-de-fatores"><i class="fa fa-check"></i><b>7.1.9</b> Obtendo níveis de fatores</a></li>
 <li class="chapter" data-level="7.1.10" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.1.10</b> Selecionar linhas com base em seus valores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a>
-<ul>
+<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="manipula.html"><a href="manipula.html#arredondando"><i class="fa fa-check"></i><b>7.2.1</b> Arredondando</a></li>
 <li class="chapter" data-level="7.2.2" data-path="manipula.html"><a href="manipula.html#extraindo-e-substituindo-números"><i class="fa fa-check"></i><b>7.2.2</b> Extraindo e substituindo números</a></li>
 <li class="chapter" data-level="7.2.3" data-path="manipula.html"><a href="manipula.html#extraindo-substituindo-e-removendo-strings"><i class="fa fa-check"></i><b>7.2.3</b> Extraindo, substituindo e removendo strings</a></li>
@@ -205,15 +199,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.3</b> Selecionar linhas por sua posição</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.4</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a>
-<ul>
+<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Junções com mutação de dados</a></li>
 <li class="chapter" data-level="7.5.2" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.5.2</b> Junções com filtragem de dados</a></li>
 <li class="chapter" data-level="7.5.3" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.5.3</b> Operações com conjuntos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a>
-<ul>
+<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <code>ggplot2</code></a></li>
@@ -222,16 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a>
-<ul>
+<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
 <li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
-<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a>
-<ul>
+<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
+<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
 <li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
 <li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#resumindo-dados-com-o-pacote-dplyr"><i class="fa fa-check"></i><b>10.1.3</b> Resumindo dados com o pacote <code>dplyr</code></a></li>
@@ -241,8 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.7" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.7</b> Teste de hipóteses para amostras independentes</a></li>
 <li class="chapter" data-level="10.1.8" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.8</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a>
-<ul>
+<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
 <li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
@@ -251,24 +239,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
-<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a>
-<ul>
+<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
 <li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
 <li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico-1"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
 <li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
 <li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
 <li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a>
-<ul>
+<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
 <li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
 <li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
 <li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
 <li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
 <li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a>
-<ul>
+<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>10.6.1</b> Download dos dados</a></li>
 <li class="chapter" data-level="10.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>10.6.2</b> Qualitativo vs qualitativo</a></li>
 <li class="chapter" data-level="10.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.3</b> Qualitativo vs quantitativo</a></li>
@@ -276,10 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>10.6.5</b> Experimentos em parcelas subdivididas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a>
-<ul>
+<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>11.1.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
 <li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
@@ -287,8 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a>
-<ul>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
 <li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimativa-1"><i class="fa fa-check"></i><b>11.2.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
 <li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
@@ -298,11 +280,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a>
-<ul>
+<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
 <li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a>
-<ul>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
 <li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
 <li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
@@ -311,17 +291,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a>
-<ul>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
 <li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
 <li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a>
-<ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimativa-2"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
 <li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
@@ -332,20 +310,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a>
-<ul>
+<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a>
-<ul>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
 <li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
 <li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
 <li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
 <li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a>
-<ul>
+<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
@@ -355,36 +330,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
 <li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a>
-<ul>
+<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
 <li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a>
-<ul>
+<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
 <li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
 <li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
 <li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
 <li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
 <li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
 <li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
-<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a>
-<ul>
+<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
 <li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
 <li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
 </ul></li>
 <li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#imprimindo-os-meios-das-estimativas-rmspd"><i class="fa fa-check"></i><b>14.8</b> Imprimindo os meios das estimativas RMSPD</a></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a>
-<ul>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a><ul>
 <li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.9.1</b> Valores estimados pelo modelo AMMI</a></li>
 <li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.9.2</b> Índices de estabilidade baseados em AMMI</a></li>
 <li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.9.3</b> Biplots</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a>
-<ul>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a><ul>
 <li class="chapter" data-level="14.10.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>14.10.1</b> Data centering</a></li>
 <li class="chapter" data-level="14.10.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>14.10.2</b> Data scaling</a></li>
 <li class="chapter" data-level="14.10.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>14.10.3</b> Singular value partition</a></li>
@@ -392,10 +362,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.10.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.10.5</b> Valores estimados pelo modelo GGE</a></li>
 <li class="chapter" data-level="14.10.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.10.6</b> Visualizando o Biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a>
-<ul>
+<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a><ul>
 <li class="chapter" data-level="14.11.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.11.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.11.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.11.2" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="14.11.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.11.3</b> Parâmetros genéticos</a></li>
 <li class="chapter" data-level="14.11.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.11.4</b> Médias preditas</a></li>
 <li class="chapter" data-level="14.11.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.11.5</b> Índices de estabilidade baseados em BLUP</a></li>
@@ -403,8 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.12" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.12</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
-<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a>
-<ul>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
 <li class="chapter" data-level="A.1" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
 <li class="chapter" data-level="A.2" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
 <li class="chapter" data-level="A.3" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
@@ -438,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analdata" class="section level1" number="10">
+<div id="analdata" class="section level1">
 <h1><span class="header-section-number">Capítulo 10</span> Análise de dados experimentais</h1>
 <blockquote>
 <p>“Muito melhor uma resposta aproximada à pergunta certa, que muitas vezes é vaga, do que uma resposta exata à pergunta errada, que sempre pode ser feita com precisão.” — John Tukey</p>
@@ -451,9 +419,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="analdata.html#general">Parte 4: modelos lineares generalizados</a>: Modelos Lineares Generalizados aplicados a análise de dados não gaussianos.</p></li>
 <li><p><a href="analdata.html#efat">Parte 5: experimentos fatoriais</a>: experimentos fatorias e experimentos com parcelas subdivididas.</p></li>
 </ul>
-<div id="ebasic" class="section level2" number="10.1">
+<div id="ebasic" class="section level2">
 <h2><span class="header-section-number">10.1</span> Estatistica básica</h2>
-<div id="medidas-de-tendência-central" class="section level3" number="10.1.1">
+<div id="medidas-de-tendência-central" class="section level3">
 <h3><span class="header-section-number">10.1.1</span> Medidas de tendência central</h3>
 <p>Nesta seção mostraremos como calular medidas de tendência central e medidas de variabilidade. As medidas de tendencia central são valores que representam um conjunto de dados. Entre as mais comuns podemos citar a média, mediana e moda.</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analdata.html#cb128-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
@@ -465,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb128-7"><a href="analdata.html#cb128-7"></a><span class="co"># [1] 12.34173</span></span></code></pre></div>
 <p>O <em>R</em> calcula a média  e mediana  através das funções <code>mean()</code>  e <code>median()</code> , porém não calcula a moda. No blog <a href="https://ridiculas.wordpress.com/2011/11/18/moda-de-uma-amostra-metodo-do-histograma-vs-metodo-kernel/">Ridículas</a>, mantido pelo <a href="http://www.leg.ufpr.br/doku.php/start">LEG</a> da UFPR, dois métodos são dicutidos. Incentivamos a leitura do material.</p>
 </div>
-<div id="medidas-de-variabilidade" class="section level3" number="10.1.2">
+<div id="medidas-de-variabilidade" class="section level3">
 <h3><span class="header-section-number">10.1.2</span> Medidas de variabilidade</h3>
 <p>As seguintes medidas de variabilidade podem ser computadas, com suas respectivas funções:</p>
 <ul>
@@ -498,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb130-12"><a href="analdata.html#cb130-12"></a><span class="co"># [1] 21.85992</span></span></code></pre></div>
 <p>A distribuição dos dados pode ser determinada utilizando histograma de frequências, QQ-Plos e Box-Plot (conforme visto anteriormente). Estatísticas como a amplitude, erro padrão da média, intervalo de confiança, entre outros, podem ser obtidas com a função <code>desc_stat()</code>  do pacote <a href="https://tiagoolivoto.github.io/metan/">metan</a><a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>. Esta função permite computar as estatisticas para uma ou mais variáveis de um data frame ou um vetor de dados numéricos. Para um exemplo numérico, consulte a <a href="analdata.html#dstat">seção 7.3.1</a>.</p>
 </div>
-<div id="resumindo-dados-com-o-pacote-dplyr" class="section level3" number="10.1.3">
+<div id="resumindo-dados-com-o-pacote-dplyr" class="section level3">
 <h3><span class="header-section-number">10.1.3</span> Resumindo dados com o pacote <code>dplyr</code></h3>
 <p>Diversos verbos do pacote <code>dplyr</code> podem ser utilizados para resumir conjuntos de dados. Iniciaremos
 com a função <code>count()</code> para contar valores que se repetem em uma determinada variável. Por exemplo, é possível identificar qual é o valor de <code>APLA</code> que mais se repete utilizando</p>
@@ -614,7 +582,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <span id="cb138-12"><a href="analdata.html#cb138-12"></a><span class="co"># 3 A3      147.  318.   1.08   47.9   468.    38.9   61.7   0.225    3.57    110.</span></span>
 <span id="cb138-13"><a href="analdata.html#cb138-13"></a><span class="co"># 4 A4      177.  343.   1.41   49.9   516.    43.5   58.6   0.212    3.35    106.</span></span></code></pre></div>
 </div>
-<div id="dstat" class="section level3" number="10.1.4">
+<div id="dstat" class="section level3">
 <h3><span class="header-section-number">10.1.4</span> Estatística descritiva com pacote metan</h3>
 <p>O pacote <code>metan</code> fornece uma estrutura simples e intuitiva para o cálculo de estatísticas descritivas. Um <a href="https://tiagoolivoto.github.io/metan/reference/utils_stats.html">conjunto de funções</a> pode ser usado para calcular rapidamente as estatísticas descritivas mais usadas.</p>
 <p>Para calcular os valores médios para cada nível de um fator, por exemplo para cada nível do fator <code>HIB</code> do conjunto de dados <code>maize</code>, usamos a função<code>means_by()</code>.</p>
@@ -645,7 +613,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <li><code>sd_by ()</code> Para calcular o desvio padrão amostral.</li>
 <li><code>sem_by ()</code> Para calcular o erro padrão da média.</li>
 </ul>
-<div id="funções-úteis" class="section level4" number="10.1.4.1">
+<div id="funções-úteis" class="section level4">
 <h4><span class="header-section-number">10.1.4.1</span> Funções úteis</h4>
 <p>Outras funções úteis também são implementadas. Todos eles funcionam naturalmente com <code>%&gt;%</code>, lidam com dados agrupados com <code>group_by()</code> e várias variáveis (todas as variáveis numéricas de <code>.data</code> por padrão).</p>
 <ul>
@@ -665,7 +633,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <li><code>valid_n ()</code> Retorna o comprimento válido (não NA) de um dado.</li>
 </ul>
 </div>
-<div id="a-função-desc_stat" class="section level4" number="10.1.4.2">
+<div id="a-função-desc_stat" class="section level4">
 <h4><span class="header-section-number">10.1.4.2</span> A função <code>desc_stat()</code></h4>
 <p>Para calcular todas as estatísticas de uma só vez, podemos usar <code>desc_stat()</code>. Esta função pode ser usada para calcular medidas de tendência central, posição e dispersão. Por padrão (<code>stats = "main"</code>), sete estatísticas (coeficiente de variação, máximo, média, mediana, mínimo, desvio padrão da amostra, erro padrão e intervalo de confiança da média) são calculadas. Outros valores permitidos são <code>"all"</code> para mostrar todas as estatísticas, <code>"robust"</code> para mostrar estatísticas robustas, <code>"quantile"</code> para mostrar estatísticas quantílicas ou escolher uma (ou mais) estatísticas usando um vetor separado por vírgula com os nomes das estatísticas, por exemplo, <code>stats = c("mean, cv")</code>. Também podemos usar <code>hist = TRUE</code> para criar um histograma para cada variável. Aqui, auxiliares selecionados também podem ser usados no argumento <code>...</code>.</p>
 <ul>
@@ -722,7 +690,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 # 2 APLA      15.1  3.3   2.48   2.52   1    0.375 0.0134 0.0264
 # 3 CESP      14.3 20.4  15.2   15.4    0.8  2.16  0.0774 0.152</code></pre>
 </div>
-<div id="estatísticas-por-níveis-de-fatores" class="section level4" number="10.1.4.3">
+<div id="estatísticas-por-níveis-de-fatores" class="section level4">
 <h4><span class="header-section-number">10.1.4.3</span> Estatísticas por níveis de fatores</h4>
 <p>Para calcular as estatísticas para cada nível de um fator, use o argumento <code>by</code>. Além disso, é possível selecionar as estatísticas a serem computadas usando o argumento <code>stats</code>, que é um único nome estatístico, por exemplo,<code>"mean"</code>ou um vetor de nomes separados por vírgula com <code>"</code> no início e apenas o final do vetor. Tenha em atenção que os nomes das estatísticas <strong>NÃO</strong> diferenciam maiúsculas de minúsculas, por exemplo, são reconhecidos <code>"mean"</code>, <code>"Mean"</code> ou <code>"MEAN"</code>. Vírgula ou espaços podem ser usados para separar os nomes das estatísticas.</p>
 <ul>
@@ -744,6 +712,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <span id="cb145-9"><a href="analdata.html#cb145-9"></a><span class="co"># 2 A2    CESP      15.2 0.148  13.6  19.2   8.7</span></span>
 <span id="cb145-10"><a href="analdata.html#cb145-10"></a><span class="co"># 3 A3    CESP      14.7 0.145  13.8  19.9   7.5</span></span>
 <span id="cb145-11"><a href="analdata.html#cb145-11"></a><span class="co"># 4 A4    CESP      15.1 0.148  13.7  20.4   8.2</span></span></code></pre></div>
+
 <p>Para calcular as estatísticas descritivas por mais de uma variável de agrupamento, precisamos passar dados agrupados para o argumento <code>.data</code> com a função<code>group_by()</code>. Vamos calcular a média, o erro padrão da média e o tamanho da amostra para as variáveis <code>EP</code> e<code>EL</code> para todas as combinações dos fatores <code>AMB</code> e<code>HIB</code>.</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="analdata.html#cb146-1"></a>stats &lt;-<span class="st"> </span></span>
 <span id="cb146-2"><a href="analdata.html#cb146-2"></a>maize <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -783,19 +752,19 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <span id="cb147-15"><a href="analdata.html#cb147-15"></a><span class="co"># # ... with 42 more rows</span></span></code></pre></div>
 </div>
 </div>
-<div id="testes-de-aderência" class="section level3" number="10.1.5">
+<div id="testes-de-aderência" class="section level3">
 <h3><span class="header-section-number">10.1.5</span> Testes de aderência</h3>
 <p>Testes de aderência a distribuições teóricas também são de grande utilizada para as ciências agrárias. O teste de Shapiro-Wilk, realizado pela função <code>shapiro.test()</code> , é amplamente utilizada para realizar o teste de normalidade dos dados. Para testar a aderência a outras distribuições teóricas, o teste de Kolmolgorov-Smirnov (função <code>ks.test()</code>)  é uma alternativa.</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="analdata.html#cb148-1"></a><span class="co"># Teste de Shapiro-Wilk</span></span>
 <span id="cb148-2"><a href="analdata.html#cb148-2"></a><span class="kw">shapiro.test</span>(Amostra1)</span>
 <span id="cb148-3"><a href="analdata.html#cb148-3"></a><span class="co"># </span></span>
-<span id="cb148-4"><a href="analdata.html#cb148-4"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb148-4"><a href="analdata.html#cb148-4"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb148-5"><a href="analdata.html#cb148-5"></a><span class="co"># </span></span>
 <span id="cb148-6"><a href="analdata.html#cb148-6"></a><span class="co"># data:  Amostra1</span></span>
 <span id="cb148-7"><a href="analdata.html#cb148-7"></a><span class="co"># W = 0.9956, p-value = 0.9876</span></span>
 <span id="cb148-8"><a href="analdata.html#cb148-8"></a><span class="kw">shapiro.test</span>(Amostra2)</span>
 <span id="cb148-9"><a href="analdata.html#cb148-9"></a><span class="co"># </span></span>
-<span id="cb148-10"><a href="analdata.html#cb148-10"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb148-10"><a href="analdata.html#cb148-10"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb148-11"><a href="analdata.html#cb148-11"></a><span class="co"># </span></span>
 <span id="cb148-12"><a href="analdata.html#cb148-12"></a><span class="co"># data:  Amostra2</span></span>
 <span id="cb148-13"><a href="analdata.html#cb148-13"></a><span class="co"># W = 0.95815, p-value = 0.002976</span></span>
@@ -804,7 +773,7 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <span id="cb148-16"><a href="analdata.html#cb148-16"></a><span class="co"># Amostra1 e Amostra2 provém da mesma distribuição?</span></span>
 <span id="cb148-17"><a href="analdata.html#cb148-17"></a><span class="kw">ks.test</span>(Amostra1, Amostra2)</span>
 <span id="cb148-18"><a href="analdata.html#cb148-18"></a><span class="co"># </span></span>
-<span id="cb148-19"><a href="analdata.html#cb148-19"></a><span class="co">#   Two-sample Kolmogorov-Smirnov test</span></span>
+<span id="cb148-19"><a href="analdata.html#cb148-19"></a><span class="co"># 	Two-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb148-20"><a href="analdata.html#cb148-20"></a><span class="co"># </span></span>
 <span id="cb148-21"><a href="analdata.html#cb148-21"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb148-22"><a href="analdata.html#cb148-22"></a><span class="co"># D = 0.29, p-value = 0.0004453</span></span>
@@ -813,13 +782,13 @@ com a função <code>count()</code> para contar valores que se repetem em uma de
 <span id="cb148-25"><a href="analdata.html#cb148-25"></a><span class="co"># Amostra1 ~ N(12, 3)?</span></span>
 <span id="cb148-26"><a href="analdata.html#cb148-26"></a><span class="kw">ks.test</span>(Amostra1, <span class="st">&quot;pnorm&quot;</span>, <span class="dv">12</span>, <span class="dv">3</span>)</span>
 <span id="cb148-27"><a href="analdata.html#cb148-27"></a><span class="co"># </span></span>
-<span id="cb148-28"><a href="analdata.html#cb148-28"></a><span class="co">#   One-sample Kolmogorov-Smirnov test</span></span>
+<span id="cb148-28"><a href="analdata.html#cb148-28"></a><span class="co"># 	One-sample Kolmogorov-Smirnov test</span></span>
 <span id="cb148-29"><a href="analdata.html#cb148-29"></a><span class="co"># </span></span>
 <span id="cb148-30"><a href="analdata.html#cb148-30"></a><span class="co"># data:  Amostra1</span></span>
 <span id="cb148-31"><a href="analdata.html#cb148-31"></a><span class="co"># D = 0.094659, p-value = 0.3317</span></span>
 <span id="cb148-32"><a href="analdata.html#cb148-32"></a><span class="co"># alternative hypothesis: two-sided</span></span></code></pre></div>
 </div>
-<div id="intervalos-de-confiança" class="section level3" number="10.1.6">
+<div id="intervalos-de-confiança" class="section level3">
 <h3><span class="header-section-number">10.1.6</span> Intervalos de confiança</h3>
 <p>A estimação por intervalo não fornece idéia da margem de erro cometida ao estimar um determinado parâmetro <span class="citation">(Ferreira <a href="#ref-Ferreira2009" role="doc-biblioref">2009</a>)</span>. Por isso, para verificar se uma dada hipótese <span class="math inline">\(H_0\)</span> (de igualdade) é ou não verdadeira, deve-se utilizar intervalos de confiança ou testes de hipóteses. A construção destes intervalos, e as particularidades dos testes de hipóteses, serão discutidos a seguir. Recomendamos como literatura o livro <a href="http://www.editoraufv.com.br/produto/1595058/estatistica-basica">Estatística Básica</a><a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a> escrito pelo Prof. Daniel Furtado Ferreira da UFV.
 Para verificar a normalidade dos dados, as funções <code>shapiro.test()</code> e <code>ks.test()</code> e os gráficos QQ-Plot são de grande utilidade.  </p>
@@ -827,7 +796,7 @@ Para verificar a normalidade dos dados, as funções <code>shapiro.test()</code>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="analdata.html#cb149-1"></a>Amostra3 &lt;-<span class="st"> </span>Amostra1 <span class="op">-</span><span class="st"> </span>Amostra2</span>
 <span id="cb149-2"><a href="analdata.html#cb149-2"></a><span class="kw">shapiro.test</span>(Amostra3)</span>
 <span id="cb149-3"><a href="analdata.html#cb149-3"></a><span class="co"># </span></span>
-<span id="cb149-4"><a href="analdata.html#cb149-4"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb149-4"><a href="analdata.html#cb149-4"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb149-5"><a href="analdata.html#cb149-5"></a><span class="co"># </span></span>
 <span id="cb149-6"><a href="analdata.html#cb149-6"></a><span class="co"># data:  Amostra3</span></span>
 <span id="cb149-7"><a href="analdata.html#cb149-7"></a><span class="co"># W = 0.97923, p-value = 0.1158</span></span></code></pre></div>
@@ -903,7 +872,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 </p>
 </div>
 </div>
-<div id="teste-de-hipóteses-para-amostras-independentes" class="section level3" number="10.1.7">
+<div id="teste-de-hipóteses-para-amostras-independentes" class="section level3">
 <h3><span class="header-section-number">10.1.7</span> Teste de hipóteses para amostras independentes</h3>
 <p>Os testes de hipóteses  aqui demonstrados tem como objetivo <strong>(i)</strong> verificar se determianda amostra difrere ou não de zero (<span class="math inline">\({H_0}:\mu = 0\)</span>) e <strong>(ii)</strong> se duas amostras são ou não iguais (<span class="math inline">\({H_0}:{\mu _1} = {\mu _2}\)</span>). Para testar as hipóteses pode-se utilizar a função <code>t.teste()</code>. Utilizaremos como amostras os dados da variável MGRA do conjunto <strong>maize</strong>. A primeira amostra corresponde contém os valores de <strong>A1</strong> e a segunda os valores de <strong>A2</strong></p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="analdata.html#cb153-1"></a>Amostra1 &lt;-<span class="st"> </span>maize <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(AMB <span class="op">==</span><span class="st"> &quot;A1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(MGRA) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>()</span>
@@ -911,7 +880,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb153-3"><a href="analdata.html#cb153-3"></a></span>
 <span id="cb153-4"><a href="analdata.html#cb153-4"></a><span class="kw">t.test</span>(Amostra1) <span class="co"># testa se a amostra difere de zero</span></span>
 <span id="cb153-5"><a href="analdata.html#cb153-5"></a><span class="co"># </span></span>
-<span id="cb153-6"><a href="analdata.html#cb153-6"></a><span class="co">#   One Sample t-test</span></span>
+<span id="cb153-6"><a href="analdata.html#cb153-6"></a><span class="co"># 	One Sample t-test</span></span>
 <span id="cb153-7"><a href="analdata.html#cb153-7"></a><span class="co"># </span></span>
 <span id="cb153-8"><a href="analdata.html#cb153-8"></a><span class="co"># data:  Amostra1</span></span>
 <span id="cb153-9"><a href="analdata.html#cb153-9"></a><span class="co"># t = 61.71, df = 194, p-value &lt; 2.2e-16</span></span>
@@ -923,7 +892,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb153-15"><a href="analdata.html#cb153-15"></a><span class="co">#   199.437</span></span>
 <span id="cb153-16"><a href="analdata.html#cb153-16"></a><span class="kw">t.test</span>(Amostra1, Amostra2) <span class="co"># testa se as amostras difrem entre si</span></span>
 <span id="cb153-17"><a href="analdata.html#cb153-17"></a><span class="co"># </span></span>
-<span id="cb153-18"><a href="analdata.html#cb153-18"></a><span class="co">#   Welch Two Sample t-test</span></span>
+<span id="cb153-18"><a href="analdata.html#cb153-18"></a><span class="co"># 	Welch Two Sample t-test</span></span>
 <span id="cb153-19"><a href="analdata.html#cb153-19"></a><span class="co"># </span></span>
 <span id="cb153-20"><a href="analdata.html#cb153-20"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb153-21"><a href="analdata.html#cb153-21"></a><span class="co"># t = 6.6279, df = 387.21, p-value = 1.144e-10</span></span>
@@ -937,7 +906,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <p>O teste <em>t</em> pode ser utilizado para testar tanto hipóteses do tipo <span class="math inline">\({H_A}:\mu &gt; 0\)</span> ou <span class="math inline">\({H_A}:\mu &lt; 0\)</span>. Porém, para isso, devemos utilizar o argumento <code>alternative</code> para indicar que o teste utilizado é unilateral.</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="analdata.html#cb154-1"></a><span class="kw">t.test</span>(Amostra1, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>) <span class="co"># unilateral a direita</span></span>
 <span id="cb154-2"><a href="analdata.html#cb154-2"></a><span class="co"># </span></span>
-<span id="cb154-3"><a href="analdata.html#cb154-3"></a><span class="co">#   One Sample t-test</span></span>
+<span id="cb154-3"><a href="analdata.html#cb154-3"></a><span class="co"># 	One Sample t-test</span></span>
 <span id="cb154-4"><a href="analdata.html#cb154-4"></a><span class="co"># </span></span>
 <span id="cb154-5"><a href="analdata.html#cb154-5"></a><span class="co"># data:  Amostra1</span></span>
 <span id="cb154-6"><a href="analdata.html#cb154-6"></a><span class="co"># t = 61.71, df = 194, p-value &lt; 2.2e-16</span></span>
@@ -949,7 +918,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb154-12"><a href="analdata.html#cb154-12"></a><span class="co">#   199.437</span></span>
 <span id="cb154-13"><a href="analdata.html#cb154-13"></a><span class="kw">t.test</span>(Amostra1, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>) <span class="co"># unilateral a esquerda</span></span>
 <span id="cb154-14"><a href="analdata.html#cb154-14"></a><span class="co"># </span></span>
-<span id="cb154-15"><a href="analdata.html#cb154-15"></a><span class="co">#   One Sample t-test</span></span>
+<span id="cb154-15"><a href="analdata.html#cb154-15"></a><span class="co"># 	One Sample t-test</span></span>
 <span id="cb154-16"><a href="analdata.html#cb154-16"></a><span class="co"># </span></span>
 <span id="cb154-17"><a href="analdata.html#cb154-17"></a><span class="co"># data:  Amostra1</span></span>
 <span id="cb154-18"><a href="analdata.html#cb154-18"></a><span class="co"># t = 61.71, df = 194, p-value = 1</span></span>
@@ -959,13 +928,15 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb154-22"><a href="analdata.html#cb154-22"></a><span class="co"># sample estimates:</span></span>
 <span id="cb154-23"><a href="analdata.html#cb154-23"></a><span class="co"># mean of x </span></span>
 <span id="cb154-24"><a href="analdata.html#cb154-24"></a><span class="co">#   199.437</span></span></code></pre></div>
+
 <p>Outro pressuposto para realizar o teste <em>t</em> é a homogeneidade das variâncias. Quando as variâncias são heterogêneas, o grau de liberdade utilizado é calculado pela aproximação de Welch-Satterthwaite: </p>
 <p><span class="math display">\[
 \nu  \cong \frac{{{{\left( {\frac{{S_1^2}}{{{n_1}}} + \frac{{S_2^2}}{{{n_2}}}} \right)}^2}}}{{\frac{{{{\left( {\frac{{S_1^2}}{{{n_1}}}} \right)}^2}}}{{{n_1} - 1}} + \frac{{{{\left( {\frac{{S_2^2}}{{{n_2}}}} \right)}^2}}}{{{n_2} - 1}}}}
 \]</span></p>
+
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="analdata.html#cb155-1"></a><span class="kw">var.test</span>(Amostra1, Amostra2) <span class="co"># Teste F para variâncias</span></span>
 <span id="cb155-2"><a href="analdata.html#cb155-2"></a><span class="co"># </span></span>
-<span id="cb155-3"><a href="analdata.html#cb155-3"></a><span class="co">#   F test to compare two variances</span></span>
+<span id="cb155-3"><a href="analdata.html#cb155-3"></a><span class="co"># 	F test to compare two variances</span></span>
 <span id="cb155-4"><a href="analdata.html#cb155-4"></a><span class="co"># </span></span>
 <span id="cb155-5"><a href="analdata.html#cb155-5"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb155-6"><a href="analdata.html#cb155-6"></a><span class="co"># F = 0.91355, num df = 194, denom df = 194, p-value = 0.5295</span></span>
@@ -977,7 +948,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb155-12"><a href="analdata.html#cb155-12"></a><span class="co">#          0.9135534</span></span>
 <span id="cb155-13"><a href="analdata.html#cb155-13"></a><span class="kw">t.test</span>(Amostra1, Amostra2, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>) <span class="co"># Por default, usa Welch-Satterthwaite</span></span>
 <span id="cb155-14"><a href="analdata.html#cb155-14"></a><span class="co"># </span></span>
-<span id="cb155-15"><a href="analdata.html#cb155-15"></a><span class="co">#   Welch Two Sample t-test</span></span>
+<span id="cb155-15"><a href="analdata.html#cb155-15"></a><span class="co"># 	Welch Two Sample t-test</span></span>
 <span id="cb155-16"><a href="analdata.html#cb155-16"></a><span class="co"># </span></span>
 <span id="cb155-17"><a href="analdata.html#cb155-17"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb155-18"><a href="analdata.html#cb155-18"></a><span class="co"># t = 6.6279, df = 387.21, p-value = 1.144e-10</span></span>
@@ -992,7 +963,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb155-27"><a href="analdata.html#cb155-27"></a>Amostra4 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dv">18</span>, <span class="dv">5</span>)</span>
 <span id="cb155-28"><a href="analdata.html#cb155-28"></a><span class="kw">var.test</span>(Amostra3, Amostra4)</span>
 <span id="cb155-29"><a href="analdata.html#cb155-29"></a><span class="co"># </span></span>
-<span id="cb155-30"><a href="analdata.html#cb155-30"></a><span class="co">#   F test to compare two variances</span></span>
+<span id="cb155-30"><a href="analdata.html#cb155-30"></a><span class="co"># 	F test to compare two variances</span></span>
 <span id="cb155-31"><a href="analdata.html#cb155-31"></a><span class="co"># </span></span>
 <span id="cb155-32"><a href="analdata.html#cb155-32"></a><span class="co"># data:  Amostra3 and Amostra4</span></span>
 <span id="cb155-33"><a href="analdata.html#cb155-33"></a><span class="co"># F = 0.65152, num df = 29, denom df = 29, p-value = 0.2545</span></span>
@@ -1004,7 +975,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb155-39"><a href="analdata.html#cb155-39"></a><span class="co">#          0.6515231</span></span>
 <span id="cb155-40"><a href="analdata.html#cb155-40"></a><span class="kw">t.test</span>(Amostra1, Amostra2, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>) <span class="co"># Quando variâncias são iguais</span></span>
 <span id="cb155-41"><a href="analdata.html#cb155-41"></a><span class="co"># </span></span>
-<span id="cb155-42"><a href="analdata.html#cb155-42"></a><span class="co">#   Two Sample t-test</span></span>
+<span id="cb155-42"><a href="analdata.html#cb155-42"></a><span class="co"># 	Two Sample t-test</span></span>
 <span id="cb155-43"><a href="analdata.html#cb155-43"></a><span class="co"># </span></span>
 <span id="cb155-44"><a href="analdata.html#cb155-44"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb155-45"><a href="analdata.html#cb155-45"></a><span class="co"># t = 6.6279, df = 388, p-value = 1.142e-10</span></span>
@@ -1015,7 +986,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb155-50"><a href="analdata.html#cb155-50"></a><span class="co"># mean of x mean of y </span></span>
 <span id="cb155-51"><a href="analdata.html#cb155-51"></a><span class="co">#  199.4370  168.4356</span></span></code></pre></div>
 </div>
-<div id="teste-de-hipóteses-para-amostras-dependentes" class="section level3" number="10.1.8">
+<div id="teste-de-hipóteses-para-amostras-dependentes" class="section level3">
 <h3><span class="header-section-number">10.1.8</span> Teste de hipóteses para amostras dependentes</h3>
 <p>As formas de comparação discutidas acima consideram as amostras como sendo independentes entre si. Para dados emparelhados, deve-se utiliza o argumento <code>paired =  TRUE</code>.</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="analdata.html#cb156-1"></a>Amostra1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>,<span class="dv">10</span>,<span class="dv">5</span>)</span>
@@ -1023,7 +994,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb156-3"><a href="analdata.html#cb156-3"></a></span>
 <span id="cb156-4"><a href="analdata.html#cb156-4"></a><span class="kw">var.test</span>(Amostra1, Amostra2) <span class="co"># Teste F para variâncias</span></span>
 <span id="cb156-5"><a href="analdata.html#cb156-5"></a><span class="co"># </span></span>
-<span id="cb156-6"><a href="analdata.html#cb156-6"></a><span class="co">#   F test to compare two variances</span></span>
+<span id="cb156-6"><a href="analdata.html#cb156-6"></a><span class="co"># 	F test to compare two variances</span></span>
 <span id="cb156-7"><a href="analdata.html#cb156-7"></a><span class="co"># </span></span>
 <span id="cb156-8"><a href="analdata.html#cb156-8"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb156-9"><a href="analdata.html#cb156-9"></a><span class="co"># F = 0.74981, num df = 29, denom df = 29, p-value = 0.4429</span></span>
@@ -1036,7 +1007,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb156-16"><a href="analdata.html#cb156-16"></a></span>
 <span id="cb156-17"><a href="analdata.html#cb156-17"></a><span class="kw">t.test</span>(Amostra1, Amostra2, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>) <span class="co"># Independentes</span></span>
 <span id="cb156-18"><a href="analdata.html#cb156-18"></a><span class="co"># </span></span>
-<span id="cb156-19"><a href="analdata.html#cb156-19"></a><span class="co">#   Two Sample t-test</span></span>
+<span id="cb156-19"><a href="analdata.html#cb156-19"></a><span class="co"># 	Two Sample t-test</span></span>
 <span id="cb156-20"><a href="analdata.html#cb156-20"></a><span class="co"># </span></span>
 <span id="cb156-21"><a href="analdata.html#cb156-21"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb156-22"><a href="analdata.html#cb156-22"></a><span class="co"># t = -3.2434, df = 58, p-value = 0.001961</span></span>
@@ -1048,7 +1019,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb156-28"><a href="analdata.html#cb156-28"></a><span class="co">#  9.873579 14.331237</span></span>
 <span id="cb156-29"><a href="analdata.html#cb156-29"></a><span class="kw">t.test</span>(Amostra1, Amostra2, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>) <span class="co"># Emparelhadas</span></span>
 <span id="cb156-30"><a href="analdata.html#cb156-30"></a><span class="co"># </span></span>
-<span id="cb156-31"><a href="analdata.html#cb156-31"></a><span class="co">#   Paired t-test</span></span>
+<span id="cb156-31"><a href="analdata.html#cb156-31"></a><span class="co"># 	Paired t-test</span></span>
 <span id="cb156-32"><a href="analdata.html#cb156-32"></a><span class="co"># </span></span>
 <span id="cb156-33"><a href="analdata.html#cb156-33"></a><span class="co"># data:  Amostra1 and Amostra2</span></span>
 <span id="cb156-34"><a href="analdata.html#cb156-34"></a><span class="co"># t = -3.6981, df = 29, p-value = 0.000902</span></span>
@@ -1058,6 +1029,7 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb156-38"><a href="analdata.html#cb156-38"></a><span class="co"># sample estimates:</span></span>
 <span id="cb156-39"><a href="analdata.html#cb156-39"></a><span class="co"># mean of the differences </span></span>
 <span id="cb156-40"><a href="analdata.html#cb156-40"></a><span class="co">#               -4.457658</span></span></code></pre></div>
+
 <p>Observa-se que existe uma diferença no valor da estatistica teste, nos graus de liberdade, no valor tabelado e, consequentemente, no <em>p</em>-valor. Para duas amostras independentes, o teste para a diferença é dado por</p>
 <p><span class="math display">\[
 {t_c} = \frac{{{{\bar X}_1} - {{\bar X}_2}}}{{S\sqrt {\frac{1}{{{n_1}}} + \frac{1}{{{n_2}}}} }} \sim {t_{\left( {\alpha ,\nu } \right)}}
@@ -1070,28 +1042,28 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <p>Onde <span class="math inline">\(\alpha\)</span> é a probabilidade de erro, <span class="math inline">\(\nu\)</span> é o grau de liberdade (nº de diferenças-1), <span class="math inline">\(\bar d\)</span> é a média das diferenças, <span class="math inline">\(S_d\)</span> é o desvio padrão das diferenças e <span class="math inline">\(n\)</span> é o número de diferenças. No resultado acima,obervamos que <span class="math inline">\(\nu = 29\)</span>.</p>
 </div>
 </div>
-<div id="dbasic" class="section level2" number="10.2">
+<div id="dbasic" class="section level2">
 <h2><span class="header-section-number">10.2</span> Delineamentos básicos</h2>
 <p>As análises realizadas até agora tinham como objetivo verificar a existência de diferenças entre as médias de duas amostras. Porém, quando deseja-se estudar o efeito de “grupos de fatores” sobre determinado fenômeno, a análise da variância (ANOVA) é indicada. A ANOVA atribui a diversos fatores partes da variabilidade dos dados <span class="citation">(Casella <a href="#ref-Casella2008" role="doc-biblioref">2008</a>)</span>. </p>
 <p>Os delineamentos experimentais também são parte importante da ANOVA. Será dado mais destaque aos mais comuns: o delineamento inteiramente casualisado (DIC)  e o blocos ao acaso (DBC) . O bloqueamento tem como objetivo remover parte da variabilidade. Como não se deseja encotrar diferença entre os blocos, análises complementares não são realizadas para este fator.</p>
 <p>Nessa seção será demostrado como analisar dados experimentais utilizando estes dois delineamentos. Em um primeiro momento, serão demonstrados experimentos unifatorias e, posteriormente, experimentos bifatoriais com e sem parcelas subdivididas. Formas de como verificar se os pressupostos  do modelo estatistico estão sendo cumpridos, e formas de contornar este problema caso estejam sendo violados, também serão demonstrados. Por fim, após a análise da variância, serão mostrados os testes complementares utilizados para tratamentos quali e quantitativos.</p>
-<div id="princípios-básicos" class="section level3" number="10.2.1">
+<div id="princípios-básicos" class="section level3">
 <h3><span class="header-section-number">10.2.1</span> Princípios básicos</h3>
 <p>Os principios básicos da experimentação são a <em>casualisação</em> e a <em>repetição</em>. A repetição possibilita que o erro seja estimado, e a casualisação que eles sejam independentes.</p>
 </div>
-<div id="pressupostos" class="section level3" number="10.2.2">
+<div id="pressupostos" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Pressupostos</h3>
 <p>Independente do delineamento, os pressupostos  do modelo estatístico são que os erros são independentes, homocedásticos e normais:</p>
 <p><span class="math display">\[
-{\boldsymbol{\varepsilon }} \sim {\rm N}\left( {0,{\boldsymbol{I}}{\sigma ^2}} \right)
+{\boldsymbol{\varepsilon }} \sim {\textrm N}\left( {0,{\boldsymbol{I}}{\sigma ^2}} \right)
 \]</span></p>
 <p>As formas de realizar esse diagnóstico é através de testes estatísticos e gráficos de diagnósticos. Uma ferramente para contornar o problema de violação dos pressupostos é a transformação dos dados. Existem várias formas de transformar os dados (cada uma adequada a um caso específico), mas será dado enfase à transformação Box-Cox.</p>
 </div>
-<div id="estimação" class="section level3" number="10.2.3">
+<div id="estimação" class="section level3">
 <h3><span class="header-section-number">10.2.3</span> Estimação</h3>
 <p>A estimativa dos parâmetros é realizado pelo método dos minimos quadrados. Devido a matriz delineamento ser de posto incompleto (modelo superparametrizado), uma restrição deve ser imposta ao fator tratamentos para que a estimativa do efeito dos fatores seja única (<span class="math inline">\(\sum {{t_i}} = 0\)</span>). Reparametrizações ou combinações lineares também podem ser utilizados para garantir a unicidade dos parâmetros <span class="citation">(Rencher and Schaalje <a href="#ref-Rencher2008" role="doc-biblioref">2008</a>)</span>.</p>
 </div>
-<div id="reparametrização-condições-marginais-ou-combinações-lineares" class="section level3" number="10.2.4">
+<div id="reparametrização-condições-marginais-ou-combinações-lineares" class="section level3">
 <h3><span class="header-section-number">10.2.4</span> Reparametrização, condições marginais ou combinações lineares?</h3>
 <p>As funções <code>lm()</code>  e <code>aov()</code>  são usualmente utilizadas para realizar a análise da variância. Ambas utilizam a reparametrização o modelo para estimar os parâmetros. Vamos ver isso no exemplo abaixo utilizando o conjunto de dados <code>QUALI</code></p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="analdata.html#cb157-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
@@ -1162,9 +1134,9 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb158-31"><a href="analdata.html#cb158-31"></a><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 <p>Demonstrar como o procedimento de estimação e cálculo da ANOVA serviu apenas para verificar de maneira didática como as funções no <em>R</em> contornam o problema da singularidade da matriz delineamento. Conforme já relatado acima, as funções <code>aov()</code> e <code>lm()</code> podem ser utilizadas para realizar a ANOVA. Porém, nesta seção será dado enfase as funções do pacote <strong>ExpDes.pt</strong>,  cujas funções possibilitam analisar dados uni e bifatoriais; este último com e sem parcelas subdivididas.</p>
 </div>
-<div id="delineamento-inteiramente-casualizado-dic" class="section level3" number="10.2.5">
+<div id="delineamento-inteiramente-casualizado-dic" class="section level3">
 <h3><span class="header-section-number">10.2.5</span> Delineamento inteiramente casualizado (DIC)</h3>
-<div id="modelo-estatístico" class="section level4" number="10.2.5.1">
+<div id="modelo-estatístico" class="section level4">
 <h4><span class="header-section-number">10.2.5.1</span> Modelo estatístico</h4>
 <p>O delineamento inteiramente casualizado (DIC) é um delineamento adequado para áreas uniformes (parcelas são uniformes), onde não há necessidade de controle local (bloqueamento). Neste delineamento, os tratamentos devem ser distribuidos aleatoriamente nas parcelas.</p>
 <p>O modelo do DIC é dado por </p>
@@ -1217,8 +1189,9 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 </table>
 <p>Para maiores detalhes, ver o <a href="https://cran.r-project.org/web/packages/ExpDes.pt/ExpDes.pt.pdf">pdf do pacote</a><a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a> ou ir em ajuda (digitar <code>?ExpDes.pt</code> no console).</p>
 </div>
-<div id="dic-com-fatores-qualitativos" class="section level4" number="10.2.5.2">
+<div id="dic-com-fatores-qualitativos" class="section level4">
 <h4><span class="header-section-number">10.2.5.2</span> DIC com fatores qualitativos</h4>
+
 <p>Os dados utilizados neste exemplo estão na planilha <code>QUALI</code> do conjunto de dados <code>data_R.xlsx</code>. Os próximos códigos carregam o conjunto de dados e criam um gráfico do tipo boxplot para explorar o padrão dos dados.</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="analdata.html#cb159-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
 <span id="cb159-2"><a href="analdata.html#cb159-2"></a>qualitativo &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;QUALI&quot;</span>)</span>
@@ -1236,9 +1209,11 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
  </p>
 <p>Analizando o boxplot acima é razoável dizer que as médias dos tratamentos são diferentes, principalmente comparando o NUPEC_10 com NUPEC_1. Esta suspeita de diferença, no entanto, deve ser suportada com a realização da análise de variância. No pacote <strong>ExpDes.pt</strong>, quando os fatores são qualitativos, a análise complementar aplicada é a comparção de médias. A função <code>dic()</code> do pacote retorna a tabela da ANOVA, a análise de pressupostos  (normalidade e homogeneidade) e o teste de comparação de médias.</p>
 
+
 <div class="dica">
 <p>As funções do pacote <strong>ExpDes.pt</strong> utilizam os dados “anexados” ao ambiente de trabalho, ou seja, um argumento <code>data = .</code> não existe para suas funções. Note que no exemplo abaixo foi utilizado a função <code>with(qualitativo, dic(...))</code>. Isto permite acessar variáveis presentes no data frame. Uma outra maneira de realizar esta mesma análise é utilizando a função <code>attach(qualitativo)</code>, qual carregará o data frame no ambiente R, assim é possível utilizar a função <code>dic(...)</code>. Após realizada a análise, é recomendado executar o comando <code>detach(qualitativo)</code> para “limpar” os dados do ambiente de trabalho.</p>
 </div>
+
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="analdata.html#cb160-1"></a></span>
 <span id="cb160-2"><a href="analdata.html#cb160-2"></a>mod3 &lt;-<span class="st"> </span><span class="kw">with</span>(qualitativo, <span class="kw">dic</span>(HIBRIDO, RG))</span>
 <span id="cb160-3"><a href="analdata.html#cb160-3"></a><span class="co"># ------------------------------------------------------------------------</span></span>
@@ -1277,15 +1252,18 @@ Figure 10.1: Gráficos de intervalo de confiança (mais de uma variável)
 <span id="cb160-36"><a href="analdata.html#cb160-36"></a><span class="co"># 9    NP_8  7.24500</span></span>
 <span id="cb160-37"><a href="analdata.html#cb160-37"></a><span class="co"># 10   NP_9  6.99225</span></span>
 <span id="cb160-38"><a href="analdata.html#cb160-38"></a><span class="co"># ------------------------------------------------------------------------</span></span></code></pre></div>
+
 <p>A interpretação da significância, ou seja, se as médias de produtividade dos híbridos foram significativamente diferentes a uma determinada probabilidade de erro é feita verificando-se o valor de “Pr&gt;fc” na ANOVA. A figura abaixo mostra a distribuição <em>F</em> considerando os graus de liberdade de tratamento e erro <span class="math inline">\(F_{9, 30}\)</span> e nos ajuda a compreender um pouco melhor isto. O valor de <em>F</em> calculado em nosso exemplo foi de 2.0616, o que resulta em uma probabilidade de erro acumulada de 0.066545 (6,654%). Na figura abaixo, esta probabilidade de erro acumulada está representada pela cor vermelha. Para que uma diferença significativa a 5% de probabilidade de erro tivesse sido observada, o valor de <em>F</em> calculado deveria ter sido 2.2107 [<code>qf(0.05, 9, 30, lower.tail = FALSE)</code>], representado neste caso pela cor verde no gráfico.</p>
 <pre><code># Warning: `expand_scale()` is deprecated; use `expansion()` instead.</code></pre>
 <p><img src="html_r_files/figure-html/unnamed-chunk-170-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Em sequência a ANOVA, a função retorna o resultado da análise complementar solicitada. Neste exemplo, o teste de Tukey (5% de erro) é utilizado. Este teste realiza todas as combinações possíveis entre as médias (por isso o nome comparação múltipla de medias), comparando se a diferença entre duas médias é maior ou menor que uma diferença mínima significativa (DMS). Esta DMS é calculada pela seguinte fórmula <span class="math inline">\(DMS = q \times \sqrt{QME/r}\)</span>, onde <em>q</em> é um valor tabelado, considerando o número de tratamentos e o GL do erro; <em>QME</em> é o quadrado médio do erro; e <em>r</em> é o número de repetições (ou blocos). O valor de <em>q</em> pode ser encontrado no apêndice 1. Para este caso, considerando 10 e 30 como o número de tratamentos e o GL do erro, respectivamente, o valor de q é 5,76, que aplicado na fórmula resulta em <span class="math inline">\(DMS = 5,76 \times \sqrt{3.5389/4}=5.417\)</span>. Logo, a diferença mínima entre duas médias para que estas sejam significativamente diferentes (5% de erro), deve ser de 5,417 toneladas. Como a diferença entre a maior média (NUPEC_01) e a menor média (NUPEC_10), foi de 3,994 toneladas, a média de todos os tratamentos foram consideradas iguais.</p>
 <p>Considerando nosso exemplo, parece razoável dizer que 10,27 t é uma produção maior que 6,28 t. Então, é justo perguntar: O que pode ter acontecido para que as médias não tenham sido consideradas diferentes considerando a probabilidade de erro, mesmo tendo fortes indícios de que elas seriam? A primeira opção que nos vem a mente –e que na maioria das vezes é encontrada em artigos científicos– é que as alterações no rendimento de grão observadas fora resultado do acaso; ou seja, neste caso, há a probabilidade de 6,65% de que uma diferença pelo menos tão grande quanto a observada no estudo possa ser gerada a partir de amostras aleatórias se os tratamentos não aferatem a variável resposta. Logo, a <strong>recomendação estatística</strong> neste caso, seria por optar por qualquer um dos tratamentos. Do ponto de vista prático, sabemos que esta recomendação está totalmente equivocada. Neste ponto surge uma importante (e polêmica) questão: a interpretação do <em>p</em>-valor. Um <em>p</em>-valor de 0,05 não significa que há uma chance de 95% de que determinada hipótese esteja correta. Em vez disso, significa que se a hipótese nula for verdadeira e todas as outras suposições feitas forem válidas, haverá 5% de chance que diferenças ao menos tão grandes quanto as observadas podem ser obtidas de amostras aleatórias. É preciso ter em mente que o <em>p</em>-valor relatado pelos testes é um significado probabilístico, não biológico. Assim, em experimentos biológicos a interpretação desta estatística deve ser cautelosa, pois um <em>p</em>-valor não pode indicar a importância de uma descoberta. Por exemplo, um medicamento pode ter um efeito estatisticamente significativo nos níveis de glicose no sangue dos pacientes sem ter um efeito terapêutico. Sugerimos a leitura de cinco interessantes artigos relacionados a este assunto <span class="citation">(Altman and Krzywinski <a href="#ref-Altman2017" role="doc-biblioref">2017</a>; Baker <a href="#ref-Baker2016" role="doc-biblioref">2016</a>; Chawla <a href="#ref-Chawla2017" role="doc-biblioref">2017</a>; Krzywinski and Altman <a href="#ref-Krzywinski2013" role="doc-biblioref">2013</a>; Nuzzo <a href="#ref-Nuzzo2014" role="doc-biblioref">2014</a>)</span>.</p>
 
+
 <div class="vcsabia">
 <p>A fórmula da DMS descrita acima é utilizada apenas se (e somente se) o número de repetições de todos os tratamentos é igual. Caso algum tratamento apresente um número inferir de repetições, fato comumente observado em experimentos de campo devido a presença de parcelas perdidas, a DMS deste par de médias em específico deve ser corrigida. Geralmente, as análises complementares são realizadas quando a ANOVA indica significância para um determinado fator de variação, no entanto, o teste Tukey pode revelar diferença entre as médias, mesmo quando o teste F não indicar essa diferença. Isto pode ser observado, principalmente quando a probabilidade de erro for muito próxima de 5%, por exemplo, Pr&gt;Fc = 0.0502. A recíproca também é verdadeira. O teste Tukey pode indicar que as médias não diferem, se Pr&gt;Fc = 0.0492, por exemplo.</p>
 </div>
+
 <p>Em adição à justificativa anterior (as alterações no rendimento de grão observadas fora resultado do acaso), existem pelo menos mais três razões potenciais para a não regeição da hipótese <span class="math inline">\(H_0\)</span> em nosso exemplo: (i) um experimento mal projetado com poder insuficiente para detectar uma diferença (à 5% de erro) entre as médias; (ii) os tratamentos foram mal escolhidos e não refletiram adequadamente a hipótese inicial do estudo; ou (iii) o experimento foi indevidamente instalado e conduzido sem supervisão adequada, com baixo controle de qualidade sobre os protocolos de tratamento, coleta e análise de dados. Esta última opção parece ser a mais razoável aqui. É possivel observar no boxplot para o fator bloco que o bloco 4 parece ter uma média superior aos outros blocos. Sabe-ser que no DIC, toda diferença entre as repetições de um mesmo tratamento comporão o erro experimental. Logo, neste exemplo, a área experimental não era homogênea como se pressupunha na instalação do experimento. Isto ficará claro, posteriormente, ao analisarmos o mesmo conjunto de dados, no entanto considerando um .</p>
 <p>É possível extrair os erros através de <code>mod3$residuos</code>. Também é possível fazer diagnóstico dos pressupostos do modelo estatístico através de gráficos utilizando a função <code>plotres()</code>: </p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="analdata.html#cb162-1"></a><span class="kw">plotres</span>(mod3)</span></code></pre></div>
@@ -1297,6 +1275,7 @@ Figure 10.2: Gráfico de resíduos gerado pela função plotres()
 </div>
 <p>O <em>p</em>-valor do teste de Shapiro-Wilk indicou que os resíduos  não seguem uma seguem uma distribuição normal, o que pode ser confirmado pelo QQ-Plot. O argumento <code>hvar = "levene"</code> na função é utilizado para testar a homogeneidade dos resíduos. De acordo com o resultado do teste, os resíduos podem ser considerados homogêneos.</p>
 
+
 <div class="tarefa">
 <p><strong>Exercício 7</strong></p>
 <ul>
@@ -1305,10 +1284,12 @@ Figure 10.2: Gráfico de resíduos gerado pela função plotres()
 <li>Adicione a letra “a” em todas as barras para identificar a não diferença entre as médias.</li>
 </ul>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc7">Resposta</a></p>
 </div>
-<div id="dic-com-fatores-quantitativos" class="section level4" number="10.2.5.3">
+<div id="dic-com-fatores-quantitativos" class="section level4">
 <h4><span class="header-section-number">10.2.5.3</span> DIC com fatores quantitativos</h4>
+
 <p>Vimos anteriormente que os fatores qualitativos são comparados através de comparações de médias. No caso de fatores quantitativos, o comum é utilizar regressões como análise complementar. Neste tipo de análise a <span class="math inline">\(SQ_{Trat}\)</span> é decomposta, e cada polinômio explicará parte desta soma de quadrados. O maior grau significativo do polinômio determinará qual a regressão escolhida. Para implementar essa análise, utilizando a função <code>dic()</code>, basta indicar como <code>FALSE</code> no argumentos <code>quali</code>. O arquivo de dados “QUALITATIVO.xlsx” contém três exemplos, com comportamento linear, quadrático e cúbico. Utilizando o que aprendemos no <code>ggplot2</code> até agora, vamos criar um gráfico para visualisar estes dados.   </p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="analdata.html#cb163-1"></a>url &lt;-<span class="st"> &quot;https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx&quot;</span></span>
 <span id="cb163-2"><a href="analdata.html#cb163-2"></a>quantitativo_todos &lt;-<span class="st"> </span><span class="kw">import</span>(url, <span class="dt">sheet =</span> <span class="st">&quot;QUANTI&quot;</span>)</span>
@@ -1371,17 +1352,21 @@ Figure 10.4: Gráfico de linhas gerado pela função ggplot()
 <p>  
 Este é um exemplo simples de uso da função <code>ggplot()</code>. Porém, como visto até aqui, esta função (mesmo em aplicações simples) tem suas complexidades. Pensando nisso, o pacote <a href="https://tiagoolivoto.github.io/metan/">metan</a><a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a> foi desenvolvido e contém funções úteis que facilitam a confeção de gráficos. A partir dos experimentos fatoriais, apenas as funções deste pacote serão utilizados para a confecção dos gráficos.</p>
 
+
 <div class="tarefa">
 <p><strong>Exercício 8</strong></p>
 <ul>
 <li>Utilize a função <code>plot_lines()</code> do pacote <code>metan</code>** para confeccionar um gráfico semelhante ao anterior. Para maiores detalhes veja <code>?metan::plot_lines</code>.</li>
 </ul>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc8">Resposta</a></p>
+
 </div>
 </div>
-<div id="delineamento-blocos-ao-acaso-dbc" class="section level3" number="10.2.6">
+<div id="delineamento-blocos-ao-acaso-dbc" class="section level3">
 <h3><span class="header-section-number">10.2.6</span> Delineamento blocos ao acaso (DBC)</h3>
+
 <p>No delineamento de blocos ao acaso uma restrição  na casualisação é imposta visando agrupar unidades experimentais uniformes dentro de um bloco, de maneira que a heterogeneidade da área experimental fique entre os blocos. O bloquemento tem como objetivo reduzir o erro experimental, <em>“transferindo”</em> parte do erro experimental para efeito de bloco. O modelo do DBC é dado por</p>
 <p><span class="math display">\[
 {Y_{ij}} = m + {b_j} + {t_i} + {\varepsilon _{ij}}
@@ -1434,7 +1419,7 @@ Este é um exemplo simples de uso da função <code>ggplot()</code>. Porém, com
 </tbody>
 </table>
 <p>Percebe-se que apenas um argumento foi adicionado a função: <code>bloco</code>.</p>
-<div id="dbc-com-fatores-qualitativos" class="section level4" number="10.2.6.1">
+<div id="dbc-com-fatores-qualitativos" class="section level4">
 <h4><span class="header-section-number">10.2.6.1</span> DBC com fatores qualitativos</h4>
 <p>Neste exemplo, vamos realizar a ANOVA com os mesmos dados do exemplo , agrupando as médias pelo teste Scott-Knott utilizando o argumento <code>mcomp = "sk"</code>:</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="analdata.html#cb167-1"></a>mod4 &lt;-<span class="st"> </span><span class="kw">with</span>(qualitativo, <span class="kw">dbc</span>(HIBRIDO, BLOCO, RG, <span class="dt">mcomp =</span> <span class="st">&quot;sk&quot;</span>))</span>
@@ -1475,6 +1460,7 @@ Este é um exemplo simples de uso da função <code>ggplot()</code>. Porém, com
 <span id="cb167-36"><a href="analdata.html#cb167-36"></a><span class="co"># 9       c        NP_9  6.99225</span></span>
 <span id="cb167-37"><a href="analdata.html#cb167-37"></a><span class="co"># 10      c       NP_10  6.28300</span></span>
 <span id="cb167-38"><a href="analdata.html#cb167-38"></a><span class="co"># ------------------------------------------------------------------------</span></span></code></pre></div>
+
 <p>Considerando o bloco como um fator de variação no experimento, pode-se afirmar que a média de produtividade difere entre os híbridos testados. Como o efeito de bloco foi significativo Pr&gt;Fc &lt; 0.05, conclui-se que a escolha pelo delineamento em blocos casualizados foi correta, e, principalmente, que a disposição dos blocos na área experimental possibilitou lograr a heterogeneidade entre os blocos, deixando a homogeneidade dentro de cada bloco. O Fc para o fator de tratamento “HÍBRIDOS” foi de 18.716, qual acumula uma probabilidade de erro de somente 0.0000002029.</p>
 <p>Incluindo o bloco como fonte de variação nota-se que 3 graus de liberdade (GL) que antes compunham o erro “saíram” e passaram a compor o GL do bloco. Assim, neste exemplo, o GL do erro foi de 27. No entanto, uma grande parte da soma de quadrados do erro (aproximadamente 90%) observada no delineamento DIC era oriunda do efeito de bloco. Com isto, a soma de quadrado do erro considerando o delineamento DBC foi de apenas 10.525 e, mesmo com a “perda” de 3 GL para compor o bloco, o quadrado médio do erro foi de somente 0.390 (89% menor quando comparado com o delineamento DIC). Consequentemente o valor do F calculado para o fator HÍBRIDO foi significativo. Cabe ressaltar que a soma de quadrados para o fator de variação HÍBRIDO não muda se o delineamento for DIC ou DBC.</p>
 <p>Uma sugestão para apresentação dos dados é a confecção de um gráfico de barras. Para isto, utilizaremos a função <code>plot_bars()</code> do pacote <code>metan</code>. Utilizando o argumento <code>lab.bars</code> é possível adicionar as letras do teste SK. Por padrão, barras de erro mostrando o erro padrão da média são adicionadas. Para suprimir estas barras use <code>errorbar = FALSE</code>. É possível também adicionar os valores às barras usando <code>values = TRUE</code>, ordenar em ordem crescente ou decrescente, bem como modificar a cor e preenchimento das barras facilmente</p>
@@ -1490,9 +1476,10 @@ Este é um exemplo simples de uso da função <code>ggplot()</code>. Porém, com
 <span id="cb168-10"><a href="analdata.html#cb168-10"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-180-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="dbc-com-fatores-quantitativos" class="section level4" number="10.2.6.2">
+<div id="dbc-com-fatores-quantitativos" class="section level4">
 <h4><span class="header-section-number">10.2.6.2</span> DBC com fatores quantitativos</h4>
 <p>Para realizar a análise de regressão considerando um delineamento DBC basta utilizar a função <code>dbc()</code>  incluindo o seguinte argumento <code>quali = FALSE</code>.</p>
+
 
 <div class="tarefa">
 <p><strong>Exercício 9</strong></p>
@@ -1502,9 +1489,10 @@ Este é um exemplo simples de uso da função <code>ggplot()</code>. Porém, com
 <li><p>O <em>p</em>-valor para o testes de hipótese para efeito de tratamento é o mesmo?</p></li>
 </ul>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc9">Resposta</a></p>
 </div>
-<div id="análise-de-experimentos-utilizando-modelos-mistos" class="section level4" number="10.2.6.3">
+<div id="análise-de-experimentos-utilizando-modelos-mistos" class="section level4">
 <h4><span class="header-section-number">10.2.6.3</span> Análise de experimentos utilizando modelos mistos</h4>
 <p>A função <code>gamem()</code> do pacote <code>metan</code> pode ser utilizada para analizar dados de experimentos unifatoriais utilizando um modelo misto de acordo com a seguinte equação:</p>
 <p><span class="math display">\[
@@ -1646,8 +1634,9 @@ y_{ijk}= \mu  + \alpha_i + \gamma_j + (\gamma \tau)_{jk} + \varepsilon_{ijk}
 </div>
 </div>
 </div>
-<div id="transformação-de-dados" class="section level2" number="10.3">
+<div id="transformação-de-dados" class="section level2">
 <h2><span class="header-section-number">10.3</span> Transformação de dados</h2>
+
 <p>Em todos os exemplos apresentados até aqui, os resíduos  devem cumprir os seguintes pressupsotos: normalidade, homocedasticidade e independência:</p>
 <p><span class="math display">\[
 {\boldsymbol{\varepsilon }} \sim {\rm N}\left( {0,{\boldsymbol{I}}{\sigma ^2}} \right)
@@ -1663,6 +1652,7 @@ y_{ijk}= \mu  + \alpha_i + \gamma_j + (\gamma \tau)_{jk} + \varepsilon_{ijk}
 Figure 10.5: Gráfico gerado pela função boxcox() para identificar o valor de lambda
 </p>
 </div>
+
 <p>Percebe-se que o intervalo de <span class="math inline">\(\lambda\)</span> cruza pelo valor zero, indicando que a transformação <em>log</em> é a mais adequada. Uma forma mais prática de encontrar o valor de <span class="math inline">\(\lambda\)</span> que maximiza a função de log-verossimilhança  é utilizar a função <code>locator()</code> . Após executar a função abaixo, basta clicar com o cursor sobre o ponto que maximiza a função para que as coordenadas sejam mostradas no console.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="analdata.html#cb175-1"></a><span class="kw">locator</span>(<span class="dt">n =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="analdata.html#cb176-1"></a></span>
@@ -1671,14 +1661,14 @@ Figure 10.5: Gráfico gerado pela função boxcox() para identificar o valor de 
 <p><img src="html_r_files/figure-html/unnamed-chunk-189-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Utilizando a transformação <code>log()</code>, os resíduos ainda continuaram sendo não normais, apesar de se aproximaram mais da distribuição normal neste caso. Quando a transformação não for eficiente, recomenda-se a utilização de testes não paramétricos, por exemplo, no caso de um delineamento inteiramente casualizado, o teste de Kruskal-Wallis ou de um delineamento de blocos completos casualisados, o teste de Friedman.</p>
 </div>
-<div id="ancova" class="section level2" number="10.4">
+<div id="ancova" class="section level2">
 <h2><span class="header-section-number">10.4</span> Análise de covariância (ANCOVA)</h2>
-<div id="introdução" class="section level3" number="10.4.1">
+<div id="introdução" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Introdução</h3>
 <p>Neta seção, veremos alguns conceitos estatísticos e uma aplicação numérica de uma técnica interessante que pode ser útil, se corretamente utilizada, para reduzir o erro experimental em experimentos agronômicos: a análise de covariância (ANCOVA). A ANCOVA é um modelo linear geral que combina princípios de ANOVA e regressão para avaliar se as médias de uma variável dependente são iguais entre níveis de uma variável independente categórica (tratamento), controlando estatisticamente os efeitos de outras variáveis contínuas que não são de interesse primário. Tais variáveis contínuas são medidas em cada unidade experimental e são chamadas <em>covariáveis</em>. Idealmente, estas variáveis devem ser determinadas antes que os tratamentos tenham sido atribuídos às unidades experimentais ou, no mínimo, que os valores das covariáveis não sejam afetados pelos tratamentos aplicados <span class="citation">(Snedecor and Cochran <a href="#ref-Snedecor1967" role="doc-biblioref">1967</a>)</span>. A ANCOVA tem várias aplicações. No contexto da experimentação agronômica, ela é frequentemente utilizada reduzir a variabilidade no experimento pela contabilização da variabilidade nas unidades experimentais que não puderam ser controladas pelo design experimental.</p>
 <p>Considere um experimento conduzido em uma área em que as unidades experimentais exibem considerável variabilidade que não pode ser controlada utilizando estratégias de bloqueio. O pesquisador acredita, digamos, baseado em experiências passadas, que uma ou mais características das unidades experimentais podem ajudar a descrever parte da variabilidade entre as unidades experimentais. Nesta condição, o pesquisador pode utilizar resultados de experimentos passados observados nas mesmas unidades experimentais –excluido o efeito de tratamento– como uma covariável. Outra estratégia –embora um pouco distante em tempos de recursos financeiros limitados– poderia ser a realização de uma análise de solo em cada unidade experimental e utilizar os resultados obtidos como covariáveis. Neste sentido, ao utilizar informações relacionadas as características fisico-químicas do solo como uma covariável, o pesquisador tenta explicar a variabilidade nas unidades experimentais que não podem ser convenientemente controladas por outra técnica experimental.</p>
 </div>
-<div id="modelo-estatístico-1" class="section level3" number="10.4.2">
+<div id="modelo-estatístico-1" class="section level3">
 <h3><span class="header-section-number">10.4.2</span> Modelo estatístico</h3>
 <p>Em uma estrura de tratamentos fixos, unifatorial, conduzidos em delineamento inteiramente casualizado, o modelo da ANOVA tradicional visto anteriormente pode ser escrito da seguinte forma quando uma covariável numérica (<span class="math inline">\(X\)</span>) também foi mensurada em cada unidade experimental.</p>
 <p><span class="math display">\[
@@ -1687,7 +1677,7 @@ Y_{ij} = \mu + \tau_i + \beta(X_{ij} - \bar X_{..}) + \varepsilon_{ij}
 <p>onde <span class="math inline">\(Y_{ij}\)</span> é a o valor observado do <em>i</em>-ésimo tratamento na <em>j</em>-ésima repetição; <span class="math inline">\(\mu\)</span> é a média geral; <span class="math inline">\(\tau_i\)</span> é o efeito do <em>i</em>-ésimo tratamento; <span class="math inline">\(\beta\)</span> é o coeficiente de regressão de <em>Y</em> em <em>X</em> e <span class="math inline">\(\varepsilon_{ij}\)</span> é o erro aleatório.</p>
 <p>As pressuposições do modelo da ANCOVA são as mesmas que a ANOVA, ou seja, aditividade dos efeitos de bloco e tratamento (em DBC), normalidade, homogeneidade e independêcia dos resíduos, em adição à duas importantes considerações adicionais: (i) independência entre a covariável e o efeito do tratamento; e (ii) homogeneidade dos coeficientes angulares da regressão, que serão tratados à partir daqui como <em>slopes</em>. Considerando que os pressupostos da ANOVA já são conhecidos, veremos com mais detalhes estes dois últimos à seguir.</p>
 </div>
-<div id="independência-entre-a-covariável-e-os-efeitos-de-tratamento" class="section level3" number="10.4.3">
+<div id="independência-entre-a-covariável-e-os-efeitos-de-tratamento" class="section level3">
 <h3><span class="header-section-number">10.4.3</span> Independência entre a covariável e os efeitos de tratamento</h3>
 <p>Vimos anteriormente que covariável deve ser independente do efeito do tratamento. A figura 6 mostra três diferentes cenários. No primeiro (a) a represetação esquemática de um delineamento unifatorial conduzido em DIC é mostrada. Neste exemplo, a variância da variável resposta (RG) pode ser dividida em duas partes. Uma correspondente aos efeitos dos tratamentos e a outra devido ao erro experimental, ou variância não explicada pelos tratamentos. Aqui, vimos novamente que toda variância não explicada pelos termos do modelo irá compor o erro experimental. No segundo exemplo (b) um cenário ideal para ANCOVA é representado. Nesta condição, a covariável compartilha sua variância apenas com o pouco da variância do RG que é atualmente inexplicado pelos efeitos dos tratamentos . Em outras palavras, é completamente independente dos tratamentos. Este cenário é o único em que a ANCOVA tradicional é apropriada.</p>
 <div class="figure">
@@ -1697,7 +1687,7 @@ Y_{ij} = \mu + \tau_i + \beta(X_{ij} - \bar X_{..}) + \varepsilon_{ij}
 <p>O terceiro exemplo, (c) representa uma situação em que as pessoas costumam usar a ANCOVA quando não deveriam. Nesta situação, o efeito da covariável se sobrepõe ao efeito do tratamento. Em outras palavras, o efeito do tratamento é confundido com o efeito da covariável. Em situções como esta, a covariável reduzirá (estatisticamente falando) o efeito do tratamento, pois explica uma parte da variação que seria atribuída ao efeito de tratamento. Assim, efeitos espúrios de tratamento podem surgir, comprometendo a interpretação da ANCOVA <span class="citation">(Stevens <a href="#ref-Stevens2009" role="doc-biblioref">2009</a>)</span>.</p>
 <p>A ANCOVA nem sempre é uma solução magica. O problema do compartilhamento da variância da covariável com a variância de tratamento é comum e muitas vezes é ignorado ou incompreendido pelos pesquisadores <span class="citation">(Miller and Chapman <a href="#ref-Miller2001" role="doc-biblioref">2001</a>)</span>. Em uma ampla revisão, Miller e Chapman citam muitas situações em que as pessoas aplicam a ANCOVA de maneira incorreta. Recomendamos a leitura deste artigo. Felizmente, modelos generalizados de ANCOVA que permitem tratar esta interação tratamento-covariável têm sido desenvolvidos <span class="citation">(Mayer et al. <a href="#ref-Mayer2014" role="doc-biblioref">2014</a>)</span>, mas isto está além do objetivo deste material.</p>
 </div>
-<div id="homogeneidade-dos-slopes-da-regressão" class="section level3" number="10.4.4">
+<div id="homogeneidade-dos-slopes-da-regressão" class="section level3">
 <h3><span class="header-section-number">10.4.4</span> Homogeneidade dos <em>slopes</em> da regressão</h3>
 <p>Baseado no modelo estatístico apresentado, percebe-se que quando uma ANCOVA é realizada, buscamos uma relação geral entre a variável dependente e a covariável; ou seja, uma regressão global é ajustada aos dados, ignorando à que nível do tratamento uma determinada obsevação pertence. Ao ajustar esse modelo geral, supomos, portanto, que essa relação geral seja verdadeira para todos os níveis do fator tratamento. Por exemplo, se houver uma relação positiva (<em>slope</em> positivo) entre a covariável e a variável dependente no primeiro nível (<span class="math inline">\(T_1\)</span>), presumimos que há uma relação positiva (<em>slope</em> positivo) em todos os outros níveis também. Vamos tentar tornar esse conceito um pouco mais concreto. A figura 7 mostra um gráfico de dispersão que exibe uma relação hipotética entre a covariável e a variável dependente em duas condições: heterogeneidade de <em>slope</em> (esquerda) e homogeneidade de <em>slope</em> (direita). Na primeira condição, a relação entre a variável dependente e covariável é positiva para os tratamentos <span class="math inline">\(T_1\)</span> e <span class="math inline">\(T_2\)</span>, mas para o <span class="math inline">\(T_3\)</span>, esta relação parece ser negativa. Esta é uma condição em que a utilização da ANCOVA não é indicada. Na segunda condição, a relação entre a variável dependente e a covariável é muito semelhante entre os tratamentos.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-190"></span>
@@ -1708,10 +1698,11 @@ Figure 10.6: Gráfico de dispersão e linhas de regressão entre a variável dep
 </div>
 <p>   </p>
 </div>
-<div id="um-exemplo-numérico" class="section level3" number="10.4.5">
+<div id="um-exemplo-numérico" class="section level3">
 <h3><span class="header-section-number">10.4.5</span> Um exemplo numérico</h3>
 <p>Até aqui, passamos por uma breve introdução abordando o modelo mais simples de ANCOVA. Esta técnica, no entanto, pode ser utilizada em qualquer delineamento experimental. Para maiores informações, recomendamos a leitura de três bons materiais: <span class="citation">Rutherford (<a href="#ref-Rutherford2001" role="doc-biblioref">2001</a>)</span>, um livro específico para ANCOVA; <span class="citation">Field, Miles, and Field (<a href="#ref-Field2012" role="doc-biblioref">2012</a>)</span>, pp. 462, com aplicação em R; e <span class="citation">Scheiner and Gurevitch (<a href="#ref-Scheiner2001" role="doc-biblioref">2001</a>)</span>, pp. 77, com aplicação em SAS.</p>
 <p>Vamos agora, utilizando um exemplo numérico, demonstrar como esta análise pode ser realizada no software R e identificar como ela pode ser útil na análise de experimentos agronônicos. Os dados são apresentados em <span class="citation">Snedecor and Cochran (<a href="#ref-Snedecor1967" role="doc-biblioref">1967</a>)</span>, pp. 428 e são resultantes de um experimento com 6 tratamentos (cultivares), conduzido em DBC com 4 blocos. A variável resposta mensurada em cada unidade experimental foi gramas de espigas (GE) em adição a uma covariável, número de plantas por unidade experimental (NPLA). Para realizar uma ANCOVA, recomendamos que as seguintes etapas sejam seguidas:</p>
+
 
 <div class="dica">
 <ol style="list-style-type: decimal">
@@ -1723,6 +1714,7 @@ Figure 10.6: Gráfico de dispersão e linhas de regressão entre a variável dep
 <li><p>Compute as análises complementares: encontrada diferença significativa para tratamento na etapa 4 e assumindo que a etapa 5 indicou homogeneidade dos <em>slopes</em> da regressão, as análises complementares –como comparações múltiplas de médias– podem então ser realizadas.</p></li>
 </ol>
 </div>
+
 <p>Vamos agora ver cada uma destas etapas detalhadamente.</p>
 <p><strong>1. Download dos dados e pacotes necessários</strong></p>
 <p>O seguinte código é utilizado para instalar/carregar os pacotes necessários bem como para fazer o upload dos dados e armazenar no dataframe <code>covar</code> </p>
@@ -1789,6 +1781,7 @@ A linha tracejada horizontal representa a média geral de cada variável. Seis e
 <span id="cb179-9"><a href="analdata.html#cb179-9"></a><span class="co"># TRAT       5  45.833  9.1667  1.2079 0.3524</span></span>
 <span id="cb179-10"><a href="analdata.html#cb179-10"></a><span class="co"># BLOCO      3  21.667  7.2222  0.9517 0.4407</span></span>
 <span id="cb179-11"><a href="analdata.html#cb179-11"></a><span class="co"># Residuals 15 113.833  7.5889</span></span></code></pre></div>
+
 <p>O resultado da ANOVA acima indica que a covariável é independente dos efeitos de tratamento. Neste caso, prosseguimos para o próximo passo. Se um resultado significativo for encontrado nesta etapa, a realização da ANCOVA não é recomendada.</p>
 <p><strong>4. O modelo da ANCOVA</strong></p>
 <p>Para realizar a ANCOVA, utilizaremos a mesma função <code>aov()</code>. Agora, no entanto, a variável dependente (do lado esquerdo do operador <code>~</code>) será a <code>GE</code> e a covariável <code>NPUE</code> será incluída no modelo. Aqui, a função <code>anova()</code> é substituída pela função <code>Anova()</code> do pacote <code>car</code> para que a soma de quadrado tipo III (em linguagem SAS) seja computada. Este tipo de soma de quadrados é utilizada, pois cada efeito é ajustado para todos os outros termos do modelo, diferentemente do tipo I (padrão na função <code>anova()</code>), onde a adição de cada efeito é feita sequencialmente e depende de como os termos do modelo são ordenados <span class="citation">(Langsrud <a href="#ref-Langsrud2003" role="doc-biblioref">2003</a>)</span>.</p>
@@ -1813,7 +1806,7 @@ A linha tracejada horizontal representa a média geral de cada variável. Seis e
 <span id="cb181-2"><a href="analdata.html#cb181-2"></a><span class="co"># normalidade dos resíduos</span></span>
 <span id="cb181-3"><a href="analdata.html#cb181-3"></a><span class="kw">shapiro.test</span>(residuals)</span>
 <span id="cb181-4"><a href="analdata.html#cb181-4"></a><span class="co"># </span></span>
-<span id="cb181-5"><a href="analdata.html#cb181-5"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb181-5"><a href="analdata.html#cb181-5"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb181-6"><a href="analdata.html#cb181-6"></a><span class="co"># </span></span>
 <span id="cb181-7"><a href="analdata.html#cb181-7"></a><span class="co"># data:  residuals</span></span>
 <span id="cb181-8"><a href="analdata.html#cb181-8"></a><span class="co"># W = 0.97894, p-value = 0.8755</span></span>
@@ -1846,9 +1839,11 @@ Figure 10.8: Gráfico residual do modelo ANCOVA obtido pela função autoplot().
 </div>
 <p>A Figura abaixo obtida com a função <code>autoplot()</code>, mostra 4 gráficos. Os dois primeiros são os mais importantes para nós aqui. O primeiro (<em>Residual vs fitted</em>) pode ser utilizado para identificar a homogeneidade das variâncias. Uma distribuição aleatória dos pontos no gráfico deve ser observada. Quando um padrão de distibuição é observado –como, por exemplo, a distribuição dos pontos em forma de funil– uma investigação deve ser realizada, pois este padrão indica a possiblidade de heterogeneidade das variâncias. O segundo gráfico (<em>Normal Q-Q</em>) nos informa quanto a normalidade dos resíduos, ou seja, é desejado que os pontos sejam distribuídos ao redor da linha diagonal. Em nosso caso, os pontos foram uniformemente distribuídos, o que confirma o resultado do teste estatístico observado anteriormente.</p>
 
+
 <div class="vcsabia">
 <p>A utilização de gráficos residuais para identificar os pressupostos de modelos ainda não é muito difundida. No entanto, estes gráficos apresentam muitas vantagens em relação aos métodos estatísticos, principalmente quando os testes são aplicados em conjuntos de dados com um alto tamanho de amostra. Uma ampla discussão comparando métodos estatísticos e gráficos na verificação de pressupostos dos modelos é apresentada por <span class="citation">Kozak and Piepho (<a href="#ref-Kozak2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
+
 <p><strong>5. Homogeneidade dos <em>slopes</em> da regressão</strong></p>
 <p>Vimos anteriormente que homogeneidade dos <em>slopes</em> é um pressuposto importante na ANCOVA. Para identificarmos isto em nosso exemplo, vamos criar um gráfico semelhate ao apresentado na figura 7.</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="analdata.html#cb182-1"></a><span class="kw">ggplot</span>(covar, <span class="kw">aes</span>(NPUE, GE, <span class="dt">col =</span> TRAT)) <span class="op">+</span></span>
@@ -1885,9 +1880,11 @@ Figure 10.9: Regressões ajustadas para cada tratamento entre a variável depend
 <span id="cb183-16"><a href="analdata.html#cb183-16"></a><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 <p>Como já suspeitávamos, a interação covariável <span class="math inline">\(\times\)</span> tratamento não foi significativa, indicando homogeneidade dos <em>slopes</em>.</p>
 
+
 <div class="dica">
 <p>Na função <code>update()</code> acima, o operador <code>.~.</code> significa “manter a mesma variável resposta e preditores do objeto ancova” e <code>+ NPUE:TRAT</code> significa “adicionar o termo de interação ao modelo ancova”.</p>
 </div>
+
 <p><strong>6. Análises complementares</strong></p>
 <p>Nos últimos cinco tópicos, vimos em detalhe os principais passos para o cálculo da ANCOVA. Conseguimos identificar que a covariável influencia a variável resposta, que ela é idependente dos nossos tratamentos e os <em>slopes</em> das regressões de cada tratamento são homogêneos. Duas etapas restam para nós agora: (i) identificar o quanto ganhamos –em termos de sucesso preditivo– considerando a inclusão da covariável do modelo; e (ii) quais são as médias ajustadas apra cada tratamento. Uma maneira simples de identificar se a inclusão da covariável melhorou a predição do modelo, é por meio da criação de um gráfico de dispersão com uma linha de referência 1:1 (valores preditos <em>vs</em> observados). Testes estatísticos de seleção de modelos –como, por exemplo, o AIC– também podem serem utilizados. Nesta etapa, vamos criar um novo dataframe chamado <code>covar_pred</code>, qual conterá, além dos dados originais, os valores preditos pela ANOVA e ANCOVA.</p>
 <p>  </p>
@@ -1916,14 +1913,17 @@ Figure 10.9: Regressões ajustadas para cada tratamento entre a variável depend
 <p><img src="html_r_files/figure-html/unnamed-chunk-201-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Neste gráfico, a linha pontilhada representa a linha de referência 1:1. Fica evidente ao observar o gráfico acima que a utilização da covariável melhorou a capacidade preditiva do modelo, pois os valores preditos estavam mais próximos da linha de referência. Os valores de AIC também indicaram que o modelo ANCOVA foi mais preciso.</p>
 
+
 <div class="dica">
 <p>Gráficos do tipo 1:1 são úteis para identificar a capacidade preditiva de modelos. Dois cuidados, no entanto, precisam ser tomados. Primeiro, por ser um gráfico gráfico de dispersão com uma linha de referência 1:1, os eixos x e y devem estar na mesma escala. Segundo, é assumido que a linha diagonal tem intercepto igual a zero e <em>slope</em> igual a um. Assim, um teste de hipotese para estes parâmetros pode ser útil.</p>
 </div>
+
 <p>O próximo passo é obtermos as médias de GE para cada tratamento ajustadas para um mesmo valor de NPUE. Considerando estas variáveis como Y e X, respectivamente, este valor é dado pela expressão:</p>
 <p><span class="math display">\[
 \hat m_i = \bar{Y}_{i.}- \hat \beta(\bar{X}_{i.}- \bar X_{..})
 \]</span></p>
 <p>Onde <span class="math inline">\(\bar{Y}_{i.}\)</span> é a média ajustada de Y do <em>i</em>-ésimo tratamento; <span class="math inline">\(\hat \beta\)</span> é o <em>slope</em> da regressão linear estimada entre a variável dependente e a covariável; <span class="math inline">\(\bar{X}_{i.}\)</span> é a média da covariável para o <em>i</em>-ésimo tratamento; e <span class="math inline">\(\bar{X}_{..}\)</span> é a média geral da covariável. No software R, as médias ajustadas bem como os testes <em>post hocs</em> podem ser obtidos pelos seguintes códigos.</p>
+
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="analdata.html#cb185-1"></a>med_anova =<span class="st"> </span><span class="kw">emmeans</span>(anovaa, <span class="op">~</span><span class="st"> </span>TRAT) <span class="co"># Média não ajustada</span></span>
 <span id="cb185-2"><a href="analdata.html#cb185-2"></a>med_ancoova =<span class="st"> </span><span class="kw">emmeans</span>(ancova, <span class="op">~</span><span class="st"> </span>TRAT) <span class="co"># Média ajustada para NPUE</span></span>
 <span id="cb185-3"><a href="analdata.html#cb185-3"></a>xlab =<span class="st"> &quot;Gramas de espiga por parcela&quot;</span></span>
@@ -1937,10 +1937,10 @@ Figure 10.9: Regressões ajustadas para cada tratamento entre a variável depend
 <p>A figura acima mostra as médias ajustadas para os dois métodos. As barras azuis representam o intervalo de confiança 95% da média predita enquanto que as setas vermelhas indicam comparação das médias pelo teste de Tukey. Cultivares com setas que não se sobrepõe apresentam médias significativamente diferentes. Note que a amplitude do intervalo de confiança é menor para o modelo da ANCOVA. Assim, vimos como este método pode ser útil na redução do erro em análise de dados experimentais. Seguindo este exemplo, a ANCOVA pode ser aplicada em experimentos onde uma potencial covariável está disponível, como por exemplo, a severidade de ferrugem na folha observada em cada unidade experimental antes da aplicação de fungicida.</p>
 </div>
 </div>
-<div id="general" class="section level2" number="10.5">
+<div id="general" class="section level2">
 <h2><span class="header-section-number">10.5</span> Análise de dados não gaussianos</h2>
 <p>Dados com distribuições não normal são mais comuns do que podemos imaginar. Na área agrícola, exemplos incluem a percentagem de sementes que germinam (Binomial), a contagem de ervas daninhas por parcela (Poisson), a proporção de área foliar necrosada por uma determinada doença (Beta), a escala de sintomas de uma determinada doença (Multinominal). Para todas as distribuições, exceto a normal, a variância é dependente da média. Logo, assumindo efeito significativo dos tratamentos, o pressuposto da homogeneidade das variâncias será violado quando dados não normais são analizados <span class="citation">(Stroup <a href="#ref-Stroup2015" role="doc-biblioref">2015</a>)</span>. Neste momento, a questão que surge é: como estes dados deveriam ser analizados? Antes de responder esta questão, vamos passar por uma breve história.</p>
-<div id="da-análise-de-variação-aos-modelos-lineares-mistos-generalizados" class="section level3" number="10.5.1">
+<div id="da-análise-de-variação-aos-modelos-lineares-mistos-generalizados" class="section level3">
 <h3><span class="header-section-number">10.5.1</span> Da análise de variação aos modelos lineares mistos generalizados</h3>
 <p><span class="citation">Fisher and Mackenzie (<a href="#ref-Fisher1923" role="doc-biblioref">1923</a>)</span>, estudando a variação de diferentes cultivares de batata, publicaram o primeiro trabalho demonstrando o uso da ANOVA para a avaliação de experimentos agrícolas. O método da ANOVA se tornaria popular e amplamente utilizado após Fisher estabelecer as bases teóricas e os pressupostos desta técnica <span class="citation">(Fisher <a href="#ref-Fisher1925" role="doc-biblioref">1925</a>, <a href="#ref-Fisher1935" role="doc-biblioref">1935</a>)</span>. As ideias de Fisher foram extendidas para experimentos mais complexos, mais tarde, por <span class="citation">Yates (<a href="#ref-Yates1940" role="doc-biblioref">1940</a>)</span>. Até então, a questão da ANOVA de dados não gaussianos parecia estar resolvida. O teorema central do limite dava suporte a tal análise. Mais tarde, <span class="citation">Bartlett (<a href="#ref-Bartlett1947" role="doc-biblioref">1947</a>)</span> demonstrou como as transformações de dados não normais poderiam ser úteis para realização da ANOVA. Esta técnica permanece sendo utilizada até hoje.</p>
 <p>Nesta mesma época, a terminologia “Modelos Mistos”  foi introduzida por <span class="citation">Eisenhart (<a href="#ref-Eisenhart1947" role="doc-biblioref">1947</a>)</span>. Mais tarde, <span class="citation">Henderson (<a href="#ref-Henderson1949" role="doc-biblioref">1949</a>)</span>; <span class="citation">Henderson (<a href="#ref-Henderson1950" role="doc-biblioref">1950</a>)</span> propos as equações do modelo misto, das quais os BLUPs são as soluções. Em 1953, este mesmo autor demonstrou os diferentes tipos de somas de quadrados (vistos na seção da análise de covariância) e descreveu alguns métodos para estimação dos componentes de variância em dados não ortogonais <span class="citation">(Henderson <a href="#ref-Henderson1953" role="doc-biblioref">1953</a>)</span>. Mais tarde (1971), a estimação da Máxima Verossimilhança Restrita (REML) como um método para estimativa dos componentes de variância em um modelo com dados desbalanceados foi apresentada por <span class="citation">Patterson and Thompson (<a href="#ref-Patterson1971" role="doc-biblioref">1971</a>)</span>.</p>
@@ -1953,16 +1953,17 @@ Figure 10.9: Regressões ajustadas para cada tratamento entre a variável depend
 <li>A teoria por tráz dos modelos mistos já era compreendida, no entanto seu uso não era disseminado devido, principalmente, devido a necessidade de operações matriciais complexas.</li>
 </ul>
 </div>
+
 <p><span class="citation">Nelder and Wedderburn (<a href="#ref-Nelder1972" role="doc-biblioref">1972</a>)</span> extenderam a base do modelo linear da ANOVA e regressão para acomodar suposições de probabilidade mais plausíveis aos dados observados, resultando nos conhecidos modelos lineares generalizados (<em>GLM, generalized linear models</em>). A essência dessa generalização proporciona duas importantes mudanças nos pressupostos dos modelos: A primeira é que os dados não necessariamente precisam ser normalmente distribuídos mas podem assumir qualquer distribuição da família exponencial de distribuições a qual inclui, entre outras, a distribuição Normal, Poisson e Binomial <span class="citation">(Koopman <a href="#ref-Koopman1936" role="doc-biblioref">1936</a>)</span>. A segunda é que a média não é necessariamente tomada como uma combinação linear de parâmetros, mas que alguma função da média é. Esta função é conhecida como função de ligação e nos GLMs relaciona a média da variável resposta à combinação linear das variáveis explicativas <span class="citation">(Nelder and Wedderburn <a href="#ref-Nelder1972" role="doc-biblioref">1972</a>)</span>. Semelhante a evolução dos LMs para GLMs, os LMMs foram extendidos para modelos lineares mistos generalizados (<em>GLMM, generalized linear mixed-effect model</em>) por <span class="citation">Wolfinger and O’connell (<a href="#ref-Wolfinger1993" role="doc-biblioref">1993</a>)</span> e <span class="citation">Breslow and Clayton (<a href="#ref-Breslow1993" role="doc-biblioref">1993</a>)</span>.</p>
 </div>
-<div id="estratégias-para-análise-de-dados-não-gaussianos" class="section level3" number="10.5.2">
+<div id="estratégias-para-análise-de-dados-não-gaussianos" class="section level3">
 <h3><span class="header-section-number">10.5.2</span> Estratégias para análise de dados não gaussianos</h3>
 <p>Quando confrontados com dados não normais, a maioria dos pesquisadores opta por uma das três opções a seguir: <strong>(i)</strong> confiar na robustez da ANOVA clássica à pequenos desvios de normalidade em ensaios balanceados <span class="citation">(Blanca et al. <a href="#ref-Blanca2017" role="doc-biblioref">2017</a>)</span> e realizá-la sem nenhum peso na consciência; <strong>(ii)</strong> realizar alguma transformação na variável e realizar a ANOVA com dados transformados; <strong>(iii)</strong> utilizar algum teste não paramétrico. A segunda opção parece ser a mais utilizada. Variáveis são transformadas para que os pressupostos de normalidade e homogeneidade das variâncias seja cuprido –ou ao menos aproximado– <span class="citation">(Bartlett <a href="#ref-Bartlett1947" role="doc-biblioref">1947</a>)</span>.</p>
 <p>O uso de testes não paramétricos também pode ser uma alternativa para a análise de dados não normais. Os testes de Friedman <span class="citation">(Friedman <a href="#ref-Friedman1937" role="doc-biblioref">1937</a>)</span> e de Kruskal &amp; Wallis <span class="citation">(Kruskal and Wallis <a href="#ref-Kruskal1952" role="doc-biblioref">1952</a>)</span> são as alternativas não paramétricas para a análise de variância nos delineamentos DBC e DIC (unifatoriais), respectivamente. A aplicação destes testes não será o foco aqui, principalmente devido a limitação com relação a complexidade do design experimental suportada por estes testes. Uma excelente aplicação prática, no entanto, pode ser vista em <span class="citation">Field, Miles, and Field (<a href="#ref-Field2012" role="doc-biblioref">2012</a>)</span>, pp. 653.</p>
 <p>Vale ressaltar que a escolha por estes “atalhos”, no entanto, nem sempre é a solução definitiva. Dados de contagem com muitos valores zero não podem ser normalizados por transformação. Os testes não paramétricos, ao contrário de como muitos pensam, requerem, sim, alguns pressupostos. Por exemplo, o teste de Freedman é flexivel quando a não normalidade mas só é valido se a distribuição da variável resposta entre os grupos for a mesma em todos os outros aspectos (variância, assimetria, curtose). Quando estes pressupostos não são cumpridos, o poder do teste é reduzido <span class="citation">(Laurent and Turk <a href="#ref-Laurent2013" role="doc-biblioref">2013</a>)</span>. Assim, ao vez de encaixar os dados em estatísticas clássicas, os pesquisadores devem utilizar abordagens estatísticas que correspondam aos seus dados <span class="citation">(Mora et al. <a href="#ref-Mora2008" role="doc-biblioref">2008</a>)</span>. Em casos de variáveis não normais, as mais indicadas são os GLMs <span class="citation">(Nelder and Wedderburn <a href="#ref-Nelder1972" role="doc-biblioref">1972</a>)</span> ou GLMMs <span class="citation">(Wolfinger and O’connell <a href="#ref-Wolfinger1993" role="doc-biblioref">1993</a>)</span>.</p>
 <p>Hábitos de aprendizado de que a ANOVA pode ser aplicada diretamente a dados transformados não ajudam –e muitas vezes impedem– a rápida expansão do uso de modelos mais sofisticados como os GLM(M)s. O uso de GLM(M)s, no entanto, requer um aprendizado considerável. Dependendo da aplicação, a subida pode ser íngreme. Apresentar uma introdução ao uso dos GLM(M)s em R para análise de dados não gaussianos e compará-los com os procedimentos tradicionais é nosso principal objetivo aqui.</p>
 </div>
-<div id="introdução-aos-modelos-lineares-generalizados" class="section level3" number="10.5.3">
+<div id="introdução-aos-modelos-lineares-generalizados" class="section level3">
 <h3><span class="header-section-number">10.5.3</span> Introdução aos modelos lineares generalizados</h3>
 <p>Vamos considerar um simples experimento que comparou a eficiência de um herbicida pré-emergente no controle de uma determinada erva daninha em comparação com um tratamento controle. O ensaio foi realizado em um delineamento DIC com oito repetições, sendo cada repetição caracterizada por um vaso. Logo, o ensaio foi composto por 16 vasos. Em cada vaso foram semeadas 50 sementes da determinada erva daninha e após um período previamente especificado, o número de sementes germinadas foi observado. Assumindo que a germinação de cada semente é um processo independente, a variável resposta em cada unidade experimental (<span class="math inline">\(Y_{ij}\)</span>) tem uma distribuição binomial com <em>N</em> = 50 e probabilidade de germinação de <span class="math inline">\(\pi_{ij}\)</span> para o <em>i</em>-ésimo tratamento na <em>j</em>-ésima repetição.</p>
 <p>Intuitivamente, a primeira opção de muitos pesquisadores para analisar estes dados seria iniciar com uma aproximação normal. Com <em>N</em> = 50 –e considerando <em>p</em> = 0,5– mesmo dados binomiais apresentam boa aproximação normal. O modelo com aproximação normal seria:</p>
@@ -1982,7 +1983,7 @@ Figure 10.9: Regressões ajustadas para cada tratamento entre a variável depend
 </blockquote>
 <p>Dois exemplos numéricos serão implementados. O primeiro, considera a análise de dados de proporção discreta. O segundo é voltado para a análise de dados de contagem. Os dados utilizados são oriundos de um ensaio com nove cultivares de soja conduzidas em um delineamento DBC com quatro blocos. Em cada bloco, diversas variáveis foram mensuradas em 10 plantas aleatoriamente selecionadas. Para fins didáticos, somente as variáveis de interesse serão utilizadas aqui. (i) proporção de legumes viáveis, obtido pela razão entre o número de legumes viáveis (com ao menos um grão) e o número de legumes total das 10 plantas. (ii) o número total de legumes das 10 plantas que continha quatro grãos. Para cada exemplo, a análise será realizada considerando uma ANOVA normal, utilizando uma transformação indicada e utilizando um modelo misto generalizado.</p>
 </div>
-<div id="dados-de-proporção" class="section level3" number="10.5.4">
+<div id="dados-de-proporção" class="section level3">
 <h3><span class="header-section-number">10.5.4</span> Dados de proporção</h3>
 <p>Por definição, a proporção de legumes viáveis observado na <em>j</em>-ésima repetição do <em>i</em>-ésimo tratamento (<span class="math inline">\(p_{ij}\)</span>) tem uma distribuição binomial onde <span class="math inline">\(p_{ij} \sim B(N, \pi_{ij})\)</span>, onde <span class="math inline">\(\pi_{ij}\)</span> denota a probabilidade de uma observação aleatória do tratamento <em>i</em> no bloco <em>j</em> apresentar a característica de interesse – neste caso do legume ser viável. Neste caso, o objetivo é estimar a probabilidade de cada tratamento e utilizando testes de hipóteses compará-las. O valor esperado para o tratamento <em>i</em> é dado então por <span class="math inline">\(N\pi_i\)</span> com variância <span class="math inline">\(N\pi_i(1-\pi_i)\)</span>.</p>
 <p>Mesmo em experimentos com tamanho de amostra grande, diferenças significativas no <span class="math inline">\(\pi_i\)</span> resultarão em variãncias heterogêneas, violando o pressuposto da ANOVA. Dados oriundo de proporções (<span class="math inline">\(p_{ij}\)</span>) são frequentemente transformados para a escala <span class="math inline">\(P^*_{ij} = sen^{-1} \sqrt{P_{ij}}\)</span> <span class="citation">(Rodrigues-Soares et al. <a href="#ref-Rodrigues-Soares2018" role="doc-biblioref">2018</a>)</span>.</p>
@@ -2031,19 +2032,19 @@ Figure 10.10: Proporção de legumes viáveis em nove cultivares de soja (a) e g
 <p>Os modelos ajustados foram salvos em seus respectivos objetos. Neste momento, uma investigação quanto aos pressuposstos destes modelos é necessária. As funções <code>shapiro.test()</code> e <code>leveneTest()</code> são utilizadas para a análise de normalidade e homogeneidade dos resíduos, respectivamente.</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="analdata.html#cb188-1"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(convencional))</span>
 <span id="cb188-2"><a href="analdata.html#cb188-2"></a><span class="co"># </span></span>
-<span id="cb188-3"><a href="analdata.html#cb188-3"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb188-3"><a href="analdata.html#cb188-3"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb188-4"><a href="analdata.html#cb188-4"></a><span class="co"># </span></span>
 <span id="cb188-5"><a href="analdata.html#cb188-5"></a><span class="co"># data:  residuals(convencional)</span></span>
 <span id="cb188-6"><a href="analdata.html#cb188-6"></a><span class="co"># W = 0.93971, p-value = 0.1198</span></span>
 <span id="cb188-7"><a href="analdata.html#cb188-7"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(transform))</span>
 <span id="cb188-8"><a href="analdata.html#cb188-8"></a><span class="co"># </span></span>
-<span id="cb188-9"><a href="analdata.html#cb188-9"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb188-9"><a href="analdata.html#cb188-9"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb188-10"><a href="analdata.html#cb188-10"></a><span class="co"># </span></span>
 <span id="cb188-11"><a href="analdata.html#cb188-11"></a><span class="co"># data:  residuals(transform)</span></span>
 <span id="cb188-12"><a href="analdata.html#cb188-12"></a><span class="co"># W = 0.95492, p-value = 0.2814</span></span>
 <span id="cb188-13"><a href="analdata.html#cb188-13"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(general, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>))</span>
 <span id="cb188-14"><a href="analdata.html#cb188-14"></a><span class="co"># </span></span>
-<span id="cb188-15"><a href="analdata.html#cb188-15"></a><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span id="cb188-15"><a href="analdata.html#cb188-15"></a><span class="co"># 	Shapiro-Wilk normality test</span></span>
 <span id="cb188-16"><a href="analdata.html#cb188-16"></a><span class="co"># </span></span>
 <span id="cb188-17"><a href="analdata.html#cb188-17"></a><span class="co"># data:  residuals(general, type = &quot;deviance&quot;)</span></span>
 <span id="cb188-18"><a href="analdata.html#cb188-18"></a><span class="co"># W = 0.95317, p-value = 0.2557</span></span>
@@ -2059,9 +2060,11 @@ Figure 10.10: Proporção de legumes viáveis em nove cultivares de soja (a) e g
 <span id="cb188-28"><a href="analdata.html#cb188-28"></a><span class="co">#       18</span></span></code></pre></div>
 <p>Nada parece haver de errado com nossos modelos até aqui. De fato, à 5% de erro, tanto os resíduais do modelo <code>convencional</code> quanto <code>transform</code> são considerados homocedásticos e normalmente distribuídos. Vamos, agora, a uma abordagem gráfica.</p>
 
+
 <div class="vcsabia">
 <p>Testes de hipótese -incluíndo os testes de normalidade e homogeneidade- são sensíveis ao tamanho da amostra. Assim, quanto menor o tamanho da amostra (em nosso caso 27), menor é a probabilidae de rejeição da hipótese <span class="math inline">\(h_o\)</span> (resíduos normais). Por outro lado, em tamanhos de amostra grande, a probabilidade de rejeição da hipótese <span class="math inline">\(h_o\)</span> é maior. Este assunto é bem discutido por <span class="citation">Kozak and Piepho (<a href="#ref-Kozak2017" role="doc-biblioref">2017</a>)</span>, quais demonstraram que gráficos residuais são melhores do que os testes estatísticos para verificar as pressuposições da ANOVA.</p>
 </div>
+
 <p>  </p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="analdata.html#cb189-1"></a>res &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Convencional =</span> <span class="kw">residuals</span>(convencional),</span>
 <span id="cb189-2"><a href="analdata.html#cb189-2"></a>              <span class="dt">Transformado =</span> <span class="kw">residuals</span>(transform),</span>
@@ -2072,7 +2075,7 @@ Figure 10.10: Proporção de legumes viáveis em nove cultivares de soja (a) e g
 <span id="cb189-7"><a href="analdata.html#cb189-7"></a><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_point</span>()<span class="op">+</span></span>
 <span id="cb189-8"><a href="analdata.html#cb189-8"></a><span class="st">       </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_band</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>)<span class="op">+</span></span>
 <span id="cb189-9"><a href="analdata.html#cb189-9"></a><span class="st">       </span><span class="kw">facet_wrap</span>(<span class="op">~</span>key, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)<span class="op">+</span></span>
-<span id="cb189-10"><a href="analdata.html#cb189-10"></a><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Quantis teóricos&quot;</span>, <span class="dt">y =</span>  <span class="st">&quot;Quantis observados&quot;</span>)</span></code></pre></div>
+<span id="cb189-10"><a href="analdata.html#cb189-10"></a><span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Quantis teóricos&quot;, y =  &quot;</span>Quantis observados<span class="st">&quot;)</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-209"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-209-1.png" alt="Gráficos Q-Q plot dos resíduos obtidos na análise da proporção de legumes viáveis." width="960" />
 <p class="caption">
@@ -2083,6 +2086,7 @@ Figure 10.11: Gráficos Q-Q plot dos resíduos obtidos na análise da proporçã
 <div class="note">
 <p><strong>Conclusão até aqui:</strong> baseado em testes de aderência à normalidade e na interpretação gráfica, os pressupostos do modelo da ANOVA convencional foram cumpridos. Então, é justo perguntar: Por que utilizar um modelo mais “complicado” se há evidências de que a ANOVA nos dados transformados (ou mesmo nos dados originais) não trará maiores problemas? Antes de qualquer conclusão vamos observar os resultados dos três modelos.</p>
 </div>
+
 <p>O código abaixo é utilizado para obter as médias marginais dos modelos ajustados. Na ANOVA com os dados transformados e no modelo generalizado, todas as inferências são realizadas na escala transfromada mas as médias são apresentadas na escala original.
 </p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="analdata.html#cb190-1"></a>med_conv &lt;-<span class="st"> </span><span class="kw">emmeans</span>(convencional, <span class="op">~</span><span class="st"> </span>CULTIVAR,  <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
@@ -2107,7 +2111,7 @@ Figure 10.12: Médias estimadas, intervalos de confiança e comparação de méd
 <p>Comparando os resultados dos três modelos na mesma escala, fica fácil observar que o modelo generalizado apresentou um intervalo de confiança das médias (barra azul) menor quando comparado com os procedimentos tradicionais. A seta vermelha representa a comparação das médias pelo teste de Tukey a 5% de erro. Tratamentos com setas que não se sobrepõe diferem estatisticamente considerando a probabilidade de erro.</p>
 <p>Neste ponto identificamos as limitações do modelo convencional da ANOVA. A transformação indicada não ajudou muito. Todos os indícios levavam a acreditar que não teríamos maiores problemas realizando a ANOVA com os dados transformados –ou mesmo originais– devido a boa aproximação normal dos erros. Estes modelos, no entanto, indicaram que as diferenças observadas entre as médias fora resultado do acaso, o que parece não fazer muito sentido quando observamos a figura 30. Neste caso, o pesquisador reportaria estes resultados em seu artigo/relatório e apresentaria alguma justificativa para este “fracasso”. O que precisamos compreender, no entanto, é que <strong>mesmo com uma boa aproximação normal</strong> dos erros, <strong>os dados ainda continuam sendo dados binomias!</strong> Se observarmos no conjunto de dados veremos que cada bloco possui um número diferente de legumes totais. Ao considerar a proporção de legumes viáveis e análisar essa variável, ignoramos completamente o <em>N</em> em nossa amostra. Poucos se dão conta, mas a proporção de 0.5 de legumes viáveis é a mesma considerando 5 legumes viáveis de um total de 10 legumes e 500 legumes viáveis de um total de 1000 legumes. A precisão, no entanto é diferente. O modelo generalizado aplicado neste exemplo considera esta diferença.</p>
 </div>
-<div id="dados-de-contagem" class="section level3" number="10.5.5">
+<div id="dados-de-contagem" class="section level3">
 <h3><span class="header-section-number">10.5.5</span> Dados de contagem</h3>
 <p>Dados de contagem são muito comuns em experimentos agronômicos, tendo a propriedade de serem não negativos e inteiros. Em probabilidade, estes tipos de dados seguem uma distribuição Poisson <span class="citation">(Cochran <a href="#ref-Cochran1940" role="doc-biblioref">1940</a>)</span>. A exemplo de <span class="citation">Zoz et al. (<a href="#ref-Zoz2018" role="doc-biblioref">2018</a>)</span>, dados discretos (<span class="math inline">\(D_{ij}\)</span>) são frequentemente transformados para a escala <span class="math inline">\(D^*_{ij} = \sqrt{D_{ij}}\)</span> ou para <span class="math inline">\(D^*_{ij} = \sqrt{D_{ij}+0,5}\)</span> quando há um elevado número de zeros presente.</p>
 <ul>
@@ -2128,9 +2132,9 @@ Figure 10.12: Médias estimadas, intervalos de confiança e comparação de méd
 <span id="cb191-11"><a href="analdata.html#cb191-11"></a><span class="st">             </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_line</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
 <span id="cb191-12"><a href="analdata.html#cb191-12"></a><span class="st">             </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_point</span>() <span class="op">+</span></span>
 <span id="cb191-13"><a href="analdata.html#cb191-13"></a><span class="st">             </span>qqplotr<span class="op">::</span><span class="kw">stat_qq_band</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>)<span class="op">+</span></span>
-<span id="cb191-14"><a href="analdata.html#cb191-14"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Quantis teóricos&quot;</span>, <span class="dt">y =</span>  <span class="st">&quot;Quantis observados&quot;</span>)</span>
-<span id="cb191-15"><a href="analdata.html#cb191-15"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;(a)&quot;</span>, <span class="st">&quot;(b)&quot;</span>),</span>
-<span id="cb191-16"><a href="analdata.html#cb191-16"></a>                   <span class="dt">label_size =</span> <span class="dv">10</span>, <span class="dt">vjust =</span> <span class="dv">3</span>, <span class="dt">hjust =</span> <span class="dv">-5</span>)</span></code></pre></div>
+<span id="cb191-14"><a href="analdata.html#cb191-14"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Quantis teóricos&quot;, y =  &quot;</span>Quantis observados<span class="st">&quot;)</span></span>
+<span id="cb191-15"><a href="analdata.html#cb191-15"></a><span class="st">plot_grid(p1, p2, labels = c(&quot;</span>(a)<span class="st">&quot;, &quot;</span>(b)<span class="st">&quot;),</span></span>
+<span id="cb191-16"><a href="analdata.html#cb191-16"></a><span class="st">                   label_size = 10, vjust = 3, hjust = -5)</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-212"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-212-1.png" alt="Número de legumes com quatro grãos em nove cultivares de soja (a) e gráfico Q-Q plot (b)" width="960" />
 <p class="caption">
@@ -2169,10 +2173,12 @@ Figure 10.14: Gráficos Q-Q plot dos resíduos
 </div>
 <p>O gráfico Q-Q para estes modelos indicou que os resíduos são distribuídos normalmente, considerando o intervalo de confiança. A transformação novamente não ajudou muito aqui. Embora não faça lógica testar a normalidade dos resíduos do modelo generalizado (visto que assumimos uma distribuição Poisson para os dados), o gráfico Q-Q mostra que os resíduos deste modelo se aproximou mais de uma distribuição normal comparado com os outros dois métodos.</p>
 
+
 <div class="tarefa">
 <p><strong>Exercício 10</strong>
 Utilize o teste de Shapiro-Wilk para testar a hipótese de normalidade dos resíduos dos modelos ajustados anteriormente.</p>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc10">Resposta</a></p>
 <p>Todos os três modelos indicaram diferenças significativas (5% de erro) para as médias das cultivares. Para a ANOVA convencional, o erro padrão para todos os tratamentos foi 0.94, o que não pode ser verdade porque a variância e, portanto, os erros padrão, devem ser uma função da média em dados de contagem.</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="analdata.html#cb194-1"></a></span>
@@ -2199,7 +2205,7 @@ Figure 10.15: Médias estimadas, intervalos de confiança e comparação de méd
 <p>Procedimentos que contemplam a análise considerando GLMs e GLMMs estão disponíveis nos principais softwares estatísticos. O <a href="https://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_glimmix_a0000001394.htm">PROC GLIMMIX</a> e <a href="https://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_genmod_sect001.htm">PROC GENMOD</a> do SAS, e a função <code>glmer()</code> do pacotes <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4</a> no R podem ser utilizadas para a implementação destes modelos.</p>
 </div>
 </div>
-<div id="efat" class="section level2" number="10.6">
+<div id="efat" class="section level2">
 <h2><span class="header-section-number">10.6</span> Experimentos bifatoriais</h2>
 <p>Experimentos fatoriais são muito comuns nas ciências agrárias, pois permitem o estudo de dois ou mais fatores em um mesmo experimento. Diversas são as vantagens em se conduzir um experimento deste tipo. Dentre elas, podemos citar a redução de custos, quando comparado à realizar um experimento para cada fator, a otimização da área experimental e dos tratos culturais, bem como a possibilidade de identificar o efeito de dois ou mais fatores sobre a magnitude da variável resposta. Esta é, talvez, a principal vantagem destes experimentos. Ao memo tempo, no entanto, é a fonte de um dos maiores desafios encontrados no meio acadêmico. O surgimento de uma terceira fonte de variação, conhecida por interação. </p>
 <p>Vamos considerar como exemplo, um experimento que avaliou a influencia de dois fatores, digamos <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\tau\)</span>, em uma determinada variável resposta. O modelo estatístico considerado neste tipo de experimento é:</p>
@@ -2208,7 +2214,7 @@ Figure 10.15: Médias estimadas, intervalos de confiança e comparação de méd
 \]</span></p>
 <p>onde <span class="math inline">\({y_{ijk}}\)</span> é o valor observado da combinação do <em>i</em>-ésimo nível do fator <span class="math inline">\(\alpha\)</span> com o <em>j</em>-ésimo nível do fator <span class="math inline">\(\tau\)</span> no <em>k</em>-ésimo bloco; <span class="math inline">\(\mu\)</span> é a média geral; <span class="math inline">\(\mathop \beta \nolimits_{k}\)</span> é o efeito do bloco <em>k</em>; <span class="math inline">\(\mathop \alpha \nolimits_i\)</span> é o efeito do <em>i</em>-ésimo nível de <span class="math inline">\(\alpha\)</span> ; <span class="math inline">\(\mathop \tau \nolimits_j\)</span> é o efeito do <em>j</em>-ésimo nível de <span class="math inline">\(\tau\)</span> ; <span class="math inline">\(\mathop {(\alpha \tau )}\nolimits_{ij}\)</span> é o efeito da interação do <em>i</em>-ésimo nível de <span class="math inline">\(\alpha\)</span> com o <em>j</em>-ésimo nível de <span class="math inline">\(\tau\)</span>; e <span class="math inline">\(\mathop \varepsilon \nolimits_{ijk}\)</span> é o erro aleatório associado a <span class="math inline">\({y_{ijk}}\)</span>, assumindo <span class="math inline">\(\mathop \varepsilon \nolimits_{ijk} \mathop \cap \limits^{iid} N(0,\mathop \sigma \nolimits^2 )\)</span>.</p>
 <p>Basicamente, estes fatores podem ser divididos em dois tipos: qualitativos  e quantitativos . Um fator qualitativo é, como o nome já diz, relacionado a <em>qualidade</em>, ou seja, diferentes em tipo mas não em quantidade. Como exemplo, podemos citar cultivares, defensivos agrícolas, práticas de manejo, etc. Um fator quantitativo, por outro lado, é caracterizado pela <em>quantidade</em> utilizada no experimento. Podemos citar, por exemplo, doses de adubação. Cabe ressaltar que o termo <em>fatorial</em> não indica um delineamento experimental, mas uma forma de arranjo de tratamentos na área parcela. Estes experimentos podem ser conduzidos tanto em DIC  quanto DBC . Assim, em cada repetição/bloco, o tratamento a ser aplicado é a combinação dos níveis dos dois fatores. A combinação de diferentes tipos de fatores não influenciará a análise de variância dos dados, no entanto resultará em algumas particularidades nas análises complementares, como será visto ao longo desta seção.</p>
-<div id="download-dos-dados" class="section level3" number="10.6.1">
+<div id="download-dos-dados" class="section level3">
 <h3><span class="header-section-number">10.6.1</span> Download dos dados</h3>
 <p>Nesta seção, serão analisados dados de experimentos bifatoriais com diferentes combinações de fatores qualitativos e quantitativos na presença de interação significativa e não significativa. Em todos os exemplos, será considerado o delineamento de blocos completos casualizados, tendo como variável resposta, o rendimento de grãos (RG). Para isto, utilizaremos cinco conjuntos de dados que serão detalhados a seguir.</p>
 <table>
@@ -2219,7 +2225,7 @@ Figure 10.15: Médias estimadas, intervalos de confiança e comparação de méd
 <thead>
 <tr class="header">
 <th align="left">Acrônimo</th>
-<th align="left">Descrição</th>
+<th align="left">Descrição |</th>
 </tr>
 </thead>
 <tbody>
@@ -2256,9 +2262,9 @@ Figure 10.15: Médias estimadas, intervalos de confiança e comparação de méd
 <p>Definidos a entrada de dados, precisamos declarar quais as análises complementares a serem realizadas, em caso de significancia estatística. no argumento <code>quali</code>, informamos qual o tipo de fator em estudo. A declaração é um vetor lógico de comprimento 2. Em nosso caso, ao declararmos <code>quali = c(TRUE, TRUE)</code> (padrão) estamos informando que o ambos os fatores HÍBRIDO e FONTEN são qualitativos. O argumento <code>mcomp</code> é utilizado para informar o teste de comparação (ou agrupamento ) de médias utilizado. Em nosso exemplo, vamos utilizar o teste Tukey (padrão). No argumento <code>fac.names</code> é possivel informar nomes específicos para os fatores. Os argumentos <code>sigF</code> e <code>sigT</code> são utilizados para informar a probabilidade de erro assumida na análise de variância e nas analises de comparação de médias, respectivamente. Ambos tem padrão 5%.</p>
 <p>O resultado da função <code>fat2.dbc()</code> irá depender da significância das fontes de variação do experimento. Em caso de interação não significativa  a função realiza uma comparação de médias para efeitos qualitativos e ajusta modelos de regressão polinomial para fatores quantitativos (quando significativos). Em experimentos com dois fatores qualitativos, em caso de interação significativa, a função realiza o desdobramento das médias dos fatores. Em caso de um fator qualitativo e outro quantitativo, em caso de interação significativa a função realiza a comparação das médias do fator qualitativo para cada nível do fator quantitativo, bem como ajusta uma regressão para cada nível do fator qualitativo.</p>
 </div>
-<div id="qualitativo-vs-qualitativo" class="section level3" number="10.6.2">
+<div id="qualitativo-vs-qualitativo" class="section level3">
 <h3><span class="header-section-number">10.6.2</span> Qualitativo vs qualitativo</h3>
-<div id="sem-interação-significativa" class="section level4" number="10.6.2.1">
+<div id="sem-interação-significativa" class="section level4">
 <h4><span class="header-section-number">10.6.2.1</span> Sem interação significativa</h4>
 <p>Como exemplo de análise de um experimento bifatorial com dois fatores qualitativos sem interação  significativa, utilizaremos o conjunto de dados <strong>FAT1_SI</strong>. Já sabemos que a interação não será significativa neste exemplo. Os dois próximos gráficos nos ajudam a compreender porque.</p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="analdata.html#cb196-1"></a>hf3 &lt;-<span class="st"> </span><span class="kw">plot_factbars</span>(FAT1_SI,</span>
@@ -2280,9 +2286,11 @@ Figure 10.16: Característica da produção em um experimento bifatorial sem int
 </div>
 <p>É possível identificar que o a magnitude da variável resposta de um fator não é alterada pelo nível do outro fator. Por exemplo, nota-se que o híbrido <em>NUPEC_2</em> parece ter uma média maior que os outros híbridos, independentemente da fonte de nitrogênio utilizada. Do mesmo modo, a fonte de nitrogênio <em>AmonioA</em> parece proporcionar maior produtividade, independentemente do híbrido testado. Estas afirmações, no entanto, só poderão ser confirmadas pela análise de variância e posterior comparação de médias.</p>
 
+
 <div class="dica">
 <p>Gráficos iterativos podem ser obtidos utilizando a função <code>ggplotly()</code> do pacote <a href="https://plot.ly/ggplot2/">plotly</a>. Este pacote converte um objeto <strong>ggplot2</strong> em um gráfico iterativo que é apresentado na aba <em>viewer</em> do ambiente de trabalho RStudio.</p>
 </div>
+
 <ul>
 <li><strong>Análise de variância</strong></li>
 </ul>
@@ -2302,12 +2310,15 @@ Figure 10.16: Característica da produção em um experimento bifatorial sem int
 <span id="cb198-3"><a href="analdata.html#cb198-3"></a><span class="kw">plot_grid</span>(hf5, hf6, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;hf5&quot;</span>, <span class="st">&quot;hf6&quot;</span>))</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-221-1.png" width="960" style="display: block; margin: auto;" /></p>
 
+
 <div class="dica">
 <p>A função <code>plot_bars()</code> utilizada para confeccionar os gráficos desta seção retorna a análise descritiva para os fatores considerados se o argumento <code>verbose =  TRUE</code> for adicionado na função.</p>
 </div>
+
 </div>
-<div id="com-interação-significativa" class="section level4" number="10.6.2.2">
+<div id="com-interação-significativa" class="section level4">
 <h4><span class="header-section-number">10.6.2.2</span> Com interação significativa</h4>
+
 <p>O conjunto de dados utilizado neste exemplo será o <strong>FAT1_CI</strong>. A análise de variância é realizada utilizando a mesma função anterior.</p>
 <ul>
 <li><strong>Análise de variância</strong></li>
@@ -2331,16 +2342,18 @@ Figure 10.16: Característica da produção em um experimento bifatorial sem int
 <span id="cb200-7"><a href="analdata.html#cb200-7"></a>                          <span class="st">&quot;cC&quot;</span>, <span class="st">&quot;aB&quot;</span>, <span class="st">&quot;bC&quot;</span>)) <span class="co"># Ureia</span></span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-224-1.png" width="672" style="display: block; margin: auto;" /></p>
 
+
 <div class="tarefa">
 <p><strong>Exercício 11</strong>
 - Confeccione um gráfico semelhante ao acima considerando o fator FONTEN mapeado em escala de cinza.</p>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc11">Resposta</a></p>
 </div>
 </div>
-<div id="qualitativo-vs-quantitativo" class="section level3" number="10.6.3">
+<div id="qualitativo-vs-quantitativo" class="section level3">
 <h3><span class="header-section-number">10.6.3</span> Qualitativo vs quantitativo</h3>
-<div id="sem-interação-significativa-1" class="section level4" number="10.6.3.1">
+<div id="sem-interação-significativa-1" class="section level4">
 <h4><span class="header-section-number">10.6.3.1</span> Sem interação significativa</h4>
 <p>O conjunto de dados utilizado neste exemplo será o <strong>FAT2_SI</strong>. Do mesmo modo do exemplo anterior, iremos confeccionar um gráfico prévio para visualização dos dados.</p>
 <ul>
@@ -2355,6 +2368,7 @@ Figure 10.16: Característica da produção em um experimento bifatorial sem int
 Figure 10.17: Característica de produção em um experimento bifatorial sem interação significativa
 </p>
 </div>
+
 <ul>
 <li><strong>análise estatistica dos dados</strong></li>
 </ul>
@@ -2366,6 +2380,7 @@ Figure 10.17: Característica de produção em um experimento bifatorial sem int
 <span id="cb202-5"><a href="analdata.html#cb202-5"></a>              <span class="dt">resp =</span>  RG,</span>
 <span id="cb202-6"><a href="analdata.html#cb202-6"></a>              <span class="dt">quali =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
 <span id="cb202-7"><a href="analdata.html#cb202-7"></a>              <span class="dt">fac.names =</span> <span class="kw">c</span>(<span class="st">&quot;HIBRIDO&quot;</span>, <span class="st">&quot;DOSE&quot;</span>)))</span></code></pre></div>
+
 <p>Como a interação não foi significativa, proceder-se-a a comparação de médias dos dois híbridos considerando a média de todas as doses de nitrogênio, e o ajuste de apenas uma regressão para os dois híbridos. Como o grau do polinômio significativo foi quadrático, declararmos <code>fit = 2</code> na função <code>plot_lines()</code>.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="analdata.html#cb203-1"></a>h &lt;-<span class="st"> </span><span class="kw">plot_bars</span>(FAT2_SI, HIBRIDO, RG,</span>
 <span id="cb203-2"><a href="analdata.html#cb203-2"></a>                 <span class="dt">width.bar =</span> <span class="fl">0.5</span>,</span>
@@ -2373,18 +2388,18 @@ Figure 10.17: Característica de produção em um experimento bifatorial sem int
 <span id="cb203-4"><a href="analdata.html#cb203-4"></a>d &lt;-<span class="st"> </span><span class="kw">plot_lines</span>(FAT2_SI, DOSEN, RG,</span>
 <span id="cb203-5"><a href="analdata.html#cb203-5"></a>                <span class="dt">fit =</span> <span class="dv">2</span>,</span>
 <span id="cb203-6"><a href="analdata.html#cb203-6"></a>                <span class="dt">col =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb203-7"><a href="analdata.html#cb203-7"></a>                <span class="dt">xlab =</span> <span class="st">&quot;Doses de nitrogênio&quot;</span>,</span>
-<span id="cb203-8"><a href="analdata.html#cb203-8"></a>                <span class="dt">ylab =</span> <span class="st">&quot;Rendimento de grãos (Mg/ha)&quot;</span>) <span class="op">+</span></span>
-<span id="cb203-9"><a href="analdata.html#cb203-9"></a><span class="st">     </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dv">0</span>, <span class="fl">6.5</span>, <span class="dt">label=</span>(<span class="kw">paste</span>(<span class="kw">expression</span>(<span class="st">&quot;y = 6,8326 + 0,0012x - 0,0003x&quot;</span><span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="st">&quot;  R&quot;</span> <span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="st">&quot; = 0,99 &quot;</span>)))),</span>
-<span id="cb203-10"><a href="analdata.html#cb203-10"></a>               <span class="dt">hjust =</span> <span class="dv">0</span>,</span>
-<span id="cb203-11"><a href="analdata.html#cb203-11"></a>               <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb203-12"><a href="analdata.html#cb203-12"></a>               <span class="dt">parse =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb203-13"><a href="analdata.html#cb203-13"></a><span class="kw">plot_grid</span>(h, d, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;h&quot;</span>, <span class="st">&quot;d&quot;</span>), <span class="dt">rel_widths =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span></code></pre></div>
+<span id="cb203-7"><a href="analdata.html#cb203-7"></a>                <span class="dt">xlab =</span> <span class="st">&quot;Doses de nitrogênio&quot;,</span></span>
+<span id="cb203-8"><a href="analdata.html#cb203-8"></a><span class="st">                ylab = &quot;</span>Rendimento de grã<span class="kw">os</span> (Mg<span class="op">/</span>ha)<span class="st">&quot;) +</span></span>
+<span id="cb203-9"><a href="analdata.html#cb203-9"></a><span class="st">     geom_text(aes(0, 6.5, label=(paste(expression(&quot;</span><span class="dt">y =</span> <span class="dv">6</span>,<span class="dv">8326</span> <span class="op">+</span><span class="st"> </span><span class="dv">0</span>,0012x <span class="op">-</span><span class="st"> </span><span class="dv">0</span>,0003x<span class="st">&quot;^2*&quot;</span>  R<span class="st">&quot; ^2*&quot;</span> =<span class="st"> </span><span class="dv">0</span>,<span class="dv">99</span> <span class="st">&quot;)))),</span></span>
+<span id="cb203-10"><a href="analdata.html#cb203-10"></a><span class="st">               hjust = 0,</span></span>
+<span id="cb203-11"><a href="analdata.html#cb203-11"></a><span class="st">               col = &quot;</span>black<span class="st">&quot;,</span></span>
+<span id="cb203-12"><a href="analdata.html#cb203-12"></a><span class="st">               parse = TRUE) </span></span>
+<span id="cb203-13"><a href="analdata.html#cb203-13"></a><span class="st">plot_grid(h, d, labels = c(&quot;</span>h<span class="st">&quot;, &quot;</span>d<span class="st">&quot;), rel_widths = c(1, 3))</span></span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-228-1.png" width="960" style="display: block; margin: auto;" />
 
 </p>
 </div>
-<div id="com-interação-significativa-1" class="section level4" number="10.6.3.2">
+<div id="com-interação-significativa-1" class="section level4">
 <h4><span class="header-section-number">10.6.3.2</span> Com interação significativa</h4>
 <p>O conjunto de dados utilizado neste exemplo será o <strong>FAT2_CI</strong>. Por se tratar de um experimento fatorial com um fator qualitativo (hibrido) e outro quantitativo (dose), convém confeccionar um gráfico com o rendimento observado de cada híbrido em cada dose. Este gráfico, além de servir como ferramenta para identificar possíveis <em>outliers</em>, também nos permite identificar a resposta de cada híbrido. Cabe salientar que este é um gráfico meramente ilustrativo. A análise estatistica dos dados será realizada posteriormente.</p>
 <ul>
@@ -2404,6 +2419,7 @@ Figure 10.18: Rendimento observado de cada híbrido em cada dose de nitrogênio
 <div class="importante">
 <p>Para evitar uma longa saída neste documento devido a interação significativa, a impressão dos resultados foi suprimida. Rode a programação em seu console para observar os resultados.</p>
 </div>
+
 <p>%in%</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="analdata.html#cb205-1"></a><span class="kw">with</span>(FAT2_CI, </span>
 <span id="cb205-2"><a href="analdata.html#cb205-2"></a>     <span class="kw">fat2.dbc</span>(<span class="dt">fator1 =</span>  HIBRIDO,</span>
@@ -2419,14 +2435,14 @@ Figure 10.18: Rendimento observado de cada híbrido em cada dose de nitrogênio
 <p>As comparações de médias são apresentadas como saída da função <code>fat2.dbc()</code> após a análise de variância. Neste momento, utilizaremos a função <code>plot_factbars()</code>  do pacote <code>metan</code>** para plotar as médias dos híbridos em cada dose de nitrogênio. A apresentação gráfica de resultados, mesmo considerando médias, é uma alternativa interessante à tabela, pois permite uma interpretação mais clara e intuitiva dos resultados.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="analdata.html#cb206-1"></a><span class="kw">plot_factbars</span>(FAT2_CI, DOSEN, HIBRIDO,</span>
 <span id="cb206-2"><a href="analdata.html#cb206-2"></a>              <span class="dt">resp =</span> RG,</span>
-<span id="cb206-3"><a href="analdata.html#cb206-3"></a>              <span class="dt">xlab =</span> <span class="st">&quot;Doses de nitrogênio&quot;</span>,</span>
-<span id="cb206-4"><a href="analdata.html#cb206-4"></a>              <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Rendimento de grãos (Mg ha&quot;</span><span class="op">^-</span><span class="dv">1</span>,<span class="st">&quot;)&quot;</span>)),</span>
-<span id="cb206-5"><a href="analdata.html#cb206-5"></a>              <span class="dt">palette =</span> <span class="st">&quot;Greys&quot;</span>,</span>
-<span id="cb206-6"><a href="analdata.html#cb206-6"></a>              <span class="dt">lab.bar =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="co"># 0</span></span>
-<span id="cb206-7"><a href="analdata.html#cb206-7"></a>                          <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="co"># 25</span></span>
-<span id="cb206-8"><a href="analdata.html#cb206-8"></a>                          <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="co"># 50</span></span>
-<span id="cb206-9"><a href="analdata.html#cb206-9"></a>                          <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="co"># 75</span></span>
-<span id="cb206-10"><a href="analdata.html#cb206-10"></a>                          <span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>)) <span class="co"># 100</span></span></code></pre></div>
+<span id="cb206-3"><a href="analdata.html#cb206-3"></a>              <span class="dt">xlab =</span> <span class="st">&quot;Doses de nitrogênio&quot;,</span></span>
+<span id="cb206-4"><a href="analdata.html#cb206-4"></a><span class="st">              ylab = expression(paste(&quot;</span>Rendimento de grã<span class="kw">os</span> (Mg ha<span class="st">&quot;^-1,&quot;</span>)<span class="st">&quot;)),</span></span>
+<span id="cb206-5"><a href="analdata.html#cb206-5"></a><span class="st">              palette = &quot;</span>Greys<span class="st">&quot;,</span></span>
+<span id="cb206-6"><a href="analdata.html#cb206-6"></a><span class="st">              lab.bar = c(&quot;</span>a<span class="st">&quot;, &quot;</span>b<span class="st">&quot;, # 0</span></span>
+<span id="cb206-7"><a href="analdata.html#cb206-7"></a><span class="st">                          &quot;</span>a<span class="st">&quot;, &quot;</span>b<span class="st">&quot;, # 25</span></span>
+<span id="cb206-8"><a href="analdata.html#cb206-8"></a><span class="st">                          &quot;</span>a<span class="st">&quot;, &quot;</span>b<span class="st">&quot;, # 50</span></span>
+<span id="cb206-9"><a href="analdata.html#cb206-9"></a><span class="st">                          &quot;</span>a<span class="st">&quot;, &quot;</span>b<span class="st">&quot;, # 75</span></span>
+<span id="cb206-10"><a href="analdata.html#cb206-10"></a><span class="st">                          &quot;</span>a<span class="st">&quot;, &quot;</span>a<span class="st">&quot;)) # 100</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-232"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-232-1.png" alt="Gráfico das médias dos híbridos em cada dose de nitrogênio." width="672" />
 <p class="caption">
@@ -2488,6 +2504,7 @@ MEE = 50 + \frac{{1.35}}{{2 \times (-0,0005574) \times 600}} \approx 48
 \]</span></p>
 <p>Assim, a dose máxima de nitrogênio que em que os incrementos de produtividade são lucrativos é de <span class="math inline">\(\approx 48\)</span> Kg ha<span class="math inline">\(^{-1}\)</span>.</p>
 
+
 <div class="tarefa">
 <p><strong>Exercício 12</strong></p>
 <ul>
@@ -2497,10 +2514,11 @@ MEE = 50 + \frac{{1.35}}{{2 \times (-0,0005574) \times 600}} \approx 48
 <li><p>Insira uma linha vertical sólida e cinza que intercepta o eixo x na dose de máxima eficiência econômica.</p></li>
 </ul>
 </div>
+
 <p><a href="resposta-dos-exercícios.html#exerc12">Resposta</a></p>
 </div>
 </div>
-<div id="quantitativo-vs-quantitativo" class="section level3" number="10.6.4">
+<div id="quantitativo-vs-quantitativo" class="section level3">
 <h3><span class="header-section-number">10.6.4</span> Quantitativo vs quantitativo</h3>
 <p>Neste exemplo, iremos avaliar dados de um experimento que testou dois fatores quantitativos. O conjunto de dados utilizado é o <strong>FAT3</strong>. A análise de variância, neste caso, é realizada da mesma maneira que os exemplos anteriores, o que muda agora é que a análise complementar, em caso de interação significativa será diferente. Por se tratar de dois fatores quantitativos, neste caso, doses de nitrogênio e de potássio na cultura do milho, é de se esperar que, em caso de interação  significativa, haja uma combinação de doses ótimas que proporcione a maior magnitude da variável resposta (rendimento de grãos). Assim, uma análise de superfície de resposta é a mais indicada para este tipo de experimento.</p>
 <p>Para a análise neste exemplo, utilizaremos a função <code>resp_surf()</code>. Nesta função estão implementadas as seguintes rotinas: análise de variância, ajuste da equação de superfície de resposta, determinação dos pontos críticos, estatisticas de ajuste e análise residual. O procedimento para a análise é simples. Os seguintes argumentos precisam ser declarados: <code>.data</code>, o conjunto de dados; <code>fator1</code> o nome da coluna com o primeiro fator; <code>fator2</code> o nome da coluna com o segundo fator; <code>rep</code> o nome da coluna com os blocos; e <code>resp</code> o nome da coluna com a variável resposta que se deseja analizar. Neste exemplo, vamos armazenar os resultados no objeto <code>sresp</code>.</p>
@@ -2625,7 +2643,7 @@ MEE = 50 + \frac{{1.35}}{{2 \times (-0,0005574) \times 600}} \approx 48
 - 0.5 \times \left[ {\left( {\begin{array}{*{20}{c}}{ - 8.91796}&amp;{ - 0.1152}\\{ - 0.11527}&amp;{ - 131.009}\end{array}} \right) \times \left( \begin{array}{l}14.7502\\1.00569\end{array} \right)} \right] = \left( \begin{array}{l}65.8292\\66.7277\end{array} \right)
 \]</span></p>
 </div>
-<div id="experimentos-em-parcelas-subdivididas" class="section level3" number="10.6.5">
+<div id="experimentos-em-parcelas-subdivididas" class="section level3">
 <h3><span class="header-section-number">10.6.5</span> Experimentos em parcelas subdivididas</h3>
 <p>Experimentos fatoriais são úteis devido a possibilidade de se testar dois ou mais fatores em um mesmo experimento. Uma desvantagem deste tipo de experimento é que cada bloco deve receber todos os tratamentos, ou seja, todas as combinações dos níveis dos dois fatores. Assim, o número de parcelas no experimento e consequentemente o tamanho da área experimental crese drastricamente na medida em que são incluídos fatores ou níveis de fatores no experimento. Uma maneira de se contornar isto, é a condução de experimentos em parcelas subdivididas.</p>
 <p>Parcelas subdivididas  são um caso especial de estrutura de tratamentos fatorial em que um fator é alocado na parcela principal e outro fator é alocado na subparcela. Este tipo de estrutura de tratamentos pode ser utilizada quando um fator é de dificil instalação em pequenas parcelas, como por exemplo, a semeadura mecanizada ou um sistema de irrigação, e o segundo fator pode ser alocado em parcelas mais pequenas, como um doses de nitrogênio, por exemplo.</p>
@@ -2669,19 +2687,20 @@ MEE = 50 + \frac{{1.35}}{{2 \times (-0,0005574) \times 600}} \approx 48
 <span id="cb209-33"><a href="analdata.html#cb209-33"></a><span class="co"># Teste de Tukey</span></span>
 <span id="cb209-34"><a href="analdata.html#cb209-34"></a><span class="co"># ------------------------------------------------------------------------</span></span>
 <span id="cb209-35"><a href="analdata.html#cb209-35"></a><span class="co"># Grupos Tratamentos Medias</span></span>
-<span id="cb209-36"><a href="analdata.html#cb209-36"></a><span class="co"># a      NUPEC_2     13.33417 </span></span>
-<span id="cb209-37"><a href="analdata.html#cb209-37"></a><span class="co">#  b     NUPEC_3     10.97337 </span></span>
-<span id="cb209-38"><a href="analdata.html#cb209-38"></a><span class="co">#   c    NUPEC_1     9.311875 </span></span>
+<span id="cb209-36"><a href="analdata.html#cb209-36"></a><span class="co"># a 	 NUPEC_2 	 13.33417 </span></span>
+<span id="cb209-37"><a href="analdata.html#cb209-37"></a><span class="co">#  b 	 NUPEC_3 	 10.97337 </span></span>
+<span id="cb209-38"><a href="analdata.html#cb209-38"></a><span class="co">#   c 	 NUPEC_1 	 9.311875 </span></span>
 <span id="cb209-39"><a href="analdata.html#cb209-39"></a><span class="co"># ------------------------------------------------------------------------</span></span>
 <span id="cb209-40"><a href="analdata.html#cb209-40"></a><span class="co"># </span></span>
 <span id="cb209-41"><a href="analdata.html#cb209-41"></a><span class="co"># FONTEN</span></span>
 <span id="cb209-42"><a href="analdata.html#cb209-42"></a><span class="co"># Teste de Tukey</span></span>
 <span id="cb209-43"><a href="analdata.html#cb209-43"></a><span class="co"># ------------------------------------------------------------------------</span></span>
 <span id="cb209-44"><a href="analdata.html#cb209-44"></a><span class="co"># Grupos Tratamentos Medias</span></span>
-<span id="cb209-45"><a href="analdata.html#cb209-45"></a><span class="co"># a      AmonioA     13.33304 </span></span>
-<span id="cb209-46"><a href="analdata.html#cb209-46"></a><span class="co">#  b     Ureia   10.40515 </span></span>
-<span id="cb209-47"><a href="analdata.html#cb209-47"></a><span class="co">#  b     NitratoA    9.881223 </span></span>
+<span id="cb209-45"><a href="analdata.html#cb209-45"></a><span class="co"># a 	 AmonioA 	 13.33304 </span></span>
+<span id="cb209-46"><a href="analdata.html#cb209-46"></a><span class="co">#  b 	 Ureia 	 10.40515 </span></span>
+<span id="cb209-47"><a href="analdata.html#cb209-47"></a><span class="co">#  b 	 NitratoA 	 9.881223 </span></span>
 <span id="cb209-48"><a href="analdata.html#cb209-48"></a><span class="co"># ------------------------------------------------------------------------</span></span></code></pre></div>
+
 
 </div>
 </div>
@@ -2883,7 +2902,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["html_r.epub"],
 "toc": {
 "collapse": "subsection"
 }

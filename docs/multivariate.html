@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 13 Análise multivariada | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 13 Análise multivariada | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="relations.html"/>
 <link rel="next" href="interaction.html"/>
-<script src="libs/header-attrs-2.2/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,9 +50,10 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.13/datatables.js"></script>
+<script src="libs/datatables-binding-0.14/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -71,17 +71,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +102,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -147,27 +148,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
-<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#por-que-eu-deveria-ler-este-e-book"><i class="fa fa-check"></i>Por que eu deveria ler este e-Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#estrutura"><i class="fa fa-check"></i>Estrutura</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#conjunto-de-dados"><i class="fa fa-check"></i>Conjunto de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a>
-<ul>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a><ul>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#tiago-olivoto"><i class="fa fa-check"></i>Tiago Olivoto</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#bruno-giacomini-sari"><i class="fa fa-check"></i>Bruno Giacomini Sari</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="detalhes-importantes.html"><a href="detalhes-importantes.html"><i class="fa fa-check"></i>Detalhes importantes</a></li>
 <li class="part"><span><b>I Parte I o ambiente R</b></span></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a>
-<ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#o-software-r"><i class="fa fa-check"></i><b>1.1</b> O software R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#o-software-rstudio"><i class="fa fa-check"></i><b>1.2</b> O software RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#meu-primeiro-script"><i class="fa fa-check"></i><b>1.3</b> Meu primeiro script</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a>
-<ul>
+<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a><ul>
 <li class="chapter" data-level="2.1" data-path="objects.html"><a href="objects.html#vetores"><i class="fa fa-check"></i><b>2.1</b> Vetores</a></li>
 <li class="chapter" data-level="2.2" data-path="objects.html"><a href="objects.html#matrizes"><i class="fa fa-check"></i><b>2.2</b> Matrizes</a></li>
 <li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
@@ -181,10 +178,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>5</b> Construindo uma tabela</a></li>
 <li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
-<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a>
-<ul>
+<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipula.html"><a href="manipula.html#selecionar-colunas"><i class="fa fa-check"></i><b>7.1.1</b> Selecionar colunas</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipula.html"><a href="manipula.html#remover-linhas-ou-colunas"><i class="fa fa-check"></i><b>7.1.2</b> Remover linhas ou colunas</a></li>
 <li class="chapter" data-level="7.1.3" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.1.3</b> Ordenar linhas</a></li>
@@ -196,8 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.9" data-path="manipula.html"><a href="manipula.html#obtendo-níveis-de-fatores"><i class="fa fa-check"></i><b>7.1.9</b> Obtendo níveis de fatores</a></li>
 <li class="chapter" data-level="7.1.10" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.1.10</b> Selecionar linhas com base em seus valores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a>
-<ul>
+<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="manipula.html"><a href="manipula.html#arredondando"><i class="fa fa-check"></i><b>7.2.1</b> Arredondando</a></li>
 <li class="chapter" data-level="7.2.2" data-path="manipula.html"><a href="manipula.html#extraindo-e-substituindo-números"><i class="fa fa-check"></i><b>7.2.2</b> Extraindo e substituindo números</a></li>
 <li class="chapter" data-level="7.2.3" data-path="manipula.html"><a href="manipula.html#extraindo-substituindo-e-removendo-strings"><i class="fa fa-check"></i><b>7.2.3</b> Extraindo, substituindo e removendo strings</a></li>
@@ -205,15 +199,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.3</b> Selecionar linhas por sua posição</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.4</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a>
-<ul>
+<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Junções com mutação de dados</a></li>
 <li class="chapter" data-level="7.5.2" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.5.2</b> Junções com filtragem de dados</a></li>
 <li class="chapter" data-level="7.5.3" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.5.3</b> Operações com conjuntos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a>
-<ul>
+<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <code>ggplot2</code></a></li>
@@ -222,16 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a>
-<ul>
+<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
 <li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
-<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a>
-<ul>
+<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
+<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
 <li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
 <li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#resumindo-dados-com-o-pacote-dplyr"><i class="fa fa-check"></i><b>10.1.3</b> Resumindo dados com o pacote <code>dplyr</code></a></li>
@@ -241,8 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.7" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.7</b> Teste de hipóteses para amostras independentes</a></li>
 <li class="chapter" data-level="10.1.8" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.8</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a>
-<ul>
+<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
 <li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
@@ -251,24 +239,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
-<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a>
-<ul>
+<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
 <li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
 <li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico-1"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
 <li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
 <li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
 <li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a>
-<ul>
+<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
 <li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
 <li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
 <li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
 <li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
 <li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a>
-<ul>
+<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>10.6.1</b> Download dos dados</a></li>
 <li class="chapter" data-level="10.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>10.6.2</b> Qualitativo vs qualitativo</a></li>
 <li class="chapter" data-level="10.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.3</b> Qualitativo vs quantitativo</a></li>
@@ -276,10 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>10.6.5</b> Experimentos em parcelas subdivididas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a>
-<ul>
+<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>11.1.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
 <li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
@@ -287,8 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a>
-<ul>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
 <li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimativa-1"><i class="fa fa-check"></i><b>11.2.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
 <li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
@@ -298,11 +280,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a>
-<ul>
+<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
 <li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a>
-<ul>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
 <li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
 <li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
@@ -311,17 +291,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a>
-<ul>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
 <li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
 <li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a>
-<ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimativa-2"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
 <li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
@@ -332,20 +310,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a>
-<ul>
+<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a>
-<ul>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
 <li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
 <li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
 <li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
 <li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a>
-<ul>
+<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
@@ -355,36 +330,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
 <li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a>
-<ul>
+<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
 <li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a>
-<ul>
+<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
 <li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
 <li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
 <li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
 <li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
 <li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
 <li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
-<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a>
-<ul>
+<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
 <li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
 <li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
 </ul></li>
 <li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#imprimindo-os-meios-das-estimativas-rmspd"><i class="fa fa-check"></i><b>14.8</b> Imprimindo os meios das estimativas RMSPD</a></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a>
-<ul>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a><ul>
 <li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.9.1</b> Valores estimados pelo modelo AMMI</a></li>
 <li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.9.2</b> Índices de estabilidade baseados em AMMI</a></li>
 <li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.9.3</b> Biplots</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a>
-<ul>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a><ul>
 <li class="chapter" data-level="14.10.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>14.10.1</b> Data centering</a></li>
 <li class="chapter" data-level="14.10.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>14.10.2</b> Data scaling</a></li>
 <li class="chapter" data-level="14.10.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>14.10.3</b> Singular value partition</a></li>
@@ -392,10 +362,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.10.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.10.5</b> Valores estimados pelo modelo GGE</a></li>
 <li class="chapter" data-level="14.10.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.10.6</b> Visualizando o Biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a>
-<ul>
+<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a><ul>
 <li class="chapter" data-level="14.11.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.11.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.11.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.11.2" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="14.11.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.11.3</b> Parâmetros genéticos</a></li>
 <li class="chapter" data-level="14.11.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.11.4</b> Médias preditas</a></li>
 <li class="chapter" data-level="14.11.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.11.5</b> Índices de estabilidade baseados em BLUP</a></li>
@@ -403,8 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.12" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.12</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
-<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a>
-<ul>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
 <li class="chapter" data-level="A.1" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
 <li class="chapter" data-level="A.2" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
 <li class="chapter" data-level="A.3" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
@@ -438,12 +406,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multivariate" class="section level1" number="13">
+<div id="multivariate" class="section level1">
 <h1><span class="header-section-number">Capítulo 13</span> Análise multivariada</h1>
 <p>No melhoramento genético de plantas, diversas variáveis são mensuradas em cada genótipo, visando maior segurança na distinção de tais genótipos. Embora em alguns casos possa fazer sentido isolar cada variável e estudá-la separadamente, geralmente, uma análise que englobe todas as variáveis fornece um maior número de informações. Como todo o conjunto de variáveis é medido em cada genótipo, as variáveis serão relacionadas em maior ou menor grau. Consequentemente, se cada variável é analisada isoladamente, a estrutura completa dos dados pode não ser revelada. A análise multivariada é a análise estatística simultânea de uma coleção de variáveis que utilzia informações sobre as relações entre estas. É muito provável que a análise de cada variável separadamente não revele padrões interessantes que a análise multivariada proporciona.</p>
 <p>A concepção da análise multivariada  é provavelmente o trabalho realizado por Francis Galton e Karl Pearson no final do século XIX sobre a quantificação da relação entre descendentes e características parentais e o desenvolvimento do coeficiente de correlação <span class="citation">(Galton <a href="#ref-Galton1888" role="doc-biblioref">1888</a>)</span>. Naquele tempo, o processamento computacional era muito limitado para suportar o peso das vastas quantidades de aritmética envolvidas na aplicação dos métodos multivariados que estavam sendo propostos. Assim, os desenvolvimentos eram principalmente matemáticos e a pesquisa multivariada era, na época, em grande parte, um ramo de álgebra linear. No entanto, a chegada e rápida expansão do uso de computadores eletrônicos na segunda metade do século XX, levou à crescente aplicação prática dos métodos existentes de análise multivariada, renovando o interesse no desenvolvimento de novas técnicas.</p>
 <p>Nos primeiros anos do século XXI, a ampla disponibilidade de computadores pessoais e laptops relativamente baratos e extremamente poderosos, aliados a softwares estatísticos flexíveis fez com que todos os métodos de análise multivariada pudessem ser aplicados rotineiramente, mesmo para grandes conjuntos de dados, como os gerados em um programa de melhoramento genético –por exemplo, dados de marcadores moleculares e sequenciamento gênico.</p>
-<div id="correlações-canônicas" class="section level2" number="13.1">
+<div id="correlações-canônicas" class="section level2">
 <h2><span class="header-section-number">13.1</span> Correlações canônicas</h2>
 <p>Correlações canonicas podem ser computadas utilizando a função <code>can_corr()</code> do pacote <code>metan</code>. O primeiro argumento da função é o conjunto de dados (opcional) que deve conter as variáveis numéricas que serão usadas na estimativa das correlações canônicas. Os grupos de variáveis são definidos pelos argumentos <code>FG</code> (primeiro/menor grupo) e <code>SG</code> (segundo/maior grupo). Por padrão, um diagnótico da multicolinearidade é realizado em cada grupo de variável. No exemplo abaixo, os coeficientes foram armazenados no objeto <strong>cc1</strong>. Note que o argumento <code>verbose = FALSE</code> foi utilizado para previnir uma longa saída.</p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="multivariate.html#cb269-1"></a>cc1 =<span class="st"> </span><span class="kw">can_corr</span>(maize,</span>
@@ -459,17 +427,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="dica">
 <p>Na função <code>can_corr()</code>, os dados também podem ser passados diretamente pelos argumentos <code>FG</code> e <code>SG</code>, por exemplo, <code>FG = maize[, 4:6]</code>. Alternativamente, dados podem ser passados da função <code>split_factors()</code>. Nesse caso, as correlações canônicas serão estimadas para cada nível da variável de agrupamento nessa função.</p>
 </div>
+
 </div>
-<div id="análise-de-agrupamento" class="section level2" number="13.2">
+<div id="análise-de-agrupamento" class="section level2">
 <h2><span class="header-section-number">13.2</span> Análise de agrupamento</h2>
 <p>A análise de agrupamento  é um procedimento multivariado muito útil no melhoramento de plantas. O princípio básico é agrupar indivíduos (genótipos) de acordo com suas semelhanças (variáveis analizadas). Esta sessão é focada na estimativa de matrizes de distâncias e na implementação de algorítimos aglomerativos de agrupamento hierárquicos para confecção de dendrogramas.  A função <code>clustering()</code>  do pacote <code>metan</code> será utilizada para este fim.</p>
 <p>Existem muitos métodos para calcular as informações de (di)similaridade. As opções incluidas na função são: “euclidean” (padrão), “maximum”, “manhattan”, “canberra”, “binary”, “minkowski”, “pearson”, “kendall” e “spearman”. Estas três últimas são distâncias baseadas em correlação. Para maiores informações veja <code>?clustering</code>.</p>
-<div id="todas-as-linhas-e-todas-as-variáveis-numéricas" class="section level3" number="13.2.1">
+<div id="todas-as-linhas-e-todas-as-variáveis-numéricas" class="section level3">
 <h3><span class="header-section-number">13.2.1</span> Todas as linhas e todas as variáveis numéricas</h3>
 <p>Por padrão, a função computa as distancias para cada combinação de linhas do conjunto de dados, utilizando todas as variáveis numéricas do conjunto. Isto significa que, considerando o conjunto de dados <strong>maize</strong>, com 156 observações, 12090 distancias serão computadas baseadas nas 15 variáveis numéricas do conjunto.</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="multivariate.html#cb270-1"></a>d1 &lt;-<span class="st"> </span><span class="kw">clustering</span>(maize)</span></code></pre></div>
 </div>
-<div id="com-base-na-média-de-cada-genótipo" class="section level3" number="13.2.2">
+<div id="com-base-na-média-de-cada-genótipo" class="section level3">
 <h3><span class="header-section-number">13.2.2</span> Com base na média de cada genótipo</h3>
 <p>Supondo que o pesquisador deseja computar as distancias entre cada genótipo (o que é lógico em melhoramento genético vegetal) e que esta distancia deve ser computada apenas com algumas variáveis numéricas do conjunto de dados, o seguinte código deverá ser utilizado. Para selecionar as variáveis a serem utilziadas, basta apenas fornecer uma lista de nomes separadas por vírgula e sem o uso do conhecido (e ultrapassado) "". Em adição, para que a distância seja computada entre os genótipos, basta passar os dados médios de cada genótipo computados com <code>means_by()</code> . Neste caso, a média de cada genótipo é calculada internamente para cada variável numérica e a distãncia é computada utilizando estas médias. A função <code>plot()</code> pode ser usada para plotar um dendrograma. Uma linha é desenhada no ponto de corte sugerido de acordo com <span class="citation">Mojena (<a href="#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="multivariate.html#cb271-1"></a>mgen &lt;-<span class="st"> </span></span>
@@ -481,15 +450,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="html_r_files/figure-html/unnamed-chunk-303-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No dendrograma exibido acima, cada <em>folha</em> corresponde a um genótipo. À medida que subimos na <em>árvore</em>, genótipos que são semelhantes uns aos outros são combinados em <em>ramos</em>, que vão sendo fundidos a uma altura cada vez maior maior. A altura da fusão, fornecida no eixo vertical, indica a (di)similaridade/distância entre dois genótipos. Quanto maior a altura da fusão, menos semelhantes são os genótipos.</p>
 
+
 <div class="vcsabia">
 As inferências sobre a proximidade de dois genótipos são realizadas apenas com base na altura em que as ramificações que contêm estes dois genótipos são fundidas. Não podemos usar a proximidade de dois genótipos ao longo do eixo horizontal como critério de similaridade. Por exemplo, é incorreto dizer que os genotipos <strong>H6</strong> e <strong>H9</strong> são dissimilares só porque eles estão nos extremos do dendrograma.
 </div>
+
 <p>Após a confecção do dendrograma , convém avaliar se as distâncias (ou seja, as alturas) na árvore refletem as distâncias originais com precisão. Uma maneira de medir o quão bem o dendrograma gerado reflete seus dados é calcular a correlação entre as distâncias cofenéticas e a matriz de de distância originais. No procedimento anterior o dendrograma não foi mostrado, no entanto, o coeficiente de correlação cofenético foi calculado. Para isto basta incluir o seguinte comando:</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="multivariate.html#cb272-1"></a>d2<span class="op">$</span>cophenetic</span>
 <span id="cb272-2"><a href="multivariate.html#cb272-2"></a><span class="co"># [1] 0.8640355</span></span></code></pre></div>
 <p>Quanto mais próximo o valor do coeficiente de correlação for de 1, mais precisamente o dendrograma  refletirá as distâncias originais. Valores acima de 0,75 são considerados bons. O método de ligação “average”, ou UPGMA (padrão na função <code>clustering()</code> parece produzir altos valores dessa estatística. Esta pode ser uma das razões por que ele é tão popular.</p>
 </div>
-<div id="seleção-de-variáveis-1" class="section level3" number="13.2.3">
+<div id="seleção-de-variáveis" class="section level3">
 <h3><span class="header-section-number">13.2.3</span> Seleção de variáveis</h3>
 <p>A função <code>clustering()</code>  também conta com um algorítimo de seleção de variáveis . O objetivo é selecionar um grupo de variáveis que mais contribuam para explicar a variabilidade dos dados originais. Digamos que se algumas poucas variáveis pudessem ser utilizadas para agrupar os genótipos sem que haja perda de informação, recursos humanos e financeiros poderiam ser poupados. Assim ao envés de avaliarmos 15 variáveis (em nosso exemplo), poderiamos avaliar somente aquelas que realmente contribuiem para a distinção dos genótipos.</p>
 <p>O algoritmo de seleção de variáveis é executado quando o argumento <code>selvar = TRUE</code> é incluído na função. A seleção das variáveis é baseada na solução de autovalores/autovetores baseada nos seguintes passos: <strong>1:</strong> calcular a matriz de distância e a correlação cofenética com as variáveis originais (todas as variáveis numéricas no conjunto de dados); <strong>2:</strong> calcular os autovalores e autovetores da matriz de correlação entre as variáveis; <strong>3:</strong> deletar a variável com o maior peso (maior autovetor no menor autovalor); <strong>4:</strong> calcular a matriz de distância e correlação cofenética com as variáveis que restaram; <strong>5:</strong> calcular a correlação de Mantel entre a matriz de distâncias obtidas e a matriz de distância original; <strong>6:</strong> iterar os passos 2 a 5 <em>p</em> - 2 vezes, onde <em>p</em> é o número de variáveis originais. No final das iterações, um resumo dos modelos é retornado. A distância é calculada com as variáveis que geraram o modelo com a maior correlação copenética. Sugerimos uma avaliação criteriosa com o objetivo de escolher um modelo parcimonioso, ou seja, aquele com menor número de variáveis, que apresente correlação cofenética aceitável e alta similaridade com as distâncias originais.</p>
@@ -537,7 +508,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <span id="cb273-42"><a href="multivariate.html#cb273-42"></a><span class="co"># --------------------------------------------------------------------------</span></span></code></pre></div>
 <p>A saída acima nos mostra o progresso do algorítmo, indicando qual foi a variável excluída em cada passo. Isto pode ser omitido, indicando <code>verbose = FALSE</code> na função. O resumo do modelo (<em>Summary of the adjusted models</em>) nos fornece duas informações muito úteis. Primeira: ao reduzir o número de variáveis utilziadas na estimativa das distâncias, o coeficiente de correlação cofenético não reduziu significativamente, apresentando variação apenas na terceira casa decimal. A segunda, e talvez mais importante, é a correlação de mantel realizada com a matriz de distâncias em cada passo da análise com a matriz de distâncias inicial, que foi computada com todas as variáveis. Percebe-se que utilizando apenas duas variáveis, as distâncias calculadas foram praticamente idênticas (r = 0.992) às distâncias calculadas com todas as variáveis. Por padrão, o algorítmo estima a matriz de distâncias considerando as variáveis do modelo com maior coeficiente de correlação cofenética. Em nosso exemplo, as variáveis utilizadas foram ED, CW, KW, NKR, TKW, e NKE. Veja que reduzimos em um terço o número de variáveis necessárias para diferenciar os tratamentos, sem perda de informação. Salienta-se, no entanto, que este resultado pode não ser reproduzido em um conjunto de dados diferente, cabendo usuário decidir qual é o melhor modelo a ser utilizado.</p>
 </div>
-<div id="escolha-do-número-de-clusters" class="section level3" number="13.2.4">
+<div id="escolha-do-número-de-clusters" class="section level3">
 <h3><span class="header-section-number">13.2.4</span> Escolha do número de clusters</h3>
 <p>Um dos problemas com o agrupamento  hierárquico é que ele não nos informa quantos clusters existem ou onde cortar o dendrograma  para formar os clusters. Você pode cortar a árvore hierárquica a uma determinada altura, digamos, na média das distâncias, no entanto esta decisão é puramente impirica. Por exemplo, se o ponto de corte for muito alto, tendemos a agrupar genótipos que podem, de fato, não ser semelhantes. Um ponto de corte muito baixo, por outro lado, pode resultar em fracassos na seleção, pois consideramos que os genótipos são distintos, podendo não o serem. Procedimentos estatisticos à exemplo de <span class="citation">Milligan and Cooper (<a href="#ref-Milligan1985" role="doc-biblioref">1985</a>)</span>, <span class="citation">Scott and Symons (<a href="#ref-Scott1971" role="doc-biblioref">1971</a>)</span>, <span class="citation">Krzanowski and Lai (<a href="#ref-Krzanowski1988" role="doc-biblioref">1988</a>)</span>, <span class="citation">Halkidi, Batistakis, and Vazirgiannis (<a href="#ref-Halkidi2001" role="doc-biblioref">2001</a>)</span> e <span class="citation">Hubert and Arabie (<a href="#ref-Hubert1985" role="doc-biblioref">1985</a>)</span> são recomendados para esta escolha. Estes algorítimos estão implementados no pacote <code>NbClust</code> <span class="citation">(Charrad et al. <a href="#ref-Charrad2014" role="doc-biblioref">2014</a>)</span> pode ser utilizado para este fim. Por padrão, a função fornece o ponto de corte calculado pelo método de <span class="citation">Mojena (<a href="#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
 <p>Procedimentos baseado em reamostragens bootstrap que calcula a probabilidade de erro de cada <em>galho</em> do dendrograma  podem ser utilizados. O código abaixo estima p-valores para cada junção no dendrograma do modelo <code>d3</code>. Para maiore detalhes sobre o métoddo veja <span class="citation">Suzuki and Shimodaira (<a href="#ref-Suzuki2006" role="doc-biblioref">2006</a>)</span>.</p>
@@ -553,24 +524,24 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <p><img src="html_r_files/figure-html/unnamed-chunk-307-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>O resultado do procedimento bootstrap indicou a formação de dois clusters, com probabilidade de erro de 5%. Assim, nas próximas funções, serão demostrados os diferentes dendrogramas  que podem ser gerados</p>
 </div>
-<div id="dendrogramas-personalizados" class="section level3" number="13.2.5">
+<div id="dendrogramas-personalizados" class="section level3">
 <h3><span class="header-section-number">13.2.5</span> Dendrogramas personalizados</h3>
 <p>O pacote <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html">factoextra</a> oferece um conjunto de funções para estender objetos dendrogramas em R. Um exemplo simples é dado abaixo.</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="multivariate.html#cb275-1"></a>de1 &lt;-<span class="st"> </span><span class="kw">fviz_dend</span>(d3<span class="op">$</span>hc,</span>
 <span id="cb275-2"><a href="multivariate.html#cb275-2"></a>                 <span class="dt">k =</span> <span class="dv">2</span>,</span>
-<span id="cb275-3"><a href="multivariate.html#cb275-3"></a>                 <span class="dt">xlab =</span> <span class="st">&quot;Genótipos&quot;</span>,</span>
-<span id="cb275-4"><a href="multivariate.html#cb275-4"></a>                 <span class="dt">ylab =</span>  <span class="st">&quot;Distância euclidiana&quot;</span>,</span>
-<span id="cb275-5"><a href="multivariate.html#cb275-5"></a>                 <span class="dt">main =</span> <span class="st">&quot;&quot;</span>) </span>
-<span id="cb275-6"><a href="multivariate.html#cb275-6"></a>de2 &lt;-<span class="st"> </span><span class="kw">fviz_dend</span>(d3<span class="op">$</span>hc,</span>
-<span id="cb275-7"><a href="multivariate.html#cb275-7"></a>                 <span class="dt">k =</span> <span class="dv">2</span>,</span>
-<span id="cb275-8"><a href="multivariate.html#cb275-8"></a>                 <span class="dt">type =</span> <span class="st">&quot;circular&quot;</span>)</span>
-<span id="cb275-9"><a href="multivariate.html#cb275-9"></a>de3 &lt;-<span class="st"> </span><span class="kw">fviz_dend</span>(d3<span class="op">$</span>hc,</span>
-<span id="cb275-10"><a href="multivariate.html#cb275-10"></a>                 <span class="dt">k =</span> <span class="dv">2</span>,</span>
-<span id="cb275-11"><a href="multivariate.html#cb275-11"></a>                 <span class="dt">type =</span> <span class="st">&quot;phylogenic&quot;</span>,</span>
-<span id="cb275-12"><a href="multivariate.html#cb275-12"></a>                 <span class="dt">repel =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb275-13"><a href="multivariate.html#cb275-13"></a>de4 &lt;-<span class="st"> </span><span class="kw">fviz_dend</span>(d1<span class="op">$</span>hc,</span>
-<span id="cb275-14"><a href="multivariate.html#cb275-14"></a>                 <span class="dt">k =</span> <span class="dv">5</span>,</span>
-<span id="cb275-15"><a href="multivariate.html#cb275-15"></a>                 <span class="dt">xlab =</span> <span class="st">&quot;Genótipos&quot;</span>,</span>
+<span id="cb275-3"><a href="multivariate.html#cb275-3"></a>                 <span class="dt">xlab =</span> <span class="st">&quot;Genótipos&quot;,</span></span>
+<span id="cb275-4"><a href="multivariate.html#cb275-4"></a><span class="st">                 ylab =  &quot;</span>Distância euclidiana<span class="st">&quot;,</span></span>
+<span id="cb275-5"><a href="multivariate.html#cb275-5"></a><span class="st">                 main = &quot;&quot;) </span></span>
+<span id="cb275-6"><a href="multivariate.html#cb275-6"></a><span class="st">de2 &lt;- fviz_dend(d3$hc,</span></span>
+<span id="cb275-7"><a href="multivariate.html#cb275-7"></a><span class="st">                 k = 2,</span></span>
+<span id="cb275-8"><a href="multivariate.html#cb275-8"></a><span class="st">                 type = &quot;</span>circular<span class="st">&quot;)</span></span>
+<span id="cb275-9"><a href="multivariate.html#cb275-9"></a><span class="st">de3 &lt;- fviz_dend(d3$hc,</span></span>
+<span id="cb275-10"><a href="multivariate.html#cb275-10"></a><span class="st">                 k = 2,</span></span>
+<span id="cb275-11"><a href="multivariate.html#cb275-11"></a><span class="st">                 type = &quot;</span>phylogenic<span class="st">&quot;,</span></span>
+<span id="cb275-12"><a href="multivariate.html#cb275-12"></a><span class="st">                 repel = TRUE)</span></span>
+<span id="cb275-13"><a href="multivariate.html#cb275-13"></a><span class="st">de4 &lt;- fviz_dend(d1$hc,</span></span>
+<span id="cb275-14"><a href="multivariate.html#cb275-14"></a><span class="st">                 k = 5,</span></span>
+<span id="cb275-15"><a href="multivariate.html#cb275-15"></a><span class="st">                 xlab = &quot;</span>Genótipos&quot;,</span>
 <span id="cb275-16"><a href="multivariate.html#cb275-16"></a>                 <span class="dt">ylab =</span>  <span class="st">&quot;Distância euclidiana&quot;</span>,</span>
 <span id="cb275-17"><a href="multivariate.html#cb275-17"></a>                 <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,</span>
 <span id="cb275-18"><a href="multivariate.html#cb275-18"></a>                 <span class="dt">show_labels =</span> <span class="ot">FALSE</span>,</span>
@@ -580,7 +551,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <span id="cb275-22"><a href="multivariate.html#cb275-22"></a><span class="kw">plot_grid</span>(cp1, de4, <span class="dt">rows =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;de4&quot;</span>))</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-308-1.png" width="1152" style="display: block; margin: auto;" /></p>
 </div>
-<div id="distancias-para-cada-ambiente" class="section level3" number="13.2.6">
+<div id="distancias-para-cada-ambiente" class="section level3">
 <h3><span class="header-section-number">13.2.6</span> Distancias para cada ambiente</h3>
 <p>O seguinte código computa as distâncias para cada nível do fator <strong>AMB</strong> do conjunto de dados maize. A função <code>group_by()</code>  é utilizada para criar uma lista onde cada elemento conterá os dados de cada ambiente. Note que o argumento <code>keep_factors = TRUE</code> foi utilizado para manter as colunas de fatores. Assim é possível computar a média para cada genótipo quando informado o argumento <code>means_by = GEN</code> na função <code>clustering()</code> . O resultado desta função é então passado para a função <code>pairs_mantel()</code>.  Esta função é utilizada para avaliar a associação entre as quatro matrizes de distância.</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="multivariate.html#cb276-1"></a>d4 &lt;-<span class="st"> </span></span>
@@ -592,17 +563,17 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <p><img src="html_r_files/figure-html/unnamed-chunk-309-1.png" width="288" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="componentes-principais" class="section level2" number="13.3">
+<div id="componentes-principais" class="section level2">
 <h2><span class="header-section-number">13.3</span> Componentes principais</h2>
-<div id="conceito" class="section level3" number="13.3.1">
+<div id="conceito" class="section level3">
 <h3><span class="header-section-number">13.3.1</span> Conceito</h3>
 <p>O objetivo básico da análise de componentes principais (<em>Principal Component Analysis</em>, PCA) é descrever a variação em um conjunto de variáveis correlacionadas <span class="math inline">\(x^T = (x_1, ..., x_q)\)</span>, em termos de um novo conjunto de variáveis não correlacionadas, <span class="math inline">\(y^T = (y_1, ..., y_q)\)</span>, onde cada variável é uma combinação linear das variáveis <em>x</em>. As novas variáveis são ordenadas em ordem decrescente de “importância”, no sentido de que <span class="math inline">\(y_1\)</span> é responsável pelo máximo possível da variação dos dados originais entre todas as combinações lineares de <em>x</em>. Então <span class="math inline">\(y_2\)</span> é escolhido para explicar o máximo possível da variação restante, sujeito a ser não correlacionado com <span class="math inline">\(y_1\)</span>, e assim por diante. As novas variáveis definidas por este processo, <span class="math inline">\(y_1, ..., y_q\)</span>, são os componentes principais. A principal vantagem da análise de componentes principais é que os primeiros componentes serão responsáveis por uma proporção substancial da variação nas variáveis originais, e podem, conseqüentemente, serem usados para fornecer um resumo de dimensões inferiores dessas variáveis.</p>
 </div>
-<div id="pacotes-r" class="section level3" number="13.3.2">
+<div id="pacotes-r" class="section level3">
 <h3><span class="header-section-number">13.3.2</span> Pacotes R</h3>
 <p>Diversas funções de diferentes pacotes estão disponíveis no software R para realização da PCA, no entanto, a função <code>prcomp()</code> do pacote <strong>stats</strong> (nativa do R) será utilizada aqui. Para a confecção de biplots e extração dos resultados, funções do pacote <a href="https://rpkgs.datanovia.com/factoextra/index.html">factoextra</a> serão utilizadas. O primeiro passo é realizar a instalação e o carregamento do pacote.</p>
 </div>
-<div id="formato-dos-dados" class="section level3" number="13.3.3">
+<div id="formato-dos-dados" class="section level3">
 <h3><span class="header-section-number">13.3.3</span> Formato dos dados</h3>
 <p>Para realizar a aplicação da técnica de componentes principais, os dados em <em>data_ge2</em> serão utilizados. Precisamos, primeiramente, organizar os dados de modo que tenhamos uma matriz de dupla entrada, contendo os genótipos nas linhas e as variáveis nas colunas.</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="multivariate.html#cb277-1"></a></span>
@@ -616,7 +587,7 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 \]</span></p>
 <p>onde <span class="math inline">\(mean(x)\)</span> é a média dos valores de x e <span class="math inline">\(sd(x)\)</span> é o desvio padrão. A função nativa do R <code>scale()</code> pode ser utilizada para padronizar os dados. Isto pode ser realizado, no entanto, utilizando o argumento <code>scale. = TRUE</code> na função <code>prcomp()</code>.</p>
 </div>
-<div id="código-r" class="section level3" number="13.3.4">
+<div id="código-r" class="section level3">
 <h3><span class="header-section-number">13.3.4</span> Código R</h3>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="multivariate.html#cb278-1"></a>res.pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(data_pca, <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Para ajudar na interpretação do PCA realizado acima, usaremos funções do pacote factoextra. Essas funções incluem:
@@ -626,15 +597,17 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 <code>fviz_pca_ind(res.pca)</code>, <code>fviz_pca_var(res.pca)</code>: Para visualizar os resultados dos genótipos e variáveis, respectivamente.
 <code>fviz_pca_biplot(res.pca)</code>: Para confecção de biplots.</p>
 </div>
-<div id="autovalores" class="section level3" number="13.3.5">
+<div id="autovalores" class="section level3">
 <h3><span class="header-section-number">13.3.5</span> Autovalores</h3>
 <p>Os autovalores medem a quantidade de variância retida por cada componente principal. Autovalores são grandes para os primeiros PCs e pequenos para os PCs subseqüentes. Ou seja, os primeiros PCs correspondem às direções com a quantidade máxima de variação no conjunto de dados. Examinamos os autovalores para determinar o número de componentes principais a serem considerados. Os autovalores e a proporção de variâncias (isto é, informação) retidos pelos componentes principais (PCs) são extraídos usando a função <code>get_eigenvalue()</code>.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="multivariate.html#cb279-1"></a>eig.val &lt;-<span class="st"> </span><span class="kw">get_eigenvalue</span>(res.pca)</span></code></pre></div>
 <p>A soma de todos os autovalores resulta em uma variância total de 15 A proporção de variação explicada por cada autovalor é dada na segunda coluna. Por exemplo, 7.623 dividido por 15 é igual a 0.5082, ou, cerca de 50.82% da variação é explicada por este primeiro autovalor. A porcentagem acumulada explicada é obtida adicionando as proporções sucessivas de variação explicadas. Por exemplo, 50.82% mais 18.13% é igual a 68.95% e assim por diante. Assim, cerca de 59,627% da variação é explicada pelos dois primeiros autovalores.</p>
 
+
 <div class="vcsabia">
 <p>Um autovalor maior que 1 indica que os componentes principais são responsáveis por mais variâncias do que as contabilizadas por uma das variáveis originais nos dados padronizados. Isso é comumente usado como um ponto de corte para o qual os PCs são mantidos <span class="citation">(Kaiser <a href="#ref-Kaiser1961" role="doc-biblioref">1961</a>)</span>. No entanto, isto vale apenas quando os dados são padronizados.</p>
 </div>
+
 <p>Infelizmente, não há maneira objetiva bem aceita de decidir quantos componentes principais são suficientes. Em nossa análise, os três primeiros componentes principais explicam 83.62% da variação. Esta é uma percentagem aceitavelmente grande. Um método alternativo para determinar o número de componentes principais é olhar para um Scree Plot, que é o gráfico de autovalores ordenados do maior para o menor. O número de componentes é determinado no ponto, além do qual os autovalores remanescentes são todos relativamente pequenos.</p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="multivariate.html#cb280-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">fviz_eig</span>(res.pca)</span>
 <span id="cb280-2"><a href="multivariate.html#cb280-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">fviz_eig</span>(res.pca,</span>
@@ -653,7 +626,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 </p>
 </div>
 </div>
-<div id="gráfico-das-variáveis" class="section level3" number="13.3.6">
+<div id="gráfico-das-variáveis" class="section level3">
 <h3><span class="header-section-number">13.3.6</span> Gráfico das variáveis</h3>
 <p>Um método simples para extrair os resultados, para variáveis, de uma saída da função <code>prcomp()</code>  é usar a função <code>get_pca_var()</code> . Esta função fornece uma lista de matrizes contendo todos os seguintes resultados:</p>
 <ul>
@@ -661,7 +634,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <li>cos2: representa a qualidade da representação para variáveis no mapa de fatores. É equivalente ao quadrado das coordenadas.</li>
 <li>contrib: contém as contribuições (em percentagem) das variáveis para os componentes principais.</li>
 </ul>
-<div id="círculo-de-correlação" class="section level4" number="13.3.6.1">
+<div id="círculo-de-correlação" class="section level4">
 <h4><span class="header-section-number">13.3.6.1</span> Círculo de correlação</h4>
 <p>A correlação entre uma variável e um componente principal (PC) é usada como as coordenadas da variável no PC. Um gráfico pode ser obtido utilizando a função <code>fviz_pca_var()</code>, </p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="multivariate.html#cb281-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca)</span>
@@ -681,7 +654,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <li>A distância entre as variáveis e a origem mede a qualidade das variáveis no mapa de fatores. Variáveis que estão longe da origem (próximas ao círculo) estão bem representadas no mapa de fatores.</li>
 </ul>
 </div>
-<div id="representação-e-contribuição-das-variáveis" class="section level4" number="13.3.6.2">
+<div id="representação-e-contribuição-das-variáveis" class="section level4">
 <h4><span class="header-section-number">13.3.6.2</span> Representação e contribuição das variáveis</h4>
 <p>A qualidade e a contribuição das variáveis pode ser exibida no mapa de fatores utilizando o argumento <code>col.var = "cos2"</code> e <code>col.var = "contrib"</code>, respectivamente. Note que é possível também colorir as variáveis utilizando uma variável categórica. Para fins didáticos criaremos uma variável categórica com três neíveis, baseado no algorítmo kmeans aplicado nas coordenadas das variáveis.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="multivariate.html#cb282-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">fviz_pca_var</span>(res.pca,</span>
@@ -700,7 +673,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <p><img src="html_r_files/figure-html/unnamed-chunk-316-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="gráfico-de-indivíduos" class="section level3" number="13.3.7">
+<div id="gráfico-de-indivíduos" class="section level3">
 <h3><span class="header-section-number">13.3.7</span> Gráfico de indivíduos</h3>
 <p>Os resultados, para indivíduos, podem ser extraídos usando a função <code>get_pca_ind()</code>. Similarmente ao <code>get_pca_var()</code>, esta função fornece uma lista de matrizes contendo todos os resultados para os indivíduos (coordenadas, correlação entre indivíduos e eixos, quadrado das distâncias e contribuições). A função <code>fviz_pca_ind()</code> é usada para produzir o gráfico de indivíduos.</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="multivariate.html#cb283-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">fviz_pca_ind</span>(res.pca)</span>
@@ -712,7 +685,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <span id="cb283-7"><a href="multivariate.html#cb283-7"></a><span class="kw">plot_grid</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-317-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="gráfico-biplot" class="section level3" number="13.3.8">
+<div id="gráfico-biplot" class="section level3">
 <h3><span class="header-section-number">13.3.8</span> Gráfico biplot</h3>
 <p>Um gráfico biplot combina os marcadores de variáveis e indivíduos em um mesmo gráfico. A função <code>fviz_pca_biplot()</code> é utilizada para gerar este tipo de gráfico. O primeiro biplot (p1) é confeccionado com o exemplo em <code>res.pca</code>. Um exemplo um pouco mais complexo será mostrado utilizando o banco de dados do R iris. Neste exemplo, os indivíduos são coloridos por grupos (cor discreta) e variáveis por suas contribuições para os componentes principais (cores de gradiente). Além disso, alteraremos a transparência das variáveis por suas contribuições usando o argumento <code>alpha.var</code>. </p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="multivariate.html#cb284-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">fviz_pca_biplot</span>(res.pca)</span>
@@ -736,9 +709,9 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <p><img src="html_r_files/figure-html/unnamed-chunk-318-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="k-means" class="section level2" number="13.4">
+<div id="k-means" class="section level2">
 <h2><span class="header-section-number">13.4</span> K-means</h2>
-<div id="conceito-1" class="section level3" number="13.4.1">
+<div id="conceito-1" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Conceito</h3>
 <p>A idéia básica por trás do agrupamento  <em>k</em>-means consiste em definir clusters para que a variação total dentro do cluster seja minimizada. Existem vários algoritmos <em>k</em>-means disponíveis. O algoritmo padrão e o mais utilizado é o algoritmo de Hartigan-Wong <span class="citation">(Hartigan and Wong <a href="#ref-Hartigan1979" role="doc-biblioref">1979</a>)</span>, que define a variação total dentro do cluster como a soma das distâncias Euclidianas quadráticas entre os itens e o centróide correspondente. Os passos básicos para a análise são os que seguem:</p>
 <ol style="list-style-type: decimal">
@@ -749,11 +722,11 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <li>Iterativamente, minimize a soma de quadrados total dentro do cluster; isto é, iterar as etapas 3 e 4 até que as atribuições do cluster parem de mudar ou até que o número máximo de iterações sejam atingidas. Por padrão, o software R usa 10 como o valor padrão para o número máximo de iterações.</li>
 </ol>
 </div>
-<div id="pacotes-r-1" class="section level3" number="13.4.2">
+<div id="pacotes-r-1" class="section level3">
 <h3><span class="header-section-number">13.4.2</span> Pacotes R</h3>
 <p>Para implementar o método <em>k</em>-means, a função <code>kmeans()</code> do pacote <strong>stats</strong> (nativa do R) será utilizada. Para a confecção do gráfico, a função <code>fviz_cluster()</code>  do pacote <a href="https://rpkgs.datanovia.com/factoextra/index.html">factoextra</a> será utilizada.</p>
 </div>
-<div id="formato-dos-dados-e-códigos-r" class="section level3" number="13.4.3">
+<div id="formato-dos-dados-e-códigos-r" class="section level3">
 <h3><span class="header-section-number">13.4.3</span> Formato dos dados e códigos R</h3>
 <p>O formato dos dados utilizados é o mesmo dos utilizados para realizar a <a href="multivariate.html#componentes-principais">análise de componentes principais</a>. Assim, neste exemplo, somente criaremos um novo conjunto renomeando os dados organizados anteriormente (<code>data_pca</code>) para <code>data_km</code>. O próximo passo é ajustar o modelo <em>k</em>-means e armazenar em um objeto, em nosso exemplo, <code>kmres</code>. Posteriormente, a função <code>fviz_cluster()</code> é utilizada para confeccionar o gráfico.</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="multivariate.html#cb285-1"></a>data_km &lt;-<span class="st"> </span>data_pca</span>
@@ -856,7 +829,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["html_r.epub"],
 "toc": {
 "collapse": "subsection"
 }

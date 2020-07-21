@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 14 Interação genótipo-vs-ambiente | Software R para avaliação de dados experimentais</title>
   <meta name="description" content="Este documento tem como objetivo apresentar o ambiente R de programação e diversas aplicações de abordagens estatísticas na análise de experimentos agrícolas." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 14 Interação genótipo-vs-ambiente | Software R para avaliação de dados experimentais" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tiago Olivoto, Bruno Giacomini Sari" />
 
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="multivariate.html"/>
 <link rel="next" href="resposta-dos-exercícios.html"/>
-<script src="libs/header-attrs-2.2/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,9 +50,10 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.13/datatables.js"></script>
+<script src="libs/datatables-binding-0.14/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -71,17 +71,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +102,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -147,27 +148,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
-<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#por-que-eu-deveria-ler-este-e-book"><i class="fa fa-check"></i>Por que eu deveria ler este e-Book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#estrutura"><i class="fa fa-check"></i>Estrutura</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#conjunto-de-dados"><i class="fa fa-check"></i>Conjunto de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a>
-<ul>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a><ul>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#tiago-olivoto"><i class="fa fa-check"></i>Tiago Olivoto</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html#bruno-giacomini-sari"><i class="fa fa-check"></i>Bruno Giacomini Sari</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="detalhes-importantes.html"><a href="detalhes-importantes.html"><i class="fa fa-check"></i>Detalhes importantes</a></li>
 <li class="part"><span><b>I Parte I o ambiente R</b></span></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a>
-<ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução ao ambiente <em>R</em></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#o-software-r"><i class="fa fa-check"></i><b>1.1</b> O software R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#o-software-rstudio"><i class="fa fa-check"></i><b>1.2</b> O software RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#meu-primeiro-script"><i class="fa fa-check"></i><b>1.3</b> Meu primeiro script</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a>
-<ul>
+<li class="chapter" data-level="2" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>2</b> Tipos de objetos</a><ul>
 <li class="chapter" data-level="2.1" data-path="objects.html"><a href="objects.html#vetores"><i class="fa fa-check"></i><b>2.1</b> Vetores</a></li>
 <li class="chapter" data-level="2.2" data-path="objects.html"><a href="objects.html#matrizes"><i class="fa fa-check"></i><b>2.2</b> Matrizes</a></li>
 <li class="chapter" data-level="2.3" data-path="objects.html"><a href="objects.html#data-frame"><i class="fa fa-check"></i><b>2.3</b> Data Frame</a></li>
@@ -181,10 +178,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>5</b> Construindo uma tabela</a></li>
 <li class="part"><span><b>II Parte II organização, manipulação e apresentação de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="entrada.html"><a href="entrada.html"><i class="fa fa-check"></i><b>6</b> Entrada de dados</a></li>
-<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a>
-<ul>
+<li class="chapter" data-level="7" data-path="manipula.html"><a href="manipula.html"><i class="fa fa-check"></i><b>7</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="manipula.html"><a href="manipula.html#trabalhando-com-linhas-e-colunas"><i class="fa fa-check"></i><b>7.1</b> Trabalhando com linhas e colunas</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipula.html"><a href="manipula.html#selecionar-colunas"><i class="fa fa-check"></i><b>7.1.1</b> Selecionar colunas</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipula.html"><a href="manipula.html#remover-linhas-ou-colunas"><i class="fa fa-check"></i><b>7.1.2</b> Remover linhas ou colunas</a></li>
 <li class="chapter" data-level="7.1.3" data-path="manipula.html"><a href="manipula.html#ordenar-linhas"><i class="fa fa-check"></i><b>7.1.3</b> Ordenar linhas</a></li>
@@ -196,8 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.9" data-path="manipula.html"><a href="manipula.html#obtendo-níveis-de-fatores"><i class="fa fa-check"></i><b>7.1.9</b> Obtendo níveis de fatores</a></li>
 <li class="chapter" data-level="7.1.10" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-com-base-em-seus-valores"><i class="fa fa-check"></i><b>7.1.10</b> Selecionar linhas com base em seus valores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a>
-<ul>
+<li class="chapter" data-level="7.2" data-path="manipula.html"><a href="manipula.html#trabalhando-com-números-e-seqüências-de-caracteres"><i class="fa fa-check"></i><b>7.2</b> Trabalhando com números e seqüências de caracteres</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="manipula.html"><a href="manipula.html#arredondando"><i class="fa fa-check"></i><b>7.2.1</b> Arredondando</a></li>
 <li class="chapter" data-level="7.2.2" data-path="manipula.html"><a href="manipula.html#extraindo-e-substituindo-números"><i class="fa fa-check"></i><b>7.2.2</b> Extraindo e substituindo números</a></li>
 <li class="chapter" data-level="7.2.3" data-path="manipula.html"><a href="manipula.html#extraindo-substituindo-e-removendo-strings"><i class="fa fa-check"></i><b>7.2.3</b> Extraindo, substituindo e removendo strings</a></li>
@@ -205,15 +199,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="manipula.html"><a href="manipula.html#selecionar-linhas-por-sua-posição"><i class="fa fa-check"></i><b>7.3</b> Selecionar linhas por sua posição</a></li>
 <li class="chapter" data-level="7.4" data-path="manipula.html"><a href="manipula.html#combinando-os-verbos-para-manipulação"><i class="fa fa-check"></i><b>7.4</b> Combinando os verbos para manipulação</a></li>
-<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a>
-<ul>
+<li class="chapter" data-level="7.5" data-path="manipula.html"><a href="manipula.html#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><i class="fa fa-check"></i><b>7.5</b> Trabalhando com duas tabelas ao mesmo tempo</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="manipula.html"><a href="manipula.html#junções-com-mutação-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Junções com mutação de dados</a></li>
 <li class="chapter" data-level="7.5.2" data-path="manipula.html"><a href="manipula.html#junções-com-filtragem-de-dados"><i class="fa fa-check"></i><b>7.5.2</b> Junções com filtragem de dados</a></li>
 <li class="chapter" data-level="7.5.3" data-path="manipula.html"><a href="manipula.html#operações-com-conjuntos"><i class="fa fa-check"></i><b>7.5.3</b> Operações com conjuntos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a>
-<ul>
+<li class="chapter" data-level="8" data-path="graph.html"><a href="graph.html"><i class="fa fa-check"></i><b>8</b> Gráficos com o pacote ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="graph.html"><a href="graph.html#o-pacote-ggplot2"><i class="fa fa-check"></i><b>8.1</b> O pacote <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.2" data-path="graph.html"><a href="graph.html#meu-primeiro-gráfico-em-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Meu primeiro gráfico em <code>ggplot2</code></a></li>
 <li class="chapter" data-level="8.3" data-path="graph.html"><a href="graph.html#as-camadas-de-um-gráfico-ggplot2"><i class="fa fa-check"></i><b>8.3</b> As camadas de um gráfico <code>ggplot2</code></a></li>
@@ -222,16 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="graph.html"><a href="graph.html#theme-temas"><i class="fa fa-check"></i><b>8.6</b> Theme (temas)</a></li>
 <li class="chapter" data-level="8.7" data-path="graph.html"><a href="graph.html#geoms-geometria"><i class="fa fa-check"></i><b>8.7</b> Geoms (geometria)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a>
-<ul>
+<li class="chapter" data-level="9" data-path="exporta.html"><a href="exporta.html"><i class="fa fa-check"></i><b>9</b> Exportando dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="exporta.html"><a href="exporta.html#exportando-com-diferentes-extensões"><i class="fa fa-check"></i><b>9.1</b> Exportando com diferentes extensões</a></li>
 <li class="chapter" data-level="9.2" data-path="exporta.html"><a href="exporta.html#exportanto-gráficos"><i class="fa fa-check"></i><b>9.2</b> Exportanto gráficos</a></li>
 </ul></li>
 <li class="part"><span><b>III Parte III análise de dados</b></span></li>
-<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a>
-<ul>
+<li class="chapter" data-level="10" data-path="analdata.html"><a href="analdata.html"><i class="fa fa-check"></i><b>10</b> Análise de dados experimentais</a><ul>
+<li class="chapter" data-level="10.1" data-path="analdata.html"><a href="analdata.html#ebasic"><i class="fa fa-check"></i><b>10.1</b> Estatistica básica</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="analdata.html"><a href="analdata.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>10.1.1</b> Medidas de tendência central</a></li>
 <li class="chapter" data-level="10.1.2" data-path="analdata.html"><a href="analdata.html#medidas-de-variabilidade"><i class="fa fa-check"></i><b>10.1.2</b> Medidas de variabilidade</a></li>
 <li class="chapter" data-level="10.1.3" data-path="analdata.html"><a href="analdata.html#resumindo-dados-com-o-pacote-dplyr"><i class="fa fa-check"></i><b>10.1.3</b> Resumindo dados com o pacote <code>dplyr</code></a></li>
@@ -241,8 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.7" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-independentes"><i class="fa fa-check"></i><b>10.1.7</b> Teste de hipóteses para amostras independentes</a></li>
 <li class="chapter" data-level="10.1.8" data-path="analdata.html"><a href="analdata.html#teste-de-hipóteses-para-amostras-dependentes"><i class="fa fa-check"></i><b>10.1.8</b> Teste de hipóteses para amostras dependentes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a>
-<ul>
+<li class="chapter" data-level="10.2" data-path="analdata.html"><a href="analdata.html#dbasic"><i class="fa fa-check"></i><b>10.2</b> Delineamentos básicos</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="analdata.html"><a href="analdata.html#princípios-básicos"><i class="fa fa-check"></i><b>10.2.1</b> Princípios básicos</a></li>
 <li class="chapter" data-level="10.2.2" data-path="analdata.html"><a href="analdata.html#pressupostos"><i class="fa fa-check"></i><b>10.2.2</b> Pressupostos</a></li>
 <li class="chapter" data-level="10.2.3" data-path="analdata.html"><a href="analdata.html#estimação"><i class="fa fa-check"></i><b>10.2.3</b> Estimação</a></li>
@@ -251,24 +239,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.6" data-path="analdata.html"><a href="analdata.html#delineamento-blocos-ao-acaso-dbc"><i class="fa fa-check"></i><b>10.2.6</b> Delineamento blocos ao acaso (DBC)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="analdata.html"><a href="analdata.html#transformação-de-dados"><i class="fa fa-check"></i><b>10.3</b> Transformação de dados</a></li>
-<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a>
-<ul>
+<li class="chapter" data-level="10.4" data-path="analdata.html"><a href="analdata.html#ancova"><i class="fa fa-check"></i><b>10.4</b> Análise de covariância (ANCOVA)</a><ul>
 <li class="chapter" data-level="10.4.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>10.4.1</b> Introdução</a></li>
 <li class="chapter" data-level="10.4.2" data-path="analdata.html"><a href="analdata.html#modelo-estatístico-1"><i class="fa fa-check"></i><b>10.4.2</b> Modelo estatístico</a></li>
 <li class="chapter" data-level="10.4.3" data-path="analdata.html"><a href="analdata.html#independência-entre-a-covariável-e-os-efeitos-de-tratamento"><i class="fa fa-check"></i><b>10.4.3</b> Independência entre a covariável e os efeitos de tratamento</a></li>
 <li class="chapter" data-level="10.4.4" data-path="analdata.html"><a href="analdata.html#homogeneidade-dos-slopes-da-regressão"><i class="fa fa-check"></i><b>10.4.4</b> Homogeneidade dos <em>slopes</em> da regressão</a></li>
 <li class="chapter" data-level="10.4.5" data-path="analdata.html"><a href="analdata.html#um-exemplo-numérico"><i class="fa fa-check"></i><b>10.4.5</b> Um exemplo numérico</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a>
-<ul>
+<li class="chapter" data-level="10.5" data-path="analdata.html"><a href="analdata.html#general"><i class="fa fa-check"></i><b>10.5</b> Análise de dados não gaussianos</a><ul>
 <li class="chapter" data-level="10.5.1" data-path="analdata.html"><a href="analdata.html#da-análise-de-variação-aos-modelos-lineares-mistos-generalizados"><i class="fa fa-check"></i><b>10.5.1</b> Da análise de variação aos modelos lineares mistos generalizados</a></li>
 <li class="chapter" data-level="10.5.2" data-path="analdata.html"><a href="analdata.html#estratégias-para-análise-de-dados-não-gaussianos"><i class="fa fa-check"></i><b>10.5.2</b> Estratégias para análise de dados não gaussianos</a></li>
 <li class="chapter" data-level="10.5.3" data-path="analdata.html"><a href="analdata.html#introdução-aos-modelos-lineares-generalizados"><i class="fa fa-check"></i><b>10.5.3</b> Introdução aos modelos lineares generalizados</a></li>
 <li class="chapter" data-level="10.5.4" data-path="analdata.html"><a href="analdata.html#dados-de-proporção"><i class="fa fa-check"></i><b>10.5.4</b> Dados de proporção</a></li>
 <li class="chapter" data-level="10.5.5" data-path="analdata.html"><a href="analdata.html#dados-de-contagem"><i class="fa fa-check"></i><b>10.5.5</b> Dados de contagem</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a>
-<ul>
+<li class="chapter" data-level="10.6" data-path="analdata.html"><a href="analdata.html#efat"><i class="fa fa-check"></i><b>10.6</b> Experimentos bifatoriais</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="analdata.html"><a href="analdata.html#download-dos-dados"><i class="fa fa-check"></i><b>10.6.1</b> Download dos dados</a></li>
 <li class="chapter" data-level="10.6.2" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-qualitativo"><i class="fa fa-check"></i><b>10.6.2</b> Qualitativo vs qualitativo</a></li>
 <li class="chapter" data-level="10.6.3" data-path="analdata.html"><a href="analdata.html#qualitativo-vs-quantitativo"><i class="fa fa-check"></i><b>10.6.3</b> Qualitativo vs quantitativo</a></li>
@@ -276,10 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="analdata.html"><a href="analdata.html#experimentos-em-parcelas-subdivididas"><i class="fa fa-check"></i><b>10.6.5</b> Experimentos em parcelas subdivididas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a>
-<ul>
+<li class="chapter" data-level="11" data-path="reg.html"><a href="reg.html"><i class="fa fa-check"></i><b>11</b> Análise de regressão</a><ul>
+<li class="chapter" data-level="11.1" data-path="reg.html"><a href="reg.html#regressão-linear"><i class="fa fa-check"></i><b>11.1</b> Regressão Linear</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>11.1.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.1.2" data-path="reg.html"><a href="reg.html#ajustando-regressões-com-a-função-lm"><i class="fa fa-check"></i><b>11.1.2</b> Ajustando regressões com a função <code>lm()</code></a></li>
 <li class="chapter" data-level="11.1.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>11.1.3</b> Seleção de variáveis</a></li>
@@ -287,8 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.5" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>11.1.5</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="11.1.6" data-path="reg.html"><a href="reg.html#pontos-influentes"><i class="fa fa-check"></i><b>11.1.6</b> Pontos influentes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a>
-<ul>
+<li class="chapter" data-level="11.2" data-path="reg.html"><a href="reg.html#regressão-não-linear"><i class="fa fa-check"></i><b>11.2</b> Regressão não linear</a><ul>
 <li class="chapter" data-level="11.2.1" data-path="reg.html"><a href="reg.html#estimativa-1"><i class="fa fa-check"></i><b>11.2.1</b> Estimativa</a></li>
 <li class="chapter" data-level="11.2.2" data-path="reg.html"><a href="reg.html#ajustando-o-modelo-com-a-função-nls"><i class="fa fa-check"></i><b>11.2.2</b> Ajustando o modelo com a função <code>nls()</code></a></li>
 <li class="chapter" data-level="11.2.3" data-path="reg.html"><a href="reg.html#análise-dos-resíduos-1"><i class="fa fa-check"></i><b>11.2.3</b> Análise dos resíduos</a></li>
@@ -298,11 +280,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="reg.html"><a href="reg.html#regressão-bisegmentada-com-platô"><i class="fa fa-check"></i><b>11.3</b> Regressão bisegmentada com platô</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a>
-<ul>
+<li class="chapter" data-level="12" data-path="relations.html"><a href="relations.html"><i class="fa fa-check"></i><b>12</b> Relações lineares entre variáveis</a><ul>
 <li class="chapter" data-level="12.1" data-path="relations.html"><a href="relations.html#dados"><i class="fa fa-check"></i><b>12.1</b> Dados</a></li>
-<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a>
-<ul>
+<li class="chapter" data-level="12.2" data-path="relations.html"><a href="relations.html#correlação-linear"><i class="fa fa-check"></i><b>12.2</b> Correlação linear</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="relations.html"><a href="relations.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.2.1</b> Visualização gráfica</a></li>
 <li class="chapter" data-level="12.2.2" data-path="relations.html"><a href="relations.html#estimativa-dos-coeficientes-de-correlação"><i class="fa fa-check"></i><b>12.2.2</b> Estimativa dos coeficientes de correlação</a></li>
 <li class="chapter" data-level="12.2.3" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-i"><i class="fa fa-check"></i><b>12.2.3</b> Combinando visualização gráfica e numérica (I)</a></li>
@@ -311,17 +291,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.6" data-path="relations.html"><a href="relations.html#combinando-visualização-gráfica-e-numérica-iv"><i class="fa fa-check"></i><b>12.2.6</b> Combinando visualização gráfica e numérica (IV)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="relations.html"><a href="relations.html#correlações-genéticas"><i class="fa fa-check"></i><b>12.3</b> Correlações genéticas</a></li>
-<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a>
-<ul>
+<li class="chapter" data-level="12.4" data-path="relations.html"><a href="relations.html#intervalo-de-confiança"><i class="fa fa-check"></i><b>12.4</b> Intervalo de confiança</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="relations.html"><a href="relations.html#paramétrico"><i class="fa fa-check"></i><b>12.4.1</b> Paramétrico</a></li>
 <li class="chapter" data-level="12.4.2" data-path="relations.html"><a href="relations.html#não-paramétrico"><i class="fa fa-check"></i><b>12.4.2</b> Não paramétrico</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="relations.html"><a href="relations.html#tamanho-da-amostra"><i class="fa fa-check"></i><b>12.5</b> Tamanho da amostra</a></li>
 <li class="chapter" data-level="12.6" data-path="relations.html"><a href="relations.html#correlação-parcial"><i class="fa fa-check"></i><b>12.6</b> Correlação parcial</a></li>
-<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a>
-<ul>
-<li class="chapter" data-level="12.7.1" data-path="relations.html"><a href="relations.html#introdução-1"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
-<li class="chapter" data-level="12.7.2" data-path="relations.html"><a href="relations.html#estimativa-2"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
+<li class="chapter" data-level="12.7" data-path="relations.html"><a href="relations.html#análise-de-trilha"><i class="fa fa-check"></i><b>12.7</b> Análise de trilha</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="analdata.html"><a href="analdata.html#introdução"><i class="fa fa-check"></i><b>12.7.1</b> Introdução</a></li>
+<li class="chapter" data-level="12.7.2" data-path="reg.html"><a href="reg.html#estimativa"><i class="fa fa-check"></i><b>12.7.2</b> Estimativa</a></li>
 <li class="chapter" data-level="12.7.3" data-path="relations.html"><a href="relations.html#multicolinearidade"><i class="fa fa-check"></i><b>12.7.3</b> Multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.4" data-path="relations.html"><a href="relations.html#métodos-para-ajustar-a-multicolinearidade"><i class="fa fa-check"></i><b>12.7.4</b> Métodos para ajustar a multicolinearidade</a></li>
 <li class="chapter" data-level="12.7.5" data-path="relations.html"><a href="relations.html#análise-tradicional"><i class="fa fa-check"></i><b>12.7.5</b> Análise tradicional</a></li>
@@ -332,20 +310,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.8" data-path="relations.html"><a href="relations.html#correlação-canônica"><i class="fa fa-check"></i><b>12.8</b> Correlação canônica</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a>
-<ul>
+<li class="chapter" data-level="13" data-path="multivariate.html"><a href="multivariate.html"><i class="fa fa-check"></i><b>13</b> Análise multivariada</a><ul>
 <li class="chapter" data-level="13.1" data-path="multivariate.html"><a href="multivariate.html#correlações-canônicas"><i class="fa fa-check"></i><b>13.1</b> Correlações canônicas</a></li>
-<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a>
-<ul>
+<li class="chapter" data-level="13.2" data-path="multivariate.html"><a href="multivariate.html#análise-de-agrupamento"><i class="fa fa-check"></i><b>13.2</b> Análise de agrupamento</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="multivariate.html"><a href="multivariate.html#todas-as-linhas-e-todas-as-variáveis-numéricas"><i class="fa fa-check"></i><b>13.2.1</b> Todas as linhas e todas as variáveis numéricas</a></li>
 <li class="chapter" data-level="13.2.2" data-path="multivariate.html"><a href="multivariate.html#com-base-na-média-de-cada-genótipo"><i class="fa fa-check"></i><b>13.2.2</b> Com base na média de cada genótipo</a></li>
-<li class="chapter" data-level="13.2.3" data-path="multivariate.html"><a href="multivariate.html#seleção-de-variáveis-1"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="13.2.3" data-path="reg.html"><a href="reg.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>13.2.3</b> Seleção de variáveis</a></li>
 <li class="chapter" data-level="13.2.4" data-path="multivariate.html"><a href="multivariate.html#escolha-do-número-de-clusters"><i class="fa fa-check"></i><b>13.2.4</b> Escolha do número de clusters</a></li>
 <li class="chapter" data-level="13.2.5" data-path="multivariate.html"><a href="multivariate.html#dendrogramas-personalizados"><i class="fa fa-check"></i><b>13.2.5</b> Dendrogramas personalizados</a></li>
 <li class="chapter" data-level="13.2.6" data-path="multivariate.html"><a href="multivariate.html#distancias-para-cada-ambiente"><i class="fa fa-check"></i><b>13.2.6</b> Distancias para cada ambiente</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a>
-<ul>
+<li class="chapter" data-level="13.3" data-path="multivariate.html"><a href="multivariate.html#componentes-principais"><i class="fa fa-check"></i><b>13.3</b> Componentes principais</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="multivariate.html"><a href="multivariate.html#conceito"><i class="fa fa-check"></i><b>13.3.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.3.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r"><i class="fa fa-check"></i><b>13.3.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.3.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados"><i class="fa fa-check"></i><b>13.3.3</b> Formato dos dados</a></li>
@@ -355,36 +330,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.7" data-path="multivariate.html"><a href="multivariate.html#gráfico-de-indivíduos"><i class="fa fa-check"></i><b>13.3.7</b> Gráfico de indivíduos</a></li>
 <li class="chapter" data-level="13.3.8" data-path="multivariate.html"><a href="multivariate.html#gráfico-biplot"><i class="fa fa-check"></i><b>13.3.8</b> Gráfico biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a>
-<ul>
+<li class="chapter" data-level="13.4" data-path="multivariate.html"><a href="multivariate.html#k-means"><i class="fa fa-check"></i><b>13.4</b> K-means</a><ul>
 <li class="chapter" data-level="13.4.1" data-path="multivariate.html"><a href="multivariate.html#conceito-1"><i class="fa fa-check"></i><b>13.4.1</b> Conceito</a></li>
 <li class="chapter" data-level="13.4.2" data-path="multivariate.html"><a href="multivariate.html#pacotes-r-1"><i class="fa fa-check"></i><b>13.4.2</b> Pacotes R</a></li>
 <li class="chapter" data-level="13.4.3" data-path="multivariate.html"><a href="multivariate.html#formato-dos-dados-e-códigos-r"><i class="fa fa-check"></i><b>13.4.3</b> Formato dos dados e códigos R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a>
-<ul>
+<li class="chapter" data-level="14" data-path="interaction.html"><a href="interaction.html"><i class="fa fa-check"></i><b>14</b> Interação genótipo-<em>vs</em>-ambiente</a><ul>
 <li class="chapter" data-level="14.1" data-path="interaction.html"><a href="interaction.html#análise-gráfica-da-interação"><i class="fa fa-check"></i><b>14.1</b> Análise gráfica da interação</a></li>
 <li class="chapter" data-level="14.2" data-path="interaction.html"><a href="interaction.html#análise-de-variância-individual"><i class="fa fa-check"></i><b>14.2</b> Análise de variância individual</a></li>
 <li class="chapter" data-level="14.3" data-path="interaction.html"><a href="interaction.html#baseada-em-regressão"><i class="fa fa-check"></i><b>14.3</b> Baseada em regressão</a></li>
 <li class="chapter" data-level="14.4" data-path="interaction.html"><a href="interaction.html#índice-de-confiança-genotípico"><i class="fa fa-check"></i><b>14.4</b> Índice de confiança genotípico</a></li>
 <li class="chapter" data-level="14.5" data-path="interaction.html"><a href="interaction.html#índice-de-superioridade-genotípico"><i class="fa fa-check"></i><b>14.5</b> Índice de superioridade genotípico</a></li>
 <li class="chapter" data-level="14.6" data-path="interaction.html"><a href="interaction.html#estratificação-ambiental"><i class="fa fa-check"></i><b>14.6</b> Estratificação ambiental</a></li>
-<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a>
-<ul>
+<li class="chapter" data-level="14.7" data-path="interaction.html"><a href="interaction.html#o-modelo-ammi"><i class="fa fa-check"></i><b>14.7</b> O modelo AMMI</a><ul>
 <li class="chapter" data-level="14.7.1" data-path="interaction.html"><a href="interaction.html#ajuste-do-modelo"><i class="fa fa-check"></i><b>14.7.1</b> Ajuste do modelo</a></li>
 <li class="chapter" data-level="14.7.2" data-path="interaction.html"><a href="interaction.html#analise-residual"><i class="fa fa-check"></i><b>14.7.2</b> Analise residual</a></li>
 <li class="chapter" data-level="14.7.3" data-path="interaction.html"><a href="interaction.html#escolha-do-número-de-termos-multiplicativos"><i class="fa fa-check"></i><b>14.7.3</b> Escolha do número de termos multiplicativos</a></li>
 </ul></li>
 <li class="chapter" data-level="14.8" data-path="interaction.html"><a href="interaction.html#imprimindo-os-meios-das-estimativas-rmspd"><i class="fa fa-check"></i><b>14.8</b> Imprimindo os meios das estimativas RMSPD</a></li>
-<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a>
-<ul>
+<li class="chapter" data-level="14.9" data-path="interaction.html"><a href="interaction.html#plotagem-dos-valores-rmspd"><i class="fa fa-check"></i><b>14.9</b> Plotagem dos valores RMSPD</a><ul>
 <li class="chapter" data-level="14.9.1" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-ammi"><i class="fa fa-check"></i><b>14.9.1</b> Valores estimados pelo modelo AMMI</a></li>
 <li class="chapter" data-level="14.9.2" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-ammi"><i class="fa fa-check"></i><b>14.9.2</b> Índices de estabilidade baseados em AMMI</a></li>
 <li class="chapter" data-level="14.9.3" data-path="interaction.html"><a href="interaction.html#biplots"><i class="fa fa-check"></i><b>14.9.3</b> Biplots</a></li>
 </ul></li>
-<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a>
-<ul>
+<li class="chapter" data-level="14.10" data-path="interaction.html"><a href="interaction.html#o-modelo-gge"><i class="fa fa-check"></i><b>14.10</b> O modelo GGE</a><ul>
 <li class="chapter" data-level="14.10.1" data-path="interaction.html"><a href="interaction.html#data-centering"><i class="fa fa-check"></i><b>14.10.1</b> Data centering</a></li>
 <li class="chapter" data-level="14.10.2" data-path="interaction.html"><a href="interaction.html#data-scaling"><i class="fa fa-check"></i><b>14.10.2</b> Data scaling</a></li>
 <li class="chapter" data-level="14.10.3" data-path="interaction.html"><a href="interaction.html#singular-value-partition"><i class="fa fa-check"></i><b>14.10.3</b> Singular value partition</a></li>
@@ -392,10 +362,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.10.5" data-path="interaction.html"><a href="interaction.html#valores-estimados-pelo-modelo-gge"><i class="fa fa-check"></i><b>14.10.5</b> Valores estimados pelo modelo GGE</a></li>
 <li class="chapter" data-level="14.10.6" data-path="interaction.html"><a href="interaction.html#visualizando-o-biplot"><i class="fa fa-check"></i><b>14.10.6</b> Visualizando o Biplot</a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a>
-<ul>
+<li class="chapter" data-level="14.11" data-path="interaction.html"><a href="interaction.html#modelos-mistos-na-avaliação-de-met"><i class="fa fa-check"></i><b>14.11</b> Modelos mistos na avaliação de MET</a><ul>
 <li class="chapter" data-level="14.11.1" data-path="interaction.html"><a href="interaction.html#ajustando-o-modelo"><i class="fa fa-check"></i><b>14.11.1</b> Ajustando o modelo</a></li>
-<li class="chapter" data-level="14.11.2" data-path="interaction.html"><a href="interaction.html#análise-dos-resíduos-2"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
+<li class="chapter" data-level="14.11.2" data-path="reg.html"><a href="reg.html#análise-dos-resíduos"><i class="fa fa-check"></i><b>14.11.2</b> Análise dos resíduos</a></li>
 <li class="chapter" data-level="14.11.3" data-path="interaction.html"><a href="interaction.html#parâmetros-genéticos"><i class="fa fa-check"></i><b>14.11.3</b> Parâmetros genéticos</a></li>
 <li class="chapter" data-level="14.11.4" data-path="interaction.html"><a href="interaction.html#médias-preditas"><i class="fa fa-check"></i><b>14.11.4</b> Médias preditas</a></li>
 <li class="chapter" data-level="14.11.5" data-path="interaction.html"><a href="interaction.html#índices-de-estabilidade-baseados-em-blup"><i class="fa fa-check"></i><b>14.11.5</b> Índices de estabilidade baseados em BLUP</a></li>
@@ -403,8 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.12" data-path="interaction.html"><a href="interaction.html#ammi-ou-blup-decisão-em-cada-caso"><i class="fa fa-check"></i><b>14.12</b> AMMI ou BLUP? Decisão em cada caso!</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndices</b></span></li>
-<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a>
-<ul>
+<li class="chapter" data-level="A" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html"><i class="fa fa-check"></i><b>A</b> Resposta dos exercícios</a><ul>
 <li class="chapter" data-level="A.1" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc1"><i class="fa fa-check"></i><b>A.1</b> Exercício 1</a></li>
 <li class="chapter" data-level="A.2" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc2"><i class="fa fa-check"></i><b>A.2</b> Exercício 2</a></li>
 <li class="chapter" data-level="A.3" data-path="resposta-dos-exercícios.html"><a href="resposta-dos-exercícios.html#exerc3"><i class="fa fa-check"></i><b>A.3</b> Exercício 3</a></li>
@@ -438,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interaction" class="section level1" number="14">
+<div id="interaction" class="section level1">
 <h1><span class="header-section-number">Capítulo 14</span> Interação genótipo-<em>vs</em>-ambiente</h1>
 <p>Uma cultura pode ser vista como um sistema complexo com resultados (por exemplo, rendimento de grãos) que são afetados por informações genéticas, fisiológicas, pedoclimáticas e de manejo. Melhoristas e geneticistas se esforçam continuamente para aumentar a produtividade das culturas visando suprir a demanda mundial cada vez maior por alimentos. É na fase final de um programa de melhoramento de plantas que muito esforço e recursos precisam ser investidos na avaliação dos genótipos (<em><em>g</em></em>) a serem selecionados. Geralmente algumas centenas de genótipos precisam ser avaliados em um grande número de ambientes (<em><em>e</em></em>). Estes ensaios são conhecidos como ensaios multi-ambientes () e os dados destes experimentos resultam em uma matriz <strong><em>M</em></strong> de dimensões <span class="math inline">\(g \times e\)</span> . É nesta fase do processo que surge um dos maiores desafios da análise de : compreender a interação genótipo-<em>vs</em>-ambiente buscando novas formas de explorá-la e utilizá-la a favor da seleção de genótipos com estabilidade  produtiva satisfatória.</p>
 <p>Funções do pacote <code>metan</code>, acrônimo para <strong>m</strong>ulti <strong>e</strong>nvironment <strong>t</strong>rial <strong>an</strong>alysis serão utilizadas para análise de dados de ensaios multi-ambientes. <img style="float: right;" src="figures/metan.png" width="160" height="181.2" > O foi desenvolvido em linguagem R e é distribuído sob a licença GPL (General Public Licence) 3.0. Isto significa que qualquer pessoa pode: (i) utilizar o código sem nenhuma restrição/pagamento; (ii) estudar o código e adaptá-lo às suas necessidades; (iii) sugerir modificações/melhorias no código de modo a aperfeiçoá-lo para uma comunidade maior de usuários, mantendo, porém, os direitos do autor. O pacote <code>metan</code> fornece funções úteis para analisar dados de ensaios multi-ambientes usando métodos paramétricos e não paramétricos, incluindo, mas não limitados a:</p>
@@ -456,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estatísticas de estabilidade paramétrica e não paramétrica.</li>
 </ul>
 <p>Nesta seção, usaremos o conjunto de dados <code>data_ge</code> disponível no pacote <code>metan</code>. Para mais informações, por favor, consulte <code>?data_ge</code>. Outros conjuntos de dados podem ser usados desde que as seguintes colunas estejam no conjunto de dados: ambiente, genótipo, bloco e variável(eis) resposta.</p>
-<div id="análise-gráfica-da-interação" class="section level2" number="14.1">
+<div id="análise-gráfica-da-interação" class="section level2">
 <h2><span class="header-section-number">14.1</span> Análise gráfica da interação</h2>
 <p>A função <code>ge_plot()</code> pode ser usada para visualizar o desempenho do genótipo através dos ambientes. O losango preto mostra a média para cada ambiente.</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="interaction.html#cb286-1"></a>a &lt;-<span class="st"> </span><span class="kw">ge_plot</span> (data_ge, ENV, GEN, GY)</span>
@@ -506,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb289-14"><a href="interaction.html#cb289-14"></a><span class="co"># 10 MaxGEN     &quot;H1 ~ &quot;H1 ~ &quot;H1 ~ &quot;H6 ~ &quot;H6 ~ &quot;H6 ~ &quot;H5 ~ &quot;H5 ~ &quot;H6 ~ &quot;H13~ &quot;H4 ~</span></span>
 <span id="cb289-15"><a href="interaction.html#cb289-15"></a><span class="co"># # ... with 4 more variables: CDED &lt;chr&gt;, PERK &lt;chr&gt;, TKW &lt;chr&gt;, NKE &lt;chr&gt;</span></span></code></pre></div>
 </div>
-<div id="análise-de-variância-individual" class="section level2" number="14.2">
+<div id="análise-de-variância-individual" class="section level2">
 <h2><span class="header-section-number">14.2</span> Análise de variância individual</h2>
 <p>A função <code>anova_ind()</code>  pode ser utilziada para realizar uma análise de variância para cada ambiente, conforme o seguinte código.</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="interaction.html#cb290-1"></a>ind &lt;-<span class="st"> </span><span class="kw">anova_ind</span>(data_ge, ENV, GEN, REP, GY)</span>
@@ -530,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb290-19"><a href="interaction.html#cb290-19"></a><span class="co"># 14 E9     3.06 0.679  6.12 5.62e-4 0.583   5.25  1.60e-2 0.111  10.9  0.837</span></span>
 <span id="cb290-20"><a href="interaction.html#cb290-20"></a><span class="co"># # ... with 1 more variable: AS &lt;dbl&gt;</span></span></code></pre></div>
 </div>
-<div id="baseada-em-regressão" class="section level2" number="14.3">
+<div id="baseada-em-regressão" class="section level2">
 <h2><span class="header-section-number">14.3</span> Baseada em regressão</h2>
 <p><span class="citation">Eberhart and Russell (<a href="#ref-Eberhart1966" role="doc-biblioref">1966</a>)</span> popularizaram a análise de estabilidade baseada em regressão. Nesse procedimento, a análise de adaptabilidade e estabilidade é realizada por meio de ajustes de equações de regressão onde a variável dependente é estimada em função de um índice ambiental, conforme o seguinte modelo:</p>
 <p><span class="math display">\[
@@ -577,7 +545,7 @@ O modelo é ajustado com a função <code>ge_reg()</code> . Os métodos S3 <code
 <span id="cb291-37"><a href="interaction.html#cb291-37"></a><span class="kw">plot</span>(reg_model)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-325-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
-<div id="índice-de-confiança-genotípico" class="section level2" number="14.4">
+<div id="índice-de-confiança-genotípico" class="section level2">
 <h2><span class="header-section-number">14.4</span> Índice de confiança genotípico</h2>
 <p><span class="citation">Annicchiarico (<a href="#ref-Annicchiarico1992" role="doc-biblioref">1992</a>)</span> propôs um método de estabilidade em que o parâmetro de estabilidade é medido pela superioridade do genótipo em relação à média de cada ambiente, de acordo com o seguinte modelo:</p>
 <p><span class="math display">\[
@@ -604,7 +572,7 @@ W_i = Z_{i.} / E - \alpha \times sd (Z_{i.})
 <span id="cb292-14"><a href="interaction.html#cb292-14"></a><span class="co">#  9 G8     3.00   113.   8.87 107.      2</span></span>
 <span id="cb292-15"><a href="interaction.html#cb292-15"></a><span class="co"># 10 G9     2.51    91.6 13.8   82.3     9</span></span></code></pre></div>
 </div>
-<div id="índice-de-superioridade-genotípico" class="section level2" number="14.5">
+<div id="índice-de-superioridade-genotípico" class="section level2">
 <h2><span class="header-section-number">14.5</span> Índice de superioridade genotípico</h2>
 <p>A função <code>superiority()</code> implementa o método não-paramétrico proposto por <span class="citation">Lin and Binns (<a href="#ref-Lin1988" role="doc-biblioref">1988</a>)</span>, que considera que a medida de superioridade geral da cultivar para dados de cultivar x localização é definida como quadrado médio da distância entre a resposta da cultivar e a média de resposta máxima em todas as localidades, de acordo com o seguinte modelo.</p>
 <p><span class="math display">\[
@@ -627,7 +595,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <span id="cb293-14"><a href="interaction.html#cb293-14"></a><span class="co">#  9 G8     3.00 0.0412     2 0.0882     2 0.00588     1</span></span>
 <span id="cb293-15"><a href="interaction.html#cb293-15"></a><span class="co"># 10 G9     2.51 0.291      9 0.390      9 0.217       9</span></span></code></pre></div>
 </div>
-<div id="estratificação-ambiental" class="section level2" number="14.6">
+<div id="estratificação-ambiental" class="section level2">
 <h2><span class="header-section-number">14.6</span> Estratificação ambiental</h2>
 <p>Um método que combina análise de estabilidade e estratificação ambiental usando análise fatorial foi proposto por <span class="citation">Murakami and Cruz (<a href="#ref-murakami2004" role="doc-biblioref">2004</a>)</span>. Este método é implementado com a função <code>ge_factanal()</code>, como segue:</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="interaction.html#cb294-1"></a>fato &lt;-<span class="st"> </span><span class="kw">ge_factanal</span>(data_ge, ENV, GEN, REP, GY)</span>
@@ -693,7 +661,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="interaction.html#cb297-1"></a><span class="kw">summary</span>(stat_ge, <span class="dt">export =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Este comando criará um arquivo de texto chamado <em>ge_stats summary.txt </em> no diretório de trabalho atual.</p>
 </div>
-<div id="o-modelo-ammi" class="section level2" number="14.7">
+<div id="o-modelo-ammi" class="section level2">
 <h2><span class="header-section-number">14.7</span> O modelo AMMI</h2>
 <p>O modelo linear mais simples com efeito de interação usado na análise de EMA é</p>
 <p><span class="math display">\[
@@ -707,7 +675,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 {y_{ij}} = \mu  + {\alpha_i} + {\tau_j} + \sum\limits_{k = 1}^k {{\lambda _k}{a_{ik}}} {t_{jk}} + {\rho _{ij}} + {\varepsilon _{ij}}
 \]</span></p>
 <p>onde <span class="math inline">\({\lambda_k}\)</span> é o valor singular para o <em>k</em>-ésimo eixo do componente principal; <span class="math inline">\(a_{ik}\)</span> é o <em>i</em>-ésimo elemento do <em>k</em>-ésimo autovetor de genótipos; <span class="math inline">\(t_{jk}\)</span> é o <em>j</em>-ésimo elemento do <em>k</em>-ésimo autovetor de ambientes. Um resíduo <span class="math inline">\(\rho _{ij}\)</span> permanece, se todos os <em>k</em>-PCAs não são considerados, onde <em>k</em> = <span class="math inline">\(min(G-1; E-1)\)</span>.</p>
-<div id="ajuste-do-modelo" class="section level3" number="14.7.1">
+<div id="ajuste-do-modelo" class="section level3">
 <h3><span class="header-section-number">14.7.1</span> Ajuste do modelo</h3>
 <p>O modelo AMMI é ajustado com a função <code>performs_ammi()</code>. O primeiro argumento é os dados, no nosso exemplo <code>data_ge</code>. Os próximos argumentos (<code>ENV</code>, <code>GEN</code> e <code>REP</code>) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. No argumento <code>resp</code> são declaradas as variáveis resposta. Uma única variável pode ser analizada (como em nosso exemplo) ou, um vetor de variáveis, usando, por exemplo <code>resp = c(GY, HM)</code>.</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="interaction.html#cb298-1"></a></span>
@@ -737,18 +705,20 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <span id="cb298-25"><a href="interaction.html#cb298-25"></a><span class="co"># All variables with significant (p &lt; 0.05) genotype-vs-environment interaction</span></span>
 <span id="cb298-26"><a href="interaction.html#cb298-26"></a><span class="co"># Done!</span></span></code></pre></div>
 
+
 <div class="dica">
 <p>Note que os argumentos inseridos na função obedecem a ordem dos argumentos requiridos na função [veja <code>args(waas)</code>]. Se obedecida esta ordem de avaliação, não é necessário declarar qual argumento está sendo inserido. Por exemplo, se mudássemos a ordem de entrada, teríamos um código semelhante a <code>waas(data_ge, gen = GEN, env =  ENV, REP, resp = c(PH, ED, TKW, NKR))</code>.</p>
 </div>
+
 </div>
-<div id="analise-residual" class="section level3" number="14.7.2">
+<div id="analise-residual" class="section level3">
 <h3><span class="header-section-number">14.7.2</span> Analise residual</h3>
 <p>O pacote <code>metan</code> conta com uma opção para análise residual do modelo AMMI ajustado. Gráficos podem ser obtidos utilizando o seguinte comando.</p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="interaction.html#cb299-1"></a><span class="kw">plot</span>(AMMI_model)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-333-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>A figura acima, obtida com a função <code>autoplot()</code>, mostra 4 gráficos. Os dois primeiros são os mais importantes. O primeiro (<em>Residual vs fitted</em>) pode ser utilizado para identificar a homogeneidade das variâncias. Uma distribuição aleatória dos pontos no gráfico deve ser observada. Quando um padrão de distibuição é observado –como, por exemplo, a distribuição dos pontos em forma de funil– uma investigação deve ser realizada, pois este padrão indica a possiblidade de heterogeneidade das variâncias. O segundo gráfico (<em>Normal Q-Q</em>) nos informa quanto a normalidade dos resíduos, ou seja, é desejado que os pontos sejam distribuídos ao redor da linha diagonal.</p>
 </div>
-<div id="escolha-do-número-de-termos-multiplicativos" class="section level3" number="14.7.3">
+<div id="escolha-do-número-de-termos-multiplicativos" class="section level3">
 <h3><span class="header-section-number">14.7.3</span> Escolha do número de termos multiplicativos</h3>
 <p>Conforme já discutido, a análise AMMI aplica a técnica de decomposição por valores singulares na matriz dos efeitos não aditivos do modelo (<strong><em>A</em></strong>). Logo, esta matriz pode ser aproximada pela pelo seguinte modelo: <span class="math inline">\(A = U \lambda V^T\)</span>, onde onde <strong>U</strong> é uma matriz <em>g</em> <span class="math inline">\(\times\)</span> <em>e</em> contendo os vetores singulares de <span class="math inline">\(AA^T\)</span> e formam a base ortonormal para os efeitos de genótipos; <span class="math inline">\(V^T\)</span> é uma matriz <em>e</em> <span class="math inline">\(\times\)</span> <em>e</em> que contém os vetores singulares de <span class="math inline">\(\mathbf{A^TA}\)</span> e formam a base ortonormal para os efeitos de ambientes; e <span class="math inline">\(\lambda\)</span> é uma matriz diagonal <em>e</em> <span class="math inline">\(\times\)</span> <em>e</em> contendo <em>k</em>-valores singulares de <span class="math inline">\(A^TA\)</span> , onde <em>k</em> = <span class="math inline">\(min(G-1; E-1)\)</span>. Assim, diferentes modelos (dependendo do número de termos multiplicativos utilizados) podem ser utilziados para predizer o rendimento do genótipo <em>i</em> no ambiente <em>j</em>. A tabela abaixo mostra os possíveis modelos. No modelo AMMI0 apenas os efeitos aditivos são considerados. No modelo AMMI1, o primeiro termo multiplicativo é considerado, e assim por diante, até o modelo AMMIF, onde <span class="math inline">\(min(G-1;E-1)\)</span> termos são considerados.</p>
 <table>
@@ -786,12 +756,14 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 </tbody>
 </table>
 <p>A escolha do número de termos multiplicativos a ser utilizado é baseada em basicamente dois critérios de sucesso de análise: <strong>Postdiscritive sucess</strong> e <strong>Predictive sucess</strong>. Por definição, <strong>Predictive sucess</strong> significa literalmente a afirmação prévia do que acontecerá em algum momento futuro. Neste contexto, testes de validação cruzada (cross-validation) podem ser utilizadas para avaliar o sucesso preditivo dos membros de modelos da familia AMMI <span class="citation">(T. Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>. Por outro lado, <strong>Postdiscritive sucess</strong> significa fazer uma afirmação ou dedução sobre algo que aconteceu no passado. Na escolha do número de termos multiplicativos da análise AMMI este sucesso pode ser calculado utilizando testes como o proposto por <span class="citation">Gollob (<a href="#ref-Gollob1968" role="doc-biblioref">1968</a>)</span>.</p>
-<div id="postdiscritive-sucess" class="section level4" number="14.7.3.1">
+<div id="postdiscritive-sucess" class="section level4">
 <h4><span class="header-section-number">14.7.3.1</span> Postdiscritive sucess</h4>
+
 <p>No objeto <code>anova</code>  gerado pela função <code>waas()</code>  testes de hipóteses são realizados e probabilidades de erro são atribuídas para cada modelo considerando a distribuição de graus de liberdade proposto por <span class="citation">Gollob (<a href="#ref-Gollob1968" role="doc-biblioref">1968</a>)</span>. Assim é possível identificar qual é o número ideal de termos a ser considerado na predição. Em nosso exemplo, dois termos foram significativos a 5% de probabilidade de erro.</p>
 </div>
-<div id="predictive-sucess" class="section level4" number="14.7.3.2">
+<div id="predictive-sucess" class="section level4">
 <h4><span class="header-section-number">14.7.3.2</span> Predictive sucess</h4>
+
 <p>O pacote <code>metan</code> fornece uma solução completa para validaçao cruzada do modelo AMMI. Utilizando a função <code>cv_ammif()</code> , por exemplo, é possível realizar um teste de <em>cross-validation</em> para a família de modelos AMMI (AMMI0-AMMIF) usando dados com repetições. Automaticamente, a primeira validação é realizada considerando a AMMIF (todos possíveis IPCAs são usados). Considerando esse modelo, o conjunto de dados original é dividido em dois conjuntos de dados: dados de modelagem e dados de validação. O conjunto de dados “modelagem” possui todas as combinações (genótipo <em>vs</em> ambiente) com R-1 repetições. O conjunto de dados “validação” tem uma repetição. O diagrama abaixo representa o procedimento realizado.</p>
 <p>A divisão do conjunto de dados em dados de modelagem e validação depende do design informado. Considerando um delineamento de blocos completos casualizados (DBC), blocos completos são aleatoriamente selecionados dentro de ambientes, como mostrado por <span class="citation">T. Olivoto, Lúcio, Da silva, Marchioro, et al. (<a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>. O bloco restante serve dados de validação. Se <code>design = "CRD"</code> for informado, assim declarando que um delineamento intericamente casualizado (DIC)  foi usado, observações são aleatoriamente selecionadas para cada tratamento (combinação genótipo-<em>vs</em>-ambiente). Este é o mesmo procedimento sugerido por <span class="citation">Gauch (<a href="#ref-Gauch1988" role="doc-biblioref">1988</a>)</span>. Os valores estimados para o membro da família AMMI em estudo são então comparados com os dados de “validação” e um erro de predição <span class="math inline">\(\hat{z}_{ij}\)</span> é estimado para cada tratamento. A raiz quadrada do quadrado médio da diferença de predição (RMSPD) é calculado. Este procedimento é repetido <em>n</em> vezes, utilizando o argumento <code>nboot = n</code>. Ao final do procedimento, o algorítimo armazena as <em>n</em> estimativas do RMSPD para o modelo em questão, e um novo modelo é então testado seguindo os mesmos passos.</p>
 <p>Como exemplo, a função <code>cv_ammi()</code> é usada para calcular um procedimento de validação cruzada para os modelos AMMI0, AMMI2 e AMMIF (9 eixos).</p>
@@ -820,7 +792,7 @@ A função <code>cv_blup ()</code> fornece uma validação cruzada de dados base
 </div>
 </div>
 </div>
-<div id="imprimindo-os-meios-das-estimativas-rmspd" class="section level2" number="14.8">
+<div id="imprimindo-os-meios-das-estimativas-rmspd" class="section level2">
 <h2><span class="header-section-number">14.8</span> Imprimindo os meios das estimativas RMSPD</h2>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="interaction.html#cb305-1"></a>bind_mod &lt;-<span class="st"> </span><span class="kw">bind_cv</span>(AMMIF, BLUP_g, <span class="dt">bind =</span> <span class="st">&quot;means&quot;</span>)</span>
 <span id="cb305-2"><a href="interaction.html#cb305-2"></a><span class="kw">print</span>(bind_mod<span class="op">$</span>RMSPD)</span>
@@ -840,7 +812,7 @@ A função <code>cv_blup ()</code> fornece uma validação cruzada de dados base
 <span id="cb305-16"><a href="interaction.html#cb305-16"></a><span class="co"># 11 AMMI0       0.430 0.0283 0.00200 0.370 0.485</span></span></code></pre></div>
 <p>A tabela acima mostra as estatísticas descritivas (média, desvio padrão, erro padrão da média e quantis 2,5% e 97,5%) das 100 estimativas RMSPD para cada modelo, e são apresentadas a partir do modelo mais preciso (menor média RMSPD) para o modelo menos preciso (maior média RMSPD).</p>
 </div>
-<div id="plotagem-dos-valores-rmspd" class="section level2" number="14.9">
+<div id="plotagem-dos-valores-rmspd" class="section level2">
 <h2><span class="header-section-number">14.9</span> Plotagem dos valores RMSPD</h2>
 <p>Os valores das estimativas RMSPD obtidas no processo de validação cruzada podem ser plotados usando a função <code>plot ()</code>.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="interaction.html#cb306-1"></a>bind1 &lt;-<span class="st"> </span><span class="kw">bind_cv</span> (AMMI0, AMMI2, AMMI9)</span>
@@ -853,7 +825,7 @@ A função <code>cv_blup ()</code> fornece uma validação cruzada de dados base
 <span id="cb306-8"><a href="interaction.html#cb306-8"></a><span class="kw">arrange_ggplot</span>(a, b, <span class="dt">labels =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-341-1.png" width="960" /></p>
 <p>Seis estatísticas são mostradas neste boxplot. A média (losango preto), a mediana (linha preta), as dobradiças inferior e superior que correspondem ao primeiro e terceiro quartis (percentis 25 e 75, respectivamente). O bigode superior se estende da dobradiça até o maior valor não mais que <span class="math inline">\(1,5 \times {IQR}\)</span> a partir da dobradiça (em que IQR é o intervalo entre quartis). O bigode mais baixo se estende da dobradiça ao menor valor, no máximo <span class="math inline">\(1,5 \times {IQR}\)</span> da dobradiça. Dados além do final dos bigodes são considerados pontos extremos. Se a condição <code>violin = TRUE</code>, uma plotagem de violino é adicionada junto com o boxplot. Um gráfico de violino é uma exibição compacta de uma distribuição contínua exibida da mesma maneira que um gráfico de caixa.</p>
-<div id="valores-estimados-pelo-modelo-ammi" class="section level3" number="14.9.1">
+<div id="valores-estimados-pelo-modelo-ammi" class="section level3">
 <h3><span class="header-section-number">14.9.1</span> Valores estimados pelo modelo AMMI</h3>
 <p>Em nosso exemplo, o modelo AMMI2 foi o que apresentou o menor RMSPD, sendo então o mais indicado para estimar a variável GY. A estimativa considerando dois termos multiplicativos pode realizada utilizando a função <code>predict()</code>, tendo como argumentos o modelo AMMI ajustado (<code>AMMI_model</code>) e o número de termos multiplicativos considerados na estimação (<code>naxis</code>). </p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="interaction.html#cb307-1"></a>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(AMMI_model, <span class="dt">naxis =</span> <span class="dv">2</span>)</span>
@@ -874,7 +846,7 @@ A função <code>cv_blup ()</code> fornece uma validação cruzada de dados base
 <span id="cb307-16"><a href="interaction.html#cb307-16"></a><span class="co"># # ... with 130 more rows</span></span></code></pre></div>
 <p>As seguintes variáveis são retornadas: <strong>ENV</strong> é o ambiente; <strong>GEN</strong> é o genótipo; <strong>Y</strong> é o valor observado; <strong>resOLS</strong> é o residual (<span class="math inline">\(\hat{z}_{ij}\)</span>) estimado pelos Mínimos Quadrados Ordinários, onde <span class="math inline">\(\hat{z}_{ij} = y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..}\)</span>; <strong>Ypred</strong> é o valor estimado pelos mínimos quadrados ordinários (<span class="math inline">\(\hat{y}_{ij} = y_{ij} -\hat{z}_{ij}\)</span>); <strong>ResAMMI</strong> é o residual estimado pelo modelo AMMI (<span class="math inline">\(\hat{a}_{ij}\)</span>) considerando o número de termos multiplicativos informado na função (neste caso 2), onde <span class="math inline">\(\hat{a}_{ij} = \lambda_1a_{i1}t_{j1}\)</span>; <strong>YpredAMMI</strong> é o valor estimado pelo modelo AMMI <span class="math inline">\(\hat{ya}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}+\hat{a}_{ij}\)</span>; e <strong>AMMI0</strong> é o valor estimado quando nenhum termo multiplicativo é usado, ou seja, <span class="math inline">\(\hat{y}_{ij} = \bar{y}_{i.} + \bar{y}_{.j} - \bar{y}_{..}\)</span>.</p>
 </div>
-<div id="índices-de-estabilidade-baseados-em-ammi" class="section level3" number="14.9.2">
+<div id="índices-de-estabilidade-baseados-em-ammi" class="section level3">
 <h3><span class="header-section-number">14.9.2</span> Índices de estabilidade baseados em AMMI</h3>
 <p><span class="citation">(T. Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> demonstraram que a média ponderada dos escores absolutos (WAAS, <strong>W</strong>eighted <strong>A</strong>verage of <strong>A</strong>bsolute <strong>S</strong>cores), pode ser utilizada como um índice quantitativo de estabilidade na análise AMMI. Utilizando a função <code>get_model_data()</code> é possível obter facilmente este índice para diversas variáveis com poucas linhas de código. Veja o exemplo abaixo, com quatro variáveis. Este índice também é computado em uma estrutura de modelo misto. <a href="interaction.html#wsb">Veja o exemplo aqui</a>.</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="interaction.html#cb308-1"></a><span class="kw">waas</span>(data_ge2, ENV, GEN, REP,</span>
@@ -1015,10 +987,10 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 <span id="cb309-21"><a href="interaction.html#cb309-21"></a><span class="co">#  9 G8     3.00 0.574 1.18  0.0669 0.225  0.327</span></span>
 <span id="cb309-22"><a href="interaction.html#cb309-22"></a><span class="co"># 10 G9     2.51 0.983 1.50  0.131  0.336  0.507</span></span></code></pre></div>
 </div>
-<div id="biplots" class="section level3" number="14.9.3">
+<div id="biplots" class="section level3">
 <h3><span class="header-section-number">14.9.3</span> Biplots</h3>
 <p>O pacote <code>metan</code> conta com gráficos gerados pelo pacote <strong>ggplot2</strong>, o que lhe confere um alto nível de personalização. A função utilizada para obtenção dos diferentes tipos de biplots será a <code>plot_scores()</code>. Para maiores detalhes veja <code>?plot_._scores</code>.</p>
-<div id="biplot-tipo-2-gy-x-pc1" class="section level4" number="14.9.3.1">
+<div id="biplot-tipo-2-gy-x-pc1" class="section level4">
 <h4><span class="header-section-number">14.9.3.1</span> Biplot tipo 2: GY x PC1</h4>
 <p>O biplot conhecido como <strong>AMMI1</strong> é confeccionado utilizando o argumento <code>type = 2</code> na função <code>plot_scores()</code>. O biplot <strong>AMMI1</strong> é utilizado para identificar tanto a estabilidade quando a produtividade dos genótipos. Neste tipo de biplot, os genótipos com escores do PC1 próximos de zero e à direita da linha vertical, são considerados os mais estáveis e com rendimento superior a média geral.</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="interaction.html#cb310-1"></a>p3 &lt;-<span class="kw">plot_scores</span>(AMMI_model)</span>
@@ -1036,7 +1008,7 @@ Figure 14.1: Biplot AMMI1 gerado pelo pacote metan
 </p>
 </div>
 </div>
-<div id="biplot-tipo-1-ipca1-x-ipca2" class="section level4" number="14.9.3.2">
+<div id="biplot-tipo-1-ipca1-x-ipca2" class="section level4">
 <h4><span class="header-section-number">14.9.3.2</span> biplot tipo 1: IPCA1 x IPCA2</h4>
 <p>O biplot conhecido como <strong>AMMI2</strong> é confeccionado utilizando o argumento <code>type = 1</code> (padrão) na função <code>plot_scores()</code>. O biplot <strong>AMMI2</strong> representa os dois primeiros IPCAs oriundos da decomposição por valor singular da matriz dos efeitos da interação e é utilizado para realizar inferências quanto aos padrões da interação genótipo <em>vs</em> ambiente. Neste caso, os dois primeiros IPCAs explicam 66.2% da da soma de quadrados da interação.</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="interaction.html#cb311-1"></a></span>
@@ -1056,7 +1028,7 @@ Figure 14.2: Biplot AMMI2, gerado pelo pacote metan
 </p>
 </div>
 </div>
-<div id="rendimento-nominal-x-ipca1" class="section level4" number="14.9.3.3">
+<div id="rendimento-nominal-x-ipca1" class="section level4">
 <h4><span class="header-section-number">14.9.3.3</span> Rendimento nominal x IPCA1</h4>
 <p>Com o objetivo de identificar possíveis mega-ambientes, bem como visualizar o padrão <em>which-won-where</em> do conjunto de dados, um gráfico com o rendimento nominal (<span class="math inline">\(\mathop {\hat y} \nolimits_ {ij}^*\)</span> ) em função dos escores PCA1 dos ambientes é também confecionado pela função <code>plot_scores()</code> utilizando o argumento <code>type = 4</code>. Neste gráfico, cada genótipo é representado por uma linha reta com a equação <span class="math inline">\(\hat y_{ij}^* = \mu_i + PCA1_i \times PCA1_j\)</span> , onde <span class="math inline">\(\hat y_{ij}^*\)</span> é o rendimento nominal para o genótipo <em>i</em> no ambiente <em>J</em>; <span class="math inline">\(\mu\)</span> é a média geral do genótipo <em>i</em>; <span class="math inline">\(PC{1_i}\)</span> é o escore PCA1 do genótipo <em>i</em> e <span class="math inline">\(PC{1_j}\)</span> é o escore PCA1 do ambiente <em>j</em>. O genótipo vencedor em um determinado ambiente possui o maior rendimento nominal nesse ambiente.</p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="interaction.html#cb312-1"></a><span class="kw">plot_scores</span>(AMMI_model,</span>
@@ -1073,8 +1045,9 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </div>
 </div>
 </div>
-<div id="o-modelo-gge" class="section level2" number="14.10">
+<div id="o-modelo-gge" class="section level2">
 <h2><span class="header-section-number">14.10</span> O modelo GGE</h2>
+
 <p>O modelo GGE (Genotype plus Genotype-vs-Environment interaction) tem sido amplamente utilizado para avaliação de genótipos e identificação de mega-ambientes em ensaios multi-ambientais (MET). Este modelo considera um biplot que é construído pelos dois primeiros componentes principais (PC1 e PC2) derivados da decomposição por valores singulares de dados oriundos de um MET centrados no ambiente <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.</p>
 <p>Comunmente, o rendimento médio do genótipo <em>i</em> no ambiente <em>j</em> é descrito pelo seguinte modelo linear geral, ignorando quaisquer erros aleatórios</p>
 <p><span class="math display">\[
@@ -1086,7 +1059,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 \]</span></p>
 <p>onde <span class="math inline">\(\xi_{ik}^* = \lambda_k^ \alpha \xi_{ik}\)</span>; <span class="math inline">\(\eta_{jk}^* = \lambda_k^{1-\alpha}\eta_{jk}\)</span> sendo <span class="math inline">\(\lambda_k\)</span> o <em>k</em>-ésimo autovalor da SVD (<span class="math inline">\(k = 1, ... p\)</span>), com <span class="math inline">\(p \le min (e, g)\)</span>; <span class="math inline">\(\alpha\)</span> é o fator de partição do valor singular para o Componente Principal (PC) <em>k</em> <span class="citation">(Yan <a href="#ref-Yan2002b" role="doc-biblioref">2002</a>)</span>; <span class="math inline">\(\xi_{ik}^*\)</span> e <span class="math inline">\(\eta_{jk}^*\)</span> são os escores do PC <em>k</em> para genótipo <em>i</em> e ambiente <em>j</em>, respectivamente.</p>
 <p>A função <code>gge()</code> do pacote <code>metan</code> é usada para ajustar o modelo GGE. De acordo com <span class="citation">Yan and Kang (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>, a função suporta quatro métodos de centralização de dados, dois métodos de escalonamento de dados e três opções para particionamento de valor singular:</p>
-<div id="data-centering" class="section level3" number="14.10.1">
+<div id="data-centering" class="section level3">
 <h3><span class="header-section-number">14.10.1</span> Data centering</h3>
 <ul>
 <li>0 ou <code>none</code>: para dados não centralizados;</li>
@@ -1095,22 +1068,23 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <li>3 ou <code>double</code>: para dados centrados duplamente (GE). Um biplot não pode ser produzido sem modelos produzidos sem centralização.</li>
 </ul>
 </div>
-<div id="data-scaling" class="section level3" number="14.10.2">
+<div id="data-scaling" class="section level3">
 <h3><span class="header-section-number">14.10.2</span> Data scaling</h3>
 <ul>
 <li>0 ou <code>none</code>: (padrão) para nenhum escalonamento;</li>
 <li>1 ou <code>sd</code>: Cada valor é dividido pelo desvio padrão do seu ambiente correspondente (coluna). Isso colocará todos os ambientes com aproximadamente o mesmo intervalo de valores.</li>
 </ul>
 </div>
-<div id="singular-value-partition" class="section level3" number="14.10.3">
+<div id="singular-value-partition" class="section level3">
 <h3><span class="header-section-number">14.10.3</span> Singular value partition</h3>
+
 <ul>
 <li>1 ou <code>genotype</code>: O valor singular é inteiramente particionado nos autovetores de Genótipo (<span class="math inline">\(\alpha = 1\)</span>), Também chamado de <em>row metric preserving</em>;</li>
 <li>2 ou <code>environment</code>: (padrão) O valor singular é inteiramente particionado nos autovetores de ambiente (<span class="math inline">\(\alpha = 0\)</span>), também chamado de <em>column metric preserving</em>;</li>
 <li>3 ou <code>symmetrical</code>: O valor singular é simetricamente dividida nos autovetores de genótipo e ambiente (<span class="math inline">\(\alpha = 0,5\)</span>). Esta partição é mais frequentemente usada na análise AMMI.</li>
 </ul>
 </div>
-<div id="ajustando-o-modelo-gge" class="section level3" number="14.10.4">
+<div id="ajustando-o-modelo-gge" class="section level3">
 <h3><span class="header-section-number">14.10.4</span> Ajustando o modelo GGE</h3>
 <p>Para ajustar o modelo GGE, usaremos os dados em <code>data_ge</code>, que contém dados do rendimento de grãos avaliados em 10 genótipos conduzidos em 14 ambientes. Primeiro de tudo, vamos criar uma tabela bidirecional para esses dados usando a função <code>make_mat()</code>. </p>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="interaction.html#cb313-1"></a>ge_table =<span class="st"> </span><span class="kw">make_mat</span>(data_ge, GEN, ENV, GY)</span>
@@ -1132,7 +1106,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb314-2"><a href="interaction.html#cb314-2"></a>gge_model &lt;-<span class="st"> </span><span class="kw">gge</span>(data_ge, ENV, GEN, GY)</span></code></pre></div>
 <p>O modelo acima foi ajustado considerando (i) <em>column metric preserving</em> (onde o valor singular é inteiramente particionado nos autovetores do ambiente); (ii) <em>environment centered</em> (o biplot conterá uma informação mista de G + GEI); e nenhum método de escalonamento. Para alterar estas configurações padrão, use os argumentos <code>svp</code>, <code>centering</code> e <code>scaling</code>, respectivamente. Por favor, note que no segundo exemplo o argumento <code>table</code> foi definido como <code>TRUE</code> para indicar que os dados de entrada são uma tabela bidirecional.</p>
 </div>
-<div id="valores-estimados-pelo-modelo-gge" class="section level3" number="14.10.5">
+<div id="valores-estimados-pelo-modelo-gge" class="section level3">
 <h3><span class="header-section-number">14.10.5</span> Valores estimados pelo modelo GGE</h3>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="interaction.html#cb315-1"></a>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(gge_model, <span class="dt">naxis =</span> <span class="dv">2</span>)</span>
 <span id="cb315-2"><a href="interaction.html#cb315-2"></a><span class="kw">print</span>(predicted<span class="op">$</span>GY, <span class="dt">digits =</span> <span class="dv">3</span>)</span>
@@ -1151,7 +1125,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb315-15"><a href="interaction.html#cb315-15"></a><span class="co"># 10  2.27  1.78 1.15   1.30  2.82  1.64  3.28  4.43  4.28  4.03  2.79  1.65  2.62</span></span>
 <span id="cb315-16"><a href="interaction.html#cb315-16"></a><span class="co"># # ... with 1 more variable: E9 &lt;dbl&gt;</span></span></code></pre></div>
 </div>
-<div id="visualizando-o-biplot" class="section level3" number="14.10.6">
+<div id="visualizando-o-biplot" class="section level3">
 <h3><span class="header-section-number">14.10.6</span> Visualizando o Biplot</h3>
 <p>A função genérica <code>plot()</code> é usada para gerar um biplot usando como entrada o modelo ajustado da classe <code>gge</code>. O tipo de biplot é escolhido pelo argumento <code>type</code> na função. Dez tipos de biplots estão disponíveis de acordo com <span class="citation">Yan and Kang (<a href="#ref-Yan2003" role="doc-biblioref">2003</a>)</span>.</p>
 <ul>
@@ -1167,7 +1141,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <li><code>type = 10</code> Relação entre os ambientes.</li>
 </ul>
 <p>Neste material, para cada tipo de biplot, dois gráficos são produzidos. Um com as configurações padrão e outro para mostrar algumas opções gráficas da função.</p>
-<div id="biplot-tipo-1-um-biplot-básico" class="section level4" number="14.10.6.1">
+<div id="biplot-tipo-1-um-biplot-básico" class="section level4">
 <h4><span class="header-section-number">14.10.6.1</span> Biplot tipo 1: Um biplot básico</h4>
 <p>Esta é a configuração padrão no gráfico da função, portanto, este biplot é produzido apenas chamando <code>plot(model)</code>, como mostrado abaixo.
 </p>
@@ -1178,7 +1152,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb316-5"><a href="interaction.html#cb316-5"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-351-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-2-desempenho-médio-vs.-estabilidade" class="section level4" number="14.10.6.2">
+<div id="biplot-tipo-2-desempenho-médio-vs.-estabilidade" class="section level4">
 <h4><span class="header-section-number">14.10.6.2</span> Biplot tipo 2: Desempenho médio vs. estabilidade</h4>
 <p>Neste biplot, a visualização da média e da estabilidade dos genótipos é obtida desenhando uma coordenada média de ambiente (AEC) no biplot obtido com <em>row metric preserving</em>. Primeiro, um ambiente médio, representado pelo pequeno círculo, é definido pelas médias dos escores PC1 e PC2 dos ambientes. A linha que passa pela origem do biplot e pelo AEC pode ser chamada de média. As projeções de marcadores genotípicos nesse eixo deve, portanto, aproximar o rendimento médio dos genótipos. Assim, o G8 foi claramente o genótipo de maior rendimento, em média.</p>
 <p>A ordenada de AEC é a linha que passa pela origem do biplot e é perpendicular à abscissa do AEC. Portanto, se a abscissa AEC representa o G, a ordenada AEC deve aproximar o GEI associado a cada genótipo, que é uma medida de variabilidade ou instabilidade dos genótipos <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. Uma projeção maior na ordenada AEC, independentemente da direção, significa maior instabilidade. Em nosso exemplo, o G3 foi o mais estável e o segundo genótipo mais produtivo, enquanto o G9 apresentou alta instabilidade.
@@ -1193,7 +1167,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb317-8"><a href="interaction.html#cb317-8"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-352-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-3-quem-ganhou-onde" class="section level4" number="14.10.6.3">
+<div id="biplot-tipo-3-quem-ganhou-onde" class="section level4">
 <h4><span class="header-section-number">14.10.6.3</span> Biplot tipo 3: quem ganhou onde</h4>
 <p>Neste biplot (obtido com particionamento de valores singulares simétrico) um polígono é desenhado juntando os genótipos (G7, G8, G9, G10 e G4) que estão localizadas mais distante da origem do biplot fazendo com que todos os outros genótipos fiquem contidos no polígono. Os <em>genótipos vértex</em> têm os vetores mais longos, em suas respectivas direções, que é uma medida da capacidade de resposta aos ambientes. Estes genótipos estão, portanto, entre os genótipos mais responsivos. Todos os outros genótipos são menos responsivos em suas respectivas direções.</p>
 <p>As linhas perpendiculares aos lados do polígono dividem o biplot em setores. Cada setor tem um genótipo vértice. Por exemplo, o setor com o genótipo-vértice G4 pode ser referido como o setor G4. Um ambiente (E9), foi enquadrado neste setor. Como regra geral, o genótipo vértex é o genótipo de mais alto rendimento em todos os ambientes que compartilham o setor com ele <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. Neste caso, G4 teve o maior rendimento em E9, como mostrado na tabela acima.
@@ -1211,8 +1185,9 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb318-11"><a href="interaction.html#cb318-11"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-353-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-4-discriminação-vs.-representatividade" class="section level4" number="14.10.6.4">
+<div id="biplot-tipo-4-discriminação-vs.-representatividade" class="section level4">
 <h4><span class="header-section-number">14.10.6.4</span> Biplot tipo 4: Discriminação vs. representatividade</h4>
+
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="interaction.html#cb319-1"></a>p1 &lt;-<span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">4</span>)</span>
 <span id="cb319-2"><a href="interaction.html#cb319-2"></a>p2 &lt;-<span class="kw">plot</span>(gge_model,</span>
 <span id="cb319-3"><a href="interaction.html#cb319-3"></a>          <span class="dt">type =</span> <span class="dv">4</span>,</span>
@@ -1221,7 +1196,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb319-6"><a href="interaction.html#cb319-6"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-354-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-5-examinar-um-ambiente" class="section level4" number="14.10.6.5">
+<div id="biplot-tipo-5-examinar-um-ambiente" class="section level4">
 <h4><span class="header-section-number">14.10.6.5</span> Biplot tipo 5: Examinar um ambiente</h4>
 <p>A identificação de genótipos mais adaptados a um ambiente pode ser facilmente alcançada utilizando o biplot GGE. Por exemplo, para visualizar o desempenho de diferentes genótipos em um dado ambiente, por exemplo, E10, simplesmente desenhe uma linha que passa pela origem biplot e o marcador do E10. Os genótipos podem ser classificados de acordo com suas projeções no eixo E10 com base em seu desempenho neste ambiente, na direção apontada pela seta. Em nosso exemplo, no E10, o genótipo de maior rendimento foi o genótipo G8 e o genótipo de menor rendimento foi G10. A ordem dos genótipos foi G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.
 </p>
@@ -1237,7 +1212,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb320-10"><a href="interaction.html#cb320-10"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-355-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-6-ranquear-os-ambientes" class="section level4" number="14.10.6.6">
+<div id="biplot-tipo-6-ranquear-os-ambientes" class="section level4">
 <h4><span class="header-section-number">14.10.6.6</span> Biplot tipo 6: ranquear os ambientes</h4>
 <p>Neste biplot o ambiente “ideal” é usado como o centro de um conjunto de linhas concêntricas que servem para medir a distância entre um ambiente e o ambiente “ideal”. Como o foco principal neste biplot são os ambientes, a partição de valor singular usada é “ambiente” (padrão). Pode ser visto que E13 é o mais próximo do ambiente ideal e, portanto, é o mais desejável de todos os 14 ambientes. E4 e E9 foram os ambientes de teste menos desejados.
 </p>
@@ -1252,7 +1227,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb321-9"><a href="interaction.html#cb321-9"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-356-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-7-examinar-um-genótipo" class="section level4" number="14.10.6.7">
+<div id="biplot-tipo-7-examinar-um-genótipo" class="section level4">
 <h4><span class="header-section-number">14.10.6.7</span> Biplot tipo 7: examinar um genótipo</h4>
 <p>Semelhante à visualização dos desempenhos genotípicos em um determinado ambiente (biplot 5), a visualização da média e da estabilidade dos genótipos é obtida desenhando-se uma AEC no biplot com foco no genótipo, ou <em>row metric preserving</em> <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.
 </p>
@@ -1268,7 +1243,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb322-10"><a href="interaction.html#cb322-10"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-357-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-8-ranquear-os-genótipos" class="section level4" number="14.10.6.8">
+<div id="biplot-tipo-8-ranquear-os-genótipos" class="section level4">
 <h4><span class="header-section-number">14.10.6.8</span> Biplot tipo 8: ranquear os genótipos</h4>
 <p>Este biplot compara todos os genótipos com o genótipo “ideal”. O genótipo ideal, representado pelo pequeno círculo com uma seta apontando para ele, é definido como tendo o maior rendimento em todos os ambientes. Ou seja, tem o maior rendimento médio e é absolutamente estável. Os genótipos são classificados com base em sua distância do genótipo ideal <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. Em nosso exemplo, o G3 e o G8 superaram os outros genótipos.
 </p>
@@ -1282,7 +1257,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb323-8"><a href="interaction.html#cb323-8"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-358-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-9-comparar-dois-genótipos" class="section level4" number="14.10.6.9">
+<div id="biplot-tipo-9-comparar-dois-genótipos" class="section level4">
 <h4><span class="header-section-number">14.10.6.9</span> Biplot tipo 9: comparar dois genótipos</h4>
 <p>Para comparar dois genótipos, por exemplo, G10 e G8, desenhe uma linha de conexão para conectá-los e trace uma linha perpendicular que passa pela origem do biplot e é perpendicular à linha de conexão. Vemos que um ambiente, E9, está do mesmo lado da linha perpendicular do G10, e os outros 13 ambientes estão do outro lado da linha perpendicular, junto com o G8. Isso indica que G10 produziu mais do que o G8 no E9, mas G8 produziu mais que o G10 nos outros 13 ambientes <span class="citation">(Yan et al. <a href="#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.
 </p>
@@ -1298,8 +1273,9 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span id="cb324-10"><a href="interaction.html#cb324-10"></a><span class="kw">arrange_ggplot</span>(p1, p2)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-359-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="biplot-tipo-10-relação-entre-os-ambientes" class="section level4" number="14.10.6.10">
+<div id="biplot-tipo-10-relação-entre-os-ambientes" class="section level4">
 <h4><span class="header-section-number">14.10.6.10</span> Biplot tipo 10: relação entre os ambientes</h4>
+
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="interaction.html#cb325-1"></a>gge_model &lt;-<span class="kw">gge</span>(data_ge, ENV, GEN, GY)</span>
 <span id="cb325-2"><a href="interaction.html#cb325-2"></a>p1 &lt;-<span class="kw">plot</span>(gge_model, <span class="dt">type =</span> <span class="dv">10</span>)</span>
 <span id="cb325-3"><a href="interaction.html#cb325-3"></a>p2 &lt;-<span class="kw">plot</span>(gge_model,</span>
@@ -1312,7 +1288,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </div>
 </div>
 </div>
-<div id="modelos-mistos-na-avaliação-de-met" class="section level2" number="14.11">
+<div id="modelos-mistos-na-avaliação-de-met" class="section level2">
 <h2><span class="header-section-number">14.11</span> Modelos mistos na avaliação de MET</h2>
 <p>Assumindo <span class="math inline">\(\mathop\alpha\nolimits_i\)</span> e <span class="math inline">\(\mathop {(\alpha \tau )}\nolimits_{ij}\)</span> como sendo de efeitos aleatórios, o modelo em  pode ser convenientemente reescrito utilizando o seguinte modelo linear misto:
 <span class="math display">\[ \label{meq}
@@ -1330,12 +1306,12 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <p>e <span class="math inline">\({\boldsymbol{R}} = \mathop {\hat \sigma }\nolimits_\varepsilon ^2 {{\boldsymbol{I}}_n}\)</span>, sendo <span class="math inline">\(\mathop {\hat \sigma }\nolimits_\alpha ^2\)</span>, <span class="math inline">\(\mathop {\hat \sigma }\nolimits_{\alpha \tau }^2\)</span> e <span class="math inline">\(\mathop {\hat \sigma }\nolimits_\varepsilon ^2\)</span> as variâncias para genótipo, interação genótipo-ambiente e erros aleatórios, respectivamente.</p>
 <p>Os vetores <span class="math inline">\({\boldsymbol{\beta }}\)</span> e <span class="math inline">\(\boldsymbol{u}\)</span> são estimados considerando a bem conhecida equação de modelo misto <span class="citation">Henderson (<a href="#ref-Henderson1975" role="doc-biblioref">1975</a>)</span>.</p>
 <p><span class="math display">\[ \label{ad}
-\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\boldsymbol{\hat u}}}\end{array}} \right]{\boldsymbol{ = }}{\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{X&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{X}}}&amp;{{\boldsymbol{X&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{Z}}}\\{{\boldsymbol{Z&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{X}}}&amp;{{\boldsymbol{Z&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{Z + }}{{\boldsymbol{G}}^{ - {\boldsymbol{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{X&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{y}}}\\{{\boldsymbol{Z&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{y}}}\end{array}} \right]
+\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{\hat \beta }}}\\{{\boldsymbol{\hat u}}}\end{array}} \right]{\boldsymbol{ = }}{\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{X&#39;}}{{\boldsymbol{R}}^{\ - {\boldsymbol{1}}}}{\boldsymbol{X}}}&amp;{{\boldsymbol{X&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{Z}}}\\{{\boldsymbol{Z&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{X}}}&amp;{{\boldsymbol{Z&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{Z + }}{{\boldsymbol{G}}^{ - {\boldsymbol{1}}}}}\end{array}} \right]^ - }\left[ {\begin{array}{*{20}{c}}{{\boldsymbol{X&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{y}}}\\{{\boldsymbol{Z&#39;}}{{\boldsymbol{R}}^{ - {\boldsymbol{1}}}}{\boldsymbol{y}}}\end{array}} \right]
 \]</span></p>
 <p>Onde o sobescrito <span class="math inline">\(^{-1}\)</span> e <span class="math inline">\(^-\)</span> representam as inversas e inversas generalizadas das matrizes, respectivamente. A estimativa dos componentes de variância em <span class="math inline">\({\boldsymbol{\hat G}}\)</span> e <span class="math inline">\({\boldsymbol{\hat R}}\)</span>, pode ser realizada sem maiores problemas utilizando ANOVA  convencional quando os dados são balanceados. Quando este pressuposto não é cumprido, a estimativa baseada em Restricted Maximum Likelihood (REML)  utilizando o algoritmo Expectation-Maximization <span class="citation">(Dempster, Laird, and Rubin <a href="#ref-Dempster1977" role="doc-biblioref">1977</a>)</span> é a mais indicada.</p>
 <p>Desde a década de 1990, os modelos mistos vêm ganhando cada vez mais espaço na avaliação de MET, pois permitem a estimativa de parâmetros genéticos  e ambientais, bem como a predição dos valores genotípicos de forma não-viciada <span class="citation">(Smith, Cullis, and Thompson <a href="#ref-Smith2005" role="doc-biblioref">2005</a>)</span>. Da mesma forma, modelos mistos reduzem os ruídos de análises realizadas com dados desbalanceados e também de variáveis que não assumem aditividade, características frequentemente observadas em MET <span class="citation">(Hu <a href="#ref-Hu2015" role="doc-biblioref">2015</a>)</span>. Na avaliação dos dados oriundos de MET é de interesse do pesquisador predizer o “verdadeiro” rendimento <span class="math inline">\(w_{ij}\)</span> dado os rendimentos observados <span class="math inline">\(y_{ij}\)</span>. Quando um fator é considerado fixo, as inferências são limitadas apenas aos níveis testados deste fator e os efeitos são estimados por Best Linear Unbiased Estimator, ou BLUE . Para efeitos aleatórios, onde deseja-se expandir as inferências para uma população de tratamentos (ou ambientes), a predição é realizada por Best Linear Unbiased Predictor, ou BLUP  <span class="citation">(Henderson <a href="#ref-Henderson1975" role="doc-biblioref">1975</a>)</span>.
 Eq. </p>
-<div id="ajustando-o-modelo" class="section level3" number="14.11.1">
+<div id="ajustando-o-modelo" class="section level3">
 <h3><span class="header-section-number">14.11.1</span> Ajustando o modelo</h3>
 <p>A função <code>waasb()</code>  do pacote <code>metan</code> será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-<em>vs</em>-ambiente.</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="interaction.html#cb326-1"></a></span>
@@ -1387,36 +1363,37 @@ Eq. </p>
 <span id="cb329-6"><a href="interaction.html#cb329-6"></a><span class="co"># 2 GEN:ENV  0.0567 2.19 </span></span>
 <span id="cb329-7"><a href="interaction.html#cb329-7"></a><span class="co"># 3 Residual 0.0967 2.84</span></span></code></pre></div>
 </div>
-<div id="análise-dos-resíduos-2" class="section level3" number="14.11.2">
+<div id="análise-dos-resíduos" class="section level3">
 <h3><span class="header-section-number">14.11.2</span> Análise dos resíduos</h3>
 <p>A função <code>autoplot()</code> também pode ser utilizada para a investigação dos pressupostos do modelo neste exemplo. Dois gráficos que são gerados mas não mostrados por padrão são vistos neste exemplo.</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="interaction.html#cb330-1"></a><span class="kw">plot</span>(BLUP_model)</span></code></pre></div>
 <p><img src="html_r_files/figure-html/unnamed-chunk-365-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="parâmetros-genéticos" class="section level3" number="14.11.3">
+<div id="parâmetros-genéticos" class="section level3">
 <h3><span class="header-section-number">14.11.3</span> Parâmetros genéticos</h3>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="interaction.html#cb331-1"></a><span class="kw">get_model_data</span>(BLUP_model, <span class="st">&quot;genpar&quot;</span>)</span>
 <span id="cb331-2"><a href="interaction.html#cb331-2"></a><span class="co"># Class of the model: waasb</span></span>
 <span id="cb331-3"><a href="interaction.html#cb331-3"></a><span class="co"># Variable extracted: genpar</span></span>
 <span id="cb331-4"><a href="interaction.html#cb331-4"></a><span class="co"># # A tibble: 9 x 3</span></span>
-<span id="cb331-5"><a href="interaction.html#cb331-5"></a><span class="co">#   Parameters                GY     HM</span></span>
-<span id="cb331-6"><a href="interaction.html#cb331-6"></a><span class="co">#   &lt;chr&gt;                  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb331-7"><a href="interaction.html#cb331-7"></a><span class="co"># 1 Phenotypic variance    0.181 5.52  </span></span>
-<span id="cb331-8"><a href="interaction.html#cb331-8"></a><span class="co"># 2 Heritability           0.154 0.0887</span></span>
-<span id="cb331-9"><a href="interaction.html#cb331-9"></a><span class="co"># 3 GEIr2                  0.313 0.397 </span></span>
-<span id="cb331-10"><a href="interaction.html#cb331-10"></a><span class="co"># 4 Heribatility of means  0.815 0.686 </span></span>
-<span id="cb331-11"><a href="interaction.html#cb331-11"></a><span class="co"># 5 Accuracy               0.903 0.828 </span></span>
-<span id="cb331-12"><a href="interaction.html#cb331-12"></a><span class="co"># 6 rge                    0.370 0.435 </span></span>
-<span id="cb331-13"><a href="interaction.html#cb331-13"></a><span class="co"># 7 CVg                    6.26  1.46  </span></span>
-<span id="cb331-14"><a href="interaction.html#cb331-14"></a><span class="co"># 8 CVr                   11.6   3.50  </span></span>
-<span id="cb331-15"><a href="interaction.html#cb331-15"></a><span class="co"># 9 CV ratio               0.538 0.415</span></span></code></pre></div>
+<span id="cb331-5"><a href="interaction.html#cb331-5"></a><span class="co">#   Parameters              GY     HM</span></span>
+<span id="cb331-6"><a href="interaction.html#cb331-6"></a><span class="co">#   &lt;chr&gt;                &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb331-7"><a href="interaction.html#cb331-7"></a><span class="co"># 1 Phenotypic variance  0.181 5.52  </span></span>
+<span id="cb331-8"><a href="interaction.html#cb331-8"></a><span class="co"># 2 Heritability         0.154 0.0887</span></span>
+<span id="cb331-9"><a href="interaction.html#cb331-9"></a><span class="co"># 3 GEIr2                0.313 0.397 </span></span>
+<span id="cb331-10"><a href="interaction.html#cb331-10"></a><span class="co"># 4 h2mg                 0.815 0.686 </span></span>
+<span id="cb331-11"><a href="interaction.html#cb331-11"></a><span class="co"># 5 Accuracy             0.903 0.828 </span></span>
+<span id="cb331-12"><a href="interaction.html#cb331-12"></a><span class="co"># 6 rge                  0.370 0.435 </span></span>
+<span id="cb331-13"><a href="interaction.html#cb331-13"></a><span class="co"># 7 CVg                  6.26  1.46  </span></span>
+<span id="cb331-14"><a href="interaction.html#cb331-14"></a><span class="co"># 8 CVr                 11.6   3.50  </span></span>
+<span id="cb331-15"><a href="interaction.html#cb331-15"></a><span class="co"># 9 CV ratio             0.538 0.415</span></span></code></pre></div>
 <p>Além dos componentes de variância  para os efeitos aleatórios declarados, alguns importantes parâmetros genéticos  são mostrados. <strong>Heribatility</strong> é a herdabilidade no sentido amplo (<span class="math inline">\(\mathop h\nolimits_g^2\)</span>) estimada por <span class="math inline">\(\mathop h\nolimits_g^2 = \mathop \sigma \nolimits_g^2 /\left( {\mathop \sigma \nolimits_g^2 + \mathop \sigma \nolimits_i^2 + \mathop \sigma \nolimits_e^2 } \right)\)</span> onde <span class="math inline">\((\mathop \sigma \nolimits_g^2 )\)</span> é a variância genotípica; <span class="math inline">\((\mathop \sigma \nolimits_i^2 )\)</span> é a variância da interação GE; e <span class="math inline">\((\mathop \sigma \nolimits_e^2 )\)</span> é a variância residual. <strong>GEIr2</strong> é o coeficiente de determinação do efeito da interação GE (<span class="math inline">\(\mathop r\nolimits_i^2\)</span> ) estimado por <span class="math inline">\(\mathop r\nolimits_i^2 = \mathop \sigma \nolimits_i^2 /\left( {\mathop \sigma \nolimits_g^2 + \mathop \sigma \nolimits_i^2 + \mathop \sigma \nolimits_e^2 } \right)\)</span>; <strong>Heribatility of means</strong> é a herdabilidade da média assumindo ausência de valores perdidos <span class="math inline">\((\mathop h\nolimits_{gm}^2 )\)</span>, estimada por <span class="math inline">\(\mathop h\nolimits_{gm}^2 = \mathop \sigma \nolimits_g^2 /\left[ {\mathop \sigma \nolimits_g^2 + \mathop \sigma \nolimits_i^2 /a + \mathop \sigma \nolimits_e^2 /\left( {ab} \right)} \right]\)</span>, onde <em>a</em> e <em>b</em> são o número de ambientes e blocos, respectivamente; <strong>Accuracy</strong> é a acurácia de seleção (<em>Ac</em>), estimada por <span class="math inline">\(Ac = \sqrt{\mathop h\nolimits_{gm}^2}\)</span> ; <strong>rge</strong> é a correlação genótipo-ambiente <span class="math inline">\((\mathop r\nolimits_{ge})\)</span> estimada por <span class="math inline">\(\mathop r\nolimits_{ge} = \mathop \sigma \nolimits_g^2 /\left({\mathop \sigma \nolimits_g^2 + \mathop \sigma \nolimits_i^2} \right)\)</span>; <strong>CVg</strong> é o coeficiente de variação genotípico, estimado por <span class="math inline">\({\left({\mathop \sigma \nolimits_g^2 /\mu } \right)^{0.5}} \times 100\)</span>, onde <span class="math inline">\(\mu\)</span> é a média geral; <strong>CVr</strong> é o coeficiente de variação residual, estimado por <span class="math inline">\({\left( {\mathop \sigma \nolimits_e^2 /\mu} \right)^{0.5}} \times 100\)</span> ; <strong>CV ratio</strong> é a razão entre o coeficiente de variação genotípico e residual.</p>
 </div>
-<div id="médias-preditas" class="section level3" number="14.11.4">
+<div id="médias-preditas" class="section level3">
 <h3><span class="header-section-number">14.11.4</span> Médias preditas</h3>
 <ul>
 <li>Imprimindo os BLUPs preditos para genótipos</li>
 </ul>
+
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="interaction.html#cb332-1"></a></span>
 <span id="cb332-2"><a href="interaction.html#cb332-2"></a><span class="kw">print</span>(BLUP_model<span class="op">$</span>GY<span class="op">$</span>BLUPgen)</span>
 <span id="cb332-3"><a href="interaction.html#cb332-3"></a><span class="co"># # A tibble: 10 x 6</span></span>
@@ -1439,10 +1416,10 @@ Eq. </p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="interaction.html#cb333-1"></a>p1 &lt;-<span class="kw">plot_blup</span>(BLUP_model)</span>
 <span id="cb333-2"><a href="interaction.html#cb333-2"></a>p2 &lt;-<span class="kw">plot_blup</span>(BLUP_model,</span>
 <span id="cb333-3"><a href="interaction.html#cb333-3"></a>               <span class="dt">col.shape  =</span>  <span class="kw">c</span>(<span class="st">&quot;gray20&quot;</span>, <span class="st">&quot;gray80&quot;</span>),</span>
-<span id="cb333-4"><a href="interaction.html#cb333-4"></a>               <span class="dt">y.lab =</span> <span class="st">&quot;Genótipos&quot;</span>,</span>
-<span id="cb333-5"><a href="interaction.html#cb333-5"></a>               <span class="dt">x.lab =</span> <span class="st">&quot;Rendimento de grãos predito&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</span>
+<span id="cb333-4"><a href="interaction.html#cb333-4"></a>               <span class="dt">y.lab =</span> <span class="st">&quot;Genótipos&quot;,</span></span>
+<span id="cb333-5"><a href="interaction.html#cb333-5"></a><span class="st">               x.lab = &quot;</span>Rendimento de grãos predito<span class="st">&quot;) + coord_flip()</span></span>
 <span id="cb333-6"><a href="interaction.html#cb333-6"></a></span>
-<span id="cb333-7"><a href="interaction.html#cb333-7"></a><span class="kw">arrange_ggplot</span>(p1, p2, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;p1&quot;</span>, <span class="st">&quot;p2&quot;</span>))</span></code></pre></div>
+<span id="cb333-7"><a href="interaction.html#cb333-7"></a><span class="st">arrange_ggplot(p1, p2, labels = c(&quot;</span>p1<span class="st">&quot;, &quot;</span>p2<span class="st">&quot;))</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-368"></span>
 <img src="html_r_files/figure-html/unnamed-chunk-368-1.png" alt="Médias preditas para genótipos considerando um modelo misto" width="960" />
 <p class="caption">
@@ -1475,9 +1452,9 @@ Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 <li><code>get_model_data(BLUP_model, "blupge")</code> para as médias preditas de genótipos em ambientes;</li>
 </ul>
 </div>
-<div id="índices-de-estabilidade-baseados-em-blup" class="section level3" number="14.11.5">
+<div id="índices-de-estabilidade-baseados-em-blup" class="section level3">
 <h3><span class="header-section-number">14.11.5</span> Índices de estabilidade baseados em BLUP</h3>
-<div id="wsb" class="section level4" number="14.11.5.1">
+<div id="wsb" class="section level4">
 <h4><span class="header-section-number">14.11.5.1</span> O índice WAASB</h4>
 <p>Recentemente, <span class="citation">(T. Olivoto, Lúcio, Da silva, Marchioro, et al. <a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> propuseram um índice de estabilidade, WAASB (<strong>W</strong>eighted <strong>A</strong>verage of <strong>A</strong>bsolute <strong>S</strong>cores), que combina as características do modelo AMMI e BLUP. O índice é baseado na média ponderada dos escores absolutos obtidos pela decomposição por valores singulares da matriz BLUP dos efeitos da interação em um modelo de efeito misto, conforme a seguite equação.</p>
 <p><span class="math display">\[
@@ -1501,7 +1478,7 @@ Figure 14.5: Biplot AMMI2 gerado pelo pacote metan
 </div>
 <p>Os quadrantes propostos nesta interpretação representam as quatro classificações propostas por <span class="citation">T. Olivoto, Lúcio, Da silva, Marchioro, et al. (<a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span> em relação à interpretação conjunta da produtividade e estabilidade. Os genótipos ou ambientes incluídos no quadrante I podem ser considerados genótipos instáveis –ou ambientes com alta capacidade de discriminação, mas com produtividade abaixo da média geral. No quadrante II estão incluídos os genótipos instáveis, embora com produtividade acima da média geral. Os ambientes incluídos neste quadrante merecem atenção especial, pois, além de fornecerem altas magnitudes da variável resposta, apresentam boa capacidade de discriminação. Os genótipos dentro do quadrante III têm baixa produtividade, mas podem ser considerados estáveis devido aos valores mais baixos do WAASB. Quanto menor esse valor, mais estável o genótipo pode ser considerado. Os ambientes incluídos neste quadrante podem ser considerados pouco produtivos e com baixa capacidade de discriminação. Os genótipos dentro do quadrante IV são altamente produtivos e estáveis.</p>
 </div>
-<div id="o-índice-waasby" class="section level4" number="14.11.5.2">
+<div id="o-índice-waasby" class="section level4">
 <h4><span class="header-section-number">14.11.5.2</span> O índice WAASBY</h4>
 <p>Um novo índice de superioridade que considera tanto a estabilidade quanto a produtividade para a classificação dos genótipos também foi proposto por <span class="citation">T. Olivoto, Lúcio, Da silva, Marchioro, et al. (<a href="#ref-Olivoto2019" role="doc-biblioref">2019</a>)</span>, considerando a seguinte equação.</p>
 <p><span class="math display">\[
@@ -1514,9 +1491,11 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <span id="cb336-3"><a href="interaction.html#cb336-3"></a>                  <span class="dt">col.shape =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>)) <span class="op">+</span></span>
 <span id="cb336-4"><a href="interaction.html#cb336-4"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 
+
 <div class="dica">
 <p>O reescalonamento da variável resposta e do índice WAASB é necessário para que eles sejam diretamente comparáveis. Por padrão, a variável resposta é reescalonada de forma que o valor máximo (genótipo com a maior média) seja 100 e o valor mínimo (genótipo com a menor média) seja 0. Digamos que para uma determinada variável, menores valores são desejados, então o argumento <code>mresp = 100</code> (padrão) deve ser ajustado para <code>mresp = 0</code>.</p>
 </div>
+
 <p>Par obter o índice WAASBY para múltiplas variáveis, por exemplo, basta utilizar a função <code>get_model_data()</code>, como mostrado abaixo.</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="interaction.html#cb337-1"></a><span class="kw">waas</span>(data_ge2, ENV, GEN, REP,</span>
 <span id="cb337-2"><a href="interaction.html#cb337-2"></a>     <span class="dt">resp =</span> <span class="kw">c</span>(PH, ED, TKW, NKR),</span>
@@ -1607,7 +1586,7 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <span id="cb337-87"><a href="interaction.html#cb337-87"></a><span class="co"># 12 H8     11.6 32.2   17.3  29.2</span></span>
 <span id="cb337-88"><a href="interaction.html#cb337-88"></a><span class="co"># 13 H9     45.5  7.93   0    48.4</span></span></code></pre></div>
 </div>
-<div id="diferentes-cenários-para-a-estimativa-do-waasby" class="section level4" number="14.11.5.3">
+<div id="diferentes-cenários-para-a-estimativa-do-waasby" class="section level4">
 <h4><span class="header-section-number">14.11.5.3</span> Diferentes cenários para a estimativa do WAASBY</h4>
 <p>No exemplo a seguir, aplicaremos a função <code>wsmp()</code>  (<strong>w</strong>eighting the <strong>s</strong>tability and the <strong>m</strong>ean <strong>p</strong>erformance) ao modelo previamente ajustado <code>BLUP_model</code> visando planejar diferentes cenários de estimação do WAASBY alterando os pesos atribuídos à estabilidade e ao desempenho médio. O número de cenários é definido pelo argumento <code>increment</code>. Por padrão, vinte e um cenários diferentes são simulados. Neste caso, o índice de superioridade WAASBY é calculado considerando os seguintes pesos: estabilidade = 100; desempenho médio = 0. Em outras palavras, apenas a estabilidade é considerada para a classificação dos genótipos. Na próxima iteração, os pesos se tornam 95/5 (uma vez que <code>increment = 5</code>). No terceiro cenário, os pesos se tornam 90/10, e assim por diante até esses pesos se tornarem 0/100. Na última iteração, a classificação do genótipo para o WAASBY corresponde perfeitamente às classificações da variável resposta.</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="interaction.html#cb338-1"></a>scenarios &lt;-<span class="st"> </span><span class="kw">wsmp</span>(BLUP_model)</span>
@@ -1617,7 +1596,7 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <p><img src="html_r_files/figure-html/unnamed-chunk-374-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>A função genérica <code>plot()</code>  é então usada para plotar o objeto. Dois <em>heatmaps</em> são criados. O primeiro tipo mostra a classificação do genótipo dependendo do número de eixos de componentes principais usados para estimar o índice WAASB. Um dendrograma baseado na distância euclidiana é usado para agrupar a classificação dos genótipos. O segundo tipo mostra a classificação do genótipo dependendo da relação WAASB/GY. As classificações obtidas no cenário 100/0 consideram exclusivamente a estabilidade para o ranking de genótipos. Por outro lado, o cenário 0/100 considera exclusivamente a produtividade para o ranking de genótipos.</p>
 </div>
-<div id="performance-e-média-harmônica-dos-valores-genotípicos" class="section level4" number="14.11.5.4">
+<div id="performance-e-média-harmônica-dos-valores-genotípicos" class="section level4">
 <h4><span class="header-section-number">14.11.5.4</span> Performance e média harmônica dos valores genotípicos</h4>
 <p>A função <code>Resende_indexes()</code> computa os índices Média Harmônica dos Valores Genotípicos (MHVG), Performance Relativa dos Valores Genotípicos (PRVG) e Média Harmônica da Performance Relativa dos Valores Genotipicos (MHPRVG), conforme descrito em <span class="citation">Colombari Filho et al. (<a href="#ref-ColombariFilho2013" role="doc-biblioref">2013</a>)</span>. Estes índices são calculados para cada genótipo de acordo com as seguintes equações.</p>
 <p><span class="math display">\[
@@ -1648,7 +1627,7 @@ MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 </div>
 </div>
 </div>
-<div id="ammi-ou-blup-decisão-em-cada-caso" class="section level2" number="14.12">
+<div id="ammi-ou-blup-decisão-em-cada-caso" class="section level2">
 <h2><span class="header-section-number">14.12</span> AMMI ou BLUP? Decisão em cada caso!</h2>
 <p>Vimos anteriormente que um membro da família de modelos AMMI (AMMI2) é o mais preciso na predição da variável resposta em nosso exemplo. Após analizar-mos os mesmos dados utilizando modelos mistos, nos surge a seguinte questão. Qual é o método mais preciso para predizer a variável resposta em nosso exemplo? A resposta a esta pergunda será dada agora. O pacote <code>metan</code> também conta com uma função para <em>cross-validation</em> considerando o modelo misto acima. A idéia é simples. Relizaremos uma validação cruzada semelhante àquela realizada no modelo AMMI e compararemos o RMSPD dos valores preditos utilizando BLUP com aqueles obtidos pelo modelo AMMI.</p>
 <p>A função <code>cv_blup()</code> realiza uma validação cruzada para experimentos com repetição usando modelos mistos. Por padrão, blocos completos são selecionados aleatoriamente em cada ambiente. O procedimento para calcular o RMSPD é idêntico ao apresentado na análise AMMI.</p>
@@ -1798,7 +1777,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["html_r.epub"],
 "toc": {
 "collapse": "subsection"
 }

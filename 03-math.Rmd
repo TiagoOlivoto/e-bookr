@@ -16,8 +16,8 @@ exp(100) # exponencial
 
 ```
 
-Para multiplicação de matrizes utiliza-se `%*%` ao envéz de `*`. Note a diferença no exemplo abaixo. 
-	
+Para multiplicação de matrizes utiliza-se `%*%` ao envéz de `*`. Note a diferença no exemplo abaixo.
+
 
 
 ```{r, message = FALSE, warning = FALSE}
@@ -29,8 +29,10 @@ Para multiplicação de matrizes utiliza-se `%*%` ao envéz de `*`. Note a difer
 O resultado da multiplicação da matriz `x` e `y` é dado por:
 
 $$
-\left( {\begin{array}{*{20}{c}}{1 \cdot 5 + 3 \cdot 6}&{1 \cdot 7 + 3 \cdot 8}\\{2 \cdot 5 + 4 \cdot 6}&{2 \cdot 7 + 4 \cdot 8}\end{array}} \right) = \left( {\begin{array}{*{20}{c}}{23}&{31}\\{34}&{46}\end{array}} \right)
+	\left( {\begin{array}{*{20}{c}}{1 \cdot 5 + 3 \cdot 6}&{1 \cdot 7 + 3 \cdot 8}\\{2 \cdot 5 + 4 \cdot 6}&{2 \cdot 7 + 4 \cdot 8}\end{array}} \right) = \left( {\begin{array}{*{20}{c}}{23}&{31}\\{34}&{46}\end{array}} \right)
 $$
+
+
 
 ```{r, message = FALSE, warning = FALSE}
 x * y # Errado
@@ -40,21 +42,21 @@ x %*% y # Certo
 A função `t()` \indf{t} é utilizada para transposição de matrizes e `solve()` \indf{solve} para inversão de matrizes. Vamos resolver o seguinte sistema de equações retirado do livro de @Rencher2008 utilizando estes operadores.
 
 $$
-	\begin{array}{l}{x_1} + 2{x_2} = 4\\{x_1} - {x_2} = 1\\{x_1} + {x_2} = 3\end{array} 
+	\begin{array}{l}{x_1} + 2{x_2} = 4\\{x_1} - {x_2} = 1\\{x_1} + {x_2} = 3\end{array}
 $$
 
 
 Matricialmente o sistema acima é dado por:
 
-$$
-\left[ {\begin{array}{*{20}{c}}\begin{array}{l}1\\1\\1\end{array}&\begin{array}{c}2\\ - 1\\1\end{array}\end{array}} \right]\left[ {\begin{array}{*{20}{c}}{{x_1}}\\{{x_2}}\end{array}} \right] = \left[ {\begin{array}{*{20}{c}}4\\1\\3\end{array}} \right] 
-$$
 
-Esse sistema de equações é representado por ${\boldsymbol{AX}} = {\boldsymbol{c}}$ e tem como solução ${\boldsymbol{X = }}{{\boldsymbol{A}}^{{\boldsymbol{ - 1}}}}{\boldsymbol{c}}$:
+\[\left[ {\begin{array}{*{20}{c}}{\begin{array}{*{20}{l}}1\\1\\1\end{array}}&{\begin{array}{*{20}{c}}2\\{ - 1}\\1\end{array}}\end{array}} \right]\left[ {\begin{array}{*{20}{c}}{{x_1}}\\{{x_2}}\end{array}} \right] = \left[ {\begin{array}{*{20}{c}}4\\1\\3\end{array}} \right]\]
+
+
+Esse sistema de equações é representado por \({\boldsymbol{AX}} = {\boldsymbol{c}}\) e tem como solução \({\boldsymbol{X = }}{{\boldsymbol{A}}^{{\boldsymbol{ - 1}}}}{\boldsymbol{c}}\)
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 
-A <- matrix(c(1, 1, 1, 2, -1, 1), nrow = 3, ncol = 2)
+(A <- matrix(c(1, 1, 1, 2, -1, 1), nrow = 3, ncol = 2))
 A1 <- MASS::ginv(A) # Obtém a inversa generalizada de A
 c <- c(4, 1, 3) # Vetor C
 X <- A1 %*% c
@@ -65,9 +67,9 @@ X
 
 Considere um equação linear múltipla cuja variável dependente é **Y** e as variáveis independentes são **X1** e **X2** (dados obtidos em @Kutner2005). O sistema de equações é representado matricialmente por \indt{sistema de equações}
 
-$$
+\[
 \boldsymbol{X'X\beta = X'Y}
-$$
+\]
 
 que tem como solução:
 

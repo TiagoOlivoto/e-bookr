@@ -76,16 +76,17 @@ install.packages("pacman")
 }
 library(pacman)
 p_load(hnp, asbio, car, DT, dplyr, devtools, emmeans, effects, multcomp,
-       lme4, rio, ExpDes.pt, manipulate, metan, MASS, tidyverse, agricolae,
-       psych, corrplot, pvclust, factoextra, ggfortify)
+       lme4, rio, ExpDes.pt, qqplotr, manipulate, metan, MASS, olsrr,
+       tidyverse, tibble, agricolae, psych, corrplot, pvclust, factoextra, ggfortify)
 
 ```
 
-Os pacotes disponibilizados no software *R* estão em constante atualização. Utilizando a função `packageStatus()` e `summary(packageStatus())` é possível verificar se os pacotes estão atualizados. Outra forma é ir em *Packages > Update* que se encontra no canto inferior direito conforme demonstrado na Figura 5. Por fim, para citar os pacotes \indt{pacotes}, recomenda-se verificar a referência através da função `citation()`. \indt{citação de pacotes} \indt{atualização}
+
+Os pacotes disponibilizados no software *R* estão em constante atualização. Utilizando a função `packageStatus()` e `summary(packageStatus())` é possível verificar se os pacotes estão atualizados. Outra forma é ir em *Packages > Update* que se encontra no canto inferior direito conforme demonstrado na Figura 5.
 
 ![Verificando se há atualizações disponíveis](figures/Update.png)
 
-
+ Por fim, para citar os pacotes \indt{pacotes}, recomenda-se verificar a referência através da função `citation()`.  \indt{citação de pacotes} \indt{atualização} Para o pacote `metan`, por exemplo, a referência oficial é encontrada no artigo que descreve o pacote [@Olivoto2020a]
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 citation("metan")
 ```

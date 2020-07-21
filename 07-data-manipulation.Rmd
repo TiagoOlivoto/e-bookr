@@ -46,119 +46,72 @@ mean_sqrt <-
   pull(z) %>%
   sqrt() %>%
   mean()
+mean_sqrt
   
 ```
 
 A utilização do operador `%>%` parece não trazer tantos benefícios neste exemplo, visto que objetivo aqui foi demonstrar como ele permite uma implementação lógica das operações realizadas, captando a saída da função diretamente à esquerda (acima neste caso) e passando para a próxima função. Em operações mais complexas, no entanto, o `%>%` se mostrará muito mais útil.
 
-O pacote [`metan`](https://tiagoolivoto.github.io/metan/) @ fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:
+O pacote [`metan`](https://tiagoolivoto.github.io/metan/) fornece funções úteis para manipulação de dados. Duas principais categorias de funções serão utilizadas neste material:
 
 1. [Utilitários para lidar com linhas e colunas](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html)
-
 * `add_cols()`: adiciona uma ou mais colunas a um conjunto de dados existente. Se as colunas `.before` ou `.after` especificadas não existirem, as colunas serão anexadas no final dos dados. Retorna um conjunto de dados com todas as colunas originais em `.data` mais as colunas declaradas em `...`. Em `add_cols()`, as colunas em `.data` estão disponíveis para as expressões. Portanto, é possível adicionar uma coluna com base nos dados existentes.
-
 \indf{add\_cols}
-
 * `add_rows()`: adiciona uma ou mais linhas a um conjunto de dados existente. Se não houver linhas especificadas `.before` ou `.after`, as linhas serão anexadas no final dos dados. Retorna um conjunto de dados com todas as linhas originais em .data mais as linhas declaradas em `...`.
-
 \indf{add\_rows}
-
 * `all_pairs()`: obtém todos os pares possíveis entre os níveis de um fator.
-
 \indf{all\_pairs}
 * `colnames_to_lower()`: converte todos os nomes de coluna para minúsculas.
-
 \indf{colnames\_to\_lower}
 * `colnames_to_upper()`: converte todos os nomes de coluna para maiúsculas.
-
 \indf{colnames\_to\_upper}
 * `colnames_to_title()`: converte todos os nomes de coluna em maiúsculas.
-
 \indf{colnames\_to\_title}
 * `column_exists()`: verifica se existe uma coluna em um conjunto de dados. Retorne um valor lógico.
-
 \indf{column\_exists}
 * `columns_to_first()`: move as colunas para as primeiras posições em `.data`.
-
 \indf{columns\_to\_first}
 * `columns_to_last()`: move as colunas para as últimas posições em `.data`.
-
 \indf{columns\_to\_last}
 * `concatenate()`: concatena colunas de um conjunto de dados. Se `drop = TRUE`, as variáveis existentes são descartadas. Se `pull = TRUE`, a variável concatenada é extraída para um vetor. Isso é especialmente útil ao usar concatenar para adicionar colunas a um conjunto de dados com `add_cols()`.
-
 \indf{concatenate}
 * `get_levels()`: obtém os níveis de um fator.
-
 \indf{get\_levels}
 * `get_level_size()`: obtém o tamanho de cada nível de um fator.
-
 \indf{get\_level\_size}
 * `remove_cols()`: remove uma ou mais colunas de um conjunto de dados.
-
 \indf{remove\_cols}
 * `remove_rows()`: remove uma ou mais linhas de um conjunto de dados.
-
 \indf{remove\_rows}
 * `reorder_cols()`: reordena colunas em um conjunto de dados.
-
 \indf{reorder\_cols}
 * `select_cols()`: seleciona uma ou mais colunas de um conjunto de dados.
-
 \indf{select\_cols}
 * `select_first_col()`: seleciona a primeira variável, possivelmente com um deslocamento.
-
 \indf{select\_first\_col}
 * `select_last_col()`: seleciona a última variável, possivelmente com um deslocamento.
-
 \indf{select\_last\_col}
 * `select_numeric_cols()`: selecione todas as colunas numéricas de um conjunto de dados.
-
 \indf{select\_numeric\_cols}
 * `select_non_numeric_cols()`: seleciona todas as colunas não numéricas de um conjunto de dados.
-
 \indf{select\_non\_numeric\_cols}
 * `select_rows()`: seleciona uma ou mais linhas de um conjunto de dados.
-
 \indf{select\_rows}
 
 2. [Utilitários para lidar com números e strings](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html)
 
-* `all_lower_case()`: converte todas as seqüências não numéricas de um conjunto de dados para minúsculas ("Env" para "env").
-
-\indf{all\_lower\_case}
-* `all_upper_case()`: converte todas as seqüências não numéricas de um conjunto de dados para maiúsculas (por exemplo, "Env" para "ENV").
-
-\indf{all\_upper\_case}
-* `all_title_case()`: converta todas as seqüências não numéricas de um conjunto de dados em maiúsculas e minúsculas (por exemplo, "ENV" para "Env").
-
-\indf{all\_title\_case}
-* `extract_number()`: extrai o(s) número(s) de uma sequência de caracteres.
-
-\indf{extract\_number}
-* `extract_string()`: Extrai todas letras de uma sequência de caracteres, ignorando maiúsculas e minúsculas.
-
-\indf{extract\_string}
-* `find_text_in_num()`: encontra caracteres de texto em uma sequência numérica e retorna o índice de linha.
-
-\indf{find\_text\_in\_num}
-* `has_text_in_num()`: inspeciona as colunas procurando por texto na sequência numérica e retorna um aviso se algum texto for encontrado.
-
-\indf{has\_text\_in\_num}
-* `remove_strings()`: remove todas as strings de uma variável.
-
-\indf{remove\_strings}
-* `replace_number()`: substitui os números por uma substituição.
-
-\indf{replace\_number}
-* `replace_string()`: substitui todas as strings por uma substituição, ignorando a caixa.
-
-\indf{replace\_string}
-* `round_cols()`: Arredonda uma coluna selecionada ou um conjunto de dados inteiro para números significativos.
-
-\indf{round\_cols}
-* `tidy_strings()`: arruma seqüências de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um conjunto de dados colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por `'_'` e colocando `'_'` entre letras maiúsculas e minúsculas. Suponha que `str = c("Env1", "env 1", "env.1")` (que por definição deve representar um nível único nos ensaios de melhoramento de plantas, por exemplo, ambiente 1) seja submetido a `tidy_strings(str)`: o resultado será então `c("ENV_1", "ENV_1", "ENV_1")`.
-
-   \indf{tidy\_strings}
+* `all_lower_case()`: converte todas as seqüências não numéricas de um conjunto de dados para minúsculas ("Env" para "env"). \indf{all\_lower\_case}
+* `all_upper_case()`: converte todas as seqüências não numéricas de um conjunto de dados para maiúsculas (por exemplo, "Env" para "ENV").\indf{all\_upper\_case}
+* `all_title_case()`: converta todas as seqüências não numéricas de um conjunto de dados em maiúsculas e minúsculas (por exemplo, "ENV" para "Env").\indf{all\_title\_case}
+* `extract_number()`: extrai o(s) número(s) de uma sequência de caracteres.\indf{extract\_number}
+* `extract_string()`: Extrai todas letras de uma sequência de caracteres, ignorando maiúsculas e minúsculas.\indf{extract\_string}
+* `find_text_in_num()`: encontra caracteres de texto em uma sequência numérica e retorna o índice de linha.\indf{find\_text\_in\_num}
+* `has_text_in_num()`: inspeciona as colunas procurando por texto na sequência numérica e retorna um aviso se algum texto for encontrado.\indf{has\_text\_in\_num}
+* `remove_strings()`: remove todas as strings de uma variável.\indf{remove\_strings}
+* `replace_number()`: substitui os números por uma substituição.\indf{replace\_number}
+* `replace_string()`: substitui todas as strings por uma substituição, ignorando a caixa.\indf{replace\_string}
+* `round_cols()`: Arredonda uma coluna selecionada ou um conjunto de dados inteiro para números significativos.\indf{round\_cols}
+* `tidy_strings()`: arruma seqüências de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um conjunto de dados colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por `'_'` e colocando `'_'` entre letras maiúsculas e minúsculas. Suponha que `str = c("Env1", "env 1", "env.1")` (que por definição deve representar um nível único nos ensaios de melhoramento de plantas, por exemplo, ambiente 1) seja submetido a `tidy_strings(str)`: o resultado será então `c("ENV_1", "ENV_1", "ENV_1")`.\indf{tidy\_strings}
    
 O conjunto de dados **maize** será utilizado como exemplo para as operações de manipulação de dados. Este arquivo em formato `.xlsx` está hospedado em https://github.com/TiagoOlivoto/e-bookr/tree/master/data e pode ser carregado no ambiente R com a função `import()` do pacote [rio](https://cran.r-project.org/web/packages/rio/index.html).
 

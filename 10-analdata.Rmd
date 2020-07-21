@@ -453,7 +453,7 @@ Os principios básicos da experimentação são a *casualisação* e a *repetiç
 Independente do delineamento, os pressupostos \indt{pressupostos} do modelo estatístico são que os erros são independentes, homocedásticos e normais:
 
 $$
-{\boldsymbol{\varepsilon }} \sim {\rm N}\left( {0,{\boldsymbol{I}}{\sigma ^2}} \right)
+{\boldsymbol{\varepsilon }} \sim {\textrm N}\left( {0,{\boldsymbol{I}}{\sigma ^2}} \right)
 $$
 
 As formas de realizar esse diagnóstico é através de testes estatísticos e gráficos de diagnósticos. Uma ferramente para contornar o problema de violação dos pressupostos é a transformação dos dados. Existem várias formas de transformar os dados (cada uma adequada a um caso específico), mas será dado enfase à transformação Box-Cox. 
@@ -1550,6 +1550,9 @@ with(FAT1_SI,
               resp =  RG,
               fac.names = c("HIBRIDO", "FONTEN")))
 ```
+
+
+
 * **Plotagem das médias considerando os efeitos principais**
 
 Conforme já sabido, a interação HIBRIDO x FONTEN não foi significativa a 5% de probabilidade de erro. Assim, o procedimento a ser realizado é a comparação das médias para os fatores principais apenas. Os dois gráficos abaixo mostram as médias dos fatores principais. 
