@@ -1,5 +1,6 @@
 bookdown::gitbook:
   css: style.css
+bookdown::html_book:
 bookdown::epub_book: default
 bookdown::bs4_book:
   theme:
