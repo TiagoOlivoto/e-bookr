@@ -1,4 +1,4 @@
-# (PART) Parte III análise de dados {-}
+# (PART) Análise de dados {-}
 # Análise de dados experimentais {#analdata}
 
 > "Muito melhor uma resposta aproximada à pergunta certa, que muitas vezes é vaga, do que uma resposta exata à pergunta errada, que sempre pode ser feita com precisão." --- John Tukey
@@ -947,7 +947,7 @@ url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 # dados
 covar <- import(url, sheet = "COVAR")
 # duas primeiras colunas como fator
-covar <- to_factor(covar, 1:2)
+covar <- as_factor(covar, 1:2)
 
 covar_ggplot <- 
   covar %>%

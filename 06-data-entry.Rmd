@@ -1,4 +1,4 @@
-# (PART) Parte II organização, manipulação e apresentação de dados {-}
+# (PART) Organização, manipulação e apresentação de dados {-}
 
 # Entrada de dados {#entrada} 
 

@@ -1,4 +1,4 @@
-# (PART) Parte I o ambiente R {-}
+# (PART) O ambiente R {-}
 
 # Introdução ao ambiente *R* {#intro}
 ## O software R

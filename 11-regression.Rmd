@@ -467,7 +467,7 @@ Para tertar esta hipótese, associamos variáveis dummy \indt{variáveis dummy}s
 ```{r,  echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
 nls_dummy <- 
   nls_tomato %>%
-  to_factor(Genotipo, Completo, Reduzido)
+  as_factor(Genotipo, Completo, Reduzido)
 ## Modelo completo
 tomato_completo <- 
   nls(num ~ b1[Completo] / (1 + exp(b2[Completo] - b3[Completo] * DAT)), 
@@ -557,7 +557,7 @@ O genótipo Cordillera produz a uma taxa de 1,33 frutos dia$^-1$ até os ~9 dias
 ```{r,  echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE, error = FALSE,fig.height = 7}
 plato_dummy <- 
   plato_tomato %>%
-  to_factor(Genotipo, Completo, Reduzido)
+  as_factor(Genotipo, Completo, Reduzido)
 # Modelo completo
 plato_completo <- 
   nls(num ~ (b0[Completo] + b1[Completo] * DAT * (DAT <= P[Completo]))+

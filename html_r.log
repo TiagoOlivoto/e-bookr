@@ -1,28 +1,28 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.20)  20 JUL 2020 21:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.1.14)  20 JAN 2021 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **html_r.tex
 (./html_r.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-07-17> (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf
--dist/tex/latex/base/book.cls
-Document Class: book 2019/12/20 v1.4l Standard LaTeX document class
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-01-09> xparse <2020-03-03> (c:/Users/tiago/AppData/R
+oaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
-File: bk10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+File: bk10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count164
-\c@chapter=\count165
-\c@section=\count166
-\c@subsection=\count167
-\c@subsubsection=\count168
-\c@paragraph=\count169
-\c@subparagraph=\count170
-\c@figure=\count171
-\c@table=\count172
+\c@part=\count177
+\c@chapter=\count178
+\c@section=\count179
+\c@subsection=\count180
+\c@subsubsection=\count181
+\c@paragraph=\count182
+\c@subparagraph=\count183
+\c@figure=\count184
+\c@table=\count185
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
-\bibindent=\dimen134
+\bibindent=\dimen138
 ) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -74,7 +74,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.st
 y
-Package: amsmath 2020/01/20 v2.17e AMS math features
+Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 For additional information on amsmath, use the `?' option.
 
@@ -85,52 +85,52 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
-\ex@=\dimen135
+\ex@=\dimen139
 ))
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen136
+\pmbraise@=\dimen140
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count173
-LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count174
-\leftroot@=\count175
-LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count176
-\DOTSCASE@=\count177
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box45
-\strutbox@=\box46
-\big@size=\dimen137
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count178
-\c@MaxMatrixCols=\count179
+\inf@bad=\count186
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count187
+\leftroot@=\count188
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count189
+\DOTSCASE@=\count190
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen141
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count191
+\c@MaxMatrixCols=\count192
 \dotsspace@=\muskip16
-\c@parentequation=\count180
-\dspbrk@lvl=\count181
+\c@parentequation=\count193
+\dspbrk@lvl=\count194
 \tag@help=\toks17
-\row@=\count182
-\column@=\count183
-\maxfields@=\count184
+\row@=\count195
+\column@=\count196
+\maxfields@=\count197
 \andhelp@=\toks18
-\eqnshift@=\dimen138
-\alignsep@=\dimen139
-\tagshift@=\dimen140
-\tagwidth@=\dimen141
-\totwidth@=\dimen142
-\lineht@=\dimen143
+\eqnshift@=\dimen142
+\alignsep@=\dimen143
+\tagshift@=\dimen144
+\tagwidth@=\dimen145
+\totwidth@=\dimen146
+\lineht@=\dimen147
 \@envbody=\toks19
 \multlinegap=\skip50
 \multlinetaggap=\skip51
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2859.
-LaTeX Info: Redefining \] on input line 2860.
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.st
 y
@@ -141,108 +141,49 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.s
 ty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+2.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.s
+ty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.st
+y
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unico
-de-math.sty
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2020-07-17 L3 programming layer (loader) 
-
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backen
-d-xdvipdfmx.def
-File: l3backend-xdvipdfmx.def 2020-06-29 L3 backend support: xdvipdfmx
-\g__graphics_track_int=\count185
-\l__pdf_internal_box=\box47
-\g__pdf_backend_object_int=\count186
-\g__pdf_backend_annotation_int=\count187
-))
-Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
-
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unico
-de-math-xetex.sty
-Package: unicode-math-xetex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLa
-TeX
-
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
-xparse.sty
-Package: xparse 2020-05-15 L3 Experimental document command parser
-
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
-xparse-generic.tex
-\l__xparse_current_arg_int=\count188
-\g__xparse_grabber_int=\count189
-\l__xparse_m_args_int=\count190
-\l__xparse_v_nesting_int=\count191
-))
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2
-e/l3keys2e.sty
-Package: l3keys2e 2020-05-15 LaTeX2e option processing using LaTeX3 keys
-)
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.
-sty
-Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
-
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-
-xetex.sty
-Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
-X
-\l__fontspec_script_int=\count192
-\l__fontspec_language_int=\count193
-\l__fontspec_strnum_int=\count194
-\l__fontspec_tmp_int=\count195
-\l__fontspec_tmpa_int=\count196
-\l__fontspec_tmpb_int=\count197
-\l__fontspec_tmpc_int=\count198
-\l__fontspec_em_int=\count199
-\l__fontspec_emdef_int=\count266
-\l__fontspec_strong_int=\count267
-\l__fontspec_strongdef_int=\count268
-\l__fontspec_tmpa_dim=\dimen144
-\l__fontspec_tmpb_dim=\dimen145
-\l__fontspec_tmpc_dim=\dimen146
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.
-cfg))) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fix-cm
-.sty
-Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
-File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
-))
-\g__um_fam_int=\count269
-\g__um_fonts_used_int=\count270
-\l__um_primecount_int=\count271
-\g__um_primekern_muskip=\muskip17
-
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unico
-de-math-table.tex)))
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtyp
 e.sty
-Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
+Package: microtype 2020/12/07 v2.8 Micro-typographical refinements (RS)
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.st
 y
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks21
+\KV@toks@=\toks23
 )
-\MT@toks=\toks22
-\MT@count=\count272
-LaTeX Info: Redefining \textls on input line 790.
-\MT@outer@kern=\dimen147
-LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
-\MT@listname@count=\count273
+\MT@toks=\toks24
+\MT@count=\count198
+LaTeX Info: Redefining \textls on input line 788.
+\MT@outer@kern=\dimen148
+LaTeX Info: Redefining \textmicrotypecontext on input line 1358.
+\MT@listname@count=\count199
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtyp
-e-xetex.def
-File: microtype-xetex.def 2019/11/18 v2.7d Definitions specific to xetex (RS)
-LaTeX Info: Redefining \lsstyle on input line 258.
+e-pdftex.def
+File: microtype-pdftex.def 2020/12/07 v2.8 Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip52
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtyp
 e.cfg
-File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
+File: microtype.cfg 2020/12/07 v2.8 microtype main configuration file (RS)
 ))
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/parskip/parskip.st
 y
@@ -250,11 +191,11 @@ Package: parskip 2020-06-15 v2.0f non-zero parskip adjustments
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoption
 s.sty
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.
 sty
-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetk
 eys.sty
@@ -262,8 +203,8 @@ Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 ))
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.
 sty
-Package: etoolbox 2020/07/15 v2.5i e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count274
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count266
 )) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.s
 ty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -272,13 +213,14 @@ Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 .cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: xetex.def on input line 225.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
 
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex
-.def
-File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdfte
+x.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 )
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
@@ -287,6 +229,10 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.
+sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.
 sty
 Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
@@ -302,7 +248,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode not found.
+Package pdftexcmds Info: \pdfdraftmode found.
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvd
 efinekeys.sty
@@ -324,13 +270,15 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 y
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen148
-\Hy@linkcounter=\count275
-\Hy@pagecounter=\count276
+\@linkdim=\dimen149
+\Hy@linkcounter=\count267
+\Hy@pagecounter=\count268
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.de
 f
 File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.
 sty
@@ -340,11 +288,13 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 s.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count277
+\Hy@SavedSpaceFactor=\count269
 Package hyperref Info: Option `unicode' set `true' on input line 4338.
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2020-05-15 v7.00e Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
 )
 Package hyperref Info: Hyper figures OFF on input line 4464.
 Package hyperref Info: Link nesting OFF on input line 4469.
@@ -353,13 +303,13 @@ Package hyperref Info: Plain pages OFF on input line 4479.
 Package hyperref Info: Backreferencing OFF on input line 4484.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count278
+\c@Hy@tempcnt=\count270
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip18
+\Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5076.
-\XeTeXLinkMargin=\dimen149
+\XeTeXLinkMargin=\dimen150
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.st
 y
@@ -370,9 +320,9 @@ tcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count279
-\Field@Width=\dimen150
-\Fld@charsize=\dimen151
+\Fld@menulength=\count271
+\Field@Width=\dimen151
+\Fld@charsize=\dimen152
 Package hyperref Info: Hyper figures OFF on input line 6347.
 Package hyperref Info: Link nesting OFF on input line 6352.
 Package hyperref Info: Hyper index ON on input line 6355.
@@ -383,39 +333,35 @@ Package hyperref Info: PDF/A mode OFF on input line 6377.
 LaTeX Info: Redefining \ref on input line 6417.
 LaTeX Info: Redefining \pageref on input line 6421.
 
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegsh
-i.sty
-Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.
+sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
 )
-\Hy@abspage=\count280
-\c@Item=\count281
-\c@Hfootnote=\count282
+\Hy@abspage=\count272
+\c@Item=\count273
+\c@Hfootnote=\count274
 )
-Package hyperref Info: Driver (autodetected): hxetex.
+Package hyperref Info: Driver (autodetected): hpdftex.
 
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.de
-f
-File: hxetex.def 2020-05-15 v7.00e Hyperref driver for XeTeX
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.d
+ef
+File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
 
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/string
-enc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx
+.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
 )
-)
-\pdfm@box=\box48
-\c@Hy@AnnotLevel=\count283
-\HyField@AnnotCount=\count284
-\Fld@listcount=\count285
-\c@bookmark@seq@number=\count286
+\Fld@listcount=\count275
+\c@bookmark@seq@number=\count276
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rer
 unfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/atveryend/atveryen
-d.sty
-Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
-)
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/un
 iquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
@@ -423,79 +369,84 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip52
+\Hy@SectionHShift=\skip53
 )
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdfte
+x.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count277
+))
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.
 sty
 Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count287
+\FV@CodeLineNo=\count278
 \FV@InFile=\read2
 \FV@TabBox=\box49
-\c@FancyVerbLine=\count288
-\FV@StepNumber=\count289
+\c@FancyVerbLine=\count279
+\FV@StepNumber=\count280
 \FV@OutFile=\write3
 ) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/framed/framed.st
 y
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip53
-\fb@frw=\dimen152
-\fb@frh=\dimen153
-\FrameRule=\dimen154
-\FrameSep=\dimen155
+\OuterFrameSep=\skip54
+\fb@frw=\dimen153
+\fb@frh=\dimen154
+\FrameRule=\dimen155
+\FrameSep=\dimen156
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.st
 y
 Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
-\LTleft=\skip54
-\LTright=\skip55
-\LTpre=\skip56
-\LTpost=\skip57
-\LTchunksize=\count290
-\LTcapwidth=\dimen156
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
+\LTchunksize=\count281
+\LTcapwidth=\dimen157
 \LT@head=\box50
 \LT@firsthead=\box51
 \LT@foot=\box52
 \LT@lastfoot=\box53
-\LT@cols=\count291
-\LT@rows=\count292
-\c@LT@tables=\count293
-\c@LT@chunks=\count294
-\LT@p@ftn=\toks23
+\LT@cols=\count282
+\LT@rows=\count283
+\c@LT@tables=\count284
+\c@LT@chunks=\count285
+\LT@p@ftn=\toks25
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.
 sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen157
-\lightrulewidth=\dimen158
-\cmidrulewidth=\dimen159
-\belowrulesep=\dimen160
-\belowbottomsep=\dimen161
-\aboverulesep=\dimen162
-\abovetopsep=\dimen163
-\cmidrulesep=\dimen164
-\cmidrulekern=\dimen165
-\defaultaddspace=\dimen166
-\@cmidla=\count295
-\@cmidlb=\count296
-\@aboverulesep=\dimen167
-\@belowrulesep=\dimen168
-\@thisruleclass=\count297
-\@lastruleclass=\count298
-\@thisrulewidth=\dimen169
+\heavyrulewidth=\dimen158
+\lightrulewidth=\dimen159
+\cmidrulewidth=\dimen160
+\belowrulesep=\dimen161
+\belowbottomsep=\dimen162
+\aboverulesep=\dimen163
+\abovetopsep=\dimen164
+\cmidrulesep=\dimen165
+\cmidrulekern=\dimen166
+\defaultaddspace=\dimen167
+\@cmidla=\count286
+\@cmidlb=\count287
+\@aboverulesep=\dimen168
+\@belowrulesep=\dimen169
+\@thisruleclass=\count288
+\@lastruleclass=\count289
+\@thisrulewidth=\dimen170
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.
 sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box54
-\fn@width=\dimen170
+\fn@width=\dimen171
 )
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.
 sty
-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.
 sty
-Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
@@ -503,34 +454,2994 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 ics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: xetex.def on input line 105.
+Package graphics Info: Driver file: pdftex.def on input line 105.
 )
-\Gin@req@height=\dimen171
-\Gin@req@width=\dimen172
+\Gin@req@height=\dimen172
+\Gin@req@width=\dimen173
 )
-(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/grffile/grffile.st
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/chngcntr/chngcntr.
+sty
+Package: chngcntr 2018/04/09 v1.1a change counter resetting
+Package chngcntr Info: \counterwithout already defined.
+(chngcntr)             Quitting chngcntr on input line 21.
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdfpages/pdfpages.
+sty
+Package: pdfpages 2021/01/09 v0.5r Insert pages of external PDF documents (AM)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count290
+\calc@Bcount=\count291
+\calc@Adimen=\dimen174
+\calc@Bdimen=\dimen175
+\calc@Askip=\skip59
+\calc@Bskip=\skip60
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count292
+\calc@Cskip=\skip61
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/eso-pic/eso-pic.st
 y
-Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
-y)
-Package grffile Info: This package is an empty stub for compatibility on input 
-line 40.
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen176
+\ESO@tempdimb=\dimen177
 )
+\AM@pagewidth=\dimen178
+\AM@pageheight=\dimen179
 
-! LaTeX Error: Missing \begin{document}.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdfpages/pppdftex.
+def
+File: pppdftex.def 2021/01/09 v0.5r Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count293
+\AM@pagebox=\box55
+\AM@global@opts=\toks26
+\AM@pagecnt=\count294
+\AM@toc@title=\toks27
+\c@AM@survey=\count295
+\AM@templatesizebox=\box56
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 209.
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.
+sty
+Package: fancyhdr 2021/01/04 v4.0 Extensive control of page headers and footers
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.110 <
-       !-- Global site tag (gtag.js) - Google Analytics --> 
+\f@nch@headwidth=\skip62
+\f@nch@O@elh=\skip63
+\f@nch@O@erh=\skip64
+\f@nch@O@olh=\skip65
+\f@nch@O@orh=\skip66
+\f@nch@O@elf=\skip67
+\f@nch@O@erf=\skip68
+\f@nch@O@olf=\skip69
+\f@nch@O@orf=\skip70
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.st
+y
+\wrapoverhang=\dimen180
+\WF@size=\dimen181
+\c@WF@wrappedlines=\count296
+\WF@box=\box57
+\WF@everypar=\toks28
+Package: wrapfig 2003/01/31  v 3.6
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption.st
+y
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption3.s
+ty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen182
+\captionmargin@=\dimen183
+\captionwidth=\dimen184
+\caption@tempdima=\dimen185
+\caption@indent=\dimen186
+\caption@parindent=\dimen187
+\caption@hangindent=\dimen188
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count297
+\c@continuedfloat=\count298
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.
+sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)
+Package caption Info: wrapfig package is loaded.
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/appendix/appendix.
+sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count299
+\c@@ppsavesec=\count300
+\c@@ppsaveapp=\count301
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/qrcode/qrcode.st
+y
+Package: qrcode 2015/01/08 v1.51 QR code generation
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.st
+y
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.
+tex
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils
+.tex
+\XKV@toks=\toks29
+\XKV@tempa@toks=\toks30
+)
+\XKV@depth=\count302
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\c@qr@i=\count303
+\c@qr@j=\count304
+\qr@a=\count305
+\qr@b=\count306
+\qr@c=\count307
+\qr@for@depth=\count308
+\qr@for@maxdepth=\count309
+\qr@for@start=\count310
+\qr@for@end=\count311
+\qr@for@step=\count312
+\qr@newforcount=\count313
+\qr@newforcount=\count314
+\qr@desiredheight=\skip71
+\qr@modulesize=\skip72
+\qr@minipagewidth=\skip73
+\c@maski=\count315
+\c@maskj=\count316
+\c@totalones=\count317
+\c@penaltyi=\count318
+\c@penaltyii=\count319
+\c@penaltyiii=\count320
+\c@penaltyiv=\count321
+\c@qr@hexchars=\count322
+\qr@newforcount=\count323
+\c@qr@divisionsremaining=\count324
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbo
+x.sty
+Package: tcolorbox 2020/10/09 version 4.42 text color boxes
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf
+.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfr
+cs.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+futil-common.tex
+\pgfutil@everybye=\toks31
+\pgfutil@tempdima=\dimen189
+\pgfutil@tempdimb=\dimen190
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+futil-common-lists.tex))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+futil-latex.def
+\pgfutil@abb=\box58
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+frcs.code.tex
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision
+.tex)
+Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
+))
+Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf
+core.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pg
+fsys.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys.code.tex
+Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+fkeys.code.tex
+\pgfkeys@pathtoks=\toks32
+\pgfkeys@temptoks=\toks33
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+fkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks34
+))
+\pgf@x=\dimen191
+\pgf@y=\dimen192
+\pgf@xa=\dimen193
+\pgf@ya=\dimen194
+\pgf@xb=\dimen195
+\pgf@yb=\dimen196
+\pgf@xc=\dimen197
+\pgf@yc=\dimen198
+\pgf@xd=\dimen199
+\pgf@yd=\dimen256
+\w@pgf@writea=\write4
+\r@pgf@reada=\read3
+\c@pgf@counta=\count325
+\c@pgf@countb=\count326
+\c@pgf@countc=\count327
+\c@pgf@countd=\count328
+\t@pgf@toka=\toks35
+\t@pgf@tokb=\toks36
+\t@pgf@tokc=\toks37
+\pgf@sys@id@count=\count329
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgf.cfg
+File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfsyssoftpath@smallbuffer@items=\count330
+\pgfsyssoftpath@bigbuffer@items=\count331
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/
+pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcore.code.tex
+Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+.code.tex
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+calc.code.tex
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+util.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+parser.code.tex
+\pgfmath@dimen=\dimen257
+\pgfmath@count=\count332
+\pgfmath@box=\box59
+\pgfmath@toks=\toks38
+\pgfmath@stack@operand=\toks39
+\pgfmath@stack@operation=\toks40
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.code.tex
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.basic.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.trigonometric.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.random.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.comparison.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.base.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.round.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.misc.code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+functions.integerarithmetics.code.tex)))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+float.code.tex
+\c@pgfmathroundto@lastzeros=\count333
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.
+code.tex)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@picminx=\dimen258
+\pgf@picmaxx=\dimen259
+\pgf@picminy=\dimen260
+\pgf@picmaxy=\dimen261
+\pgf@pathminx=\dimen262
+\pgf@pathmaxx=\dimen263
+\pgf@pathminy=\dimen264
+\pgf@pathmaxy=\dimen265
+\pgf@xx=\dimen266
+\pgf@xy=\dimen267
+\pgf@yx=\dimen268
+\pgf@yy=\dimen269
+\pgf@zx=\dimen270
+\pgf@zy=\dimen271
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@path@lastx=\dimen272
+\pgf@path@lasty=\dimen273
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@shorten@end@additional=\dimen274
+\pgf@shorten@start@additional=\dimen275
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfpic=\box60
+\pgf@hbox=\box61
+\pgf@layerbox@main=\box62
+\pgf@picture@serial@count=\count334
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgflinewidth=\dimen276
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@pt@x=\dimen277
+\pgf@pt@y=\dimen278
+\pgf@pt@temp=\dimen279
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorequick.code.tex
+File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfarrowsep=\dimen280
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@max=\dimen281
+\pgf@sys@shading@range@num=\count335
+\pgf@shadingcount=\count336
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfexternal@startupbox=\box63
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/p
+gfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfm
+oduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfnodeparttextbox=\box64
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfm
+oduleplot.code.tex
+File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/
+pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@nodesepstart=\dimen282
+\pgf@nodesepend=\dimen283
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/
+pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks41
+\verbatim@line=\toks42
+\verbatim@in@stream=\read4
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/environ/environ.st
+y
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspa
+ces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box65
+\tcb@upperbox=\box66
+\tcb@lowerbox=\box67
+\tcb@phantombox=\box68
+\c@tcbbreakpart=\count337
+\c@tcblayer=\count338
+\c@tcolorbox@number=\count339
+\tcb@temp=\box69
+\tcb@temp=\box70
+\tcb@temp=\box71
+\tcb@temp=\box72
+\tcb@out=\write5
+\tcb@record@out=\write6
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbraste
+r.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '4.42'
+\c@tcbrastercolumn=\count340
+\c@tcbrasterrow=\count341
+\c@tcbraster=\count342
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskins
+.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '4.42'
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/
+tikz.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgff
+or.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfk
+eys.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+fkeys.code.tex))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.s
+ty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+.code.tex))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pg
+ffor.code.tex
+Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath
+.code.tex)
+\pgffor@iter=\dimen284
+\pgffor@skip=\dimen285
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlaye
+r/tikz/tikz.code.tex
+Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pg
+flibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@plot@mark@count=\count343
+\pgfplotmarksize=\dimen286
+)
+\tikz@lastx=\dimen287
+\tikz@lasty=\dimen288
+\tikz@lastxsaved=\dimen289
+\tikz@lastysaved=\dimen290
+\tikz@lastmovetox=\dimen291
+\tikz@lastmovetoy=\dimen292
+\tikzleveldistance=\dimen293
+\tikzsiblingdistance=\dimen294
+\tikz@figbox=\box73
+\tikz@figbox@bg=\box74
+\tikz@tempbox=\box75
+\tikz@tempbox@bg=\box76
+\tikztreelevel=\count344
+\tikznumberofchildren=\count345
+\tikznumberofcurrentchild=\count346
+\tikz@fig@count=\count347
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfm
+odulematrix.code.tex
+File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfmatrixcurrentrow=\count348
+\pgfmatrixcurrentcolumn=\count349
+\pgf@matrix@numberofcolumns=\count350
+)
+\tikz@expandcount=\count351
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlaye
+r/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+\tcb@waterbox=\box77
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskins
+jigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.42'
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbbreak
+able.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '4.42'
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/pdfcol.
+sty
+Package: pdfcol 2019/12/29 v1.6 Handle new color stacks for pdfTeX (HO)
+)
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box78
+\tcb@totalupperbox=\box79
+\tcb@totallowerbox=\box80
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbhooks
+.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '4.42'
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbtheor
+ems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '4.42'
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbfitti
+ng.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '4.42'
+\tcbfitdim=\dimen295
+\tcb@lowerfitdim=\dimen296
+\tcb@upperfitdim=\dimen297
+\tcb@cur@hbadness=\count352
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbxpars
+e.code.tex
+Library (tcolorbox): 'tcbxparse.code.tex' version '4.42'
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
+xparse.sty
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-01-09 L3 programming layer (loader) 
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backen
+d-pdftex.def
+File: l3backend-pdftex.def 2021-01-09 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count353
+\l__pdf_internal_box=\box81
+))
+Package: xparse 2020-10-27 L3 Experimental document command parser
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/
+xparse-generic.tex))))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlaye
+r/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count354
+\float@exts=\toks45
+\float@box=\box82
+\@float@everytoks=\toks46
+\@floatcapt=\box83
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count355
+\mult@box=\box84
+\multicol@leftmargin=\dimen298
+\c@unbalance=\count356
+\c@collectmore=\count357
+\doublecol@number=\count358
+\multicoltolerance=\count359
+\multicolpretolerance=\count360
+\full@width=\dimen299
+\page@free=\dimen300
+\premulticols=\dimen301
+\postmulticols=\dimen302
+\multicolsep=\skip74
+\multicolbaselineskip=\skip75
+\partial@page=\box85
+\last@line=\box86
+\maxbalancingoverflow=\dimen303
+\mult@rightbox=\box87
+\mult@grightbox=\box88
+\mult@gfirstbox=\box89
+\mult@firstbox=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\@tempa=\box122
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\@tempa=\box126
+\@tempa=\box127
+\c@minrows=\count361
+\c@columnbadness=\count362
+\c@finalcolumnbadness=\count363
+\last@try=\dimen304
+\multicolovershoot=\dimen305
+\multicolundershoot=\dimen306
+\mult@nat@firstbox=\box128
+\colbreak@box=\box129
+\mc@col@check@num=\count364
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 161.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/imakeidx/imakeidx.
+sty
+Package: imakeidx 2016/10/15 v1.3e Package for typesetting indices in a synchro
+nous mode
+)
+\function@idxfile=\write7
+\openout7 = `function.idx'.
+
+Writing index file function.idx
+\html_r@idxfile=\write8
+\openout8 = `html_r.idx'.
+
+Writing index file html_r.idx
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.
+sty
+Package: titlesec 2019/10/16 v2.13 Sectioning titles
+\ttl@box=\box130
+\beforetitleunit=\skip76
+\aftertitleunit=\skip77
+\ttl@plus=\dimen307
+\ttl@minus=\dimen308
+\ttl@toksa=\toks47
+\titlewidth=\dimen309
+\titlewidthlast=\dimen310
+\titlewidthfirst=\dimen311
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen312
+\ar@mcellbox=\box131
+\extrarowheight=\dimen313
+\NC@list=\toks48
+\extratabsurround=\skip78
+\backup@length=\skip79
+\ar@cellbox=\box132
+) (c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.st
+y
+Package: lipsum 2019/01/02 v2.2 150 paragraphs of Lorem Ipsum dummy text
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.
+tex
+File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
+))
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.
+sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count365
+\Gm@cntv=\count366
+\c@Gm@tempcnt=\count367
+\Gm@bindingoffset=\dimen314
+\Gm@wd@mp=\dimen315
+\Gm@odd@mp=\dimen316
+\Gm@even@mp=\dimen317
+\Gm@layoutwidth=\dimen318
+\Gm@layoutheight=\dimen319
+\Gm@layouthoffset=\dimen320
+\Gm@layoutvoffset=\dimen321
+\Gm@dimlist=\toks49
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 217.
+Package hyperref Info: Option `colorlinks' set `true' on input line 220.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrext
+end.sty
+Package: scrextend 2020/09/21 v3.32 KOMA-Script package (extend other classes w
+ith features of KOMA-Script classes)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrkba
+se.sty
+Package: scrkbase 2020/09/21 v3.32 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrbas
+e.sty
+Package: scrbase 2020/09/21 v3.32 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfi
+le.sty
+Package: scrlfile 2020/09/21 v3.32 KOMA-Script package (file load hooks)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfi
+le-hook.sty
+Package: scrlfile-hook 2020/09/21 v3.32 KOMA-Script package (using LaTeX hooks)
+
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlog
+o.sty
+Package: scrlogo 2020/09/21 v3.32 KOMA-Script package (logo)
+)))))
+
+LaTeX Warning: Command \@footnotemark  has changed.
+               Check if current package is valid.
+
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlay
+er.sty
+Package: scrlayer 2020/09/21 v3.32 KOMA-Script package (defining layers and pag
+e styles)
+\footheight=\skip80
+Package scrlayer Info: patching LaTeX kernel macro \pagestyle on input line 211
+6.
+)
+\cslhangindent=\skip81
+(./html_r.aux)
+\openout1 = `html_r.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 335.
+LaTeX Font Info:    ... okay on input line 335.
+LaTeX Info: Redefining \microtypecontext on input line 335.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `basicmath'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 335.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.c
+fg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epsto
+pdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstop
+df-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package hyperref Info: Link coloring ON on input line 335.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.s
+ty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.
+sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/g
+ettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count368
+)
+LaTeX Info: Redefining \ref on input line 335.
+LaTeX Info: Redefining \pageref on input line 335.
+LaTeX Info: Redefining \nameref on input line 335.
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscap
+e.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/lscape.st
+y
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* bindingoffset: 28.45274pt
+* modes: twoside 
+* h-part:(L,W,R)=(85.35826pt, 443.57849pt, 56.9055pt)
+* v-part:(T,H,B)=(85.35826pt, 652.70622pt, 56.9055pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=443.57849pt
+* \textheight=640.0pt
+* \oddsidemargin=39.74872pt
+* \evensidemargin=0.0pt
+* \topmargin=-18.57922pt
+* \headheight=13.6pt
+* \headsep=15.0pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=125.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package scrlayer Info: Setting magic \footheight to \baselineskip while
+(scrlayer)             \begin{document} on input line 335.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
+37.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
+37.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+337.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+337.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 337.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 337.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 337.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 337
+.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.c
+fg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 337
+.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.c
+fg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) [1
+
+
+
+{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdfte
+x.map}] [2
+
+
+]
+<figures/tpage.pdf, id=19, 597.50829pt x 845.0471pt>
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf>
+Package pdftex.def Info: figures/tpage.pdf  used on input line 339.
+(pdftex.def)             Requested size: 443.58061pt x 627.34949pt.
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf>
+Package pdftex.def Info: figures/tpage.pdf  used on input line 339.
+(pdftex.def)             Requested size: 443.58061pt x 627.34949pt.
+<figures/tpage.pdf, id=22, page=1, 597.50829pt x 845.0471pt>
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf, page 1>
+Package pdftex.def Info: figures/tpage.pdf , page1 used on input line 339.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf, page 1>
+Package pdftex.def Info: figures/tpage.pdf , page1 used on input line 339.
+(pdftex.def)             Requested size: 562.12285pt x 795.00201pt.
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf, page 1>
+Package pdftex.def Info: figures/tpage.pdf , page1 used on input line 339.
+(pdftex.def)             Requested size: 562.12285pt x 795.00201pt.
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf, page 1>
+Package pdftex.def Info: figures/tpage.pdf , page1 used on input line 339.
+(pdftex.def)             Requested size: 562.12285pt x 795.00201pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.339 \includepdf[pages=-]{figures/tpage.pdf}
+                                             
+File: figures/tpage.pdf Graphic file (type pdf)
+<use figures/tpage.pdf, page 1>
+Package pdftex.def Info: figures/tpage.pdf , page1 used on input line 339.
+(pdftex.def)             Requested size: 562.12285pt x 795.00201pt.
+[1 <./figures/tpage.pdf>]pdfTeX warning (ext4): destination with the same ident
+ifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.382 \newpage
+               [2]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 408.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 408.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 408.
+[3] [4
+
+
+] (./html_r.toc [5]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
+4.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [6] [7] [8]
+Overfull \hbox (2.3332pt too wide) detected at line 219
+\T1/lmr/m/n/10 14.10.6.10 
+ []
+
+[9])
+\tf@toc=\write9
+\openout9 = `html_r.toc'.
+
+[10] [11
+
+
+] [12]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
+97.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[13
+
+
+] [14] [15
+
+
+] [16
+
+
+] [17] [18]
+CapÃ­tulo 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 569--569
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 569--569
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 569--569
+ []\T1/lmr/bx/n/144 (-20) 1[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[19
+
+
+]
+<figures/Console.png, id=2096, 625.94765pt x 351.93372pt>
+File: figures/Console.png Graphic file (type png)
+<use figures/Console.png>
+Package pdftex.def Info: figures/Console.png  used on input line 587.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+<figures/Diretory.png, id=2098, 625.94765pt x 351.93372pt>
+File: figures/Diretory.png Graphic file (type png)
+<use figures/Diretory.png>
+Package pdftex.def Info: figures/Diretory.png  used on input line 595.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[20 <./figures/Console.png>]
+<figures/Install.png, id=2107, 625.94765pt x 351.93372pt>
+File: figures/Install.png Graphic file (type png)
+<use figures/Install.png>
+Package pdftex.def Info: figures/Install.png  used on input line 610.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+<figures/Help.png, id=2108, 625.94765pt x 351.93372pt>
+File: figures/Help.png Graphic file (type png)
+<use figures/Help.png>
+Package pdftex.def Info: figures/Help.png  used on input line 616.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 624.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[21 <./figures/Diretory.png>] [22 <./figures/Install.png> <./figures/Help.png>]
+<figures/Update.png, id=2131, 625.94765pt x 351.93372pt>
+File: figures/Update.png Graphic file (type png)
+<use figures/Update.png>
+Package pdftex.def Info: figures/Update.png  used on input line 679.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+698.
+(c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [23] [24 <./figures/Update.png>]
+CapÃ­tulo 2.
+
+Underfull \hbox (badness 10000) in paragraph at lines 713--713
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 713--713
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 713--713
+ []\T1/lmr/bx/n/144 (-20) 2[]
+ []
+
+
+Overfull \vbox (2.11975pt too high) detected at line 762
+ []
+
+[25
+
+
+] [26]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[28] [29]
+<figures/head.png, id=2180, 140.02313pt x 158.84344pt>
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 1021.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[30 <./figures/head.png>]
+CapÃ­tulo 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1068--1068
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1068--1068
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 1068--1068
+ []\T1/lmr/bx/n/144 (-20) 3[]
+ []
+
+[31
+
+
+] [32] [33] [34
+
+
+]
+CapÃ­tulo 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1250--1250
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1250--1250
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 1250--1250
+ []\T1/lmr/bx/n/144 (-20) 4[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[35] [36]
+<html_r_files/figure-latex/unnamed-chunk-41-1.pdf, id=2230, 578.16pt x 505.89pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (type pdf)
+<use html_r_files/figure-latex/unnamed-chunk-41-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-41-1.pdf  used
+ on input line 1353.
+(pdftex.def)             Requested size: 443.57896pt x 388.13159pt.
+[37 <./html_r_files/figure-latex/unnamed-chunk-41-1.pdf>] [38
+
+
+]
+CapÃ­tulo 5.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1361--1361
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1361--1361
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 1361--1361
+ []\T1/lmr/bx/n/144 (-20) 5[]
+ []
+
+[39] [40
+
+
+] [41] [42]
+CapÃ­tulo 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1395--1395
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1395--1395
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 1395--1395
+ []\T1/lmr/bx/n/144 (-20) 6[]
+ []
+
+<figures/Import.png, id=2263, 625.94765pt x 351.93372pt>
+File: figures/Import.png Graphic file (type png)
+<use figures/Import.png>
+Package pdftex.def Info: figures/Import.png  used on input line 1437.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+<figures/Import1.png, id=2264, 625.94765pt x 351.93372pt>
+File: figures/Import1.png Graphic file (type png)
+<use figures/Import1.png>
+Package pdftex.def Info: figures/Import1.png  used on input line 1443.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+<figures/Import2.png, id=2265, 625.94765pt x 351.93372pt>
+File: figures/Import2.png Graphic file (type png)
+<use figures/Import2.png>
+Package pdftex.def Info: figures/Import2.png  used on input line 1449.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[43
+
+
+] [44 <./figures/Import.png> <./figures/Import1.png>] [45 <./figures/Import2.pn
+g>] [46
+
+
+]
+CapÃ­tulo 7.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1469--1469
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 1469--1469
+ []\T1/lmr/bx/n/144 (-20) 7[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[47]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[48]
+Underfull \vbox (badness 10000) detected at line 1700
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[49]
+Overfull \hbox (14.1372pt too wide) in paragraph at lines 1730--1731
+[]\T1/lmr/m/n/10 (-20) As col-u-nas numéri-cas po-dem ser se-le-cionadas rap-i-
+da-mente us-ando a função [][]\T1/lmtt/m/n/10 select_numeric_cols()[][]\T1/lmr/
+m/n/10 (-20) .
+ []
+
+[50]
+Underfull \vbox (badness 10000) detected at line 1832
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[51]
+Underfull \vbox (badness 2035) has occurred while \output is active []
+
+[52]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[53]
+Underfull \vbox (badness 5091) has occurred while \output is active []
+
+[54]
+Underfull \vbox (badness 10000) detected at line 2129
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[55]
+Underfull \vbox (badness 10000) detected at line 2193
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[56]
+Overfull \vbox (0.90996pt too high) detected at line 2263
+ []
+
+[57]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 2306.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[58] [59]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 2439.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[60] [61] [62]
+Overfull \hbox (1.30328pt too wide) in paragraph at lines 2589--2590
+[]\T1/lmr/m/n/10 (-20) É pos-sível colo-car as col-u-nas no primeiro e no úl-ti
+mo lu-gar rap-i-da-mente com [][]\T1/lmtt/m/n/10 columns_to_first()[][]
+ []
+
+
+Overfull \vbox (1.86397pt too high) detected at line 2631
+ []
+
+[63] [64] [65]
+Overfull \vbox (1.86397pt too high) detected at line 2840
+ []
+
+[66]
+Overfull \hbox (7.85065pt too wide) in paragraph at lines 2845--2846
+\T1/lmr/m/n/10 (-20) As funções [][]\T1/lmtt/m/n/10 extract_string()[][] \T1/lm
+r/m/n/10 (-20) e [][]\T1/lmtt/m/n/10 replace_string()[][] \T1/lmr/m/n/10 (-20) 
+são us-a-dos no mesmo con-texto de [][]\T1/lmtt/m/n/10 extract_number()[][]
+ []
+
+[67] [68] [69] [70] [71] [72] [73] [74
+
+
+]
+CapÃ­tulo 8.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3288--3288
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 3288--3288
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 3288--3288
+ []\T1/lmr/bx/n/144 (-20) 8[]
+ []
+
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3296.
+[75]
+<html_r_files/figure-latex/unnamed-chunk-114-1.pdf, id=2518, 867.24pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-114-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-114-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-114-1.pdf  use
+d on input line 3366.
+(pdftex.def)             Requested size: 443.58339pt x 110.89584pt.
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 3382.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[76]
+<figures/tip.png, id=2528, 48.18pt x 48.18pt>
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 3409.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[77 <./html_r_files/figure-latex/unnamed-chunk-114-1.pdf> <./figures/tip.png>]
+<html_r_files/figure-latex/unnamed-chunk-118-1.pdf, id=2543, 722.7pt x 325.215p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-118-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-118-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-118-1.pdf  use
+d on input line 3442.
+(pdftex.def)             Requested size: 443.58118pt x 199.61153pt.
+[78 <./html_r_files/figure-latex/unnamed-chunk-118-1.pdf>]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 3477.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+<html_r_files/figure-latex/unnamed-chunk-121-1.pdf, id=2556, 722.7pt x 289.08pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-121-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-121-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-121-1.pdf  use
+d on input line 3530.
+(pdftex.def)             Requested size: 443.58118pt x 177.43246pt.
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 3548.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[79]
+<html_r_files/figure-latex/unnamed-chunk-123-1.pdf, id=2565, 650.43pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-123-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-123-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-123-1.pdf  use
+d on input line 3579.
+(pdftex.def)             Requested size: 443.58669pt x 147.86221pt.
+[80 <./html_r_files/figure-latex/unnamed-chunk-121-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-124-1.pdf, id=2578, 505.89pt x 180.675
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-124-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-124-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-124-1.pdf  use
+d on input line 3621.
+(pdftex.def)             Requested size: 443.58667pt x 158.4238pt.
+[81 <./html_r_files/figure-latex/unnamed-chunk-123-1.pdf> <./html_r_files/figur
+e-latex/unnamed-chunk-124-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-125-1.pdf, id=2600, 722.7pt x 216.81pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-125-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-125-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-125-1.pdf  use
+d on input line 3665.
+(pdftex.def)             Requested size: 443.58118pt x 133.07434pt.
+[82 <./html_r_files/figure-latex/unnamed-chunk-125-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-126-1.pdf, id=2612, 505.89pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-126-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-126-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-126-1.pdf  use
+d on input line 3706.
+(pdftex.def)             Requested size: 443.58667pt x 190.10857pt.
+<html_r_files/figure-latex/unnamed-chunk-127-1.pdf, id=2620, 722.7pt x 216.81pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-127-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-127-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-127-1.pdf  use
+d on input line 3740.
+(pdftex.def)             Requested size: 443.58118pt x 133.07434pt.
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 3753.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+
+Underfull \vbox (badness 4144) has occurred while \output is active []
+
+[83 <./html_r_files/figure-latex/unnamed-chunk-126-1.pdf>] [84 <./html_r_files/
+figure-latex/unnamed-chunk-127-1.pdf>]
+CapÃ­tulo 9.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3756--3756
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 3756--3756
+ [][]
+ []
+
+
+Overfull \hbox (12.84595pt too wide) in paragraph at lines 3756--3756
+ []\T1/lmr/bx/n/144 (-20) 9[]
+ []
+
+[85
+
+
+]
+<figures/Figura.png, id=2662, 625.94765pt x 351.93372pt>
+File: figures/Figura.png Graphic file (type png)
+<use figures/Figura.png>
+Package pdftex.def Info: figures/Figura.png  used on input line 3814.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+<figures/Figura2.png, id=2663, 625.94765pt x 351.93372pt>
+File: figures/Figura2.png Graphic file (type png)
+<use figures/Figura2.png>
+Package pdftex.def Info: figures/Figura2.png  used on input line 3820.
+(pdftex.def)             Requested size: 443.57588pt x 249.39674pt.
+[86 <./figures/Figura.png>]
+Underfull \vbox (badness 10000) detected at line 3875
+ []
+
+[87 <./figures/Figura2.png>] [88] [89
+
+
+] [90]
+CapÃ­tulo 10.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3881--3881
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 3881--3881
+ [][]
+ []
+
+
+Overfull \hbox (92.22595pt too wide) in paragraph at lines 3881--3881
+ []\T1/lmr/bx/n/144 (-20) 10[]
+ []
+
+[91
+
+
+]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3978.
+[92]
+Underfull \vbox (badness 10000) detected at line 4065
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[93]
+Underfull \vbox (badness 10000) detected at line 4125
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[94] [95] [96]
+<html_r_files/figure-latex/unnamed-chunk-150-1.pdf, id=2741, 722.7pt x 239.8962
+6pt>
+File: html_r_files/figure-latex/unnamed-chunk-150-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-150-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-150-1.pdf  use
+d on input line 4317.
+(pdftex.def)             Requested size: 443.58118pt x 147.2443pt.
+
+Overfull \hbox (30.00269pt too wide) in paragraph at lines 4317--4318
+[][] 
+ []
+
+[97 <./html_r_files/figure-latex/unnamed-chunk-150-1.pdf>]
+Underfull \vbox (badness 10000) detected at line 4413
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[98] [99] [100]
+<html_r_files/figure-latex/unnamed-chunk-158-1.pdf, id=2774, 722.7pt x 289.08pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-158-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-158-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-158-1.pdf  use
+d on input line 4564.
+(pdftex.def)             Requested size: 443.58118pt x 177.43246pt.
+[101] [102 <./html_r_files/figure-latex/unnamed-chunk-158-1.pdf>] [103] [104] [
+105] [106]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[107]
+<html_r_files/figure-latex/unnamed-chunk-165-1.pdf, id=2831, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-165-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-165-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-165-1.pdf  use
+d on input line 4949.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 4582) has occurred while \output is active []
+
+[108]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 4959.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[109 <./html_r_files/figure-latex/unnamed-chunk-165-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-168-1.pdf, id=2849, 433.62pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-168-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-168-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-168-1.pdf  use
+d on input line 5012.
+(pdftex.def)             Requested size: 433.63878pt x 216.81938pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[110 <./html_r_files/figure-latex/unnamed-chunk-168-1.pdf>]
+<figures/curiosity.png, id=2867, 202.50656pt x 269.50688pt>
+File: figures/curiosity.png Graphic file (type png)
+<use figures/curiosity.png>
+Package pdftex.def Info: figures/curiosity.png  used on input line 5021.
+(pdftex.def)             Requested size: 24.99806pt x 33.26881pt.
+[111 <./figures/curiosity.png>]
+<html_r_files/figure-latex/unnamed-chunk-170-1.pdf, id=2879, 469.755pt x 433.62
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-170-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-170-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-170-1.pdf  use
+d on input line 5035.
+(pdftex.def)             Requested size: 443.57677pt x 409.45547pt.
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 5058.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[112 <./html_r_files/figure-latex/unnamed-chunk-170-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-172-1.pdf, id=2894, 361.35pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-172-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-172-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-172-1.pdf  use
+d on input line 5081.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+[113 <./html_r_files/figure-latex/unnamed-chunk-172-1.pdf>]
+
+LaTeX Warning: Command \~ invalid in math mode on input line 5127.
+
+
+LaTeX Warning: Command \~ invalid in math mode on input line 5130.
+
+<html_r_files/figure-latex/unnamed-chunk-175-1.pdf, id=2911, 252.945pt x 216.81
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-175-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-175-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-175-1.pdf  use
+d on input line 5152.
+(pdftex.def)             Requested size: 252.94823pt x 216.81276pt.
+
+Underfull \vbox (badness 3758) has occurred while \output is active []
+
+[114]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 5171.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[115 <./html_r_files/figure-latex/unnamed-chunk-175-1.pdf>] [116]
+<html_r_files/figure-latex/unnamed-chunk-178-1.pdf, id=2944, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-178-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-178-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-178-1.pdf  use
+d on input line 5280.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[117 <./html_r_files/figure-latex/unnamed-chunk-178-1.pdf>]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 5299.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+
+Underfull \hbox (badness 1552) in paragraph at lines 5335--5336
+[]\T1/lmr/m/n/10 (+20) A maneira mais fá-cil de obter os re-sul-ta-dos do mod-e
+lo acima é us-ando a função
+ []
+
+[118] [119]
+Underfull \vbox (badness 10000) detected at line 5482
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[120]
+<html_r_files/figure-latex/unnamed-chunk-185-1.pdf, id=2976, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-185-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-185-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-185-1.pdf  use
+d on input line 5510.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+<html_r_files/figure-latex/unnamed-chunk-187-1.pdf, id=2977, 469.755pt x 505.89
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-187-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-187-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-187-1.pdf  use
+d on input line 5534.
+(pdftex.def)             Requested size: 443.57677pt x 477.69804pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[121]
+Overfull \vbox (164.79056pt too high) has occurred while \output is active []
+
+[122 <./html_r_files/figure-latex/unnamed-chunk-185-1.pdf> <./html_r_files/figu
+re-latex/unnamed-chunk-187-1.pdf>]
+Underfull \vbox (badness 1661) has occurred while \output is active []
+
+[123]
+<figures/covariavel.png, id=3011, 452.4102pt x 270.2898pt>
+File: figures/covariavel.png Graphic file (type png)
+<use figures/covariavel.png>
+Package pdftex.def Info: figures/covariavel.png  used on input line 5568.
+(pdftex.def)             Requested size: 443.57986pt x 265.01418pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[124 <./figures/covariavel.png (PNG copy)>]
+<html_r_files/figure-latex/unnamed-chunk-188-1.pdf, id=3024, 469.755pt x 252.94
+5pt>
+File: html_r_files/figure-latex/unnamed-chunk-188-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-188-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-188-1.pdf  use
+d on input line 5583.
+(pdftex.def)             Requested size: 443.57677pt x 238.84903pt.
+[125 <./html_r_files/figure-latex/unnamed-chunk-188-1.pdf>]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 5616.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[126]
+<html_r_files/figure-latex/unnamed-chunk-191-1.pdf, id=3055, 469.755pt x 216.81
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-191-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-191-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-191-1.pdf  use
+d on input line 5680.
+(pdftex.def)             Requested size: 443.57677pt x 204.72772pt.
+[127 <./html_r_files/figure-latex/unnamed-chunk-191-1.pdf>]
+Underfull \vbox (badness 10000) detected at line 5774
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[128]
+<html_r_files/figure-latex/unnamed-chunk-194-1.pdf, id=3072, 578.16pt x 578.16p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-194-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-194-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-194-1.pdf  use
+d on input line 5778.
+(pdftex.def)             Requested size: 443.57896pt x 443.57896pt.
+File: figures/curiosity.png Graphic file (type png)
+<use figures/curiosity.png>
+Package pdftex.def Info: figures/curiosity.png  used on input line 5790.
+(pdftex.def)             Requested size: 24.99806pt x 33.26881pt.
+
+Underfull \vbox (badness 1701) detected at line 5808
+ []
+
+[129] [130 <./html_r_files/figure-latex/unnamed-chunk-194-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-196-1.pdf, id=3089, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-196-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-196-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-196-1.pdf  use
+d on input line 5812.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+[131 <./html_r_files/figure-latex/unnamed-chunk-196-1.pdf>]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 5847.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+<html_r_files/figure-latex/unnamed-chunk-199-1.pdf, id=3101, 578.16pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-199-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-199-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-199-1.pdf  use
+d on input line 5882.
+(pdftex.def)             Requested size: 443.57896pt x 277.23686pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[132]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 5889.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[133 <./html_r_files/figure-latex/unnamed-chunk-199-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-201-1.pdf, id=3115, 722.7pt x 180.675p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-201-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-201-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-201-1.pdf  use
+d on input line 5915.
+(pdftex.def)             Requested size: 443.58118pt x 110.89528pt.
+<figures/note.png, id=3127, 48.18pt x 48.18pt>
+File: figures/note.png Graphic file (type png)
+<use figures/note.png>
+Package pdftex.def Info: figures/note.png  used on input line 5943.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[134 <./html_r_files/figure-latex/unnamed-chunk-201-1.pdf>] [135 <./figures/not
+e.png>] [136]
+<html_r_files/figure-latex/unnamed-chunk-203-1.pdf, id=3193, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-203-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-203-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-203-1.pdf  use
+d on input line 6028.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[137 <./html_r_files/figure-latex/unnamed-chunk-203-1.pdf>]
+File: figures/curiosity.png Graphic file (type png)
+<use figures/curiosity.png>
+Package pdftex.def Info: figures/curiosity.png  used on input line 6102.
+(pdftex.def)             Requested size: 24.99806pt x 33.26881pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[138]
+<html_r_files/figure-latex/unnamed-chunk-207-1.pdf, id=3215, 722.7pt x 252.945p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-207-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-207-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-207-1.pdf  use
+d on input line 6123.
+(pdftex.def)             Requested size: 443.58118pt x 155.2534pt.
+File: figures/note.png Graphic file (type png)
+<use figures/note.png>
+Package pdftex.def Info: figures/note.png  used on input line 6132.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+
+Underfull \vbox (badness 1629) has occurred while \output is active []
+
+[139 <./html_r_files/figure-latex/unnamed-chunk-207-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-209-1.pdf, id=3229, 722.7pt x 158.5925
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-209-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-209-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-209-1.pdf  use
+d on input line 6158.
+(pdftex.def)             Requested size: 443.58118pt x 97.3414pt.
+[140 <./html_r_files/figure-latex/unnamed-chunk-209-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-210-1.pdf, id=3249, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-210-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-210-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-210-1.pdf  use
+d on input line 6207.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[141 <./html_r_files/figure-latex/unnamed-chunk-210-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-212-1.pdf, id=3264, 722.7pt x 252.945p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-212-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-212-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-212-1.pdf  use
+d on input line 6257.
+(pdftex.def)             Requested size: 443.58118pt x 155.2534pt.
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 6270.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[142 <./html_r_files/figure-latex/unnamed-chunk-212-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-214-1.pdf, id=3280, 722.7pt x 144.54pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-214-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-214-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-214-1.pdf  use
+d on input line 6297.
+(pdftex.def)             Requested size: 443.58118pt x 88.71622pt.
+[143 <./html_r_files/figure-latex/unnamed-chunk-214-1.pdf>] [144]
+<html_r_files/figure-latex/unnamed-chunk-216-1.pdf, id=3313, 722.7pt x 289.08pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-216-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-216-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-216-1.pdf  use
+d on input line 6412.
+(pdftex.def)             Requested size: 443.58118pt x 177.43246pt.
+[145]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 6424.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+<html_r_files/figure-latex/unnamed-chunk-219-1.pdf, id=3324, 722.7pt x 289.08pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-219-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-219-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-219-1.pdf  use
+d on input line 6460.
+(pdftex.def)             Requested size: 443.58118pt x 177.43246pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[146 <./html_r_files/figure-latex/unnamed-chunk-216-1.pdf>]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 6465.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+<html_r_files/figure-latex/unnamed-chunk-222-1.pdf, id=3336, 505.89pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-222-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-222-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-222-1.pdf  use
+d on input line 6511.
+(pdftex.def)             Requested size: 443.58667pt x 253.4781pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[147 <./html_r_files/figure-latex/unnamed-chunk-219-1.pdf>]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 6517.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+<html_r_files/figure-latex/unnamed-chunk-224-1.pdf, id=3349, 433.62pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-224-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-224-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-224-1.pdf  use
+d on input line 6545.
+(pdftex.def)             Requested size: 433.63878pt x 216.81938pt.
+[148 <./html_r_files/figure-latex/unnamed-chunk-222-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-226-1.pdf, id=3362, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-226-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-226-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-226-1.pdf  use
+d on input line 6596.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[149 <./html_r_files/figure-latex/unnamed-chunk-224-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-227-1.pdf, id=3377, 361.35pt x 252.945
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-227-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-227-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-227-1.pdf  use
+d on input line 6622.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+<figures/important.png, id=3378, 48.18pt x 48.18pt>
+File: figures/important.png Graphic file (type png)
+<use figures/important.png>
+Package pdftex.def Info: figures/important.png  used on input line 6631.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[150 <./html_r_files/figure-latex/unnamed-chunk-226-1.pdf> <./figures/important
+.png>]
+<html_r_files/figure-latex/unnamed-chunk-230-1.pdf, id=3395, 505.89pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-230-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-230-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-230-1.pdf  use
+d on input line 6674.
+(pdftex.def)             Requested size: 443.58667pt x 253.4781pt.
+
+Underfull \hbox (badness 1874) in paragraph at lines 6719--6720
+[]\T1/lmr/m/n/10 (+20) Semelhante ao ex-em-plo das mé-dias nas doses de ni-trog
+ênio, uti-lizare-mos a função
+ []
+
+
+Overfull \vbox (268.30922pt too high) has occurred while \output is active []
+
+[151 <./html_r_files/figure-latex/unnamed-chunk-227-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-231-1.pdf, id=3410, 469.755pt x 325.21
+5pt>
+File: html_r_files/figure-latex/unnamed-chunk-231-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-231-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-231-1.pdf  use
+d on input line 6729.
+(pdftex.def)             Requested size: 443.57677pt x 307.0916pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[152 <./html_r_files/figure-latex/unnamed-chunk-230-1.pdf>]
+
+LaTeX Warning: Command \' invalid in math mode on input line 6742.
+
+[153 <./html_r_files/figure-latex/unnamed-chunk-231-1.pdf>]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 6772.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[154]
+Underfull \vbox (badness 10000) detected at line 6884
+ []
+
+
+Overfull \vbox (0.82382pt too high) detected at line 6884
+ []
+
+[155]
+<html_r_files/figure-latex/unnamed-chunk-233-1.pdf, id=3447, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-233-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-233-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-233-1.pdf  use
+d on input line 6886.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[156 <./html_r_files/figure-latex/unnamed-chunk-233-1.pdf>] [157] [158]
+CapÃ­tulo 11.
+
+Underfull \hbox (badness 10000) in paragraph at lines 6997--6997
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 6997--6997
+ [][]
+ []
+
+
+Overfull \hbox (92.22595pt too wide) in paragraph at lines 6997--6997
+ []\T1/lmr/bx/n/144 (-20) 11[]
+ []
+
+[159
+
+
+]
+<html_r_files/figure-latex/unnamed-chunk-235-1.pdf, id=3476, 252.945pt x 216.81
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-235-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-235-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-235-1.pdf  use
+d on input line 7043.
+(pdftex.def)             Requested size: 252.94823pt x 216.81276pt.
+[160 <./html_r_files/figure-latex/unnamed-chunk-235-1.pdf>] [161] [162] [163]
+Underfull \vbox (badness 10000) detected at line 7301
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[164]
+Underfull \vbox (badness 10000) detected at line 7361
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[165] [166]
+<html_r_files/figure-latex/unnamed-chunk-247-1.pdf, id=3528, 578.16pt x 578.16p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-247-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-247-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-247-1.pdf  use
+d on input line 7447.
+(pdftex.def)             Requested size: 443.57896pt x 443.57896pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[167]
+<html_r_files/figure-latex/unnamed-chunk-248-1.pdf, id=3535, 578.16pt x 578.16p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-248-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-248-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-248-1.pdf  use
+d on input line 7458.
+(pdftex.def)             Requested size: 443.57896pt x 443.57896pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[168 <./html_r_files/figure-latex/unnamed-chunk-247-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-249-1.pdf, id=3545, 289.08pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-249-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-249-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-249-1.pdf  use
+d on input line 7479.
+(pdftex.def)             Requested size: 289.09251pt x 216.81938pt.
+<html_r_files/figure-latex/unnamed-chunk-250-1.pdf, id=3546, 469.755pt x 505.89
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-250-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-250-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-250-1.pdf  use
+d on input line 7492.
+(pdftex.def)             Requested size: 443.57677pt x 477.69804pt.
+
+Underfull \vbox (badness 4556) has occurred while \output is active []
+
+[169 <./html_r_files/figure-latex/unnamed-chunk-248-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[170 <./html_r_files/figure-latex/unnamed-chunk-249-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-251-1.pdf, id=3569, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-251-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-251-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-251-1.pdf  use
+d on input line 7500.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[171 <./html_r_files/figure-latex/unnamed-chunk-250-1.pdf>] [172 <./html_r_file
+s/figure-latex/unnamed-chunk-251-1.pdf>]
+<figures/Valor_inicial.png, id=3594, 1027.84pt x 577.82542pt>
+File: figures/Valor_inicial.png Graphic file (type png)
+<use figures/Valor_inicial.png>
+Package pdftex.def Info: figures/Valor_inicial.png  used on input line 7567.
+(pdftex.def)             Requested size: 443.57799pt x 249.36823pt.
+[173] [174 <./figures/Valor_inicial.png>]
+<html_r_files/figure-latex/unnamed-chunk-257-1.pdf, id=3608, 469.755pt x 505.89
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-257-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-257-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-257-1.pdf  use
+d on input line 7641.
+(pdftex.def)             Requested size: 443.57677pt x 477.69804pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[175]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[176 <./html_r_files/figure-latex/unnamed-chunk-257-1.pdf>] [177]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[178]
+<html_r_files/figure-latex/unnamed-chunk-262-1.pdf, id=3644, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-262-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-262-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-262-1.pdf  use
+d on input line 7792.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[179 <./html_r_files/figure-latex/unnamed-chunk-262-1.pdf>] [180]
+<html_r_files/figure-latex/unnamed-chunk-265-1.pdf, id=3661, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-265-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-265-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-265-1.pdf  use
+d on input line 7885.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+[181 <./html_r_files/figure-latex/unnamed-chunk-265-1.pdf>] [182
+
+
+]
+CapÃ­tulo 12.
+
+Underfull \hbox (badness 10000) in paragraph at lines 7893--7893
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 7893--7893
+ [][]
+ []
+
+
+Overfull \hbox (92.22595pt too wide) in paragraph at lines 7893--7893
+ []\T1/lmr/bx/n/144 (-20) 12[]
+ []
+
+[183]
+<html_r_files/figure-latex/unnamed-chunk-267-1.pdf, id=3689, 361.35pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-267-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-267-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-267-1.pdf  use
+d on input line 7935.
+(pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+[184 <./html_r_files/figure-latex/unnamed-chunk-267-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-269-1.pdf, id=3700, 361.35pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-269-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-269-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-269-1.pdf  use
+d on input line 7985.
+(pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[185 <./html_r_files/figure-latex/unnamed-chunk-269-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-270-1.pdf, id=3713, 361.35pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-270-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-270-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-270-1.pdf  use
+d on input line 8004.
+(pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+[186 <./html_r_files/figure-latex/unnamed-chunk-270-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-271-1.pdf, id=3729, 361.35pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-271-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-271-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-271-1.pdf  use
+d on input line 8031.
+(pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+
+Overfull \vbox (1.53807pt too high) detected at line 8060
+ []
+
+[187 <./html_r_files/figure-latex/unnamed-chunk-271-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-272-1.pdf, id=3745, 361.35pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-272-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-272-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-272-1.pdf  use
+d on input line 8064.
+(pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+<html_r_files/figure-latex/unnamed-chunk-273-1.pdf, id=3749, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-273-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-273-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-273-1.pdf  use
+d on input line 8097.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+
+Underfull \vbox (badness 2781) has occurred while \output is active []
+
+[188 <./html_r_files/figure-latex/unnamed-chunk-272-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-275-1.pdf, id=3768, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-275-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-275-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-275-1.pdf  use
+d on input line 8135.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+<html_r_files/figure-latex/unnamed-chunk-276-1.pdf, id=3769, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-276-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-276-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-276-1.pdf  use
+d on input line 8156.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+[189 <./html_r_files/figure-latex/unnamed-chunk-273-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[190 <./html_r_files/figure-latex/unnamed-chunk-275-1.pdf> <./html_r_files/figu
+re-latex/unnamed-chunk-276-1.pdf>]
+File: figures/head.png Graphic file (type png)
+<use figures/head.png>
+Package pdftex.def Info: figures/head.png  used on input line 8213.
+(pdftex.def)             Requested size: 25.00009pt x 28.36032pt.
+[191]
+<html_r_files/figure-latex/unnamed-chunk-280-1.pdf, id=3808, 469.755pt x 325.21
+5pt>
+File: html_r_files/figure-latex/unnamed-chunk-280-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-280-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-280-1.pdf  use
+d on input line 8244.
+(pdftex.def)             Requested size: 443.57677pt x 307.0916pt.
+[192 <./html_r_files/figure-latex/unnamed-chunk-280-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[193] [194] [195] [196] [197]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 8545.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[198]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 8569.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+<html_r_files/figure-latex/unnamed-chunk-292-1.pdf, id=3893, 289.08pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-292-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-292-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-292-1.pdf  use
+d on input line 8592.
+(pdftex.def)             Requested size: 289.09251pt x 289.09251pt.
+[199] [200 <./html_r_files/figure-latex/unnamed-chunk-292-1.pdf>] [201] [202]
+Underfull \vbox (badness 10000) detected at line 8925
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 8925
+ []
+
+[203]
+Underfull \vbox (badness 10000) detected at line 8925
+ []
+
+
+Overfull \vbox (2.21272pt too high) detected at line 8925
+ []
+
+[204]
+Underfull \vbox (badness 10000) detected at line 8925
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 8925
+ []
+
+[205] [206]
+CapÃ­tulo 13.
+
+Underfull \hbox (badness 10000) in paragraph at lines 8930--8930
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 8930--8930
+ [][]
+ []
+
+
+Overfull \hbox (92.22595pt too wide) in paragraph at lines 8930--8930
+ []\T1/lmr/bx/n/144 (-20) 13[]
+ []
+
+[207
+
+
+]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 8959.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[208]
+<html_r_files/figure-latex/unnamed-chunk-301-1.pdf, id=3962, 505.89pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-301-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-301-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-301-1.pdf  use
+d on input line 8995.
+(pdftex.def)             Requested size: 443.58667pt x 316.84764pt.
+File: figures/curiosity.png Graphic file (type png)
+<use figures/curiosity.png>
+Package pdftex.def Info: figures/curiosity.png  used on input line 9002.
+(pdftex.def)             Requested size: 24.99806pt x 33.26881pt.
+[209 <./html_r_files/figure-latex/unnamed-chunk-301-1.pdf>] [210] [211]
+<html_r_files/figure-latex/unnamed-chunk-305-1.pdf, id=3998, 469.755pt x 325.21
+5pt>
+File: html_r_files/figure-latex/unnamed-chunk-305-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-305-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-305-1.pdf  use
+d on input line 9092.
+(pdftex.def)             Requested size: 443.57677pt x 307.0916pt.
+[212 <./html_r_files/figure-latex/unnamed-chunk-305-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-306-1.pdf, id=4011, 867.24pt x 578.16p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-306-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-306-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-306-1.pdf  use
+d on input line 9128.
+(pdftex.def)             Requested size: 443.58339pt x 295.72224pt.
+<html_r_files/figure-latex/unnamed-chunk-307-1.pdf, id=4012, 216.81pt x 216.81p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-307-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-307-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-307-1.pdf  use
+d on input line 9146.
+(pdftex.def)             Requested size: 216.81938pt x 216.81938pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[213 <./html_r_files/figure-latex/unnamed-chunk-306-1.pdf>] [214 <./html_r_file
+s/figure-latex/unnamed-chunk-307-1.pdf>]
+File: figures/curiosity.png Graphic file (type png)
+<use figures/curiosity.png>
+Package pdftex.def Info: figures/curiosity.png  used on input line 9216.
+(pdftex.def)             Requested size: 24.99806pt x 33.26881pt.
+[215]
+<html_r_files/figure-latex/unnamed-chunk-312-1.pdf, id=4048, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-312-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-312-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-312-1.pdf  use
+d on input line 9237.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[216 <./html_r_files/figure-latex/unnamed-chunk-312-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-313-1.pdf, id=4061, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-313-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-313-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-313-1.pdf  use
+d on input line 9278.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+<html_r_files/figure-latex/unnamed-chunk-314-1.pdf, id=4062, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-314-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-314-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-314-1.pdf  use
+d on input line 9315.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[217 <./html_r_files/figure-latex/unnamed-chunk-313-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-315-1.pdf, id=4074, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-315-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-315-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-315-1.pdf  use
+d on input line 9334.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[218 <./html_r_files/figure-latex/unnamed-chunk-314-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-316-1.pdf, id=4087, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-316-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-316-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-316-1.pdf  use
+d on input line 9364.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[219 <./html_r_files/figure-latex/unnamed-chunk-315-1.pdf>] [220 <./html_r_file
+s/figure-latex/unnamed-chunk-316-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-317-1.pdf, id=4133, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-317-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-317-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-317-1.pdf  use
+d on input line 9415.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[221 <./html_r_files/figure-latex/unnamed-chunk-317-1.pdf>] [222
+
+
+]
+CapÃ­tulo 14.
+
+Underfull \hbox (badness 10000) in paragraph at lines 9418--9418
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 9418--9418
+ [][]
+ []
+
+
+Overfull \hbox (92.22595pt too wide) in paragraph at lines 9418--9418
+ []\T1/lmr/bx/n/144 (-20) 14[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[223]
+<html_r_files/figure-latex/unnamed-chunk-318-1.pdf, id=4158, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-318-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-318-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-318-1.pdf  use
+d on input line 9465.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) detected at line 9503
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[224 <./html_r_files/figure-latex/unnamed-chunk-318-1.pdf>] [225]
+<html_r_files/figure-latex/unnamed-chunk-323-1.pdf, id=4178, 361.35pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-323-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-323-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-323-1.pdf  use
+d on input line 9611.
+(pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[226] [227 <./html_r_files/figure-latex/unnamed-chunk-323-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-326-1.pdf, id=4198, 361.35pt x 289.08p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-326-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-326-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-326-1.pdf  use
+d on input line 9692.
+(pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[228]
+Underfull \vbox (badness 10000) detected at line 9751
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[229 <./html_r_files/figure-latex/unnamed-chunk-326-1.pdf>] [230]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 9833.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+
+Underfull \vbox (badness 6625) has occurred while \output is active []
+
+[231]
+<html_r_files/figure-latex/unnamed-chunk-331-1.pdf, id=4232, 578.16pt x 578.16p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-331-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-331-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-331-1.pdf  use
+d on input line 9846.
+(pdftex.def)             Requested size: 443.57896pt x 443.57896pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[232] [233 <./html_r_files/figure-latex/unnamed-chunk-331-1.pdf>] [234] [235]
+<html_r_files/figure-latex/unnamed-chunk-339-1.pdf, id=4276, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-339-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-339-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-339-1.pdf  use
+d on input line 10016.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Overfull \hbox (30.00269pt too wide) in paragraph at lines 10016--10017
+[][] 
+ []
+
+[236 <./html_r_files/figure-latex/unnamed-chunk-339-1.pdf>] [237]
+Underfull \vbox (badness 10000) detected at line 10143
+ []
+
+
+Overfull \vbox (2.21272pt too high) detected at line 10143
+ []
+
+[238] [239]
+<html_r_files/figure-latex/unnamed-chunk-343-1.pdf, id=4318, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-343-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-343-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-343-1.pdf  use
+d on input line 10245.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[240 <./html_r_files/figure-latex/unnamed-chunk-343-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-344-1.pdf, id=4337, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-344-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-344-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-344-1.pdf  use
+d on input line 10274.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+<html_r_files/figure-latex/unnamed-chunk-345-1.pdf, id=4338, 289.08pt x 252.945
+pt>
+File: html_r_files/figure-latex/unnamed-chunk-345-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-345-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-345-1.pdf  use
+d on input line 10298.
+(pdftex.def)             Requested size: 289.0837pt x 252.94823pt.
+[241 <./html_r_files/figure-latex/unnamed-chunk-344-1.pdf>] [242 <./html_r_file
+s/figure-latex/unnamed-chunk-345-1.pdf>]
+Underfull \vbox (badness 1881) has occurred while \output is active []
+
+[243]
+<html_r_files/figure-latex/unnamed-chunk-349-1.pdf, id=4390, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-349-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-349-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-349-1.pdf  use
+d on input line 10475.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[244]
+<html_r_files/figure-latex/unnamed-chunk-350-1.pdf, id=4398, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-350-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-350-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-350-1.pdf  use
+d on input line 10498.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[245 <./html_r_files/figure-latex/unnamed-chunk-349-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-351-1.pdf, id=4413, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-351-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-351-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-351-1.pdf  use
+d on input line 10524.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[246 <./html_r_files/figure-latex/unnamed-chunk-350-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-352-1.pdf, id=4426, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-352-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-352-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-352-1.pdf  use
+d on input line 10542.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[247 <./html_r_files/figure-latex/unnamed-chunk-351-1.pdf> <./html_r_files/figu
+re-latex/unnamed-chunk-352-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-353-1.pdf, id=4450, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-353-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-353-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-353-1.pdf  use
+d on input line 10565.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+<html_r_files/figure-latex/unnamed-chunk-354-1.pdf, id=4451, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-354-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-354-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-354-1.pdf  use
+d on input line 10587.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[248 <./html_r_files/figure-latex/unnamed-chunk-353-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-355-1.pdf, id=4465, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-355-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-355-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-355-1.pdf  use
+d on input line 10610.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[249 <./html_r_files/figure-latex/unnamed-chunk-354-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-356-1.pdf, id=4482, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-356-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-356-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-356-1.pdf  use
+d on input line 10631.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[250 <./html_r_files/figure-latex/unnamed-chunk-355-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-357-1.pdf, id=4496, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-357-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-357-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-357-1.pdf  use
+d on input line 10654.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[251 <./html_r_files/figure-latex/unnamed-chunk-356-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-358-1.pdf, id=4514, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-358-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-358-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-358-1.pdf  use
+d on input line 10674.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+LaTeX Warning: Reference `eu_eqn' on page 252 undefined on input line 10679.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[252 <./html_r_files/figure-latex/unnamed-chunk-357-1.pdf> <./html_r_files/figu
+re-latex/unnamed-chunk-358-1.pdf>] [253] [254]
+<html_r_files/figure-latex/unnamed-chunk-363-1.pdf, id=4555, 578.16pt x 578.16p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-363-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-363-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-363-1.pdf  use
+d on input line 10806.
+(pdftex.def)             Requested size: 443.57896pt x 443.57896pt.
+[255 <./html_r_files/figure-latex/unnamed-chunk-363-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-366-1.pdf, id=4569, 722.7pt x 289.08pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-366-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-366-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-366-1.pdf  use
+d on input line 10886.
+(pdftex.def)             Requested size: 443.58118pt x 177.43246pt.
+[256]
+Underfull \hbox (badness 1502) in paragraph at lines 10922--10923
+[]\T1/lmr/m/n/10 (+20) Para obter os val-ores acima para cada var-iável do mod-
+elo basta uti-lizar a função
+ []
+
+[257 <./html_r_files/figure-latex/unnamed-chunk-366-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-368-1.pdf, id=4595, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-368-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-368-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-368-1.pdf  use
+d on input line 10963.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+[258 <./html_r_files/figure-latex/unnamed-chunk-368-1.pdf>]
+File: figures/tip.png Graphic file (type png)
+<use figures/tip.png>
+Package pdftex.def Info: figures/tip.png  used on input line 10997.
+(pdftex.def)             Requested size: 25.00006pt x 25.00006pt.
+[259]
+Underfull \vbox (badness 10000) detected at line 11092
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 11092
+ []
+
+[260]
+<html_r_files/figure-latex/unnamed-chunk-372-1.pdf, id=4626, 867.24pt x 361.35p
+t>
+File: html_r_files/figure-latex/unnamed-chunk-372-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-372-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-372-1.pdf  use
+d on input line 11108.
+(pdftex.def)             Requested size: 443.58339pt x 184.8264pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[261] [262 <./html_r_files/figure-latex/unnamed-chunk-372-1.pdf>]
+<html_r_files/figure-latex/unnamed-chunk-376-1.pdf, id=4646, 722.7pt x 361.35pt
+>
+File: html_r_files/figure-latex/unnamed-chunk-376-1.pdf Graphic file (type pdf)
+
+<use html_r_files/figure-latex/unnamed-chunk-376-1.pdf>
+Package pdftex.def Info: html_r_files/figure-latex/unnamed-chunk-376-1.pdf  use
+d on input line 11200.
+(pdftex.def)             Requested size: 443.58118pt x 221.79059pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[263] [264 <./html_r_files/figure-latex/unnamed-chunk-376-1.pdf>]
+CapÃ­tulo 15.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11203--11203
+ [][][]\T1/lmr/bx/n/10 (+20) Capítulo[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 11203--11203
+ [][]
+ []
+
+
+Overfull \hbox (92.22595pt too wide) in paragraph at lines 11203--11203
+ []\T1/lmr/bx/n/144 (-20) 15[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[265
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 11261--11263
+\T1/lmr/m/n/10 (+20) / / books . google . com . br / books ? hl = pt -[] BR % 7
+B / & % 7Dlr = %7B / & % 7Did = uSReBAAAQBAJ % 7B /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11261--11263
+\T1/lmr/m/n/10 (+20) & % 7Doi = fnd % 7B / & % 7Dpg = PT12 % 7B / & % 7Dots = P
+9bwDDSasT % 7B / & % 7Dsig = 4RbKqw -[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[266]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[267]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[268]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[269]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[270] [271] [272
+
+
+]
+ApÃªndice A.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11530--11530
+ [][][]\T1/lmr/bx/n/10 (+20) Apêndice[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 11530--11530
+ [][]
+ []
+
+
+Overfull \hbox (53.34734pt too wide) in paragraph at lines 11530--11530
+ []\T1/lmr/bx/n/144 (-20) A[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 11588
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[273] [274] [275] [276]
+ApÃªndice B.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11748--11748
+ [][][]\T1/lmr/bx/n/10 (+20) Apêndice[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 11748--11748
+ [][]
+ []
+
+
+Overfull \hbox (46.3267pt too wide) in paragraph at lines 11748--11748
+ []\T1/lmr/bx/n/144 (-20) B[]
+ []
+
+[277
+
+
+] [278]
+runsystem(makeindex -s pyro html_r.idx)...executed safely (allowed).
+
+(./html_r.ind
+ApÃªndice C.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--1
+ [][][]\T1/lmr/bx/n/10 (+20) Apêndice[]
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1--1
+ [][]
+ []
+
+
+Overfull \hbox (48.12595pt too wide) in paragraph at lines 1--1
+ []\T1/lmr/bx/n/144 (-20) C[]
+ []
+
+[279
+
+
+
+
+]) [280]
+runsystem(makeindex -s pyro function.idx)...executed safely (allowed).
+
+No file function.ind.
+
+Package caption Warning: Unused \captionsetup[table] on input line 127.
+See the caption package documentation for explanation.
+
+(./html_r.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 17505 strings out of 481704
- 311845 string characters out of 5931872
- 719305 words of memory out of 5000000
- 34443 multiletter control sequences out of 15000+600000
- 535464 words of font info for 32 fonts, out of 8000000 for 9000
+ 36209 strings out of 481290
+ 705078 string characters out of 5915652
+ 1181789 words of memory out of 5000000
+ 50954 multiletter control sequences out of 15000+600000
+ 545710 words of font info for 312 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,0n,50p,805b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 111i,17n,116p,2772b,912s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{estimativa-dos-coeficientes-de-correlacao} has be
+en referenced but does not exist, replaced by a fixed one
 
-No pages of output.
+pdfTeX warning (dest): name{analise-tradicional} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{analise-de-trilha} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{experimentos-bifatoriais} has been referenced but d
+oes not exist, replaced by a fixed one
+
+{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
+}{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-maths
+y.enc}{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-
+mathit.enc}{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/l
+m/lm-rm.enc}{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/
+lm/lm-mathex.enc}{c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/d
+vips/lm/lm-ts1.enc}<c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/typ
+e1/public/lm/lmbsy5.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/font
+s/type1/public/lm/lmbsy7.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist
+/fonts/type1/public/lm/lmbx10.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf
+-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/
+texmf-dist/fonts/type1/public/lm/lmbx7.pfb><c:/Users/tiago/AppData/Roaming/Tiny
+TeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/tiago/AppData/Roamin
+g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/tiago/AppData/R
+oaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/tiago/AppD
+ata/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/Users/tiago/
+AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/ti
+ago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/Us
+ers/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmib7.pfb><
+c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.p
+fb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr
+12.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm
+/lmr17.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publi
+c/lm/lmr5.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/pu
+blic/lm/lmr6.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1
+/public/lm/lmr7.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts/ty
+pe1/public/lm/lmr8.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/fonts
+/type1/public/lm/lmri10.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-dist/
+fonts/type1/public/lm/lmri12.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/texmf-
+dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/tiago/AppData/Roaming/TinyTeX/te
+xmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/tiago/AppData/Roaming/TinyT
+eX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/tiago/AppData/Roaming/T
+inyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/tiago/AppData/Roam
+ing/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/tiago/AppData
+/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+Output written on html_r.pdf (282 pages, 24777487 bytes).
+PDF statistics:
+ 6163 PDF objects out of 6186 (max. 8388607)
+ 4296 compressed objects within 43 object streams
+ 1005 named destinations out of 1200 (max. 500000)
+ 74274 words of extra memory for PDF output out of 74296 (max. 10000000)
+
+
+! '"C:/Users/tiago/AppData/Roaming/TinyTeX/bin/win32/makeindex"' não é reconhecido como um comando interno
+! ou externo, um programa operável ou um arquivo em lotes.
+! '"C:/Users/tiago/AppData/Roaming/TinyTeX/bin/win32/makeindex"' não é reconhecido como um comando interno
+! ou externo, um programa operável ou um arquivo em lotes.
+! system returned with code 1
+! system returned with code 1

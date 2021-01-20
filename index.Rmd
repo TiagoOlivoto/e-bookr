@@ -23,9 +23,7 @@ knitr::opts_chunk$set(cache = TRUE, comment = "#", fig.align="center", collapse 
 
 # Prefácio {-}
 
-<img style="float: right;" src="figures/cover.png" width="350" height="450" >
-
-Atualmente na área das Ciências Agrárias identifica-se o uso de diversos sofwares para a análise estatística de dados originados em coletas de experimentos. Esta miscelânea de sofwares pode confundir o pesquisador no momento de escolher qual é o software que será adotado para suas análises estatísticas, já que existem aqueles que devem ser adquiridas licenças para uso e nem todos disponibilizam opções de todos os métodos de análise estatística de dados.
+<a href="https://github.com/TiagoOlivoto/e-bookr/blob/master/data/pdf_r.pdf"><img class="cover" src="figures/cover.png" alt="Baixe o pdf deste material" width="200" height="303" /></a>Atualmente na área das Ciências Agrárias identifica-se o uso de diversos sofwares para a análise estatística de dados originados em coletas de experimentos. Esta miscelânea de sofwares pode confundir o pesquisador no momento de escolher qual é o software que será adotado para suas análises estatísticas, já que existem aqueles que devem ser adquiridas licenças para uso e nem todos disponibilizam opções de todos os métodos de análise estatística de dados.
 
 Dentre esses o [Software R](https://www.r-project.org/) destaca-se por ser uma linguagem de programação de código aberto *open source* basicamente destinado para computação estatística e gráficos. Com a proposta de organização de um curso e capacitação de acadêmicos e professores envolvidos em Pós-Graduação na Área de Ciências Agrárias, os Drs. Bruno Giacomini Sari e Tiago Olivoto propuseram-se a elaborar um documento onde oferecem uma excelente apresentação e introdução ao ambiente R, bem como diversas aplicações de abordagens estatísticas em experimentos agrícolas.
 

@@ -15,6 +15,8 @@ Anteriomente mencionamos que a manipulação dos dados com o pacote **dplyr** é
 
 * Criando o conjunto de dados
 ```{r}
+library(tidyverse)
+library(metan)
 set.seed(1)
 data <- tibble(x = runif(100, 0, 10),
                y = runif(100, 0, 10))
@@ -116,6 +118,7 @@ O pacote [`metan`](https://tiagoolivoto.github.io/metan/) fornece funções úte
 O conjunto de dados **maize** será utilizado como exemplo para as operações de manipulação de dados. Este arquivo em formato `.xlsx` está hospedado em https://github.com/TiagoOlivoto/e-bookr/tree/master/data e pode ser carregado no ambiente R com a função `import()` do pacote [rio](https://cran.r-project.org/web/packages/rio/index.html).
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
+library(rio)
 url <- "https://github.com/TiagoOlivoto/e-bookr/raw/master/data/data_R.xlsx"
 maize <- import(url,
                 sheet = "maize", 
@@ -440,6 +443,7 @@ column_to_first(maize, CESP, DIES)
 Para obter os níveis e o tamanho dos níveis de um fator, as funções [`get_levels()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) e [`get_level_size()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html) pode ser usado.
 \indf{get\_levels}\indf{get\_levels\_size}
 ```{r}
+library(metan)
 get_levels(maize, AMB)
 get_level_size(maize, AMB)
 ```
@@ -515,53 +519,36 @@ round_cols(maize, MGRA, MMG, digits = 1)
 
 ### Extraindo e substituindo números
 
-As funções [`extract_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_number()`](https://tiagoolivoto.github.io/metan/ reference / utils_num_str.html) pode ser usado para extrair ou substituir números. Como exemplo, extrairemos o número de cada genótipo em `data_g`. Por padrão, os números extraídos são colocados como uma nova variável chamada `new_var` após a última coluna dos dados.\indf{extract\_number}\indf{replace\_number}
+As funções [`extract_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_number()`](https://tiagoolivoto.github.io/metan/ reference / utils_num_str.html) pode ser usado para extrair ou substituir números. Como exemplo, extrairemos o número de cada genótipo em `maize` criando uma nova coluna, `HIB_NUM`, inserindo após a coluna `HIB`.
 
 ```{r}
-extract_number(maize, HIB, .after = "HIB")
+maize %>% add_cols(HIB_NUM = extract_number(HIB), .after = HIB)
 ```
 
-Se o argumento `drop` estiver definido como `TRUE`, apenas a nova variável será mantida e todas as outras serão descartadas.
-
-```{r}
-extract_number(maize, HIB, drop = TRUE)
-```
-
-Para extrair os resultados em um vetor, use o argumento `pull = TRUE`. Isso é particularmente útil quando `extract_ *` ou `replace_ *` são usados em uma função como [`add_cols()`](https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html).
-
-
-```{r}
-extract_number(maize, HIB, pull = TRUE)
-```
-\indf{extract\_number}
 
 Para substituir números de uma determinada coluna por uma substituição especificada, use [`replace_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html). Por padrão, os números são substituídos por "". O argumento `drop` e` pull` também podem ser usados, como mostrado acima.\indf{replace\_number}
 
 ```{r}
 replace_number(maize, HIB)
 replace_number(maize,
-               var = REP,
+               REP,
                pattern = "^I$",
-               replacement = "REP_1",
-               new_var = R_ONE,
-               .after = "REP")
+               replacement = "REP_1")
 ```
 
 ### Extraindo, substituindo e removendo strings
 As funções [`extract_string()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_string()`](https://tiagoolivoto.github.io/metan/ reference / utils_num_str.html) são usados no mesmo contexto de [`extract_number()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html) e [`replace_number()`](https : //tiagoolivoto.github.io/metan/reference/utils_num_str.html), mas para lidar com seqüências de caracteres.
 
 ```{r}
-extract_string(maize, HIB, .after = "HIB")
+extract_string(maize, HIB)
 ```
 \indf{extract\_string}
 
 Para substituir strings, podemos usar a função [`replace_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html).
 ```{r}
 replace_string(maize,
-               var = HIB,
-               new_var = HIBRIDO,
-               replacement = "HIB_",
-               .after = "HIB")
+               HIB,
+               replacement = "HIB_")
 ```
 
 Para remover todas as seqüências de caracteres de um quadro de dados, use [`remove_strings()`](https://tiagoolivoto.github.io/metan/reference/utils_num_str.html).
