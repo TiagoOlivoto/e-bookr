@@ -68,6 +68,8 @@ O **tidyverse** é uma coleção de pacotes R projetados para a ciência de dado
 * **tidyr**, para organização de dados.
 * **tibble**, para criação de tibbles.
 
+## Pacotes necessários
+
 Praticamente todas as rotinas realizadas no R são baseadas em bibliotecas de códigos. Com a manipulaçao de pacotes não seria diferente. O pacote [pacman](https://github.com/trinker/pacman)^[https://github.com/trinker/pacman] é uma ferramenta de gerenciamento de pacotes R que combina a funcionalidade das funções relacionadas à biblioteca base em funções intuitivamente nomeadas, reduzindo o código para executar simultaneamente várias ações. Uma das funções mais úteis do pacote pacman é a `p_load()`\indf{p\_load} (*package load*). Esta função checa se um pacote está instalado e em caso afirmativo, carrega-o como se a função `library()` tivesse sido usada. Caso o pacote não esteja instalado, ela primeiro o instala-rá antes de carregá-lo. Vamos, agora, instalar (para quem está utilizando o R pela primeira vez) ou carregar (para quem já tem instalado) os pacotes utilizados neste material.
 
 ```{r, message=FALSE, warning=FALSE}

@@ -1,6 +1,6 @@
 # Construindo uma tabela {#dataframe}
 
-Com o que foi visto até agora, é possível construir uma tabela para armazenar dados ou resultados gerados em uma análise. São inumeras as formas de fazer isso, porém vamos mostrar apenas uma (devido ao pouco tempo). Utilizaremos as funções `matrix()` \indf{matrix} e `data.frame()` \indf{data.frame} para a tabela, e a função `names()` para dar nomeas as colunas. A construção de tabelas é muito util para armazenar resultados na área de trabalho.
+Com o que foi visto até agora, é possível construir uma tabela para armazenar dados ou resultados gerados em uma análise. São inumeras as formas de fazer isso, porém vamos mostrar apenas uma (devido ao pouco tempo). Utilizaremos as funções `matrix()` \indf{matrix} e `data.frame()` \indf{data.frame} para a tabela, e a função `names()` para dar nome as colunas. A construção de tabelas é muito util para armazenar resultados na área de trabalho.
 
 ```{r echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
 Ex.gen <- as.data.frame(matrix(0, ncol = 3, nrow = 20))

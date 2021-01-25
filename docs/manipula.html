@@ -143,7 +143,9 @@
 <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols()</a></code>: adiciona uma ou mais colunas a um conjunto de dados existente. Se as colunas <code>.before</code> ou <code>.after</code> especificadas não existirem, as colunas serão anexadas no final dos dados. Retorna um conjunto de dados com todas as colunas originais em <code>.data</code> mais as colunas declaradas em <code>...</code>. Em <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols()</a></code>, as colunas em <code>.data</code> estão disponíveis para as expressões. Portanto, é possível adicionar uma coluna com base nos dados existentes.
 </li>
 <li>
-<code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_rows()</a></code>: adiciona uma ou mais linhas a um conjunto de dados existente. Se não houver linhas especificadas <code>.before</code> ou <code>.after</code>, as linhas serão anexadas no final dos dados. Retorna um conjunto de dados com todas as linhas originais em .data mais as linhas declaradas em <code>...</code>.
+<code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_rows()</a></code>: adiciona uma ou mais linhas a um conjunto de dados existente. Se não houver linhas especificadas <code>.before</code> ou <code>.after</code>, as linhas serão anexadas no final dos dados. Retorna um conjunto de dados com todas as linhas originais em .data mais as linhas declaradas em <code>...</code>.</li>
+<li>
+<code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_prefix()</a></code> e <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_suffix()</a></code>: adicionam prefixos e sufixos, respectivamente, nos nomes das variáveis selecionadas.
 </li>
 <li>
 <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">all_pairs()</a></code>: obtém todos os pares possíveis entre os níveis de um fator.
@@ -167,7 +169,7 @@
 <code>columns_to_last()</code>: move as colunas para as últimas posições em <code>.data</code>.
 </li>
 <li>
-<code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code>: concatena colunas de um conjunto de dados. Se <code>drop = TRUE</code>, as variáveis existentes são descartadas. Se <code>pull = TRUE</code>, a variável concatenada é extraída para um vetor. Isso é especialmente útil ao usar concatenar para adicionar colunas a um conjunto de dados com <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols()</a></code>.
+<code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code>: concatena colunas de um conjunto de dados.
 </li>
 <li>
 <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">get_levels()</a></code>: obtém os níveis de um fator.
@@ -208,11 +210,11 @@
 </ol>
 <ul>
 <li>
-<code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">all_lower_case()</a></code>: converte todas as seqüências não numéricas de um conjunto de dados para minúsculas (“Env” para “env”). </li>
+<code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">all_lower_case()</a></code>: converte todas as sequências não numéricas de um conjunto de dados para minúsculas (“Env” para “env”). </li>
 <li>
-<code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">all_upper_case()</a></code>: converte todas as seqüências não numéricas de um conjunto de dados para maiúsculas (por exemplo, “Env” para “ENV”).</li>
+<code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">all_upper_case()</a></code>: converte todas as sequências não numéricas de um conjunto de dados para maiúsculas (por exemplo, “Env” para “ENV”).</li>
 <li>
-<code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">all_title_case()</a></code>: converta todas as seqüências não numéricas de um conjunto de dados em maiúsculas e minúsculas (por exemplo, “ENV” para “Env”).</li>
+<code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">all_title_case()</a></code>: converta todas as sequências não numéricas de um conjunto de dados em maiúsculas e minúsculas (por exemplo, “ENV” para “Env”).</li>
 <li>
 <code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">extract_number()</a></code>: extrai o(s) número(s) de uma sequência de caracteres.</li>
 <li>
@@ -441,7 +443,7 @@
 <span class="co"># 10 A1     3.02  1.6   53.9</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
 <ul>
-<li>** Selecionando variáveis que começam com um prefixo <em>E NÃO</em> terminam com um sufixo.**</li>
+<li><strong>Selecionando variáveis que começam com um prefixo <em>E NÃO</em> terminam com um sufixo.</strong></li>
 </ul>
 <p>Também podemos obter a diferença entre a letra inicial “A” e a letra final “S”, ou seja, variáveis que começam com “C” e não terminam com “D”.</p>
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
@@ -563,7 +565,8 @@
 <span class="co"># 10  16.3  53.9 250.    582</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
 <ul>
-<li>**Selecione variáveis com largura menor que *n**.</li>
+<li>
+<strong>Selecione variáveis com largura menor que <em>n</em></strong>.</li>
 </ul>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">select_cols</a></span><span class="op">(</span><span class="va">data_vars</span>, <span class="fu"><a href="https://rdrr.io/pkg/metan/man/Select_helper.html">width_less_than</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span>
@@ -809,7 +812,7 @@
 <code class="sourceCode R">
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols</a></span><span class="op">(</span><span class="va">maize</span>,
          PRE_2 <span class="op">=</span> <span class="va">AIES</span><span class="op">/</span><span class="va">APLA</span>,
-         .after <span class="op">=</span> <span class="st">"REP"</span><span class="op">)</span>
+         .after <span class="op">=</span> <span class="va">REP</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 11</span>
 <span class="co">#    AMB   HIB   REP   PRE_2  APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -839,9 +842,9 @@
 <h3>
 <span class="header-section-number">7.1.6</span> Concatenar colunas<a class="anchor" aria-label="anchor" href="#concatenar-colunas"><i class="fas fa-link"></i></a>
 </h3>
-<p>A função <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code> pode ser usada para concatenar várias colunas de um conjunto de dados. <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code> retorna um quadro de dados com todas as colunas originais em <code>.data</code> mais a variável concatenada, após a última coluna. Para escolher a posição da nova variável, use o argumento <code>.after</code> ou<code>.before</code>, como a seguir.</p>
+<p>A função <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code> pode ser usada para concatenar várias colunas de um conjunto de dados. <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code> retorna um quadro de dados com todas as colunas originais em <code>.data</code> mais a variável concatenada, após a última coluna, nomeada como <code>new_var</code>. Para escolher a posição da nova variável, use o argumento <code>.after</code> ou<code>.before</code>, como a seguir.</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">:</span><span class="va">REP</span>, .after <span class="op">=</span> <span class="st">"REP"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">:</span><span class="va">REP</span>, .after <span class="op">=</span> <span class="va">REP</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 11</span>
 <span class="co">#    AMB   HIB   REP   new_var   APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -856,25 +859,21 @@
 <span class="co">#  9 A1    H1    II    A1_H1_II  3.1   1.78  13.6  50.8 187.   348.   538</span>
 <span class="co"># 10 A1    H1    II    A1_H1_II  3.02  1.6   16.3  53.9 250.   430.   582</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
-<p>Para eliminar as variáveis existentes e manter apenas a coluna concatenada, use o argumento <code>drop = TRUE</code>. Para usar <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>concatenate()</code></a> dentro de uma determinada função como <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>add_cols()</code></a> use o argumento <code>pull = TRUE</code> para extrair os resultados para um vetor.</p>
+<p><code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate()</a></code> também pode ser utilizada dentro de <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols()</a></code> para mutar um conjunto de dados. Para isso, é preciso utilizar o argumento <code>pull = TRUE</code> para que o valor concatenado seja exibido como um vetor. Note que agora o argumento <code>.after</code> é utilizado dentro da função <code><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols()</a></code>.</p>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">:</span><span class="va">REP</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 1</span>
-<span class="co">#    new_var </span>
-<span class="co">#    &lt;chr&gt;   </span>
-<span class="co">#  1 A1_H1_I </span>
-<span class="co">#  2 A1_H1_I </span>
-<span class="co">#  3 A1_H1_I </span>
-<span class="co">#  4 A1_H1_I </span>
-<span class="co">#  5 A1_H1_I </span>
-<span class="co">#  6 A1_H1_II</span>
-<span class="co">#  7 A1_H1_II</span>
-<span class="co">#  8 A1_H1_II</span>
-<span class="co">#  9 A1_H1_II</span>
-<span class="co"># 10 A1_H1_II</span>
-<span class="co"># # ... with 770 more rows</span>
-<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">:</span><span class="va">REP</span>, pull <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co"># [1] "A1_H1_I"  "A1_H1_I"  "A1_H1_I"  "A1_H1_I"  "A1_H1_I"  "A1_H1_II"</span></code></pre></div>
+<code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols</a></span><span class="op">(</span>AMB_REP <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">concatenate</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">AMB</span><span class="op">:</span><span class="va">REP</span>, pull <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+           .after <span class="op">=</span> <span class="va">REP</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 11</span>
+<span class="co">#   AMB   HIB   REP   AMB_REP   APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
+<span class="co">#   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 A1    H1    I     A1_H1_I   2.45  2.39  16.9  52.1  228.  375.   609</span>
+<span class="co"># 2 A1    H1    I     A1_H1_I   2.5   1.43  14.4  50.7  187.  437.   427</span>
+<span class="co"># 3 A1    H1    I     A1_H1_I   2.69  1.52  16.5  54.7  230.  464.   497</span>
+<span class="co"># 4 A1    H1    I     A1_H1_I   2.8   1.64  16.8  52.0  213.  408.   523</span>
+<span class="co"># 5 A1    H1    I     A1_H1_I   2.62  1.55  15.9  51.6  224.  406.   551</span>
+<span class="co"># 6 A1    H1    II    A1_H1_II  2.12  1.8   15    51.4  203.  383.   529</span></code></pre></div>
 </div>
 <div id="formatar-nomes-de-coluna" class="section level3" number="7.1.7">
 <h3>
@@ -882,51 +881,36 @@
 </h3>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_lower()</code></a>, <a href="https://tiagoolivoto.github.io/metan/reference%20/utils_rows_cols.html"><code>colnames_to_upper()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>colnames_to_title()</code></a> podem ser usados para converter nomes de colunas em maiúsculas, minúsculas ou em formato de título, respectivamente .  </p>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">colnames_to_lower</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 10</span>
-<span class="co">#    amb   hib   rep    apla  aies  cesp  dies  mgra   mmg  ngra</span>
-<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1 A1    H1    I      2.45  2.39  16.9  52.1 228.   375.   609</span>
-<span class="co">#  2 A1    H1    I      2.5   1.43  14.4  50.7 187.   437.   427</span>
-<span class="co">#  3 A1    H1    I      2.69  1.52  16.5  54.7 230.   464.   497</span>
-<span class="co">#  4 A1    H1    I      2.8   1.64  16.8  52.0 213.   408.   523</span>
-<span class="co">#  5 A1    H1    I      2.62  1.55  15.9  51.6 224.   406.   551</span>
-<span class="co">#  6 A1    H1    II     2.12  1.8   15    51.4 203.   383.   529</span>
-<span class="co">#  7 A1    H1    II     3.15  1.78  10.9  41.9  75.2  256.   294</span>
-<span class="co">#  8 A1    H1    II     2.97  1.84  15    53.4 204.   387.   528</span>
-<span class="co">#  9 A1    H1    II     3.1   1.78  13.6  50.8 187.   348.   538</span>
-<span class="co"># 10 A1    H1    II     3.02  1.6   16.3  53.9 250.   430.   582</span>
-<span class="co"># # ... with 770 more rows</span>
-<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">colnames_to_upper</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 10</span>
-<span class="co">#    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
-<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1 A1    H1    I      2.45  2.39  16.9  52.1 228.   375.   609</span>
-<span class="co">#  2 A1    H1    I      2.5   1.43  14.4  50.7 187.   437.   427</span>
-<span class="co">#  3 A1    H1    I      2.69  1.52  16.5  54.7 230.   464.   497</span>
-<span class="co">#  4 A1    H1    I      2.8   1.64  16.8  52.0 213.   408.   523</span>
-<span class="co">#  5 A1    H1    I      2.62  1.55  15.9  51.6 224.   406.   551</span>
-<span class="co">#  6 A1    H1    II     2.12  1.8   15    51.4 203.   383.   529</span>
-<span class="co">#  7 A1    H1    II     3.15  1.78  10.9  41.9  75.2  256.   294</span>
-<span class="co">#  8 A1    H1    II     2.97  1.84  15    53.4 204.   387.   528</span>
-<span class="co">#  9 A1    H1    II     3.1   1.78  13.6  50.8 187.   348.   538</span>
-<span class="co"># 10 A1    H1    II     3.02  1.6   16.3  53.9 250.   430.   582</span>
-<span class="co"># # ... with 770 more rows</span>
-<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">colnames_to_title</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 10</span>
-<span class="co">#    Amb   Hib   Rep    Apla  Aies  Cesp  Dies  Mgra   Mmg  Ngra</span>
-<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1 A1    H1    I      2.45  2.39  16.9  52.1 228.   375.   609</span>
-<span class="co">#  2 A1    H1    I      2.5   1.43  14.4  50.7 187.   437.   427</span>
-<span class="co">#  3 A1    H1    I      2.69  1.52  16.5  54.7 230.   464.   497</span>
-<span class="co">#  4 A1    H1    I      2.8   1.64  16.8  52.0 213.   408.   523</span>
-<span class="co">#  5 A1    H1    I      2.62  1.55  15.9  51.6 224.   406.   551</span>
-<span class="co">#  6 A1    H1    II     2.12  1.8   15    51.4 203.   383.   529</span>
-<span class="co">#  7 A1    H1    II     3.15  1.78  10.9  41.9  75.2  256.   294</span>
-<span class="co">#  8 A1    H1    II     2.97  1.84  15    53.4 204.   387.   528</span>
-<span class="co">#  9 A1    H1    II     3.1   1.78  13.6  50.8 187.   348.   538</span>
-<span class="co"># 10 A1    H1    II     3.02  1.6   16.3  53.9 250.   430.   582</span>
-<span class="co"># # ... with 770 more rows</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">colnames_to_lower</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 10</span>
+<span class="co">#   amb   hib   rep    apla  aies  cesp  dies  mgra   mmg  ngra</span>
+<span class="co">#   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 A1    H1    I      2.45  2.39  16.9  52.1  228.  375.   609</span>
+<span class="co"># 2 A1    H1    I      2.5   1.43  14.4  50.7  187.  437.   427</span>
+<span class="co"># 3 A1    H1    I      2.69  1.52  16.5  54.7  230.  464.   497</span>
+<span class="co"># 4 A1    H1    I      2.8   1.64  16.8  52.0  213.  408.   523</span>
+<span class="co"># 5 A1    H1    I      2.62  1.55  15.9  51.6  224.  406.   551</span>
+<span class="co"># 6 A1    H1    II     2.12  1.8   15    51.4  203.  383.   529</span>
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">colnames_to_upper</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 10</span>
+<span class="co">#   AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
+<span class="co">#   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 A1    H1    I      2.45  2.39  16.9  52.1  228.  375.   609</span>
+<span class="co"># 2 A1    H1    I      2.5   1.43  14.4  50.7  187.  437.   427</span>
+<span class="co"># 3 A1    H1    I      2.69  1.52  16.5  54.7  230.  464.   497</span>
+<span class="co"># 4 A1    H1    I      2.8   1.64  16.8  52.0  213.  408.   523</span>
+<span class="co"># 5 A1    H1    I      2.62  1.55  15.9  51.6  224.  406.   551</span>
+<span class="co"># 6 A1    H1    II     2.12  1.8   15    51.4  203.  383.   529</span>
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">colnames_to_title</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 10</span>
+<span class="co">#   Amb   Hib   Rep    Apla  Aies  Cesp  Dies  Mgra   Mmg  Ngra</span>
+<span class="co">#   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 A1    H1    I      2.45  2.39  16.9  52.1  228.  375.   609</span>
+<span class="co"># 2 A1    H1    I      2.5   1.43  14.4  50.7  187.  437.   427</span>
+<span class="co"># 3 A1    H1    I      2.69  1.52  16.5  54.7  230.  464.   497</span>
+<span class="co"># 4 A1    H1    I      2.8   1.64  16.8  52.0  213.  408.   523</span>
+<span class="co"># 5 A1    H1    I      2.62  1.55  15.9  51.6  224.  406.   551</span>
+<span class="co"># 6 A1    H1    II     2.12  1.8   15    51.4  203.  383.   529</span></code></pre></div>
 </div>
 <div id="reordenando-colunas" class="section level3" number="7.1.8">
 <h3>
@@ -934,53 +918,38 @@
 </h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>reorder_cols()</code></a> pode ser usada para reordenar as colunas de um quadro de dados.</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">reorder_cols</a></span><span class="op">(</span><span class="va">data_vars</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"PLANT"</span><span class="op">)</span>, .before <span class="op">=</span> <span class="st">"AMB"</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 10</span>
-<span class="co">#    APLA_PLANT AIES_PLANT AMB   HIB   REP    CESP  DIES  MGRA   MMG  NGRA</span>
-<span class="co">#         &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1       2.45       2.39 A1    H1    I      16.9  52.1 228.   375.   609</span>
-<span class="co">#  2       2.5        1.43 A1    H1    I      14.4  50.7 187.   437.   427</span>
-<span class="co">#  3       2.69       1.52 A1    H1    I      16.5  54.7 230.   464.   497</span>
-<span class="co">#  4       2.8        1.64 A1    H1    I      16.8  52.0 213.   408.   523</span>
-<span class="co">#  5       2.62       1.55 A1    H1    I      15.9  51.6 224.   406.   551</span>
-<span class="co">#  6       2.12       1.8  A1    H1    II     15    51.4 203.   383.   529</span>
-<span class="co">#  7       3.15       1.78 A1    H1    II     10.9  41.9  75.2  256.   294</span>
-<span class="co">#  8       2.97       1.84 A1    H1    II     15    53.4 204.   387.   528</span>
-<span class="co">#  9       3.1        1.78 A1    H1    II     13.6  50.8 187.   348.   538</span>
-<span class="co"># 10       3.02       1.6  A1    H1    II     16.3  53.9 250.   430.   582</span>
-<span class="co"># # ... with 770 more rows</span>
-<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">reorder_cols</a></span><span class="op">(</span><span class="va">data_vars</span>, <span class="va">AMB</span>, <span class="va">HIB</span>, .after <span class="op">=</span> <span class="st">"REP"</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 10</span>
-<span class="co">#    REP   AMB   HIB   APLA_PLANT AIES_PLANT  CESP  DIES  MGRA   MMG  NGRA</span>
-<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1 I     A1    H1          2.45       2.39  16.9  52.1 228.   375.   609</span>
-<span class="co">#  2 I     A1    H1          2.5        1.43  14.4  50.7 187.   437.   427</span>
-<span class="co">#  3 I     A1    H1          2.69       1.52  16.5  54.7 230.   464.   497</span>
-<span class="co">#  4 I     A1    H1          2.8        1.64  16.8  52.0 213.   408.   523</span>
-<span class="co">#  5 I     A1    H1          2.62       1.55  15.9  51.6 224.   406.   551</span>
-<span class="co">#  6 II    A1    H1          2.12       1.8   15    51.4 203.   383.   529</span>
-<span class="co">#  7 II    A1    H1          3.15       1.78  10.9  41.9  75.2  256.   294</span>
-<span class="co">#  8 II    A1    H1          2.97       1.84  15    53.4 204.   387.   528</span>
-<span class="co">#  9 II    A1    H1          3.1        1.78  13.6  50.8 187.   348.   538</span>
-<span class="co"># 10 II    A1    H1          3.02       1.6   16.3  53.9 250.   430.   582</span>
-<span class="co"># # ... with 770 more rows</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">reorder_cols</a></span><span class="op">(</span><span class="va">data_vars</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"PLANT"</span><span class="op">)</span>, .before <span class="op">=</span> <span class="va">AMB</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 10</span>
+<span class="co">#   APLA_PLANT AIES_PLANT AMB   HIB   REP    CESP  DIES  MGRA   MMG  NGRA</span>
+<span class="co">#        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1       2.45       2.39 A1    H1    I      16.9  52.1  228.  375.   609</span>
+<span class="co"># 2       2.5        1.43 A1    H1    I      14.4  50.7  187.  437.   427</span>
+<span class="co"># 3       2.69       1.52 A1    H1    I      16.5  54.7  230.  464.   497</span>
+<span class="co"># 4       2.8        1.64 A1    H1    I      16.8  52.0  213.  408.   523</span>
+<span class="co"># 5       2.62       1.55 A1    H1    I      15.9  51.6  224.  406.   551</span>
+<span class="co"># 6       2.12       1.8  A1    H1    II     15    51.4  203.  383.   529</span>
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">reorder_cols</a></span><span class="op">(</span><span class="va">data_vars</span>, <span class="va">AMB</span>, <span class="va">HIB</span>, .after <span class="op">=</span> <span class="va">REP</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 10</span>
+<span class="co">#   REP   AMB   HIB   APLA_PLANT AIES_PLANT  CESP  DIES  MGRA   MMG  NGRA</span>
+<span class="co">#   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 I     A1    H1          2.45       2.39  16.9  52.1  228.  375.   609</span>
+<span class="co"># 2 I     A1    H1          2.5        1.43  14.4  50.7  187.  437.   427</span>
+<span class="co"># 3 I     A1    H1          2.69       1.52  16.5  54.7  230.  464.   497</span>
+<span class="co"># 4 I     A1    H1          2.8        1.64  16.8  52.0  213.  408.   523</span>
+<span class="co"># 5 I     A1    H1          2.62       1.55  15.9  51.6  224.  406.   551</span>
+<span class="co"># 6 II    A1    H1          2.12       1.8   15    51.4  203.  383.   529</span></code></pre></div>
 <p>É possível colocar as colunas no primeiro e no último lugar rapidamente com <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>columns_to_first()</code></a> e <a href="https:%20//tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>columns_to_last()</code></a>, respectivamente.</p>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">column_to_first</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">CESP</span>, <span class="va">DIES</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 10</span>
-<span class="co">#     CESP  DIES AMB   HIB   REP    APLA  AIES  MGRA   MMG  NGRA</span>
-<span class="co">#    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#  1  16.9  52.1 A1    H1    I      2.45  2.39 228.   375.   609</span>
-<span class="co">#  2  14.4  50.7 A1    H1    I      2.5   1.43 187.   437.   427</span>
-<span class="co">#  3  16.5  54.7 A1    H1    I      2.69  1.52 230.   464.   497</span>
-<span class="co">#  4  16.8  52.0 A1    H1    I      2.8   1.64 213.   408.   523</span>
-<span class="co">#  5  15.9  51.6 A1    H1    I      2.62  1.55 224.   406.   551</span>
-<span class="co">#  6  15    51.4 A1    H1    II     2.12  1.8  203.   383.   529</span>
-<span class="co">#  7  10.9  41.9 A1    H1    II     3.15  1.78  75.2  256.   294</span>
-<span class="co">#  8  15    53.4 A1    H1    II     2.97  1.84 204.   387.   528</span>
-<span class="co">#  9  13.6  50.8 A1    H1    II     3.1   1.78 187.   348.   538</span>
-<span class="co"># 10  16.3  53.9 A1    H1    II     3.02  1.6  250.   430.   582</span>
-<span class="co"># # ... with 770 more rows</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">column_to_first</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">CESP</span>, <span class="va">DIES</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># # A tibble: 6 x 10</span>
+<span class="co">#    CESP  DIES AMB   HIB   REP    APLA  AIES  MGRA   MMG  NGRA</span>
+<span class="co">#   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1  16.9  52.1 A1    H1    I      2.45  2.39  228.  375.   609</span>
+<span class="co"># 2  14.4  50.7 A1    H1    I      2.5   1.43  187.  437.   427</span>
+<span class="co"># 3  16.5  54.7 A1    H1    I      2.69  1.52  230.  464.   497</span>
+<span class="co"># 4  16.8  52.0 A1    H1    I      2.8   1.64  213.  408.   523</span>
+<span class="co"># 5  15.9  51.6 A1    H1    I      2.62  1.55  224.  406.   551</span>
+<span class="co"># 6  15    51.4 A1    H1    II     2.12  1.8   203.  383.   529</span></code></pre></div>
 </div>
 <div id="obtendo-níveis-de-fatores" class="section level3" number="7.1.9">
 <h3>
@@ -989,51 +958,23 @@
 <p>Para obter os níveis e o tamanho dos níveis de um fator, as funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>get_levels()</code></a> e <a href="https://tiagoolivoto.github.io/metan/reference/utils_rows_cols.html"><code>get_level_size()</code></a> pode ser usado.
 </p>
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/TiagoOlivoto/metan">metan</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">get_levels</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">get_levels</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">)</span>
 <span class="co"># [1] "A1" "A2" "A3" "A4"</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">get_level_size</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">AMB</span><span class="op">)</span>
 <span class="co"># # A tibble: 4 x 10</span>
 <span class="co">#   AMB     HIB   REP  APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
-<span class="co">#   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="co"># * &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co"># 1 A1      195   195   195   195   195   195   195   195   195</span>
 <span class="co"># 2 A2      195   195   195   195   195   195   195   195   195</span>
 <span class="co"># 3 A3      195   195   195   195   195   195   195   195   195</span>
 <span class="co"># 4 A4      195   195   195   195   195   195   195   195   195</span></code></pre></div>
-<p>Utilizando a função <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>  é possível criar uma variável baseado em um argumento <code>if()</code> vetorizado. <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> é particularmente útil dentro da função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> quando você quer criar uma nova variável que depende de uma combinação complexa de variáveis existentes. No exemplo abaixo, uma nova variável será criada, dependendo dos valores de APLA, AIES ou CESP</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">maize</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-    CASE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
-      <span class="va">MGRA</span> <span class="op">&gt;</span> <span class="fl">280</span> <span class="op">|</span> <span class="va">APLA</span> <span class="op">&lt;</span> <span class="fl">1.3</span> <span class="op">|</span> <span class="va">NGRA</span> <span class="op">&gt;</span> <span class="fl">820</span> <span class="op">~</span>  <span class="st">"Selecionar"</span>,
-      <span class="va">APLA</span> <span class="op">&gt;</span> <span class="fl">2.3</span> <span class="op">~</span> <span class="st">"Alto"</span>,
-      <span class="va">MGRA</span> <span class="op">&lt;</span> <span class="fl">130</span> <span class="op">~</span> <span class="st">"Pouco produtivo"</span>,
-      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Outro"</span>
-    <span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">select_non_numeric_cols</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co"># # A tibble: 780 x 4</span>
-<span class="co">#    AMB   HIB   REP   CASE </span>
-<span class="co">#    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
-<span class="co">#  1 A1    H1    I     Alto </span>
-<span class="co">#  2 A1    H1    I     Alto </span>
-<span class="co">#  3 A1    H1    I     Alto </span>
-<span class="co">#  4 A1    H1    I     Alto </span>
-<span class="co">#  5 A1    H1    I     Alto </span>
-<span class="co">#  6 A1    H1    II    Outro</span>
-<span class="co">#  7 A1    H1    II    Alto </span>
-<span class="co">#  8 A1    H1    II    Alto </span>
-<span class="co">#  9 A1    H1    II    Alto </span>
-<span class="co"># 10 A1    H1    II    Alto </span>
-<span class="co"># # ... with 770 more rows</span></code></pre></div>
 </div>
 <div id="selecionar-linhas-com-base-em-seus-valores" class="section level3" number="7.1.10">
 <h3>
 <span class="header-section-number">7.1.10</span> Selecionar linhas com base em seus valores<a class="anchor" aria-label="anchor" href="#selecionar-linhas-com-base-em-seus-valores"><i class="fas fa-link"></i></a>
 </h3>
 <p>Utilizando a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>  é possivel filtrar as linhas de um conjunto de dados com base no valor de suas variáveis. No primeiro exemplo, selecionaremos as linhas onde o valor da variável MGRA é maior que 280.</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">MGRA</span> <span class="op">&gt;</span> <span class="fl">280</span><span class="op">)</span>
 <span class="co"># # A tibble: 4 x 10</span>
@@ -1044,7 +985,7 @@
 <span class="co"># 3 A1    H13   II     2.47  1.28  15.3  53.0  291.  417.   698</span>
 <span class="co"># 4 A4    H10   I      2.65  1.47  14    50.3  287.  275.   493</span></code></pre></div>
 <p>No segundo exemplo, selecionaremos apenas as linhas onde a MGRA é maior que 220 <strong>OU</strong> a APLA é menor que 1.3 <strong>OU</strong> o NGRA é maior que 820.</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">MGRA</span> <span class="op">&gt;</span> <span class="fl">280</span> <span class="op">|</span> <span class="va">APLA</span> <span class="op">&lt;</span> <span class="fl">1.3</span> <span class="op">|</span> <span class="va">NGRA</span> <span class="op">&gt;</span> <span class="fl">820</span><span class="op">)</span>
 <span class="co"># # A tibble: 10 x 10</span>
@@ -1061,7 +1002,7 @@
 <span class="co">#  9 A4    H8    I      2.95  1.7   18.6  52.9 249.   302.   824</span>
 <span class="co"># 10 A4    H10   I      2.65  1.47  14    50.3 287.   275.   493</span></code></pre></div>
 <p>No último exemplo, selecionaremos apenas as linhas onde MGRA é maior que é maior que 220 <strong>E</strong> a APLA é menor que 2.</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">MGRA</span> <span class="op">&gt;</span> <span class="fl">220</span> <span class="op">&amp;</span> <span class="va">APLA</span> <span class="op">&lt;</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co"># # A tibble: 1 x 10</span>
@@ -1069,7 +1010,7 @@
 <span class="co">#   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co"># 1 A1    H6    II     1.97  1.63  17.1  54.7  230.  375.   614</span></code></pre></div>
 <p>Isto é aproximadamente equivalente ao seguinte código R base.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span><span class="op">[</span><span class="va">maize</span><span class="op">$</span><span class="va">MGRA</span> <span class="op">&gt;</span> <span class="fl">220</span> <span class="op">&amp;</span> <span class="va">maize</span><span class="op">$</span><span class="va">APLA</span> <span class="op">&lt;</span> <span class="fl">2</span>, <span class="op">]</span></code></pre></div>
 </div>
 </div>
@@ -1082,7 +1023,7 @@
 <span class="header-section-number">7.2.1</span> Arredondando<a class="anchor" aria-label="anchor" href="#arredondando"><i class="fas fa-link"></i></a>
 </h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>round_cols()</code></a> arredonda uma coluna selecionada ou um quadro de dados inteiro para o número especificado de casas decimais (padrão 0). Se nenhuma variável for informada, todas as variáveis numéricas serão arredondadas.</p>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 10</span>
 <span class="co">#    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
@@ -1099,7 +1040,7 @@
 <span class="co"># 10 A1    H1    II     3.02  1.6   16.3  53.9 250.   430.   582</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
 <p>Como alternativa, selecione variáveis para arredondar.</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">round_cols</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">MGRA</span>, <span class="va">MMG</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 10</span>
 <span class="co">#    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
@@ -1121,8 +1062,10 @@
 <span class="header-section-number">7.2.2</span> Extraindo e substituindo números<a class="anchor" aria-label="anchor" href="#extraindo-e-substituindo-n%C3%BAmeros"><i class="fas fa-link"></i></a>
 </h3>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_number()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_num_str.html"><code>replace_number()</code></a> pode ser usado para extrair ou substituir números. Como exemplo, extrairemos o número de cada genótipo em <code>maize</code> criando uma nova coluna, <code>HIB_NUM</code>, inserindo após a coluna <code>HIB</code>.</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols</a></span><span class="op">(</span>HIB_NUM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">extract_number</a></span><span class="op">(</span><span class="va">HIB</span><span class="op">)</span>, .after <span class="op">=</span> <span class="va">HIB</span><span class="op">)</span>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols</a></span><span class="op">(</span>HIB_NUM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">extract_number</a></span><span class="op">(</span><span class="va">HIB</span><span class="op">)</span>,
+           .after <span class="op">=</span> <span class="va">HIB</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 11</span>
 <span class="co">#    AMB   HIB   HIB_NUM REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
 <span class="co">#    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -1138,7 +1081,7 @@
 <span class="co"># 10 A1    H1          1 II     3.02  1.6   16.3  53.9 250.   430.   582</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
 <p>Para substituir números de uma determinada coluna por uma substituição especificada, use <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_number()</code></a>. Por padrão, os números são substituídos por "". O argumento <code>drop</code> e<code>pull</code> também podem ser usados, como mostrado acima.</p>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">replace_number</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">HIB</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 10</span>
 <span class="co">#    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
@@ -1178,7 +1121,7 @@
 <span class="header-section-number">7.2.3</span> Extraindo, substituindo e removendo strings<a class="anchor" aria-label="anchor" href="#extraindo-substituindo-e-removendo-strings"><i class="fas fa-link"></i></a>
 </h3>
 <p>As funções <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_string()</code></a> e <a href="https://tiagoolivoto.github.io/metan/%20reference%20/%20utils_num_str.html"><code>replace_string()</code></a> são usados no mesmo contexto de <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>extract_number()</code></a> e <a href="https%20:%20//tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_number()</code></a>, mas para lidar com seqüências de caracteres.</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">extract_string</a></span><span class="op">(</span><span class="va">maize</span>, <span class="va">HIB</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 10</span>
 <span class="co">#    AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
@@ -1195,7 +1138,7 @@
 <span class="co"># 10 A1    H     II     3.02  1.6   16.3  53.9 250.   430.   582</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
 <p>Para substituir strings, podemos usar a função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>replace_strings()</code></a>.</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">replace_string</a></span><span class="op">(</span><span class="va">maize</span>,
                <span class="va">HIB</span>,
                replacement <span class="op">=</span> <span class="st">"HIB_"</span><span class="op">)</span>
@@ -1214,7 +1157,7 @@
 <span class="co"># 10 A1    HIB_1 II     3.02  1.6   16.3  53.9 250.   430.   582</span>
 <span class="co"># # ... with 770 more rows</span></code></pre></div>
 <p>Para remover todas as seqüências de caracteres de um quadro de dados, use <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>remove_strings()</code></a>.</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">remove_strings</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span>
 <span class="co"># # A tibble: 780 x 10</span>
 <span class="co">#      AMB   HIB   REP  APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
@@ -1236,12 +1179,12 @@
 <span class="header-section-number">7.2.4</span> Formatando strings<a class="anchor" aria-label="anchor" href="#formatando-strings"><i class="fas fa-link"></i></a>
 </h3>
 <p>A função <a href="https://tiagoolivoto.github.io/metan/reference/utils_num_str.html"><code>tidy_strings()</code></a> organiza cadeias de caracteres, colunas não numéricas ou quaisquer colunas selecionadas em um quadro de dados, colocando todas as palavras em maiúsculas, substituindo qualquer espaço, tabulação e caracteres de pontuação por <code>_</code> e colocando <code>_</code> entre letras maiúsculas e minúsculas. Considere as seguintes cadeias de caracteres: <code>messy_env</code> por definição deve representar um nível único do ambiente de fator (ambiente 1). <code>messy_gen</code> mostra seis genótipos, e<code>messy_int</code> representa a interação desses genótipos com o ambiente 1.</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">messy_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENV 1"</span>, <span class="st">"Env 1"</span>, <span class="st">"Env1"</span>, <span class="st">"env1"</span>, <span class="st">"Env.1"</span>, <span class="st">"Env_1"</span><span class="op">)</span>
 <span class="va">messy_gen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GEN1"</span>, <span class="st">"gen 2"</span>, <span class="st">"Gen.3"</span>, <span class="st">"gen-4"</span>, <span class="st">"Gen_5"</span>, <span class="st">"GEN_6"</span><span class="op">)</span>
 <span class="va">messy_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Env1Gen1"</span>, <span class="st">"Env1_Gen2"</span>, <span class="st">"env1 gen3"</span>, <span class="st">"Env1 Gen4"</span>, <span class="st">"ENV_1GEN5"</span>, <span class="st">"ENV1GEN6"</span><span class="op">)</span></code></pre></div>
 <p>Esses vetores de caracteres são visualmente confusos. Vamos arrumá-los.</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">tidy_strings</a></span><span class="op">(</span><span class="va">messy_env</span><span class="op">)</span>
 <span class="co"># [1] "ENV_1" "ENV_1" "ENV_1" "ENV_1" "ENV_1" "ENV_1"</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">tidy_strings</a></span><span class="op">(</span><span class="va">messy_gen</span><span class="op">)</span>
@@ -1250,7 +1193,7 @@
 <span class="co"># [1] "ENV_1_GEN_1" "ENV_1_GEN_2" "ENV_1_GEN_3" "ENV_1_GEN_4" "ENV_1_GEN_5"</span>
 <span class="co"># [6] "ENV_1_GEN_6"</span></code></pre></div>
 <p>O <code><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">tidy_strings()</a></code> também funciona para arrumar um quadro de dados inteiro ou colunas específicas. Vamos criar um quadro de dados ‘bagunçado’ no contexto de testes de melhoramento de plantas.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Env <span class="op">=</span> <span class="va">messy_env</span>,
              gen <span class="op">=</span> <span class="va">messy_gen</span>,
@@ -1293,7 +1236,7 @@
 <span class="header-section-number">7.3</span> Selecionar linhas por sua posição<a class="anchor" aria-label="anchor" href="#selecionar-linhas-por-sua-posi%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
 </h2>
 <p>A função <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> é usada para selecionar linhas por sua posição ordinal no tibble. Os tibbles agrupados usam a posição ordinal dentro do grupo.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># seleciona as três primeiras linhas</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">maize</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
 <span class="co"># # A tibble: 3 x 10</span>
@@ -1337,7 +1280,7 @@
 
 
 </p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">REP</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"I"</span>, <span class="st">"II"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">AMB</span>, <span class="va">HIB</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1354,7 +1297,7 @@
 <span class="co"># 4 A4     195.  180.  170.  191.  167   156.  148.  182.  209.  164.  195.  182.</span>
 <span class="co"># # ... with 1 more variable: H9 &lt;dbl&gt;</span></code></pre></div>
 <p>Note que a mesma tabela dupla entrada pode ser obtida com a função <code><a href="https://rdrr.io/pkg/metan/man/make_mat.html">make_mat()</a></code> do pacote <code>metan</code>.</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">REP</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"I"</span>, <span class="st">"II"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/make_mat.html">make_mat</a></span><span class="op">(</span><span class="va">AMB</span>, <span class="va">HIB</span>, <span class="va">MGRA</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1380,7 +1323,7 @@
 </h3>
 <p>É raro que uma análise de dados envolva apenas uma única tabela de dados. Na prática, diversas tabela podem existir e ferramentas flexíveis para combiná-las são necessárias. No <strong>dplyr</strong>, existem três famílias de <strong>verbos</strong> que permitem trabalhar com duas tabelas ao mesmo tempo, permitindo: (i) juntar tabelas, (ii) Filtrar registros e (iii) realizar operações.</p>
 <p>Os seguintes códigos criam três novos conjuntos de dados. <strong>maize2</strong> contém dados de duas repetições para os híbridos H1:H5 nos ambientes H1 e H2. <strong>mean_h</strong> e <strong>mean_a</strong> contém as médias para os híbridos e ambientes, respectivamente. </p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize_small</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">HIB</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"H1"</span>, <span class="st">"H2"</span>, <span class="st">"H3"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1407,16 +1350,29 @@
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_stats.html">means_by</a></span><span class="op">(</span><span class="va">HIB</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">HIB</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"A"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">round_cols</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-  
+<span class="va">mean_h</span>
+<span class="co"># # A tibble: 3 x 5</span>
+<span class="co">#   HIB    APLA  AIES  MGRA  NGRA</span>
+<span class="co">#   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 H1      2.8   1.7  195.  506.</span>
+<span class="co"># 2 H2      2.9   1.5  211.  577.</span>
+<span class="co"># 3 H3      2.9   1.7  195.  542.</span>
+
 <span class="va">mean_a</span> <span class="op">&lt;-</span>
   <span class="va">maize_small</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_stats.html">means_by</a></span><span class="op">(</span><span class="va">AMB</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">AMB</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"ES"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">round_cols</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_num_str.html">round_cols</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">mean_a</span>
+<span class="co"># # A tibble: 2 x 4</span>
+<span class="co">#   AMB    AIES  CESP  DIES</span>
+<span class="co">#   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co"># 1 A1      1.5  15.3  51.6</span>
+<span class="co"># 2 A2      1.8  15.4  51.8</span></code></pre></div>
 <ul>
 <li>Juntando a coluna <strong>MGRA</strong> e <strong>NGRA</strong> da tabela <strong>mean_h</strong> na tabela <strong>maize2</strong> considerando as variáveis com mesmo nome nas duas tabelas (neste caso, HIB)</li>
 </ul>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">maize2</span>, <span class="va">mean_h</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">HIB</span>, <span class="va">MGRA</span>, <span class="va">NGRA</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"HIB"</span><span class="op">)</span>
 <span class="co"># # A tibble: 6 x 5</span>
 <span class="co">#   AMB   HIB    APLA  MGRA  NGRA</span>
@@ -1431,7 +1387,7 @@
 <li>Juntando as colunas da tabela <strong>mean_a</strong> na tabela <strong>maize2</strong>
 </li>
 </ul>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">maize2</span>, <span class="va">mean_a</span>, by <span class="op">=</span> <span class="st">"AMB"</span><span class="op">)</span>
 <span class="co"># # A tibble: 6 x 6</span>
 <span class="co">#   AMB   HIB    APLA  AIES  CESP  DIES</span>
@@ -1450,7 +1406,7 @@
 <ul>
 <li>Filtrando as linhas da tabela <strong>maize2</strong> com base nas variáveis que combinam na tabela <strong>mean_h</strong> (neste caso, a coluna HIB) </li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">maize2</span>, <span class="va">mean_h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HIB"</span>, <span class="st">"APLA"</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># # A tibble: 3 x 3</span>
 <span class="co">#   AMB   HIB    APLA</span>
@@ -1461,7 +1417,7 @@
 <ul>
 <li>Filtrando as linhas da tabela <strong>maize2</strong> com base nas variáveis que <strong>NÃO</strong> combinam na tabela <strong>mean_h</strong> (neste caso, a coluna HIB) </li>
 </ul>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">maize2</span>, <span class="va">mean_h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HIB"</span>, <span class="st">"APLA"</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># # A tibble: 3 x 3</span>
 <span class="co">#   AMB   HIB    APLA</span>
@@ -1470,14 +1426,59 @@
 <span class="co"># 2 A1    H2      2.8</span>
 <span class="co"># 3 A2    H1      2.9</span></code></pre></div>
 </div>
-<div id="operações-com-conjuntos" class="section level3" number="7.5.3">
+<div id="operações-com-conjuntos-vetores" class="section level3" number="7.5.3">
 <h3>
-<span class="header-section-number">7.5.3</span> Operações com conjuntos<a class="anchor" aria-label="anchor" href="#opera%C3%A7%C3%B5es-com-conjuntos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5.3</span> Operações com conjuntos (vetores)<a class="anchor" aria-label="anchor" href="#opera%C3%A7%C3%B5es-com-conjuntos-vetores"><i class="fas fa-link"></i></a>
+</h3>
+<p>Operações com conjuntos são importantes na análise de dados agronômicos. Por exemplo, se um genótipo foi selecionado por um determinado índice nos ambientes A, B e C, então, este determinado genótipo é a interseção dos ambientes A, B e C. A base R fornece funções para operações de conjunto, mas funciona com dois conjuntos de uma vez apenas. Vamos ver como podemos estimar a interseção de três conjuntos com funções R de base.</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">A</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
+<span class="co"># [1] "a" "b" "c" "d"</span>
+
+<span class="op">(</span><span class="va">B</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="co"># [1] "b" "c" "d" "e"</span>
+
+<span class="op">(</span><span class="va">C</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span>
+<span class="co"># [1] "c" "d" "e" "f" "g"</span>
+
+<span class="op">(</span><span class="va">D</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l"</span>
+
+<span class="va">set_lits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>A <span class="op">=</span> <span class="va">A</span>, B <span class="op">=</span> <span class="va">B</span>, C <span class="op">=</span> <span class="va">C</span>, D <span class="op">=</span> <span class="va">D</span><span class="op">)</span>
+
+<span class="co"># intersecção de A, B e C</span>
+<span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span>, <span class="va">C</span><span class="op">)</span>
+<span class="co"># [1] "c" "d"</span></code></pre></div>
+<p>Observe que precisamos chamar <code><a href="https://generics.r-lib.org/reference/setops.html">intersect()</a></code> várias vezes neste caso. O novo grupo de funções <code><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_union()</a></code>, <code><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_difference()</a></code> e <code><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_intersect()</a></code> do pacote <code>metan</code> supera o problema de computação de união, interseção e diferenças de dois conjuntos apenas com as funções de base R.</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Intersecção de A e B</span>
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span><span class="op">)</span>
+<span class="co"># [1] "b" "c" "d"</span>
+
+<span class="co"># Intersecção de A, B e C</span>
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_intersect</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span>, <span class="va">C</span><span class="op">)</span>
+<span class="co"># [1] "c" "d"</span>
+
+
+<span class="co"># União de todos os conjuntos</span>
+<span class="co"># Todas as funções entendem um objeto de classe lista</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_union</a></span><span class="op">(</span><span class="va">set_lits</span><span class="op">)</span>
+<span class="co">#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l"</span>
+
+<span class="co"># Intersecção de todos os conjuntos</span>
+<span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_intersect</a></span><span class="op">(</span><span class="va">set_lits</span><span class="op">)</span>
+<span class="co"># [1] "c" "d"</span></code></pre></div>
+</div>
+<div id="operações-com-conjuntos-data-frames" class="section level3" number="7.5.4">
+<h3>
+<span class="header-section-number">7.5.4</span> Operações com conjuntos (data frames)<a class="anchor" aria-label="anchor" href="#opera%C3%A7%C3%B5es-com-conjuntos-data-frames"><i class="fas fa-link"></i></a>
 </h3>
 <p>Nesta seção será demonstrado como é possivel utilizar operações de cojuntos como interseção e união. É esperado que as entradas x e y tenham as mesmas variáveis. Para isto, vamos criar dois novos conjuntos de dados chamados <strong>data_1_to_5</strong> e <strong>data_3_to_10</strong>, quais contém, respectivamente as cinco primeiras linhas
 e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>  é utilizada para selecionar as linhas com base em sua posição.</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data_1_to_5</span> <span class="op">&lt;-</span> 
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">data_1_to_5</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, .before <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
@@ -1485,13 +1486,13 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code><a href=
   <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">add_cols</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">10</span>, .before <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<div id="interseção-de-conjuntos" class="section level4" number="7.5.3.1">
+<div id="interseção-de-conjuntos" class="section level4" number="7.5.4.1">
 <h4>
-<span class="header-section-number">7.5.3.1</span> Interseção de conjuntos<a class="anchor" aria-label="anchor" href="#interse%C3%A7%C3%A3o-de-conjuntos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5.4.1</span> Interseção de conjuntos<a class="anchor" aria-label="anchor" href="#interse%C3%A7%C3%A3o-de-conjuntos"><i class="fas fa-link"></i></a>
 </h4>
-<p>A função <code><a href="https://generics.r-lib.org/reference/setops.html">intersect()</a></code> (interseção de conjunto) retorna somente as linhas presentes nos dois conjuntos, neste caso, as linhas 3, 4 and 5 do conjunto <strong>maize</strong></p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">data_1_to_5</span>, <span class="va">data_3_to_10</span><span class="op">)</span>
+<p>A função <code><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_intersect()</a></code> (interseção de conjunto) retorna somente as linhas presentes nos dois conjuntos, neste caso, as linhas 3, 4 and 5 do conjunto <strong>maize</strong></p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_intersect</a></span><span class="op">(</span><span class="va">data_1_to_5</span>, <span class="va">data_3_to_10</span><span class="op">)</span>
 <span class="co"># # A tibble: 3 x 11</span>
 <span class="co">#      id AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
 <span class="co">#   &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -1499,13 +1500,13 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code><a href=
 <span class="co"># 2     4 A1    H1    I      2.8   1.64  16.8  52.0  213.  408.   523</span>
 <span class="co"># 3     5 A1    H1    I      2.62  1.55  15.9  51.6  224.  406.   551</span></code></pre></div>
 </div>
-<div id="união-de-conjuntos" class="section level4" number="7.5.3.2">
+<div id="união-de-conjuntos" class="section level4" number="7.5.4.2">
 <h4>
-<span class="header-section-number">7.5.3.2</span> União de conjuntos<a class="anchor" aria-label="anchor" href="#uni%C3%A3o-de-conjuntos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5.4.2</span> União de conjuntos<a class="anchor" aria-label="anchor" href="#uni%C3%A3o-de-conjuntos"><i class="fas fa-link"></i></a>
 </h4>
-<p>A função <code><a href="https://generics.r-lib.org/reference/setops.html">union()</a></code> (união de conjunto) junta os dois conjuntos sem que haja duplicação de registros.</p>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">data_1_to_5</span>, <span class="va">data_3_to_10</span><span class="op">)</span>
+<p>A função <code><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_union()</a></code> (união de conjunto) junta os dois conjuntos sem que haja duplicação de registros.</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_union</a></span><span class="op">(</span><span class="va">data_1_to_5</span>, <span class="va">data_3_to_10</span><span class="op">)</span>
 <span class="co"># # A tibble: 10 x 11</span>
 <span class="co">#       id AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
 <span class="co">#    &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -1520,13 +1521,13 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code><a href=
 <span class="co">#  9     9 A1    H1    II     3.1   1.78  13.6  50.8 187.   348.   538</span>
 <span class="co"># 10    10 A1    H1    II     3.02  1.6   16.3  53.9 250.   430.   582</span></code></pre></div>
 </div>
-<div id="diferença-de-conjuntos" class="section level4" number="7.5.3.3">
+<div id="diferença-de-conjuntos" class="section level4" number="7.5.4.3">
 <h4>
-<span class="header-section-number">7.5.3.3</span> Diferença de conjuntos<a class="anchor" aria-label="anchor" href="#diferen%C3%A7a-de-conjuntos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5.4.3</span> Diferença de conjuntos<a class="anchor" aria-label="anchor" href="#diferen%C3%A7a-de-conjuntos"><i class="fas fa-link"></i></a>
 </h4>
-<p>A função <code><a href="https://generics.r-lib.org/reference/setops.html">setdiff()</a></code>  (diferença de conjunto, ou complementar) cria uma tabela somente com os registros em <strong>data_1_to_5</strong> que não estão em <strong>data_3_to_10</strong>.</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">data_1_to_5</span>, <span class="va">data_3_to_10</span><span class="op">)</span>
+<p>A função <code><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_difference()</a></code>  (diferença de conjunto, ou complementar) cria uma tabela somente com os registros em <strong>data_1_to_5</strong> que não estão em <strong>data_3_to_10</strong>.</p>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_sets.html">set_difference</a></span><span class="op">(</span><span class="va">data_1_to_5</span>, <span class="va">data_3_to_10</span><span class="op">)</span>
 <span class="co"># # A tibble: 2 x 11</span>
 <span class="co">#      id AMB   HIB   REP    APLA  AIES  CESP  DIES  MGRA   MMG  NGRA</span>
 <span class="co">#   &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -1573,7 +1574,8 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code><a href=
 <a class="nav-link" href="#trabalhando-com-duas-tabelas-ao-mesmo-tempo"><span class="header-section-number">7.5</span> Trabalhando com duas tabelas ao mesmo tempo</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#jun%C3%A7%C3%B5es-com-muta%C3%A7%C3%A3o-de-dados"><span class="header-section-number">7.5.1</span> Junções com mutação de dados</a></li>
 <li><a class="nav-link" href="#jun%C3%A7%C3%B5es-com-filtragem-de-dados"><span class="header-section-number">7.5.2</span> Junções com filtragem de dados</a></li>
-<li><a class="nav-link" href="#opera%C3%A7%C3%B5es-com-conjuntos"><span class="header-section-number">7.5.3</span> Operações com conjuntos</a></li>
+<li><a class="nav-link" href="#opera%C3%A7%C3%B5es-com-conjuntos-vetores"><span class="header-section-number">7.5.3</span> Operações com conjuntos (vetores)</a></li>
+<li><a class="nav-link" href="#opera%C3%A7%C3%B5es-com-conjuntos-data-frames"><span class="header-section-number">7.5.4</span> Operações com conjuntos (data frames)</a></li>
 </ul>
 </li>
 </ul>
@@ -1593,7 +1595,7 @@ e as linhas 3 a 10 de <strong>maize</strong>. Note que a função <code><a href=
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-20.</p>
+    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

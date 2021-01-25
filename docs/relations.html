@@ -80,7 +80,7 @@
 <span class="header-section-number">12.1</span> Dados<a class="anchor" aria-label="anchor" href="#dados"><i class="fas fa-link"></i></a>
 </h2>
 <p>Nesta sessão, e na sessão de <a href="multivariate.html#multivariate">análise multivariada</a> iremos utilizar o conjunto de dados <code>datage_2</code> do pacote <code>metan</code>. Para maiores informações veja <code><a href="https://rdrr.io/pkg/metan/man/data_ge2.html">?data_ge2</a></code></p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">&lt;-</span> <span class="va">data_ge2</span>
 <span class="va">numeric_var</span> <span class="op">&lt;-</span> <span class="va">maize</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">select_numeric_cols</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">datacor</span> <span class="op">&lt;-</span> <span class="va">maize</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_rows_cols.html">select_cols</a></span><span class="op">(</span><span class="va">CD</span>, <span class="va">CL</span>, <span class="va">CW</span>, <span class="va">PH</span>, <span class="va">EH</span>, <span class="va">EP</span>, <span class="va">EL</span>, <span class="va">ED</span><span class="op">)</span></code></pre></div>
@@ -101,15 +101,15 @@
 </h3>
 <p>A seguinte função proporciona uma visualização gráfica de todos os pares de correlação possíveis (<em>scatter-plot</em>)
 </p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-267-1.png" width="480" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-268-1.png" width="480" style="display: block; margin: auto;"></div>
 </div>
 <div id="estimativa-dos-coeficientes-de-correlação" class="section level3" number="12.2.2">
 <h3>
 <span class="header-section-number">12.2.2</span> Estimativa dos coeficientes de correlação<a class="anchor" aria-label="anchor" href="#estimativa-dos-coeficientes-de-correla%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">corr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/corr_coef.html">corr_coef</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">corr</span><span class="op">)</span>
 <span class="co"># ---------------------------------------------------------------------------</span>
@@ -141,10 +141,10 @@
 <h3>
 <span class="header-section-number">12.2.3</span> Combinando visualização gráfica e numérica (I)<a class="anchor" aria-label="anchor" href="#combinando-visualiza%C3%A7%C3%A3o-gr%C3%A1fica-e-num%C3%A9rica-i"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="fu">pairs.panels</span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-269-1.png" width="480" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-270-1.png" width="480" style="display: block; margin: auto;"></div>
 <p>Na figura acima, os pontos observados são plotados na diagonal inferior. Na diagonal, é apresentada a estimativa da densidade Kernel (linha preta) e um histgrama de cada variável. A diagonal superior contém os coeficientes de correlação.</p>
 </div>
 <div id="combinando-visualização-gráfica-e-numérica-ii" class="section level3" number="12.2.4">
@@ -152,16 +152,16 @@
 <span class="header-section-number">12.2.4</span> Combinando visualização gráfica e numérica (II)<a class="anchor" aria-label="anchor" href="#combinando-visualiza%C3%A7%C3%A3o-gr%C3%A1fica-e-num%C3%A9rica-ii"><i class="fas fa-link"></i></a>
 </h3>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/corr_plot.html">corr_plot()</a></code>do pacote <code>metan</code> retorna um gráfico semelhante ao anterior, no entanto possui diversas opções, tais como mudança no tamanho da letra dependendo da magnitude da correlação e indicação de cores para correlações significativas.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/corr_plot.html">corr_plot</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-270"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-270-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480"><p class="caption">
+<span id="fig:unnamed-chunk-271"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-271-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480"><p class="caption">
 Figure 12.1: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
-<p>A função <code><a href="https://rdrr.io/pkg/metan/man/corr_plot.html">corr_plot()</a></code> pode ser utilizada com o operador <code><a href="https://rdrr.io/pkg/metan/man/pipe.html">%&gt;%</a></code>. Em adição, é possível escolher as variáveis a serem plotadas. Para isto, basta digitar o nome das variáveis.</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<p>A função <code><a href="https://rdrr.io/pkg/metan/man/corr_plot.html">corr_plot()</a></code> pode ser utilizada com o operador <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>. Em adição, é possível escolher as variáveis a serem plotadas. Para isto, basta digitar o nome das variáveis.</p>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/corr_plot.html">corr_plot</a></span><span class="op">(</span><span class="va">CD</span>, <span class="va">EL</span>, <span class="va">PERK</span>, <span class="va">NKR</span>, <span class="va">CW</span>,
             shape.point <span class="op">=</span> <span class="fl">19</span>,
@@ -174,12 +174,12 @@ Figure 12.1: Scatter plot de uma matriz de correlação de Pearson
             axis.labels <span class="op">=</span> <span class="cn">TRUE</span>,
             progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-271"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-271-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480"><p class="caption">
+<span id="fig:unnamed-chunk-272"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-272-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480"><p class="caption">
 Figure 12.2: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/corr_plot.html">corr_plot</a></span><span class="op">(</span><span class="va">CD</span>, <span class="va">EL</span>, <span class="va">PERK</span>, <span class="va">NKR</span>, <span class="va">CW</span>,
@@ -200,8 +200,8 @@ Figure 12.2: Scatter plot de uma matriz de correlação de Pearson
             pan.spacing <span class="op">=</span> <span class="fl">0</span>,
             lab.position <span class="op">=</span> <span class="st">"bl"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-272"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-272-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480"><p class="caption">
+<span id="fig:unnamed-chunk-273"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-273-1.png" alt="Scatter plot de uma matriz de correlação de Pearson" width="480"><p class="caption">
 Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 </p>
 </div>
@@ -215,14 +215,14 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 <li>Criando a matrix de correlação utilizando o conjunto de dados <code>datacor</code>.</li>
 <li>8 variáveis | 28 combinações</li>
 </ul>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">cor1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span>
 <span class="fu">corrplot.mixed</span><span class="op">(</span><span class="va">cor1</span>,
                upper <span class="op">=</span> <span class="st">"ellipse"</span>,
                lower <span class="op">=</span> <span class="st">"number"</span>,
                number.digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-273-1.png" width="384" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-274-1.png" width="384" style="display: block; margin: auto;"></div>
 </div>
 <div id="combinando-visualização-gráfica-e-numérica-iv" class="section level3" number="12.2.6">
 <h3>
@@ -232,11 +232,11 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
 <li>Criando a matrix de correlação utilizando o conjunto de dados dataset.</li>
 <li>14 variáveis | 91 combinações</li>
 </ul>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">numeric_var</span><span class="op">)</span>
 <span class="va">pval</span> <span class="op">&lt;-</span> <span class="fu">cor.mtest</span><span class="op">(</span><span class="va">cor2</span><span class="op">)</span><span class="op">$</span><span class="va">p</span></code></pre></div>
 <p>A função <code>corrplot()</code>  do pacote <code>corrplot</code> permite uma poderosa personalização. Esta função tem a vantagem de apresentar um elevado número de combinações em um gráfico claro e intuitivo.</p>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">corrplot</span><span class="op">(</span><span class="va">cor2</span>,
          method <span class="op">=</span> <span class="st">"pie"</span>,
          p.mat <span class="op">=</span> <span class="va">pval</span>,
@@ -247,12 +247,12 @@ Figure 12.3: Scatter plot de uma matriz de correlação de Pearson
          tl.col <span class="op">=</span> <span class="st">"black"</span>,
          tl.srt <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-275"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-275-1.png" alt="Gráfico de pizza de uma matriz de correlação de Pearson" width="384"><p class="caption">
+<span id="fig:unnamed-chunk-276"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-276-1.png" alt="Gráfico de pizza de uma matriz de correlação de Pearson" width="384"><p class="caption">
 Figure 12.4: Gráfico de pizza de uma matriz de correlação de Pearson
 </p>
 </div>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">corrplot</span><span class="op">(</span><span class="va">cor2</span>,
          method <span class="op">=</span> <span class="st">"ellipse"</span>,
          p.mat <span class="op">=</span> <span class="va">pval</span>,
@@ -262,7 +262,7 @@ Figure 12.4: Gráfico de pizza de uma matriz de correlação de Pearson
          diag <span class="op">=</span> <span class="cn">F</span>,
          tl.col <span class="op">=</span> <span class="st">"black"</span>,
          tl.srt <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-276-1.png" width="384" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-277-1.png" width="384" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="correlações-genéticas" class="section level2" number="12.3">
@@ -293,7 +293,7 @@ var^g_x = (MST_x - MSE_x)/r \\
 var^g_y = (MST_x - MSE_y)/r
 \]</span></p>
 <p>onde <em>QMT</em> é o quadrado médio para tratamento, <em>QME</em> é o quadrado médio do erro e <em>r</em> é o número de repetições/blocos. A função <code><a href="https://rdrr.io/pkg/metan/man/covcor_design.html">covcor_design()</a></code>  retorna uma lista com as matrizes de (co)variâncias e correlações. Matrizes específicas podem ser retornadas usando o tipo de argumento <code>type</code>. No exemplo abaixo, o coeficiente de correlação genotípico entre as variáveis PH, EH, NKE e TKW será computado para o ambiente A1, considerando um DBC.</p>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ENV</span> <span class="op">==</span> <span class="st">"A1"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/covcor_design.html">covcor_design</a></span><span class="op">(</span>gen <span class="op">=</span> <span class="va">GEN</span>,
@@ -321,20 +321,20 @@ Compute a matriz de (co)variâncias residuais para cada ambiente combinando as f
 <span class="header-section-number">12.4.1</span> Paramétrico<a class="anchor" aria-label="anchor" href="#param%C3%A9trico"><i class="fas fa-link"></i></a>
 </h3>
 <p>O intervalo de confiança para o coeficiente de correlação pode ser obtido utilizando a função <code>cor.mtest()</code> do pacote <strong>corrplot</strong>, conforme o seguinte exemplo.</p>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ci_corr</span> <span class="op">&lt;-</span> <span class="fu">cor.mtest</span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="não-paramétrico" class="section level3" number="12.4.2">
 <h3>
 <span class="header-section-number">12.4.2</span> Não paramétrico<a class="anchor" aria-label="anchor" href="#n%C3%A3o-param%C3%A9trico"><i class="fas fa-link"></i></a>
 </h3>
-<p>Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por <span class="citation">Olivoto et al. (<a href="refer%C3%AAncias.html#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função <code><a href="https://rdrr.io/pkg/metan/man/corr_ci.html">corr_ci()</a></code> do pacote <code>metan</code>.  É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém <strong>E</strong> no nome. Note o benefício do operador <code><a href="https://rdrr.io/pkg/metan/man/pipe.html">%&gt;%</a></code> neste caso.</p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<p>Um estimador não paramétrico do intervalo de confiança do coeficiente de correlação de Pearson foi proposto por <span class="citation">Olivoto et al. (<a href="refer%C3%AAncias.html#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>. Este estimador é baseado no tamanho da amostra e força de associações e pode ser estimado usando a função <code><a href="https://rdrr.io/pkg/metan/man/corr_ci.html">corr_ci()</a></code> do pacote <code>metan</code>.  É possível estimar o intervalo de confiança declarando o tamanho da amostra (n) e o coeficiente de correlação (r), ou usando um dataframe. O código a seguir calcula o intervalo de confiança para os possíveis pares de correlação entre as variáveis que contém <strong>E</strong> no nome. Note o benefício do operador <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code> neste caso.</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"E"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/corr_ci.html">corr_ci</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_ci.html">plot_ci</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-280-1.png" width="672" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-281-1.png" width="672" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="tamanho-da-amostra" class="section level2" number="12.5">
@@ -342,7 +342,7 @@ Compute a matriz de (co)variâncias residuais para cada ambiente combinando as f
 <span class="header-section-number">12.5</span> Tamanho da amostra<a class="anchor" aria-label="anchor" href="#tamanho-da-amostra"><i class="fas fa-link"></i></a>
 </h2>
 <p>Baseado no modelo proposto por <span class="citation">Olivoto et al. (<a href="refer%C3%AAncias.html#ref-Olivoto2018" role="doc-biblioref">2018</a>)</span>, o tamanho da amostra suficiente para a estimativa do coeficiente de correlação considerando um intervalo de confiança desejado é obtido pela função <code><a href="https://rdrr.io/pkg/metan/man/corr_ss.html">corr_ss()</a></code>. Neste exemplo, vamos calcular o tamanho da amostra necessário para que uma correlação de 0.6 apresente uma semi-amplitude do intervalo de confiança igual a 0.1 </p>
-<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/corr_ss.html">corr_ss</a></span><span class="op">(</span>r <span class="op">=</span> <span class="fl">0.6</span>, CI <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
 <span class="co"># ------------------------------------------------- </span>
 <span class="co"># Sample size planning for correlation coefficient </span>
@@ -363,7 +363,7 @@ Compute a matriz de (co)variâncias residuais para cada ambiente combinando as f
 \]</span></p>
 <p>onde <span class="math inline">\(r_{ij.m}\)</span> é o coeficiente de correlação parcial  entre as variável <em>i</em> e <em>j</em>, sem o efeito das outras <em>m</em> outras variáveis; <span class="math inline">\(a_{ij}\)</span> é o elemento da ordem <em>ij</em> da inversa da matriz de correlação simples; <span class="math inline">\(a_{ii}\)</span> e <span class="math inline">\(a_{jj}\)</span> são os elementos de ordens <em>ii</em> e <em>jj</em>, respectivamente, da inversa da matriz de correlação simples.</p>
 <p>As matrizes de coeficientes de correlação linear e parcial podem ser facilmente obtida utilizando a função <code><a href="https://rdrr.io/pkg/metan/man/lpcor.html">lpcor()</a></code>  do pacote <code>metan</code>. A entrada dos dados pode ser realizada de duas maneiras. (i) utilizando os dados com as observações de cada variável; ou (ii) utilizando uma matriz de correlação linear simples pré estimada. Em nosso exemplo, vamos utilziar os mesmos dados utilizados nas funções anteriores (<em>datacor</em>).</p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">partial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/lpcor.html">lpcor</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">partial</span><span class="op">)</span>
@@ -418,7 +418,7 @@ r_{b:y} = \hat \beta_{1_{rb:a}} + \hat \beta_2 + \hat \beta_{3_{rb:c}}\\
 r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 \end{gather*}\]</span></p>
 <p>Como exemplo numérico, vamos utilizar as variáveis PERK, EH, CDED como variáveis explicativas e a variável KW como dependente, do conjunto de dados <code>maize</code>. Para seleção destas variáveis, a função <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> é utilizada.</p>
-<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">maize</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">PERK</span>, <span class="va">EH</span>, <span class="va">CDED</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">maize</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">KW</span><span class="op">)</span>
 
@@ -450,7 +450,7 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 <span class="co"># EH   -0.01473329 0.690110850 -0.04548514</span>
 <span class="co"># CDED  0.09200901 0.010613425 -0.16102929</span></code></pre></div>
 <p>Utilizando os conhecimentos acumulados até agora, estes mesmos coeficientes podem ser estimados de maneira mais “elegantemente”, utilizando o código abaixo.</p>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">xx</span><span class="op">)</span>
 <span class="va">Coeff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">xx</span><span class="op">)</span>
 <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span>
@@ -500,7 +500,7 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 <ul>
 <li><strong>Usando uma matriz de correlação, estimada anteriormente</strong></li>
 </ul>
-<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cor_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span>
 <span class="va">cold1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/colindiag.html">colindiag</a></span><span class="op">(</span><span class="va">cor_data</span>, n <span class="op">=</span> <span class="va">n</span><span class="op">)</span>
@@ -517,7 +517,7 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 <ul>
 <li><strong>Usando um dataframe</strong></li>
 </ul>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cold2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/colindiag.html">colindiag</a></span><span class="op">(</span><span class="va">datacor</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cold2</span><span class="op">)</span>
 <span class="co"># Severe multicollinearity in the matrix! Pay attention on the variables listed bellow</span>
@@ -532,7 +532,7 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 <ul>
 <li><strong>Diagnóstico para cada nível do fator ENV</strong></li>
 </ul>
-<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cold3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/colindiag.html">colindiag</a></span><span class="op">(</span><span class="va">data_ge2</span>, by <span class="op">=</span> <span class="va">ENV</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cold3</span><span class="op">)</span>
 <span class="co"># # A tibble: 4 x 2</span>
@@ -548,7 +548,7 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 <span class="header-section-number">12.7.3.2</span> Seleção de preditores com mínima multicolinearidade<a class="anchor" aria-label="anchor" href="#sele%C3%A7%C3%A3o-de-preditores-com-m%C3%ADnima-multicolinearidade"><i class="fas fa-link"></i></a>
 </h4>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/non_collinear_vars.html">non_collinear_vars()</a></code> seleciona um conjunto de preditores com multicolinearidade mínima usando o fator de inflação de variação (VIF) como critério para remover variáveis colineares. O algoritmo irá: <strong>(i)</strong> calcular o valor VIF da matriz de correlação que contém as variáveis originais; <strong>(ii)</strong> ordenar os valores do VIF e excluir a variável com maior VIF; e <strong>(iii)</strong> iterar a etapa <strong>ii</strong> até que o valor VIF seja menor ou igual a um valor pré-estabelecido.</p>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/non_collinear_vars.html">non_collinear_vars</a></span><span class="op">(</span><span class="va">data_ge2</span><span class="op">)</span>
 <span class="co">#          Parameter                                       values</span>
 <span class="co"># 1       Predictors                                           10</span>
@@ -583,7 +583,7 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 <span class="header-section-number">12.7.5</span> Análise tradicional<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-tradicional"><i class="fas fa-link"></i></a>
 </h3>
 <p>Esta sessão está focada principalmente em três objetivos: (i) diagnóstico da multicolinearidade; (ii) seleção de variáveis  preditoras; e (iii) estimação dos coeficientes de trilha. Embora esta seja a sequência correta a ser seguida para a estimativa dos coeficientes de trilha, utilizaremos somente a função <code><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff()</a></code>,  que possibilita todas estas abordagens. Para isto, o conjunto de dados <code>maize</code> será utilizado.</p>
-<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pathtodas</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff</a></span><span class="op">(</span><span class="va">KW</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
@@ -603,17 +603,17 @@ r_{c:y} = \hat \beta_{1_{rc:a}} + \hat \beta_{2_{rc:b}} + \hat \beta_3
 \hat \beta = (X'X+Ik)^{-1} X'Y
 \]</span></p>
 <p>A escolha da magnitude de <em>k</em>, no entanto, deve ser cautelosa. Sugere-se que o valor a ser incluído seja aquele menor possível que estabilize os coeficientes de regressão (<span class="math inline">\(\beta_p\)</span>). Felizmente, grande parte deste trabalho já foi realizado quando utilizamos a função <code><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff()</a></code>  na <a href="#analise-tradicional">sessão anterior</a>. Um conjunto de estimativas de <span class="math inline">\(\beta_p\)</span> foi estimado com 101 valores de <em>k</em>, (<span class="math inline">\(k = 0, 0.01, ..., 1\)</span>) e representado graficamente.</p>
-<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pathtodas</span><span class="op">$</span><span class="va">plot</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-292"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-292-1.png" alt="Valores de beta obtidos com 101 valores de k" width="384"><p class="caption">
+<span id="fig:unnamed-chunk-293"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-293-1.png" alt="Valores de beta obtidos com 101 valores de k" width="384"><p class="caption">
 Figure 12.5: Valores de beta obtidos com 101 valores de k
 </p>
 </div>
 <p>print()</p>
 <p>O gráfico acima nos proporciona uma interpretação sobre qual é o valor de <em>k</em> mais indicado a ser utilizado. Para fins didátidos, escolheremos, por enquanto, o valor de <em>k</em> igual a 0.04, valor no qual os coeficientes de regressão da maioria das variávies se estabiliza. Para incluir este valor de correção, utilizaremos novamente a função <code><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff()</a></code>, no entanto, agora, incluiremos o argumento <code>correction = 0.04</code>.</p>
-<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pathtodas_k</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff</a></span><span class="op">(</span><span class="va">KW</span>, correction <span class="op">=</span> <span class="fl">0.04</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
@@ -624,7 +624,7 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 <span class="header-section-number">12.7.7</span> Excluindo variáveis<a class="anchor" aria-label="anchor" href="#excluindo-vari%C3%A1veis"><i class="fas fa-link"></i></a>
 </h3>
 <p>O ajuste do novo modelo excluindo estas variáveis é facilmente realizado. Para isto, iremos utilizar dois argumentos da função <code><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff()</a></code>  não vistos até agora: <code>pred</code> e <code>exclude</code>. As variáveis informadas em <code>pred</code> podem ser as variáveis preditoras (<em>default</em>) ou as variáveis a serem excluídas, se <code>exclude = TRUE</code>. Vamos ao exemplo.</p>
-<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">path_exclude</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff</a></span><span class="op">(</span>resp <span class="op">=</span> <span class="va">KW</span>,
@@ -681,7 +681,7 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 <span class="header-section-number">12.7.8</span> Seleção de variáveis em análise de trilha<a class="anchor" aria-label="anchor" href="#sele%C3%A7%C3%A3o-de-vari%C3%A1veis-em-an%C3%A1lise-de-trilha"><i class="fas fa-link"></i></a>
 </h3>
 <p> </p>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">path_step</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/path_coeff.html">path_coeff</a></span><span class="op">(</span>resp <span class="op">=</span> <span class="va">KW</span>,
@@ -721,7 +721,7 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 </h3>
 <p>Em alguns casos, é de interesse estimar os coeficientes de trilha para cada nível de um fator, por exemplo, para cada ambiente em um ensaio multi-ambiente. Utilizando o argumento <code>by</code>, isto é facilmente realizado. . Para fins didáticos vamos estimar os coeficientes para cada ambiente do conjunto de dados <code>maize</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">path_levels</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">ENV</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -746,7 +746,7 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 <span class="header-section-number">12.8</span> Correlação canônica<a class="anchor" aria-label="anchor" href="#correla%C3%A7%C3%A3o-can%C3%B4nica"><i class="fas fa-link"></i></a>
 </h2>
 <p>Correlações canônicas podem ser implementadas com a função <code><a href="https://rdrr.io/pkg/metan/man/can_corr.html">can_corr()</a></code>. Primeiro, renomearemos as variáveis relacionadas à planta <code>PH</code> <code>EH</code> e <code>EP</code> com o sufixo <code>_PLA</code> para mostrar a usabilidade do <em>select helper</em> <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>.</p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_cc</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">data_ge2</span>,
          PH_PLA <span class="op">=</span> <span class="va">PH</span>,
@@ -1007,7 +1007,7 @@ Figure 12.5: Valores de beta obtidos com 101 valores de k
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-20.</p>
+    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

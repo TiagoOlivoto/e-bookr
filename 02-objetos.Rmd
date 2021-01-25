@@ -15,14 +15,13 @@ Existem quatro tipos principais de vetores: lógico, inteiro, duplo e caractere 
 
 * Caracteres são cercadas por " (`"dia"`) ou ' (`'noite'`).
 
-A função `c()` \indt{vetores} \indf{c} combina valores que formam vetores^[Vetores são uma estrutura de dados básica do R que permite armazenar um conjunto de valores numéricos ou de caracteres em um objeto nomeado]. Abaixo, é demonstrado como vetores podem ser criados utilizando `c()`. 
+A função `c()` \indt{vetores} \indf{c} combina valores que formam vetores^[Vetores são uma estrutura de dados básica do R que permite armazenar um conjunto de valores numéricos ou de caracteres em um objeto nomeado]. Abaixo, é demonstrado como vetores podem ser criados utilizando `c()`. Note que o código é dado entre parênteses `(...)` para que o valor seja armazenado no ambiente ao mesmo tempo em que é impresso no console.
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-x1 <- c(1) # Escalar 
-x2 <- c(1,2) # Vetor
-x3 <- c(1,2,3) # Vetor
-x3
-x3.1 <- c("um","dois","três") # Vetor com caracteres
+(x1 <- c(1)) # Escalar 
+(x2 <- c(1,2)) # Vetor
+(x3 <- c(1,2,3)) # Vetor
+(x3.1 <- c("um","dois","três")) # Vetor com caracteres
 
 ```
 
@@ -40,21 +39,19 @@ seq(2, 20, by = 2)
 A função `c()` também pode ser combinada com as funções `rep()` e `seq()` para criar vetores mais complexos, como mostrado abaixo.
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-x4 <- c(rep(1:4, each = 4))
-x5 <- seq(1:5)
-x6 <- c(rep(seq(1:5), each = 2))
-x6
+(x4 <- c(rep(1:4, each = 4)))
+(x5 <- seq(1:5))
+(x6 <- c(rep(seq(1:5), each = 2)))
 ```
 
 Utilizando colchtes `[]` é possível selecionar um (ou um conjunto) de elementos de um vetor. Por exemplo:
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE}
-x7 <- x6[1] # Seleciona o primeiro elemento do vetor 
-x8 <- x6[4] #  Seleciona o quarto elemento do vetor 
-x9 <- x6[c(1, 4, 8)] # Seleciona o primeiro, o quarto e o oitavo elemento
-x9
-x10 <- x6[1:4] # armazena uma sequência de elementos (primeiro ao quarto)
-x <- 1:10
+(x7 <- x6[1]) # Seleciona o primeiro elemento do vetor 
+(x8 <- x6[4]) #  Seleciona o quarto elemento do vetor 
+(x9 <- x6[c(1, 4, 8)]) # Seleciona o primeiro, o quarto e o oitavo elemento
+(x10 <- x6[1:4]) # armazena uma sequência de elementos (primeiro ao quarto)
+(x <- 1:10)
 ```
 
 Em adição ao uso de `[]`, as funções `first()`, `last()` e `nth()`, \indf{nth}\indf{first}\indf{last} são utilizadas para selecionar o primeiro, o último e o i-ésimo elemento de um vetor. A principal vantagem é que você pode fornecer um vetor secundário opcional que define a ordem e fornecer um valor padrão a ser usado quando a entrada for menor que o esperado.

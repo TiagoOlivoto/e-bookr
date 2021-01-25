@@ -82,7 +82,7 @@
 <span class="header-section-number">13.1</span> Correlações canônicas<a class="anchor" aria-label="anchor" href="#correla%C3%A7%C3%B5es-can%C3%B4nicas"><i class="fas fa-link"></i></a>
 </h2>
 <p>Correlações canonicas podem ser computadas utilizando a função <code><a href="https://rdrr.io/pkg/metan/man/can_corr.html">can_corr()</a></code> do pacote <code>metan</code>. O primeiro argumento da função é o conjunto de dados (opcional) que deve conter as variáveis numéricas que serão usadas na estimativa das correlações canônicas. Os grupos de variáveis são definidos pelos argumentos <code>FG</code> (primeiro/menor grupo) e <code>SG</code> (segundo/maior grupo). Por padrão, um diagnótico da multicolinearidade é realizado em cada grupo de variável. No exemplo abaixo, os coeficientes foram armazenados no objeto <strong>cc1</strong>. Note que o argumento <code>verbose = FALSE</code> foi utilizado para previnir uma longa saída.</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cc1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/can_corr.html">can_corr</a></span><span class="op">(</span><span class="va">maize</span>,
                FG <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">EH</span>, <span class="va">EP</span><span class="op">)</span>,
                SG <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">EL</span>, <span class="va">ED</span>, <span class="va">CL</span>, <span class="va">CD</span>, <span class="va">CW</span>, <span class="va">KW</span>, <span class="va">NR</span><span class="op">)</span>,
@@ -108,7 +108,7 @@
 <span class="header-section-number">13.2.1</span> Todas as linhas e todas as variáveis numéricas<a class="anchor" aria-label="anchor" href="#todas-as-linhas-e-todas-as-vari%C3%A1veis-num%C3%A9ricas"><i class="fas fa-link"></i></a>
 </h3>
 <p>Por padrão, a função computa as distancias para cada combinação de linhas do conjunto de dados, utilizando todas as variáveis numéricas do conjunto. Isto significa que, considerando o conjunto de dados <strong>maize</strong>, com 156 observações, 12090 distancias serão computadas baseadas nas 15 variáveis numéricas do conjunto.</p>
-<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering</a></span><span class="op">(</span><span class="va">maize</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="com-base-na-média-de-cada-genótipo" class="section level3" number="13.2.2">
@@ -116,21 +116,21 @@
 <span class="header-section-number">13.2.2</span> Com base na média de cada genótipo<a class="anchor" aria-label="anchor" href="#com-base-na-m%C3%A9dia-de-cada-gen%C3%B3tipo"><i class="fas fa-link"></i></a>
 </h3>
 <p>Supondo que o pesquisador deseja computar as distancias entre cada genótipo (o que é lógico em melhoramento genético vegetal) e que esta distancia deve ser computada apenas com algumas variáveis numéricas do conjunto de dados, o seguinte código deverá ser utilizado. Para selecionar as variáveis a serem utilziadas, basta apenas fornecer uma lista de nomes separadas por vírgula e sem o uso do conhecido (e ultrapassado) "". Em adição, para que a distância seja computada entre os genótipos, basta passar os dados médios de cada genótipo computados com <code><a href="https://rdrr.io/pkg/metan/man/utils_stats.html">means_by()</a></code> . Neste caso, a média de cada genótipo é calculada internamente para cada variável numérica e a distãncia é computada utilizando estas médias. A função <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> pode ser usada para plotar um dendrograma. Uma linha é desenhada no ponto de corte sugerido de acordo com <span class="citation">Mojena (<a href="refer%C3%AAncias.html#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
-<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mgen</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/utils_stats.html">means_by</a></span><span class="op">(</span><span class="va">GEN</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span><span class="st">"GEN"</span><span class="op">)</span>
 <span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering</a></span><span class="op">(</span><span class="va">mgen</span>, <span class="va">NKR</span>, <span class="va">TKW</span>, <span class="va">NKE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">d2</span>, horiz <span class="op">=</span> <span class="cn">FALSE</span>, ylab <span class="op">=</span> <span class="st">"Distância euclidiana"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-301-1.png" width="672" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-302-1.png" width="672" style="display: block; margin: auto;"></div>
 <p>No dendrograma exibido acima, cada <em>folha</em> corresponde a um genótipo. À medida que subimos na <em>árvore</em>, genótipos que são semelhantes uns aos outros são combinados em <em>ramos</em>, que vão sendo fundidos a uma altura cada vez maior maior. A altura da fusão, fornecida no eixo vertical, indica a (di)similaridade/distância entre dois genótipos. Quanto maior a altura da fusão, menos semelhantes são os genótipos.</p>
 
 <div class="vcsabia">
 As inferências sobre a proximidade de dois genótipos são realizadas apenas com base na altura em que as ramificações que contêm estes dois genótipos são fundidas. Não podemos usar a proximidade de dois genótipos ao longo do eixo horizontal como critério de similaridade. Por exemplo, é incorreto dizer que os genotipos <strong>H6</strong> e <strong>H9</strong> são dissimilares só porque eles estão nos extremos do dendrograma.
 </div>
 <p>Após a confecção do dendrograma , convém avaliar se as distâncias (ou seja, as alturas) na árvore refletem as distâncias originais com precisão. Uma maneira de medir o quão bem o dendrograma gerado reflete seus dados é calcular a correlação entre as distâncias cofenéticas e a matriz de de distância originais. No procedimento anterior o dendrograma não foi mostrado, no entanto, o coeficiente de correlação cofenético foi calculado. Para isto basta incluir o seguinte comando:</p>
-<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d2</span><span class="op">$</span><span class="va">cophenetic</span>
 <span class="co"># [1] 0.8640355</span></code></pre></div>
 <p>Quanto mais próximo o valor do coeficiente de correlação for de 1, mais precisamente o dendrograma  refletirá as distâncias originais. Valores acima de 0,75 são considerados bons. O método de ligação “average”, ou UPGMA (padrão na função <code><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering()</a></code> parece produzir altos valores dessa estatística. Esta pode ser uma das razões por que ele é tão popular.</p>
@@ -141,7 +141,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 </h3>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering()</a></code>  também conta com um algorítimo de seleção de variáveis . O objetivo é selecionar um grupo de variáveis que mais contribuam para explicar a variabilidade dos dados originais. Digamos que se algumas poucas variáveis pudessem ser utilizadas para agrupar os genótipos sem que haja perda de informação, recursos humanos e financeiros poderiam ser poupados. Assim ao envés de avaliarmos 15 variáveis (em nosso exemplo), poderiamos avaliar somente aquelas que realmente contribuiem para a distinção dos genótipos.</p>
 <p>O algoritmo de seleção de variáveis é executado quando o argumento <code>selvar = TRUE</code> é incluído na função. A seleção das variáveis é baseada na solução de autovalores/autovetores baseada nos seguintes passos: <strong>1:</strong> calcular a matriz de distância e a correlação cofenética com as variáveis originais (todas as variáveis numéricas no conjunto de dados); <strong>2:</strong> calcular os autovalores e autovetores da matriz de correlação entre as variáveis; <strong>3:</strong> deletar a variável com o maior peso (maior autovetor no menor autovalor); <strong>4:</strong> calcular a matriz de distância e correlação cofenética com as variáveis que restaram; <strong>5:</strong> calcular a correlação de Mantel entre a matriz de distâncias obtidas e a matriz de distância original; <strong>6:</strong> iterar os passos 2 a 5 <em>p</em> - 2 vezes, onde <em>p</em> é o número de variáveis originais. No final das iterações, um resumo dos modelos é retornado. A distância é calculada com as variáveis que geraram o modelo com a maior correlação copenética. Sugerimos uma avaliação criteriosa com o objetivo de escolher um modelo parcimonioso, ou seja, aquele com menor número de variáveis, que apresente correlação cofenética aceitável e alta similaridade com as distâncias originais.</p>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering</a></span><span class="op">(</span><span class="va">mgen</span>, selvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># Model 1 with 15 variables. 'EH' excluded in this step (7.1%).</span>
 <span class="co"># Model 2 with 14 variables. 'EP' excluded in this step (14.3%).</span>
@@ -192,7 +192,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 </h3>
 <p>Um dos problemas com o agrupamento  hierárquico é que ele não nos informa quantos clusters existem ou onde cortar o dendrograma  para formar os clusters. Você pode cortar a árvore hierárquica a uma determinada altura, digamos, na média das distâncias, no entanto esta decisão é puramente impirica. Por exemplo, se o ponto de corte for muito alto, tendemos a agrupar genótipos que podem, de fato, não ser semelhantes. Um ponto de corte muito baixo, por outro lado, pode resultar em fracassos na seleção, pois consideramos que os genótipos são distintos, podendo não o serem. Procedimentos estatisticos à exemplo de <span class="citation">Milligan and Cooper (<a href="refer%C3%AAncias.html#ref-Milligan1985" role="doc-biblioref">1985</a>)</span>, <span class="citation">Scott and Symons (<a href="refer%C3%AAncias.html#ref-Scott1971" role="doc-biblioref">1971</a>)</span>, <span class="citation">Krzanowski and Lai (<a href="refer%C3%AAncias.html#ref-Krzanowski1988" role="doc-biblioref">1988</a>)</span>, <span class="citation">Halkidi, Batistakis, and Vazirgiannis (<a href="refer%C3%AAncias.html#ref-Halkidi2001" role="doc-biblioref">2001</a>)</span> e <span class="citation">Hubert and Arabie (<a href="refer%C3%AAncias.html#ref-Hubert1985" role="doc-biblioref">1985</a>)</span> são recomendados para esta escolha. Estes algorítimos estão implementados no pacote <code>NbClust</code> <span class="citation">(Charrad et al. <a href="refer%C3%AAncias.html#ref-Charrad2014" role="doc-biblioref">2014</a>)</span> pode ser utilizado para este fim. Por padrão, a função fornece o ponto de corte calculado pelo método de <span class="citation">Mojena (<a href="refer%C3%AAncias.html#ref-Mojena1977" role="doc-biblioref">1977</a>)</span>.</p>
 <p>Procedimentos baseado em reamostragens bootstrap que calcula a probabilidade de erro de cada <em>galho</em> do dendrograma  podem ser utilizados. O código abaixo estima p-valores para cada junção no dendrograma do modelo <code>d3</code>. Para maiore detalhes sobre o métoddo veja <span class="citation">Suzuki and Shimodaira (<a href="refer%C3%AAncias.html#ref-Suzuki2006" role="doc-biblioref">2006</a>)</span>.</p>
-<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pv_clust</span> <span class="op">&lt;-</span> <span class="fu">pvclust</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">d3</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>, nboot <span class="op">=</span> <span class="fl">100</span>, method.dist <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span>
 <span class="co"># Bootstrap (r = 0.5)... Done.</span>
 <span class="co"># Bootstrap (r = 0.67)... Done.</span>
@@ -202,7 +202,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <span class="co"># Bootstrap (r = 1.33)... Done.</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pv_clust</span>, hang <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, cex <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 <span class="fu">pvrect</span><span class="op">(</span><span class="va">pv_clust</span>, alpha <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-305-1.png" width="672" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-306-1.png" width="672" style="display: block; margin: auto;"></div>
 <p>O resultado do procedimento bootstrap indicou a formação de dois clusters, com probabilidade de erro de 5%. Assim, nas próximas funções, serão demostrados os diferentes dendrogramas  que podem ser gerados</p>
 </div>
 <div id="dendrogramas-personalizados" class="section level3" number="13.2.5">
@@ -210,7 +210,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <span class="header-section-number">13.2.5</span> Dendrogramas personalizados<a class="anchor" aria-label="anchor" href="#dendrogramas-personalizados"><i class="fas fa-link"></i></a>
 </h3>
 <p>O pacote <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html">factoextra</a> oferece um conjunto de funções para estender objetos dendrogramas em R. Um exemplo simples é dado abaixo.</p>
-<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">de1</span> <span class="op">&lt;-</span> <span class="fu">fviz_dend</span><span class="op">(</span><span class="va">d3</span><span class="op">$</span><span class="va">hc</span>,
                  k <span class="op">=</span> <span class="fl">2</span>,
                  xlab <span class="op">=</span> <span class="st">"Genótipos"</span>,
@@ -233,21 +233,21 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <span class="va">cp1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">de1</span>, <span class="va">de2</span>, <span class="va">de3</span>, nrow <span class="op">=</span> <span class="fl">1</span>,
                  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"de1"</span>, <span class="st">"de2"</span>, <span class="st">"de3"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">cp1</span>, <span class="va">de4</span>, rows <span class="op">=</span> <span class="fl">2</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"de4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-306-1.png" width="1152" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-307-1.png" width="1152" style="display: block; margin: auto;"></div>
 </div>
 <div id="distancias-para-cada-ambiente" class="section level3" number="13.2.6">
 <h3>
 <span class="header-section-number">13.2.6</span> Distancias para cada ambiente<a class="anchor" aria-label="anchor" href="#distancias-para-cada-ambiente"><i class="fas fa-link"></i></a>
 </h3>
 <p>O seguinte código computa as distâncias para cada nível do fator <strong>AMB</strong> do conjunto de dados maize. A função <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>  é utilizada para criar uma lista onde cada elemento conterá os dados de cada ambiente. Note que o argumento <code>keep_factors = TRUE</code> foi utilizado para manter as colunas de fatores. Assim é possível computar a média para cada genótipo quando informado o argumento <code>means_by = GEN</code> na função <code><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering()</a></code> . O resultado desta função é então passado para a função <code><a href="https://rdrr.io/pkg/metan/man/pairs_mantel.html">pairs_mantel()</a></code>.  Esta função é utilizada para avaliar a associação entre as quatro matrizes de distância.</p>
-<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d4</span> <span class="op">&lt;-</span> 
   <span class="va">maize</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">ENV</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/clustering.html">clustering</a></span><span class="op">(</span><span class="va">NKR</span>, <span class="va">TKW</span>, <span class="va">NKE</span>, nclust <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/pairs_mantel.html">pairs_mantel</a></span><span class="op">(</span><span class="va">d4</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"A3"</span>, <span class="st">"A4"</span><span class="op">)</span>,
              maxsize <span class="op">=</span> <span class="fl">5</span>, minsize <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-307-1.png" width="288" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-308-1.png" width="288" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="componentes-principais" class="section level2" number="13.3">
@@ -271,7 +271,7 @@ As inferências sobre a proximidade de dois genótipos são realizadas apenas co
 <span class="header-section-number">13.3.3</span> Formato dos dados<a class="anchor" aria-label="anchor" href="#formato-dos-dados"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para realizar a aplicação da técnica de componentes principais, os dados em <em>data_ge2</em> serão utilizados. Precisamos, primeiramente, organizar os dados de modo que tenhamos uma matriz de dupla entrada, contendo os genótipos nas linhas e as variáveis nas colunas.</p>
-<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">data_pca</span> <span class="op">&lt;-</span> 
   <span class="va">data_ge2</span> <span class="op">%&gt;%</span> 
@@ -287,7 +287,7 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 <h3>
 <span class="header-section-number">13.3.4</span> Código R<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-r"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res.pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">data_pca</span>, scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Para ajudar na interpretação do PCA realizado acima, usaremos funções do pacote factoextra. Essas funções incluem:
 <code>get_eigenvalue(res.pca)</code>: Extrai os autovalores/variâncias dos componentes principais
@@ -301,7 +301,7 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 <span class="header-section-number">13.3.5</span> Autovalores<a class="anchor" aria-label="anchor" href="#autovalores"><i class="fas fa-link"></i></a>
 </h3>
 <p>Os autovalores medem a quantidade de variância retida por cada componente principal. Autovalores são grandes para os primeiros PCs e pequenos para os PCs subseqüentes. Ou seja, os primeiros PCs correspondem às direções com a quantidade máxima de variação no conjunto de dados. Examinamos os autovalores para determinar o número de componentes principais a serem considerados. Os autovalores e a proporção de variâncias (isto é, informação) retidos pelos componentes principais (PCs) são extraídos usando a função <code>get_eigenvalue()</code>.</p>
-<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eig.val</span> <span class="op">&lt;-</span> <span class="fu">get_eigenvalue</span><span class="op">(</span><span class="va">res.pca</span><span class="op">)</span></code></pre></div>
 <p>A soma de todos os autovalores resulta em uma variância total de 15 A proporção de variação explicada por cada autovalor é dada na segunda coluna. Por exemplo, 7.623 dividido por 15 é igual a 0.5082, ou, cerca de 50.82% da variação é explicada por este primeiro autovalor. A porcentagem acumulada explicada é obtida adicionando as proporções sucessivas de variação explicadas. Por exemplo, 50.82% mais 18.13% é igual a 68.95% e assim por diante. Assim, cerca de 59,627% da variação é explicada pelos dois primeiros autovalores.</p>
 
@@ -309,7 +309,7 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
 <p>Um autovalor maior que 1 indica que os componentes principais são responsáveis por mais variâncias do que as contabilizadas por uma das variáveis originais nos dados padronizados. Isso é comumente usado como um ponto de corte para o qual os PCs são mantidos <span class="citation">(Kaiser <a href="refer%C3%AAncias.html#ref-Kaiser1961" role="doc-biblioref">1961</a>)</span>. No entanto, isto vale apenas quando os dados são padronizados.</p>
 </div>
 <p>Infelizmente, não há maneira objetiva bem aceita de decidir quantos componentes principais são suficientes. Em nossa análise, os três primeiros componentes principais explicam 83.62% da variação. Esta é uma percentagem aceitavelmente grande. Um método alternativo para determinar o número de componentes principais é olhar para um Scree Plot, que é o gráfico de autovalores ordenados do maior para o menor. O número de componentes é determinado no ponto, além do qual os autovalores remanescentes são todos relativamente pequenos.</p>
-<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">fviz_eig</span><span class="op">(</span><span class="va">res.pca</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">fviz_eig</span><span class="op">(</span><span class="va">res.pca</span>,
                addlabels <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -321,8 +321,8 @@ x_s = \frac{x_i- mean(x)}{sd(x)}
                main <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-312"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-312-1.png" alt="Autovalores e variância acumulada na análise de componentes principais" width="960"><p class="caption">
+<span id="fig:unnamed-chunk-313"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-313-1.png" alt="Autovalores e variância acumulada na análise de componentes principais" width="960"><p class="caption">
 Figure 13.1: Autovalores e variância acumulada na análise de componentes principais
 </p>
 </div>
@@ -342,7 +342,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <span class="header-section-number">13.3.6.1</span> Círculo de correlação<a class="anchor" aria-label="anchor" href="#c%C3%ADrculo-de-correla%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
 </h4>
 <p>A correlação entre uma variável e um componente principal (PC) é usada como as coordenadas da variável no PC. Um gráfico pode ser obtido utilizando a função <code>fviz_pca_var()</code>, </p>
-<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res.pca</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res.pca</span>,
                    col.circle <span class="op">=</span> <span class="st">"red"</span>,
@@ -352,7 +352,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
                    title <span class="op">=</span> <span class="st">"Gráfico das variáveis"</span>,
                    repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-313-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-314-1.png" width="960" style="display: block; margin: auto;"></div>
 <p>O gráfico acima mostra as relações entre todas as variáveis. Ele pode ser interpretado da seguinte forma:</p>
 <ul>
 <li>Variáveis positivamente correlacionadas são agrupadas.</li>
@@ -365,7 +365,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <span class="header-section-number">13.3.6.2</span> Representação e contribuição das variáveis<a class="anchor" aria-label="anchor" href="#representa%C3%A7%C3%A3o-e-contribui%C3%A7%C3%A3o-das-vari%C3%A1veis"><i class="fas fa-link"></i></a>
 </h4>
 <p>A qualidade e a contribuição das variáveis pode ser exibida no mapa de fatores utilizando o argumento <code>col.var = "cos2"</code> e <code>col.var = "contrib"</code>, respectivamente. Note que é possível também colorir as variáveis utilizando uma variável categórica. Para fins didáticos criaremos uma variável categórica com três neíveis, baseado no algorítmo kmeans aplicado nas coordenadas das variáveis.</p>
-<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_var</span><span class="op">(</span><span class="va">res.pca</span>,
                    col.var <span class="op">=</span> <span class="st">"cos2"</span>,
                    geom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"point"</span>, <span class="st">"arrow"</span>, <span class="st">"text"</span><span class="op">)</span>,
@@ -379,7 +379,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
                    repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-314-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-315-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="gráfico-de-indivíduos" class="section level3" number="13.3.7">
@@ -387,7 +387,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <span class="header-section-number">13.3.7</span> Gráfico de indivíduos<a class="anchor" aria-label="anchor" href="#gr%C3%A1fico-de-indiv%C3%ADduos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Os resultados, para indivíduos, podem ser extraídos usando a função <code>get_pca_ind()</code>. Similarmente ao <code>get_pca_var()</code>, esta função fornece uma lista de matrizes contendo todos os resultados para os indivíduos (coordenadas, correlação entre indivíduos e eixos, quadrado das distâncias e contribuições). A função <code>fviz_pca_ind()</code> é usada para produzir o gráfico de indivíduos.</p>
-<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_ind</span><span class="op">(</span><span class="va">res.pca</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_ind</span><span class="op">(</span><span class="va">res.pca</span>,
                    pointsize <span class="op">=</span> <span class="st">"cos2"</span>, 
@@ -395,14 +395,14 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
                    fill <span class="op">=</span> <span class="st">"#E7B800"</span>,
                    repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-315-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-316-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="gráfico-biplot" class="section level3" number="13.3.8">
 <h3>
 <span class="header-section-number">13.3.8</span> Gráfico biplot<a class="anchor" aria-label="anchor" href="#gr%C3%A1fico-biplot"><i class="fas fa-link"></i></a>
 </h3>
 <p>Um gráfico biplot combina os marcadores de variáveis e indivíduos em um mesmo gráfico. A função <code>fviz_pca_biplot()</code> é utilizada para gerar este tipo de gráfico. O primeiro biplot (p1) é confeccionado com o exemplo em <code>res.pca</code>. Um exemplo um pouco mais complexo será mostrado utilizando o banco de dados do R iris. Neste exemplo, os indivíduos são coloridos por grupos (cor discreta) e variáveis por suas contribuições para os componentes principais (cores de gradiente). Além disso, alteraremos a transparência das variáveis por suas contribuições usando o argumento <code>alpha.var</code>. </p>
-<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">fviz_pca_biplot</span><span class="op">(</span><span class="va">res.pca</span><span class="op">)</span>
 
 <span class="va">iris.pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span>, scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -421,7 +421,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
                                     color <span class="op">=</span> <span class="st">"Contribuição"</span>,
                                     alpha <span class="op">=</span> <span class="st">"Contribuição"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span>, rel_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-316-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-317-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="k-means" class="section level2" number="13.4">
@@ -452,7 +452,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <span class="header-section-number">13.4.3</span> Formato dos dados e códigos R<a class="anchor" aria-label="anchor" href="#formato-dos-dados-e-c%C3%B3digos-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>O formato dos dados utilizados é o mesmo dos utilizados para realizar a <a href="multivariate.html#componentes-principais">análise de componentes principais</a>. Assim, neste exemplo, somente criaremos um novo conjunto renomeando os dados organizados anteriormente (<code>data_pca</code>) para <code>data_km</code>. O próximo passo é ajustar o modelo <em>k</em>-means e armazenar em um objeto, em nosso exemplo, <code>kmres</code>. Posteriormente, a função <code>fviz_cluster()</code> é utilizada para confeccionar o gráfico.</p>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_km</span> <span class="op">&lt;-</span> <span class="va">data_pca</span>
 <span class="va">km.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">data_km</span>, <span class="fl">2</span>, nstart <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">fviz_cluster</span><span class="op">(</span><span class="va">km.res</span>, data <span class="op">=</span> <span class="va">data_pca</span><span class="op">)</span>
@@ -464,7 +464,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
                    ggtheme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/themes.html">theme_metan</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span>
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-317-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-318-1.png" width="960" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
@@ -523,7 +523,7 @@ Figure 13.1: Autovalores e variância acumulada na análise de componentes princ
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-20.</p>
+    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

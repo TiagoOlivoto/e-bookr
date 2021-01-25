@@ -95,13 +95,13 @@
 <span class="header-section-number">14.1</span> Análise gráfica da interação<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-gr%C3%A1fica-da-intera%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
 </h2>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/ge_plot.html">ge_plot()</a></code> pode ser usada para visualizar o desempenho do genótipo através dos ambientes. O losango preto mostra a média para cada ambiente.</p>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_plot.html">ge_plot</a></span> <span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_plot.html">ge_plot</a></span> <span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span> <span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-318-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-319-1.png" width="960" style="display: block; margin: auto;"></div>
 <p>Para identificar o genótipo vencedor em cada ambiente, podemos usar a função <code><a href="https://rdrr.io/pkg/metan/man/ge_winners.html">ge_winners()</a></code>.</p>
-<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_winners.html">ge_winners</a></span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># # A tibble: 4 x 16</span>
 <span class="co">#   ENV   PH    EH    EP    EL    ED    CL    CD    CW    KW    NR    NKR   CDED </span>
@@ -112,7 +112,7 @@
 <span class="co"># 4 A4    H5    H5    H10   H7    H11   H5    H7    H5    H7    H11   H9    H10  </span>
 <span class="co"># # ... with 3 more variables: PERK &lt;chr&gt;, TKW &lt;chr&gt;, NKE &lt;chr&gt;</span></code></pre></div>
 <p>Ou obtenha a classificação dos genótipos em cada ambiente.</p>
-<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_winners.html">ge_winners</a></span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span> <span class="op">(</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"ranks"</span><span class="op">)</span>
 <span class="co"># # A tibble: 52 x 16</span>
 <span class="co">#    ENV   PH    EH    EP    EL    ED    CL    CD    CW    KW    NR    NKR   CDED </span>
@@ -129,7 +129,7 @@
 <span class="co"># 10 A1    H11   H6    H5    H12   H4    H1    H1    H3    H10   H1    H12   H1   </span>
 <span class="co"># # ... with 42 more rows, and 3 more variables: PERK &lt;chr&gt;, TKW &lt;chr&gt;, NKE &lt;chr&gt;</span></code></pre></div>
 <p>Para mais detalhes sobre os testes, podemos usar <code><a href="https://rdrr.io/pkg/metan/man/ge_details.html">ge_details()</a></code></p>
-<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_details.html">ge_details</a></span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, resp <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># # A tibble: 10 x 16</span>
 <span class="co">#    Parameters PH    EH    EP    EL    ED    CL    CD    CW    KW    NR    NKR  </span>
@@ -151,7 +151,7 @@
 <span class="header-section-number">14.2</span> Análise de variância individual<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-de-vari%C3%A2ncia-individual"><i class="fas fa-link"></i></a>
 </h2>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/anova_ind.html">anova_ind()</a></code>  pode ser utilziada para realizar uma análise de variância para cada ambiente, conforme o seguinte código.</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/anova_ind.html">anova_ind</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">ind</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">individual</span><span class="op">)</span>
 <span class="co"># # A tibble: 14 x 12</span>
@@ -183,7 +183,7 @@
 \]</span></p>
 <p>onde <span class="math inline">\({\beta _{0i}}\)</span> é a média geral do genótipo <em>i</em> (<em>i</em> = 1, 2, …, I); <span class="math inline">\({\beta _{1i}}\)</span> é a respota linear do genótipo <em>i</em> ao índice ambiental; <em>Ij</em> é o índice ambiental (<em>j</em> = 1, 2, …, <em>e</em>), onde <span class="math inline">\({I_j} = [(y_{.j}/g)- (y_{..}/ge)]\)</span>, <span class="math inline">\({\delta _{ij}}\)</span> é o desvio da regressão, e <span class="math inline">\({\bar \varepsilon _{ij}}\)</span> é o erro experimental.
 O modelo é ajustado com a função <code><a href="https://rdrr.io/pkg/metan/man/ge_reg.html">ge_reg()</a></code> . Os métodos S3 <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> e <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> podem ser utilizados para explorar os resultados.</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">reg_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_reg.html">ge_reg</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">reg_model</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">anova</span>
 <span class="co"># # A tibble: 17 x 6</span>
@@ -221,7 +221,7 @@ O modelo é ajustado com a função <code><a href="https://rdrr.io/pkg/metan/man
 <span class="co">#  9 G8     3.00 1.03     0.0382  0.246 0.922</span>
 <span class="co"># 10 G9     2.51 1.19     0.0938  0.329 0.897</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">reg_model</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-323-1.png" width="480" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-324-1.png" width="480" style="display: block; margin: auto;"></div>
 </div>
 <div id="índice-de-confiança-genotípico" class="section level2" number="14.4">
 <h2>
@@ -236,7 +236,7 @@ O modelo é ajustado com a função <code><a href="https://rdrr.io/pkg/metan/man
 W_i = Z_{i.} / E - \alpha \times sd (Z_{i.})
 \]</span></p>
 <p>Onde <span class="math inline">\(\alpha\)</span> é o quantil da distribuição normal padrão a uma dada probabilidade de erro (<span class="math inline">\(\alpha \approx 1.64\)</span> a 0.05). O método é implementado usando a função <code><a href="https://rdrr.io/pkg/metan/man/Annicchiarico.html">Annicchiarico()</a></code> . O índice de confiança é estimado considerando todos os ambientes, os ambientes favoráveis (índice positivo) e os ambientes desfavoráveis (índice negativo), como segue:</p>
-<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ann</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/Annicchiarico.html">Annicchiarico</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">ann</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">general</span>
 <span class="co"># # A tibble: 10 x 6</span>
@@ -262,7 +262,7 @@ W_i = Z_{i.} / E - \alpha \times sd (Z_{i.})
 P_i = \sum \limits_{j = 1} ^ n {(y_ {ij} - y _ {. J}) ^ 2 / (2n)}
 \]</span>
 onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confiança genotípico, o índice de superioridade é calculado por todos os ambientes, para os favoráveis e para os desfavoráveis.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">super</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/superiority.html">superiority</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">super</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">index</span>
 <span class="co"># # A tibble: 10 x 8</span>
@@ -284,11 +284,11 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <span class="header-section-number">14.6</span> Estratificação ambiental<a class="anchor" aria-label="anchor" href="#estratifica%C3%A7%C3%A3o-ambiental"><i class="fas fa-link"></i></a>
 </h2>
 <p>Um método que combina análise de estabilidade e estratificação ambiental usando análise fatorial foi proposto por <span class="citation">Murakami and Cruz (<a href="refer%C3%AAncias.html#ref-murakami2004" role="doc-biblioref">2004</a>)</span>. Este método é implementado com a função <code><a href="https://rdrr.io/pkg/metan/man/ge_factanal.html">ge_factanal()</a></code>, como segue:</p>
-<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fato</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_factanal.html">ge_factanal</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fato</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-326-1.png" width="480" style="display: block; margin: auto;"></div>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-327-1.png" width="480" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fato</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">PCA</span><span class="op">)</span>
 <span class="co"># # A tibble: 14 x 4</span>
 <span class="co">#    PCA   Eigenvalues  Variance Cumul_var</span>
@@ -344,10 +344,10 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <span class="co"># 13 E7    FA5     1.99 1.39   2.55 16.8 </span>
 <span class="co"># 14 E9    FA5     3.06 1.94   3.72 15.6</span></code></pre></div>
 <p>A maneira mais fácil de calcular os índices de estabilidade acima mencionados é usando a função <code><a href="https://rdrr.io/pkg/metan/man/ge_stats.html">ge_stats()</a></code>. </p>
-<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stat_ge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/ge_stats.html">ge_stats</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span></code></pre></div>
 <p>Se você deseja exportar um resumo dos resultados, a maneira mais simples é usando função <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">stat_ge</span>, export <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Este comando criará um arquivo de texto chamado <em>ge_stats summary.txt </em> no diretório de trabalho atual.</p>
 </div>
@@ -372,7 +372,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <span class="header-section-number">14.7.1</span> Ajuste do modelo<a class="anchor" aria-label="anchor" href="#ajuste-do-modelo"><i class="fas fa-link"></i></a>
 </h3>
 <p>O modelo AMMI é ajustado com a função <code><a href="https://rdrr.io/pkg/metan/man/performs_ammi.html">performs_ammi()</a></code>. O primeiro argumento é os dados, no nosso exemplo <code>data_ge</code>. Os próximos argumentos (<code>ENV</code>, <code>GEN</code> e <code>REP</code>) são os nomes das colunas que contém os níveis dos fatores ambiente, genótipo, repetição, respectivamente. No argumento <code>resp</code> são declaradas as variáveis resposta. Uma única variável pode ser analizada (como em nosso exemplo) ou, um vetor de variáveis, usando, por exemplo <code>resp = c(GY, HM)</code>.</p>
-<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">AMMI_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/performs_ammi.html">performs_ammi</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="co"># variable GY </span>
@@ -409,9 +409,9 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <span class="header-section-number">14.7.2</span> Analise residual<a class="anchor" aria-label="anchor" href="#analise-residual"><i class="fas fa-link"></i></a>
 </h3>
 <p>O pacote <code>metan</code> conta com uma opção para análise residual do modelo AMMI ajustado. Gráficos podem ser obtidos utilizando o seguinte comando.</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">AMMI_model</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-331-1.png" width="768" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-332-1.png" width="768" style="display: block; margin: auto;"></div>
 <p>A figura acima, obtida com a função <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code>, mostra 4 gráficos. Os dois primeiros são os mais importantes. O primeiro (<em>Residual vs fitted</em>) pode ser utilizado para identificar a homogeneidade das variâncias. Uma distribuição aleatória dos pontos no gráfico deve ser observada. Quando um padrão de distibuição é observado –como, por exemplo, a distribuição dos pontos em forma de funil– uma investigação deve ser realizada, pois este padrão indica a possiblidade de heterogeneidade das variâncias. O segundo gráfico (<em>Normal Q-Q</em>) nos informa quanto a normalidade dos resíduos, ou seja, é desejado que os pontos sejam distribuídos ao redor da linha diagonal.</p>
 </div>
 <div id="escolha-do-número-de-termos-multiplicativos" class="section level3" number="14.7.3">
@@ -466,7 +466,7 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <p>O pacote <code>metan</code> fornece uma solução completa para validaçao cruzada do modelo AMMI. Utilizando a função <code><a href="https://rdrr.io/pkg/metan/man/cv_ammif.html">cv_ammif()</a></code> , por exemplo, é possível realizar um teste de <em>cross-validation</em> para a família de modelos AMMI (AMMI0-AMMIF) usando dados com repetições. Automaticamente, a primeira validação é realizada considerando a AMMIF (todos possíveis IPCAs são usados). Considerando esse modelo, o conjunto de dados original é dividido em dois conjuntos de dados: dados de modelagem e dados de validação. O conjunto de dados “modelagem” possui todas as combinações (genótipo <em>vs</em> ambiente) com R-1 repetições. O conjunto de dados “validação” tem uma repetição. O diagrama abaixo representa o procedimento realizado.</p>
 <p>A divisão do conjunto de dados em dados de modelagem e validação depende do design informado. Considerando um delineamento de blocos completos casualizados (DBC), blocos completos são aleatoriamente selecionados dentro de ambientes, como mostrado por <span class="citation">Tiago Olivoto, Lúcio, et al. (<a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">2019</a><a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">a</a>)</span>. O bloco restante serve dados de validação. Se <code>design = "CRD"</code> for informado, assim declarando que um delineamento intericamente casualizado (DIC)  foi usado, observações são aleatoriamente selecionadas para cada tratamento (combinação genótipo-<em>vs</em>-ambiente). Este é o mesmo procedimento sugerido por <span class="citation">Gauch (<a href="refer%C3%AAncias.html#ref-Gauch1988" role="doc-biblioref">1988</a>)</span>. Os valores estimados para o membro da família AMMI em estudo são então comparados com os dados de “validação” e um erro de predição <span class="math inline">\(\hat{z}_{ij}\)</span> é estimado para cada tratamento. A raiz quadrada do quadrado médio da diferença de predição (RMSPD) é calculado. Este procedimento é repetido <em>n</em> vezes, utilizando o argumento <code>nboot = n</code>. Ao final do procedimento, o algorítimo armazena as <em>n</em> estimativas do RMSPD para o modelo em questão, e um novo modelo é então testado seguindo os mesmos passos.</p>
 <p>Como exemplo, a função <code><a href="https://rdrr.io/pkg/metan/man/cv_ammi.html">cv_ammi()</a></code> é usada para calcular um procedimento de validação cruzada para os modelos AMMI0, AMMI2 e AMMIF (9 eixos).</p>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">AMMI0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_ammi.html">cv_ammi</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, naxis <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="co"># AMMI0</span>
 <span class="va">AMMI2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_ammi.html">cv_ammi</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, naxis <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># AMMI2</span>
 <span class="va">AMMI9</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_ammi.html">cv_ammi</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, naxis <span class="op">=</span> <span class="fl">9</span><span class="op">)</span> <span class="co"># AMMIF</span></code></pre></div>
@@ -475,24 +475,24 @@ onde <em>n</em> é o número de ambientes. Da mesma forma que o índice de confi
 <strong>AMMI0 para AMMIF</strong>
 A função <code><a href="https://rdrr.io/pkg/metan/man/cv_ammif.html">cv_ammif()</a></code> é usada para calcular um procedimento de validação cruzada para todos os membros do modelo da família AMMI. Nesse caso, AMMI0-AMMI9.</li>
 </ul>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">AMMIF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_ammif.html">cv_ammif</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span><span class="op">)</span></code></pre></div>
 <ul>
 <li><p><strong>Validação cruzada para previsão de BLUP</strong>
 A função <code><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup ()</a></code> fornece uma validação cruzada de dados baseados em replicação usando modelos mistos. Por padrão, blocos completos são selecionados aleatoriamente para cada ambiente. Usando o argumento `random ’, é possível escolher os efeitos aleatórios do modelo, como mostrado abaixo.</p></li>
 <li><p><strong>Genótipo e genótipo versus ambiente como efeitos aleatórios</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">BLUP_g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup</a></span><span class="op">(</span><span class="va">dados_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, random <span class="op">=</span> <span class="st">"gen"</span><span class="op">)</span></code></pre></div>
 <ul>
 <li><strong>Ambiente, replicação dentro do ambiente e interação como efeitos aleatórios</strong></li>
 </ul>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">BLUP_e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup</a></span><span class="op">(</span><span class="va">dados_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, random <span class="op">=</span> <span class="st">"env"</span><span class="op">)</span></code></pre></div>
 <ul>
 <li><strong>Um modelo aleatório (todos os termos como efeitos aleatórios)</strong></li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">BLUP_ge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup</a></span><span class="op">(</span><span class="va">dados_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, random <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
@@ -501,7 +501,7 @@ A função <code><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup ()
 <h2>
 <span class="header-section-number">14.8</span> Imprimindo os meios das estimativas RMSPD<a class="anchor" aria-label="anchor" href="#imprimindo-os-meios-das-estimativas-rmspd"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bind_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/bind_cv.html">bind_cv</a></span><span class="op">(</span><span class="va">AMMIF</span>, <span class="va">BLUP_g</span>, bind <span class="op">=</span> <span class="st">"means"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">bind_mod</span><span class="op">$</span><span class="va">RMSPD</span><span class="op">)</span>
 <span class="co"># # A tibble: 11 x 6</span>
@@ -525,23 +525,23 @@ A função <code><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup ()
 <span class="header-section-number">14.9</span> Plotagem dos valores RMSPD<a class="anchor" aria-label="anchor" href="#plotagem-dos-valores-rmspd"><i class="fas fa-link"></i></a>
 </h2>
 <p>Os valores das estimativas RMSPD obtidas no processo de validação cruzada podem ser plotados usando a função <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot ()</a></code>.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="interaction.html#cb304-1"></a><span class="kw">library</span>(metan)</span>
-<span id="cb304-2"><a href="interaction.html#cb304-2"></a>bind1 &lt;-<span class="st"> </span><span class="kw">bind_cv</span>(AMMI0, AMMI2, AMMI9)</span>
-<span id="cb304-3"><a href="interaction.html#cb304-3"></a>bind2 &lt;-<span class="st"> </span><span class="kw">bind_cv</span> (AMMIF, BLUP_g, BLUP_e, BLUP_ge)</span>
-<span id="cb304-4"><a href="interaction.html#cb304-4"></a>a &lt;-<span class="st"> </span><span class="kw">plot</span>(bind1, <span class="dt">violino =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb304-5"><a href="interaction.html#cb304-5"></a>b &lt;-<span class="st"> </span><span class="kw">plot</span>(bind2,</span>
-<span id="cb304-6"><a href="interaction.html#cb304-6"></a>          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</span>
-<span id="cb304-7"><a href="interaction.html#cb304-7"></a>          <span class="dt">order_box =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb304-8"><a href="interaction.html#cb304-8"></a>          <span class="dt">plot_theme =</span> <span class="kw">theme_metan_minimal</span> ())</span>
-<span id="cb304-9"><a href="interaction.html#cb304-9"></a><span class="kw">arrange_ggplot</span>(a, b, <span class="dt">tag_levels =</span> <span class="kw">list</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]))</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-339-1.png" width="960"></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="interaction.html#cb305-1"></a><span class="kw">library</span>(metan)</span>
+<span id="cb305-2"><a href="interaction.html#cb305-2"></a>bind1 &lt;-<span class="st"> </span><span class="kw">bind_cv</span>(AMMI0, AMMI2, AMMI9)</span>
+<span id="cb305-3"><a href="interaction.html#cb305-3"></a>bind2 &lt;-<span class="st"> </span><span class="kw">bind_cv</span> (AMMIF, BLUP_g, BLUP_e, BLUP_ge)</span>
+<span id="cb305-4"><a href="interaction.html#cb305-4"></a>a &lt;-<span class="st"> </span><span class="kw">plot</span>(bind1, <span class="dt">violino =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb305-5"><a href="interaction.html#cb305-5"></a>b &lt;-<span class="st"> </span><span class="kw">plot</span>(bind2,</span>
+<span id="cb305-6"><a href="interaction.html#cb305-6"></a>          <span class="dt">width.boxplot =</span> <span class="fl">0.6</span>,</span>
+<span id="cb305-7"><a href="interaction.html#cb305-7"></a>          <span class="dt">order_box =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb305-8"><a href="interaction.html#cb305-8"></a>          <span class="dt">plot_theme =</span> <span class="kw">theme_metan_minimal</span> ())</span>
+<span id="cb305-9"><a href="interaction.html#cb305-9"></a><span class="kw">arrange_ggplot</span>(a, b, <span class="dt">tag_levels =</span> <span class="kw">list</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]))</span></code></pre></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-340-1.png" width="960"></div>
 <p>Seis estatísticas são mostradas neste boxplot. A média (losango preto), a mediana (linha preta), as dobradiças inferior e superior que correspondem ao primeiro e terceiro quartis (percentis 25 e 75, respectivamente). O bigode superior se estende da dobradiça até o maior valor não mais que <span class="math inline">\(1,5 \times {IQR}\)</span> a partir da dobradiça (em que IQR é o intervalo entre quartis). O bigode mais baixo se estende da dobradiça ao menor valor, no máximo <span class="math inline">\(1,5 \times {IQR}\)</span> da dobradiça. Dados além do final dos bigodes são considerados pontos extremos. Se a condição <code>violin = TRUE</code>, uma plotagem de violino é adicionada junto com o boxplot. Um gráfico de violino é uma exibição compacta de uma distribuição contínua exibida da mesma maneira que um gráfico de caixa.</p>
 <div id="valores-estimados-pelo-modelo-ammi" class="section level3" number="14.9.1">
 <h3>
 <span class="header-section-number">14.9.1</span> Valores estimados pelo modelo AMMI<a class="anchor" aria-label="anchor" href="#valores-estimados-pelo-modelo-ammi"><i class="fas fa-link"></i></a>
 </h3>
 <p>Em nosso exemplo, o modelo AMMI2 foi o que apresentou o menor RMSPD, sendo então o mais indicado para estimar a variável GY. A estimativa considerando dois termos multiplicativos pode realizada utilizando a função <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>, tendo como argumentos o modelo AMMI ajustado (<code>AMMI_model</code>) e o número de termos multiplicativos considerados na estimação (<code>naxis</code>). </p>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">AMMI_model</span>, naxis <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">predicted</span><span class="op">$</span><span class="va">GY</span>
 <span class="co"># # A tibble: 140 x 8</span>
@@ -565,7 +565,7 @@ A função <code><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup ()
 <span class="header-section-number">14.9.2</span> Índices de estabilidade baseados em AMMI<a class="anchor" aria-label="anchor" href="#%C3%ADndices-de-estabilidade-baseados-em-ammi"><i class="fas fa-link"></i></a>
 </h3>
 <p><span class="citation">(Tiago Olivoto, Lúcio, et al. <a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">2019</a><a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">a</a>)</span> demonstraram que a média ponderada dos escores absolutos (WAAS, <strong>W</strong>eighted <strong>A</strong>verage of <strong>A</strong>bsolute <strong>S</strong>cores), pode ser utilizada como um índice quantitativo de estabilidade na análise AMMI. Utilizando a função <code><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data()</a></code> é possível obter facilmente este índice para diversas variáveis com poucas linhas de código. Veja o exemplo abaixo, com quatro variáveis. Este índice também é computado em uma estrutura de modelo misto. <a href="interaction.html#wsb">Veja o exemplo aqui</a>.</p>
-<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/waas.html">waas</a></span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
      resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">ED</span>, <span class="va">TKW</span>, <span class="va">NKR</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
  <span class="fu"><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data</a></span><span class="op">(</span>what <span class="op">=</span> <span class="st">"WAAS"</span><span class="op">)</span>
@@ -681,7 +681,7 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 \]</span></p>
 <p>Onde <span class="math inline">\({\theta _k}\)</span> é o percentual da soma de quadrados explicada pelo <em>k</em> -ésimo IPCA. índices de selecção simultâneas (SSI) são calculados pela soma dos ranques dos índices Za ASV, SIPC e EV e o ranque da variável dependente <span class="citation">(Farshadfar <a href="refer%C3%AAncias.html#ref-Farshadfar2008" role="doc-biblioref">2008</a>)</span> que resulta em ssiASV, ssiSIPC, ssiEV, e ssiZa, respectivamente.</p>
 <p>A função <code>AMMI_index ()</code> tem dois argumentos. O primeiro (x) é o modelo, que deve ser um objeto da classe <code>waas</code>. O segundo, (order.y) é a ordem para a variável resposta. Por padrão, ele é definido como nulo, o que significa que a variável resposta é ordenada em ordem decrescente. Se <code>x</code> é uma lista com mais de uma variável, então <code>order.y</code> deve ser um vetor com o mesmo comprimento de x. Cada elemento do vetor deve ser um dos “h” ou “l”. Se “h” for usado, a variável resposta será ordenada em ordem decrescente. Se “l” for usado, a variável resposta será ordenada em ordem crescente da média dos genótipos. Usando o operador <em>%&gt;% </em> é possível estruturar uma sequência lógica de operações. Vamos construir esse modelo.</p>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stab_indexes</span> <span class="op">&lt;-</span> 
   <span class="va">data_ge</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/metan/man/waas.html">waas</a></span><span class="op">(</span><span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -715,7 +715,7 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 <span class="header-section-number">14.9.3.1</span> Biplot tipo 2: GY x PC1<a class="anchor" aria-label="anchor" href="#biplot-tipo-2-gy-x-pc1"><i class="fas fa-link"></i></a>
 </h4>
 <p>O biplot conhecido como <strong>AMMI1</strong> é confeccionado utilizando o argumento <code>type = 2</code> na função <code><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores()</a></code>. O biplot <strong>AMMI1</strong> é utilizado para identificar tanto a estabilidade quando a produtividade dos genótipos. Neste tipo de biplot, os genótipos com escores do PC1 próximos de zero e à direita da linha vertical, são considerados os mais estáveis e com rendimento superior a média geral.</p>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p3</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">AMMI_model</span><span class="op">)</span>
 <span class="va">p4</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">AMMI_model</span>,
                  col.segm.env <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span> <span class="op">+</span>
@@ -725,8 +725,8 @@ Z{a_i} = \sum\nolimits_{k = 1}^P {{\theta _k}{a_{ik}}}
 
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p3</span>, <span class="va">p4</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p3"</span>,<span class="st">"p4"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-343"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-343-1.png" alt="Biplot AMMI1 gerado pelo pacote metan" width="960"><p class="caption">
+<span id="fig:unnamed-chunk-344"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-344-1.png" alt="Biplot AMMI1 gerado pelo pacote metan" width="960"><p class="caption">
 Figure 14.1: Biplot AMMI1 gerado pelo pacote metan
 </p>
 </div>
@@ -736,7 +736,7 @@ Figure 14.1: Biplot AMMI1 gerado pelo pacote metan
 <span class="header-section-number">14.9.3.2</span> biplot tipo 1: IPCA1 x IPCA2<a class="anchor" aria-label="anchor" href="#biplot-tipo-1-ipca1-x-ipca2"><i class="fas fa-link"></i></a>
 </h4>
 <p>O biplot conhecido como <strong>AMMI2</strong> é confeccionado utilizando o argumento <code>type = 1</code> (padrão) na função <code><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores()</a></code>. O biplot <strong>AMMI2</strong> representa os dois primeiros IPCAs oriundos da decomposição por valor singular da matriz dos efeitos da interação e é utilizado para realizar inferências quanto aos padrões da interação genótipo <em>vs</em> ambiente. Neste caso, os dois primeiros IPCAs explicam 66.2% da da soma de quadrados da interação.</p>
-<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">AMMI_model</span>, type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">AMMI_model</span>,
@@ -748,8 +748,8 @@ Figure 14.1: Biplot AMMI1 gerado pelo pacote metan
                  axis.expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>,<span class="st">"p2"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-344"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-344-1.png" alt="Biplot AMMI2, gerado pelo pacote metan" width="960"><p class="caption">
+<span id="fig:unnamed-chunk-345"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-345-1.png" alt="Biplot AMMI2, gerado pelo pacote metan" width="960"><p class="caption">
 Figure 14.2: Biplot AMMI2, gerado pelo pacote metan
 </p>
 </div>
@@ -759,15 +759,15 @@ Figure 14.2: Biplot AMMI2, gerado pelo pacote metan
 <span class="header-section-number">14.9.3.3</span> Rendimento nominal x IPCA1<a class="anchor" aria-label="anchor" href="#rendimento-nominal-x-ipca1"><i class="fas fa-link"></i></a>
 </h4>
 <p>Com o objetivo de identificar possíveis mega-ambientes, bem como visualizar o padrão <em>which-won-where</em> do conjunto de dados, um gráfico com o rendimento nominal (<span class="math inline">\(\mathop {\hat y} \nolimits_ {ij}^*\)</span> ) em função dos escores PCA1 dos ambientes é também confecionado pela função <code><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores()</a></code> utilizando o argumento <code>type = 4</code>. Neste gráfico, cada genótipo é representado por uma linha reta com a equação <span class="math inline">\(\hat y_{ij}^* = \mu_i + PCA1_i \times PCA1_j\)</span> , onde <span class="math inline">\(\hat y_{ij}^*\)</span> é o rendimento nominal para o genótipo <em>i</em> no ambiente <em>J</em>; <span class="math inline">\(\mu\)</span> é a média geral do genótipo <em>i</em>; <span class="math inline">\(PC{1_i}\)</span> é o escore PCA1 do genótipo <em>i</em> e <span class="math inline">\(PC{1_j}\)</span> é o escore PCA1 do ambiente <em>j</em>. O genótipo vencedor em um determinado ambiente possui o maior rendimento nominal nesse ambiente.</p>
-<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">AMMI_model</span>,
             type <span class="op">=</span> <span class="fl">4</span>,
             size.tex.pa <span class="op">=</span> <span class="fl">2</span>,
             x.lab <span class="op">=</span> <span class="st">"Rendimento nominal (Mg/ha)"</span>,
             y.lab <span class="op">=</span> <span class="st">"Escore dos ambientes no PCA1"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-345"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-345-1.png" alt="Gráfico do tipo 'which-won-where' baseado no modelo AMMI" width="384"><p class="caption">
+<span id="fig:unnamed-chunk-346"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-346-1.png" alt="Gráfico do tipo 'which-won-where' baseado no modelo AMMI" width="384"><p class="caption">
 Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </p>
 </div>
@@ -824,7 +824,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span class="header-section-number">14.10.4</span> Ajustando o modelo GGE<a class="anchor" aria-label="anchor" href="#ajustando-o-modelo-gge"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para ajustar o modelo GGE, usaremos os dados em <code>data_ge</code>, que contém dados do rendimento de grãos avaliados em 10 genótipos conduzidos em 14 ambientes. Primeiro de tudo, vamos criar uma tabela bidirecional para esses dados usando a função <code><a href="https://rdrr.io/pkg/metan/man/make_mat.html">make_mat()</a></code>. </p>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ge_table</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/make_mat.html">make_mat</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">GEN</span>, <span class="va">ENV</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.dataframe.html">print.data.frame</a></span><span class="op">(</span><span class="va">ge_table</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="co">#       E1  E10   E11  E12  E13  E14   E2   E3   E4   E5   E6   E7   E8   E9</span>
@@ -840,7 +840,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <span class="co"># G9  2.33 1.74 1.125 1.41 2.95 1.57 3.09 4.51 3.90 3.93 2.77 1.39 2.49 1.94</span></code></pre></div>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/gge.html">gge()</a></code> ajusta um modelo GGE baseado em uma tabela bidirecional (<code>ge_table</code> em nosso caso) com genótipos nas linhas e ambientes em colunas, ou em um data.frame contendo pelo menos as colunas para genótipos, ambientes e variável(is) resposta.
 </p>
-<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Usando um data frame</span>
 <span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span></code></pre></div>
 <p>O modelo acima foi ajustado considerando (i) <em>column metric preserving</em> (onde o valor singular é inteiramente particionado nos autovetores do ambiente); (ii) <em>environment centered</em> (o biplot conterá uma informação mista de G + GEI); e nenhum método de escalonamento. Para alterar estas configurações padrão, use os argumentos <code>svp</code>, <code>centering</code> e <code>scaling</code>, respectivamente. Por favor, note que no segundo exemplo o argumento <code>table</code> foi definido como <code>TRUE</code> para indicar que os dados de entrada são uma tabela bidirecional.</p>
@@ -849,7 +849,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <h3>
 <span class="header-section-number">14.10.5</span> Valores estimados pelo modelo GGE<a class="anchor" aria-label="anchor" href="#valores-estimados-pelo-modelo-gge"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">gge_model</span>, naxis <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">$</span><span class="va">GY</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="co"># # A tibble: 10 x 14</span>
@@ -901,13 +901,13 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </h4>
 <p>Esta é a configuração padrão no gráfico da função, portanto, este biplot é produzido apenas chamando <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot(model)</a></code>, como mostrado abaixo.
 </p>
-<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
            col.gen <span class="op">=</span> <span class="st">"blue"</span>,
            size.text.env <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-349-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-350-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-2-desempenho-médio-vs.-estabilidade" class="section level4" number="14.10.6.2">
 <h4>
@@ -916,7 +916,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <p>Neste biplot, a visualização da média e da estabilidade dos genótipos é obtida desenhando uma coordenada média de ambiente (AEC) no biplot obtido com <em>row metric preserving</em>. Primeiro, um ambiente médio, representado pelo pequeno círculo, é definido pelas médias dos escores PC1 e PC2 dos ambientes. A linha que passa pela origem do biplot e pelo AEC pode ser chamada de média. As projeções de marcadores genotípicos nesse eixo deve, portanto, aproximar o rendimento médio dos genótipos. Assim, o G8 foi claramente o genótipo de maior rendimento, em média.</p>
 <p>A ordenada de AEC é a linha que passa pela origem do biplot e é perpendicular à abscissa do AEC. Portanto, se a abscissa AEC representa o G, a ordenada AEC deve aproximar o GEI associado a cada genótipo, que é uma medida de variabilidade ou instabilidade dos genótipos <span class="citation">(Yan et al. <a href="refer%C3%AAncias.html#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. Uma projeção maior na ordenada AEC, independentemente da direção, significa maior instabilidade. Em nosso exemplo, o G3 foi o mais estável e o segundo genótipo mais produtivo, enquanto o G9 apresentou alta instabilidade.
 </p>
-<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -925,7 +925,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
           col.env <span class="op">=</span> <span class="st">"gray"</span>,
           axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-350-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-351-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-3-quem-ganhou-onde" class="section level4" number="14.10.6.3">
 <h4>
@@ -934,7 +934,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 <p>Neste biplot (obtido com particionamento de valores singulares simétrico) um polígono é desenhado juntando os genótipos (G7, G8, G9, G10 e G4) que estão localizadas mais distante da origem do biplot fazendo com que todos os outros genótipos fiquem contidos no polígono. Os <em>genótipos vértex</em> têm os vetores mais longos, em suas respectivas direções, que é uma medida da capacidade de resposta aos ambientes. Estes genótipos estão, portanto, entre os genótipos mais responsivos. Todos os outros genótipos são menos responsivos em suas respectivas direções.</p>
 <p>As linhas perpendiculares aos lados do polígono dividem o biplot em setores. Cada setor tem um genótipo vértice. Por exemplo, o setor com o genótipo-vértice G4 pode ser referido como o setor G4. Um ambiente (E9), foi enquadrado neste setor. Como regra geral, o genótipo vértex é o genótipo de mais alto rendimento em todos os ambientes que compartilham o setor com ele <span class="citation">(Yan et al. <a href="refer%C3%AAncias.html#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. Neste caso, G4 teve o maior rendimento em E9, como mostrado na tabela acima.
 </p>
-<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -946,20 +946,20 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
           annotation <span class="op">=</span> <span class="cn">FALSE</span>,
           title <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-351-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-352-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-4-discriminação-vs.-representatividade" class="section level4" number="14.10.6.4">
 <h4>
 <span class="header-section-number">14.10.6.4</span> Biplot tipo 4: Discriminação vs. representatividade<a class="anchor" aria-label="anchor" href="#biplot-tipo-4-discrimina%C3%A7%C3%A3o-vs.-representatividade"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
           type <span class="op">=</span> <span class="fl">4</span>,
           plot_theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-352-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-353-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-5-examinar-um-ambiente" class="section level4" number="14.10.6.5">
 <h4>
@@ -967,7 +967,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </h4>
 <p>A identificação de genótipos mais adaptados a um ambiente pode ser facilmente alcançada utilizando o biplot GGE. Por exemplo, para visualizar o desempenho de diferentes genótipos em um dado ambiente, por exemplo, E10, simplesmente desenhe uma linha que passa pela origem biplot e o marcador do E10. Os genótipos podem ser classificados de acordo com suas projeções no eixo E10 com base em seu desempenho neste ambiente, na direção apontada pela seta. Em nosso exemplo, no E10, o genótipo de maior rendimento foi o genótipo G8 e o genótipo de menor rendimento foi G10. A ordem dos genótipos foi G8 &gt; G7 &gt; G3 &gt; G2 &gt; G4 &gt; G1 &gt; G6 &gt; G5 &gt; G9 &gt; G10.
 </p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">5</span>, sel_env <span class="op">=</span> <span class="st">"E10"</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -978,7 +978,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
           size.text.env <span class="op">=</span> <span class="fl">10</span>,
           axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-353-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-354-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-6-ranquear-os-ambientes" class="section level4" number="14.10.6.6">
 <h4>
@@ -986,7 +986,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </h4>
 <p>Neste biplot o ambiente “ideal” é usado como o centro de um conjunto de linhas concêntricas que servem para medir a distância entre um ambiente e o ambiente “ideal”. Como o foco principal neste biplot são os ambientes, a partição de valor singular usada é “ambiente” (padrão). Pode ser visto que E13 é o mais próximo do ambiente ideal e, portanto, é o mais desejável de todos os 14 ambientes. E4 e E9 foram os ambientes de teste menos desejados.
 </p>
-<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -996,7 +996,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
            size.text.env <span class="op">=</span> <span class="fl">10</span>,
            axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-354-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-355-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-7-examinar-um-genótipo" class="section level4" number="14.10.6.7">
 <h4>
@@ -1004,7 +1004,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </h4>
 <p>Semelhante à visualização dos desempenhos genotípicos em um determinado ambiente (biplot 5), a visualização da média e da estabilidade dos genótipos é obtida desenhando-se uma AEC no biplot com foco no genótipo, ou <em>row metric preserving</em> <span class="citation">(Yan et al. <a href="refer%C3%AAncias.html#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.
 </p>
-<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">7</span>, sel_gen <span class="op">=</span> <span class="st">"G8"</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -1015,7 +1015,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
            size.text.env <span class="op">=</span> <span class="fl">10</span>,
            axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-355-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-356-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-8-ranquear-os-genótipos" class="section level4" number="14.10.6.8">
 <h4>
@@ -1023,7 +1023,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </h4>
 <p>Este biplot compara todos os genótipos com o genótipo “ideal”. O genótipo ideal, representado pelo pequeno círculo com uma seta apontando para ele, é definido como tendo o maior rendimento em todos os ambientes. Ou seja, tem o maior rendimento médio e é absolutamente estável. Os genótipos são classificados com base em sua distância do genótipo ideal <span class="citation">(Yan et al. <a href="refer%C3%AAncias.html#ref-Yan2007" role="doc-biblioref">2007</a>)</span>. Em nosso exemplo, o G3 e o G8 superaram os outros genótipos.
 </p>
-<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"genotype"</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -1032,7 +1032,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
            col.env <span class="op">=</span> <span class="st">"gray"</span>,
            size.text.gen <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-356-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-357-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-9-comparar-dois-genótipos" class="section level4" number="14.10.6.9">
 <h4>
@@ -1040,7 +1040,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
 </h4>
 <p>Para comparar dois genótipos, por exemplo, G10 e G8, desenhe uma linha de conexão para conectá-los e trace uma linha perpendicular que passa pela origem do biplot e é perpendicular à linha de conexão. Vemos que um ambiente, E9, está do mesmo lado da linha perpendicular do G10, e os outros 13 ambientes estão do outro lado da linha perpendicular, junto com o G8. Isso indica que G10 produziu mais do que o G8 no E9, mas G8 produziu mais que o G10 nos outros 13 ambientes <span class="citation">(Yan et al. <a href="refer%C3%AAncias.html#ref-Yan2007" role="doc-biblioref">2007</a>)</span>.
 </p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span>, svp <span class="op">=</span> <span class="st">"symmetrical"</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">9</span>, sel_gen1 <span class="op">=</span> <span class="st">"G8"</span>, sel_gen2 <span class="op">=</span> <span class="st">"G10"</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -1051,13 +1051,13 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
            title <span class="op">=</span> <span class="cn">FALSE</span>,
            annotation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-357-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-358-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 <div id="biplot-tipo-10-relação-entre-os-ambientes" class="section level4" number="14.10.6.10">
 <h4>
 <span class="header-section-number">14.10.6.10</span> Biplot tipo 10: relação entre os ambientes<a class="anchor" aria-label="anchor" href="#biplot-tipo-10-rela%C3%A7%C3%A3o-entre-os-ambientes"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gge_model</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/gge.html">gge</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">GY</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>, type <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gge_model</span>,
@@ -1066,7 +1066,7 @@ Figure 14.3: Gráfico do tipo ‘which-won-where’ baseado no modelo AMMI
           title <span class="op">=</span> <span class="cn">FALSE</span>,
           annotation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-358-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-359-1.png" width="960" style="display: block; margin: auto;"></div>
 </div>
 </div>
 </div>
@@ -1100,7 +1100,7 @@ Eq. </p>
 <span class="header-section-number">14.11.1</span> Ajustando o modelo<a class="anchor" aria-label="anchor" href="#ajustando-o-modelo"><i class="fas fa-link"></i></a>
 </h3>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/waasb.html">waasb()</a></code>  do pacote <code>metan</code> será utilizada para a análise dos dados de nosso exemplo utilizando o modelo misto descrito acima, considerando como aleatório os efeitos de genótipo e da interação genótipo-<em>vs</em>-ambiente.</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">BLUP_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/waasb.html">waasb</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
                     resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">GY</span>, <span class="va">HM</span><span class="op">)</span>,
@@ -1109,7 +1109,7 @@ Eq. </p>
 <ul>
 <li>Resumo do experimento</li>
 </ul>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">BLUP_model</span>, <span class="st">"details"</span><span class="op">)</span>
 <span class="co"># # A tibble: 14 x 3</span>
 <span class="co">#    Parameters GY                  HM              </span>
@@ -1131,7 +1131,7 @@ Eq. </p>
 <ul>
 <li>Teste de razão de máxima verossimilhanças (LRT)</li>
 </ul>
-<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">BLUP_model</span>, <span class="st">"lrt"</span><span class="op">)</span>
 <span class="co"># # A tibble: 4 x 8</span>
 <span class="co">#   VAR   model    npar logLik   AIC   LRT    Df `Pr(&gt;Chisq)`</span>
@@ -1144,7 +1144,7 @@ Eq. </p>
 <ul>
 <li>Componentes da variância</li>
 </ul>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">BLUP_model</span>, <span class="st">"vcomp"</span><span class="op">)</span>
 <span class="co"># # A tibble: 3 x 3</span>
 <span class="co">#   Group        GY    HM</span>
@@ -1158,15 +1158,15 @@ Eq. </p>
 <span class="header-section-number">14.11.2</span> Análise dos resíduos<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-dos-res%C3%ADduos-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>A função <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code> também pode ser utilizada para a investigação dos pressupostos do modelo neste exemplo. Dois gráficos que são gerados mas não mostrados por padrão são vistos neste exemplo.</p>
-<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-363-1.png" width="768" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-364-1.png" width="768" style="display: block; margin: auto;"></div>
 </div>
 <div id="parâmetros-genéticos" class="section level3" number="14.11.3">
 <h3>
 <span class="header-section-number">14.11.3</span> Parâmetros genéticos<a class="anchor" aria-label="anchor" href="#par%C3%A2metros-gen%C3%A9ticos"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data</a></span><span class="op">(</span><span class="va">BLUP_model</span>, <span class="st">"genpar"</span><span class="op">)</span>
 <span class="co"># Class of the model: waasb</span>
 <span class="co"># Variable extracted: genpar</span>
@@ -1191,7 +1191,7 @@ Eq. </p>
 <ul>
 <li>Imprimindo os BLUPs preditos para genótipos</li>
 </ul>
-<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">BLUPgen</span><span class="op">)</span>
 <span class="co"># # A tibble: 10 x 6</span>
@@ -1211,7 +1211,7 @@ Eq. </p>
 <ul>
 <li>plotando os BLUPs preditos para genótipos</li>
 </ul>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_blup.html">plot_blup</a></span><span class="op">(</span><span class="va">BLUP_model</span>,
                col.shape  <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray20"</span>, <span class="st">"gray80"</span><span class="op">)</span>,
@@ -1220,15 +1220,15 @@ Eq. </p>
 
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-366"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-366-1.png" alt="Médias preditas para genótipos considerando um modelo misto" width="960"><p class="caption">
+<span id="fig:unnamed-chunk-367"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-367-1.png" alt="Médias preditas para genótipos considerando um modelo misto" width="960"><p class="caption">
 Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 </p>
 </div>
 <ul>
 <li>Imprimindo os BLUPs estimados para as combinações genótipo x ambiente (primeiras 10 entradas)</li>
 </ul>
-<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">$</span><span class="va">GY</span><span class="op">$</span><span class="va">BLUPint</span><span class="op">)</span>
 <span class="co"># # A tibble: 420 x 7</span>
@@ -1269,7 +1269,7 @@ Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 \]</span></p>
 <p>onde <span class="math inline">\(WAASB_i\)</span> é a média ponderada dos escores absolutos do genótipo <em>i</em>; <span class="math inline">\(IPCA_{ik}\)</span> é o escore do genótipo <em>i</em> no <em>k</em>-esimo IPCA; e <span class="math inline">\(EP_k\)</span> é a variância explicada pelo <em>k</em> IPCA para <span class="math inline">\(k = 1,2, .., p\)</span>, sendo <span class="math inline">\(p = min (g-1; e-1)\)</span>. O genótipo mais estável é aquele com o menor valor de WAASB <span class="citation">(Tiago Olivoto, Lúcio, et al. <a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">2019</a><a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">a</a>)</span>.</p>
 <p>Devido a aplicação da ténica de decomposição por valores singulares, é possível a confecção de biplots semelhantes ao método AMMI, considerando agora, um modelo de efeito misto. Para isto, a função <code>plot_scores</code>  é utilizada utilizando como argumento de o modelo ajustado <code>BLUP_model</code>. <span class="citation">Tiago Olivoto, Lúcio, et al. (<a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">2019</a><a href="refer%C3%AAncias.html#ref-Olivoto2019" role="doc-biblioref">a</a>)</span> e <span class="citation">Tiago Olivoto, Lúcio, et al. (<a href="refer%C3%AAncias.html#ref-Olivoto2019a" role="doc-biblioref">2019</a><a href="refer%C3%AAncias.html#ref-Olivoto2019a" role="doc-biblioref">b</a>)</span> propuseram a utilização do índice WAASB na ordenada do biplot AMMI1, substituindo os valores do IPCA1 pelos valores do WAASB. Este biplot é criado utilizando <code>type = 3</code> na função.</p>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p5</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">BLUP_model</span>, type <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="va">p6</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_scores.html">plot_scores</a></span><span class="op">(</span><span class="va">BLUP_model</span>, type <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -1278,8 +1278,8 @@ Figure 14.4: Médias preditas para genótipos considerando um modelo misto
 
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p5</span>, <span class="va">p6</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p5"</span>,<span class="st">"p6"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-368"></span>
-<img src="html_r_files/figure-html/unnamed-chunk-368-1.png" alt="Biplot AMMI2 gerado pelo pacote metan" width="960"><p class="caption">
+<span id="fig:unnamed-chunk-369"></span>
+<img src="html_r_files/figure-html/unnamed-chunk-369-1.png" alt="Biplot AMMI2 gerado pelo pacote metan" width="960"><p class="caption">
 Figure 14.5: Biplot AMMI2 gerado pelo pacote metan
 </p>
 </div>
@@ -1295,7 +1295,7 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 \]</span></p>
 <p>onde <span class="math inline">\(WAASBY_i\)</span> é o índice de superioridade para o genótipo <em>i</em> que pondera entre desempenho e estabilidade; <span class="math inline">\(rG_i\)</span> e <span class="math inline">\(rW_i\)</span> são os valores escalonados (0-100) para GY e WAASB, respectivamente; <span class="math inline">\(\theta_Y\)</span> e <span class="math inline">\(\theta_S\)</span> são os pesos para GY e WAASB, respectivamente.</p>
 <p>Este índice permite atribuir pesos para estabilidade e produtividade na classificação dos genótipos. Para isto, o argumento <code>wresp</code> da função <code><a href="https://rdrr.io/pkg/metan/man/waasb.html">waasb()</a></code>  é usado. Por exemplo, se o objetivo é selecionar genótipos com alto rendimento (independentemente de sua estabilidade), então o <code>wresp = 100</code> deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação da variável de resposta. Por outro lado, visando selecionar genótipos altamente estáveis (independentemente da produtividade), então o <code>wresp = 0</code> deve ser usado. Nesse caso, a classificação do índice WAASBY corresponderá perfeitamente à classificação do índice WAASB. Qualquer valor entre 0 e 100 pode ser usado no argumento <code>wresp</code> para ponderar entre o desempenho médio e a estabilidade. Em nosso exemplo, o índice WAASBY foi calculado considerando <code>wresp = 50</code> (padrão da função), o que significa pesos iguais para desempenho e estabilidade médios. Para plotar os valores de WAASBY, o código a seguir é usado.</p>
-<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_waasby.html">plot_waasby</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/plot_waasby.html">plot_waasby</a></span><span class="op">(</span><span class="va">BLUP_model</span>,
                   col.shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"gray"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -1305,7 +1305,7 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <p>O reescalonamento da variável resposta e do índice WAASB é necessário para que eles sejam diretamente comparáveis. Por padrão, a variável resposta é reescalonada de forma que o valor máximo (genótipo com a maior média) seja 100 e o valor mínimo (genótipo com a menor média) seja 0. Digamos que para uma determinada variável, menores valores são desejados, então o argumento <code>mresp = 100</code> (padrão) deve ser ajustado para <code>mresp = 0</code>.</p>
 </div>
 <p>Par obter o índice WAASBY para múltiplas variáveis, por exemplo, basta utilizar a função <code><a href="https://rdrr.io/pkg/metan/man/get_model_data.html">get_model_data()</a></code>, como mostrado abaixo.</p>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/metan/man/waas.html">waas</a></span><span class="op">(</span><span class="va">data_ge2</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>,
      resp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">PH</span>, <span class="va">ED</span>, <span class="va">TKW</span>, <span class="va">NKR</span><span class="op">)</span>,
      wresp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">65</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1400,12 +1400,12 @@ WAASB{Y_i} = \frac{{\left( {r{G_i} \times {\theta _Y}} \right) + \left( {r{W_i} 
 <span class="header-section-number">14.11.5.3</span> Diferentes cenários para a estimativa do WAASBY<a class="anchor" aria-label="anchor" href="#diferentes-cen%C3%A1rios-para-a-estimativa-do-waasby"><i class="fas fa-link"></i></a>
 </h4>
 <p>No exemplo a seguir, aplicaremos a função <code><a href="https://rdrr.io/pkg/metan/man/wsmp.html">wsmp()</a></code>  (<strong>w</strong>eighting the <strong>s</strong>tability and the <strong>m</strong>ean <strong>p</strong>erformance) ao modelo previamente ajustado <code>BLUP_model</code> visando planejar diferentes cenários de estimação do WAASBY alterando os pesos atribuídos à estabilidade e ao desempenho médio. O número de cenários é definido pelo argumento <code>increment</code>. Por padrão, vinte e um cenários diferentes são simulados. Neste caso, o índice de superioridade WAASBY é calculado considerando os seguintes pesos: estabilidade = 100; desempenho médio = 0. Em outras palavras, apenas a estabilidade é considerada para a classificação dos genótipos. Na próxima iteração, os pesos se tornam 95/5 (uma vez que <code>increment = 5</code>). No terceiro cenário, os pesos se tornam 90/10, e assim por diante até esses pesos se tornarem 0/100. Na última iteração, a classificação do genótipo para o WAASBY corresponde perfeitamente às classificações da variável resposta.</p>
-<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scenarios</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/wsmp.html">wsmp</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">scenarios</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">scenarios</span>, type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p1"</span>, <span class="st">"p2"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-372-1.png" width="1152" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-373-1.png" width="1152" style="display: block; margin: auto;"></div>
 <p>A função genérica <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>  é então usada para plotar o objeto. Dois <em>heatmaps</em> são criados. O primeiro tipo mostra a classificação do genótipo dependendo do número de eixos de componentes principais usados para estimar o índice WAASB. Um dendrograma baseado na distância euclidiana é usado para agrupar a classificação dos genótipos. O segundo tipo mostra a classificação do genótipo dependendo da relação WAASB/GY. As classificações obtidas no cenário 100/0 consideram exclusivamente a estabilidade para o ranking de genótipos. Por outro lado, o cenário 0/100 considera exclusivamente a produtividade para o ranking de genótipos.</p>
 </div>
 <div id="performance-e-média-harmônica-dos-valores-genotípicos" class="section level4" number="14.11.5.4">
@@ -1423,7 +1423,7 @@ PRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {G{v_{ij}}/{\mu_j}}
 MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 \]</span></p>
 <p>onde <em>e</em> é o número de ambientes incluídos na análise, <span class="math inline">\(Gv_{ij}\)</span> é o valor genotípico (BLUP) para o genótipo <em>i</em> no ambiente <em>j</em>.</p>
-<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Indexes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/Resende_indexes.html">Resende_indexes</a></span><span class="op">(</span><span class="va">BLUP_model</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">Indexes</span><span class="op">$</span><span class="va">GY</span><span class="op">)</span>
 <span class="co"># # A tibble: 10 x 10</span>
@@ -1448,10 +1448,10 @@ MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 </h2>
 <p>Vimos anteriormente que um membro da família de modelos AMMI (AMMI2) é o mais preciso na predição da variável resposta em nosso exemplo. Após analizar-mos os mesmos dados utilizando modelos mistos, nos surge a seguinte questão. Qual é o método mais preciso para predizer a variável resposta em nosso exemplo? A resposta a esta pergunda será dada agora. O pacote <code>metan</code> também conta com uma função para <em>cross-validation</em> considerando o modelo misto acima. A idéia é simples. Relizaremos uma validação cruzada semelhante àquela realizada no modelo AMMI e compararemos o RMSPD dos valores preditos utilizando BLUP com aqueles obtidos pelo modelo AMMI.</p>
 <p>A função <code><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup()</a></code> realiza uma validação cruzada para experimentos com repetição usando modelos mistos. Por padrão, blocos completos são selecionados aleatoriamente em cada ambiente. O procedimento para calcular o RMSPD é idêntico ao apresentado na análise AMMI.</p>
-<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valida_blup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup</a></span><span class="op">(</span><span class="va">data_ge</span>, <span class="va">ENV</span>, <span class="va">GEN</span>, <span class="va">REP</span>, <span class="va">GY</span>, nboot <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 <p>Para unir os resultados obtidos pelas funções <code><a href="https://rdrr.io/pkg/metan/man/cv_ammif.html">cv_ammif()</a></code> e <code><a href="https://rdrr.io/pkg/metan/man/cv_blup.html">cv_blup()</a></code> a função <code><a href="https://rdrr.io/pkg/metan/man/bind_cv.html">bind_cv()</a></code>. Usando o argumento <code>bind = "means"</code> é possível concatenar os valores médios obtidos por cada modelo.   </p>
-<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">val_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/bind_cv.html">bind_cv</a></span><span class="op">(</span><span class="va">AMMIF</span>, <span class="va">valida_blup</span>, bind <span class="op">=</span> <span class="st">"means"</span><span class="op">)</span>
 <span class="va">val_means</span><span class="op">$</span><span class="va">RMSPD</span>
 <span class="co"># # A tibble: 11 x 6</span>
@@ -1469,14 +1469,14 @@ MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 <span class="co"># 10 AMMI1       0.430 0.0251 0.00178 0.384 0.479</span>
 <span class="co"># 11 AMMI0       0.430 0.0283 0.00200 0.370 0.485</span></code></pre></div>
 <p>Um gráfico boxplot também pode ser obtido utilizando o argumento <code>bind = "boot"</code> (padrão).</p>
-<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">val_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metan/man/bind_cv.html">bind_cv</a></span><span class="op">(</span><span class="va">AMMIF</span>, <span class="va">valida_blup</span><span class="op">)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">val_plot</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">val_plot</span>,
           width.boxplot <span class="op">=</span> <span class="fl">0.6</span>,
           col.boxplot <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/metan/man/arrange_ggplot.html">arrange_ggplot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-376-1.png" width="960" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="html_r_files/figure-html/unnamed-chunk-377-1.png" width="960" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
@@ -1545,7 +1545,7 @@ MHPRVG_i = \frac{1}{e}\sum\limits_{j = 1}^e {\frac{1}{{G{v_{ij}}/{\mu_j}}}}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-20.</p>
+    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
