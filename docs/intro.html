@@ -109,8 +109,7 @@
 </div>
 <p>Como exemplo inicial, vamos tentar selecionar a variável <em>Sepal.Length</em> do conjunto de dados base <code>iris</code> utilizando a função abaixo. <strong>Cuidado, spoilers do pacote dplyr!</strong> O primero passo é criar um novo script, seguindo os seguintes passos: <em>File &gt; New File &gt; R script</em> ou utilizando o atalho <code>Ctrl+Shift+N</code>. Posteriormente, o seguinte código é digitado e executado ao se selecionar a linha do código e clicar no botão <em>run</em> ou utilizando o atalho <code>Ctrl+Enter</code>).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">SL</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span><span class="va">iris</span>, <span class="va">Sepal.Length</span><span class="op">)</span>
-<span class="co"># Error in select(iris, Sepal.Length): não foi possível encontrar a função "select"</span></code></pre></div>
+<code class="sourceCode R"><span class="va">SL</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span><span class="va">iris</span>, <span class="va">Sepal.Length</span><span class="op">)</span></code></pre></div>
 <p>Neste caso, um erro é exibido pois o pacote <strong>dplyr</strong> não está instalado ou carregado. Caso ele já estiver instalado, a mensagem de erro acima é superada ao carregar o pacote antes de executar a função.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>

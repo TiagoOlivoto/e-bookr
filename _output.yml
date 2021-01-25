@@ -1,4 +1,4 @@
 bookdown::bs4_book:
   theme:
-    primary: "#274E82"
+    primary: "#2D07ED"
   repo: https://github.com/TiagoOlivoto/e-bookr
