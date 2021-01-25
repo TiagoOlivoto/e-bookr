@@ -58,7 +58,6 @@
 <li><a class="" href="relations.html"><span class="header-section-number">12</span> Relações lineares entre variáveis</a></li>
 <li><a class="" href="multivariate.html"><span class="header-section-number">13</span> Análise multivariada</a></li>
 <li><a class="" href="interaction.html"><span class="header-section-number">14</span> Interação genótipo-vs-ambiente</a></li>
-<li><a class="" href="refer%C3%AAncias.html"><span class="header-section-number">15</span> Referências</a></li>
 <li class="book-part">Apêndices</li>
 <li><a class="" href="resposta-dos-exerc%C3%ADcios.html"><span class="header-section-number">A</span> Resposta dos exercícios</a></li>
 <li><a class="" href="tabela-de-distribui%C3%A7%C3%B5es.html"><span class="header-section-number">B</span> Tabela de distribuições</a></li>
@@ -82,7 +81,7 @@ do que qualquer outro dispositivo.” — John Tukey</p>
 <h2>
 <span class="header-section-number">8.1</span> O pacote <code>ggplot2</code><a class="anchor" aria-label="anchor" href="#o-pacote-ggplot2"><i class="fas fa-link"></i></a>
 </h2>
-<p>O <code>ggplot2</code> (<a href="https://ggplot2.tidyverse.org/)%5Cindt%7Bggplot2%7D" class="uri">https://ggplot2.tidyverse.org/)\indt{ggplot2}</a> é um pacote R para produção de gráficos que diferentemente da maioria dos outros pacotes, apresenta uma profunda gramática baseada no livro <em>The grammar of graphics</em> <span class="citation">(Wilkinson <a href="refer%C3%AAncias.html#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span>. Os gráficos originados em <code>ggplot2</code> são baseados em camadas, e cada gráfico tem três componentes chave: <code>data</code>, os dados de onde o gráfico será criado; <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> (<em>aesthetic mappings</em>), que controla o mapeamento estético e as propriedades visuais do gráfico; e ao menos uma camada que irá descrever como cada observação será renderizada. Camadas são usualmente criadas utilizando uma função <code>geom_()</code>. A referência principal ao pacote é o livro <em>Ggplot2 : elegant graphics for data analysis</em> <span class="citation">(Wickham <a href="refer%C3%AAncias.html#ref-Wickham2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>O <code>ggplot2</code> (<a href="https://ggplot2.tidyverse.org/)%5Cindt%7Bggplot2%7D" class="uri">https://ggplot2.tidyverse.org/)\indt{ggplot2}</a> é um pacote R para produção de gráficos que diferentemente da maioria dos outros pacotes, apresenta uma profunda gramática baseada no livro <em>The grammar of graphics</em> <span class="citation">(Wilkinson <a href="references.html#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span>. Os gráficos originados em <code>ggplot2</code> são baseados em camadas, e cada gráfico tem três componentes chave: <code>data</code>, os dados de onde o gráfico será criado; <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> (<em>aesthetic mappings</em>), que controla o mapeamento estético e as propriedades visuais do gráfico; e ao menos uma camada que irá descrever como cada observação será renderizada. Camadas são usualmente criadas utilizando uma função <code>geom_()</code>. A referência principal ao pacote é o livro <em>Ggplot2 : elegant graphics for data analysis</em> <span class="citation">(Wickham <a href="references.html#ref-Wickham2009" role="doc-biblioref">2009</a>)</span>.</p>
 </div>
 <div id="meu-primeiro-gráfico-em-ggplot2" class="section level2" number="8.2">
 <h2>
@@ -324,7 +323,7 @@ Figure 8.4: Gráfico do tipo boxplot combinando mapeamentos estéticos e inclus�
 Figure 8.5: Gráfico do tipo histograma com estimativas de função de probabilidade kernel e normal.
 </p>
 </div>
-<p>No histograma (h1), a linha preta representa estimativa de densidade Kernel <span class="citation">(Silverman <a href="refer%C3%AAncias.html#ref-Silverman1998" role="doc-biblioref">1998</a>)</span>. A linha vermelha representa a estimativa da função de probabilidade normal. Para isto, a escala do eixo <code>y</code> foi mudada de contagem para densidade.</p>
+<p>No histograma (h1), a linha preta representa estimativa de densidade Kernel <span class="citation">(Silverman <a href="references.html#ref-Silverman1998" role="doc-biblioref">1998</a>)</span>. A linha vermelha representa a estimativa da função de probabilidade normal. Para isto, a escala do eixo <code>y</code> foi mudada de contagem para densidade.</p>
 <p><span class="math inline">\(~\)</span></p>
 <ul>
 <li><strong>Gráficos do tipo barra</strong></li>
@@ -385,7 +384,7 @@ Figure 8.7: Gráfico de dispersão combinado com inclusão de curvas ajustadas.
 <ul>
 <li><strong>Gráficos do tipo quantil-quantil (Q-Q plots)</strong></li>
 </ul>
-<p>Esta função é muito util para verificar a normalidade dos resíduos da ANOVA e regressões lineares ou não lineares. A programação abaixo foi utilizada no artigo de <span class="citation">Lúcio, Santos, and Olivoto (<a href="refer%C3%AAncias.html#ref-Lucio2017" role="doc-biblioref">2017</a>)</span> para demonstrar a intepretação dos gráficos. As funções <code>stat_qq_band()</code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line()</a></code> e <code>stat_qq_point()</code> do pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/aloy/qqplotr" class="uri"&gt;https://github.com/aloy/qqplotr&lt;/a&gt;&lt;/p&gt;'><sup>26</sup></a> serão utilizadas. Este é uma das inúmeras extensões do pacote <code>ggplot2</code> que podem ser encontradas <a href="http://www.ggplot2-exts.org/gallery/">aqui.</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.ggplot2-exts.org/gallery/" class="uri"&gt;http://www.ggplot2-exts.org/gallery/&lt;/a&gt;&lt;/p&gt;'><sup>27</sup></a>.</p>
+<p>Esta função é muito util para verificar a normalidade dos resíduos da ANOVA e regressões lineares ou não lineares. A programação abaixo foi utilizada no artigo de <span class="citation">Lúcio, Santos, and Olivoto (<a href="references.html#ref-Lucio2017" role="doc-biblioref">2017</a>)</span> para demonstrar a intepretação dos gráficos. As funções <code>stat_qq_band()</code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line()</a></code> e <code>stat_qq_point()</code> do pacote <a href="https://github.com/aloy/qqplotr">qqplotr</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/aloy/qqplotr" class="uri"&gt;https://github.com/aloy/qqplotr&lt;/a&gt;&lt;/p&gt;'><sup>26</sup></a> serão utilizadas. Este é uma das inúmeras extensões do pacote <code>ggplot2</code> que podem ser encontradas <a href="http://www.ggplot2-exts.org/gallery/">aqui.</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.ggplot2-exts.org/gallery/" class="uri"&gt;http://www.ggplot2-exts.org/gallery/&lt;/a&gt;&lt;/p&gt;'><sup>27</sup></a>.</p>
 <div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulando dados com diferentes assimetrias</span>
 <span class="va">assimetria</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>esquerda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">5000</span>,<span class="fl">1</span>,<span class="fl">7</span><span class="op">)</span>,
@@ -446,7 +445,7 @@ Nestes exemplos vimoss alguns gráficos simples que podem ser originados pelo <c
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-24.</p>
+    <p>"<strong>Software R para avaliação de dados experimentais</strong>: Um foco em experimentos agronômicos" was written by Tiago Olivoto, Bruno Giacomini Sari. It was last built on 2021-01-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

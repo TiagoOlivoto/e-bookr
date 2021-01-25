@@ -1,15 +1,3 @@
-\bookmarksetup{startatroot}
-\addtocontents{toc}{\bigskip}
-
-# Referências
-
-\setlength{\parindent}{0in}
-<!-- \setlength{\leftskip}{0.3in} -->
-\setlength{\parskip}{8pt}
-\noindent
-<div id="refs"></div>
-
-
 # (APPENDIX) Apêndices {-}
 \renewcommand{\chaptername}{Apêndice}
 

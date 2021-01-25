@@ -262,7 +262,6 @@ o-índice-waasby
 diferentes-cenários-para-a-estimativa-do-waasby
 performance-e-média-harmônica-dos-valores-genotípicos
 ammi-ou-blup-decisão-em-cada-caso
-referências
 resposta-dos-exercícios
 exerc1
 exerc2
